@@ -1,0 +1,176 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    margin-top: 250px;
+    margin-bottom: 2000000000000px;
+    font-family: Arial, sans-serif;
+    /* background-color: #f3f3f3; */
+}
+
+#logo {
+    width: 250px;
+    height: 250px;
+    margin-top: 180px;
+    margin-bottom: 50px;
+    /* transition: all 0.3s ease-in-out; */
+}
+
+/* gambar bergerak start */
+.gambar {
+    transform: translate(0px);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-60px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+/* gambar bergerak end */
+
+#logo.hovered {
+    transform: scale(1.2);
+}
+#logo.scale {
+    transform: scale(1.5);
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+}
+
+#filosofi {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 50px;
+    max-width: 800px;
+    width: 90%;
+    margin-top: 20px;
+}
+
+.filosofi-card:hover {
+    background-color: #1818d7; /* Change background color on hover */
+}
+
+.filosofi-card:hover h3,
+.filosofi-card:hover p {
+    color: white; /* Change text color on hover */
+}
+
+/* Mengatur tampilan saat hovering pada elemen dengan class kampus */
+.kampus:hover #logo {
+    content: url("/Assets/images/logo/unila.png");
+}
+
+/* Mengatur tampilan saat hovering pada elemen dengan class bentuk */
+.bentuk:hover #logo {
+    content: url("/Assets/images/logo/lingkaran.png");
+}
+
+/* Mengatur tampilan saat hovering pada elemen dengan class abjad */
+.abjad:hover #logo {
+    content: url("/Assets/images/logo/s.png");
+}
+
+/* Mengatur tampilan saat hovering pada elemen dengan class warnanya */
+.warnanya:hover #logo {
+    content: url("/Assets/images/logo/biru.png");
+}
+
+#logo.fade-out {
+    opacity: 0;
+}
+
+.filosofi-card {
+    background-color: #f7f1f1;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 100%;
+}
+
+.filosofi-card h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.filosofi-card p {
+    color: #777;
+    font-size: 14px;
+}
+
+.filosofinya {
+    margin-bottom: 180px;
+}
+
+.justify {
+    text-align: justify;
+    align-items: center;
+    align-content: center;
+}
+
+.bottom {
+    margin-bottom: 400px;
+}
+
+.bottomm {
+    margin-bottom: 150px;
+}
+
+@media (min-width: 770px) and (max-width: 1500px) {
+    .bottomm {
+        margin-bottom: 100px;
+    }
+
+    .bottom {
+        margin-bottom: 400px;
+    }
+}
+
+@media (min-width: 1px) and (max-width: 760px) {
+    #filosofi {
+        grid-template-columns: 1fr;
+    }
+
+    #logo {
+        margin-top: 300px;
+    }
+
+    .body {
+        padding: 20px;
+        margin-top: 300px;
+        margin-bottom: 500px;
+    }
+
+    .bottom {
+        margin-bottom: 300px;
+    }
+
+    .bottomm {
+        margin-bottom: 100px;
+    }
+    .bawah-testimonial {
+        margin-bottom: 700px;
+    }
+}
+
+/* menampilkan tanggal */
+.tanggal {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    text-align: center;
+    color: #333;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+}
+/* menampilkan tanggal */

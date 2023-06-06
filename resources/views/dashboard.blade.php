@@ -1,0 +1,656 @@
+@extends('layouts.datatable')
+@section('datatable')
+    <style>
+        .hover:hover {
+            tercolor: #1818d7;
+
+        }
+
+
+        .apexcharts-pie-series path {
+            cursor: pointer;
+        }
+
+        @media (max-width: 375.98px) {
+            #chart {
+                scale: 0.5 !important;
+                margin-left: -80px;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            #chart {
+                scale: 0.8 !important;
+                margin-left: -80px;
+            }
+        }
+
+        @media (max-width: 576.98px) {
+            #chart {
+                scale: 0.1 !important;
+                margin-left: -70px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            #chart {
+                scale: 0.8 !important;
+                margin-left: -70px;
+            }
+        }
+
+        @media (min-width: 991.98px) {
+            #chart {
+                scale: 0.8 !important;
+                margin-left: -20px;
+            }
+        }
+
+        @media (min-width: 0px) and (max-width: 767px) {
+            .chart {
+                display: none;
+            }
+        }
+    </style>
+    <div class="main-container">
+        <div class="xs-pd-20-10 pd-ltr-20">
+            <div class="title pb-20">
+                <h2 class="h3 mb-0">Dashboard</h2>
+            </div>
+            @role('mahasiswa')
+                <div class="row pb-10">
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $jumlah_prestasi }}</div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Prestasi
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="icon-copy fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $jumlah_aktivitas}}</div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Kegiatan Tambahan
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon">
+                                        <i class="icon-copy ion ion-ribbon-b" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ Auth::user()->mahasiswa->semester }}</div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Semester
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#fffff">
+                                        <span class="icon-copy fa-solid fa-bookmark"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ Auth::user()->mahasiswa->status }}</div>
+                                    <div class="font-14 text-secondary weight-500">Status</div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="icon-copy fa-solid fa-user" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endrole
+
+
+            {{-- BUAT UNTUK PEMBERITAHUAN SEMINAR H-1 UNTUK ROLE DOSEN --}}
+            @role('dosen')
+                <div class="card-box pb-10" style="margin-bottom: 30px">
+                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Kerja Praktik</div>
+
+                    <table class="table data-table-responsive stripe data-table-noexport p-2">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NPM</th>
+                                <th>Judul</th>
+                                <th>Tanggal</th>
+                                <th>Waktu</th>
+                                <th>Ruangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($jadwalskp as $item)
+                                <tr>
+                                    <td> {{ $loop->iteration }}</td>
+                                    <td>{{ $item->mahasiswa->npm }}</td>
+                                    <td>{{ $item->judul_kp }}</td>
+                                    <td>{{ $item->jadwal->tanggal_skp }}</td>
+                                    <td>{{ $item->jadwal->jam_mulai_skp . ' - ' . $item->jadwal->jam_selesai_skp }}</td>
+                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-box pb-10" style="margin-bottom: 30px">
+                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tugas Akhir 1</div>
+                    <table class="table data-table-responsive stripe data-table-noexport p-2">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NPM</th>
+                                <th>Judul</th>
+                                <th>Tanggal</th>
+                                <th>Waktu</th>
+                                <th>Ruangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>2017031016
+                                </td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
+                                <td>10-10-2023</td>
+                                <td>10.10</td>
+                                <td>Ruangan Seminar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-box pb-10" style="margin-bottom: 30px">
+                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tugas Akhir 2</div>
+                    <table class="table data-table-responsive stripe data-table-noexport p-2">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NPM</th>
+                                <th>Judul</th>
+                                <th>Tanggal</th>
+                                <th>Waktu</th>
+                                <th>Ruangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>2017031016
+                                </td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
+                                <td>10-10-2023</td>
+                                <td>10.10</td>
+                                <td>Ruangan Seminar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-box pb-10" style="margin-bottom: 30px">
+                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Sidang Komprehensif</div>
+                    <table class="table data-table-responsive stripe data-table-noexport p-2">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NPM</th>
+                                <th>Judul</th>
+                                <th>Tanggal</th>
+                                <th>Waktu</th>
+                                <th>Ruangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>2017031016
+                                </td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
+                                <td>10-10-2023</td>
+                                <td>10.10</td>
+                                <td>Ruangan Seminar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            @endrole
+        </div>
+
+
+        {{-- <div class="card-box pb-10">
+                <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Kerja Praktik</div>
+                @role('mahasiswa')
+                    <a href="/seminar/create" style="margin-left:15px;">
+                        <button class="btn btn-success ">
+                            <i class="icon-copy fi-page-add"></i>
+                            Daftar Seminar
+                        </button>
+                    </a>
+                @endrole
+                <table class="table data-table-responsive stripe data-table-export ">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>NPM / Nama</th>
+                            <th>Judul</th>
+                            <th>Tanggal</th>
+                            <th>Waktu</th>
+                            <th>Ruangan</th>
+                            <th>Prodi</th>
+                            <th>Jenis Seminar</th>
+                            @role('mahasiswa')
+                                <th class="table-plus datatable-nosort">Aksi</th>
+                            @endrole
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2017031016 <br>
+                                Putu Putra Eka Persada
+                            </td>
+                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
+                            <td>10-10-2023</td>
+                            <td>10.10</td>
+                            <td>Ruangan Seminar</td>
+                            <td>S1 Kimia</td>
+                            <td>Kerja Praktik</td>
+                            @role('mahasiswa')
+                                <td>
+                                    <div class="dropdown">
+                                        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button"
+                                            data-toggle="dropdown">
+                                            <i class="fa fa-ellipsis-h"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
+                                            <form action="#" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item text-danger"><i
+                                                        class="fa fa-trash"></i>
+                                                    Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            @endrole
+                        </tr>
+                    </tbody>
+                </table>
+            </div> --}}
+
+        {{-- <div class="card-box pb-10">
+                <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Skripsi</div>
+                @role('mahasiswa')
+                    <a href="/seminar/create" style="margin-left:15px;">
+                        <button class="btn btn-success ">
+                            <i class="icon-copy fi-page-add"></i>
+                            Daftar Seminar
+                        </button>
+                    </a>
+                @endrole
+                <table class="table data-table-responsive stripe data-table-export ">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>NPM / Nama</th>
+                            <th>Judul</th>
+                            <th>Tanggal</th>
+                            <th>Waktu</th>
+                            <th>Ruangan</th>
+                            <th>Prodi</th>
+                            <th>Jenis Seminar</th>
+                            @role('mahasiswa')
+                                <th class="table-plus datatable-nosort">Aksi</th>
+                            @endrole
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2017031016 <br>
+                                Putu Putra Eka Persada
+                            </td>
+                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
+                            <td>10-10-2023</td>
+                            <td>10.10</td>
+                            <td>Ruangan Seminar</td>
+                            <td>S1 Kimia</td>
+                            <td>Kerja Praktik</td>
+                            @role('mahasiswa')
+                                <td>
+                                    <div class="dropdown">
+                                        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button"
+                                            data-toggle="dropdown">
+                                            <i class="fa fa-ellipsis-h"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
+                                            <form action="#" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item text-danger"><i
+                                                        class="fa fa-trash"></i>
+                                                    Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            @endrole
+                        </tr>
+                    </tbody>
+                </table>
+            </div> --}}
+
+        {{-- <div class="card-box pb-10">
+                <div class="h5 pd-20 mb-0">Data Pelaksanaan Sidang Komprehensif</div>
+                @role('mahasiswa')
+                    <a href="/seminar/create" style="margin-left:15px;">
+                        <button class="btn btn-success ">
+                            <i class="icon-copy fi-page-add"></i>
+                            Daftar Seminar
+                        </button>
+                    </a>
+                @endrole
+                <table class="table data-table-responsive stripe data-table-export ">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>NPM / Nama</th>
+                            <th>Judul</th>
+                            <th>Tanggal</th>
+                            <th>Waktu</th>
+                            <th>Ruangan</th>
+                            <th>Prodi</th>
+                            <th>Jenis Seminar</th>
+                            @role('mahasiswa')
+                                <th class="table-plus datatable-nosort">Aksi</th>
+                            @endrole
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2017031016 <br>
+                                Putu Putra Eka Persada
+                            </td>
+                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
+                            <td>10-10-2023</td>
+                            <td>10.10</td>
+                            <td>Ruangan Seminar</td>
+                            <td>S1 Kimia</td>
+                            <td>Kerja Praktik</td>
+                            @role('mahasiswa')
+                                <td>
+                                    <div class="dropdown">
+                                        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button"
+                                            data-toggle="dropdown">
+                                            <i class="fa fa-ellipsis-h"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
+                                            <form action="#" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item text-danger"><i
+                                                        class="fa fa-trash"></i>
+                                                    Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            @endrole
+                        </tr>
+                    </tbody>
+                </table>
+            </div> --}}
+
+
+
+
+
+
+
+
+        {{-- <div class="row pb-10 mt-5">
+                <div class="col-md-8 mb-20">
+                    <div class="card-box height-100-p pd-20">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center pb-0 pb-md-3">
+                            <div class="h5 mb-md-0">Presentase Umur Dosen dan Pegawai</div>
+                        </div>
+                        <div id="chart"></div>
+                    </div>
+                </div>
+            </div> --}}
+
+
+
+        {{-- <div class="row pb-10 mt-5 cha">
+                <div class="col-md-8 mb-20">
+                    <div class="card-box height-100-p pd-20">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center pb-0 pb-md-3">
+                            <div class="h5 mb-md-0">Presentase Umur Dosen dan Pegawai</div>
+                        </div>
+                        <div id="chart"></div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-20">
+                    <div class="card-box min-height-200px pd-20 mb-20" data-bgcolor="#455a64">
+                        <div class="d-flex justify-content-between pb-20 text-white">
+                            <div class="icon h1 text-white">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <!-- <i class="icon-copy fa fa-stethoscope" aria-hidden="true"></i> -->
+                            </div>
+                            <div class="font-14 text-right">
+                                <div><i class="icon-copy ion-arrow-up-c"></i> 2.69%</div>
+                                <div class="font-12">Since last month</div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <div class="text-white">
+                                <div class="font-14">Appointment</div>
+                                <div class="font-24 weight-500">1865</div>
+                            </div>
+                            <div class="max-width-150">
+                                <div id="appointment-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-box min-height-200px pd-20" data-bgcolor="#265ed7">
+                        <div class="d-flex justify-content-between pb-20 text-white">
+                            <div class="icon h1 text-white">
+                                <i class="fa fa-stethoscope" aria-hidden="true"></i>
+                            </div>
+                            <div class="font-14 text-right">
+                                <div><i class="icon-copy ion-arrow-down-c"></i> 3.69%</div>
+                                <div class="font-12">Since last month</div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <div class="text-white">
+                                <div class="font-14">Surgery</div>
+                                <div class="font-24 weight-500">250</div>
+                            </div>
+                            <div class="max-width-150">
+                                <div id="surgery-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+
+        {{-- <div class="title pb-20 pt-20">
+                <h2 class="h3 mb-0">Quick Start</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-20">
+                    <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
+                        <div class="img pb-30">
+                            <img src="Assets/admin/src/images/medicine-bro.svg" alt="" />
+                        </div>
+                        <div class="content">
+                            <h3 class="h4">Services</h3>
+                            <p class="max-width-200">
+                                We provide superior health care in a compassionate maner
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 mb-20">
+                    <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
+                        <div class="img pb-30">
+                            <img src="Assets/admin/src/images/remedy-amico.svg" alt="" />
+                        </div>
+                        <div class="content">
+                            <h3 class="h4">Medications</h3>
+                            <p class="max-width-200">
+                                Look for prescription and over-the-counter drug information.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 mb-20">
+                    <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
+                        <div class="img pb-30">
+                            <img src="Assets/admin/src/images/paper-map-cuate.svg" alt="" />
+                        </div>
+                        <div class="content">
+                            <h3 class="h4">Locations</h3>
+                            <p class="max-width-200">
+                                Convenient locations when and where you need them.
+                            </p>
+                        </div>
+                    </a>
+                </div> --}}
+    </div>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Pie Chart with Links</title>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.28.3/dist/apexcharts.min.js"></script>
+    </head>
+
+    <body>
+
+    </body>
+
+    </html>
+
+    {{-- <div class="footer-wrap pd-20 mb-20 card-box">
+            &copy;
+            <a class="fw-medium" style="text-decoration: none;" target="_blank" href="https://kimia.fmipa.unila.ac.id/">
+                Jurusan KIMIA FMIPA UNILA</a>
+            <script>
+                document.write(new Date().getFullYear())
+            </script>,
+            dirancang oleh <a class="fw-medium" target="_blank" style="text-decoration: none;" href="/team">Bayanaka
+                Team</a>
+        </div> --}}
+
+    {{-- <div class="footer-wrap pd-20 mb-20 card-box" style="display: flex; flex-direction: column; ">
+            <div class="copyright">
+                &copy;
+                <a class="fw-medium" style="text-decoration: none;" target="_blank" href="https://kimia.fmipa.unila.ac.id/">
+                    Jurusan KIMIA FMIPA UNILA
+                </a>
+                <script>
+                    document.write(new Date().getFullYear());
+                </script>
+            </div>
+            <div class="designed-by">
+                Dirancang oleh
+                <a class="fw-medium" target="_blank" style="text-decoration: none;" href="/team">Bayanaka Team</a>
+            </div>
+        </div> --}}
+
+
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const chartData = [{
+                name: '20-an',
+                data: 12,
+                url: 'https://example.com/20_tahunan'
+            },
+            {
+                name: '30-an',
+                data: 28,
+                url: 'https://example.com/30_tahunan'
+            },
+            {
+                name: '40-an',
+                data: 18,
+                url: 'https://example.com/40_tahunan'
+            },
+            {
+                name: '50-an ke atas',
+                data: 7,
+                url: 'https://example.com/diatas_50_tahun'
+            }
+        ];
+
+        const pengaturan = {
+            chart: {
+                type: 'pie',
+                width: 580,
+                height: 450,
+            },
+            series: chartData.map(data => data.data),
+            labels: chartData.map(data => data.name),
+            responsive: [{
+                breakpoint: 480,
+                pengaturan: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }],
+            legend: {
+                onItemClick: ({
+                    seriesIndex
+                }) => {
+                    const url = chartData[seriesIndex].url;
+                    if (url) {
+                        window.location.href = url;
+                    }
+                }
+            }
+        };
+
+        const chart = new ApexCharts(document.querySelector("#chart"), pengaturan);
+        chart.render();
+    </script>
+@endsection
