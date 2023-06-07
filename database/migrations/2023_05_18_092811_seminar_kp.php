@@ -30,7 +30,7 @@ return new class extends Migration
             $table->double('ipk');
             $table->string('berkas_seminar_pkl');
             $table->boolean('agreement');
-            $table->enum('status_seminar', ['Selesai', 'Belum Selesai']);
+            $table->enum('status_seminar', ['Selesai', 'Belum Selesai', 'Perbaikan', 'Tidak Lulus']);
             $table->enum('proses_admin',['Proses', 'Valid', 'Invalid']);
             $table->string('keterangan')->nullable();
             $table->foreignId('id_dospemkp')->index()->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
