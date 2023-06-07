@@ -24,4 +24,7 @@ class ModelBaSeminarTaSatu extends Model
     {
         return $this->belongsTo(ModelSeminarTaSatu::class, 'id_seminar');
     }
+    public function seminar(){
+        return $this->belongsTo(ModelSeminarTaSatu::class);
+    }
 }

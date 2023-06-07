@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Expr\FuncCall;
 
 class ModelSeminarTaSatu extends Model
 {
@@ -45,5 +46,11 @@ class ModelSeminarTaSatu extends Model
     }
     public function pembahas(){
         return $this->belongsTo(ModelPembimbing::class, 'id_pembahas');
+    }
+    public function jadwal(){
+        return $this->hasOne(ModelJadwalSeminarTaSatu::class);
+    }
+    public function ba_seminar(){
+        return $this->hasOne(ModelBaSeminarTaSatu::class);
     }
 }

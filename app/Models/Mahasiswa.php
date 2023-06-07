@@ -42,7 +42,13 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(AktivitasMahasiswa::class);
     }
-    public function prestasi (){
+    public function prestasi(){
         return $this->hasMany(PrestasiMahasiswa::class);
+    }
+    public function seminar_kp(){
+        return $this->hasOne(SeminarKP::class);
+    }
+    public function ta_satu(){
+        return $this->hasOne(ModelSeminarTaSatu::class);
     }
 }
