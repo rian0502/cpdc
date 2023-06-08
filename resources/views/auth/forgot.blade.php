@@ -100,7 +100,7 @@
                         <form action="{{route('auth.password.link.post')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="input-group custom">
-                                <input type="email" name="email" class="form-control form-control-lg @error('email') form-control-danger @enderror" placeholder="Email" />
+                                <input type="email" name="email" value="{{ old('email') }}" class="form-control form-control-lg @error('email') form-control-danger @enderror" placeholder="Email" />
 
                                 <div class="input-group-append custom">
                                     @error('email')
