@@ -64,7 +64,7 @@ use App\Models\JadwalSKP;
 Route::get('admin/profile/create', [ProfileAdminController::class, 'create'])->name('admin.profile.create')->middleware('auth', 'verified', 'role:admin lab|admin berkas');
 Route::post('admin/profile/store', [ProfileAdminController::class, 'store'])->name('admin.profile.store')->middleware('auth', 'verified', 'role:admin lab|admin berkas');
 Route::prefix('admin/')->name('admin.')->middleware(['auth', 'profile', 'verified', 'role:admin lab|admin berkas'])->group(function () {
-    Route::resource('profile', ProfileAdminController::class, ['only' => ['index','edit','update']])->names('profile');
+    Route::resource('profile', ProfileAdminController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
     Route::get('profile/pangkat/create', [ProfileAdminController::class, 'createPangkat'])->name('pangkat.create');
     Route::post('profile/pangkat/store', [ProfileAdminController::class, 'storePangkat'])->name('pangkat.store');
     Route::get('profile/pangkat/edit', [ProfileAdminController::class, 'editPangkat'])->name('pangkat.edit');
@@ -110,7 +110,7 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::resource('litabmas', LitabmasController::class);
     Route::resource('organisasi', OrganisasiController::class);
     Route::resource('publikasi', PublikasiController::class);
-    Route::resource('profile', ProfileDosenController::class,['only' => ['index','edit','update']])->names('profile');
+    Route::resource('profile', ProfileDosenController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
     Route::resource('jabatan', JabatanController::class);
     Route::resource('pangkat', PangkatDosenController::class);
     Route::resource('mahasiswa/bimbingan/akademik', MahasiswaBimbinganAkademikController::class)->names('mahasiswa.bimbingan.akademik');
@@ -151,7 +151,7 @@ Route::get('mahasiswa/profile/create', [ProfileMahasiswaController::class, 'crea
 Route::post('mahasiswa/profile/store', [ProfileMahasiswaController::class, 'store'])->name('mahasiswa.profile.store')->middleware('auth', 'verified', 'role:mahasiswa');
 
 Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswa')->group(function () {
-    Route::resource('profile', ProfileMahasiswaController::class, ['only' => ['index','edit','update']])->names('profile');
+    Route::resource('profile', ProfileMahasiswaController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
     Route::resource('prestasi', PrestasiMahasiswaController::class)->names('prestasi');
     Route::resource('kegiatan', KegiatanMahasiswaController::class)->names('kegiatan');
     Route::resource('bakerjapraktik', BeritaAcaraSeminarKerjaPraktik::class)->names('bakerjapraktik');
@@ -280,7 +280,7 @@ Route::get('/services', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'profile','verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'profile', 'verified'])->name('dashboard');
 
 Route::get('/reset-password', function () {
     return view('auth.reset');

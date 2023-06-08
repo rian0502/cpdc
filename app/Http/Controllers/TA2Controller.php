@@ -14,7 +14,7 @@ class TA2Controller extends Controller
     public function index()
     {
         //
-        return view('mahasiswa.skripsi.index');
+        return view('mahasiswa.ta2.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class TA2Controller extends Controller
     public function create()
     {
         //
-        return view('mahasiswa.kp.create');
+        return view('mahasiswa.ta2.create');
     }
 
     /**
@@ -36,7 +36,8 @@ class TA2Controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        
     }
 
     /**
@@ -48,6 +49,7 @@ class TA2Controller extends Controller
     public function show($id)
     {
         //
+        return view('mahasiswa.ta2.detail');
     }
 
     /**
@@ -59,6 +61,7 @@ class TA2Controller extends Controller
     public function edit($id)
     {
         //
+        return view('mahasiswa.ta2.edit');
     }
 
     /**
