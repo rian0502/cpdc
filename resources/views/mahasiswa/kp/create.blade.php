@@ -105,9 +105,10 @@
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Dosen Pembimbing PKL</label>
-                                    <select class="custom-select2 form-control" name="id_dospemkp">
-                                        <optgroup label="Dosen Pembimbing PKL">
+                                    <label>Dosen Pembimbing</label>
+                                    <select class="custom-select2 form-control" name="state"
+                                        style="width: 100%; height: 38px">
+                                        <optgroup label="Dosen Pembimbing PKL/KP">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
                                                     {{ old('id_dospemkp') == $item->encrypt_id ? 'selected' : '' }}>
@@ -180,10 +181,11 @@
                                         <input value="{{ old('berkas_seminar_pkl') }}" accept=".pdf" autofocus
                                             name="berkas_seminar_pkl" id="file-berkas_seminar_pkl"
                                             class="custom-file-input form-control @error('berkas_seminar_pkl') form-control-danger @enderror"
-                                            type="file" placeholder="FILE SK" onchange="updateFileNameAndLink('file-berkas_seminar_pkl','label-berkas_seminar_pkl','link-berkas_seminar_pkl')">
+                                            type="file" placeholder="FILE SK"
+                                            onchange="updateFileNameAndLink('file-berkas_seminar_pkl','label-berkas_seminar_pkl','link-berkas_seminar_pkl')">
                                     </div>
                                     <small class="mt-2"> <a id="link-berkas_seminar_pkl" href="#"
-                                        target="_blank" style="display: none;">Lihat File</a> </small>
+                                            target="_blank" style="display: none;">Lihat File</a> </small>
                                     @error('berkas_seminar_pkl')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
