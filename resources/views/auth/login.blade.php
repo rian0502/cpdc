@@ -99,7 +99,7 @@
                         <form action="{{route('auth.login.post')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="input-group custom">
-                                <input name="email" type="text" class="form-control form-control-lg @error('email') form-control-danger @enderror" placeholder="Email" />
+                                <input name="email" value="{{ old('email') }}" type="text" class="form-control form-control-lg @error('email') form-control-danger @enderror" placeholder="Email" />
                                 <div class="input-group-append custom">
                                     @error('email')
                                     @else
@@ -112,7 +112,7 @@
                                 <small class="form-control-feedback text-danger">{{ $message }}</small>
                             @enderror
                             <div class="input-group custom mt-2">
-                                <input name="password" type="password" class="form-control form-control-lg @error('password') form-control-danger @enderror" placeholder="Kata Sandi" />
+                                <input name="password" value="{{ old('password') }}" type="password" class="form-control form-control-lg @error('password') form-control-danger @enderror" placeholder="Kata Sandi" />
                                 <div class="input-group-append custom">
                                     @error('email')
                                     @else

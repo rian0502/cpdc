@@ -99,7 +99,7 @@
                                             <div class="form-group">
                                                 <label for="">Alamat Email</label>
                                                 <input type="email"
-                                                    class="form-control @error('email') form-control-danger @enderror"
+                                                    class="form-control value="{{ old('email') }}" @error('email') form-control-danger @enderror"
                                                     name="email" />
                                                 @error('email')
                                                     <small class="text-danger">{{ $message }}</small>
@@ -107,7 +107,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Nama Lengkap</label>
-                                                <input type="text" name="nama_lengkap"
+                                                <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}"
                                                     class="form-control @error('nama_lengkap') form-control-danger @enderror" />
                                                 @error('nama_lengkap')
                                                     <small class="text-danger">{{ $message }}</small>
@@ -115,7 +115,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Angkatan</label>
-                                                <input name="angkatan"
+                                                <input name="angkatan" value="{{ old('angkatan') }}"
                                                     class="form-control year-picker @error('angkatan') form-control-danger @enderror"
                                                     type="text">
                                                 @error('angkatan')
@@ -124,7 +124,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Pembimbing Akademik</label>
-                                                <select class="custom-select2 form-control" name="id_dosen"
+                                                <select class="custom-select2 form-control " value="{{ old('id_dosen') }}" name="id_dosen"
                                                     style="width: 100%; height: 38px">
                                                     <optgroup label="Dosen Pembimbing Akademik">
                                                         @foreach ($dosen as $PA)
@@ -143,7 +143,7 @@
 
                                             <div class="form-group">
                                                 <label for="">NPM</label>
-                                                <input type="text" name="npm"
+                                                <input type="text" name="npm" value="{{ old('npm') }}"
                                                     class="form-control @error('npm') form-control-danger @enderror" />
                                                 @error('npm')
                                                     <small class="text-danger">{{ $message }}</small>
@@ -152,7 +152,7 @@
 
                                             <div class="form-group">
                                                 <label for="">Kata Sandi</label>
-                                                <input type="password" name="password"
+                                                <input type="password" name="password" value="{{ old('password') }}"
                                                     class="form-control @error('password') form-control-danger @enderror" />
                                                 @error('password')
                                                     <small class="text-danger">{{ $message }}</small>
@@ -160,7 +160,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Konfirmasi Kata Sandi</label>
-                                                <input type="password" name="password_confirm"
+                                                <input type="password" name="password_confirm" value="{{ old('password_confirm') }}"
                                                     class="form-control @error('password_confirm') form-control-danger @enderror" />
                                                 @error('password_confirm')
                                                     <small class="text-danger">{{ $message }}</small>
