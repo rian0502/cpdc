@@ -484,13 +484,13 @@
                                 <li><a href="{{ route('mahasiswa.seminar.kp.index') }}"
                                         class="{{ Request::is('mahasiswa/seminar/kp*') ? 'active' : '' }}">Kerja
                                         Praktik</a></li>
-                                <li><a href="{{ route('mahasiswa.seminar.kp.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/ta1*') ? 'active' : '' }}">Tugas Akhir
+                               <li><a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}"
+                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_1*') ? 'active' : '' }}">Tugas Akhir
                                         1</a></li>
-                                <li><a href="{{ route('mahasiswa.seminar.kp.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/ta2*') ? 'active' : '' }}">Tugas Akhir
+                                <li><a href="{{ route('mahasiswa.seminar.tugas_akhir_2.index') }}"
+                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_2*') ? 'active' : '' }}">Tugas Akhir
                                         2</a></li>
-                                <li><a href="{{ route('mahasiswa.seminar.kp.index') }}"
+                                <li><a href="{{ route('mahasiswa.sidang.kompre.index') }}"
                                         class="{{ Request::is('mahasiswa/sidang/kompre*') ? 'active' : '' }}">Sidang
                                         Komprehensif</a></li>
                             </ul>

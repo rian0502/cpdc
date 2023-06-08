@@ -24,8 +24,9 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Nama Mitra</label>
-                                    <input autofocus name="mitra" id="mitra" class="form-control" type="text"
-                                        value="{{ old('mitra') }}" placeholder="Nama Mitra PKL/KP">
+                                    <input autofocus name="mitra" value="{{ old('mitra') }}" id="mitra"
+                                        class="form-control" type="text" value="{{ old('mitra') }}"
+                                        placeholder="Nama Mitra PKL/KP">
                                     @error('mitra')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -72,8 +73,9 @@
 
                                 <div class="form-group">
                                     <label>SKS</label>
-                                    <input autofocus name="sks" id="jumlah_sks" class="form-control" type="number"
-                                        value="{{ old('sks') }}" placeholder="Jumlah SKS">
+                                    <input autofocus name="sks" value="{{ old('sks') }}" id="jumlah_sks"
+                                        class="form-control" type="number" value="{{ old('sks') }}"
+                                        placeholder="Jumlah SKS">
                                     @error('sks')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -90,16 +92,18 @@
                                     <label class="weight-600">Persetujuan</label>
                                     <div class="custom-control custom-checkbox mb-5">
                                         <input type="checkbox" class="custom-control-input" name="agreement"
-                                            id="id="agreement"" />
-                                        <label class="custom-control-label" for="id="agreement"">
+                                            id="agreement" />
+                                        <label class="custom-control-label" for="agreement">
                                             Saya dengan ini menyatakan bahwa dokumen kelengkapan berkas yang telah saya
                                             kirimkan semuanya adalah benar dan dapat saya pertanggung-jawabkan. Saya
                                             bersedia menerima sanksi bilamana saya terbukti melakukan pemalsuan dokumen
-                                            (seperti tanda tangan, Bukti Bayar UKT, Transkrip/KRS, dlsb). dengan ditunda
-                                            seminar saya minimal 1 semester atau bahkan sanksi yang lebih berat hingga di DO
+                                            (seperti tanda tangan, Bukti Bayar UKT, Transkrip/KRS, dll) dengan ditunda
+                                            seminar saya minimal 1 semester atau bahkan sanksi yang lebih berat hingga
+                                            dikeluarkan (Drop Out).
                                         </label>
                                     </div>
                                 </div>
+
                             </div>
 
                             {{-- form untuk sebelah kanan --}}

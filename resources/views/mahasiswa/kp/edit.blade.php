@@ -89,17 +89,19 @@
                                 <div class="form-group">
                                     <label class="weight-600">Persetujuan</label>
                                     <div class="custom-control custom-checkbox mb-5">
-                                        <input type="checkbox" class="custom-control-input" name="agreement" checked
+                                        <input type="checkbox" class="custom-control-input" name="agreement"
                                             id="agreement" />
-                                        <label class="custom-control-label" for="id="agreement"">
+                                        <label class="custom-control-label" for="agreement">
                                             Saya dengan ini menyatakan bahwa dokumen kelengkapan berkas yang telah saya
                                             kirimkan semuanya adalah benar dan dapat saya pertanggung-jawabkan. Saya
                                             bersedia menerima sanksi bilamana saya terbukti melakukan pemalsuan dokumen
-                                            (seperti tanda tangan, Bukti Bayar UKT, Transkrip/KRS, dlsb). dengan ditunda
-                                            seminar saya minimal 1 semester atau bahkan sanksi yang lebih berat hingga di DO
+                                            (seperti tanda tangan, Bukti Bayar UKT, Transkrip/KRS, dll) dengan ditunda
+                                            seminar saya minimal 1 semester atau bahkan sanksi yang lebih berat hingga
+                                            dikeluarkan (Drop Out).
                                         </label>
                                     </div>
                                 </div>
+
                             </div>
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">

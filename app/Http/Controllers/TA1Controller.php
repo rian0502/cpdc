@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Dosen;
 
 class TA1Controller extends Controller
 {
@@ -14,6 +15,7 @@ class TA1Controller extends Controller
     public function index()
     {
         //
+        return view('mahasiswa.ta1.index');
     }
 
     /**
@@ -23,7 +25,10 @@ class TA1Controller extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'dosens' => Dosen::select('encrypt_id', 'nama_dosen')->get(),
+        ];
+        return view('mahasiswa.ta1.create', $data);
     }
 
     /**
@@ -35,6 +40,13 @@ class TA1Controller extends Controller
     public function store(Request $request)
     {
         //
+        // agar saat memilih ini yang masuk ke database adalah inputan dari user
+        $pembimbing2 = $request->input('pembimbing2');
+
+        if ($pembimbing2 === "Tidak Ada di Daftar Ini") {
+            $pembimbing2 = $request->input('pembimbing2_input');
+        }
+        // agar saat memilih ini yang masuk ke database adalah inputan dari user
     }
 
     /**
@@ -46,6 +58,7 @@ class TA1Controller extends Controller
     public function show($id)
     {
         //
+        return view('mahasiswa.ta1.detail');
     }
 
     /**
@@ -56,7 +69,10 @@ class TA1Controller extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'dosens' => Dosen::select('encrypt_id', 'nama_dosen')->get(),
+        ];
+        return view('mahasiswa.ta1.edit', $data);
     }
 
     /**
