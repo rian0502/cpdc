@@ -112,7 +112,7 @@ class JadwalPKLController extends Controller
         //send email to mahasiswa
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email,$namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
-            $message->from('zakimubarok551@gmail.com');
+            $message->from('chemistryprogramdatacenter@gmail.com');
             $message->attach(public_path('uploads\print_ba_kp\\') . $namafile);
         });
         unlink(public_path('uploads\print_ba_kp\\'.$namafile));
