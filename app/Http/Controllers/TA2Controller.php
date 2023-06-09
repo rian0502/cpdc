@@ -25,7 +25,10 @@ class TA2Controller extends Controller
     public function create()
     {
         //
-        return view('mahasiswa.ta2.create');
+        $data = [
+            'dosens' => Dosen::select('encrypt_id', 'nama_dosen')->get(),
+        ];
+        return view('mahasiswa.ta2.create', $data);
     }
 
     /**
@@ -36,8 +39,6 @@ class TA2Controller extends Controller
      */
     public function store(Request $request)
     {
-        
-        
     }
 
     /**
@@ -61,7 +62,10 @@ class TA2Controller extends Controller
     public function edit($id)
     {
         //
-        return view('mahasiswa.ta2.edit');
+        $data = [
+            'dosens' => Dosen::select('encrypt_id', 'nama_dosen')->get(),
+        ];
+        return view('mahasiswa.ta2.edit', $data);
     }
 
     /**
