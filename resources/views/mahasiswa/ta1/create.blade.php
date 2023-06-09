@@ -109,13 +109,13 @@
                                     <select class="custom-select2 form-control" name="pembimbing2" id="pembimbing2"
                                         style="width: 100%; height: 38px" onchange="toggleInput(this, 'Pembimbing2')">
                                         <optgroup label="Pembimbing 2">
+                                            <option value="Tidak Ada di Daftar Ini">Tidak Ada di Daftar Ini</option>
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
                                                     {{ old('id_dospemkp') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}
                                                 </option>
                                             @endforeach
-                                            <option value="Tidak Ada di Daftar Ini">Tidak Ada di Daftar Ini</option>
                                         </optgroup>
                                     </select>
                                 </div>
@@ -142,7 +142,7 @@
                                                 </option>
                                             @endforeach
                                             <option value="Tidak Ada di Daftar Ini"
-                                                {{ old('pembahas', $pembahasValue) == 'Tidak Ada di Daftar Ini' ? 'selected' : '' }}>
+                                                {{-- {{ old('pembahas', $pembahasValue) == 'Tidak Ada di Daftar Ini' ? 'selected' : '' }}> --}}
                                                 Tidak Ada di Daftar Ini
                                             </option>
                                         </optgroup>
