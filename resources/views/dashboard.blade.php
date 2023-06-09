@@ -6,6 +6,10 @@
 
         }
 
+        .widget-style3 .widget-icon {
+            width: 300px;
+        }
+
 
         .apexcharts-pie-series path {
             cursor: pointer;
@@ -52,10 +56,115 @@
             }
         }
     </style>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <div class="main-container">
         <div class="xs-pd-20-10 pd-ltr-20">
             <div class="title pb-20">
-                <h2 class="h3 mb-0">Dashboard</h2>
+                <h2 class="h2 mb-0">Dashboard</h2>
+            </div>
+            <div class="row pb-10">
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <a href="{{ route('berkas.validasi.seminar.kp.index') }}">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">75</div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Belum Tervalidasi
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#00eccf">
+                                        <STROng>PKL</STROng>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <a href="link validasi berkas ta 1">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">75</div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Belum Tervalidasi
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#00eccf">
+                                        <STRong>TA 1</STRong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <a href="link validasi berkas ta 2">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">75</div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Belum Tervalidasi
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#00eccf">
+                                        <STRong>TA 2</STRong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <a href="link validasi berkas kompre">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">75</div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Belum Tervalidasi
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#00eccf">
+                                        <STROng>KOMPRE</STROng>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 mb-20">
+                    <div class="card-box height-100-p pd-20 min-height-200px">
+                        <div class="d-flex justify-content-between">
+
+
+                        </div>
+
+                        <div id="chart_seminar"></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-20">
+                    <div class="card-box height-100-p pd-20 min-height-200px">
+                        <div class="d-flex justify-content-between">
+
+
+                        </div>
+
+                        <div id="umur_chart"></div>
+                    </div>
+                </div>
             </div>
             @role('mahasiswa')
                 <div class="row pb-10">
@@ -80,7 +189,7 @@
                         <div class="card-box height-100-p widget-style3">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark">{{ $jumlah_aktivitas}}</div>
+                                    <div class="weight-700 font-24 text-dark">{{ $jumlah_aktivitas }}</div>
                                     <div class="font-14 text-secondary weight-500">
                                         Kegiatan Tambahan
                                     </div>
@@ -597,60 +706,270 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        // Data chart
         const chartData = [{
-                name: '20-an',
-                data: 12,
+                name: '20++',
+                y: 12,
                 url: 'https://example.com/20_tahunan'
             },
             {
-                name: '30-an',
-                data: 28,
+                name: '30++',
+                y: 28,
                 url: 'https://example.com/30_tahunan'
             },
             {
-                name: '40-an',
-                data: 18,
+                name: '40++',
+                y: 18,
                 url: 'https://example.com/40_tahunan'
             },
             {
-                name: '50-an ke atas',
-                data: 7,
+                name: '50++',
+                y: 7,
                 url: 'https://example.com/diatas_50_tahun'
             }
         ];
 
-        const pengaturan = {
+        // Konfigurasi chart
+        const chartOptions = {
             chart: {
                 type: 'pie',
-                width: 580,
-                height: 450,
             },
-            series: chartData.map(data => data.data),
-            labels: chartData.map(data => data.name),
-            responsive: [{
-                breakpoint: 480,
-                pengaturan: {
-                    chart: {
-                        width: 200
-                    },
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
+            title: {
+                text: 'Usia Dosen'
+            },
+            series: [{
+                name: 'Data',
+                data: chartData.map(data => ({
+                    name: data.name,
+                    y: data.y
+                }))
             }],
-            legend: {
-                onItemClick: ({
-                    seriesIndex
-                }) => {
-                    const url = chartData[seriesIndex].url;
-                    if (url) {
-                        window.location.href = url;
+            plotOptions: {
+                pie: {
+                    cursor: 'pointer',
+                    allowPointSelect: true,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}: {point.y}',
+                        style: {
+                            textOutline: 'none'
+                        }
                     }
+
+                }
+            },
+            tooltip: {
+                pointFormat: '<b>{point.percentage:.1f}%</b>'
+            },
+            legend: {
+                labelFormatter: function() {
+                    const pointIndex = this.index;
+                    const url = chartData[pointIndex].url;
+                    const pointName = chartData[pointIndex].name;
+                    return `<a href="${url}" target="_blank">${pointName}</a>`;
                 }
             }
         };
 
-        const chart = new ApexCharts(document.querySelector("#chart"), pengaturan);
-        chart.render();
+        // Membuat chart Highcharts
+        Highcharts.chart('umur_chart', chartOptions);
+    </script>
+
+
+    <script>
+        // Data dummy
+        var data = [{
+                name: 'SEMINAR',
+                pkl: 10,
+                ta1: 8,
+                ta2: 9,
+                kompre: 7,
+                belum_seminar: 5,
+                perangkatan: '2023'
+            },
+            {
+                name: 'SEMINAR',
+                pkl: 7,
+                ta1: 6,
+                ta2: 8,
+                kompre: 7,
+                belum_seminar: 4,
+                perangkatan: '2022'
+            },
+            {
+                name: 'SEMINAR',
+                pkl: 9,
+                ta1: 8,
+                ta2: 7,
+                kompre: 6,
+                belum_seminar: 6,
+                perangkatan: '2023'
+            },
+            {
+                name: 'SEMINAR',
+                pkl: 8,
+                ta1: 7,
+                ta2: 9,
+                kompre: 8,
+                belum_seminar: 3,
+                perangkatan: '2021'
+            },
+            {
+                name: 'SEMINAR',
+                pkl: 6,
+                ta1: 9,
+                ta2: 7,
+                kompre: 6,
+                belum_seminar: 7,
+                perangkatan: '2022'
+            },
+            {
+                name: 'SEMINAR',
+                pkl: 8,
+                ta1: 7,
+                ta2: 6,
+                kompre: 7,
+                belum_seminar: 4,
+                perangkatan: '2020'
+            },
+            {
+                name: 'SEMINAR',
+                pkl: 8,
+                ta1: 7,
+                ta2: 6,
+                kompre: 7,
+                belum_seminar: 2,
+                perangkatan: '2020'
+            },
+            {
+                name: 'SEMINAR',
+                pkl: 7,
+                ta1: 8,
+                ta2: 9,
+                kompre: 8,
+                belum_seminar: 5,
+                perangkatan: '2023'
+            },
+            {
+                name: 'SEMINAR',
+                pkl: 9,
+                ta1: 6,
+                ta2: 7,
+                kompre: 9,
+                belum_seminar: 3,
+                perangkatan: '2021'
+            },
+            {
+                name: 'SEMINAR',
+                pkl: 6,
+                ta1: 7,
+                ta2: 6,
+                kompre: 8,
+                belum_seminar: 6,
+                perangkatan: '2022'
+            },
+            {
+                name: 'SEMINAR',
+                pkl: 8,
+                ta1: 8,
+                ta2: 7,
+                kompre: 7,
+                belum_seminar: 4,
+                perangkatan: '2023'
+            }
+        ];
+
+        // Filter perangkatan
+        var perangkatanOptions = ['2020', '2021', '2022', '2023'];
+        var selectedPerangkatan = perangkatanOptions[0]; // Default filter
+
+        // Membuat series data berdasarkan filter perangkatan
+        function updateChart() {
+            var filteredData = data.filter(function(item) {
+                return item.perangkatan === selectedPerangkatan;
+            });
+
+            var pklData = filteredData.reduce(function(total, item) {
+                return total + item.pkl;
+            }, 0);
+
+            var ta1Data = filteredData.reduce(function(total, item) {
+                return total + item.ta1;
+            }, 0);
+
+            var ta2Data = filteredData.reduce(function(total, item) {
+                return total + item.ta2;
+            }, 0);
+
+            var kompreData = filteredData.reduce(function(total, item) {
+                return total + item.kompre;
+            }, 0);
+
+            var belumSeminarData = filteredData.reduce(function(total, item) {
+                return total + item.belum_seminar;
+            }, 0);
+
+            // Membuat chart Highcharts
+            Highcharts.chart('chart_seminar', {
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Data Angkatan ' + selectedPerangkatan
+                },
+                plotOptions: {
+                    pie: {
+                        cursor: 'pointer',
+                        allowPointSelect: true,
+                    }
+                },
+                series: [{
+                    name: 'Jumlah',
+                    data: [{
+                            name: 'PKL',
+                            y: pklData
+                        },
+                        {
+                            name: 'TA 1',
+                            y: ta1Data
+                        },
+                        {
+                            name: 'TA 2',
+                            y: ta2Data
+                        },
+                        {
+                            name: 'Kompre',
+                            y: kompreData
+                        },
+                        {
+                            name: 'Belum Seminar',
+                            y: belumSeminarData
+                        }
+                    ]
+                }]
+            });
+        }
+
+        // Membuat dropdown filter perangkatan
+        var dropdown = document.createElement('select');
+        dropdown.setAttribute('class', 'form-control form-control-sm selectpicker text-center');
+        dropdown.setAttribute('style', 'content-align: center');
+        dropdown.addEventListener('change', function() {
+            selectedPerangkatan = dropdown.value;
+            updateChart();
+        });
+
+        perangkatanOptions.forEach(function(perangkatan) {
+            var option = document.createElement('option');
+            option.text = perangkatan;
+            dropdown.add(option);
+        });
+
+        // Menambahkan dropdown ke dalam chart_seminar
+        var chart_seminar = document.getElementById('chart_seminar');
+        chart_seminar.parentNode.insertBefore(dropdown, chart_seminar);
+
+        // Menginisialisasi chart pertama kali
+        updateChart();
     </script>
 @endsection
