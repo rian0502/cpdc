@@ -6,10 +6,9 @@
 
         }
 
-        .widget-style3 .widget-icon {
+        .widget-style3 .widgets {
             width: 300px;
         }
-
 
         .apexcharts-pie-series path {
             cursor: pointer;
@@ -66,9 +65,9 @@
                 <h2 class="h2 mb-0">Dashboard</h2>
             </div>
             <div class="row pb-10">
-                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20" >
                     <a href="{{ route('berkas.validasi.seminar.kp.index') }}">
-                        <div class="card-box height-100-p widget-style3">
+                        <div class="card-box height-100-p widget-style3 " >
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">75</div>
@@ -76,8 +75,8 @@
                                         Belum Tervalidasi
                                     </div>
                                 </div>
-                                <div class="widget-icon">
-                                    <div class="icon" data-color="#00eccf">
+                                <div class="widgets">
+                                    <div class="icon" data-color="#00eccf" >
                                         <STROng>PKL</STROng>
                                     </div>
                                 </div>
@@ -87,7 +86,7 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                     <a href="link validasi berkas ta 1">
-                        <div class="card-box height-100-p widget-style3">
+                        <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">75</div>
@@ -95,7 +94,7 @@
                                         Belum Tervalidasi
                                     </div>
                                 </div>
-                                <div class="widget-icon">
+                                <div class="widgets">
                                     <div class="icon" data-color="#00eccf">
                                         <STRong>TA 1</STRong>
                                     </div>
@@ -106,7 +105,7 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                     <a href="link validasi berkas ta 2">
-                        <div class="card-box height-100-p widget-style3">
+                        <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">75</div>
@@ -114,7 +113,7 @@
                                         Belum Tervalidasi
                                     </div>
                                 </div>
-                                <div class="widget-icon">
+                                <div class="widgets">
                                     <div class="icon" data-color="#00eccf">
                                         <STRong>TA 2</STRong>
                                     </div>
@@ -125,7 +124,7 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                     <a href="link validasi berkas kompre">
-                        <div class="card-box height-100-p widget-style3">
+                        <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">75</div>
@@ -133,7 +132,7 @@
                                         Belum Tervalidasi
                                     </div>
                                 </div>
-                                <div class="widget-icon">
+                                <div class="widgets">
                                     <div class="icon" data-color="#00eccf">
                                         <STROng>KOMPRE</STROng>
                                     </div>
@@ -158,10 +157,7 @@
                 <div class="col-lg-4 col-md-6 mb-20">
                     <div class="card-box height-100-p pd-20 min-height-200px">
                         <div class="d-flex justify-content-between">
-
-
                         </div>
-
                         <div id="umur_chart"></div>
                     </div>
                 </div>
@@ -169,32 +165,32 @@
             @role('mahasiswa')
                 <div class="row pb-10">
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <div class="card-box height-100-p widget-style3">
-                            <div class="d-flex flex-wrap">
+                        <div class="card-box height-100-p widget-style3" >
+                            <div class="d-flex flex-wrap" style="width: -300px">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">{{ $jumlah_prestasi }}</div>
-                                    <div class="font-14 text-secondary weight-500">
-                                        Prestasi
+                                    <div class="font-14 text-secondary weight-500" >
+                                        Prestasi 
                                     </div>
                                 </div>
                                 <div class="widget-icon">
-                                    <div class="icon" data-color="#fffff">
-                                        <i class="icon-copy fa-solid fa-star"></i>
+                                    <div class="icon" data-color="#fff">
+                                        <i class="icon-copy dw dw-star"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <div class="card-box height-100-p widget-style3">
+                        <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">{{ $jumlah_aktivitas }}</div>
-                                    <div class="font-14 text-secondary weight-500">
+                                    <div class="font-14 text-secondary weight-500" >
                                         Kegiatan Tambahan
                                     </div>
                                 </div>
-                                <div class="widget-icon">
+                                <div class="widget-icon ">
                                     <div class="icon">
                                         <i class="icon-copy ion ion-ribbon-b" aria-hidden="true"></i>
                                     </div>
@@ -203,15 +199,15 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <div class="card-box height-100-p widget-style3">
+                        <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">{{ Auth::user()->mahasiswa->semester }}</div>
-                                    <div class="font-14 text-secondary weight-500">
+                                    <div class="font-14 text-secondary weight-500" >
                                         Semester
                                     </div>
                                 </div>
-                                <div class="widget-icon">
+                                <div class="widget-icon ">
                                     <div class="icon" data-color="#fffff">
                                         <span class="icon-copy fa-solid fa-bookmark"></span>
                                     </div>
@@ -220,13 +216,13 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <div class="card-box height-100-p widget-style3">
+                        <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">{{ Auth::user()->mahasiswa->status }}</div>
-                                    <div class="font-14 text-secondary weight-500">Status</div>
+                                    <div class="font-14 text-secondary weight-500" >Status</div>
                                 </div>
-                                <div class="widget-icon">
+                                <div class="widget-icon ">
                                     <div class="icon" data-color="#fffff">
                                         <i class="icon-copy fa-solid fa-user" aria-hidden="true"></i>
                                     </div>
