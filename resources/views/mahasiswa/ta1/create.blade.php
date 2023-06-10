@@ -45,7 +45,6 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
                                 <div class="form-group">
                                     <label>SKS</label>
                                     <input autofocus name="sks" value="{{ old('sks') }}" id="jumlah_sks"
@@ -63,20 +62,6 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label>Pembimbing 1</label>
-                                    <select class="custom-select2 form-control" name="id_pembimbing_satu"
-                                        id="id_pembimbing_satu" style="width: 100%; height: 38px">
-                                        <optgroup label="Pembimbing 1">
-                                            @foreach ($dosens as $item)
-                                                <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_satu') == $item->encrypt_id ? 'selected' : '' }}>
-                                                    {{ $item->nama_dosen }}</option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
-                                </div>
-
                                 <div class="form-group">
                                     <label>Judul atau Topik Tugas Akhir</label>
                                     <textarea name="judul_ta" id="judul_ta" class="form-control">{{ old('judul') }}</textarea>
@@ -103,23 +88,31 @@
 
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
-
+                                <div class="form-group">
+                                    <label>Pembimbing 1</label>
+                                    <select class="custom-select2 form-control" name="id_pembimbing_satu"
+                                        id="id_pembimbing_satu" style="width: 100%; height: 38px">
+                                        <optgroup label="Pembimbing 1">
+                                            @foreach ($dosens as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ old('id_pembimbing_satu') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $item->nama_dosen }}</option>
+                                            @endforeach
+                                        </optgroup>
+                                    </select>
+                                </div>
                                 <div class="form-group">
                                     <label>Pembimbing 2</label>
                                     <select class="custom-select2 form-control" name="id_pembimbing_dua"
                                         id="id_pembimbing_dua" style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'Pembimbing2')">
                                         <optgroup label="Pembimbing 2">
-
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
-                                                    {{ $item->nama_dosen }}
-                                                </option>
+                                                    {{ old('id_dospemkp') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            <option value="Tidak Ada di Daftar Ini">
-                                                Tidak Ada di Daftar Ini
-                                            </option>
+                                            <option value="Tidak Ada di Daftar Ini">Tidak Ada di Daftar Ini</option>
                                         </optgroup>
                                     </select>
                                 </div>
@@ -127,17 +120,17 @@
                                     <div class="form-group">
                                         <label>Nomor Karyawan / NIP Pembimbing 2</label>
                                         <input autofocus name="pbl2_nip" id="pbl2_nip" class="form-control" type="text"
-                                            value="{{ old('pbl2_nip') }}" placeholder="NIP / Nomor Karyawan">
+                                            value="{{ old('pbl2_nip') }}" placeholder="Masukkan Juga NIP / Nomor Karyawan">
                                         @error('pbl2_nip')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label>Pembahas</label>
                                     <select class="custom-select2 form-control" name="pembahas" id="pembahas"
-                                        style="width: 100%; height: 38px" onchange="toggleInput(this, 'Pembahas')">
+                                        style="width: 100%; height: 38px" onchange="toggleInput(this)">
+                                        {{-- style="width: 100%; height: 38px" onchange="toggleInput(this, 'Pembahas')"> --}}
                                         <optgroup label="Pembahas">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
@@ -145,23 +138,145 @@
                                                     {{ $item->nama_dosen }}
                                                 </option>
                                             @endforeach
-
+                                            {{-- <option value="Tidak Ada di Daftar Ini">Tidak Ada di Daftar Ini</option> --}}
                                         </optgroup>
                                     </select>
                                 </div>
-                                <div id="Pembahas" style="display: none;">
-                                    <div class="form-group">
-                                        <label>Nomor Karyawan / NIP Pembahas</label>
-                                        <input autofocus name="ni_pembahas" id="ni_pembahas" class="form-control"
-                                            type="text" value="{{ old('ni_pembahas') }}"
-                                            placeholder="NIP / Nomor Karyawan">
-                                        @error('ni_pembahas')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
                                 {{-- fungsi jika tidak ada tersedia nama pembimbing dan pembahas di data diatas --}}
                                 <script>
+                                    function toggleInput(selectElement, targetId) {
+                                        var selectedValue = selectElement.value;
+                                        var inputElement = selectElement.parentNode.querySelector('input[name="pbl2_nip"]');
+                                        var targetElement = document.getElementById(targetId);
+                                        if (selectedValue === "Tidak Ada di Daftar Ini") {
+                                            if (!inputElement) {
+                                                inputElement = document.createElement("input");
+                                                inputElement.setAttribute("type", "text");
+                                                inputElement.setAttribute("name", "pbl2_nip");
+                                                inputElement.setAttribute("id", "pbl2_nip");
+                                                inputElement.setAttribute("class", "form-control");
+                                                inputElement.setAttribute("value", "{!! old('pbl2_nip') !!}");
+                                                inputElement.setAttribute("placeholder", "Masukkan Nama Pembimbing 2 Disini");
+                                                inputElement.setAttribute("style", "margin-top: 10px;");
+                                                selectElement.parentNode.appendChild(inputElement);
+                                            } else {
+                                                inputElement.style.display = "block";
+                                            }
+                                        } else {
+                                            if (inputElement) {
+                                                inputElement.style.display = "none";
+                                            }
+                                        }
+                                        if (selectedValue === "Tidak Ada di Daftar Ini") {
+                                            targetElement.style.display = "block";
+                                        } else {
+                                            targetElement.style.display = "none";
+                                        }
+                                    }
+                                </script>
+                                <div class="form-group">
+                                    <label>Periode Seminar</label>
+                                    <input autofocus class="form-control month-picker" type="text" name="periode_seminar"
+                                        value="{{ old('periode_seminar') }}" id="periode_seminar"
+                                        placeholder="Periode Seminar">
+                                    @error('periode_seminar')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>TOEFL</label>
+                                    <input autofocus name="toefl" id="toefl" class="form-control" type="number"
+                                        min="0" value="{{ old('toefl') }}" placeholder="Nilai TOEFL">
+                                    @error('toefl')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        Berkas Kelengkapan
+                                        <small>
+                                            <a target="_blank" href="/uploads/syarat_seminar/">Lihat
+                                                Persyaratan</a>
+                                        </small>
+                                    </label>
+                                    <div class="custom-file mb-1">
+                                        <label class="custom-file-label" for="link-berkas_seminar_pkl"
+                                            id="label-berkas_seminar_pkl">Pilih File</label>
+                                        <input value="{{ old('berkas_seminar_pkl') }}" accept=".pdf" autofocus
+                                            name="berkas_seminar_pkl" id="file-berkas_seminar_pkl"
+                                            class="custom-file-input form-control @error('berkas_seminar_pkl') form-control-danger @enderror"
+                                            type="file" placeholder="FILE SK"
+                                            onchange="updateFileNameAndLink('file-berkas_seminar_pkl','label-berkas_seminar_pkl','link-berkas_seminar_pkl')">
+                                    </div>
+                                    <small class="mt-2"> <a id="link-berkas_seminar_pkl" href="#"
+                                            target="_blank" style="display: none;">Lihat File</a> </small>
+                                    @error('berkas_seminar_pkl')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                    <a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}">
+                        <button class="batal btn btn-secondary">Batal</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Input Validation End -->
+    </div>
+
+    <script>
+        // Mendapatkan elemen select
+        var select = document.getElementById("tahun_akademik");
+
+        // Mendapatkan tahun saat ini
+        var tahunSekarang = new Date().getFullYear();
+
+        // Loop untuk menghasilkan 5 tahun ke belakang
+        for (var i = 0; i < 5; i++) {
+            var tahun = tahunSekarang - i;
+            var option = document.createElement("option");
+            option.value = tahun + "/" + (tahun + 1);
+            option.text = tahun + "/" + (tahun + 1);
+            select.add(option);
+        }
+
+        // function toggleInput(selectElement, targetId) {
+        //     var selectedValue = selectElement.value;
+        //     var inputElement = selectElement.parentNode.querySelector('input[name="pbl2_nip"]');
+        //     var targetElement = document.getElementById(targetId);
+        //     if (selectedValue === "Tidak Ada di Daftar Ini") {
+        //         if (!inputElement) {
+        //             inputElement = document.createElement("input");
+        //             inputElement.setAttribute("type", "text");
+        //             inputElement.setAttribute("name", "pbl2_nip");
+        //             inputElement.setAttribute("id", "pbl2_nip");
+        //             inputElement.setAttribute("class", "form-control");
+        //             inputElement.setAttribute("value", "{!! old('pbl2_nip') !!}");
+        //             inputElement.setAttribute("placeholder", "Masukan Nama Pembimbing 2 Disini Jika Tidak Ada di Daftar");
+        //             inputElement.setAttribute("style", "margin-top: 10px;");
+        //             selectElement.parentNode.appendChild(inputElement);
+        //         } else {
+        //             inputElement.style.display = "block";
+        //         }
+        //     } else {
+        //         if (inputElement) {
+        //             inputElement.style.display = "none";
+        //         }
+        //     }
+
+        //     if (selectedValue === "Tidak Ada di Daftar Ini") {
+        //         inputElement.style.display = "block";
+        //     } else {
+        //         inputElement.style.display = "none";
+        //     }
+        // }
+    </script>
+    {{-- <script>
                                     function toggleInput(selectElement, targetId) {
                                         var selectedValue = selectElement.value;
                                         var inputElement = selectElement.parentNode.querySelector('input[name="' + selectElement.getAttribute("name") +
@@ -191,80 +306,25 @@
                                             targetElement.style.display = "none";
                                         }
                                     }
-                                </script>
-                                <div class="form-group">
-                                    <label>Periode Seminar</label>
-                                    <input autofocus class="form-control month-picker" type="text"
-                                        name="periode_seminar" value="{{ old('periode_seminar') }}" id="periode_seminar"
-                                        placeholder="Periode Seminar">
-                                    @error('periode_seminar')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                </script> --}}
 
-                                <div class="form-group">
-                                    <label>TOEFL</label>
-                                    <input autofocus name="toefl" id="toefl" class="form-control" type="number"
-                                        min="0" value="{{ old('toefl') }}" placeholder="Nilai TOEFL">
-                                    @error('toefl')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
+    {{-- <div class="form-group">
+                                    <label>Pembimbing 2</label>
+                                    <select class="custom-select2 form-control" name="id_pembimbing_dua"
+                                        id="id_pembimbing_dua" style="width: 100%; height: 38px"
+                                        onchange="toggleInput(this, 'Pembimbing2')">
+                                        <optgroup label="Pembimbing 2">
 
-                                <div class="form-group">
-                                    <label>
-                                        Berkas Kelengkapan
-                                        <small>
-                                            <a target="_blank" href="/uploads/syarat_seminar/">Lihat
-                                                Persyaratan</a>
-                                        </small>
-                                    </label>
-                                    <div class="custom-file mb-1">
-                                        <label class="custom-file-label" for="link-berkas_seminar_pkl"
-                                            id="label-berkas_seminar_pkl">Pilih File</label>
-                                        <input value="{{ old('berkas_seminar_pkl') }}" accept=".pdf" autofocus
-                                            name="berkas_seminar_pkl" id="file-berkas_seminar_pkl"
-                                            class="custom-file-input form-control @error('berkas_seminar_pkl') form-control-danger @enderror"
-                                            type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_seminar_pkl','label-berkas_seminar_pkl','link-berkas_seminar_pkl')">
-                                    </div>
-                                    <small class="mt-2"> <a id="link-berkas_seminar_pkl" href="#"
-                                            target="_blank" style="display: none;">Lihat File</a> </small>
-                                    @error('berkas_seminar_pkl')
-                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
-                                    @enderror
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-                    <a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}">
-
-                        <button class="batal btn btn-secondary">Batal</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- Input Validation End -->
-    </div>
-
-    <script>
-        // Mendapatkan elemen select
-        var select = document.getElementById("tahun_akademik");
-
-        // Mendapatkan tahun saat ini
-        var tahunSekarang = new Date().getFullYear();
-
-        // Loop untuk menghasilkan 5 tahun ke belakang
-        for (var i = 0; i < 5; i++) {
-            var tahun = tahunSekarang - i;
-            var option = document.createElement("option");
-            option.value = tahun + "/" + (tahun + 1);
-            option.text = tahun + "/" + (tahun + 1);
-            select.add(option);
-        }
-    </script>
+                                            @foreach ($dosens as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $item->nama_dosen }}
+                                                </option>
+                                            @endforeach
+                                            <option value="Tidak Ada di Daftar Ini">
+                                                Tidak Ada di Daftar Ini
+                                            </option>
+                                        </optgroup>
+                                    </select>
+                                </div> --}}
 @endsection

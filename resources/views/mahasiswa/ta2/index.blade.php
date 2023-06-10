@@ -362,8 +362,6 @@
                         </div>
                     </div>
                     {{-- @endif --}}
-
-
                 </div>
                 {{-- @endif --}}
                 <!-- Bukti Seminar End -->
