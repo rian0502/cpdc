@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tahun Akademik</label>
-                                    <select id="tahunAkademik" class="selectpicker form-control" data-size="5"
+                                    <select id="tahun_akademik" class="selectpicker form-control" data-size="5"
                                         name="tahun_akademik">
                                     </select>
                                     @error('tahun_akademik')
@@ -65,12 +65,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Pembimbing 1</label>
-                                    <select class="custom-select2 form-control" name="pembimbing1" id="pembimbing1"
+                                    <select class="custom-select2 form-control" name="id_pembimbing_satu" id="id_pembimbing_satu"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Pembimbing 1">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_dospemkp') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_satu') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
                                         </optgroup>
@@ -79,8 +79,8 @@
 
                                 <div class="form-group">
                                     <label>Judul atau Topik Tugas Akhir</label>
-                                    <textarea name="judul" id="judul" class="form-control" name="judul">{{ old('judul') }}</textarea>
-                                    @error('judul')
+                                    <textarea name="judul_ta" id="judul_ta" class="form-control">{{ old('judul') }}</textarea>
+                                    @error('judul_ta')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -106,12 +106,13 @@
 
                                 <div class="form-group">
                                     <label>Pembimbing 2</label>
-                                    <select class="custom-select2 form-control" name="pembimbing2" id="pembimbing2"
+                                    <select class="custom-select2 form-control" name="id_pembimbing_dua" id="id_pembimbing_dua"
                                         style="width: 100%; height: 38px" onchange="toggleInput(this, 'Pembimbing2')">
                                         <optgroup label="Pembimbing 2">
+                                            
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_dospemkp') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}
                                                 </option>
                                             @endforeach
@@ -122,9 +123,9 @@
                                 <div id="Pembimbing2" style="display: none;">
                                     <div class="form-group">
                                         <label>Nomor Karyawan / NIP Pembimbing 2</label>
-                                        <input autofocus name="ni_pem2" id="ni_pem2" class="form-control" type="text"
-                                            value="{{ old('ni_pem2') }}" placeholder="NIP / Nomor Karyawan">
-                                        @error('ni_pem2')
+                                        <input autofocus name="pbl2_nip" id="pbl2_nip" class="form-control" type="text"
+                                            value="{{ old('pbl2_nip') }}" placeholder="NIP / Nomor Karyawan">
+                                        @error('pbl2_nip')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -140,8 +141,11 @@
                                                     {{ old('id_dospemkp') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}
                                                 </option>
+                                                <option value="Tidak Ada di Daftar Ini"> Tidak Ada di Daftar Ini</option>
                                             @endforeach
-                                            <option value="Tidak Ada di Daftar Ini">Tidak Ada di Daftar Ini</option>
+                                                {{-- {{ old('pembahas', $pembahasValue) == 'Tidak Ada di Daftar Ini' ? 'selected' : '' }}> --}}
+                                               
+                                         
                                         </optgroup>
                                     </select>
                                 </div>
@@ -190,12 +194,14 @@
                                         }
                                     }
                                 </script>
+
+
                                 <div class="form-group">
                                     <label>Periode Seminar</label>
                                     <input autofocus class="form-control month-picker" type="text"
-                                        name="rencana_seminar" value="{{ old('rencana_seminar') }}" id="rencana_seminar"
-                                        placeholder="Rencana Seminar">
-                                    @error('rencana_seminar')
+                                        name="periode_seminar" value="{{ old('periode_seminar') }}" id="periode_seminar"
+                                        placeholder="Periode Seminar">
+                                    @error('periode_seminar')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -251,7 +257,7 @@
 
     <script>
         // Mendapatkan elemen select
-        var select = document.getElementById("tahunAkademik");
+        var select = document.getElementById("tahun_akademik");
 
         // Mendapatkan tahun saat ini
         var tahunSekarang = new Date().getFullYear();
