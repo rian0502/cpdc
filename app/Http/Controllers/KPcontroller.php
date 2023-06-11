@@ -138,8 +138,13 @@ class KPcontroller extends Controller
     public function update(Request $request, $id)
     {
         $seminarKp = ModelSeminarKP::find(Crypt::decrypt($id));
-        $file_seminar = $request->file('berkas_seminar_pkl');
-        $nama_file = $file_seminar->hashName();
+        if ($request->file('berkas_seminar_pkl')){
+            $file_seminar = $request->file('berkas_seminar_pkl');
+            $file_before = $seminarKp->berkas_seminar_pkl;
+            unlink(public_path('uploads/syarat_seminar_kp/' . $file_before));
+            $nama_file = $file_seminar->hashName();
+            $file_seminar->move(public_path('uploads/syarat_seminar_kp'), $nama_file);
+        }
         $seminarKp->mitra = $request->mitra;
         $seminarKp->semester = $request->semester;
         $seminarKp->sks = $request->sks;
@@ -152,13 +157,10 @@ class KPcontroller extends Controller
         $seminarKp->rencana_seminar = $request->rencana_seminar;
         $seminarKp->toefl = $request->toefl;
         $seminarKp->ipk = $request->ipk;
-        $file_before = $seminarKp->berkas_seminar_pkl;
         $seminarKp->berkas_seminar_pkl = $nama_file;
         $seminarKp->keterangan = '';
         $seminarKp->proses_admin = 'Proses';
         $seminarKp->updated_at = date('Y-m-d H:i:s');
-        unlink(public_path('uploads/syarat_seminar_kp/' . $file_before));
-        $file_seminar->move(public_path('uploads/syarat_seminar_kp'), $nama_file);
         $seminarKp->save();
         return redirect()->route('mahasiswa.seminar.kp.index')->with('success', 'Data Seminar KP Berhasil Diubah');
     }
