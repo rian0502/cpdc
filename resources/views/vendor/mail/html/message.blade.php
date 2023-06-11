@@ -1,27 +1,27 @@
-<x-mail::layout>
-    {{-- Header --}}
-    <x-slot:header>
-        <x-mail::header :url="config('app.url')">
-            {{ config('app.name') }}
-        </x-mail::header>
-    </x-slot:header>
+@component('mail::layout')
+{{-- Header --}}
+@slot('header')
+@component('mail::header', ['url' => config('app.url')])
+{{ config('app.name') }}
+@endcomponent
+@endslot
 
-    {{-- Body --}}
-    {{ $slot }}
+{{-- Body --}}
+{{ $slot }}
 
-    {{-- Subcopy --}}
-    @isset($subcopy)
-        <x-slot:subcopy>
-            <x-mail::subcopy>
-                {{ $subcopy }}
-            </x-mail::subcopy>
-        </x-slot:subcopy>
-    @endisset
+{{-- Subcopy --}}
+@isset($subcopy)
+@slot('subcopy')
+@component('mail::subcopy')
+{{ $subcopy }}
+@endcomponent
+@endslot
+@endisset
 
-    {{-- Footer --}}
-    <x-slot:footer>
-        <x-mail::footer>
-            © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
-        </x-mail::footer>
-    </x-slot:footer>
-</x-mail::layout>
+{{-- Footer --}}
+@slot('footer')
+@component('mail::footer')
+© {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+@endcomponent
+@endslot
+@endcomponent
