@@ -107,11 +107,11 @@
                             <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Dosen Pembimbing PKL</label>
-                                    <select class="custom-select2 form-control" name="id_dosenmkp">
+                                    <select class="custom-select2 form-control" name="id_dospemkp">
                                         <optgroup label="Dosen Pembimbing PKL">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ $seminar->id_dospemkp == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $seminar->dosen->encrypt_id == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
                                         </optgroup>
@@ -162,16 +162,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label>IPK</label>
-                                    <input autofocus name="ipk" id="ipk" class="form-control" type="number"
+                                    <input autofocus name="ipk" id="ipk" class="form-control" type="text"
                                         placeholder="Nilai IPK" value="{{ old('ipk', $seminar->ipk) }}">
                                     @error('ipk')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                div class="form-group">
+                                <div class="form-group">
                                 <label>
                                     Berkas Kelengkapan
-                                    <small>
+                                    <small></small>
                                         <a target="_blank" href="/uploads/syarat_seminar/{{ $syarat->path_file }}">Lihat
                                             Persyaratan</a>
                                     </small>

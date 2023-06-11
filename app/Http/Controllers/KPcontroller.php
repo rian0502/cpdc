@@ -144,6 +144,7 @@ class KPcontroller extends Controller
             unlink(public_path('uploads/syarat_seminar_kp/' . $file_before));
             $nama_file = $file_seminar->hashName();
             $file_seminar->move(public_path('uploads/syarat_seminar_kp'), $nama_file);
+            $seminarKp->berkas_seminar_pkl = $nama_file;
         }
         $seminarKp->mitra = $request->mitra;
         $seminarKp->semester = $request->semester;
@@ -157,7 +158,6 @@ class KPcontroller extends Controller
         $seminarKp->rencana_seminar = $request->rencana_seminar;
         $seminarKp->toefl = $request->toefl;
         $seminarKp->ipk = $request->ipk;
-        $seminarKp->berkas_seminar_pkl = $nama_file;
         $seminarKp->keterangan = '';
         $seminarKp->proses_admin = 'Proses';
         $seminarKp->updated_at = date('Y-m-d H:i:s');

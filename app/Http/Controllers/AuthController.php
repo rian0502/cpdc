@@ -115,7 +115,6 @@ class AuthController extends Controller
             'id_dosen' => Crypt::decrypt($request->id_dosen),
         ];
         $mahasiswa = Mahasiswa::create($mhs);
-    
         $user->sendEmailVerificationNotification();
         auth()->login($user);
         return redirect()->route('auth.login')->with('success', 'Pendaftaran berhasil, silahkan cek email untuk melakukan verifikasi');

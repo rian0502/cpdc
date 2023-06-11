@@ -168,13 +168,12 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
 
 
 //AUTH
+Route::get('reset/{token}', [AuthController::class, 'showResetPasswordForm'])->name('password.reset');
 Route::name('auth.')->middleware('guest')->group(function () {
-
     Route::post('/login', [AuthController::class, 'loginAttempt'])->name('login.post');
     Route::post('/link-reset', [AuthController::class, 'sendResetLinkEmail'])->name('password.link.post');
     Route::post('/update', [AuthController::class, 'resetPassword'])->name('password.update.post');
     Route::get('/forgot-password', [AuthController::class, 'forgotPassword'])->name('password.forgot');
-    Route::get('reset/{token}', [AuthController::class, 'showResetPasswordForm'])->name('password.reset');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'attemptRegister'])->name('register.post');
