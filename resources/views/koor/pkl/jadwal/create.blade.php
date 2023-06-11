@@ -144,7 +144,7 @@
                     <div class="pl-3 pr-3 pb-0 mb-2">
 
 
-                    <form action="{{ route('koor.jadwalPKL.store',$seminar->encrypt_id) }}" method="POST">
+                    <form id="formStatus" action="{{ route('koor.jadwalPKL.store',$seminar->encrypt_id) }}" method="POST" >
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
@@ -199,7 +199,7 @@
                         </div>
                         <a href="{{route('koor.jadwalPKL.index')}}">
 
-                            <button class="batal btn btn-secondary">Batal</button>
+                            <button class="batal btn btn-secondary" id="submitButton">Batal</button>
                         </a>
 
                     </form>

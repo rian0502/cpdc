@@ -30,7 +30,7 @@
     <link rel="stylesheet" type="text/css" href="/Assets/src/lib/toastify/src/toastify.css" />
     <link rel="stylesheet" type="text/css"
         href="/Assets/admin/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" />
-
+    <link rel="stylesheet" type="text/css" href="/Assets/admin/src/plugins/sweetalert2/sweetalert2.css" />
     <!-- FontAwesome -->
     <link href="/Assets/FontAwesome/css/fontawesome.css" rel="stylesheet">
     <link href="/Assets/FontAwesome/css/brands.css" rel="stylesheet">
@@ -185,7 +185,8 @@
                         <span class="user-icon">
                             {{-- <img src="/Assets/images/profile_picture/default.png" alt="" /> --}}
                             <img src="/uploads/profile/{{ Auth::user()->profile_picture }}"
-                                onerror="this.src='/uploads/profile/default.png'" alt="" class="photo-profil" />
+                                onerror="this.src='/uploads/profile/default.png'" alt=""
+                                class="photo-profil" />
                         </span>
                         <span class="user-name">{{ Auth::user()->name }}</span>
                     </a>
@@ -478,10 +479,12 @@
                                         class="{{ Request::is('mahasiswa/seminar/kp*') ? 'active' : '' }}">Kerja
                                         Praktik</a></li>
                                 <li><a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_1*') ? 'active' : '' }}">Tugas Akhir
+                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_1*') ? 'active' : '' }}">Tugas
+                                        Akhir
                                         1</a></li>
                                 <li><a href="{{ route('mahasiswa.seminar.tugas_akhir_2.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_2*') ? 'active' : '' }}">Tugas Akhir
+                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_2*') ? 'active' : '' }}">Tugas
+                                        Akhir
                                         2</a></li>
                                 <li><a href="{{ route('mahasiswa.sidang.kompre.index') }}"
                                         class="{{ Request::is('mahasiswa/sidang/kompre*') ? 'active' : '' }}">Sidang
@@ -652,6 +655,8 @@
     <script src="/Assets/admin/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
     <script src="/Assets/admin/vendors/scripts/dashboard3.js"></script>
     <script src="/Assets/src/lib/toastify/src/toastify.js"></script>
+    <script src="/Assets/admin/src/plugins/sweetalert2/sweetalert2.all.js"></script>
+    <script src="/Assets/admin/src/plugins/sweetalert2/sweet-alert.init.js"></script>
     <!-- bootstrap-tagsinput js -->
     <script src="src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
     <script src="/Assets/src/js/nocopy.js"></script>
@@ -709,6 +714,34 @@
                 link.style.display = "inline";
             }
         }
+    </script>
+    <script>
+        function showConfirmationForm() {
+            swal({
+                title: 'Apakah Anda yakin ingin submit data ini?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
+            }).then((result) => {
+                if (result.value) {
+                    document.getElementById('formStatus').submit();
+                }
+            })
+        }
+
+        // Mengambil elemen tombol submit
+        const submitButton = document.getElementById('submitButton');
+
+        // Menangani klik tombol submit
+        submitButton.addEventListener('click', function(e) {
+            e.preventDefault(); // Mencegah pengiriman form secara langsung
+
+            // Panggil fungsi untuk menampilkan konfirmasi
+            showConfirmationForm();
+        });
     </script>
 
     <!-- End Google Tag Manager (noscript) -->

@@ -24,7 +24,7 @@
     </style>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
     <!-- jquery-dateFormat.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js"></script>
 
@@ -33,7 +33,7 @@
             <div class="min-height-200px">
 
                 <!-- Data Registrasi Start -->
-            
+
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
@@ -50,13 +50,14 @@
                             </small>
                         </div>
                     </div>
-                 
+
                     <div class="bukti_seminar">
                         <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
                             <div class="row border-bottom">
                                 <label class="col-md-3 bold"> <strong>Berita Acara Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a href="/uploads/berita_acara_seminar_kp/{{ $seminar->berita_acara->berkas_ba_seminar_kp}}" target="_blank">Lihat</a>
+                                    <a href="/uploads/berita_acara_seminar_kp/{{ $seminar->berita_acara->berkas_ba_seminar_kp }}"
+                                        target="_blank">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Tanggal Seminar</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -66,37 +67,38 @@
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"> <strong>Laporan Final PKL/KP</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a href="/uploads/laporan_kp/{{ $seminar->berita_acara->laporan_kp}}" target="_blank">Lihat</a>
+                                    <a href="/uploads/laporan_kp/{{ $seminar->berita_acara->laporan_kp }}"
+                                        target="_blank">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Status Bukti</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->proses_admin}}
+                                    {{ $seminar->proses_admin }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"> <strong>Nilai Lapangan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->berita_acara->nilai_lapangan}}
+                                    {{ $seminar->berita_acara->nilai_lapangan }}
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Nilai Akademik</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->berita_acara->nilai_akd}}
+                                    {{ $seminar->berita_acara->nilai_akd }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"> <strong>Nilai Total</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->berita_acara->nilai_akhir}}
+                                    {{ $seminar->berita_acara->nilai_akhir }}
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Nilai Mutu</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->berita_acara->nilai_mutu}}
+                                    {{ $seminar->berita_acara->nilai_mutu }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"> <strong>NO Surat Berita Acara</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->berita_acara->no_ba_seminar_kp}}
+                                    {{ $seminar->berita_acara->no_ba_seminar_kp }}
                                 </div>
                             </div>
 
@@ -127,7 +129,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" onclick="showConfirmation()"
+                                    <button type="submit" id="submitButton"
                                         class="submit btn btn-primary">Submit</button>
                                 </div>
                             </form>
@@ -148,33 +150,4 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.js"></script>
-
-    <script>
-        function showConfirmation() {
-            Swal.fire({
-                title: 'Konfirmasi',
-                text: 'Apakah Anda yakin ingin mengirim formulir?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Ya',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Submit form jika dikonfirmasi
-                    document.getElementById('formStatus').submit();
-                }
-            });
-        }
-
-        function toggleCatatan() {
-            var status = document.getElementById('status').value;
-            var catatanField = document.getElementById('catatan');
-
-            if (status === 'Belum Selesai') {
-                catatanField.setAttribute('required', 'required');
-            } else {
-                catatanField.removeAttribute('required');
-            }
-        }
-    </script>
 @endsection

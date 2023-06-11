@@ -24,7 +24,6 @@
     </style>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <!-- jquery-dateFormat.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js"></script>
 
@@ -119,7 +118,8 @@
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a href="/uploads/syarat_seminar_kp/{{ $seminar->berkas_seminar_pkl}}" target="_blank">Unduh Berkas</a>
+                                    <a href="/uploads/syarat_seminar_kp/{{ $seminar->berkas_seminar_pkl }}"
+                                        target="_blank">Unduh Berkas</a>
                                 </div>
                             </div>
 
@@ -129,14 +129,16 @@
                                     {{ $seminar->judul_kp }}
                                 </div>
                             </div>
-                            <form action="{{ route('berkas.validasi.seminar.kp.update', $seminar->encrypt_id)}}" method="post">
+                            <form action="{{ route('berkas.validasi.seminar.kp.update', $seminar->encrypt_id) }}"
+                                method="post" id="formStatus">
                                 @method('put')
                                 @csrf
                                 <div class="form-group" style="margin-top: 20px">
                                     <label><b>Status</b></label>
-                                    <select name="proses_admin" id="status" class="selectpicker form-control" data-size="5">
-                                        <option value="Diproses"
-                                            {{ $seminar->proses_admin == 'Proses' ? 'selected' : '' }}>Diproses</option>
+                                    <select onchange="toggleCatatan()" name="proses_admin" id="status"
+                                        class="selectpicker form-control" data-size="5">
+                                        <option value="proses" {{ $seminar->proses_admin == 'Proses' ? 'selected' : '' }}>
+                                            Diproses</option>
                                         <option value="Valid" {{ $seminar->proses_admin == 'Valid' ? 'selected' : '' }}>
                                             Valid</option>
                                         <option value="Invalid"
@@ -154,10 +156,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="submit btn btn-primary">Submit</button>
+                                    <button class="submit btn btn-primary" value="submit" id="submitButton" >Submit</button>
                                 </div>
                             </form>
-                            <a href="{{route('berkas.validasi.seminar.kp.index')}}">
+                            <a href="{{ route('berkas.validasi.seminar.kp.index') }}">
                                 <button class="batal btn btn-secondary">Batal</button>
                             </a>
                         </div>
@@ -170,7 +172,6 @@
         </div>
         <!-- Input Validation End -->
     </div>
-
     <script>
         // Mendapatkan elemen select
         var select = document.getElementById("tahunAkademik");
@@ -187,4 +188,5 @@
             select.add(option);
         }
     </script>
+   
 @endsection

@@ -144,7 +144,7 @@
                     <div class="pl-3 pr-3 pb-0 mb-2">
 
 
-                    <form action="{{ route('lab.barang.store',1) }}" method="POST">
+                    <form id="formStatus" action="{{ route('lab.barang.store',1) }}" method="POST">
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
@@ -195,7 +195,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button id="submitButton" type="submit" class="submit btn btn-primary">Submit</button>
                         </div>
                         <a href="{{route('koor.jadwalPKL.index')}}">
 

@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="/Assets/src/lib/toastify/src/toastify.css" />
     <link rel="stylesheet" type="text/css"
         href="/Assets/admin/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" />
-
+        <link rel="stylesheet" type="text/css" href="/Assets/admin/src/plugins/sweetalert2/sweetalert2.css" />
     <!-- FontAwesome -->
     <link href="/Assets/FontAwesome/css/fontawesome.css" rel="stylesheet">
     <link href="/Assets/FontAwesome/css/brands.css" rel="stylesheet">
@@ -327,6 +327,8 @@
     <script src="/Assets/admin/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
     <script src="/Assets/admin/vendors/scripts/dashboard3.js"></script>
     <script src="/Assets/src/lib/toastify/src/toastify.js"></script>
+    <script src="/Assets/admin/src/plugins/sweetalert2/sweetalert2.all.js"></script>
+    <script src="/Assets/admin/src/plugins/sweetalert2/sweet-alert.init.js"></script>
     <!-- bootstrap-tagsinput js -->
     <script src="src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
     <script src="/Assets/src/js/nocopy.js"></script>
@@ -372,7 +374,34 @@
         const inputs = document.querySelectorAll('input');
         inputs.forEach(input => input.setAttribute('autocomplete', 'off'));
     </script>
+<script>
+    function showConfirmationForm() {
+        swal({
+            title: 'Apakah Anda yakin ingin submit data ini ?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+        }).then((result) => {
+            if (result.value) {
+                document.getElementById('formStatus').submit();
+            }
+        })
+    }
 
+    // Mengambil elemen tombol submit
+    const submitButton = document.getElementById('submitButton');
+
+    // Menangani klik tombol submit
+    submitButton.addEventListener('click', function(e) {
+        e.preventDefault(); // Mencegah pengiriman form secara langsung
+
+        // Panggil fungsi untuk menampilkan konfirmasi
+        showConfirmationForm();
+    });
+</script>
     <!-- End Google Tag Manager (noscript) -->
 
 
