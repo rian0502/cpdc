@@ -17,7 +17,7 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('mahasiswa.seminar.kp.store') }}" method="POST" enctype="multipart/form-data">
+                    <form id="formStatus" action="{{ route('mahasiswa.seminar.kp.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
@@ -110,7 +110,7 @@
                             <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Dosen Pembimbing</label>
-                                    <select class="custom-select2 form-control" name="state"
+                                    <select class="custom-select2 form-control" name="id_dospemkp"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Dosen Pembimbing PKL/KP">
                                             @foreach ($dosens as $item)
@@ -198,7 +198,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" id="submitButton" class="submit btn btn-primary">Submit</button>
                         </div>
                     </form>
                     <a href="/mahasiswa/seminar/kp">

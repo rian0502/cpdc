@@ -32,7 +32,7 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
-
+    <link rel="stylesheet" type="text/css" href="/Assets/auth/src/plugins/sweetalert2/sweetalert2.css" />
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/Assets/admin/vendors/styles/core.css" />
     <link rel="stylesheet" type="text/css" href="/Assets/admin/vendors/styles/icon-font.min.css" />
@@ -78,7 +78,7 @@
         })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
     </script>
     <style>
-        .photo-profil{
+        .photo-profil {
             width: 100%;
             height: 100%;
             border-radius: 50%;
@@ -199,9 +199,9 @@
                             {{-- <img src="/Assets/images/profile_picture/default.png" alt="" /> --}}
                             {{-- <img src="{{ asset('/Assets/images/profile_picture/' . $user->profile_picture) }}"
                                 alt="" /> --}}
-                            <img src="/uploads/profile/{{ Auth::user()->profile_picture}}"
-                            onerror="this.src='/uploads/profile/default.png'"
-                                alt="" class="photo-profil" />
+                            <img src="/uploads/profile/{{ Auth::user()->profile_picture }}"
+                                onerror="this.src='/uploads/profile/default.png'" alt=""
+                                class="photo-profil" />
                         </span>
                         <span class="user-name">{{ Auth::user()->name }}</span>
                     </a>
@@ -484,11 +484,13 @@
                                 <li><a href="{{ route('mahasiswa.seminar.kp.index') }}"
                                         class="{{ Request::is('mahasiswa/seminar/kp*') ? 'active' : '' }}">Kerja
                                         Praktik</a></li>
-                               <li><a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_1*') ? 'active' : '' }}">Tugas Akhir
+                                <li><a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}"
+                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_1*') ? 'active' : '' }}">Tugas
+                                        Akhir
                                         1</a></li>
                                 <li><a href="{{ route('mahasiswa.seminar.tugas_akhir_2.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_2*') ? 'active' : '' }}">Tugas Akhir
+                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_2*') ? 'active' : '' }}">Tugas
+                                        Akhir
                                         2</a></li>
                                 <li><a href="{{ route('mahasiswa.sidang.kompre.index') }}"
                                         class="{{ Request::is('mahasiswa/sidang/kompre*') ? 'active' : '' }}">Sidang
@@ -598,6 +600,8 @@
     <script src="/Assets/admin/src/plugins/datatables/js/pdfmake.min.js"></script>
     <script src="/Assets/admin/src/plugins/datatables/js/excel.js"></script>
     <script src="/Assets/admin/src/plugins/datatables/js/vfs_fonts.js"></script>
+    <script src="/Assets/admin/src/plugins/sweetalert2/sweetalert2.all.js"></script>
+    <script src="/Assets/admin/src/plugins/sweetalert2/sweet-alert.init.js"></script>
     <!-- bootstrap-tagsinput js -->
     <script src="src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
     <script src="/Assets/src/lib/toastify/src/toastify.js"></script>
@@ -641,7 +645,35 @@
         const inputs = document.querySelectorAll('input');
         inputs.forEach(input => input.setAttribute('autocomplete', 'off'));
     </script>
-      <script>
+    <script>
+        function showConfirmationForm() {
+            swal({
+                title: 'Apakah Anda yakin ingin submit data ini ?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
+            }).then((result) => {
+                if (result.value) {
+                    document.getElementById('formStatus').submit();
+                }
+            })
+        }
+
+        // Mengambil elemen tombol submit
+        const submitButton = document.getElementById('submitButton');
+
+        // Menangani klik tombol submit
+        submitButton.addEventListener('click', function(e) {
+            e.preventDefault(); // Mencegah pengiriman form secara langsung
+
+            // Panggil fungsi untuk menampilkan konfirmasi
+            showConfirmationForm();
+        });
+    </script>
+    <script>
         function updateFileNameAndLink(inputId, labelId, linkId) {
             var input = document.getElementById(inputId);
             var label = document.getElementById(labelId);

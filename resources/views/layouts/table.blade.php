@@ -31,6 +31,7 @@
         href="/Assets/admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" type="text/css"
         href="/Assets/admin/src/plugins/datatables/css/responsive.bootstrap4.min.css" />
+        <link rel="stylesheet" type="text/css" href="/Assets/auth/src/plugins/sweetalert2/sweetalert2.css" />
 
     <!-- FontAwesome -->
     <link href="/Assets/FontAwesome/css/fontawesome.css" rel="stylesheet">
@@ -415,7 +416,7 @@
     <script src="/Assets/src/lib/toastify/src/toastify.js"></script>
     <!-- Datatable Setting js -->
     <script src="/Assets/admin/vendors/scripts/datatable-setting.js"></script>
-
+    <script src="/Assets/admin/src/plugins/sweetalert2/sweetalert2.all.js"></script>
     <!-- jam -->
     <script src="/Assets/jamnya/js/script.js"></script>
 
