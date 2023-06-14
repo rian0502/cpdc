@@ -70,7 +70,7 @@ class KPcontroller extends Controller
         $nama_file = $file_seminar->hashName();
         $file_seminar->move(public_path('uploads/syarat_seminar_kp'), $nama_file);
         $data = [
-            'judul_kp' => $request->judul_kp,
+            'judul_kp' => Str::title($request->judul_kp),
             'semester' => $request->semester,
             'tahun_akademik' => $request->tahun_akademik,
             'mitra' => $request->mitra,

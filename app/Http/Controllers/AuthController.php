@@ -97,7 +97,7 @@ class AuthController extends Controller
     public function attemptRegister(RegisterRequest $request)
     {
         $user = User::create([
-            'name' => $request->nama_lengkap,
+            'name' => Str::title($request->nama_lengkap),
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
@@ -108,7 +108,7 @@ class AuthController extends Controller
         $user->assignRole('mahasiswa');
         $mhs = [
             'npm' => $request->npm,
-            'nama_mahasiswa' => $request->nama_lengkap,
+            'nama_mahasiswa' => Str::title($request->nama_lengkap),
             'angkatan' => $request->angkatan,
             'jenis_kelamin' => $request->gender,
             'user_id' => $user->id,
