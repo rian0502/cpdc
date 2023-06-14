@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Kajur;
 
 
 use Illuminate\Http\Request;
-use App\Models\PrestasiMahasiswa;
-use Dflydev\DotAccessData\Data;
 use Yajra\DataTables\DataTables;
+use App\Models\PrestasiMahasiswa;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+
 
 class PrestasiDataController extends Controller
 {
@@ -120,14 +122,14 @@ class PrestasiDataController extends Controller
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($startDate && $endDate) {
-            $data = PrestasiMahasiswa::select('capaian', \DB::raw('count(*) as total'))
+            $data = PrestasiMahasiswa::select('capaian', DB::raw('count(*) as total'))
             ->whereBetween('tanggal', [$startDate, $endDate])
             ->groupBy('capaian')
             ->get();
             return response()->json($data);
         }
         else{
-            $data = PrestasiMahasiswa::select('capaian', \DB::raw('count(*) as total'))
+            $data = PrestasiMahasiswa::select('capaian', DB::raw('count(*) as total'))
             ->groupBy('capaian')
             ->get();
             return response()->json($data);
@@ -139,14 +141,14 @@ class PrestasiDataController extends Controller
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($startDate && $endDate) {
-            $data = PrestasiMahasiswa::select('scala', \DB::raw('count(*) as total'))
+            $data = PrestasiMahasiswa::select('scala', DB::raw('count(*) as total'))
             ->whereBetween('tanggal', [$startDate, $endDate])
             ->groupBy('scala')
             ->get();
             return response()->json($data);
         }
         else{
-            $data = PrestasiMahasiswa::select('scala', \DB::raw('count(*) as total'))
+            $data = PrestasiMahasiswa::select('scala', DB::raw('count(*) as total'))
             ->groupBy('scala')
             ->get();
             return response()->json($data);
@@ -160,14 +162,14 @@ class PrestasiDataController extends Controller
         $endDate = $request->input('endDate', null);
         //prestasi pertahun
         if ($startDate && $endDate) {
-            $data = PrestasiMahasiswa::select(\DB::raw('YEAR(tanggal) as year'), \DB::raw('count(*) as total'))
+            $data = PrestasiMahasiswa::select(DB::raw('YEAR(tanggal) as year'), DB::raw('count(*) as total'))
             ->whereBetween('tanggal', [$startDate, $endDate])
             ->groupBy('year')
             ->get();
             return response()->json($data);
         }
         else{
-            $data = PrestasiMahasiswa::select(\DB::raw('YEAR(tanggal) as year'), \DB::raw('count(*) as total'))
+            $data = PrestasiMahasiswa::select(DB::raw('YEAR(tanggal) as year'), DB::raw('count(*) as total'))
             ->groupBy('year')
             ->get();
             return response()->json($data);
