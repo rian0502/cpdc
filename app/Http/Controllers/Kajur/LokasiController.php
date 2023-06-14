@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Kajur;
 
-use App\Http\Requests\StoreLokasiRequest;
 use App\Models\Lokasi;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Crypt;
+use App\Http\Requests\StoreLokasiRequest;
 
 
 class LokasiController extends Controller

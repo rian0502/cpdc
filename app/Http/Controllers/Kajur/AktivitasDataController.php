@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Kajur;
 
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\AktivitasMahasiswa;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class AktivitasDataController extends Controller
@@ -43,13 +44,13 @@ class AktivitasDataController extends Controller
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($startDate && $endDate) {
-            $data = AktivitasMahasiswa::select('peran', \DB::raw('count(*) as total'))
+            $data = AktivitasMahasiswa::select('peran', DB::raw('count(*) as total'))
                 ->whereBetween('tanggal', [$startDate, $endDate])
                 ->groupBy('peran')
                 ->get();
             return response()->json($data);
         } else {
-            $data = AktivitasMahasiswa::select('peran', \DB::raw('count(*) as total'))
+            $data = AktivitasMahasiswa::select('peran', DB::raw('count(*) as total'))
                 ->groupBy('peran')
                 ->get();
             return response()->json($data);
@@ -63,13 +64,13 @@ class AktivitasDataController extends Controller
         $endDate = $request->input('endDate', null);
         //prestasi pertahun
         if ($startDate && $endDate) {
-            $data = AktivitasMahasiswa::select(\DB::raw('YEAR(tanggal) as year'), \DB::raw('count(*) as total'))
+            $data = AktivitasMahasiswa::select(DB::raw('YEAR(tanggal) as year'), DB::raw('count(*) as total'))
                 ->whereBetween('tanggal', [$startDate, $endDate])
                 ->groupBy('year')
                 ->get();
             return response()->json($data);
         } else {
-            $data = AktivitasMahasiswa::select(\DB::raw('YEAR(tanggal) as year'), \DB::raw('count(*) as total'))
+            $data = AktivitasMahasiswa::select(DB::raw('YEAR(tanggal) as year'), DB::raw('count(*) as total'))
                 ->groupBy('year')
                 ->get();
             return response()->json($data);

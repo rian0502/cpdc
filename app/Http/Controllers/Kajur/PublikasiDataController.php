@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Kajur;
 
 use Illuminate\Http\Request;
 use App\Models\PublikasiDosen;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class PublikasiDataController extends Controller
@@ -34,14 +35,14 @@ class PublikasiDataController extends Controller
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($startDate && $endDate) {
-            $data = PublikasiDosen::select('scala', \DB::raw('count(*) as total'))
+            $data = PublikasiDosen::select('scala', DB::raw('count(*) as total'))
             ->whereBetween('tahun', [$startDate, $endDate])
             ->groupBy('scala')
             ->get();
             return response()->json($data);
         }
         else{
-            $data = PublikasiDosen::select('scala', \DB::raw('count(*) as total'))
+            $data = PublikasiDosen::select('scala', DB::raw('count(*) as total'))
             ->groupBy('scala')
             ->get();
             return response()->json($data);
@@ -53,14 +54,14 @@ class PublikasiDataController extends Controller
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($startDate && $endDate) {
-            $data = PublikasiDosen::select('kategori', \DB::raw('count(*) as total'))
+            $data = PublikasiDosen::select('kategori', DB::raw('count(*) as total'))
             ->whereBetween('tahun', [$startDate, $endDate])
             ->groupBy('kategori')
             ->get();
             return response()->json($data);
         }
         else{
-            $data = PublikasiDosen::select('kategori', \DB::raw('count(*) as total'))
+            $data = PublikasiDosen::select('kategori', DB::raw('count(*) as total'))
             ->groupBy('kategori')
             ->get();
             return response()->json($data);
@@ -72,14 +73,14 @@ class PublikasiDataController extends Controller
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($startDate && $endDate) {
-            $data = PublikasiDosen::select('kategori_litabmas', \DB::raw('count(*) as total'))
+            $data = PublikasiDosen::select('kategori_litabmas', DB::raw('count(*) as total'))
             ->whereBetween('tahun', [$startDate, $endDate])
             ->groupBy('kategori_litabmas')
             ->get();
             return response()->json($data);
         }
         else{
-            $data = PublikasiDosen::select('kategori_litabmas', \DB::raw('count(*) as total'))
+            $data = PublikasiDosen::select('kategori_litabmas', DB::raw('count(*) as total'))
             ->groupBy('kategori_litabmas')
             ->get();
             return response()->json($data);
@@ -92,14 +93,14 @@ class PublikasiDataController extends Controller
         $endDate = $request->input('endDate', null);
         //prestasi pertahun
         if ($startDate && $endDate) {
-            $data = PublikasiDosen::select(\DB::raw('tahun as year'), \DB::raw('count(*) as total'))
+            $data = PublikasiDosen::select(DB::raw('tahun as year'), DB::raw('count(*) as total'))
             ->whereBetween('tahun', [$startDate, $endDate])
             ->groupBy('year')
             ->get();
             return response()->json($data);
         }
         else{
-            $data = PublikasiDosen::select(\DB::raw('tahun as year'), \DB::raw('count(*) as total'))
+            $data = PublikasiDosen::select(DB::raw('tahun as year'), DB::raw('count(*) as total'))
             ->groupBy('year')
             ->get();
             return response()->json($data);
