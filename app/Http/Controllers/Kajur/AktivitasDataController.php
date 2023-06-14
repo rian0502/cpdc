@@ -64,13 +64,13 @@ class AktivitasDataController extends Controller
         $endDate = $request->input('endDate', null);
         //prestasi pertahun
         if ($startDate && $endDate) {
-            $data = AktivitasMahasiswa::select(\DB::raw('YEAR(tanggal) as year'), DB::raw('count(*) as total'))
+            $data = AktivitasMahasiswa::select(DB::raw('YEAR(tanggal) as year'), DB::raw('count(*) as total'))
                 ->whereBetween('tanggal', [$startDate, $endDate])
                 ->groupBy('year')
                 ->get();
             return response()->json($data);
         } else {
-            $data = AktivitasMahasiswa::select(\DB::raw('YEAR(tanggal) as year'), DB::raw('count(*) as total'))
+            $data = AktivitasMahasiswa::select(DB::raw('YEAR(tanggal) as year'), DB::raw('count(*) as total'))
                 ->groupBy('year')
                 ->get();
             return response()->json($data);
