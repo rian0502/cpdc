@@ -42,6 +42,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\MahasiswaBimbinganTA1Controller;
 use App\Http\Controllers\MahasiswaBimbinganTA2Controller;
 use App\Http\Controllers\MahasiswaBimbinganAkademikController;
+use App\Http\Controllers\PangkatAdminController;
 use App\Http\Controllers\ValidasiBaPKLController;
 use App\Http\Controllers\TA1Controller;
 use App\Http\Controllers\TA2Controller;
@@ -65,10 +66,7 @@ Route::get('admin/profile/create', [ProfileAdminController::class, 'create'])->n
 Route::post('admin/profile/store', [ProfileAdminController::class, 'store'])->name('admin.profile.store')->middleware('auth', 'verified', 'role:admin lab|admin berkas');
 Route::prefix('admin/')->name('admin.')->middleware(['auth', 'profile', 'verified', 'role:admin lab|admin berkas'])->group(function () {
     Route::resource('profile', ProfileAdminController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
-    Route::get('profile/pangkat/create', [ProfileAdminController::class, 'createPangkat'])->name('pangkat.create');
-    Route::post('profile/pangkat/store', [ProfileAdminController::class, 'storePangkat'])->name('pangkat.store');
-    Route::get('profile/pangkat/edit', [ProfileAdminController::class, 'editPangkat'])->name('pangkat.edit');
-    Route::post('profile/pangkat/update', [ProfileAdminController::class, 'updatePangkat'])->name('pangkat.update');
+    Route::resource('profile/pangkat', PangkatAdminController::class)->names('pangkat');
 });
 // end Admin Keseluruhan
 

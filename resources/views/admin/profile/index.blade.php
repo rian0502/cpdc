@@ -152,7 +152,9 @@
                                                             href="{{ route('admin.pangkat.edit',$item->encrypt_id) }}">
                                                             <i class="fa fa-pencil"></i>
                                                             Edit</a>
-                                                        <form action="" method="POST">
+                                                        <form action="{{ route('admin.pangkat.destroy', $item->encrypt_id) }}" method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
                                                             <button type="submit" class="dropdown-item text-danger"><i
                                                                     class="fa fa-trash"></i>
                                                                 Delete</button>

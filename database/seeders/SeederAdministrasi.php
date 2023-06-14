@@ -33,7 +33,7 @@ class SeederAdministrasi extends Seeder
         ]);
         HistoryPangkatAdmin::create([
             'encrypt_id' => Crypt::encrypt('1'),
-            'pangkat' => 'II b',
+            'pangkat' => 'II B',
             'tgl_sk' => '2020-08-30',
             'file_sk' => 'sk1.pdf',
             'administrasi_id' => '1',
@@ -56,7 +56,7 @@ class SeederAdministrasi extends Seeder
         ]);
         HistoryPangkatAdmin::create([
             'encrypt_id' => Crypt::encrypt('2'),
-            'pangkat' => 'III d',
+            'pangkat' => 'III D',
             'tgl_sk' => '2020-08-30',
             'file_sk' => 'sk1.pdf',
             'administrasi_id' => '2',
@@ -81,10 +81,10 @@ class SeederAdministrasi extends Seeder
         ]);
         HistoryPangkatAdmin::create([
             'encrypt_id' => Crypt::encrypt('3'),
-            'pangkat' => 'III d',
+            'pangkat' => 'III D',
             'tgl_sk' => '2020-08-30',
             'file_sk' => 'sk1.pdf',
-            'administrasi_id' => '2',
+            'administrasi_id' => '3',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
