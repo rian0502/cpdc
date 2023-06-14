@@ -90,6 +90,7 @@ Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verifi
             'destroy' => 'barang.history.destroy',
         ]
     );
+    Route::
 });
 // end ADMIN LAB
 
