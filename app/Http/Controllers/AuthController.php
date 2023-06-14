@@ -117,7 +117,7 @@ class AuthController extends Controller
         $mahasiswa = Mahasiswa::create($mhs);
         $user->sendEmailVerificationNotification();
         auth()->login($user);
-        return redirect()->route('auth.login')->with('success', 'Pendaftaran berhasil, silahkan cek email untuk melakukan verifikasi');
+        return redirect()->route('verification.notice')->with('registered', 'Pendaftaran berhasil, silahkan cek email untuk melakukan verifikasi');
     }
 
     public function reactivation()

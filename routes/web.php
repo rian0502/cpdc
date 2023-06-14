@@ -88,7 +88,9 @@ Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verifi
             'destroy' => 'barang.history.destroy',
         ]
     );
+    //chart line aktivitas lab
 });
+Route::get('chart/aktivitas', [LabController::class, 'chartAktivitasLab'])->name('chart.aktivitas.lab')->middleware('auth', 'verified', 'role:admin lab|jurusan');
 // end ADMIN LAB
 
 //admin berkas

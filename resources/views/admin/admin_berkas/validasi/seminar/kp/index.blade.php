@@ -34,7 +34,12 @@
                                         <td>{{ $item->mahasiswa->nama_mahasiswa }}</td>
                                         <td>{{ $item->mahasiswa->npm }}</td>
                                         <td>{{ $item->mitra }}</td>
-                                        <td>{{ $item->proses_admin }}</td>
+                                        <td>
+                                            @if ($item->proses_admin == 'Proses')
+                                                <span class="badge badge-warning">Belum Divalidasi</span>
+                                            @elseif ($item->proses_admin == 'Invalid')
+                                                <span class="badge badge-danger">Invalid</span>
+                                            @endif</td>
                                         <td>
                                             <div class="dropdown">
                                                 <a class="btn btn-outline-primary dropdown-toggle" href="#"

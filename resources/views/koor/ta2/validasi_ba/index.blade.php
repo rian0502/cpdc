@@ -45,8 +45,11 @@
                                             <td>
                                                 {{ $item->no_ba_seminar_kp}}
                                             </td>
-                                            <td>
+   
 
+
+                                            <td>
+            
                                                     <a class="btn btn-warning"
                                                         href="
                                                         {{ route('koor.validasiBaPKL.edit', $item->encrypt_id) }}

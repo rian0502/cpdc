@@ -152,7 +152,7 @@
                                     <label class="col-md-12 bold"><b>Catatan</b></label>
                                     <textarea id="catatan" name="keterangan" class="form-control m-3" style="height: 100px;">{{ $seminar->keterangan }}</textarea>
                                     @error('keterangan')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        <div class="form-control-feedback has-danger col-md-12 mb-3">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
@@ -188,5 +188,5 @@
             select.add(option);
         }
     </script>
-   
+
 @endsection

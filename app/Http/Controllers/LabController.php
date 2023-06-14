@@ -115,4 +115,26 @@ class LabController extends Controller
     {
         //
     }
+    public function chartAktivitasLab()
+    {
+        $data = [
+            [
+                'lab' => 'Laboratorium A',
+                'aktivitas' => [10, 12, 8, 15, 11, 9, 13]
+            ],
+            [
+                'lab' => 'Laboratorium B',
+                'aktivitas' => [8, 7, 9, 6, 10, 8, 11]
+            ],
+            [
+                'lab' => 'Laboratorium C',
+                'aktivitas' => [6, 9, 7, 5, 8, 10, 12]
+            ],
+            [
+                'lab' => 'Laboratorium D',
+                'aktivitas' => [12, 10, 11, 9, 13, 7, 9]
+            ]
+        ];
+        return response()->json($data);
+    }
 }

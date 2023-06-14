@@ -99,7 +99,8 @@
                                             <div class="form-group">
                                                 <label for="">Alamat Email</label>
                                                 <input type="email"
-                                                    class="form-control value="{{ old('email') }}" @error('email') form-control-danger @enderror"
+                                                    class="form-control @error('email') form-control-danger @enderror"
+                                                    value="{{ old('email') }}"
                                                     name="email" />
                                                 @error('email')
                                                     <small class="text-danger">{{ $message }}</small>

@@ -49,84 +49,84 @@
                             <div class="row border-bottom">
                                 <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->mahasiswa->npm }} --}}
+                                    {{ $seminar->mahasiswa->npm }}
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Dosen Pembimbing</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->dosen->nama_dosen }} --}}
+                                    {{ $seminar->dosen->nama_dosen }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"><b>Nama Mahasiswa</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->mahasiswa->nama_mahasiswa }} --}}
+                                    {{ $seminar->mahasiswa->nama_mahasiswa }}
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Domisili PKL/KP</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->region }} --}}
+                                    {{ $seminar->region }}
                                 </div>
                             </div>
 
                             <div class="row border-bottom">
                                 <label class="col-md-3 bold"> <strong>Tahun Akademik</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->tahun_akademik }} --}}
+                                    {{ $seminar->tahun_akademik }}
                                 </div>
                                 <label class="col-md-3 bold mt-2"> <strong>Nama Mitra PKL/KP</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->mitra }} --}}
+                                    {{ $seminar->mitra }}
                                 </div>
                             </div>
 
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold mt-2"> <strong>Semester</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->mahasiswa->semester}} --}}
+                                    {{ $seminar->mahasiswa->semester }}
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Pembimbing Lapangan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->pembimbing_lapangan }} --}}
+                                    {{ $seminar->pembimbing_lapangan }}
                                 </div>
                             </div>
 
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold mt-2"> <strong>SKS</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->sks }} --}}
+                                    {{ $seminar->sks }}
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Nomor Karyawan / NIP Pembimbing
                                         Lapangan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->ni_pemlap }} --}}
+                                    {{ $seminar->ni_pemlap }}
                                 </div>
                             </div>
 
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold mt-2"> <strong>IPK</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->ipk }} --}}
+                                    {{ $seminar->ipk }}
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->rencana_seminar }} --}}
+                                    {{ $seminar->rencana_seminar }}
                                 </div>
                             </div>
 
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->toefl }} --}}
+                                    {{ $seminar->toefl }}
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- <a href="/uploads/syarat_seminar_kp/{{ $seminar->berkas_seminar_pkl}}" target="_blank">Unduh Berkas</a> --}}
+                                    <a href="/uploads/syarat_seminar_kp/{{ $seminar->berkas_seminar_pkl}}" target="_blank">Unduh Berkas</a>
                                 </div>
                             </div>
 
                             <div class="row border-bottom mt-3">
                                 <label class="col-md-12 bold"><b>Judul atau Topik PKL/KP</b></label>
                                 <div class="col-md-12 mb-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->judul_kp }} --}}
+                                    {{ $seminar->judul_kp }}
                                 </div>
                             </div>
 
@@ -142,15 +142,16 @@
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
-                    <form id="formStatus" action="{{ route('koor.jadwalPKL.update',1) }}" method="POST">
-                        @method('PUT')
+
+
+                    <form id="formStatus" action="{{ route('koor.jadwalPKL.store',$seminar->encrypt_id) }}" method="POST" >
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Tanggal Seminar</label>
-                                    <input value="{{$item->tanggal_skp}}" autofocus name="tanggal_skp" id="tanggal_skp"
+                                    <input value="{{old('tanggal_skp')}}" autofocus name="tanggal_skp" id="tanggal_skp"
                                         class="form-control @error('tanggal_skp') form-control-danger @enderror"
                                         type="date" placeholder="Nama Barang">
                                     @error('tanggal_skp')
@@ -161,11 +162,11 @@
                                 <div class="form-group">
                                     <label>Lokasi</label>
                                     <select class="custom-select2 form-control" style="width: 100%; height: 38px" name="id_lokasi" required>
-                                        {{-- @foreach ($locations as $item)
+                                        @foreach ($locations as $item)
                                             <option value="{{ $item->encrypt_id }}" {{old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
-                                                {{ $item->nama_lokasi . ', Lt-' . $item->lantai_tingkat }}
+                                                {{ $item->nama_lokasi }}
                                             </option>
-                                        @endforeach --}}
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -175,14 +176,14 @@
 
                                 <div class="form-group">
                                     <label>Jam Mulai</label>
-                                    <input type="time" value="{{$item->jam_mulai_skp}}" name="jam_mulai_skp" class="form-control @error('jam_mulai_skp') form-control-danger @enderror">
+                                    <input type="time" value="{{old('jam_mulai_skp')}}" name="jam_mulai_skp" class="form-control @error('jam_mulai_skp') form-control-danger @enderror">
                                     @error('jam_mulai_skp')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Jam Selesai</label>
-                                    <input type="time" name="jam_selesai_skp" value="{{$item->jam_selesai_skp}}" class="form-control @error('jam_selesai_skp') form-control-danger @enderror">
+                                    <input type="time" name="jam_selesai_skp" value="{{old('jam_selesai_skp')}}" class="form-control @error('jam_selesai_skp') form-control-danger @enderror">
                                     @error('jam_selesai_skp')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
@@ -194,11 +195,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button id="submitButton" type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Submit</button>
                         </div>
                         <a href="{{route('koor.jadwalPKL.index')}}">
 
-                            <button class="batal btn btn-secondary">Batal</button>
+                            <button class="batal btn btn-secondary" id="submitButton">Batal</button>
                         </a>
 
                     </form>

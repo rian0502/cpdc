@@ -417,14 +417,14 @@
                                 <span class="micon bi bi-box"></span><span class="mtext">Inventaris</span>
                             </a>
                             <ul class="submenu">
-                                <li><a href="{{ route('lab.barang.index') }}"
-                                        class="{{ Request::is('admin/lab/barang*') ? 'active' : '' }}">Barang</a>
-                                </li>
                                 <li><a href="{{ route('lab.kategori.index') }}"
-                                        class="{{ Request::is('admin/lab/kategori*') ? 'active' : '' }}">Kategori</a>
+                                    class="{{ Request::is('admin/lab/kategori*') ? 'active' : '' }}">Kategori</a>
                                 </li>
                                 <li><a href="{{ route('lab.model.index') }}"
-                                        class="{{ Request::is('admin/lab/model*') ? 'active' : '' }}">Model</a>
+                                    class="{{ Request::is('admin/lab/model*') ? 'active' : '' }}">Model</a>
+                                </li>
+                                <li><a href="{{ route('lab.barang.index') }}"
+                                        class="{{ Request::is('admin/lab/barang*') ? 'active' : '' }}">Barang</a>
                                 </li>
 
                             </ul>
@@ -599,17 +599,24 @@
                     @endrole
 
                     @role('dosen')
-                        <li class="dropdown">
+                        <li class="dropdown {{ Request::is('dosen/mahasiswa/bimbingan*') ? 'show' : '' }}">
                             <a href="javascript:;" class="dropdown-toggle">
                                 <span class="micon fa-solid fa-user"></span><span class="mtext">Mahasiswa</span>
                             </a>
                             <ul class="submenu">
-                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.akademik.index') }}">Bimbingan
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.akademik.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/akademik*') ? 'active' : '' }}">Bimbingan
                                         Akademik</a></li>
-                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.kp.index') }}">Bimbingan PKL/KP</a></li>
-                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.ta1.index') }}">Bimbingan Tugas Akhir
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.kp.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/kp*') ? 'active' : '' }}">Bimbingan
+                                        PKL/KP</a></li>
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.ta1.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/ta1*') ? 'active' : '' }}">Bimbingan
+                                        Tugas Akhir
                                         1</a></li>
-                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.ta2.index') }}">Bimbingan Tugas Akhir
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.ta2.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/ta2*') ? 'active' : '' }}">Bimbingan
+                                        Tugas Akhir
                                         2</a></li>
                             </ul>
                         </li>
@@ -625,7 +632,7 @@
                             <a href="{{ route('koor.validasiBaPKL.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
                                 <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti
-                                    PKL</span>
+                                    KP</span>
                             </a>
                         </li>
                     @endrole
