@@ -65,9 +65,9 @@
                 <h2 class="h2 mb-0">Dashboard</h2>
             </div>
             <div class="row pb-10">
-                <div class="col-xl-3 col-lg-3 col-md-6 mb-20" >
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                     <a href="{{ route('berkas.validasi.seminar.kp.index') }}">
-                        <div class="card-box height-100-p widget-style3 " >
+                        <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">75</div>
@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                                 <div class="widgets">
-                                    <div class="icon" data-color="#00eccf" >
+                                    <div class="icon" data-color="#00eccf">
                                         <STROng>PKL</STROng>
                                     </div>
                                 </div>
@@ -161,16 +161,23 @@
                         <div id="umur_chart"></div>
                     </div>
                 </div>
+                <div class="col-lg-4 col-md-6 mb-20">
+                    <div class="card-box height-100-p pd-20 min-height-200px">
+                        <div class="d-flex justify-content-between">
+                        </div>
+                        <div id="jabatan_chart"></div>
+                    </div>
+                </div>
             </div>
             @role('mahasiswa')
                 <div class="row pb-10">
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <div class="card-box height-100-p widget-style3" >
+                        <div class="card-box height-100-p widget-style3">
                             <div class="d-flex flex-wrap" style="width: -300px">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">{{ $jumlah_prestasi }}</div>
-                                    <div class="font-14 text-secondary weight-500" >
-                                        Prestasi 
+                                    <div class="font-14 text-secondary weight-500">
+                                        Prestasi
                                     </div>
                                 </div>
                                 <div class="widget-icon">
@@ -186,7 +193,7 @@
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">{{ $jumlah_aktivitas }}</div>
-                                    <div class="font-14 text-secondary weight-500" >
+                                    <div class="font-14 text-secondary weight-500">
                                         Kegiatan Tambahan
                                     </div>
                                 </div>
@@ -203,7 +210,7 @@
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">{{ Auth::user()->mahasiswa->semester }}</div>
-                                    <div class="font-14 text-secondary weight-500" >
+                                    <div class="font-14 text-secondary weight-500">
                                         Semester
                                     </div>
                                 </div>
@@ -220,7 +227,7 @@
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">{{ Auth::user()->mahasiswa->status }}</div>
-                                    <div class="font-14 text-secondary weight-500" >Status</div>
+                                    <div class="font-14 text-secondary weight-500">Status</div>
                                 </div>
                                 <div class="widget-icon ">
                                     <div class="icon" data-color="#fffff">
@@ -967,5 +974,54 @@
 
         // Menginisialisasi chart pertama kali
         updateChart();
+    </script>
+    <script>
+        function createPieChart() {
+            // Data dummy
+            var data = [{
+                    rank: 'Tenaga Pengajar',
+                    count: 25
+                },
+                {
+                    rank: 'Asisten Ahli',
+                    count: 15
+                },
+                {
+                    rank: 'Lektor',
+                    count: 10
+                },
+                {
+                    rank: 'Lektor Kepala',
+                    count: 8
+                },
+                {
+                    rank: 'Guru Besar',
+                    count: 5
+                }
+            ];
+
+            // Konfigurasi chart Highcharts
+            var options = {
+                chart: {
+                    type: 'pie',
+                },
+                title: {
+                    text: 'Kepangkatan Dosen'
+                },
+                series: [{
+                    name: 'Jumlah',
+                    data: data.map(item => ({
+                        name: item.rank,
+                        y: item.count
+                    }))
+                }]
+            };
+
+            // Membuat chart Highcharts
+            Highcharts.chart('jabatan_chart', options);
+        }
+
+        // Panggil fungsi untuk membuat pie chart
+        createPieChart();
     </script>
 @endsection

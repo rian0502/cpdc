@@ -11800,7 +11800,7 @@ $jscomp.polyfill(
         return a;
     };
     v.defaults = {
-        buttons: ["copy", "excel", "csv", "pdf", "print",],
+        buttons: ["copy", "excel", "csv", "pdf", "print", "colvis"],
         name: "main",
         tabIndex: 0,
         dom: {

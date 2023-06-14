@@ -142,9 +142,8 @@
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
-
-
-                    <form id="formStatus" action="{{ route('lab.barang.store',1) }}" method="POST">
+                    <form id="formStatus" action="{{ route('koor.jadwalPKL.update',1) }}" method="POST">
+                        @method('PUT')
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
