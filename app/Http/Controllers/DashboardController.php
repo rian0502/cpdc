@@ -18,16 +18,6 @@ class DashboardController extends Controller
     public function index()
     {
         if (Auth::user()->hasRole('admin lab') || Auth::user()->hasRole('admin berkas')) {
-            if(Auth::user()->hasRole('admin berkas')){
-                $berkas_kp = ModelSeminarKP::where('proses_admin', 'Proses')->count();
-                $berkas_ta1 = ModelSeminarTaSatu::where('proses_admin', 'Process')->count();
-                $data = [
-                    'berkas_kp' => $berkas_kp,
-                    'berkas_ta1' => $berkas_ta1,
-                ];
-            }else{
-                
-            }
             return view('dashboard');
         } else if (Auth::user()->hasRole('mahasiswa')) {
             $data = [
