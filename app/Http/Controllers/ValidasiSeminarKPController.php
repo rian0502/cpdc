@@ -20,7 +20,7 @@ class ValidasiSeminarKPController extends Controller
         $data = [
             'seminar' => ModelSeminarKP::select('encrypt_id', 'proses_admin', 'mitra', 'id_mahasiswa')->where('proses_admin', '!=', 'Valid')->get()
         ];
-        return view('admin.admin_berkas.validasi.seminar.kp.index',$data);
+        return view('admin.admin_berkas.validasi.seminar.kp.index', $data);
     }
 
     /**
@@ -59,7 +59,6 @@ class ValidasiSeminarKPController extends Controller
             'seminar' => ModelSeminarKP::find(Crypt::decrypt($id)),
         ];
         return view('admin.admin_berkas.validasi.seminar.kp.edit', $data);
-
     }
 
     /**
@@ -87,14 +86,20 @@ class ValidasiSeminarKPController extends Controller
     {
         $seminar = ModelSeminarKP::find(Crypt::decrypt($id));
         $seminar->proses_admin = $request->proses_admin;
-        if ($request->proses_admin != 'Valid'){
+        if ($request->proses_admin != 'Valid') {
+            $this->validate($request, [
+                'keterangan' => 'required'
+            ],[
+                'keterangan.required' => 'Berikan Pesan Jika Data Masih terdapat Kesalahan.'
+            
+            ]);
+
             $seminar->keterangan = $request->keterangan;
-        }else{
+        } else {
             $seminar->keterangan = '';
         }
         $seminar->updated_at = date('Y-m-d H:i:s');
         $seminar->save();
         return redirect()->route('berkas.validasi.seminar.kp.index')->with('success', 'Berhasil Mengubah data');
     }
-
 }
