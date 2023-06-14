@@ -36,6 +36,11 @@
             background-color: #dc3545;
             color: white
         }
+        .Failed {
+            background-color:black;
+            color: white
+        }
+        
     </style>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -93,10 +98,10 @@
                             </small>
 
                         </div>
-                       @if($seminar->status_seminar == 'Belum Selesai')
-                        <a href="/mahasiswa/seminar/kp/{{ $seminar->encrypt_id }}/edit">
-                            <button class="btn btn-primary right">Edit Data</button>
-                        </a>
+                        @if ($seminar->status_seminar == 'Belum Selesai')
+                            <a href="/mahasiswa/seminar/kp/{{ $seminar->encrypt_id }}/edit">
+                                <button class="btn btn-primary right">Edit Data</button>
+                            </a>
                         @endif
 
                     </div>
@@ -228,9 +233,15 @@
                                     </div>
                                 </div>
                                 <div class="row border-bottom mt-2">
-                                    <label class="col-md-3 bold"> <strong>Berkas Seminar</strong></label>
+                                    <label class="col-md-3 bold"> <strong>Lokasi Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        <a href="">Unduh Berkas</a>
+                                        <div>
+                                            @if ($seminar->jadwal)
+                                                {{ $seminar->jadwal->lokasi->nama_lokasi }}
+                                            @else
+                                                <div>Belum terjadwal</div>
+                                            @endif
+                                        </div>
                                     </div>
                                     <label class="col-md-3 bold mt-1"><strong>Jam Selesai</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -256,15 +267,20 @@
                                 <small>
                                     <b>
                                         <p
-                                            class="mb-30 text-center {{  $seminar->status_seminar == 'Selesai' ? 'Valid' : ''}} ">
-                                            {{  $seminar->status_seminar == 'Selesai' ? 'Valid' : 'Proses'   }}
+                                            class="mb-30 text-center 
+                                            @if($seminar->status_seminar == 'Selesai') {{'Valid'}}
+                                            @elseif($seminar->status_seminar == 'Belum Selesai') {{'Proses'}}
+                                            @elseif($seminar->status_seminar == 'Perbaikan') {{'Invalid'}}
+                                            @else {{'Failed'}}
+                                            @endif">
+                                            {{ $seminar->status_seminar }}
                                         </p>
                                     </b>
                                 </small>
                             </div>
                             @if ($seminar->status_seminar != 'Selesai')
                                 @if ($berita_acara)
-                                    <a href="/mahasiswa/bakerjapraktik/{{ $seminar->encrypt_id}}/edit">
+                                    <a href="/mahasiswa/bakerjapraktik/{{ $seminar->encrypt_id }}/edit">
                                         <button class="btn btn-primary right">Edit</button>
                                     </a>
                                 @else
@@ -327,7 +343,7 @@
                                     <div class="row border-bottom">
                                         <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            <a href="">Belum Upload</a>
+                                            -
                                         </div>
                                         <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
