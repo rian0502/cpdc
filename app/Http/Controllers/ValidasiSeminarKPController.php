@@ -88,6 +88,9 @@ class ValidasiSeminarKPController extends Controller
         $seminar = ModelSeminarKP::find(Crypt::decrypt($id));
         $seminar->proses_admin = $request->proses_admin;
         if ($request->proses_admin != 'Valid'){
+            if ($request->keterangan != null){
+                return redirect()->back()->with('error', 'Keterangan harus diisi');
+            }
             $seminar->keterangan = $request->keterangan;
         }else{
             $seminar->keterangan = '';
