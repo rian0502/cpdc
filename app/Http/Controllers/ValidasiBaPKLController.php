@@ -69,7 +69,7 @@ class ValidasiBaPKLController extends Controller
         $data = [
             'seminar' => ModelSeminarKP::find(Crypt::decrypt($id)),
         ];
-        return view('koor.pkl.validasi_ba.edit',$data);
+        return view('koor.pkl.validasi_ba.edit', $data);
     }
 
     /**
@@ -81,24 +81,30 @@ class ValidasiBaPKLController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->status_seminar == 'Belum Selesai' && $request->keterangan == null){
-            return redirect()->back()->with('error', 'Keterangan harus diisi jika status seminar belum selesai');
-        }else{
-            if($request->status_seminar == 'Belum Selesai'){
-                $data = [
-                    'keterangan' => $request->keterangan
-                ];
-                $semianr = ModelSeminarKP::find(Crypt::decrypt($id));
-                $semianr->update($data);
-                return redirect()->route('koor.validasiBaPKL.index')->with('success', 'Berhasil mengubah status seminar');
-            }else{
-                $data = [
-                    'status_seminar' => $request->status_seminar
-                ];
-                $semianr = ModelSeminarKP::find(Crypt::decrypt($id));
-                $semianr->update($data);
-                return redirect()->route('koor.validasiBaPKL.index')->with('success', 'Berhasil mengubah status seminar');
-            }
+
+        if ($request->status_seminar != 'Selesai') {
+            $validated = $request->validate([
+                'keterangan' => 'required'
+            ], [
+                'keterangan.required' => 'Jika Masih ada kesalahan maka keterangan harus diisi'
+            ]);
+            $data = [
+                'keterangan' => $request->keterangan,
+                'status_seminar' => $request->status_seminar,
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+            $semianr = ModelSeminarKP::find(Crypt::decrypt($id));
+            $semianr->update($data);
+            return redirect()->route('koor.validasiBaPKL.index')->with('success', 'Berhasil mengubah status seminar');
+        } else {
+            $data = [
+                'status_seminar' => $request->status_seminar,
+                'keterangan' => '',
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+            $semianr = ModelSeminarKP::find(Crypt::decrypt($id));
+            $semianr->update($data);
+            return redirect()->route('koor.validasiBaPKL.index')->with('success', 'Berhasil mengubah status seminar');
         }
     }
 

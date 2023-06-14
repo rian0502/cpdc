@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class StoreHistoryPangkatAdminRequest extends FormRequest
+class StoreProfileAdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class StoreHistoryPangkatAdminRequest extends FormRequest
      */
     public function rules()
     {
-        $pangkat = ["I a", "I b", "I c", "I d", "II a", "II b", "II c", "II d", "III a", "III b", "III c", "III d", "IV a", "IV b", "IV c", "IV d", "IV e"];
+        $pangkat = ['I A', 'I B', 'I C', 'I D', 'II A', 'II B', 'II C', 'II D', 'III A', 'III B', 'III C', 'III D', 'IV A', 'IV B', 'IV C', 'IV d', 'IV E'];
         return [
             'nama_administrasi' => 'required|string|min:3|max:255',
             'nip' => 'required|numeric|digits:18',

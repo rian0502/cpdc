@@ -11,7 +11,7 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('admin.pangkat.update', $pangkat->encrypted_id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.pangkat.update', $pangkat->encrypt_id) }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="profile-edit-list row">
@@ -20,23 +20,23 @@
                                 <div class="form-group">
                                     <label for="kepangkatan">PANGKAT</label>
                                     <select name="kepangkatan" style="width: 100%; height: 38px" id="kepangkatan" class="selectpicker form-control @error('kepangkatan') form-control-danger @enderror">
-                                        <option value="I A" {{ $pangkat->kepangkatan == 'I A' ? 'selected' : '' }} >I A</option>
-                                        <option value="I B {{ $pangkat->kepangkatan == 'I B' ? 'selected' : '' }} ">I B</option>
-                                        <option value="I C {{ $pangkat->kepangkatan == 'I C' ? 'selected' : '' }} ">I C</option>
-                                        <option value="I D {{ $pangkat->kepangkatan == 'I D' ? 'selected' : '' }} ">I D</option>
-                                        <option value="II A" {{ $pangkat->kepangkatan == 'II A' ? 'selected' : '' }} >II A</option>
-                                        <option value="II B {{ $pangkat->kepangkatan == 'II B' ? 'selected' : '' }} ">II B</option>
-                                        <option value="II C {{ $pangkat->kepangkatan == 'II C' ? 'selected' : '' }} ">II C</option>
-                                        <option value="II D {{ $pangkat->kepangkatan == 'II D' ? 'selected' : '' }} ">II D</option>
-                                        <option value="III A" {{ $pangkat->kepangkatan == 'III A' ? 'selected' : '' }} >III A</option>
-                                        <option value="III B {{ $pangkat->kepangkatan == 'III B' ? 'selected' : '' }} ">III B</option>
-                                        <option value="III C {{ $pangkat->kepangkatan == 'III C' ? 'selected' : '' }} ">III C</option>
-                                        <option value="III D {{ $pangkat->kepangkatan == 'III D' ? 'selected' : '' }} ">III D</option>
-                                        <option value="IV A {{ $pangkat->kepangkatan == 'IV A' ? 'selected' : '' }} ">IV A</option>
-                                        <option value="IV B {{ $pangkat->kepangkatan == 'IV B' ? 'selected' : '' }} ">IV B</option>
-                                        <option value="IV C {{ $pangkat->kepangkatan == 'IV C' ? 'selected' : '' }} ">IV C</option>
-                                        <option value="IV D {{ $pangkat->kepangkatan == 'IV D' ? 'selected' : '' }} ">IV D</option>
-                                        <option value="IV E {{ $pangkat->kepangkatan == 'IV E' ? 'selected' : '' }} ">IV E</option>
+                                        <option value="I A" {{ $pangkat->pangkat == 'I A' ? 'selected' : '' }} >I A</option>
+                                        <option value="I B" {{ $pangkat->pangkat == 'I B' ? 'selected' : '' }}>I B</option>
+                                        <option value="I C" {{ $pangkat->pangkat == 'I C' ? 'selected' : '' }}>I C</option>
+                                        <option value="I D" {{ $pangkat->pangkat == 'I D' ? 'selected' : '' }}>I D</option>
+                                        <option value="II A" {{ $pangkat->pangkat == 'II A' ? 'selected' : '' }} >II A</option>
+                                        <option value="II B" {{ $pangkat->pangkat == 'II B' ? 'selected' : '' }}>II B</option>
+                                        <option value="II C" {{ $pangkat->pangkat == 'II C' ? 'selected' : '' }}>II C</option>
+                                        <option value="II D" {{ $pangkat->pangkat == 'II D' ? 'selected' : '' }}>II D</option>
+                                        <option value="III A" {{ $pangkat->pangkat == 'III A' ? 'selected' : '' }} >III A</option>
+                                        <option value="III B" {{ $pangkat->pangkat == 'III B' ? 'selected' : '' }}>III B</option>
+                                        <option value="III C" {{ $pangkat->pangkat == 'III C' ? 'selected' : '' }}>III C</option>
+                                        <option value="III D" {{ $pangkat->pangkat == 'III D' ? 'selected' : '' }}>III D</option>
+                                        <option value="IV A" {{ $pangkat->pangkat == 'IV A' ? 'selected' : '' }}>IV A</option>
+                                        <option value="IV B" {{ $pangkat->pangkat == 'IV B' ? 'selected' : '' }}>IV B</option>
+                                        <option value="IV C" {{ $pangkat->pangkat == 'IV C' ? 'selected' : '' }}>IV C</option>
+                                        <option value="IV D" {{ $pangkat->pangkat == 'IV D' ? 'selected' : '' }}>IV D</option>
+                                        <option value="IV E" {{ $pangkat->pangkat == 'IV E' ? 'selected' : '' }}>IV E</option>
                                     </select>
                                     @error('kepangkatan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>

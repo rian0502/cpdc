@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Kajur;
 
 use Illuminate\Http\Request;
 use App\Models\LitabmasDosen;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class LitabmasDataController extends Controller
@@ -35,14 +36,14 @@ class LitabmasDataController extends Controller
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($startDate && $endDate) {
-            $data = LitabmasDosen::select('kategori', \DB::raw('count(*) as total'))
+            $data = LitabmasDosen::select('kategori', DB::raw('count(*) as total'))
             ->whereBetween('tahun_penelitian', [$startDate, $endDate])
             ->groupBy('kategori')
             ->get();
             return response()->json($data);
         }
         else{
-            $data = LitabmasDosen::select('kategori', \DB::raw('count(*) as total'))
+            $data = LitabmasDosen::select('kategori', DB::raw('count(*) as total'))
             ->groupBy('kategori')
             ->get();
             return response()->json($data);
@@ -55,14 +56,14 @@ class LitabmasDataController extends Controller
         $endDate = $request->input('endDate', null);
         //prestasi pertahun
         if ($startDate && $endDate) {
-            $data = LitabmasDosen::select(\DB::raw('tahun_penelitian as year'), \DB::raw('count(*) as total'))
+            $data = LitabmasDosen::select(\DB::raw('tahun_penelitian as year'), DB::raw('count(*) as total'))
             ->whereBetween('tahun_penelitian', [$startDate, $endDate])
             ->groupBy('year')
             ->get();
             return response()->json($data);
         }
         else{
-            $data = LitabmasDosen::select(\DB::raw('tahun_penelitian as year'), \DB::raw('count(*) as total'))
+            $data = LitabmasDosen::select(\DB::raw('tahun_penelitian as year'), DB::raw('count(*) as total'))
             ->groupBy('year')
             ->get();
             return response()->json($data);

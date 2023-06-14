@@ -592,7 +592,7 @@
                                         class="{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">Tugas Akhir 2</a>
                                 </li>
                                 <li><a href="{{ route('sudo.akun_admin.index') }}"
-                                        class="{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">Tugas Akhir 3</a>
+                                        class="{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">Komprehensif</a>
                                 </li>
                             </ul>
                         </li>
@@ -625,8 +625,7 @@
                         <li>
                             <a href="{{ route('koor.jadwalPKL.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalPKL*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">jadawalan Seminar
-                                    PKL</span>
+                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan KP</span>
                             </a>
                         </li>
                         <li>

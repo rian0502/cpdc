@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Support\Str;
 use App\Models\Administrasi;
 use Illuminate\Http\Request;
 use App\Models\HistoryPangkatAdmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Crypt;
-use App\Http\Requests\StoreHistoryPangkatAdminRequest;
-use App\Models\User;
+use App\Http\Requests\StorePangkatAdmin;
+use App\Http\Requests\StoreProfileAdminRequest;
 
 class ProfileAdminController extends Controller
 {
@@ -48,32 +50,13 @@ class ProfileAdminController extends Controller
         return view('admin.profile.create');
     }
 
-    public function createPangkat()
-    {
-        //
-        return view('admin.profile.pangkat_create');
-    }
-
-    public function storePangkat()
-    {
-        //
-        // return view('admin.profile.pangkat_create');
-    }
-
-    public function editPangkat($id)
-    {
-        //
-        return view('admin.profile.pangkat_edit');
-    }
-
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreHistoryPangkatAdminRequest $request)
+    public function store(StoreProfileAdminRequest $request)
     {
         $data_admin = [
             "nip" => $request->nip,
@@ -136,8 +119,6 @@ class ProfileAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        
         if(Auth::user()->administrasi->id != Crypt::decrypt($id)){
             return redirect()->route('admin.profile.index')->with('error', 'Anda tidak memiliki akses');
         }
@@ -172,14 +153,4 @@ class ProfileAdminController extends Controller
         return redirect()->route('admin.profile.index')->with('success', 'Data berhasil diubah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -117,7 +117,7 @@ class JadwalPKLController extends Controller
         });
         unlink(public_path('uploads\print_ba_kp\\'.$namafile));
 
-        return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Ditambahkan');;
+        return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Ditambahkan');
     }
 
     /**
@@ -152,6 +152,61 @@ class JadwalPKLController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
+        $jadwal_skp = JadwalSKP::find(Crypt::decrypt($id));
+        $seminar = ModelSeminarKP::find($jadwal_skp->id_skp);
+        $jadwal_skp->tanggal_skp = $request->tanggal_skp;
+        $jadwal_skp->jam_mulai_skp = $request->jam_mulai_skp;
+        $jadwal_skp->jam_selesai_skp = $request->jam_selesai_skp;
+        $jadwal_skp->id_lokasi = Crypt::decrypt($request->id_lokasi);
+        $jadwal_skp->save();
+        //lokasi template
+        $path = public_path('uploads\template_ba_kp\\');
+        $template = new TemplateProcessor($path . 'template_ba_kp.docx');
+        $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
+        $template->setValue('npm', $seminar->mahasiswa->npm);
+        $template->setValue('judul_kp', $seminar->judul_kp);
+        $template->setValue('dosen_pembimbing_pkl', $seminar->dosen->nama_dosen);
+        $template->setValue('nip_dosen_pembimbing_pkl', $seminar->dosen->nip);
+        $template->setValue('dosen_pembimbing_akademik', $seminar->mahasiswa->dosen->nama_dosen);
+        $template->setValue('nip_dosen_pembimbing_akademik', $seminar->mahasiswa->dosen->nip);
+        $template->setValue('jam_mulai',  $request->jam_mulai_skp);
+        $template->setValue('jam_selesai', $request->jam_selesai_skp);
+        $template->setValue('hari', $hari);
+        $template->setValue('tgl_seminar_kp', Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'));
+        $template->setValue('mitra', $request->mitra);
+        $template->setValue('lokasi', $jadwal_skp->lokasi->nama_lokasi);
+        $template->setValue('pembimbing_lapangan', $request->pembimbing_lapangan);
+        $template->setValue('nip_pembimbing_lapangan', $request->ni_pemlap);
+        $output = public_path('uploads\print_ba_kp\\');
+        $namafile = $seminar->mahasiswa->npm . '_ba_kp_' . time() . '.docx';
+        $template->saveAs($output . $namafile);
+        //send email
+        $to_name = $seminar->mahasiswa->nama_mahasiswa;
+        $to_email = $seminar->mahasiswa->user->email;
+
+
+        $data = array(
+            'name' => $seminar->mahasiswa->nama_mahasiswa,
+            'body' => 'Berikut adalah jadwal seminar kerja praktik anda',
+            'seminar' => $seminar->judul_kp,
+            'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'),
+            'jam_mulai' => $request->jam_mulai_skp,
+            'jam_selesai' => $request->jam_selesai_skp,
+            'lokasi' => $jadwal_skp->lokasi->nama_lokasi,
+            'pembimbing_lapangan' => $request->pembimbing_lapangan,
+            'ni_pemlap' => $request->ni_pemlap,
+
+        );
+        //send email to mahasiswa
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email,$namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach(public_path('uploads\print_ba_kp\\') . $namafile);
+        });
+        unlink(public_path('uploads\print_ba_kp\\'.$namafile));
+        return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Diubah');
+
     }
 
     /**
@@ -163,5 +218,6 @@ class JadwalPKLController extends Controller
     public function destroy($id)
     {
         //
+        return redirect()->back();
     }
 }
