@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\AktivitasMahasiswa;
+use App\Models\Dosen;
 use App\Models\ModelSeminarKP;
+use App\Models\ModelSeminarTaSatu;
 use App\Models\PrestasiMahasiswa;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -16,6 +18,16 @@ class DashboardController extends Controller
     public function index()
     {
         if (Auth::user()->hasRole('admin lab') || Auth::user()->hasRole('admin berkas')) {
+            if(Auth::user()->hasRole('admin berkas')){
+                $berkas_kp = ModelSeminarKP::where('proses_admin', 'Proses')->count();
+                $berkas_ta1 = ModelSeminarTaSatu::where('proses_admin', 'Process')->count();
+                $data = [
+                    'berkas_kp' => $berkas_kp,
+                    'berkas_ta1' => $berkas_ta1,
+                ];
+            }else{
+                
+            }
             return view('dashboard');
         } else if (Auth::user()->hasRole('mahasiswa')) {
             $data = [
@@ -27,6 +39,13 @@ class DashboardController extends Controller
             $data = [
                 'jadwalskp' => (new ModelSeminarKP())->getJadwalDosenDate(Auth::user()->dosen->id),
             ];
+            if (Auth::user()->hasRole('jurusan')) {
+                //query hitung jumlah usia dosen dari table dosen melalui column tanggal_lahir kelompokkan dan hitung junlah umur tersebvut
+                $test = DB::table('dosen')
+                    ->select(DB::raw('TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) as umur, COUNT(*) as total'))
+                    ->groupBy('umur')
+                    ->get();
+            }
             return view('dashboard', $data);
         } else {
             return view('dashboard');
