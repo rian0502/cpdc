@@ -30,7 +30,7 @@ class RolePermision extends Seeder
             'password' =>  bcrypt('kajur'),
         ]);
         $adminBerkas = User::create([
-            'name' => 'Fulanah binti Fulan',
+            'name' => 'Rudi Santoso',
             'email' => 'admin.berkas@mail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
@@ -101,7 +101,12 @@ class RolePermision extends Seeder
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
         ]);
-
+        $adminBerkas2 = User::create([
+            'name' => 'Endang Sri Lestari',
+            'email' => 'admin2.berkas@mail.com',
+            'email_verified_at' => now(),
+            'password' =>  bcrypt('kajur'),
+        ]);
 
         $roles = ['admin lab', 'admin berkas', 'mahasiswa', 'dosen', 'pkl', 'kompre', 'ta1', 'ta2', 'jurusan', 'alumni', 'kalab', 'sudo'];
         foreach ($roles as $role) {
@@ -115,6 +120,7 @@ class RolePermision extends Seeder
         $dosen2->assignRole('dosen');
         $adminLab->assignRole('admin lab');
         $adminBerkas->assignRole('admin berkas');
+        $adminBerkas2->assignRole('admin berkas');
         $sudo1->assignRole('sudo');
         $mhs->assignRole('mahasiswa');
         $mhs2->assignRole('mahasiswa');
