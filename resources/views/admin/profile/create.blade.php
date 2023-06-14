@@ -156,39 +156,39 @@
                                     <select name="kepangkatan" id="kepangkatan" style="width: 100%; height: 38px"
                                         class="custom-select2 form-control @error('kepangkatan') form-control-danger @enderror">
 
-                                        <option value="I a" {{ old('kepangkatan') == 'I A' ? 'selected' : '' }}>I A
+                                        <option value="I A" {{ old('kepangkatan') == 'I A' ? 'selected' : '' }}>I A
                                         </option>
-                                        <option value="I b" {{ old('kepangkatan') == 'I B' ? 'selected' : '' }}>I B
+                                        <option value="I B" {{ old('kepangkatan') == 'I B' ? 'selected' : '' }}>I B
                                         </option>
-                                        <option value="I c" {{ old('kepangkatan') == 'I C' ? 'selected' : '' }}>I C
+                                        <option value="I C" {{ old('kepangkatan') == 'I C' ? 'selected' : '' }}>I C
                                         </option>
-                                        <option value="I d" {{ old('kepangkatan') == 'I D' ? 'selected' : '' }}>I D
+                                        <option value="I D" {{ old('kepangkatan') == 'I D' ? 'selected' : '' }}>I D
                                         </option>
-                                        <option value="II a" {{ old('kepangkatan') == 'II A' ? 'selected' : '' }}>II A
+                                        <option value="II A" {{ old('kepangkatan') == 'II A' ? 'selected' : '' }}>II A
                                         </option>
-                                        <option value="II b" {{ old('kepangkatan') == 'II B' ? 'selected' : '' }}>II B
+                                        <option value="II B" {{ old('kepangkatan') == 'II B' ? 'selected' : '' }}>II B
                                         </option>
-                                        <option value="II c" {{ old('kepangkatan') == 'II C' ? 'selected' : '' }}>II C
+                                        <option value="II C" {{ old('kepangkatan') == 'II C' ? 'selected' : '' }}>II C
                                         </option>
-                                        <option value="II d" {{ old('kepangkatan') == 'II D' ? 'selected' : '' }}>II D
+                                        <option value="II D" {{ old('kepangkatan') == 'II D' ? 'selected' : '' }}>II D
                                         </option>
-                                        <option value="III a" {{ old('kepangkatan') == 'III A' ? 'selected' : '' }}>III A
+                                        <option value="III A" {{ old('kepangkatan') == 'III A' ? 'selected' : '' }}>III A
                                         </option>
-                                        <option value="III b" {{ old('kepangkatan') == 'III B' ? 'selected' : '' }}>III B
+                                        <option value="III B" {{ old('kepangkatan') == 'III B' ? 'selected' : '' }}>III B
                                         </option>
-                                        <option value="III c" {{ old('kepangkatan') == 'III C' ? 'selected' : '' }}>III C
+                                        <option value="III C" {{ old('kepangkatan') == 'III C' ? 'selected' : '' }}>III C
                                         </option>
-                                        <option value="III d" {{ old('kepangkatan') == 'III D' ? 'selected' : '' }}>III D
+                                        <option value="III D" {{ old('kepangkatan') == 'III D' ? 'selected' : '' }}>III D
                                         </option>
-                                        <option value="IV a" {{ old('kepangkatan') == 'IV A' ? 'selected' : '' }}>IV A
+                                        <option value="IV A" {{ old('kepangkatan') == 'IV A' ? 'selected' : '' }}>IV A
                                         </option>*
-                                        <option value="IV b" {{ old('kepangkatan') == 'IV B' ? 'selected' : '' }}>IV B
+                                        <option value="IV B" {{ old('kepangkatan') == 'IV B' ? 'selected' : '' }}>IV B
                                         </option>
-                                        <option value="IV c" {{ old('kepangkatan') == 'IV C' ? 'selected' : '' }}>IV C
+                                        <option value="IV C" {{ old('kepangkatan') == 'IV C' ? 'selected' : '' }}>IV C
                                         </option>
-                                        <option value="IV d" {{ old('kepangkatan') == 'IV D' ? 'selected' : '' }}>IV D
+                                        <option value="IV D" {{ old('kepangkatan') == 'IV D' ? 'selected' : '' }}>IV D
                                         </option>
-                                        <option value="IV e" {{ old('kepangkatan') == 'IV E' ? 'selected' : '' }}>IV E
+                                        <option value="IV E" {{ old('kepangkatan') == 'IV E' ? 'selected' : '' }}>IV E
                                         </option>
                                     </select>
                                     @error('kepangkatan')
