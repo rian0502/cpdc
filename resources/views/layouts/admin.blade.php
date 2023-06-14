@@ -632,7 +632,7 @@
                             <a href="{{ route('koor.validasiBaPKL.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
                                 <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti
-                                    PKL</span>
+                                    KP</span>
                             </a>
                         </li>
                     @endrole

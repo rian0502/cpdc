@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="widgets">
                                         <div class="icon" data-color="#00eccf">
-                                            <STROng>PKL</STROng>
+                                            <STROng>kp</STROng>
                                         </div>
                                     </div>
                                 </div>
@@ -158,7 +158,7 @@
                                     </div>
                                     <div class="widgets">
                                         <div class="icon" data-color="#00eccf">
-                                            <STROng>PKL</STROng>
+                                            <STROng>KP</STROng>
                                         </div>
                                     </div>
                                 </div>
@@ -177,20 +177,23 @@
                                     </div>
                                     <div class="widgets">
                                         <div class="icon" data-color="#00eccf">
-                                            <STRong>PKL</STRong>
+                                            <STRong>KP</STRong>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
-                    < </div>
+                    </div>
                     @endrole
                     @role('jurusan')
                         <div class="row">
 
                             <div class="col-lg-4 col-md-6 mb-20">
                                 <div class="card-box height-100-p pd-20 min-height-200px">
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <h5 class="mb-0">Data Seminar</h5>
+                                    </div>
                                     <div class="d-flex justify-content-between">
 
 
@@ -217,6 +220,9 @@
                     @endrole
                     @role('admin lab|jurusan')
                         <div class="card-box height-100-p pd-20 min-height-200px mb-20">
+                            <div class="row align-items-center justify-content-center mb-3">
+                                <h2>Aktivitas Laboratorium</h2>
+                            </div>
                             <div class="row align-items-center justify-content-center">
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -853,7 +859,7 @@
 
                 var data = [{
                         name: 'SEMINAR',
-                        pkl: 10,
+                        kp: 10,
                         ta1: 8,
                         ta2: 9,
                         kompre: 7,
@@ -862,7 +868,7 @@
                     },
                     {
                         name: 'SEMINAR',
-                        pkl: 7,
+                        kp: 7,
                         ta1: 6,
                         ta2: 8,
                         kompre: 7,
@@ -871,7 +877,7 @@
                     },
                     {
                         name: 'SEMINAR',
-                        pkl: 9,
+                        kp: 9,
                         ta1: 8,
                         ta2: 7,
                         kompre: 6,
@@ -880,7 +886,7 @@
                     },
                     {
                         name: 'SEMINAR',
-                        pkl: 8,
+                        kp: 8,
                         ta1: 7,
                         ta2: 9,
                         kompre: 8,
@@ -889,7 +895,7 @@
                     },
                     {
                         name: 'SEMINAR',
-                        pkl: 6,
+                        kp: 6,
                         ta1: 9,
                         ta2: 7,
                         kompre: 6,
@@ -898,7 +904,7 @@
                     },
                     {
                         name: 'SEMINAR',
-                        pkl: 8,
+                        kp: 8,
                         ta1: 7,
                         ta2: 6,
                         kompre: 7,
@@ -907,7 +913,7 @@
                     },
                     {
                         name: 'SEMINAR',
-                        pkl: 8,
+                        kp: 8,
                         ta1: 7,
                         ta2: 6,
                         kompre: 7,
@@ -916,7 +922,7 @@
                     },
                     {
                         name: 'SEMINAR',
-                        pkl: 7,
+                        kp: 7,
                         ta1: 8,
                         ta2: 9,
                         kompre: 8,
@@ -925,7 +931,7 @@
                     },
                     {
                         name: 'SEMINAR',
-                        pkl: 9,
+                        kp: 9,
                         ta1: 6,
                         ta2: 7,
                         kompre: 9,
@@ -934,7 +940,7 @@
                     },
                     {
                         name: 'SEMINAR',
-                        pkl: 6,
+                        kp: 6,
                         ta1: 7,
                         ta2: 6,
                         kompre: 8,
@@ -943,7 +949,7 @@
                     },
                     {
                         name: 'SEMINAR',
-                        pkl: 8,
+                        kp: 8,
                         ta1: 8,
                         ta2: 7,
                         kompre: 7,
@@ -965,8 +971,8 @@
                         return item.perangkatan === selectedPerangkatan;
                     });
 
-                    var pklData = filteredData.reduce(function(total, item) {
-                        return total + item.pkl;
+                    var kpData = filteredData.reduce(function(total, item) {
+                        return total + item.kp;
                     }, 0);
 
                     var ta1Data = filteredData.reduce(function(total, item) {
@@ -991,7 +997,7 @@
                             type: 'pie'
                         },
                         title: {
-                            text: 'Data Angkatan ' + selectedPerangkatan
+                            text: ''
                         },
                         plotOptions: {
                             pie: {
@@ -1002,8 +1008,8 @@
                         series: [{
                             name: 'Jumlah',
                             data: [{
-                                    name: 'PKL',
-                                    y: pklData
+                                    name: 'KP',
+                                    y: kpData
                                 },
                                 {
                                     name: 'TA 1',
@@ -1083,7 +1089,7 @@
                         type: 'pie',
                     },
                     title: {
-                        text: 'Kepangkatan Dosen'
+                        text: 'Jabatan Dosen'
                     },
                     plotOptions: {
                         pie: {
@@ -1112,63 +1118,63 @@
         <script>
             // Data dummy untuk aktivitas penggunaan laboratorium
             function lineChartAktivitasLab() {
+                // Mengirim permintaan Ajax ke server untuk mendapatkan data
+                $.ajax({
+                    url: '{{route('chart.aktivitas.lab')}}', // Ubah URL ini sesuai dengan URL endpoint API di Laravel
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        // Menangani respons data dari server
+                        var data = response;
+                        console.log(data);
 
-
-                var data = [{
-                        lab: 'Laboratorium A',
-                        aktivitas: [10, 12, 8, 15, 11, 9, 13]
-                    },
-                    {
-                        lab: 'Laboratorium B',
-                        aktivitas: [8, 7, 9, 6, 10, 8, 11]
-                    },
-                    {
-                        lab: 'Laboratorium C',
-                        aktivitas: [6, 9, 7, 5, 8, 10, 12]
-                    },
-                    {
-                        lab: 'Laboratorium D',
-                        aktivitas: [12, 10, 11, 9, 13, 7, 9]
-                    }
-                ];
-
-                // Mengubah format data menjadi format yang dapat digunakan oleh Highcharts
-                var chartData = data.map(function(item) {
-                    return {
-                        name: item.lab,
-                        data: item.aktivitas
-                    };
-                });
-
-                var options = {
-                    chart: {
-                        type: 'line'
-                    },
-                    title: {
-                        text: 'Aktivitas Penggunaan Laboratorium'
-                    },
-                    xAxis: {
-                        categories: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Jumlah Aktivitas'
-                        }
-                    },
-                    series: chartData,
-                    plotOptions: {
-                        line: {
-                            marker: {
-                                enabled: true
+                        // Mengubah format data menjadi format yang dapat digunakan oleh Highcharts
+                        var chartData = data.map(function(item) {
+                            return {
+                                name: item.lab,
+                                data: item.aktivitas
+                            };
+                        });
+                        console.log(chartData);
+                        var options = {
+                            chart: {
+                                type: 'line'
+                            },
+                            title: {
+                                text: ' '
+                            },
+                            xAxis: {
+                                categories: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Jumlah Aktivitas'
+                                }
+                            },
+                            series: chartData,
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: true
+                                    }
+                                }
                             }
-                        }
-                    }
-                };
-                // Membuat line chart menggunakan Highcharts
-                Highcharts.chart('chart_lab', options);
+                        };
 
+                        // Membuat line chart menggunakan Highcharts
+                        Highcharts.chart('chart_lab', options);
+                    },
+                    error: function(xhr, status, error) {
+                        // Menangani kesalahan dalam permintaan Ajax
+                        console.error(error);
+                    }
+                });
             }
-            lineChartAktivitasLab();
+
+            $(document).ready(function() {
+                // Panggil fungsi lineChartAktivitasLab saat halaman dimuat
+                lineChartAktivitasLab();
+            });
         </script>
     @endrole
 @endsection

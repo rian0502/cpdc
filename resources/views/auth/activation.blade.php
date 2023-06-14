@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="/Assets/auth/vendors/styles/core.css" />
     <link rel="stylesheet" type="text/css" href="/Assets/auth/vendors/styles/icon-font.min.css" />
     <link rel="stylesheet" type="text/css" href="/Assets/auth/vendors/styles/style.css" />
-
+    <link rel="stylesheet" type="text/css" href="/Assets/admin/src/plugins/sweetalert2/sweetalert2.css" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
     <script>
@@ -113,11 +113,28 @@
     <script src="/Assets/auth/vendors/scripts/process.js"></script>
     <script src="/Assets/auth/vendors/scripts/layout-settings.js"></script>
     <script src="/Assets/src/js/nocopy.js"></script>
-
+    <script src="/Assets/admin/src/plugins/sweetalert2/sweetalert2.all.js"></script>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
-            style="display: none; visibility: hidden"></iframe></noscript>
+    
     <!-- End Google Tag Manager (noscript) -->
 </body>
+<script>
+    //sweetalert registered
+    @if (session('registered'))
+        swal({
+            title: "Berhasil",
+            text: "{{ session('registered') }}",
+            type: "success",
+            button: "Ok",
+        });
+    @elseif (session('message'))
+        swal({
+            title: "Berhasil",
+            text: "{{ session('message') }}",
+            type: "success",
+            button: "Ok",
+        });
+    @endif
+</script>
 
 </html>
