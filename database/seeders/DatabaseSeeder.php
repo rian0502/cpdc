@@ -7,8 +7,12 @@ namespace Database\Seeders;
 use Database\Seeders\Locations;
 use Database\Seeders\Mahasiswa;
 use Illuminate\Database\Seeder;
+use Database\Seeders\SeederDosen;
 use Database\Seeders\BaseNPMSeeder;
 use Database\Seeders\RolePermision;
+use Database\Seeders\AktivitasLabSeeder;
+use Database\Seeders\SeederAdministrasi;
+use Database\Seeders\BerkasKelengkapanSeeder;
 
 
 class DatabaseSeeder extends Seeder
@@ -27,6 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SeederAdministrasi::class);
         $this->call(Mahasiswa::class);
         $this->call(BerkasKelengkapanSeeder::class);
+        $this->call(AktivitasLabSeeder::class);
 
     }
 }
