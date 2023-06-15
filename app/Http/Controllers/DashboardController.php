@@ -31,10 +31,7 @@ class DashboardController extends Controller
             ];
             if (Auth::user()->hasRole('jurusan')) {
                 //query hitung jumlah usia dosen dari table dosen melalui column tanggal_lahir kelompokkan dan hitung junlah umur tersebvut
-                $test = DB::table('dosen')
-                    ->select(DB::raw('TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) as umur, COUNT(*) as total'))
-                    ->groupBy('umur')
-                    ->get();
+
             }
             return view('dashboard', $data);
         } else {
