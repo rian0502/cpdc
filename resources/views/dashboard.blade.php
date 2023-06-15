@@ -14,6 +14,13 @@
             cursor: pointer;
         }
 
+        .highcharts-data-table-3 table {
+            min-width: 310px;
+            max-width: 800px;
+            margin: 5;
+        }
+
+
         @media (max-width: 375.98px) {
             #chart {
                 scale: 0.5 !important;
@@ -184,252 +191,252 @@
                             </div>
                         </a>
                     </div>
+                </div>
+            @endrole
+            @role('jurusan')
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-6 mb-20">
+                        <div class="card-box height-100-p pd-20 min-height-200px">
+                            <div class="d-flex justify-content-center mb-2">
+                                <h5 class="mb-0">Data Seminar</h5>
+                            </div>
+                            <div class="d-flex justify-content-between">
+
+
+                            </div>
+
+                            <div id="chart_seminar"></div>
+                        </div>
                     </div>
-                    @endrole
-                    @role('jurusan')
-                        <div class="row">
-
-                            <div class="col-lg-4 col-md-6 mb-20">
-                                <div class="card-box height-100-p pd-20 min-height-200px">
-                                    <div class="d-flex justify-content-center mb-2">
-                                        <h5 class="mb-0">Data Seminar</h5>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-
-
-                                    </div>
-
-                                    <div id="chart_seminar"></div>
-                                </div>
+                    <div class="col-lg-4 col-md-6 mb-20">
+                        <div class="card-box height-100-p pd-20 min-height-200px">
+                            <div class="d-flex justify-content-between">
                             </div>
-                            <div class="col-lg-4 col-md-6 mb-20">
-                                <div class="card-box height-100-p pd-20 min-height-200px">
-                                    <div class="d-flex justify-content-between">
-                                    </div>
-                                    <div id="umur_chart"></div>
-                                </div>
+                            <div id="umur_chart"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-20">
+                        <div class="card-box height-100-p pd-20 min-height-200px">
+                            <div class="d-flex justify-content-between">
                             </div>
-                            <div class="col-lg-4 col-md-6 mb-20">
-                                <div class="card-box height-100-p pd-20 min-height-200px">
-                                    <div class="d-flex justify-content-between">
-                                    </div>
-                                    <div id="jabatan_chart"></div>
-                                </div>
+                            <div id="jabatan_chart"></div>
+                        </div>
+                    </div>
+                </div>
+            @endrole
+            @role('admin lab|jurusan')
+                <div class="card-box height-100-p pd-20 min-height-200px mb-20">
+                    <div class="row align-items-center justify-content-center mb-3">
+                        <h2>Aktivitas Laboratorium</h2>
+                    </div>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="startDate">Tanggal Awal</label>
+                                <input type="date" name="startDate" class="form-control" placeholder="Tanggal Awal" id="startDate"
+                                    autocomplete="off">
                             </div>
                         </div>
-                    @endrole
-                    @role('admin lab|jurusan')
-                        <div class="card-box height-100-p pd-20 min-height-200px mb-20">
-                            <div class="row align-items-center justify-content-center mb-3">
-                                <h2>Aktivitas Laboratorium</h2>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="endDate">Tanggal Akhir</label>
+                                <input type="date" class="form-control" name="endDate" placeholder="Tanggal Akhir" id="endDate"
+                                    autocomplete="off">
                             </div>
-                            <div class="row align-items-center justify-content-center">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="tanggal-awal">Tanggal Awal</label>
-                                        <input type="date" class="form-control" placeholder="Tanggal Awal" id="tanggal-awal"
-                                            autocomplete="off">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="tanggal-akhir">Tanggal Akhir</label>
-                                        <input type="date" class="form-control" placeholder="Tanggal Akhir"
-                                            id="tanggal-akhir" autocomplete="off">
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="chart_lab"></div>
                         </div>
-                    @endrole
-                    @role('mahasiswa')
-                        <div class="row pb-10">
-                            <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                                <div class="card-box height-100-p widget-style3">
-                                    <div class="d-flex flex-wrap" style="width: -300px">
-                                        <div class="widget-data">
-                                            <div class="weight-700 font-24 text-dark">{{ $jumlah_prestasi }}</div>
-                                            <div class="font-14 text-secondary weight-500">
-                                                Prestasi
-                                            </div>
-                                        </div>
-                                        <div class="widget-icon">
-                                            <div class="icon" data-color="#fff">
-                                                <i class="icon-copy dw dw-star"></i>
-                                            </div>
-                                        </div>
+                    </div>
+                    <div id="chart_lab"></div>
+                </div>
+            @endrole
+            @role('mahasiswa')
+                <div class="row pb-10">
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap" style="width: -300px">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $jumlah_prestasi }}</div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Prestasi
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                                <div class="card-box height-100-p widget-style3 ">
-                                    <div class="d-flex flex-wrap">
-                                        <div class="widget-data">
-                                            <div class="weight-700 font-24 text-dark">{{ $jumlah_aktivitas }}</div>
-                                            <div class="font-14 text-secondary weight-500">
-                                                Kegiatan Tambahan
-                                            </div>
-                                        </div>
-                                        <div class="widget-icon ">
-                                            <div class="icon">
-                                                <i class="icon-copy ion ion-ribbon-b" aria-hidden="true"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                                <div class="card-box height-100-p widget-style3 ">
-                                    <div class="d-flex flex-wrap">
-                                        <div class="widget-data">
-                                            <div class="weight-700 font-24 text-dark">{{ Auth::user()->mahasiswa->semester }}
-                                            </div>
-                                            <div class="font-14 text-secondary weight-500">
-                                                Semester
-                                            </div>
-                                        </div>
-                                        <div class="widget-icon ">
-                                            <div class="icon" data-color="#fffff">
-                                                <span class="icon-copy fa-solid fa-bookmark"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                                <div class="card-box height-100-p widget-style3 ">
-                                    <div class="d-flex flex-wrap">
-                                        <div class="widget-data">
-                                            <div class="weight-700 font-24 text-dark">{{ Auth::user()->mahasiswa->status }}
-                                            </div>
-                                            <div class="font-14 text-secondary weight-500">Status</div>
-                                        </div>
-                                        <div class="widget-icon ">
-                                            <div class="icon" data-color="#fffff">
-                                                <i class="icon-copy fa-solid fa-user" aria-hidden="true"></i>
-                                            </div>
-                                        </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#fff">
+                                        <i class="icon-copy dw dw-star"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endrole
-
-
-                    {{-- BUAT UNTUK PEMBERITAHUAN SEMINAR H-1 UNTUK ROLE DOSEN --}}
-                    @role('dosen')
-                        <div class="card-box pb-10" style="margin-bottom: 30px">
-                            <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Kerja Praktik</div>
-
-                            <table class="table data-table-responsive stripe data-table-noexport p-2">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>NPM</th>
-                                        <th>Judul</th>
-                                        <th>Tanggal</th>
-                                        <th>Waktu</th>
-                                        <th>Ruangan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($jadwalskp as $item)
-                                        <tr>
-                                            <td> {{ $loop->iteration }}</td>
-                                            <td>{{ $item->mahasiswa->npm }}</td>
-                                            <td>{{ $item->judul_kp }}</td>
-                                            <td>{{ $item->jadwal->tanggal_skp }}</td>
-                                            <td>{{ $item->jadwal->jam_mulai_skp . ' - ' . $item->jadwal->jam_selesai_skp }}
-                                            </td>
-                                            <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $jumlah_aktivitas }}</div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Kegiatan Tambahan
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon">
+                                        <i class="icon-copy ion ion-ribbon-b" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-box pb-10" style="margin-bottom: 30px">
-                            <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tugas Akhir 1</div>
-                            <table class="table data-table-responsive stripe data-table-noexport p-2">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>NPM</th>
-                                        <th>Judul</th>
-                                        <th>Tanggal</th>
-                                        <th>Waktu</th>
-                                        <th>Ruangan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2017031016
-                                        </td>
-                                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
-                                        <td>10-10-2023</td>
-                                        <td>10.10</td>
-                                        <td>Ruangan Seminar</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ Auth::user()->mahasiswa->semester }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Semester
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <span class="icon-copy fa-solid fa-bookmark"></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-box pb-10" style="margin-bottom: 30px">
-                            <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tugas Akhir 2</div>
-                            <table class="table data-table-responsive stripe data-table-noexport p-2">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>NPM</th>
-                                        <th>Judul</th>
-                                        <th>Tanggal</th>
-                                        <th>Waktu</th>
-                                        <th>Ruangan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2017031016
-                                        </td>
-                                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
-                                        <td>10-10-2023</td>
-                                        <td>10.10</td>
-                                        <td>Ruangan Seminar</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ Auth::user()->mahasiswa->status }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">Status</div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="icon-copy fa-solid fa-user" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-box pb-10" style="margin-bottom: 30px">
-                            <div class="h5 pd-20 mb-0">Data Pelaksanaan Sidang Komprehensif</div>
-                            <table class="table data-table-responsive stripe data-table-noexport p-2">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>NPM</th>
-                                        <th>Judul</th>
-                                        <th>Tanggal</th>
-                                        <th>Waktu</th>
-                                        <th>Ruangan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2017031016
-                                        </td>
-                                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
-                                        <td>10-10-2023</td>
-                                        <td>10.10</td>
-                                        <td>Ruangan Seminar</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    @endrole
-            </div>
+                    </div>
+                </div>
+            @endrole
 
 
-            {{-- <div class="card-box pb-10">
+            {{-- BUAT UNTUK PEMBERITAHUAN SEMINAR H-1 UNTUK ROLE DOSEN --}}
+            @role('dosen')
+                <div class="card-box pb-10" style="margin-bottom: 30px">
+                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Kerja Praktik</div>
+
+                    <table class="table data-table-responsive stripe data-table-noexport p-2">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NPM</th>
+                                <th>Judul</th>
+                                <th>Tanggal</th>
+                                <th>Waktu</th>
+                                <th>Ruangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($jadwalskp as $item)
+                                <tr>
+                                    <td> {{ $loop->iteration }}</td>
+                                    <td>{{ $item->mahasiswa->npm }}</td>
+                                    <td>{{ $item->judul_kp }}</td>
+                                    <td>{{ $item->jadwal->tanggal_skp }}</td>
+                                    <td>{{ $item->jadwal->jam_mulai_skp . ' - ' . $item->jadwal->jam_selesai_skp }}
+                                    </td>
+                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-box pb-10" style="margin-bottom: 30px">
+                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tugas Akhir 1</div>
+                    <table class="table data-table-responsive stripe data-table-noexport p-2">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NPM</th>
+                                <th>Judul</th>
+                                <th>Tanggal</th>
+                                <th>Waktu</th>
+                                <th>Ruangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>2017031016
+                                </td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
+                                <td>10-10-2023</td>
+                                <td>10.10</td>
+                                <td>Ruangan Seminar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-box pb-10" style="margin-bottom: 30px">
+                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tugas Akhir 2</div>
+                    <table class="table data-table-responsive stripe data-table-noexport p-2">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NPM</th>
+                                <th>Judul</th>
+                                <th>Tanggal</th>
+                                <th>Waktu</th>
+                                <th>Ruangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>2017031016
+                                </td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
+                                <td>10-10-2023</td>
+                                <td>10.10</td>
+                                <td>Ruangan Seminar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-box pb-10" style="margin-bottom: 30px">
+                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Sidang Komprehensif</div>
+                    <table class="table data-table-responsive stripe data-table-noexport p-2">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NPM</th>
+                                <th>Judul</th>
+                                <th>Tanggal</th>
+                                <th>Waktu</th>
+                                <th>Ruangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>2017031016
+                                </td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
+                                <td>10-10-2023</td>
+                                <td>10.10</td>
+                                <td>Ruangan Seminar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            @endrole
+        </div>
+
+
+        {{-- <div class="card-box pb-10">
                 <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Kerja Praktik</div>
                 @role('mahasiswa')
                     <a href="/seminar/create" style="margin-left:15px;">
@@ -492,7 +499,7 @@
                 </table>
             </div> --}}
 
-            {{-- <div class="card-box pb-10">
+        {{-- <div class="card-box pb-10">
                 <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Skripsi</div>
                 @role('mahasiswa')
                     <a href="/seminar/create" style="margin-left:15px;">
@@ -555,7 +562,7 @@
                 </table>
             </div> --}}
 
-            {{-- <div class="card-box pb-10">
+        {{-- <div class="card-box pb-10">
                 <div class="h5 pd-20 mb-0">Data Pelaksanaan Sidang Komprehensif</div>
                 @role('mahasiswa')
                     <a href="/seminar/create" style="margin-left:15px;">
@@ -625,7 +632,7 @@
 
 
 
-            {{-- <div class="row pb-10 mt-5">
+        {{-- <div class="row pb-10 mt-5">
                 <div class="col-md-8 mb-20">
                     <div class="card-box height-100-p pd-20">
                         <div class="d-flex flex-wrap justify-content-between align-items-center pb-0 pb-md-3">
@@ -638,7 +645,7 @@
 
 
 
-            {{-- <div class="row pb-10 mt-5 cha">
+        {{-- <div class="row pb-10 mt-5 cha">
                 <div class="col-md-8 mb-20">
                     <div class="card-box height-100-p pd-20">
                         <div class="d-flex flex-wrap justify-content-between align-items-center pb-0 pb-md-3">
@@ -692,7 +699,7 @@
                 </div>
             </div> --}}
 
-            {{-- <div class="title pb-20 pt-20">
+        {{-- <div class="title pb-20 pt-20">
                 <h2 class="h3 mb-0">Quick Start</h2>
             </div>
 
@@ -736,23 +743,23 @@
                         </div>
                     </a>
                 </div> --}}
-        </div>
-        <!DOCTYPE html>
-        <html lang="en">
+    </div>
+    <!DOCTYPE html>
+    <html lang="en">
 
-        <head>
-            <meta charset="UTF-8">
-            <title>Pie Chart with Links</title>
-            <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.28.3/dist/apexcharts.min.js"></script>
-        </head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Pie Chart with Links</title>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.28.3/dist/apexcharts.min.js"></script>
+    </head>
 
-        <body>
+    <body>
 
-        </body>
+    </body>
 
-        </html>
+    </html>
 
-        {{-- <div class="footer-wrap pd-20 mb-20 card-box">
+    {{-- <div class="footer-wrap pd-20 mb-20 card-box">
             &copy;
             <a class="fw-medium" style="text-decoration: none;" target="_blank" href="https://kimia.fmipa.unila.ac.id/">
                 Jurusan KIMIA FMIPA UNILA</a>
@@ -763,7 +770,7 @@
                 Team</a>
         </div> --}}
 
-        {{-- <div class="footer-wrap pd-20 mb-20 card-box" style="display: flex; flex-direction: column; ">
+    {{-- <div class="footer-wrap pd-20 mb-20 card-box" style="display: flex; flex-direction: column; ">
             <div class="copyright">
                 &copy;
                 <a class="fw-medium" style="text-decoration: none;" target="_blank" href="https://kimia.fmipa.unila.ac.id/">
@@ -1117,12 +1124,20 @@
     @role('admin lab|jurusan')
         <script>
             // Data dummy untuk aktivitas penggunaan laboratorium
-            function lineChartAktivitasLab() {
+            function lineChartAktivitasLab(startDate = null, endDate = null) {
+                // Mengambil nilai tanggal awal dan akhir dari input
+                var startDate = $('#startDate').val();
+                var endDate = $('#endDate').val();
+
                 // Mengirim permintaan Ajax ke server untuk mendapatkan data
                 $.ajax({
-                    url: '{{route('chart.aktivitas.lab')}}', // Ubah URL ini sesuai dengan URL endpoint API di Laravel
+                    url: '{{ route('chart.aktivitas.lab') }}',
                     method: 'GET',
                     dataType: 'json',
+                    data: {
+                        startDate: startDate, // Menggunakan nilai tanggal awal yang diambil dari input
+                        endDate: endDate // Menggunakan nilai tanggal akhir yang diambil dari input
+                    },
                     success: function(response) {
                         // Menangani respons data dari server
                         var data = response;
@@ -1132,7 +1147,7 @@
                         var chartData = data.map(function(item) {
                             return {
                                 name: item.lab,
-                                data: item.aktivitas
+                                data: item.jumlah_aktivitas
                             };
                         });
                         console.log(chartData);
@@ -1158,7 +1173,7 @@
                                         enabled: true
                                     }
                                 }
-                            }
+                            },
                         };
 
                         // Membuat line chart menggunakan Highcharts
@@ -1171,10 +1186,17 @@
                 });
             }
 
-            $(document).ready(function() {
-                // Panggil fungsi lineChartAktivitasLab saat halaman dimuat
+
+            // Panggil fungsi untuk membuat line chart
+            // Panggil fungsi lineChartAktivitasLab dengan nilai awal tanggal
+            lineChartAktivitasLab();
+
+            // Atur event listener untuk mengaktifkan pemfilteran berdasarkan tanggal saat nilai tanggal berubah
+            $('#startDate, #endDate').change(function() {
                 lineChartAktivitasLab();
             });
+
+            //dengan filter berdasarkan
         </script>
     @endrole
 @endsection
