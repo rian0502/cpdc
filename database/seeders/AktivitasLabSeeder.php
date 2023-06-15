@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\BaseNPM;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Laboratorium;
 use Illuminate\Database\Seeder;
 
-class BaseNPMSeeder extends Seeder
+class AktivitasLabSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +14,6 @@ class BaseNPMSeeder extends Seeder
      */
     public function run()
     {
-        BaseNPM::factory()->count(500)->create();
+        Laboratorium::factory()->count(100000)->create();
     }
 }

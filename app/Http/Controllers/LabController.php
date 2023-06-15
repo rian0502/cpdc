@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreActivityLab;
-use App\Models\Laboratorium;
 use App\Models\Lokasi;
+use App\Models\Laboratorium;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
+use App\Http\Requests\StoreActivityLab;
 
 class LabController extends Controller
 {
@@ -115,26 +117,43 @@ class LabController extends Controller
     {
         //
     }
-    public function chartAktivitasLab()
+    public function chartAktivitasLab(Request $request)
     {
-        $data = [
-            [
-                'lab' => 'Laboratorium A',
-                'aktivitas' => [10, 12, 8, 15, 11, 9, 13]
-            ],
-            [
-                'lab' => 'Laboratorium B',
-                'aktivitas' => [8, 7, 9, 6, 10, 8, 11]
-            ],
-            [
-                'lab' => 'Laboratorium C',
-                'aktivitas' => [6, 9, 7, 5, 8, 10, 12]
-            ],
-            [
-                'lab' => 'Laboratorium D',
-                'aktivitas' => [12, 10, 11, 9, 13, 7, 9]
-            ]
-        ];
+
+        $start = $request->input('start');
+        $end = $request->input('end');
+        if ($start != null && $end != null) {
+            $results = DB::table('lokasi')
+            ->select(
+                'lokasi.nama_lokasi as lab',
+                DB::raw("GROUP_CONCAT(subquery.jumlah_kegiatan ORDER BY subquery.hari SEPARATOR ',') as jumlah_aktivitas")
+            )
+            ->leftJoin(DB::raw('(SELECT id_lokasi, DAYOFWEEK(tanggal_kegiatan) as hari, COUNT(id) as jumlah_kegiatan FROM activity_lab GROUP BY id_lokasi, DAYOFWEEK(tanggal_kegiatan)) as subquery'), function ($join) {
+                $join->on('lokasi.id', '=', 'subquery.id_lokasi');
+            })
+            ->whereBetween('activity_lab.tanggal_kegiatan', [$start, $end])
+            ->groupBy('lokasi.nama_lokasi')
+            ->get();
+        } else {
+            $results = DB::table('lokasi')
+                ->select(
+                    'lokasi.nama_lokasi as lab',
+                    DB::raw("GROUP_CONCAT(subquery.jumlah_kegiatan ORDER BY subquery.hari SEPARATOR ',') as jumlah_aktivitas")
+                )
+                ->leftJoin(DB::raw('(SELECT id_lokasi, DAYOFWEEK(tanggal_kegiatan) as hari, COUNT(id) as jumlah_kegiatan FROM activity_lab GROUP BY id_lokasi, DAYOFWEEK(tanggal_kegiatan)) as subquery'), function ($join) {
+                    $join->on('lokasi.id', '=', 'subquery.id_lokasi');
+                })
+                ->groupBy('lokasi.nama_lokasi')
+                ->get();
+        }
+        $data = [];
+        foreach ($results as $result) {
+            $item = [];
+            $item['lab'] = $result->lab;
+            $jumlahAktivitas = explode(',', $result->jumlah_aktivitas);
+            $item['jumlah_aktivitas'] = array_map('intval', $jumlahAktivitas);
+            $data[] = $item;
+        }
         return response()->json($data);
     }
 }
