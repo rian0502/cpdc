@@ -38,7 +38,6 @@ class AkunDosenController extends Controller
     {
         //
         return view('akun.dosen.create');
-
     }
 
     /**
@@ -56,7 +55,7 @@ class AkunDosenController extends Controller
             'password' => 'required',
             'role' => 'required',
         ];
-        if ($validation){
+        if ($validation) {
             $user = new User();
             $user->email = $request->email;
             $user->email_verified_at = now();
@@ -65,7 +64,7 @@ class AkunDosenController extends Controller
             $user->save();
             $user->assignRole($request->role);
             return redirect()->route('sudo.akun_dosen.index')->with('success', 'Akun Dosen Berhasil Ditambahkan');
-        }else{
+        } else {
             return redirect()->route('sudo.akun_dosen.index')->with('error', 'Akun Dosen Gagal Ditambahkan');
         }
     }
@@ -140,34 +139,40 @@ class AkunDosenController extends Controller
      */
     public function destroy($id)
     {
-
     }
 
-    public function chartUsiaDosen(){
+    public function chartUsiaDosen()
+    {
         $query = DB::table('dosen')
-        ->select(DB::raw('TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) as umur, COUNT(*) as total'))
-        ->groupBy('umur')
-        ->get();
-        return response()->json($query);
+            ->select(DB::raw('FLOOR((TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) + 10) / 10) * 10 as usia_group, COUNT(*) as total'))
+            ->groupBy('usia_group')
+            ->orderBy('usia_group')
+            ->get();
+
+        $data = [];
+
+        foreach ($query as $result) {
+            $item = [
+                'usia_group' => $result->usia_group . '++',
+                'total' => $result->total,
+            ];
+            $data[] = $item;
+        }
+
+        return response()->json($data);
     }
 
-    public function chartJabatanDosen(Request $request){
-        $start = $request->start;
-        $end = $request->end;
-        if ($start == null && $end == null) {
-            $query = DB::table('history_jabatan_dosen')
-            ->select(DB::raw('jabatan, COUNT(*) as total'))
-            ->whereBetween('tgl_sk', [$start, $end])
+
+    public function chartJabatanDosen(Request $request)
+    {
+        $results = DB::table('dosen')
+            ->select('jabatan', DB::raw('COUNT(*) as jumlah_dosen'))
+            ->join('history_jabatan_dosen', 'dosen.id', '=', 'history_jabatan_dosen.dosen_id')
+            ->whereRaw('history_jabatan_dosen.tgl_sk = (SELECT MAX(tgl_sk) FROM history_jabatan_dosen WHERE dosen_id = dosen.id)')
             ->groupBy('jabatan')
             ->get();
-        }else{
-            $query = DB::table('history_jabatan_dosen')
-            ->select(DB::raw('jabatan, COUNT(*) as total'))
-            ->where('tgl_sk', '<=',date('Y-m-d'))
-            ->groupBy('jabatan')
-            ->get();
-        }
-        return response()->json($query);
+
+        return response()->json($results);
     }
 
 }

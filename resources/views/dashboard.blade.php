@@ -234,15 +234,15 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="startDate">Tanggal Awal</label>
-                                <input type="date" name="startDate" class="form-control" placeholder="Tanggal Awal" id="startDate"
-                                    autocomplete="off">
+                                <input type="date" name="startDate" class="form-control" placeholder="Tanggal Awal"
+                                    id="startDate" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="endDate">Tanggal Akhir</label>
-                                <input type="date" class="form-control" name="endDate" placeholder="Tanggal Akhir" id="endDate"
-                                    autocomplete="off">
+                                <input type="date" class="form-control" name="endDate" placeholder="Tanggal Akhir"
+                                    id="endDate" autocomplete="off">
                             </div>
                         </div>
                     </div>
@@ -794,68 +794,56 @@
     @role('jurusan')
         <script>
             // Data chart
-            const chartData = [{
-                    name: '20++',
-                    y: 12,
-                },
-                {
-                    name: '30++',
-                    y: 28,
-                },
-                {
-                    name: '40++',
-                    y: 18,
-                },
-                {
-                    name: '50++',
-                    y: 70,
-                }
-            ];
+            $.ajax({
+                url: '{{ route('chart.usia.dosen') }}',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    var chartData =
+                        data; // Tambahkan variabel chartData untuk menyimpan data yang diterima dari respons
 
-            // Konfigurasi chart
-            const chartOptions = {
-                chart: {
-                    type: 'pie',
-                },
-                title: {
-                    text: 'Usia Dosen'
-                },
-                series: [{
-                    name: 'Data',
-                    data: chartData.map(data => ({
-                        name: data.name,
-                        y: data.y
-                    }))
-                }],
-                plotOptions: {
-                    pie: {
-                        cursor: 'pointer',
-                        allowPointSelect: true,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.name}: {point.y}',
-                            style: {
-                                textOutline: 'none'
+                    var options = {
+                        chart: {
+                            type: 'pie',
+                        },
+                        title: {
+                            text: 'Usia Dosen'
+                        },
+                        series: [{
+                            name: 'Data',
+                            data: chartData.map(data => ({
+                                name: data.usia_group,
+                                y: data.total
+                            }))
+                        }],
+                        plotOptions: {
+                            pie: {
+                                cursor: 'pointer',
+                                allowPointSelect: true,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.name}: {point.percentage:.1f}%',
+                                    style: {
+                                        textOutline: 'none'
+                                    }
+                                }
+                            }
+                        },
+                        tooltip: {
+                            pointFormat: '<b>Jumlah: {point.y}</b>'
+                        },
+                        legend: {
+                            labelFormatter: function() {
+                                const pointIndex = this.index;
+                                const pointName = chartData[pointIndex].usia_group;
+                                return `${pointName}`;
                             }
                         }
+                    };
 
-                    }
-                },
-                tooltip: {
-                    pointFormat: '<b>{point.percentage:.1f}%</b>'
-                },
-                legend: {
-                    labelFormatter: function() {
-                        const pointIndex = this.index;
-                        const url = chartData[pointIndex].url;
-                        const pointName = chartData[pointIndex].name;
-                        return `<a href="${url}" target="_blank">${pointName}</a>`;
-                    }
+                    Highcharts.chart('umur_chart', options);
                 }
-            };
-
-            // Membuat chart Highcharts
-            Highcharts.chart('umur_chart', chartOptions);
+            });
         </script>
 
 
@@ -1010,6 +998,23 @@
                             pie: {
                                 cursor: 'pointer',
                                 allowPointSelect: true,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                    style: {
+                                        textOutline: 'none'
+                                    }
+                                }
+                            }
+                        },
+                        tooltip: {
+                            pointFormat: '<b>Jumlah: {point.y}</b>'
+                        },
+                        legend: {
+                            labelFormatter: function() {
+                                const pointIndex = this.index;
+                                const pointName = chartData[pointIndex].usia_group;
+                                return `${pointName}`;
                             }
                         },
                         series: [{
@@ -1037,6 +1042,7 @@
                             ]
                         }]
                     });
+
                 }
                 var dropdown = document.createElement('select');
                 dropdown.setAttribute('class', 'form-control form-control-sm selectpicker text-center');
@@ -1066,59 +1072,59 @@
             });
         </script>
         <script>
-            function createPieChart() {
+            function jabatanDosen() {
                 // Data dummy
-                var data = [{
-                        rank: 'Tenaga Pengajar',
-                        count: 25
+                $.ajax({
+                    url: "{{ route('chart.jabatan.dosen') }}",
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        var options = {
+                            chart: {
+                                type: 'pie',
+                            },
+                            title: {
+                                text: 'Jabatan Dosen'
+                            },
+                            plotOptions: {
+                            pie: {
+                                cursor: 'pointer',
+                                allowPointSelect: true,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                    style: {
+                                        textOutline: 'none'
+                                    }
+                                }
+                            }
+                        },
+                        tooltip: {
+                            pointFormat: '<b>Jumlah: {point.y}</b>'
+                        },
+                            series: [{
+                                name: 'Jumlah',
+                                data: data.map(item => ({
+                                    name: item.jabatan,
+                                    y: item.jumlah_dosen
+                                }))
+                            }]
+                        };
+
+                        // Membuat chart Highcharts
+                        Highcharts.chart('jabatan_chart', options);
                     },
-                    {
-                        rank: 'Asisten Ahli',
-                        count: 15
-                    },
-                    {
-                        rank: 'Lektor',
-                        count: 10
-                    },
-                    {
-                        rank: 'Lektor Kepala',
-                        count: 8
-                    },
-                    {
-                        rank: 'Guru Besar',
-                        count: 5
+                    error: function(data) {
+                        console.log(data);
                     }
-                ];
+                });
 
                 // Konfigurasi chart Highcharts
-                var options = {
-                    chart: {
-                        type: 'pie',
-                    },
-                    title: {
-                        text: 'Jabatan Dosen'
-                    },
-                    plotOptions: {
-                        pie: {
-                            cursor: 'pointer',
-                            allowPointSelect: true,
-                        }
-                    },
-                    series: [{
-                        name: 'Jumlah',
-                        data: data.map(item => ({
-                            name: item.rank,
-                            y: item.count
-                        }))
-                    }]
-                };
 
-                // Membuat chart Highcharts
-                Highcharts.chart('jabatan_chart', options);
             }
 
             // Panggil fungsi untuk membuat pie chart
-            createPieChart();
+            jabatanDosen();
         </script>
     @endrole
     @role('admin lab|jurusan')
@@ -1141,7 +1147,7 @@
                     success: function(response) {
                         // Menangani respons data dari server
                         var data = response;
-                        console.log(data);
+
 
                         // Mengubah format data menjadi format yang dapat digunakan oleh Highcharts
                         var chartData = data.map(function(item) {
