@@ -390,7 +390,7 @@
     <script src="/Assets/src/js/main.js"></script>
 
 
-    <script src="/Assets/admin/src/plugins/apexcharts/apexcharts.min.js"></script>
+ 
     <script src="/Assets/admin/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
     <script src="/Assets/admin/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="/Assets/admin/src/plugins/datatables/js/table.js"></script>
@@ -412,7 +412,7 @@
     <script src="/Assets/admin/src/plugins/datatables/js/excel.js"></script>
     <script src="/Assets/admin/src/plugins/datatables/js/vfs_fonts.js"></script>
     <!-- bootstrap-tagsinput js -->
-    <script src="src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+    <script src="/Assets/admin/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
     <script src="/Assets/src/lib/toastify/src/toastify.js"></script>
     <!-- Datatable Setting js -->
     <script src="/Assets/admin/vendors/scripts/datatable-setting.js"></script>

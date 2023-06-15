@@ -582,7 +582,6 @@
     <script src="/Assets/admin/vendors/scripts/script.min.js"></script>
     <script src="/Assets/admin/vendors/scripts/process.js"></script>
     <script src="/Assets/admin/vendors/scripts/layout-settings.js"></script>
-    <script src="/Assets/admin/src/plugins/apexcharts/apexcharts.min.js"></script>
     <script src="/Assets/admin/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
     <script src="/Assets/admin/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="/Assets/admin/src/plugins/datatables/js/table.js"></script>
@@ -606,7 +605,7 @@
     <script src="/Assets/admin/src/plugins/sweetalert2/sweetalert2.all.js"></script>
     <script src="/Assets/admin/src/plugins/sweetalert2/sweet-alert.init.js"></script>
     <!-- bootstrap-tagsinput js -->
-    <script src="src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+    <script src="/Assets/admin/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
     <script src="/Assets/src/lib/toastify/src/toastify.js"></script>
     <!-- Datatable Setting js -->
     <script src="/Assets/admin/vendors/scripts/datatable-setting.js"></script>
