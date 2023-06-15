@@ -14,6 +14,6 @@ class AktivitasLabSeeder extends Seeder
      */
     public function run()
     {
-        Laboratorium::factory()->count(100000)->create();
+        Laboratorium::factory()->count(100)->create();
     }
 }

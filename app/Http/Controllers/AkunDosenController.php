@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AnggotaLitabmas;
-use App\Models\AnggotaPublikasiDosen;
+use App\Models\User;
 use App\Models\Dosen;
+use Illuminate\Http\Request;
+use App\Models\AnggotaLitabmas;
+use App\Models\OrganisasiDosen;
+use Illuminate\Support\Facades\DB;
 use App\Models\HistoryJabatanDosen;
 use App\Models\HistoryPangkatDosen;
-use App\Models\OrganisasiDosen;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\AnggotaPublikasiDosen;
 use Illuminate\Support\Facades\Crypt;
 
 class AkunDosenController extends Controller
@@ -139,6 +141,33 @@ class AkunDosenController extends Controller
     public function destroy($id)
     {
 
+    }
+
+    public function chartUsiaDosen(){
+        $query = DB::table('dosen')
+        ->select(DB::raw('TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) as umur, COUNT(*) as total'))
+        ->groupBy('umur')
+        ->get();
+        return response()->json($query);
+    }
+
+    public function chartJabatanDosen(Request $request){
+        $start = $request->start;
+        $end = $request->end;
+        if ($start == null && $end == null) {
+            $query = DB::table('history_jabatan_dosen')
+            ->select(DB::raw('jabatan, COUNT(*) as total'))
+            ->whereBetween('tgl_sk', [$start, $end])
+            ->groupBy('jabatan')
+            ->get();
+        }else{
+            $query = DB::table('history_jabatan_dosen')
+            ->select(DB::raw('jabatan, COUNT(*) as total'))
+            ->where('tgl_sk', '<=',date('Y-m-d'))
+            ->groupBy('jabatan')
+            ->get();
+        }
+        return response()->json($query);
     }
 
 }
