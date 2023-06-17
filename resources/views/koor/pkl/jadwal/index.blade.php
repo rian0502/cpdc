@@ -74,9 +74,13 @@
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     @if ($item->jadwal)
                                                         <a class="dropdown-item"
-                                                            href="{{ route('koor.jadwalPKL.index', $item->encrypt_id) }}"><i
+                                                            href="{{ route('koor.jadwalPKL.edit', $item->encrypt_id) }}"><i
                                                                 class="fa fa-pencil"></i>
-                                                            Edit</a>
+                                                            Ubah Jadwal</a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('koor.jadwalPKL.resend', $item->encrypt_id) }}"><i
+                                                                class="fa fa-share"></i>
+                                                            Kirim Kembali</a>
                                                     @else
                                                         <a class="dropdown-item"
                                                             href="{{ route('koor.jadwalPKL.create', $item->encrypt_id) }}"><i
