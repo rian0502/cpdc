@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ValidasiUsulController extends Controller
+class ValidasiKompreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +15,7 @@ class ValidasiUsulController extends Controller
     public function index()
     {
         //
+        return view('admin.admin_berkas.validasi.sidang.kompre.index');
     }
 
     /**
@@ -58,6 +59,7 @@ class ValidasiUsulController extends Controller
     public function edit($id)
     {
         //
+        return view('admin.admin_berkas.validasi.sidang.kompre.edit');
     }
 
     /**

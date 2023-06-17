@@ -1,15 +1,17 @@
 <?php
 
+use App\Models\JadwalSKP;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KPcontroller;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\SopController;
+use App\Http\Controllers\TA1Controller;
+use App\Http\Controllers\TA2Controller;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ModelController;
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\Kajur\LokasiController;
 use App\Http\Controllers\BaseNpmController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\JabatanController;
@@ -21,32 +23,33 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JadwalPKLController;
 use App\Http\Controllers\PublikasiController;
 use App\Http\Controllers\OrganisasiController;
-use App\Http\Controllers\Kajur\LitabmasDataController;
+use App\Http\Controllers\Kajur\LokasiController;
+use App\Http\Controllers\PangkatAdminController;
 use App\Http\Controllers\PangkatDosenController;
-use App\Http\Controllers\Kajur\PrestasiDataController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileDosenController;
 use App\Http\Controllers\ValidasiUsulController;
-use App\Http\Controllers\Kajur\AktivitasDataController;
 use App\Http\Controllers\AkunMahasiswaController;
-use App\Http\Controllers\BeritaAcaraSeminarKerjaPraktik;
-use App\Http\Controllers\Kajur\PublikasiDataController;
+use App\Http\Controllers\ValidasiBaPKLController;
+use App\Http\Controllers\ValidasiKompreController;
 use App\Http\Controllers\ValidasiSemhasController;
 use App\Http\Controllers\ProfileMahasiswaController;
 use App\Http\Controllers\BerkasPersyaratanController;
 use App\Http\Controllers\KegiatanMahasiswaController;
 use App\Http\Controllers\PrestasiMahasiswaController;
+use App\Http\Controllers\ValidasiBerkasTA1Controller;
+use App\Http\Controllers\ValidasiBerkasTA2Controller;
 use App\Http\Controllers\ValidasiSeminarKPController;
+use App\Http\Controllers\Kajur\LitabmasDataController;
+use App\Http\Controllers\Kajur\PrestasiDataController;
+use App\Http\Controllers\Kajur\AktivitasDataController;
+use App\Http\Controllers\Kajur\PublikasiDataController;
+use App\Http\Controllers\BeritaAcaraSeminarKerjaPraktik;
 use App\Http\Controllers\MahasiswaBimbinganKPController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\MahasiswaBimbinganTA1Controller;
 use App\Http\Controllers\MahasiswaBimbinganTA2Controller;
 use App\Http\Controllers\MahasiswaBimbinganAkademikController;
-use App\Http\Controllers\PangkatAdminController;
-use App\Http\Controllers\ValidasiBaPKLController;
-use App\Http\Controllers\TA1Controller;
-use App\Http\Controllers\TA2Controller;
-use App\Models\JadwalSKP;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,8 +102,9 @@ Route::get('chart/jabatandosen', [AkunDosenController::class, 'chartJabatanDosen
 Route::prefix('admin/berkas')->name('berkas.')->middleware(['auth', 'profile', 'verified', 'role:admin berkas'])->group(function () {
     Route::resource('berkas_persyaratan', BerkasPersyaratanController::class);
     Route::resource('validasi/seminar/kp', ValidasiSeminarKPController::class)->names('validasi.seminar.kp');
-    Route::resource('validasi/seminar/ta1', ValidasiUsulController::class)->names('validasi.seminar.ta1');
-    Route::resource('validasi/seminar/ta2', ValidasiSemhasController::class)->names('validasi.seminar.ta2');
+    Route::resource('validasi/seminar/ta1', ValidasiBerkasTA1Controller::class)->names('validasi.seminar.ta1');
+    Route::resource('validasi/seminar/ta2', ValidasiBerkasTA2Controller::class)->names('validasi.seminar.ta2');
+    Route::resource('validasi/sidang/kompre', ValidasiKompreController::class)->names('validasi.sidang.kompre');
 });
 //end admin berkas
 

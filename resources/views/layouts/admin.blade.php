@@ -585,14 +585,14 @@
                                         class="{{ Request::is('admin/berkas/validasi/seminar/kp*') ? 'active' : '' }}">Kerja
                                         Praktik</a>
                                 </li>
-                                <li><a href="{{ route('sudo.akun_dosen.index') }}"
-                                        class="{{ Request::is('sudo/akun_dosen*') ? 'active' : '' }}">Tugas Akhir 1</a>
+                                <li><a href="{{ route('berkas.validasi.seminar.ta1.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/seminar/ta1*') ? 'active' : '' }}">Tugas Akhir 1</a>
                                 </li>
-                                <li><a href="{{ route('sudo.akun_admin.index') }}"
-                                        class="{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">Tugas Akhir 2</a>
+                                <li><a href="{{ route('berkas.validasi.seminar.ta2.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/seminar/ta2*') ? 'active' : '' }}">Tugas Akhir 2</a>
                                 </li>
-                                <li><a href="{{ route('sudo.akun_admin.index') }}"
-                                        class="{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">Komprehensif</a>
+                                <li><a href="{{ route('berkas.validasi.sidang.kompre.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/sidang/kompre*') ? 'active' : '' }}">Komprehensif</a>
                                 </li>
                             </ul>
                         </li>

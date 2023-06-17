@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\ModelSeminarKP;
 use Illuminate\Http\Request;
+use App\Models\ModelSeminarKP;
 use Illuminate\Support\Facades\Crypt;
 
 class ValidasiSeminarKPController extends Controller

@@ -423,10 +423,10 @@
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('lab.kategori.index') }}"
-                                    class="{{ Request::is('admin/lab/kategori*') ? 'active' : '' }}">Kategori</a>
+                                        class="{{ Request::is('admin/lab/kategori*') ? 'active' : '' }}">Kategori</a>
                                 </li>
                                 <li><a href="{{ route('lab.model.index') }}"
-                                    class="{{ Request::is('admin/lab/model*') ? 'active' : '' }}">Model</a>
+                                        class="{{ Request::is('admin/lab/model*') ? 'active' : '' }}">Model</a>
                                 </li>
                                 <li><a href="{{ route('lab.barang.index') }}"
                                         class="{{ Request::is('admin/lab/barang*') ? 'active' : '' }}">Barang</a>
@@ -518,14 +518,16 @@
                                         class="{{ Request::is('admin/berkas/validasi/seminar/kp*') ? 'active' : '' }}">Kerja
                                         Praktik</a>
                                 </li>
-                                <li><a href="{{ route('sudo.akun_dosen.index') }}"
-                                        class="{{ Request::is('sudo/akun_dosen*') ? 'active' : '' }}">Tugas Akhir 1</a>
+                                <li><a href="{{ route('berkas.validasi.seminar.ta1.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/seminar/ta1*') ? 'active' : '' }}">Tugas
+                                        Akhir 1</a>
                                 </li>
-                                <li><a href="{{ route('sudo.akun_admin.index') }}"
-                                        class="{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">Tugas Akhir 2</a>
+                                <li><a href="{{ route('berkas.validasi.seminar.ta2.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/seminar/ta2*') ? 'active' : '' }}">Tugas
+                                        Akhir 2</a>
                                 </li>
-                                <li><a href="{{ route('sudo.akun_admin.index') }}"
-                                        class="{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">Komprehensif</a>
+                                <li><a href="{{ route('berkas.validasi.sidang.kompre.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/sidang/kompre*') ? 'active' : '' }}">Komprehensif</a>
                                 </li>
                             </ul>
                         </li>
@@ -538,15 +540,18 @@
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.akademik.index') }}"
-                                    class="{{ Request::is('dosen/mahasiswa/bimbingan/akademik*') ? 'active' : '' }}">Bimbingan
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/akademik*') ? 'active' : '' }}">Bimbingan
                                         Akademik</a></li>
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.kp.index') }}"
-                                    class="{{ Request::is('dosen/mahasiswa/bimbingan/kp*') ? 'active' : '' }}">Bimbingan PKL/KP</a></li>
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/kp*') ? 'active' : '' }}">Bimbingan
+                                        PKL/KP</a></li>
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.ta1.index') }}"
-                                    class="{{ Request::is('dosen/mahasiswa/bimbingan/ta1*') ? 'active' : '' }}">Bimbingan Tugas Akhir
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/ta1*') ? 'active' : '' }}">Bimbingan
+                                        Tugas Akhir
                                         1</a></li>
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.ta2.index') }}"
-                                    class="{{ Request::is('dosen/mahasiswa/bimbingan/ta2*') ? 'active' : '' }}">Bimbingan Tugas Akhir
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/ta2*') ? 'active' : '' }}">Bimbingan
+                                        Tugas Akhir
                                         2</a></li>
                             </ul>
                         </li>

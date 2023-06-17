@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ValidasiSemhasController extends Controller
+class ValidasiBerkasTA2Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +14,7 @@ class ValidasiSemhasController extends Controller
     public function index()
     {
         //
+        return view('admin.admin_berkas.validasi.seminar.ta2.index');
     }
 
     /**
@@ -58,6 +58,7 @@ class ValidasiSemhasController extends Controller
     public function edit($id)
     {
         //
+        return view('admin.admin_berkas.validasi.seminar.ta2.edit');
     }
 
     /**
