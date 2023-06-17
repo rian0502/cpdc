@@ -208,7 +208,7 @@
                         <div class="clearfix">
                             <div class="pull-left">
                                 <h4 class="text-dark h4">Jadwal Seminar</h4>
-
+                                
                             </div>
                         </div>
 
@@ -258,7 +258,6 @@
 
                     </div>
                     <!-- Jadwal Seminar End -->
-
                     <!-- Bukti Seminar Start -->
                     <div class="pd-20 card-box mb-30">
                         <div class="clearfix">
