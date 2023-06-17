@@ -275,38 +275,39 @@
         //         inputElement.style.display = "none";
         //     }
         // }
+
+
+        
+        // function toggleInput(selectElement, targetId) {
+        //     var selectedValue = selectElement.value;
+        //     var inputElement = selectElement.parentNode.querySelector('input[name="' + selectElement.getAttribute("name") +
+        //         '"]');
+        //     var targetElement = document.getElementById(targetId);
+        //     if (selectedValue === "Tidak Ada di Daftar Ini") {
+        //         if (!inputElement) {
+        //             inputElement = document.createElement("input");
+        //             inputElement.setAttribute("type", "text");
+        //             inputElement.setAttribute("name", selectElement.getAttribute("name"));
+        //             inputElement.setAttribute("id", selectElement.getAttribute("id"));
+        //             inputElement.setAttribute("value", "{!! old('" + selectElement.getAttribute("name") + "') !!}");
+        //             inputElement.setAttribute("class", "form-control");
+        //             inputElement.setAttribute("style", "margin-top: 10px;");
+        //             selectElement.parentNode.appendChild(inputElement);
+        //         } else {
+        //             inputElement.style.display = "block";
+        //         }
+        //     } else {
+        //         if (inputElement) {
+        //             inputElement.style.display = "none";
+        //         }
+        //     }
+        //     if (selectedValue === "Tidak Ada di Daftar Ini") {
+        //         targetElement.style.display = "block";
+        //     } else {
+        //         targetElement.style.display = "none";
+        //     }
+        // }
     </script>
-    {{-- <script>
-                                    function toggleInput(selectElement, targetId) {
-                                        var selectedValue = selectElement.value;
-                                        var inputElement = selectElement.parentNode.querySelector('input[name="' + selectElement.getAttribute("name") +
-                                            '"]');
-                                        var targetElement = document.getElementById(targetId);
-                                        if (selectedValue === "Tidak Ada di Daftar Ini") {
-                                            if (!inputElement) {
-                                                inputElement = document.createElement("input");
-                                                inputElement.setAttribute("type", "text");
-                                                inputElement.setAttribute("name", selectElement.getAttribute("name"));
-                                                inputElement.setAttribute("id", selectElement.getAttribute("id"));
-                                                inputElement.setAttribute("value", "{!! old('" + selectElement.getAttribute("name") + "') !!}");
-                                                inputElement.setAttribute("class", "form-control");
-                                                inputElement.setAttribute("style", "margin-top: 10px;");
-                                                selectElement.parentNode.appendChild(inputElement);
-                                            } else {
-                                                inputElement.style.display = "block";
-                                            }
-                                        } else {
-                                            if (inputElement) {
-                                                inputElement.style.display = "none";
-                                            }
-                                        }
-                                        if (selectedValue === "Tidak Ada di Daftar Ini") {
-                                            targetElement.style.display = "block";
-                                        } else {
-                                            targetElement.style.display = "none";
-                                        }
-                                    }
-                                </script> --}}
 
     {{-- <div class="form-group">
                                     <label>Pembimbing 2</label>
