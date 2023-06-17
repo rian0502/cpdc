@@ -51,6 +51,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\MahasiswaBimbinganTA1Controller;
 use App\Http\Controllers\MahasiswaBimbinganTA2Controller;
 use App\Http\Controllers\MahasiswaBimbinganAkademikController;
+use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
+use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -166,8 +168,8 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
 
     Route::group(['prefix' => 'seminar', 'as' => 'seminar.'], function () {
         Route::resource('kp', KPcontroller::class)->names('kp');
-        Route::resource('tugas_akhir_1', TA1Controller::class)->names('tugas_akhir_1');
-        Route::resource('tugas_akhir_2', TA2Controller::class)->names('tugas_akhir_2');
+        Route::resource('tugas_akhir_1', MahasiswaTaSatuController::class)->names('tugas_akhir_1');
+        Route::resource('tugas_akhir_2', MahasiswaTaDuaController::class)->names('tugas_akhir_2');
     });
     Route::group(['prefix' => 'sidang', 'as' => 'sidang.'], function () {
         Route::resource('kompre', KompreController::class)->names('kompre');

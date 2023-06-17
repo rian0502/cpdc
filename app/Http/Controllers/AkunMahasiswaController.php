@@ -18,9 +18,7 @@ class AkunMahasiswaController extends Controller
      */
     public function index(Request $request)
     {
-        // $data = [
-        //     'students' => Mahasiswa::all()
-        // ];
+
         if ($request->ajax()) {
             $data = Mahasiswa::all();
             return DataTables::of($data)
