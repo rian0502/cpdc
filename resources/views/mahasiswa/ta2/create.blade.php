@@ -1,5 +1,20 @@
 @extends('layouts.admin')
 @section('admin')
+    <style>
+        #form-mobile {
+            display: none;
+        }
+
+        @media (min-width: 1px) and (max-width: 767px) {
+            #form {
+                display: none;
+            }
+
+            #form-mobile {
+                display: block;
+            }
+        }
+    </style>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -62,14 +77,14 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" id="form">
                                     <label>Judul atau Topik Tugas Akhir</label>
                                     <textarea name="judul_ta" id="judul_ta" class="form-control">{{ old('judul') }}</textarea>
                                     @error('judul_ta')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" id="form">
                                     <label class="weight-600">Persetujuan</label>
                                     <div class="custom-control custom-checkbox mb-5">
                                         <input type="checkbox" class="custom-control-input" name="agreement"
@@ -214,6 +229,30 @@
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                {{-- hanya tampil saat mode mobile --}}
+                                <div class="form-group" id="form-mobile">
+                                    <label>Judul atau Topik Tugas Akhir</label>
+                                    <textarea name="judul_ta" id="judul_ta" class="form-control">{{ old('judul') }}</textarea>
+                                    @error('judul_ta')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group" id="form-mobile">
+                                    <label class="weight-600">Persetujuan</label>
+                                    <div class="custom-control custom-checkbox mb-5">
+                                        <input type="checkbox" class="custom-control-input" name="agreement"
+                                            id="agreement" />
+                                        <label class="custom-control-label" for="agreement">
+                                            Saya dengan ini menyatakan bahwa dokumen kelengkapan berkas yang telah saya
+                                            kirimkan semuanya adalah benar dan dapat saya pertanggung-jawabkan. Saya
+                                            bersedia menerima sanksi bilamana saya terbukti melakukan pemalsuan dokumen
+                                            (seperti tanda tangan, Bukti Bayar UKT, Transkrip/KRS, dll) dengan ditunda
+                                            seminar saya minimal 1 semester atau bahkan sanksi yang lebih berat hingga
+                                            dikeluarkan (Drop Out).
+                                        </label>
+                                    </div>
+                                </div>
+                                {{-- hanya tampil saat mode mobile --}}
                             </div>
                         </div>
                         <div class="form-group">
@@ -245,5 +284,4 @@
             select.add(option);
         }
     </script>
-
 @endsection
