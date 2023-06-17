@@ -12,6 +12,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ModelController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\KompreController;
 use App\Http\Controllers\BaseNpmController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\JabatanController;
@@ -169,7 +170,7 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
         Route::resource('tugas_akhir_2', TA2Controller::class)->names('tugas_akhir_2');
     });
     Route::group(['prefix' => 'sidang', 'as' => 'sidang.'], function () {
-        Route::resource('kompre', KPcontroller::class)->names('kompre');
+        Route::resource('kompre', KompreController::class)->names('kompre');
     });
 });
 

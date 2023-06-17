@@ -14,6 +14,7 @@ class KompreController extends Controller
     public function index()
     {
         //
+        return view('mahasiswa.kompre.index');
     }
 
     /**
@@ -24,6 +25,7 @@ class KompreController extends Controller
     public function create()
     {
         //
+        return view('mahasiswa.kompre.create');
     }
 
     /**
@@ -57,6 +59,7 @@ class KompreController extends Controller
     public function edit($id)
     {
         //
+        return view('mahasiswa.kompre.edit');
     }
 
     /**
