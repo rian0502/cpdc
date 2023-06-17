@@ -185,8 +185,6 @@
                                 <div class="col-md-12 mb-3" style="display:block;word-wrap:break-word;">
                                     {{-- {{ $seminar->judul_kp }} --}}
                                 </div>
-
-
                             </div>
 
 

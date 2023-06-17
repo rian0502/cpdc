@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ModelSeminarKP;
+use Illuminate\Support\Facades\Crypt;
 
-class ValidasiSempController extends Controller
+class ValidasiBerkasTA1Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +16,10 @@ class ValidasiSempController extends Controller
     public function index()
     {
         //
+        $data = [
+            'seminar' => ModelSeminarKP::select('encrypt_id', 'proses_admin', 'mitra', 'id_mahasiswa')->where('proses_admin', '!=', 'Valid')->get()
+        ];
+        return view('admin.admin_berkas.validasi.seminar.ta1.index', $data);
     }
 
     /**
@@ -25,6 +30,7 @@ class ValidasiSempController extends Controller
     public function create()
     {
         //
+        return view('admin.admin_berkas.validasi.seminar.ta1.create');
     }
 
     /**
@@ -36,6 +42,7 @@ class ValidasiSempController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
@@ -58,6 +65,8 @@ class ValidasiSempController extends Controller
     public function edit($id)
     {
         //
+        
+        return view('admin.admin_berkas.validasi.seminar.ta1.edit');
     }
 
     /**
