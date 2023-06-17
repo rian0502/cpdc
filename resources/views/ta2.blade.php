@@ -23,12 +23,12 @@
                             <th class="center-align">No</th>
                             <th class="center-align">NPM</th>
                             <th class="center-align">Nama</th>
-                            <th class="center-align">Judul</th>
                             <th class="center-align">Tanggal</th>
+                            <th class="center-align">Ruangan</th>
+                            <th class="center-align">Judul</th>
                             <th class="center-align">Pembimbing 1</th>
                             <th class="center-align">Pembimbing 2</th>
                             <th class="center-align">Pembahas</th>
-                            <th class="center-align">Ruangan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,14 +36,15 @@
                             <td class="center-align">1</td>
                             <td class="center-align">2057031016</td>
                             <td class="center-align">Putu Putra Eka Persada</td>
-                            <td class="center-align"> : Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus
+                            <td class="center-align">30-05-2023</td>
+                            <td class="center-align">Ruang Seminar</td>
+                            <td class="center-align"> : Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                Voluptatibus
                                 dolore doloribus voluptates repellat consequatur totam reiciendis dolores architecto quas
                                 ipsa!</td>
-                            <td class="center-align"> : 30-05-2023</td>
                             <td class="center-align"> : Dr. John McQueen, M.A.</td>
                             <td class="center-align"> : Dr. John McQueen, M.A.</td>
                             <td class="center-align"> : Dr. John McQueen, M.A.</td>
-                            <td class="center-align"> : Ruang Seminar</td>
                         </tr>
                     </tbody>
                 </table>
