@@ -418,10 +418,10 @@
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('lab.kategori.index') }}"
-                                    class="{{ Request::is('admin/lab/kategori*') ? 'active' : '' }}">Kategori</a>
+                                        class="{{ Request::is('admin/lab/kategori*') ? 'active' : '' }}">Kategori</a>
                                 </li>
                                 <li><a href="{{ route('lab.model.index') }}"
-                                    class="{{ Request::is('admin/lab/model*') ? 'active' : '' }}">Model</a>
+                                        class="{{ Request::is('admin/lab/model*') ? 'active' : '' }}">Model</a>
                                 </li>
                                 <li><a href="{{ route('lab.barang.index') }}"
                                         class="{{ Request::is('admin/lab/barang*') ? 'active' : '' }}">Barang</a>
@@ -586,10 +586,12 @@
                                         Praktik</a>
                                 </li>
                                 <li><a href="{{ route('berkas.validasi.seminar.ta1.index') }}"
-                                        class="{{ Request::is('admin/berkas/validasi/seminar/ta1*') ? 'active' : '' }}">Tugas Akhir 1</a>
+                                        class="{{ Request::is('admin/berkas/validasi/seminar/ta1*') ? 'active' : '' }}">Tugas
+                                        Akhir 1</a>
                                 </li>
                                 <li><a href="{{ route('berkas.validasi.seminar.ta2.index') }}"
-                                        class="{{ Request::is('admin/berkas/validasi/seminar/ta2*') ? 'active' : '' }}">Tugas Akhir 2</a>
+                                        class="{{ Request::is('admin/berkas/validasi/seminar/ta2*') ? 'active' : '' }}">Tugas
+                                        Akhir 2</a>
                                 </li>
                                 <li><a href="{{ route('berkas.validasi.sidang.kompre.index') }}"
                                         class="{{ Request::is('admin/berkas/validasi/sidang/kompre*') ? 'active' : '' }}">Komprehensif</a>
