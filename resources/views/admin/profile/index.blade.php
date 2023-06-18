@@ -116,13 +116,13 @@
                             <div class="ml-5">
 
                             </div>
-                            <div class="ml-auto">
+                            <div class="ml-auto mb-3">
                                 <a href="{{ route('admin.pangkat.create') }}" class="btn btn-success btn-lg">Tambah
                                     Kepangkatan</a>
                             </div>
                         </div>
                         <div class="pb-20 m-3">
-                            <table class="table data-table-responsive stripe data-table-export nowrap ">
+                            <table class="table data-table-responsive stripe data-table-noexport nowrap ">
                                 <thead>
                                     <tr>
                                         <td>No</td>
