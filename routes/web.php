@@ -189,13 +189,21 @@ Route::name('auth.')->middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'attemptRegister'])->name('register.post');
 });
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('auth.logout');
+Route::get('/settings', [AuthController::class, 'settings'])->middleware('auth')->name('auth.settings');
+Route::post('/change-password', [AuthController::class, 'changePassword'])->middleware('auth')->name('auth.change.password');
 //end AUTH
 
 //routing untuk aktivasi email
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
+    if(auth()->user()){
+        $request->fulfill();
+    }else{
+        return redirect('/login')->with('message', 'Login first!');
+    }
     return redirect('/')->with('message', 'Email verified!');
 })->name('verification.verify');
+
+
 Route::get(
     '/email/verify',
     [AuthController::class, 'reactivation']
@@ -269,9 +277,6 @@ Route::get('/', function () {
 });
 Route::get('/team', function () {
     return view('team');
-});
-Route::get('/settings', function () {
-    return view('settings');
 });
 Route::get('/kp', function () {
     $jadwal_kp = JadwalSKP::where('tanggal_skp', '>=', date('Y-m-d'))->get();

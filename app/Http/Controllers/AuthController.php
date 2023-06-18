@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Password;
 use App\Http\Requests\SendEmailResetRequest;
 use App\Http\Requests\UpdateResetPasswordRequest;
 use App\Models\BaseNPM;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -123,5 +125,36 @@ class AuthController extends Controller
     public function reactivation()
     {
         return view('auth.activation');
+    }
+    public function settings(){
+        return view('settings');
+    }
+    public function changePassword(Request $req){
+        //validasi token 
+        if($req->_token != session()->token()){
+            return redirect()->back();
+        }else{
+            //check password old 
+            $user = User::find(Auth::user()->id);
+            if (password_verify($req->current_password, $user->password)){
+                $validation = $req->validate([
+                    'new_password' => 'required|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/',
+                    'confirm_new_password' => 'required|same:new_password',
+                ],[
+                    'new_password.required' => 'Password baru harus diisi',
+                    'new_password.min' => 'Password minimal 8 karakter',
+                    'new_password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, dan karakter',
+                    'confirm_new_password.required' => 'Konfirmasi password baru harus diisi',
+                    'confirm_new_password.same' => 'Konfirmasi password baru tidak cocok',
+                ]);
+                if($validation){
+                    $user->password = bcrypt($req->new_password);
+                    $user->save();
+                    return redirect()->route('dashboard')->with('success', 'Password berhasil diubah');
+                }
+            }else{
+                return redirect()->back()->with('error', 'Password lama tidak cocok');
+            }
+        }
     }
 }
