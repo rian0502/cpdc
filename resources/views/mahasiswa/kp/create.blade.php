@@ -41,7 +41,7 @@
                                 <div class="form-group">
                                     <label>Nama Mitra</label>
                                     <input autofocus name="mitra" value="{{ old('mitra') }}" id="mitra"
-                                        class="form-control" type="text" value="{{ old('mitra') }}"
+                                        class="form-control" type="text" 
                                         placeholder="Nama Mitra PKL/KP">
                                     @error('mitra')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
