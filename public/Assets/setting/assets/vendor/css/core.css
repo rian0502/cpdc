@@ -64,6 +64,23 @@
     }
 }
 
+@keyframes pulseAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-pulse {
+  animation: pulseAnimation 0.5s ease-in-out;
+}
+
+
 /* body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -2827,7 +2844,8 @@ textarea.form-control-lg {
     }
 }
 .btn:hover {
-    color: #697a8d;
+    /* color: #697a8d; */
+    color: #1885ff;
 }
 .btn-check:focus + .btn,
 .btn:focus {

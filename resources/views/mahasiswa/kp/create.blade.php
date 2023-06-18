@@ -7,9 +7,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js"></script>
 
     <style>
-         #form-mobile {
-                display: none;
-            }
+        #form-mobile {
+            display: none;
+        }
+
         @media (min-width: 1px) and (max-width: 767px) {
             #form {
                 display: none;
@@ -18,6 +19,24 @@
             #form-mobile {
                 display: block;
             }
+        }
+
+        @keyframes pulseAnimation {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .btn-pulse {
+            animation: pulseAnimation 0.5s ease-in-out;
         }
     </style>
 
@@ -41,8 +60,7 @@
                                 <div class="form-group">
                                     <label>Nama Mitra</label>
                                     <input autofocus name="mitra" value="{{ old('mitra') }}" id="mitra"
-                                        class="form-control" type="text" 
-                                        placeholder="Nama Mitra PKL/KP">
+                                        class="form-control" type="text" placeholder="Nama Mitra PKL/KP">
                                     @error('mitra')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -265,5 +283,16 @@
             option.text = tahun + "/" + (tahun + 1);
             select.add(option);
         }
+
+
+        var myButton = document.getElementById("submitButton");
+
+        myButton.addEventListener("click", function() {
+            myButton.classList.add("btn-pulse");
+
+            setTimeout(function() {
+                myButton.classList.remove("btn-pulse");
+            }, 500);
+        });
     </script>
 @endsection
