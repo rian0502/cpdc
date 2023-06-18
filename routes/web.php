@@ -270,6 +270,9 @@ Route::get('/', function () {
 Route::get('/team', function () {
     return view('team');
 });
+Route::get('/settings', function () {
+    return view('settings');
+});
 Route::get('/kp', function () {
     $jadwal_kp = JadwalSKP::where('tanggal_skp', '>=', date('Y-m-d'))->get();
     return view('kp', compact('jadwal_kp'));
