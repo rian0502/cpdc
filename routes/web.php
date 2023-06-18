@@ -195,9 +195,15 @@ Route::post('/change-password', [AuthController::class, 'changePassword'])->midd
 
 //routing untuk aktivasi email
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
+    if(auth()->user()){
+        $request->fulfill();
+    }else{
+        return redirect('/login')->with('message', 'Login first!');
+    }
     return redirect('/')->with('message', 'Email verified!');
 })->name('verification.verify');
+
+
 Route::get(
     '/email/verify',
     [AuthController::class, 'reactivation']
