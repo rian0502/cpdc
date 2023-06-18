@@ -17,7 +17,7 @@ class PrestasiMahasiswaController extends Controller
     public function index()
     {
         $data = [
-            'prestasi' => PrestasiMahasiswa::where('mahasiswa_id', Auth::user()->mahasiswa->first()->id)->get(),
+            'prestasi' => PrestasiMahasiswa::where('mahasiswa_id', Auth::user()->mahasiswa->id)->get(),
         ];
         return view('mahasiswa.profile.index', $data);
     }
@@ -48,7 +48,7 @@ class PrestasiMahasiswaController extends Controller
             'scala' => $request->scala,
             'capaian' => $request->capaian,
             'file_prestasi' => $nama_file,
-            'mahasiswa_id' => Auth::user()->mahasiswa->first()->id,
+            'mahasiswa_id' => Auth::user()->mahasiswa->id,
             'tanggal' => $request->tanggal,
         ];
         $insert_data = PrestasiMahasiswa::create($data);
