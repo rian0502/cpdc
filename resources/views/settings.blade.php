@@ -37,7 +37,7 @@
                 <div class="card mb-4">
                     <h1 class="card-header mb-3 mt-3" style="font-size: 20px;">Ubah Kata Sandi</h1>
                     <div class="card-body">
-                        <form action="#" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('auth.change.password') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="mb-3 col-md-6">

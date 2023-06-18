@@ -78,14 +78,14 @@
                             <div class="card-box height-100-p widget-style3 ">
                                 <div class="d-flex flex-wrap">
                                     <div class="widget-data">
-                                        <div class="weight-700 font-24 text-dark">75</div>
+                                        <div class="weight-700 font-24 text-dark">{{ $kp }}</div>
                                         <div class="font-14 text-secondary weight-500">
                                             Belum Tervalidasi
                                         </div>
                                     </div>
                                     <div class="widgets">
                                         <div class="icon" data-color="#00eccf">
-                                            <STROng>kp</STROng>
+                                            <STROng>KP</STROng>
                                         </div>
                                     </div>
                                 </div>
