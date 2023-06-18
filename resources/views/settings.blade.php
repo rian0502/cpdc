@@ -87,9 +87,9 @@
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                                {{-- <button type="reset" class="btn btn-outline-secondary">Cancel</button> --}}
+                                <button id="myButton" type="submit" class="btn btn-primary me-2">Simpan</button>
                             </div>
+                            {{-- <button type="reset" class="btn btn-outline-secondary">Cancel</button> --}}
                         </form>
                     </div>
                 </div>
@@ -138,6 +138,16 @@
                 confirmNewPasswordInput.type = 'password';
                 toggleConfirmNewPasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
             }
+        });
+
+        var myButton = document.getElementById("myButton");
+
+        myButton.addEventListener("click", function() {
+            myButton.classList.add("btn-pulse");
+
+            setTimeout(function() {
+                myButton.classList.remove("btn-pulse");
+            }, 500);
         });
     </script>
 @endsection

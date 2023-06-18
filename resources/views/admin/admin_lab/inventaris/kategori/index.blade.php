@@ -32,26 +32,30 @@
                                         <td>{{ $item->nama_kategori }}</td>
                                         <td>{{ $item->ket }}</td>
                                         <td>
-                                            <div class="table-actions">
-                                                <a class="edit" href="{{ route('lab.kategori.edit', $item->encrypt_id) }}">
-                                                    <button class="btn btn-warning">
-                                                        <i class="icon-copy fi-page-edit"></i>
-                                                        Edit
-                                                    </button>
+                                            <div class="dropdown">
+                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
+                                                    role="button" data-toggle="dropdown">
+                                                    <i class="fa fa-ellipsis-h"></i>
                                                 </a>
-                                                @if ($item->barangs->count() < 1)
-                                                    <form action="{{ route('lab.kategori.destroy', $item->encrypt_id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger"
-                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
-                                                            <i class="icon-copy dw dw-delete-3"></i>
-                                                            Hapus
-                                                        </button>
-                                                    </form>
-                                                @endif
-
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('lab.kategori.edit', $item->encrypt_id) }}">
+                                                        <i class="fa fa-pencil"></i>
+                                                        Edit</a>
+                                                    @if ($item->barangs->count() < 1)
+                                                        <form
+                                                            action="{{ route('lab.kategori.destroy', $item->encrypt_id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="dropdown-item text-danger"
+                                                                onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
+                                                                <i class="fa fa-trash"></i>
+                                                                Delete
+                                                            </button>
+                                                        </form>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -64,6 +68,84 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .delete {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .delete::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background-color: rgba(255, 0, 0, 0.2);
+            opacity: 0;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .delete:hover::before {
+            opacity: 1;
+        }
+
+        .delete .icon-copy {
+            transition: all 0.3s ease;
+        }
+
+        .delete:hover .icon-copy {
+            transform: rotate(360deg);
+        }
+
+        .delete.animated {
+            animation-name: shake;
+            animation-duration: 0.5s;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(-8px);
+            }
+
+            40% {
+                transform: translateX(8px);
+            }
+
+            60% {
+                transform: translateX(-8px);
+            }
+
+            80% {
+                transform: translateX(8px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+
+    <script>
+        const deleteButton = document.querySelector('.delete');
+
+        deleteButton.addEventListener('click', function() {
+            this.classList.add('animated');
+            setTimeout(() => {
+                this.classList.remove('animated');
+            }, 500);
+        });
+    </script>
 
     <!-- Input Validation End -->
 @endsection

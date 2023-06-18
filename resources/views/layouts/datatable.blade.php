@@ -492,9 +492,9 @@
                                         class="{{ Request::is('mahasiswa/seminar/tugas_akhir_2*') ? 'active' : '' }}">Tugas
                                         Akhir
                                         2</a></li>
-                                {{-- <li><a href="{{ route('mahasiswa.sidang.kompre.index') }}"
+                                <li><a href="{{ route('mahasiswa.sidang.kompre.index') }}"
                                         class="{{ Request::is('mahasiswa/sidang/kompre*') ? 'active' : '' }}">Sidang
-                                        Komprehensif</a></li> --}}
+                                        Komprehensif</a></li>
                             </ul>
                         </li>
                     @endrole

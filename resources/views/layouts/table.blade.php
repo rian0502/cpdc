@@ -26,12 +26,12 @@
     <link href="/Assets/src/lib/animate/animate.min.css" rel="stylesheet">
     <link href="/Assets/src/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="/Assets/src/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="/Assets/auth/vendors/styles/icon-font.min.css" />
     <link rel="stylesheet" type="text/css"
         href="/Assets/admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" type="text/css"
         href="/Assets/admin/src/plugins/datatables/css/responsive.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/Assets/auth/src/plugins/sweetalert2/sweetalert2.css" />
+    <link rel="stylesheet" type="text/css" href="/Assets/auth/src/plugins/sweetalert2/sweetalert2.css" />
 
     <!-- FontAwesome -->
     <link href="/Assets/FontAwesome/css/fontawesome.css" rel="stylesheet">
@@ -389,8 +389,6 @@
     <!-- Template Javascript -->
     <script src="/Assets/src/js/main.js"></script>
 
-
- 
     <script src="/Assets/admin/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
     <script src="/Assets/admin/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="/Assets/admin/src/plugins/datatables/js/table.js"></script>
@@ -404,7 +402,7 @@
 
     <!-- buttons for Export datatable -->
     <script src="/Assets/admin/src/plugins/datatables/js/dataTables.buttons.min.js"></script>
-    <script src="/Assets/admin/src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+    {{-- <script src="/Assets/admin/src/plugins/datatables/js/buttons.bootstrap4.min.js"></script> --}}
     <script src="/Assets/admin/src/plugins/datatables/js/buttons.print.min.js"></script>
     <script src="/Assets/admin/src/plugins/datatables/js/buttons.html5.min.js"></script>
     <script src="/Assets/admin/src/plugins/datatables/js/buttons.flash.min.js"></script>

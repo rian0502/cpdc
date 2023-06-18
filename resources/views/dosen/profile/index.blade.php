@@ -68,8 +68,7 @@
                         <div class="pd-20 card-box height-100-p">
                             <div class="profile-photo mt-2">
                                 {{-- <a href="#" class="edit-avatar" data-toggle="modal" data-target="#modal"> --}}
-                                <a href="{{ route('dosen.profile.edit', Auth::user()->dosen->nip) }}"
-                                    class="edit-avatar">
+                                <a href="{{ route('dosen.profile.edit', Auth::user()->dosen->nip) }}" class="edit-avatar">
                                     <i class="fa fa-pencil"></i>
                                 </a>
                                 <img src="/uploads/profile/{{ Auth::user()->profile_picture }}"
@@ -218,6 +217,7 @@
                                                                                             Delete</button>
                                                                                     </form>
                                                                                 </div>
+                                                                            </div>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
