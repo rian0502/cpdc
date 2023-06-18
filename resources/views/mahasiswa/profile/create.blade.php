@@ -59,8 +59,6 @@
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
-
-
                                 <div class="form-group">
                                     <label for="">Tanggal Lahir</label>
                                     <input name="tanggal_lahir"
