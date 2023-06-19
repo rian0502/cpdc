@@ -31,25 +31,29 @@
                                         <td>{{ $item->nama_model }}</td>
                                         <td>{{ $item->merk }}</td>
                                         <td>
-                                            <div class="table-actions">
-                                                <a class="edit" href="{{ route('lab.model.edit', $item->encrypt_id) }}">
-                                                    <button class="btn btn-warning">
-                                                        <i class="icon-copy fi-page-edit"></i>
-                                                        Edit
-                                                    </button>
+                                            <div class="dropdown">
+                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
+                                                    role="button" data-toggle="dropdown">
+                                                    <i class="fa fa-ellipsis-h"></i>
                                                 </a>
-                                                @if ($item->barangs->count() == 0)
-                                                    <form action="{{ route('lab.model.destroy', $item->encrypt_id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-danger">
-                                                            <i class="icon-copy fi-page-delete"></i>
-                                                            Hapus
-                                                        </button>
-                                                    </form>
-                                                @endif
-
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('lab.model.edit', $item->encrypt_id) }}">
+                                                        <i class="fa fa-pencil"></i>
+                                                        Edit</a>
+                                                    @if ($item->barangs->count() < 1)
+                                                        <form action="{{ route('lab.model.destroy', $item->encrypt_id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="dropdown-item text-danger"
+                                                                onclick="return confirm('Apakah Anda yakin ingin menghapus model ini?')">
+                                                                <i class="fa fa-trash"></i>
+                                                                Delete
+                                                            </button>
+                                                        </form>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -58,7 +62,25 @@
                         </table>
                     </div>
                 </div>
+                {{-- <div class="table-actions">
+                    <a class="edit" href="{{ route('lab.model.edit', $item->encrypt_id) }}">
+                        <button class="btn btn-warning">
+                            <i class="icon-copy fi-page-edit"></i>
+                            Edit
+                        </button>
+                    </a>
+                    @if ($item->barangs->count() == 0)
+                        <form action="{{ route('lab.model.destroy', $item->encrypt_id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger">
+                                <i class="icon-copy fi-page-delete"></i>
+                                Hapus
+                            </button>
+                        </form>
+                    @endif
 
+                </div> --}}
             </div>
         </div>
     </div>

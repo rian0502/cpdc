@@ -129,8 +129,6 @@
                                     {{ $seminar->judul_kp }}
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
 

@@ -230,7 +230,7 @@
                         @elseif(auth()->user()->hasRole('jurusan'))
                             <a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profil</a>
                         @endif
-                        <a class="dropdown-item" href="/pengaturan"><i class="dw dw-settings2"></i> Pengaturan</a>
+                        <a class="dropdown-item" href="/settings"><i class="dw dw-settings2"></i> Pengaturan</a>
                         <a class="dropdown-item" href="/bantuan"><i class="dw dw-help"></i> Bantuan</a>
                         <a class="dropdown-item" href="/logout"><i class="dw dw-logout"></i> Keluar</a>
                     </div>
@@ -492,9 +492,9 @@
                                         class="{{ Request::is('mahasiswa/seminar/tugas_akhir_2*') ? 'active' : '' }}">Tugas
                                         Akhir
                                         2</a></li>
-                                {{-- <li><a href="{{ route('mahasiswa.sidang.kompre.index') }}"
+                                <li><a href="{{ route('mahasiswa.sidang.kompre.index') }}"
                                         class="{{ Request::is('mahasiswa/sidang/kompre*') ? 'active' : '' }}">Sidang
-                                        Komprehensif</a></li> --}}
+                                        Komprehensif</a></li>
                             </ul>
                         </li>
                     @endrole

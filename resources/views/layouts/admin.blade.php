@@ -215,7 +215,7 @@
                         @elseif(auth()->user()->hasRole('jurusan'))
                             <a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profil</a>
                         @endif
-                        <a class="dropdown-item" href="/pengaturan"><i class="dw dw-settings2"></i> Pengaturan</a>
+                        <a class="dropdown-item" href="/settings"><i class="dw dw-settings2"></i> Pengaturan</a>
                         <a class="dropdown-item" href="/bantuan"><i class="dw dw-help"></i> Bantuan</a>
                         <a class="dropdown-item" href="/logout"><i class="dw dw-logout"></i> Keluar</a>
                     </div>

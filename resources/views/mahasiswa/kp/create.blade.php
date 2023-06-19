@@ -6,6 +6,40 @@
     <!-- jquery-dateFormat.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js"></script>
 
+    <style>
+        #form-mobile {
+            display: none;
+        }
+
+        @media (min-width: 1px) and (max-width: 767px) {
+            #form {
+                display: none;
+            }
+
+            #form-mobile {
+                display: block;
+            }
+        }
+
+        @keyframes pulseAnimation {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .btn-pulse {
+            animation: pulseAnimation 0.5s ease-in-out;
+        }
+    </style>
+
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
@@ -17,7 +51,8 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form id="formStatus" action="{{ route('mahasiswa.seminar.kp.store') }}" method="POST" enctype="multipart/form-data">
+                    <form id="formStatus" action="{{ route('mahasiswa.seminar.kp.store') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
@@ -25,8 +60,7 @@
                                 <div class="form-group">
                                     <label>Nama Mitra</label>
                                     <input autofocus name="mitra" value="{{ old('mitra') }}" id="mitra"
-                                        class="form-control" type="text" value="{{ old('mitra') }}"
-                                        placeholder="Nama Mitra PKL/KP">
+                                        class="form-control" type="text" placeholder="Nama Mitra PKL/KP">
                                     @error('mitra')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -81,14 +115,14 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" id="form">
                                     <label>Judul atau Topik PKL/KP</label>
                                     <textarea name="judul_kp" id="judul" class="form-control" name="judul_kp">{{ old('judul_kp') }}</textarea>
                                     @error('judul_kp')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" id="form">
                                     <label class="weight-600">Persetujuan</label>
                                     <div class="custom-control custom-checkbox mb-5">
                                         <input type="checkbox" class="custom-control-input" name="agreement"
@@ -193,8 +227,31 @@
                                     @error('berkas_seminar_pkl')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
-
                                 </div>
+                                {{-- hanya tampil saat mode mobile --}}
+                                <div class="form-group" id="form-mobile">
+                                    <label>Judul atau Topik</label>
+                                    <textarea name="judul_kp" id="judul" class="form-control" name="judul_kp">{{ old('judul_kp') }}</textarea>
+                                    @error('judul_kp')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group" id="form-mobile">
+                                    <label class="weight-600">Persetujuan</label>
+                                    <div class="custom-control custom-checkbox mb-5">
+                                        <input type="checkbox" class="custom-control-input" name="agreement"
+                                            id="agreement" />
+                                        <label class="custom-control-label" for="agreement">
+                                            Saya dengan ini menyatakan bahwa dokumen kelengkapan berkas yang telah saya
+                                            kirimkan semuanya adalah benar dan dapat saya pertanggung-jawabkan. Saya
+                                            bersedia menerima sanksi bilamana saya terbukti melakukan pemalsuan dokumen
+                                            (seperti tanda tangan, Bukti Bayar UKT, Transkrip/KRS, dll) dengan ditunda
+                                            seminar saya minimal 1 semester atau bahkan sanksi yang lebih berat hingga
+                                            dikeluarkan (Drop Out).
+                                        </label>
+                                    </div>
+                                </div>
+                                {{-- hanya tampil saat mode mobile --}}
                             </div>
                         </div>
                         <div class="form-group">
@@ -226,5 +283,16 @@
             option.text = tahun + "/" + (tahun + 1);
             select.add(option);
         }
+
+
+        var myButton = document.getElementById("submitButton");
+
+        myButton.addEventListener("click", function() {
+            myButton.classList.add("btn-pulse");
+
+            setTimeout(function() {
+                myButton.classList.remove("btn-pulse");
+            }, 500);
+        });
     </script>
 @endsection

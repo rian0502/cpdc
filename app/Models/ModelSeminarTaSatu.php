@@ -53,4 +53,5 @@ class ModelSeminarTaSatu extends Model
     public function ba_seminar(){
         return $this->hasOne(ModelBaSeminarTaSatu::class);
     }
+    
 }

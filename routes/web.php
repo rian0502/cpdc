@@ -51,6 +51,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\MahasiswaBimbinganTA1Controller;
 use App\Http\Controllers\MahasiswaBimbinganTA2Controller;
 use App\Http\Controllers\MahasiswaBimbinganAkademikController;
+use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
+use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -166,8 +168,8 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
 
     Route::group(['prefix' => 'seminar', 'as' => 'seminar.'], function () {
         Route::resource('kp', KPcontroller::class)->names('kp');
-        Route::resource('tugas_akhir_1', TA1Controller::class)->names('tugas_akhir_1');
-        Route::resource('tugas_akhir_2', TA2Controller::class)->names('tugas_akhir_2');
+        Route::resource('tugas_akhir_1', MahasiswaTaSatuController::class)->names('tugas_akhir_1');
+        Route::resource('tugas_akhir_2', MahasiswaTaDuaController::class)->names('tugas_akhir_2');
     });
     Route::group(['prefix' => 'sidang', 'as' => 'sidang.'], function () {
         Route::resource('kompre', KompreController::class)->names('kompre');
@@ -187,13 +189,21 @@ Route::name('auth.')->middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'attemptRegister'])->name('register.post');
 });
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('auth.logout');
+Route::get('/settings', [AuthController::class, 'settings'])->middleware('auth')->name('auth.settings');
+Route::post('/change-password', [AuthController::class, 'changePassword'])->middleware('auth')->name('auth.change.password');
 //end AUTH
 
 //routing untuk aktivasi email
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
+    if(auth()->user()){
+        $request->fulfill();
+    }else{
+        return redirect('/login')->with('message', 'Login first!');
+    }
     return redirect('/')->with('message', 'Email verified!');
 })->name('verification.verify');
+
+
 Route::get(
     '/email/verify',
     [AuthController::class, 'reactivation']
