@@ -249,6 +249,7 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::post('base_npm/add/excel', [BaseNpmController::class, 'storeExcel'])->name('base_npm.store.excel');
     Route::resource('akun_admin', AkunAdminController::class);
     Route::resource('base_npm', BaseNpmController::class);
+    Route::get('BaseNpm', [BaseNpmController::class, 'BaseNpm'])->name('base_npm.ajax');
 });
 
 // route FE

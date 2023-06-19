@@ -218,7 +218,7 @@
 
                 processing: true,
                 serverSide: true,
-                ajax: '{{ route('sudo.base_npm.index') }}',
+                ajax: '{{ route('sudo.base_npm.ajax') }}',
                 columns: [{
                         data: null,
                         name: 'no',
