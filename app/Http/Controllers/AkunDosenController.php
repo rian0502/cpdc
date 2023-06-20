@@ -149,15 +149,12 @@ class AkunDosenController extends Controller
             ->orderBy('usia_group')
             ->get();
 
-        $data = [];
-
-        foreach ($query as $result) {
-            $item = [
+        $data = $query->map(function ($result) {
+            return [
                 'usia_group' => $result->usia_group . '++',
                 'total' => $result->total,
             ];
-            $data[] = $item;
-        }
+        });
 
         return response()->json($data);
     }
@@ -167,12 +164,13 @@ class AkunDosenController extends Controller
     {
         $results = DB::table('dosen')
             ->select('jabatan', DB::raw('COUNT(*) as jumlah_dosen'))
-            ->join('history_jabatan_dosen', 'dosen.id', '=', 'history_jabatan_dosen.dosen_id')
-            ->whereRaw('history_jabatan_dosen.tgl_sk = (SELECT MAX(tgl_sk) FROM history_jabatan_dosen WHERE dosen_id = dosen.id)')
+            ->join('history_jabatan_dosen', function ($join) {
+                $join->on('dosen.id', '=', 'history_jabatan_dosen.dosen_id')
+                    ->whereRaw('history_jabatan_dosen.tgl_sk = (SELECT MAX(tgl_sk) FROM history_jabatan_dosen WHERE dosen_id = dosen.id)');
+            })
             ->groupBy('jabatan')
             ->get();
 
         return response()->json($results);
     }
-
 }
