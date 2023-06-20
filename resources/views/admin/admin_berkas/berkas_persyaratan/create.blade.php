@@ -19,12 +19,19 @@
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Nama File</label>
-                                    <input value="" autofocus name="nama_file" id="nama_file"
-                                        class="form-control @error('') form-control-danger @enderror" type="text"
-                                        placeholder="Nama File">
+                                    <label>Nama File <small> <a id="link-nama_file" href="#" target="_blank"
+                                                style="display: none;">Lihat File</a> </small></label>
+                                    <div class="custom-file">
+                                        <label class="custom-file-label" for="link-nama_file"
+                                            id="label-nama_file">Pilih File</label>
+                                        <input value="{{ old('nama_file') }}" accept=".pdf" autofocus
+                                            name="nama_file" id="file-nama_file"
+                                            class="custom-file-input form-control @error('nama_file') form-control-danger @enderror"
+                                            type="file" placeholder="FILE SK"
+                                            onchange="updateFileNameAndLink('file-nama_file','label-nama_file','link-nama_file')">
+                                    </div>
                                     @error('nama_file')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -33,7 +40,8 @@
                             <div class="merek weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>File</label>
-                                    <input type="file" class="form-control" accept="application/pdf" />
+                                    <input type="file" name="file_persyaratan" class="form-control"
+                                        accept="application/pdf" />
                                 </div>
 
                             </div>

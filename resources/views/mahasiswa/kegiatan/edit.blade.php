@@ -21,7 +21,7 @@
                                     <label>Nama Aktivitas</label>
                                     <input autofocus name="nama_aktivitas" id="nama_aktivitas"
                                         class="form-control @error('nama_aktivitas') form-control-danger @enderror"
-                                        type="text" value="{{old('nama_aktivitas', $kegiatan->nama_aktivitas)}}"
+                                        type="number" value="{{old('nama_aktivitas', $kegiatan->nama_aktivitas)}}"
                                         placeholder="Nama Aktivitas">
                                     @error('nama_aktivitas')
                                     <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
@@ -40,7 +40,7 @@
                                     <label>SKS Konversi</label>
                                     <input autofocus name="sks_konversi" id="sks_konversi"
                                         class="form-control @error('sks_konversi') form-control-danger @enderror""
-                                        type="text"
+                                        type="number"
                                         value="{{old('sks_konversi', $kegiatan->sks_konversi)}}"
                                         placeholder="Tuliskan sks yang akan dikonversikan.">
                                     @error('sks_konversi')

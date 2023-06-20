@@ -15,19 +15,13 @@ class BaseNpmController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         //
 
-        if($request -> ajax()){
-            $data = BaseNpm::latest()->get();
-            return DataTables::of($data)
-            ->toJson();
 
-        }
 
         return view('npm.index');
-
     }
 
     /**
@@ -50,13 +44,12 @@ class BaseNpmController extends Controller
     {
         //
 
-        foreach($request->npm as $npm){
+        foreach ($request->npm as $npm) {
             $data = new BaseNpm();
             $data->npm = $npm;
             $data->save();
         }
-        return redirect()->route('sudo.base_npm.index')->with('success','Data Berhasil Diupload');
-
+        return redirect()->route('sudo.base_npm.index')->with('success', 'Data Berhasil Diupload');
     }
     public function storeExcel(Request $request)
     {
@@ -67,7 +60,7 @@ class BaseNpmController extends Controller
         $spreadsheet = $reader->load($fileXl);
         $sheet = $spreadsheet->getActiveSheet()->toArray();
         //loop data
-        foreach($sheet as $key => $row){
+        foreach ($sheet as $key => $row) {
             if ($key == 0) {
                 continue;
             }
@@ -78,7 +71,7 @@ class BaseNpmController extends Controller
             $baseNPM->updated_at = now();
             $baseNPM->save();
         }
-        return redirect()->route('sudo.base_npm.index')->with('success','Data Berhasil Diupload');
+        return redirect()->route('sudo.base_npm.index')->with('success', 'Data Berhasil Diupload');
     }
 
     /**
@@ -125,5 +118,13 @@ class BaseNpmController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function BaseNpm(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = BaseNpm::latest()->get();
+            return DataTables::of($data)
+                ->toJson();
+        }
     }
 }

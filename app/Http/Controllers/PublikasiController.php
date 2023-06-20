@@ -33,7 +33,7 @@ class PublikasiController extends Controller
     {
         //
         $data = [
-            'dosens' => Dosen::whereNotIn('id', [Auth::user()->dosen[0]->id])->get(),
+            'dosens' => Dosen::whereNotIn('id', [Auth::user()->dosen->id])->get(),
         ];
         return view('dosen.publikasi.create', $data);
     }
