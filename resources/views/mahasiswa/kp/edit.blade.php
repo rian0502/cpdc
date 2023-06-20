@@ -81,8 +81,8 @@
 
                                 <div class="form-group">
                                     <label>Judul atau Topik PKL/KP</label>
-                                    <textarea id="judul" name="judul" class="form-control">{{ $seminar->judul_kp }}</textarea>
-                                    @error('judul')
+                                    <textarea id="judul_kp" name="judul_kp" class="form-control">{{ $seminar->judul_kp }}</textarea>
+                                    @error('judul_kp')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -101,7 +101,9 @@
                                         </label>
                                     </div>
                                 </div>
-
+                                @error('agreement')
+                                    <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
@@ -169,43 +171,43 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                <label>
-                                    Berkas Kelengkapan
-                                    <small></small>
+                                    <label>
+                                        Berkas Kelengkapan
+                                        <small></small>
                                         <a target="_blank" href="/uploads/syarat_seminar/{{ $syarat->path_file }}">Lihat
                                             Persyaratan</a>
-                                    </small>
-                                </label>
-                                <div class="custom-file mb-1">
-                                    <label class="custom-file-label" for="link-berkas_seminar_pkl"
-                                        id="label-berkas_seminar_pkl">Pilih File</label>
-                                    <input value="{{ old('berkas_seminar_pkl') }}" accept=".pdf" autofocus
-                                        name="berkas_seminar_pkl" id="file-berkas_seminar_pkl"
-                                        class="custom-file-input form-control @error('berkas_seminar_pkl') form-control-danger @enderror"
-                                        type="file" placeholder="FILE SK"
-                                        onchange="updateFileNameAndLink('file-berkas_seminar_pkl','label-berkas_seminar_pkl','link-berkas_seminar_pkl')">
+                                        </small>
+                                    </label>
+                                    <div class="custom-file mb-1">
+                                        <label class="custom-file-label" for="link-berkas_seminar_pkl"
+                                            id="label-berkas_seminar_pkl">Pilih File</label>
+                                        <input value="{{ old('berkas_seminar_pkl') }}" accept=".pdf" autofocus
+                                            name="berkas_seminar_pkl" id="file-berkas_seminar_pkl"
+                                            class="custom-file-input form-control @error('berkas_seminar_pkl') form-control-danger @enderror"
+                                            type="file" placeholder="FILE SK"
+                                            onchange="updateFileNameAndLink('file-berkas_seminar_pkl','label-berkas_seminar_pkl','link-berkas_seminar_pkl')">
+                                    </div>
+                                    <small class="mt-2"> <a id="link-berkas_seminar_pkl" href="#"
+                                            target="_blank" style="display: none;">Lihat File</a> </small>
+                                    @error('berkas_seminar_pkl')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
+
                                 </div>
-                                <small class="mt-2"> <a id="link-berkas_seminar_pkl" href="#" target="_blank"
-                                        style="display: none;">Lihat File</a> </small>
-                                @error('berkas_seminar_pkl')
-                                    <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
-                                @enderror
 
                             </div>
-
                         </div>
+                        <div class="form-group">
+                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                    <a href="/mahasiswa/seminar/kp">
+                        <button class="batal btn btn-secondary">Batal</button>
+                    </a>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="submit btn btn-primary">Submit</button>
-                </div>
-                </form>
-                <a href="/mahasiswa/seminar/kp">
-                    <button class="batal btn btn-secondary">Batal</button>
-                </a>
             </div>
         </div>
-    </div>
-    <!-- Input Validation End -->
+        <!-- Input Validation End -->
     </div>
 
     <script>

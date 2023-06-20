@@ -85,7 +85,7 @@
                             <h2 class="text-center text-primary">Aktivasi Akun</h2>
                         </div>
                         <h6 class="mb-20" style="text-align: center; margin-top:-20px;">
-                            Tekan Tombol kirim dan cek email Anda untuk aktivasi akun
+                            Tekan Tombol kirim Jika belum menerima email dalam waktu yang cukup lama dan cek email Anda untuk aktivasi akun
                         </h6>
                         @if (session('success'))
                             <div class="alert alert-success">

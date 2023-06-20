@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\PrestasiMahasiswa;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProfileMahasiswa;
+use App\Http\Requests\UpdateProfileMahasiswaRequest;
 use App\Models\AktivitasMahasiswa;
 use App\Models\Dosen;
 use App\Models\User;
@@ -110,9 +111,8 @@ class ProfileMahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProfileMahasiswaRequest $request, $id)
     {
-        //
         $mahasiswa = Mahasiswa::where('npm', $id)->first();
         if(Auth::user()->id != $mahasiswa->user_id){
             return redirect()->back();
@@ -149,5 +149,6 @@ class ProfileMahasiswaController extends Controller
     public function destroy($id)
     {
         //
+        return redirect()->back();
     }
 }
