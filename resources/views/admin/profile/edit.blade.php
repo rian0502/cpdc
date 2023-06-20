@@ -35,7 +35,8 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('admin.profile.update', $admin->encrypt_id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.profile.update', $admin->encrypt_id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="form-group mb-3 pb-2">
@@ -61,8 +62,8 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>NAMA</label>
-                                    <input value="{{ $admin->nama_administrasi }}" autofocus name="nama_admin"
-                                        id="nama"
+                                    <input value="{{ old('nama_admin', $admin->nama_administrasi) }}" autofocus
+                                        name="nama_admin" id="nama"
                                         class="form-control @error('nama_admin') form-control-danger @enderror"
                                         type="text" placeholder="NAMA">
                                     @error('nama_admin')
@@ -71,7 +72,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>NIP</label>
-                                    <input value="{{ $admin->nip }}" autofocus name="nip" id="nip"
+                                    <input value="{{ old('nip', $admin->nip) }}" autofocus name="nip" id="nip"
                                         class="form-control @error('nip') form-control-danger @enderror" type="number"
                                         placeholder="NIP">
                                     @error('nip')
@@ -80,16 +81,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label>NO TELPHONE</label>
-                                    <input value="{{ $admin->no_hp }}" autofocus name="no_hp" id="no_hp"
-                                        class="form-control @error('no_hp') form-control-danger @enderror" type="number"
-                                        placeholder="NO TELPHONE">
+                                    <input value="{{ old('no_hp', $admin->no_hp) }}" autofocus name="no_hp"
+                                        id="no_hp" class="form-control @error('no_hp') form-control-danger @enderror"
+                                        type="number" placeholder="NO TELPHONE">
                                     @error('no_hp')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>ALAMAT</label>
-                                    <input value="{{ $admin->alamat }}" autofocus name="alamat" id="alamat"
+                                    <input value="{{ old('alamat', $admin->alamat) }}" autofocus name="alamat" id="alamat"
                                         class="form-control @error('alamat') form-control-danger @enderror" type="text"
                                         placeholder="ALAMAT">
                                     @error('alamat')
@@ -103,7 +104,7 @@
 
                                 <div class="form-group">
                                     <label>TEMPAT LAHIR</label>
-                                    <input value="{{ $admin->tempat_lahir }}" autofocus name="tempat_lahir"
+                                    <input value="{{ old('tempat_lahir', $admin->tempat_lahir) }}" autofocus name="tempat_lahir"
                                         id="tempat_lahir"
                                         class="form-control @error('tempat_lahir') form-control-danger @enderror"
                                         type="text" placeholder="TEMPAT LAHIR">
@@ -113,8 +114,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>TANGGAL LAHIR</label>
-                                    <input value="{{ $admin->tanggal_lahir }}" autofocus
-                                        name="tanggal_lahir" id="tanggal_lahir"
+                                    <input value="{{ old('tanggal_lahir', $admin->tanggal_lahir) }}" autofocus name="tanggal_lahir"
+                                        id="tanggal_lahir"
                                         class="form-control @error('tanggal_lahir') form-control-danger @enderror"
                                         type="date" placeholder="TANGGAL LAHIR">
                                     @error('tanggal_lahir')
@@ -127,13 +128,13 @@
                                         <div class="custom-control custom-radio custom-control-inline pb-0">
                                             <input type="radio" id="male" name="gender" value="Laki-laki"
                                                 class="custom-control-input"
-                                                {{ $admin->jenis_kelamin == 'Laki-laki' ? 'checked' : '' }} />
+                                                {{ old('gender', $admin->jenis_kelamin) == 'Laki-laki' ? 'checked' : '' }} />
                                             <label class="custom-control-label" for="male">Pria</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline pb-0">
                                             <input type="radio" id="female" name="gender" value="Perempuan"
                                                 class="custom-control-input"
-                                                {{ $admin->jenis_kelamin == 'Perempuan' ? 'checked' : '' }} />
+                                                {{ old('gender', $admin->jenis_kelamin) == 'Perempuan' ? 'checked' : '' }} />
                                             <label class="custom-control-label" for="female">Wanita</label>
                                         </div>
                                     </div>

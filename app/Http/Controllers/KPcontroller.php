@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\ModelSeminarKP;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\StoreSeminarKP;
+use App\Http\Requests\UpdateSeminarKpRequest;
 use App\Models\BaSKP;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\BerkasPersyaratanSeminar;
@@ -115,7 +116,7 @@ class KPcontroller extends Controller
     {
         //
         $syarat = BerkasPersyaratanSeminar::find(1);
-        $seminar = ModelSeminarKP::select('id','id_mahasiswa')->where('id', Crypt::decrypt($id))->first();
+        $seminar = ModelSeminarKP::select('id', 'id_mahasiswa')->where('id', Crypt::decrypt($id))->first();
         if ($seminar->id_mahasiswa != auth()->user()->mahasiswa->id) {
             return redirect()->back();
         }
@@ -135,10 +136,10 @@ class KPcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSeminarKpRequest $request, $id)
     {
         $seminarKp = ModelSeminarKP::find(Crypt::decrypt($id));
-        if ($request->file('berkas_seminar_pkl')){
+        if ($request->file('berkas_seminar_pkl')) {
             $file_seminar = $request->file('berkas_seminar_pkl');
             $file_before = $seminarKp->berkas_seminar_pkl;
             unlink(public_path('uploads/syarat_seminar_kp/' . $file_before));
@@ -151,7 +152,7 @@ class KPcontroller extends Controller
         $seminarKp->sks = $request->sks;
         $seminarKp->tahun_akademik = $request->tahun_akademik;
         $seminarKp->region = $request->region;
-        $seminarKp->judul_kp = $request->judul;
+        $seminarKp->judul_kp = $request->judul_kp;
         $seminarKp->id_dospemkp = Crypt::decrypt($request->id_dospemkp);
         $seminarKp->pembimbing_lapangan = $request->pembimbing_lapangan;
         $seminarKp->ni_pemlap = $request->ni_pemlap;
@@ -164,5 +165,4 @@ class KPcontroller extends Controller
         $seminarKp->save();
         return redirect()->route('mahasiswa.seminar.kp.index')->with('success', 'Data Seminar KP Berhasil Diubah');
     }
-
 }

@@ -198,9 +198,9 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     if(auth()->user()){
         $request->fulfill();
     }else{
-        return redirect('/login')->with('message', 'Login first!');
+        return redirect('/login')->with('error', 'Login dulu Sebelum Vertifikasi!');
     }
-    return redirect('/')->with('message', 'Email verified!');
+    return redirect('/dashboard')->with('success', 'Akun Berhasil di Aktivasi !');
 })->name('verification.verify');
 
 

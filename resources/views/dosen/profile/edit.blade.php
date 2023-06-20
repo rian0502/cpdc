@@ -35,7 +35,8 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('dosen.profile.update',$dosen->nip) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('dosen.profile.update', $dosen->nip) }}" method="POST"
+                        enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="form-group mb-3 pb-2">
@@ -46,8 +47,8 @@
 
                                 </div>
                                 <div class="center-div">
-                                    <input value="{{Auth::user()->profile_picture}}" accept="image/*" autofocus name="foto_profile"
-                                        id="foto_profile"
+                                    <input value="{{ Auth::user()->profile_picture }}" accept="image/*" autofocus
+                                        name="foto_profile" id="foto_profile"
                                         class="mt-2 file-foto form-control @error('foto_profile') form-control-danger @enderror"
                                         type="file" placeholder="FOTO PROFILE" onchange="previewFile(event)">
                                     @error('foto_profile')
@@ -61,7 +62,8 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>NAMA</label>
-                                    <input value="{{ $dosen->nama_dosen }}" autofocus name="nama_dosen" id="nama"
+                                    <input value="{{ old('nama_dosen', $dosen->nama_dosen) }}" autofocus name="nama_dosen"
+                                        id="nama"
                                         class="form-control @error('nama_dosen') form-control-danger @enderror"
                                         type="text" placeholder="NAMA">
                                     @error('nama_dosen')
@@ -70,7 +72,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>NIP</label>
-                                    <input value="{{ $dosen->nip }}" autofocus name="nip" id="nip"
+                                    <input value="{{ old('nip', $dosen->nip) }}" autofocus name="nip" id="nip"
                                         class="form-control @error('nip') form-control-danger @enderror" type="number"
                                         placeholder="NIP">
                                     @error('nip')
@@ -79,7 +81,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>NIDN</label>
-                                    <input value="{{ $dosen->nidn }}" autofocus name="nidn" id="nidn"
+                                    <input value="{{ old('nidn', $dosen->nidn) }}" autofocus name="nidn" id="nidn"
                                         class="form-control @error('nidn') form-control-danger @enderror" type="number"
                                         placeholder="NIDN">
                                     @error('nidn')
@@ -88,9 +90,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label>NO TELPHONE</label>
-                                    <input value="{{ $dosen->no_hp }}" autofocus name="no_hp" id="no_hp"
-                                        class="form-control @error('no_hp') form-control-danger @enderror" type="number"
-                                        placeholder="NO TELPHONE">
+                                    <input value="{{ old('no_hp', $dosen->no_hp) }}" autofocus name="no_hp"
+                                        id="no_hp" class="form-control @error('no_hp') form-control-danger @enderror"
+                                        type="number" placeholder="NO TELPHONE">
                                     @error('no_hp')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -101,9 +103,9 @@
                             <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>ALAMAT</label>
-                                    <input value="{{ $dosen->alamat }}" autofocus name="alamat" id="alamat"
-                                        class="form-control @error('alamat') form-control-danger @enderror" type="text"
-                                        placeholder="ALAMAT">
+                                    <input value="{{ old('alamat', $dosen->alamat) }}" autofocus name="alamat"
+                                        id="alamat" class="form-control @error('alamat') form-control-danger @enderror"
+                                        type="text" placeholder="ALAMAT">
                                     @error('alamat')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -111,8 +113,8 @@
 
                                 <div class="form-group">
                                     <label>TEMPAT LAHIR</label>
-                                    <input value="{{ $dosen->tempat_lahir }}" autofocus name="tempat_lahir"
-                                        id="tempat_lahir"
+                                    <input value="{{ old('tempat_lahir', $dosen->tempat_lahir) }}" autofocus
+                                        name="tempat_lahir" id="tempat_lahir"
                                         class="form-control @error('tempat_lahir') form-control-danger @enderror"
                                         type="text" placeholder="TEMPAT LAHIR">
                                     @error('tempat_lahir')
@@ -121,8 +123,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>TANGGAL LAHIR</label>
-                                    <input value="{{ $dosen->tanggal_lahir }}" autofocus name="tanggal_lahir"
-                                        id="tanggal_lahir"
+                                    <input value="{{ old('tanggal_lahir', $dosen->tanggal_lahir) }}" autofocus
+                                        name="tanggal_lahir" id="tanggal_lahir"
                                         class="form-control @error('tanggal_lahir') form-control-danger @enderror"
                                         type="date" placeholder="TANGGAL LAHIR">
                                     @error('tanggal_lahir')
@@ -135,13 +137,13 @@
                                         <div class="custom-control custom-radio custom-control-inline pb-0">
                                             <input type="radio" id="male" name="gender" value="Laki-laki"
                                                 class="custom-control-input"
-                                                {{ $dosen->jenis_kelamin == 'Laki-laki' ? 'checked' : '' }} />
+                                                {{ old('gender', $dosen->jenis_kelamin) == 'Laki-laki' ? 'checked' : '' }} />
                                             <label class="custom-control-label" for="male">Pria</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline pb-0">
                                             <input type="radio" id="female" name="gender" value="Perempuan"
                                                 class="custom-control-input"
-                                                {{ $dosen->jenis_kelamin == 'Perempuan' ? 'checked' : '' }} />
+                                                {{ old('gender', $dosen->jenis_kelamin) == 'Perempuan' ? 'checked' : '' }} />
                                             <label class="custom-control-label" for="female">Wanita</label>
                                         </div>
                                     </div>

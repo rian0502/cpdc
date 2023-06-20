@@ -62,7 +62,7 @@
                                 <div class="form-group">
                                     <label for="">Tanggal Lahir</label>
                                     <input name="tanggal_lahir"
-                                        class="form-control @error('tanggal_lahir') form-control-danger @enderror"
+                                        class="form-control @error('tanggal_lahir') form-control-danger @enderror" value="{{ old('tanggal_lahir') }}"
                                         type="date">
                                     @error('tanggal_lahir')
                                         <small class="text-danger">{{ $message }}</small>
@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nomor Telepon</label>
-                                    <input autofocus name="hp" id="hp" class="form-control" type="number"
+                                    <input autofocus name="hp" id="hp" class="form-control" type="number" value="{{ old('hp') }}"
                                         placeholder="Nomor Telepon">
                                 </div>
                                 <div class="form-group">
@@ -83,7 +83,7 @@
                                 <div class="form-group">
                                     <label for="">Tanggal Masuk</label>
                                     <input name="tanggal_masuk"
-                                        class="form-control @error('tanggal_masuk') form-control-danger @enderror"
+                                        class="form-control @error('tanggal_masuk') form-control-danger @enderror" value="{{ old('tanggal_masuk') }}"
                                         type="date">
                                     @error('tanggal_masuk')
                                         <small class="text-danger">{{ $message }}</small>
@@ -93,7 +93,7 @@
                                 <div class="form-group">
                                     <label>Tempat Lahir</label>
                                     <input autofocus name="tempat_lahir" id="tempat_lahir"
-                                        class="form-control @error('tempat_lahir') form-control-danger @enderror"
+                                        class="form-control @error('tempat_lahir') form-control-danger @enderror" value="{{ old('tempat_lahir') }}"
                                         type="text" placeholder="Tempat Lahir">
                                     @error('tempat_lahir')
                                         <small class="text-danger">{{ $message }}</small>
@@ -103,7 +103,7 @@
                                 <div class="form-group">
                                     <label>Semester</label>
                                     <input autofocus name="semester" id="semester"
-                                        class="form-control @error('semester') form-control-danger @enderror" type="number"
+                                        class="form-control @error('semester') form-control-danger @enderror" type="number" value="{{ old('semester') }}"
                                         placeholder="Semester">
                                     @error('semester')
                                         <small class="text-danger">{{ $message }}</small>

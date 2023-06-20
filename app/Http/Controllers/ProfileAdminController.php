@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\StorePangkatAdmin;
 use App\Http\Requests\StoreProfileAdminRequest;
+use App\Http\Requests\UpdateProfileAdminRequest;
 
 class ProfileAdminController extends Controller
 {
@@ -34,7 +35,7 @@ class ProfileAdminController extends Controller
             "umur" => $umur,
         ];
 
-        return view('admin.profile.index' ,$data);
+        return view('admin.profile.index', $data);
     }
 
     /**
@@ -44,7 +45,7 @@ class ProfileAdminController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->administrasi != null){
+        if (Auth::user()->administrasi != null) {
             return redirect()->back();
         }
         return view('admin.profile.create');
@@ -117,13 +118,13 @@ class ProfileAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProfileAdminRequest $request, $id)
     {
-        if(Auth::user()->administrasi->id != Crypt::decrypt($id)){
+        if (Auth::user()->administrasi->id != Crypt::decrypt($id)) {
             return redirect()->route('admin.profile.index')->with('error', 'Anda tidak memiliki akses');
         }
         $administrasi = Administrasi::find(Crypt::decrypt($id));
-        if($request->file('foto_profile') != null){
+        if ($request->file('foto_profile') != null) {
             $profile = $request->file('foto_profile');
             $nama_file = $profile->hashName();
             $administrasi->nama_administrasi = $request->nama_admin;
@@ -139,7 +140,7 @@ class ProfileAdminController extends Controller
             $user->profile_picture = $nama_file;
             $user->save();
             $profile->move(public_path('uploads/profile'), $nama_file);
-        }else{
+        } else {
             $administrasi->nama_administrasi = $request->nama_admin;
             $administrasi->nip = $request->nip;
             $administrasi->no_hp = $request->no_hp;
@@ -152,5 +153,4 @@ class ProfileAdminController extends Controller
         }
         return redirect()->route('admin.profile.index')->with('success', 'Data berhasil diubah');
     }
-
 }

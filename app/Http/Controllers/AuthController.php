@@ -119,40 +119,47 @@ class AuthController extends Controller
         $mahasiswa = Mahasiswa::create($mhs);
         $user->sendEmailVerificationNotification();
         auth()->login($user);
-        return redirect()->route('verification.notice')->with('registered', 'Pendaftaran berhasil, silahkan cek email untuk melakukan verifikasi');
+        return redirect()->route('verification.notice')->with('registered', 
+            'Pendaftaran berhasil, 
+            silahkan cek email untuk melakukan verifikasi, 
+            Jika Vertifikasi tidak ada di kotak masuk, 
+            silahkan cek di kotak spam, atau klik tombol Kirim Kembali'
+        );
     }
 
     public function reactivation()
     {
         return view('auth.activation');
     }
-    public function settings(){
+    public function settings()
+    {
         return view('settings');
     }
-    public function changePassword(Request $req){
+    public function changePassword(Request $req)
+    {
         //validasi token 
-        if($req->_token != session()->token()){
+        if ($req->_token != session()->token()) {
             return redirect()->back();
-        }else{
+        } else {
             //check password old 
             $user = User::find(Auth::user()->id);
-            if (password_verify($req->current_password, $user->password)){
+            if (password_verify($req->current_password, $user->password)) {
                 $validation = $req->validate([
                     'new_password' => 'required|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/',
                     'confirm_new_password' => 'required|same:new_password',
-                ],[
+                ], [
                     'new_password.required' => 'Password baru harus diisi',
                     'new_password.min' => 'Password minimal 8 karakter',
                     'new_password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, dan karakter',
                     'confirm_new_password.required' => 'Konfirmasi password baru harus diisi',
                     'confirm_new_password.same' => 'Konfirmasi password baru tidak cocok',
                 ]);
-                if($validation){
+                if ($validation) {
                     $user->password = bcrypt($req->new_password);
                     $user->save();
                     return redirect()->route('dashboard')->with('success', 'Password berhasil diubah');
                 }
-            }else{
+            } else {
                 return redirect()->back()->with('error', 'Password lama tidak cocok');
             }
         }
