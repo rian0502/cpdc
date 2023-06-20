@@ -52,7 +52,27 @@ class JadwalPKLController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validasi = $request->validate([
+            'tanggal_skp' => 'required|date|after_or_equal:tomorrow',
+            'jam_mulai_skp' => 'required',
+            'jam_selesai_skp' => 'required',
+            'id_lokasi' => 'required|exists:lokasi,encrypt_id',
+        ], [
+            'tanggal_skp.required' => 'Tanggal tidak boleh kosong',
+            'tanggal_skp.date' => 'Tanggal harus berupa tanggal',
+            'tanggal_skp.after_or_equal' => 'Tanggal Minimal Besok',
+            'jam_mulai_skp.required' => 'Jam mulai tidak boleh kosong',
+            'jam_selesai_skp.required' => 'Jam selesai tidak boleh kosong',
+            'id_lokasi.required' => 'Lokasi tidak boleh kosong',
+            'id_lokasi.exists' => 'Lokasi tidak ditemukan',
+        ]);
+        $cekJadwal = JadwalSKP::where('tanggal_skp', '=', $request->tanggal_skp)->
+        where('jam_mulai_skp', '=', $request->jam_mulai_skp)->
+        where('jam_selesai_skp', '=', $request->jam_selesai_skp)->
+        where('id_lokasi', '=', Crypt::decrypt($request->id_lokasi))->first();
+        if ($cekJadwal) {
+            return redirect()->back()->with('error', 'Jadwal Sudah Terdaftar');
+        }
         $id_seminar = array_key_last($request->all());
         $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
@@ -158,7 +178,27 @@ class JadwalPKLController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validasi = $request->validate([
+            'tanggal_skp' => 'required|date|after_or_equal:tomorrow',
+            'jam_mulai_skp' => 'required',
+            'jam_selesai_skp' => 'required',
+            'id_lokasi' => 'required|exists:lokasi,encrypt_id',
+        ], [
+            'tanggal_skp.required' => 'Tanggal tidak boleh kosong',
+            'tanggal_skp.date' => 'Tanggal harus berupa tanggal',
+            'tanggal_skp.after_or_equal' => 'Tanggal Minimal Besok',
+            'jam_mulai_skp.required' => 'Jam mulai tidak boleh kosong',
+            'jam_selesai_skp.required' => 'Jam selesai tidak boleh kosong',
+            'id_lokasi.required' => 'Lokasi tidak boleh kosong',
+            'id_lokasi.exists' => 'Lokasi tidak ditemukan',
+        ]);
+        $cekJadwal = JadwalSKP::where('tanggal_skp', '=', $request->tanggal_skp)->
+        where('jam_mulai_skp', '=', $request->jam_mulai_skp)->
+        where('jam_selesai_skp', '=', $request->jam_selesai_skp)->
+        where('id_lokasi', '=', Crypt::decrypt($request->id_lokasi))->first();
+        if ($cekJadwal) {
+            return redirect()->back()->with('error', 'Jadwal Sudah Terdaftar');
+        }
         $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         $jadwal_skp = JadwalSKP::find(Crypt::decrypt($id));
         $seminar = ModelSeminarKP::find($jadwal_skp->id_skp);

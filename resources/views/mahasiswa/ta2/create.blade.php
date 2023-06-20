@@ -1,20 +1,5 @@
 @extends('layouts.admin')
 @section('admin')
-    <style>
-        #form-mobile {
-            display: none;
-        }
-
-        @media (min-width: 1px) and (max-width: 767px) {
-            #form {
-                display: none;
-            }
-
-            #form-mobile {
-                display: block;
-            }
-        }
-    </style>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -64,7 +49,7 @@
                                     <label>SKS</label>
                                     <input autofocus name="sks" value="{{ old('sks') }}" id="jumlah_sks"
                                         class="form-control" type="number" value="{{ old('sks') }}"
-                                        placeholder="Jumlah SKS Saat Mendaftar TA1">
+                                        placeholder="Jumlah SKS Saat Ini">
                                     @error('sks')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -72,37 +57,11 @@
                                 <div class="form-group">
                                     <label>IPK</label>
                                     <input autofocus name="ipk" id="ipk" class="form-control" type="text"
-                                        value="{{ old('ipk') }}" placeholder="Nilai IPK Saat Mendaftar TA1">
+                                        value="{{ old('ipk') }}" placeholder="Nilai IPK Saat Ini">
                                     @error('ipk')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group" id="form">
-                                    <label>Judul atau Topik Tugas Akhir</label>
-                                    <textarea name="judul_ta" id="judul_ta" class="form-control">{{ old('judul') }}</textarea>
-                                    @error('judul_ta')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group" id="form">
-                                    <label class="weight-600">Persetujuan</label>
-                                    <div class="custom-control custom-checkbox mb-5">
-                                        <input type="checkbox" class="custom-control-input" name="agreement"
-                                            id="agreement" />
-                                        <label class="custom-control-label" for="agreement">
-                                            Saya dengan ini menyatakan bahwa dokumen kelengkapan berkas yang telah saya
-                                            kirimkan semuanya adalah benar dan dapat saya pertanggung-jawabkan. Saya
-                                            bersedia menerima sanksi bilamana saya terbukti melakukan pemalsuan dokumen
-                                            (seperti tanda tangan, Bukti Bayar UKT, Transkrip/KRS, dll) dengan ditunda
-                                            seminar saya minimal 1 semester atau bahkan sanksi yang lebih berat hingga
-                                            dikeluarkan (Drop Out).
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {{-- form untuk sebelah kanan --}}
-                            <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Pembimbing 1</label>
                                     <select class="custom-select2 form-control" name="id_pembimbing_satu"
@@ -141,6 +100,11 @@
                                         @enderror
                                     </div>
                                 </div>
+                            </div>
+
+                            {{-- form untuk sebelah kanan --}}
+                            <div class="kanan weight-500 col-md-6">
+
                                 <div class="form-group">
                                     <label>Pembahas</label>
                                     <select class="custom-select2 form-control" name="pembahas" id="pembahas"
@@ -157,38 +121,7 @@
                                         </optgroup>
                                     </select>
                                 </div>
-                                {{-- fungsi jika tidak ada tersedia nama pembimbing dan pembahas di data diatas --}}
-                                <script>
-                                    function toggleInput(selectElement, targetId) {
-                                        var selectedValue = selectElement.value;
-                                        var inputElement = selectElement.parentNode.querySelector('input[name="pbl2_nip"]');
-                                        var targetElement = document.getElementById(targetId);
-                                        if (selectedValue === "Tidak Ada di Daftar Ini") {
-                                            if (!inputElement) {
-                                                inputElement = document.createElement("input");
-                                                inputElement.setAttribute("type", "text");
-                                                inputElement.setAttribute("name", "pbl2_nip");
-                                                inputElement.setAttribute("id", "pbl2_nip");
-                                                inputElement.setAttribute("class", "form-control");
-                                                inputElement.setAttribute("value", "{!! old('pbl2_nip') !!}");
-                                                inputElement.setAttribute("placeholder", "Masukkan Nama Pembimbing 2 Disini");
-                                                inputElement.setAttribute("style", "margin-top: 10px;");
-                                                selectElement.parentNode.appendChild(inputElement);
-                                            } else {
-                                                inputElement.style.display = "block";
-                                            }
-                                        } else {
-                                            if (inputElement) {
-                                                inputElement.style.display = "none";
-                                            }
-                                        }
-                                        if (selectedValue === "Tidak Ada di Daftar Ini") {
-                                            targetElement.style.display = "block";
-                                        } else {
-                                            targetElement.style.display = "none";
-                                        }
-                                    }
-                                </script>
+
                                 <div class="form-group">
                                     <label>Periode Seminar</label>
                                     <input autofocus class="form-control month-picker" type="text" name="periode_seminar"
@@ -282,6 +215,38 @@
             option.value = tahun + "/" + (tahun + 1);
             option.text = tahun + "/" + (tahun + 1);
             select.add(option);
+        }
+    </script>
+    {{-- fungsi jika tidak ada tersedia nama pembimbing dan pembahas di data diatas --}}
+    <script>
+        function toggleInput(selectElement, targetId) {
+            var selectedValue = selectElement.value;
+            var inputElement = selectElement.parentNode.querySelector('input[name="pbl2_nip"]');
+            var targetElement = document.getElementById(targetId);
+            if (selectedValue === "Tidak Ada di Daftar Ini") {
+                if (!inputElement) {
+                    inputElement = document.createElement("input");
+                    inputElement.setAttribute("type", "text");
+                    inputElement.setAttribute("name", "pbl2_nip");
+                    inputElement.setAttribute("id", "pbl2_nip");
+                    inputElement.setAttribute("class", "form-control");
+                    inputElement.setAttribute("value", "{!! old('pbl2_nip') !!}");
+                    inputElement.setAttribute("placeholder", "Masukkan Nama Pembimbing 2 Disini");
+                    inputElement.setAttribute("style", "margin-top: 10px;");
+                    selectElement.parentNode.appendChild(inputElement);
+                } else {
+                    inputElement.style.display = "block";
+                }
+            } else {
+                if (inputElement) {
+                    inputElement.style.display = "none";
+                }
+            }
+            if (selectedValue === "Tidak Ada di Daftar Ini") {
+                targetElement.style.display = "block";
+            } else {
+                targetElement.style.display = "none";
+            }
         }
     </script>
 @endsection

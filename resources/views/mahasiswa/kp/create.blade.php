@@ -8,7 +8,6 @@
 
     <style>
 
-
         @keyframes pulseAnimation {
             0% {
                 transform: scale(1);
@@ -43,7 +42,6 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="profile-edit-list row">
-                            {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Nama Mitra</label>
@@ -102,39 +100,29 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label>IPK</label>
-                                    <input autofocus name="ipk" id="ipk" class="form-control" type="text"
-                                        value="{{ old('ipk') }}" placeholder="Nilai IPK">
-                                    @error('ipk')
+
+                                <div class="form-group" id="form">
+                                    <label>Judul atau Topik PKL/KP</label>
+                                    <textarea name="judul_kp" id="judul" class="form-control" name="judul_kp">{{ old('judul_kp') }}</textarea>
+                                    @error('judul_kp')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label>
-                                        Berkas Kelengkapan
-                                        <small>
-                                            <a target="_blank"
-                                                href="/uploads/syarat_seminar/{{ $syarat->path_file }}">Lihat
-                                                Persyaratan</a>
-                                        </small>
-                                    </label>
-                                    <div class="custom-file mb-1">
-                                        <label class="custom-file-label" for="link-berkas_seminar_pkl"
-                                            id="label-berkas_seminar_pkl">Pilih File</label>
-                                        <input value="{{ old('berkas_seminar_pkl') }}" accept=".pdf" autofocus
-                                            name="berkas_seminar_pkl" id="file-berkas_seminar_pkl"
-                                            class="custom-file-input form-control @error('berkas_seminar_pkl') form-control-danger @enderror"
-                                            type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_seminar_pkl','label-berkas_seminar_pkl','link-berkas_seminar_pkl')">
+                                <div class="form-group" id="form">
+                                    <label class="weight-600">Persetujuan</label>
+                                    <div class="custom-control custom-checkbox mb-5">
+                                        <input type="checkbox" class="custom-control-input" name="agreement"
+                                            id="agreement" />
+                                        <label class="custom-control-label" for="agreement">
+                                            Saya dengan ini menyatakan bahwa dokumen kelengkapan berkas yang telah saya
+                                            kirimkan semuanya adalah benar dan dapat saya pertanggung-jawabkan. Saya
+                                            bersedia menerima sanksi bilamana saya terbukti melakukan pemalsuan dokumen
+                                            (seperti tanda tangan, Bukti Bayar UKT, Transkrip/KRS, dll) dengan ditunda
+                                            seminar saya minimal 1 semester atau bahkan sanksi yang lebih berat hingga
+                                            dikeluarkan (Drop Out).
+                                        </label>
                                     </div>
-                                    <small class="mt-2"> <a id="link-berkas_seminar_pkl" href="#"
-                                            target="_blank" style="display: none;">Lihat File</a> </small>
-                                    @error('berkas_seminar_pkl')
-                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
-                                    @enderror
                                 </div>
-
 
                             </div>
 
@@ -170,6 +158,11 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                            </div>
+
+                            {{-- form untuk sebelah kanan --}}
+                            <div class="kanan weight-500 col-md-6">
+
                                 <div class="form-group">
                                     <label>Rencana Seminar</label>
                                     <input autofocus class="form-control month-picker" type="text" name="rencana_seminar"
@@ -194,9 +187,42 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group" id="form">
-                                    <label>Judul atau Topik PKL/KP</label>
-                                    <textarea name="judul_kp" id="judul" class="form-control">{{ old('judul_kp') }}</textarea>
+                                <div class="form-group">
+                                    <label>IPK</label>
+                                    <input autofocus name="ipk" id="ipk" class="form-control" type="text"
+                                        value="{{ old('ipk') }}" placeholder="Nilai IPK">
+                                    @error('ipk')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        Berkas Kelengkapan
+                                        <small>
+                                            <a target="_blank"
+                                                href="/uploads/syarat_seminar/{{ $syarat->path_file }}">Lihat
+                                                Persyaratan</a>
+                                        </small>
+                                    </label>
+                                    <div class="custom-file mb-1">
+                                        <label class="custom-file-label" for="link-berkas_seminar_pkl"
+                                            id="label-berkas_seminar_pkl">Pilih File</label>
+                                        <input value="{{ old('berkas_seminar_pkl') }}" accept=".pdf" autofocus
+                                            name="berkas_seminar_pkl" id="file-berkas_seminar_pkl"
+                                            class="custom-file-input form-control @error('berkas_seminar_pkl') form-control-danger @enderror"
+                                            type="file" placeholder="FILE SK"
+                                            onchange="updateFileNameAndLink('file-berkas_seminar_pkl','label-berkas_seminar_pkl','link-berkas_seminar_pkl')">
+                                    </div>
+                                    <small class="mt-2"> <a id="link-berkas_seminar_pkl" href="#"
+                                            target="_blank" style="display: none;">Lihat File</a> </small>
+                                    @error('berkas_seminar_pkl')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                {{-- hanya tampil saat mode mobile --}}
+                                <div class="form-group" id="form-mobile">
+                                    <label>Judul atau Topik</label>
+                                    <textarea name="judul_kp" id="judul" class="form-control" name="judul_kp">{{ old('judul_kp') }}</textarea>
                                     @error('judul_kp')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror

@@ -13,6 +13,7 @@ use App\Models\HistoryJabatanDosen;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\ProfileDosenRequest;
+use App\Http\Requests\UpdateProfileDosenRequest;
 use App\Models\HistoryPangkatDosen;
 use Carbon\Carbon;
 
@@ -160,9 +161,8 @@ class ProfileDosenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProfileDosenRequest $request, $id)
     {
-        //
         if(Auth::user()->dosen->nip != $id){
             return redirect()->back();
         }

@@ -27,7 +27,7 @@
                             <a href="#" class="btn" data-toggle="modal" data-target="#via-excel" type="button">
                                 <button class="btn btn-secondary mt-3">
                                     <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                                    Export NPM
+                                    Import NPM
                                 </button>
                             </a>
 
@@ -91,7 +91,8 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ route('sudo.base_npm.store.excel') }}" method="post" enctype="multipart/form-data">
+                                            <form action="{{ route('sudo.base_npm.store.excel') }}" method="post"
+                                                enctype="multipart/form-data">
                                                 @csrf
                                                 <div id="input_fields">
                                                     <div class="input-group mb-3">
@@ -210,7 +211,6 @@
     </script>
 
     <script>
-
         var dataNpm = null; // Menyimpan referensi ke objek DataTable
 
         $(function() {
