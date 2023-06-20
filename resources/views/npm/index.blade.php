@@ -27,7 +27,7 @@
                             <a href="#" class="btn" data-toggle="modal" data-target="#via-excel" type="button">
                                 <button class="btn btn-secondary mt-3">
                                     <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                                    Export NPM
+                                    Import NPM
                                 </button>
                             </a>
 
