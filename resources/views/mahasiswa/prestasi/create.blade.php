@@ -55,13 +55,13 @@
                                         </option>
                                         <option value="Juara 3" {{ old('capaian') == 'Juara 3' ? 'selected' : '' }}>Juara 3
                                         </option>
-                                        <option value="Juara Harapan 1"
+                                        <option value="Harapan 1"
                                             {{ old('capaian') == 'Harapan 1' ? 'selected' : '' }}>Juara Harapan 1
                                         </option>
-                                        <option value="Juara Harapan 2"
+                                        <option value="Harapan 2"
                                             {{ old('capaian') == 'Harapan 2' ? 'selected' : '' }}>Juara Harapan 2
                                         </option>
-                                        <option value="Juara Harapan 3"
+                                        <option value="Harapan 3"
                                             {{ old('capaian') == 'Harapan 3' ? 'selected' : '' }}>Juara Harapan 3
                                         </option>
                                         <option value="Peserta">Peserta</option>

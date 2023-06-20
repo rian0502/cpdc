@@ -43,7 +43,7 @@
                                     <label>SKS Konversi</label>
                                     <input autofocus name="sks_konversi" id="sks_konversi"
                                         class="form-control @error('sks_konversi') form-control-danger @enderror""
-                                        type="text"
+                                        type="number"
                                         value="{{old('sks_konversi')}}"
                                         placeholder="Tuliskan sks yang akan dikonversikan.">
                                     @error('sks_konversi')

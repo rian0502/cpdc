@@ -50,7 +50,7 @@
                                     </li>
                                     <li>
                                         <span>Status:</span>
-                                        Aktif
+                                        {{Auth::user()->mahasiswa->status}}
                                     </li>
                                     <li>
                                         <span>Angkatan:</span>
