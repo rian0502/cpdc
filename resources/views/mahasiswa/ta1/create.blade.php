@@ -82,11 +82,11 @@
                                         <optgroup label="Pembimbing 2">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_dospemkp') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
 
-                                            @if (old('pbl2_nama') || $errors->has('pbl2_nama'))
+                                            @if (old('id_pembimbing_dua')=='new' || $errors->has('pbl2_nama'))
                                                 <option value="new" selected>Tidak Ada diDaftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada diDaftar Ini</option>
@@ -95,10 +95,20 @@
                                         </optgroup>
                                     </select>
                                 </div>
-                                <div id="Pembimbing2" style="display: none;">
+                                <div id="pbl2_nama" style="display: {{old('id_pembimbing_dua')=='new'?'block':'none'}};" {{old('id_pembimbing_dua')=='new'? '':'hidden'}}>
                                     <div class="form-group">
                                         <label>Nomor Karyawan / NIP Pembimbing 2</label>
-                                        <input autofocus name="pbl2_nip" id="pbl2_nip" class="form-control" type="text"
+                                        <input autofocus name="pbl2_nama" class="form-control" type="text"
+                                            value="{{ old('pbl2_nama') }}" placeholder="Masukkan Juga NIP / Nomor Karyawan">
+                                        @error('pbl2_nama')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div id="Pembimbing2" style="display: {{old('id_pembimbing_dua')=='new'?'block':'none'}};" {{old('id_pembimbing_dua')=='new'? '':'hidden'}}>
+                                    <div class="form-group">
+                                        <label>Nomor Karyawan / NIP Pembimbing 2</label>
+                                        <input autofocus name="pbl2_nip" class="form-control" type="text"
                                             value="{{ old('pbl2_nip') }}" placeholder="Masukkan Juga NIP / Nomor Karyawan">
                                         @error('pbl2_nip')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -210,32 +220,18 @@
     <script>
         function toggleInput(selectElement, targetId) {
             var selectedValue = selectElement.value;
-            var inputElement = selectElement.parentNode.querySelector('input[name="pbl2_nip"]');
-            var targetElement = document.getElementById(targetId);
-            if (selectedValue === "new") {
-                if (!inputElement) {
-                    inputElement = document.createElement("input");
-                    inputElement.setAttribute("type", "text");
-                    inputElement.setAttribute("name", "pbl2_nama");
-                    inputElement.setAttribute("id", "pbl2_nama");
-                    inputElement.setAttribute("class", "form-control");
-                    inputElement.setAttribute("placeholder", "Masukkan Nama Pembimbing 2 Disini");
-                    inputElement.setAttribute("style", "margin-top: 10px;");
-                    inputElement.setAttribute("value", "{{ old('pbl2_nama') }}");
-
-                    selectElement.parentNode.appendChild(inputElement);
-                } else {
-                    inputElement.style.display = "block";
-                }
-            } else {
-                if (inputElement) {
-                    inputElement.style.display = "none";
-                }
-            }
+           ;var pbl2_nama = document.getElementById('pbl2_nama');
+           var targetElement = document.getElementById(targetId);
             if (selectedValue === "new") {
                 targetElement.style.display = "block";
+                pbl2_nama.style.display = "block";
+                targetElement.hidden = false;
+                pbl2_nama.hidden = false;
             } else {
                 targetElement.style.display = "none";
+                pbl2_nama.style.display = "none";
+                targetElement.hidden = true;
+                pbl2_nama.hidden = true;
             }
         }
     </script>

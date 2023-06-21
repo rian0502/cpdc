@@ -41,6 +41,7 @@ class MahasiswaTaSatuController extends Controller
                 'pbl2_nip.max' => 'NIP Dosen Pembimbing 2 maksimal 18 karakter',
                 'pbl2_nip.min' => 'NIP Dosen Pembimbing 2 minimal 18 karakter',
             ]);
+
         }else{
             $validation = $request->validate([
                 'id_pembimbing_dua' => 'required|exists:dosen,encrypt_id',
