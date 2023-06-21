@@ -43,13 +43,14 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>FILE SK PANGKAT</label>
+                                    <label>FILE SK PANGKAT <small> <a id="link-file_sk" href="#"
+                                        target="_blank" style="display: none;">Lihat File</a> </small></label>
                                     <div class=" custom-file">
-                                        <label class="custom-file-label" for="file_sk">Pilih File</label>
+                                        <label class="custom-file-label" for="file_sk" id="label-file_sk">Pilih File</label>
 
-                                        <input value="" autofocus name="file_sk" id="file_sk"
+                                        <input value="{{$pangkat->file_sk}}" autofocus name="file_sk" id="file_sk"
                                             class="custom-file-input form-control @error('file_sk') form-control-danger @enderror"
-                                            type="file" placeholder="FILE SK">
+                                            type="file" placeholder="FILE SK" onchange="updateFileNameAndLink('file_sk','label-file_sk','link-file_sk')">
                                     </div>
                                     @error('file_sk')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>

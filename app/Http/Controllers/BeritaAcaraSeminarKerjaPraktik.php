@@ -13,7 +13,7 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
     public function create()
     {
         //
-        return view('mahasiswa.ba.create');
+        return view('mahasiswa.kp.ba.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
     public function show($id)
     {
         //
-        // return view('mahasiswa.ba.show',);
+        // return view('mahasiswa.kp.ba.show',);
     }
 
     /**
@@ -71,7 +71,7 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
     {
         //
         $seminar = BaSKP::where('id_seminar', Crypt::decrypt($id))->first();
-        return view('mahasiswa.ba.edit', compact('seminar'));
+        return view('mahasiswa.kp.ba.edit', compact('seminar'));
     }
 
     /**
@@ -94,6 +94,7 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
             unlink(public_path('/uploads/berita_acara_seminar_kp/'.$update->berkas_ba_seminar_kp));
             unlink(public_path('/uploads/laporan_kp/'.$update->laporan_kp));
             $berita_acara = [
+                'no_ba_seminar_kp' => $request->no_ba_seminar_kp,
                 'nilai_lapangan' => $request->nilai_lapangan,
                 'nilai_akd' => $request->nilai_akd,
                 'nilai_akhir' => $request->nilai_akhir,
@@ -107,6 +108,7 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
             $file_ba->move(public_path('/uploads/berita_acara_seminar_kp'), $nama_file_ba);
             unlink(public_path('/uploads/berita_acara_seminar_kp/'.$update->berkas_ba_seminar_kp));
             $berita_acara = [
+                'no_ba_seminar_kp' => $request->no_ba_seminar_kp,
                 'nilai_lapangan' => $request->nilai_lapangan,
                 'nilai_akd' => $request->nilai_akd,
                 'nilai_akhir' => $request->nilai_akhir,
@@ -119,6 +121,7 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
             $file_laporan->move(public_path('/uploads/laporan_kp'), $nama_file_laporan);
             unlink(public_path('/uploads/laporan_kp/'.$update->laporan_kp));
             $berita_acara = [
+                'no_ba_seminar_kp' => $request->no_ba_seminar_kp,
                 'nilai_lapangan' => $request->nilai_lapangan,
                 'nilai_akd' => $request->nilai_akd,
                 'nilai_akhir' => $request->nilai_akhir,
@@ -143,6 +146,6 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
     public function destroy($id)
     {
         //
-        return redirect()->route('mahasiswa.ba.index')->with('success', 'Data Berhasil Dihapus');
+        return redirect()->route('mahasiswa.seminar.kp.index')->with('success', 'Data Berhasil Dihapus');
     }
 }

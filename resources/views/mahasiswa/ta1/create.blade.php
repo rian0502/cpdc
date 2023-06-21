@@ -78,19 +78,19 @@
                                     <label>Pembimbing 2</label>
                                     <select class="custom-select2 form-control" name="id_pembimbing_dua"
                                         id="id_pembimbing_dua" style="width: 100%; height: 38px"
-                                        onchange="toggleInput(this, 'Pembimbing2')">
+                                        onchange="toggleInput(this, 'Pembimbing2', 'pbl2_nama')">
                                         <optgroup label="Pembimbing 2">
+                                            @if (old('id_pembimbing_dua')=='new' || $errors->has('pbl2_nama'))
+                                                <option value="new" selected>Tidak Ada diDaftar Ini</option>
+                                            @else
+                                                <option value="new">Tidak Ada diDaftar Ini</option>
+                                            @endif
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
                                                     {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
 
-                                            @if (old('id_pembimbing_dua')=='new' || $errors->has('pbl2_nama'))
-                                                <option value="new" selected>Tidak Ada diDaftar Ini</option>
-                                            @else
-                                                <option value="new">Tidak Ada diDaftar Ini</option>
-                                            @endif
 
                                         </optgroup>
                                     </select>
@@ -164,17 +164,17 @@
                                         </small>
                                     </label>
                                     <div class="custom-file mb-1">
-                                        <label class="custom-file-label" for="link-berkas_seminar_pkl"
-                                            id="label-berkas_seminar_pkl">Pilih File</label>
-                                        <input value="{{ old('berkas_seminar_pkl') }}" accept=".pdf" autofocus
-                                            name="berkas_seminar_pkl" id="file-berkas_seminar_pkl"
-                                            class="custom-file-input form-control @error('berkas_seminar_pkl') form-control-danger @enderror"
+                                        <label class="custom-file-label" for="link-berkas_seminar_ta_satu"
+                                            id="label-berkas_seminar_ta_satu">Pilih File</label>
+                                        <input value="{{ old('berkas_seminar_ta_satu') }}" accept=".pdf" autofocus
+                                            name="berkas_seminar_ta_satu" id="file-berkas_seminar_ta_satu"
+                                            class="custom-file-input form-control @error('berkas_seminar_ta_satu') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_seminar_pkl','label-berkas_seminar_pkl','link-berkas_seminar_pkl')">
+                                            onchange="updateFileNameAndLink('file-berkas_seminar_ta_satu','label-berkas_seminar_ta_satu','link-berkas_seminar_ta_satu')">
                                     </div>
-                                    <small class="mt-2"> <a id="link-berkas_seminar_pkl" href="#"
+                                    <small class="mt-2"> <a id="link-berkas_seminar_ta_satu" href="#"
                                             target="_blank" style="display: none;">Lihat File</a> </small>
-                                    @error('berkas_seminar_pkl')
+                                    @error('berkas_seminar_ta_satu')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -217,24 +217,7 @@
         <!-- Input Validation End -->
     </div>
 
-    <script>
-        function toggleInput(selectElement, targetId) {
-            var selectedValue = selectElement.value;
-           ;var pbl2_nama = document.getElementById('pbl2_nama');
-           var targetElement = document.getElementById(targetId);
-            if (selectedValue === "new") {
-                targetElement.style.display = "block";
-                pbl2_nama.style.display = "block";
-                targetElement.hidden = false;
-                pbl2_nama.hidden = false;
-            } else {
-                targetElement.style.display = "none";
-                pbl2_nama.style.display = "none";
-                targetElement.hidden = true;
-                pbl2_nama.hidden = true;
-            }
-        }
-    </script>
+
 
     <script>
         // Mendapatkan elemen select

@@ -53,7 +53,7 @@
                                         <option value="3">3</option>
                                     </select>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label>Judul</label>
                                     <textarea class="form-control"></textarea>
@@ -61,7 +61,7 @@
                             </div>
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
-                                
+
 
                                 <div class="form-group">
                                     <label>Email</label>
@@ -98,23 +98,44 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Pembimbing 2</label>
-                                    <select class="selectpicker form-control" data-size="5">
-                                        <option selected="">-- Pilih Pembimbing 2 --</option>
-                                        <option value="Dr. Hj. Nurhasanah, M.Pd.">Dr. Hj. Nurhasanah, M.Pd.</option>
-                                        <option value="Dr. rer. nat. Ir. H. Ahmad Yusuf, M.Pd.">Dr. rer. nat. Ir. H. Ahmad Yusuf, M.Pd.</option>
-                                        <option value="Prof. Dr. Ir. Soetarto, M.Sc.">Prof. Dr. Ir. Soetarto, M.Sc.</option>
-                                        <option value="Drs. H. Abdul Azis, M.Pd.">Drs. H. Abdul Azis, M.Pd.</option>
+                                    <select class="custom-select2 form-control" name="id_pembimbing_dua"
+                                        id="id_pembimbing_dua"
+                                        onchange="toggleInput(this, 'Pembimbing2', 'pbl2_nama')">
+                                        <optgroup label="Pembimbing 2">
+                                            @foreach ($dosens as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $item->nama_dosen }}</option>
+                                            @endforeach
+
+                                            @if (old('id_pembimbing_dua')=='new' || $errors->has('pbl2_nama'))
+                                                <option value="new" selected>Tidak Ada diDaftar Ini</option>
+                                            @else
+                                                <option value="new">Tidak Ada diDaftar Ini</option>
+                                            @endif
+
+                                        </optgroup>
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label>Pembahas</label>
-                                    <select class="selectpicker form-control" data-size="5">
-                                        <option selected="">-- Pilih Pembahas --</option>
-                                        <option value="Dr. Hj. Nurhasanah, M.Pd.">Dr. Hj. Nurhasanah, M.Pd.</option>
-                                        <option value="Dr. rer. nat. Ir. H. Ahmad Yusuf, M.Pd.">Dr. rer. nat. Ir. H. Ahmad Yusuf, M.Pd.</option>
-                                        <option value="Prof. Dr. Ir. Soetarto, M.Sc.">Prof. Dr. Ir. Soetarto, M.Sc.</option>
-                                        <option value="Drs. H. Abdul Azis, M.Pd.">Drs. H. Abdul Azis, M.Pd.</option>
-                                    </select>
+                                <div id="pbl2_nama" style="display: {{old('id_pembimbing_dua')=='new'?'block':'none'}};" {{old('id_pembimbing_dua')=='new'? '':'hidden'}}>
+                                    <div class="form-group">
+                                        <label>Nomor Karyawan / NIP Pembimbing 2</label>
+                                        <input autofocus name="pbl2_nama" class="form-control" type="text"
+                                            value="{{ old('pbl2_nama') }}" placeholder="Masukkan Juga NIP / Nomor Karyawan">
+                                        @error('pbl2_nama')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div id="Pembimbing2" style="display: {{old('id_pembimbing_dua')=='new'?'block':'none'}};" {{old('id_pembimbing_dua')=='new'? '':'hidden'}}>
+                                    <div class="form-group">
+                                        <label>Nomor Karyawan / NIP Pembimbing 2</label>
+                                        <input autofocus name="pbl2_nip" class="form-control" type="text"
+                                            value="{{ old('pbl2_nip') }}" placeholder="Masukkan Juga NIP / Nomor Karyawan">
+                                        @error('pbl2_nip')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                         </div>

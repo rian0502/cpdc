@@ -40,7 +40,7 @@
             background-color:black;
             color: white
         }
-        
+
     </style>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -99,7 +99,7 @@
 
                         </div>
                         @if ($seminar->status_seminar == 'Belum Selesai')
-                            <a href="/mahasiswa/seminar/kp/{{ $seminar->encrypt_id }}/edit">
+                            <a target="_blank" href="/mahasiswa/seminar/kp/{{ $seminar->encrypt_id }}/edit">
                                 <button class="btn btn-primary right">Edit Data</button>
                             </a>
                         @endif
@@ -208,7 +208,7 @@
                         <div class="clearfix">
                             <div class="pull-left">
                                 <h4 class="text-dark h4">Jadwal Seminar</h4>
-                                
+
                             </div>
                         </div>
 
@@ -252,6 +252,19 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"> <strong>Informasi Berkas</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        <div>
+                                            @if ($seminar->jadwal)
+                                                Silahkan Cek Berkas Keperluan Seminar Di Email Anda
+                                                hubungi admin berkas jika dalam 1x24 jam tidak menerima email Berkas
+                                            @else
+                                                <div>Belum terjadwal</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -266,7 +279,7 @@
                                 <small>
                                     <b>
                                         <p
-                                            class="mb-30 text-center 
+                                            class="mb-30 text-center
                                             @if($seminar->status_seminar == 'Selesai') {{'Valid'}}
                                             @elseif($seminar->status_seminar == 'Belum Selesai') {{'Proses'}}
                                             @elseif($seminar->status_seminar == 'Perbaikan') {{'Invalid'}}
@@ -279,11 +292,11 @@
                             </div>
                             @if ($seminar->status_seminar != 'Selesai')
                                 @if ($berita_acara)
-                                    <a href="/mahasiswa/bakerjapraktik/{{ $seminar->encrypt_id }}/edit">
+                                    <a target="_blank" href="/mahasiswa/bakerjapraktik/{{ $seminar->encrypt_id }}/edit">
                                         <button class="btn btn-primary right">Edit</button>
                                     </a>
                                 @else
-                                    <a href="/mahasiswa/bakerjapraktik/create">
+                                    <a target="_blank" href="/mahasiswa/bakerjapraktik/create">
                                         <button class="btn btn-primary right">Unggah</button>
                                     </a>
                                 @endif
@@ -296,7 +309,7 @@
                                     <div class="row border-bottom">
                                         <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            <a
+                                            <a target="_blank"
                                                 href="/uploads/berita_acara_seminar_kp/{{ $berita_acara->berkas_ba_seminar_kp }}">Lihat</a>
                                         </div>
                                         <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
@@ -307,7 +320,7 @@
                                     <div class="row border-bottom mt-2">
                                         <label class="col-md-3 bold"> <strong>Laporan Final PKL/KP</strong></label>
                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            <a href="/uploads/laporan_kp/{{ $berita_acara->laporan_kp }}">Lihat</a>
+                                            <a target="_blank" href="/uploads/laporan_kp/{{ $berita_acara->laporan_kp }}">Lihat</a>
                                         </div>
                                         <label class="col-md-3 bold mt-1"><strong>Status Bukti</strong></label>
                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -352,7 +365,7 @@
                                     <div class="row border-bottom mt-2">
                                         <label class="col-md-3 bold"> <strong>Laporan Final PKL/KP</strong></label>
                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            <a href="">-</a>
+                                            <a target="_blank" href="">-</a>
                                         </div>
                                         <label class="col-md-3 bold mt-1"><strong>Status Bukti</strong></label>
                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">

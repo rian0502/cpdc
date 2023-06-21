@@ -31,7 +31,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>TANGGAL SK PANGKAT</label>
+                                    <label>TANGGAL SK JABATAN</label>
                                     <input value="{{$jabatan->tgl_sk}}" autofocus name="tanggal_sk" id="tanggal_sk"
                                         class="form-control @error('tanggal_sk') form-control-danger @enderror"
                                         type="date" placeholder="TANGGAL SK">
@@ -40,15 +40,16 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>FILE SK PANGKAT</label>
+                                    <label>FILE SK JABATAN <small> <a id="link-file_sk_jabatan" href="#"
+                                        target="_blank" style="display: none;">Lihat File</a> </small></label>
                                     <div class=" custom-file">
-                                        <label class="custom-file-label" for="file_sk">Pilih File</label>
+                                        <label class="custom-file-label" for="file_sk_jabatan" id="label-file_sk_jabatan">Pilih File</label>
 
-                                        <input value="" autofocus name="file_sk" id="file_sk"
-                                            class="custom-file-input form-control @error('file_sk') form-control-danger @enderror"
-                                            type="file" placeholder="FILE SK">
+                                        <input value="{{old('file_sk_jabatan')}}" autofocus name="file_sk_jabatan" id="file_sk_jabatan"
+                                            class="custom-file-input form-control @error('file_sk_jabatan') form-control-danger @enderror"
+                                            type="file" placeholder="FILE SK" onchange="updateFileNameAndLink('file_sk_jabatan','label-file_sk_jabatan','link-file_sk_jabatan')">
                                     </div>
-                                    @error('file_sk')
+                                    @error('file_sk_jabatan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>

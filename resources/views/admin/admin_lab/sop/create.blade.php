@@ -19,10 +19,15 @@
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Dokumen SOP</label>
-                                    <input value="{{ old('file_sop') }}" autofocus name="file_sop" id="file_sop"
-                                        class="form-control @error('file_sop') form-control-danger @enderror" type="file"
-                                        placeholder="Dokumen SOP" accept=".pdf">
+                                    <label>Dokumen SOP<small> <a id="link-file_sop" href="#"
+                                        target="_blank" style="display: none;">Lihat File</a> </small></label>
+                                    <div class=" custom-file">
+                                        <label class="custom-file-label" for="file_sop" id="label-file_sop">Pilih File</label>
+
+                                        <input value="{{old('file_sop')}}" autofocus name="file_sop" id="file_sop" accept=".pdf"
+                                            class="custom-file-input form-control @error('file_sop') form-control-danger @enderror"
+                                            type="file" placeholder="Dokumen SOP" onchange="updateFileNameAndLink('file_sop','label-file_sop','link-file_sop')">
+                                    </div>
                                     @error('file_sop')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror

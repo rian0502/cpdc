@@ -161,22 +161,21 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>FILE SK JABATAN <small><a id="view-file-link" href="#" target="_blank"
-                                                style="display: none;">Lihat
-                                                File</a></small></label>
-                                    <div class="custom-file">
-                                        <label class="custom-file-label" for="file_sk_jabatan" id="file-label">Pilih
-                                            File</label>
-                                        <input value="{{ old('file_sk_jabatan') }}" accept=".pdf" autofocus
-                                            name="file_sk_jabatan" id="file_sk_jabatan"
+                                    <label>FILE SK JABATAN <small> <a id="link-file_sk_jabatan" href="#"
+                                                target="_blank" style="display: none;">Lihat File</a> </small></label>
+                                    <div class=" custom-file">
+                                        <label class="custom-file-label" for="file_sk_jabatan"
+                                            id="label-file_sk_jabatan">Pilih File</label>
+
+                                        <input value="{{ old('file_sk_jabatan') }}" autofocus name="file_sk_jabatan"
+                                            id="file_sk_jabatan"
                                             class="custom-file-input form-control @error('file_sk_jabatan') form-control-danger @enderror"
-                                            type="file" placeholder="FILE SK" onchange="updateFileName(event)">
+                                            type="file" placeholder="FILE SK"
+                                            onchange="updateFileNameAndLink('file_sk_jabatan','label-file_sk_jabatan','link-file_sk_jabatan')">
                                     </div>
                                     @error('file_sk_jabatan')
-                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
-
-
                                 </div>
                                 {{ Log::error('message') }}
                                 <div class="form-group">
