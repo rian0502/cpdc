@@ -106,7 +106,7 @@
     <div class="header">
         <div class="header-left">
             <div class="menu-icon bi bi-list"></div>
-            
+
         </div>
         <div class="header-right">
             <div class="dashboard-setting user-notification">
@@ -691,6 +691,24 @@
             }
         }
     </script>
+        <script>
+            function toggleInput(selectElement, targetId, targetId2) {
+                var selectedValue = selectElement.value;
+               var targetElement2 = document.getElementById(targetId2);
+               var targetElement = document.getElementById(targetId);
+                if (selectedValue === "new") {
+                    targetElement.style.display = "block";
+                    targetElement2.style.display = "block";
+                    targetElement.hidden = false;
+                    targetElement2.hidden = false;
+                } else {
+                    targetElement.style.display = "none";
+                    targetElement2.style.display = "none";
+                    targetElement.hidden = true;
+                    targetElement2.hidden = true;
+                }
+            }
+        </script>
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     {{-- <script type="text/javascript"
         src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-colvis-2.0.1/b-html5-2.0.1/datatables.min.js">

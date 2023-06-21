@@ -240,6 +240,19 @@
                                         @endif --}}
                                 </div>
                             </div>
+                            <div class="row border-bottom mt-2">
+                                <label class="col-md-3 bold"> <strong>Informasi Berkas</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    <div>
+                                        @if ($seminar->jadwal)
+                                            Silahkan Cek Berkas Keperluan Seminar Di Email Anda
+                                            hubungi admin berkas jika dalam 1x24 jam tidak menerima email Berkas
+                                        @else
+                                            <div>Belum terjadwal</div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>

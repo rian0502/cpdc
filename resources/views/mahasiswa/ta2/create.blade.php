@@ -13,7 +13,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Daftar Seminar Tugas Akhir 1</h4>
+                            <h4 class="text-dark h4">Daftar Seminar Tugas Akhir 2</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
@@ -79,21 +79,37 @@
                                     <label>Pembimbing 2</label>
                                     <select class="custom-select2 form-control" name="id_pembimbing_dua"
                                         id="id_pembimbing_dua" style="width: 100%; height: 38px"
-                                        onchange="toggleInput(this, 'Pembimbing2')">
+                                        onchange="toggleInput(this, 'Pembimbing2', 'pbl2_nama')">
                                         <optgroup label="Pembimbing 2">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_dospemkp') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            <option value="Tidak Ada di Daftar Ini">Tidak Ada di Daftar Ini</option>
+
+                                            @if (old('id_pembimbing_dua')=='new' || $errors->has('pbl2_nama'))
+                                                <option value="new" selected>Tidak Ada diDaftar Ini</option>
+                                            @else
+                                                <option value="new">Tidak Ada diDaftar Ini</option>
+                                            @endif
+
                                         </optgroup>
                                     </select>
                                 </div>
-                                <div id="Pembimbing2" style="display: none;">
+                                <div id="pbl2_nama" style="display: {{old('id_pembimbing_dua')=='new'?'block':'none'}};" {{old('id_pembimbing_dua')=='new'? '':'hidden'}}>
                                     <div class="form-group">
                                         <label>Nomor Karyawan / NIP Pembimbing 2</label>
-                                        <input autofocus name="pbl2_nip" id="pbl2_nip" class="form-control" type="text"
+                                        <input autofocus name="pbl2_nama" class="form-control" type="text"
+                                            value="{{ old('pbl2_nama') }}" placeholder="Masukkan Juga NIP / Nomor Karyawan">
+                                        @error('pbl2_nama')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div id="Pembimbing2" style="display: {{old('id_pembimbing_dua')=='new'?'block':'none'}};" {{old('id_pembimbing_dua')=='new'? '':'hidden'}}>
+                                    <div class="form-group">
+                                        <label>Nomor Karyawan / NIP Pembimbing 2</label>
+                                        <input autofocus name="pbl2_nip" class="form-control" type="text"
                                             value="{{ old('pbl2_nip') }}" placeholder="Masukkan Juga NIP / Nomor Karyawan">
                                         @error('pbl2_nip')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -183,6 +199,9 @@
                                             seminar saya minimal 1 semester atau bahkan sanksi yang lebih berat hingga
                                             dikeluarkan (Drop Out).
                                         </label>
+                                        @error('agreement')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 {{-- hanya tampil saat mode mobile --}}

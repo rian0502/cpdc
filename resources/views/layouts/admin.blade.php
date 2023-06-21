@@ -92,7 +92,7 @@
     <div class="header">
         <div class="header-left">
             <div class="menu-icon bi bi-list"></div>
-            
+
         </div>
         <div class="header-right">
             <div class="dashboard-setting user-notification">
@@ -747,6 +747,24 @@
             showConfirmationForm();
         });
     </script>
+        <script>
+            function toggleInput(selectElement, targetId, targetId2) {
+                var selectedValue = selectElement.value;
+               var targetElement2 = document.getElementById(targetId2);
+               var targetElement = document.getElementById(targetId);
+                if (selectedValue === "new") {
+                    targetElement.style.display = "block";
+                    targetElement2.style.display = "block";
+                    targetElement.hidden = false;
+                    targetElement2.hidden = false;
+                } else {
+                    targetElement.style.display = "none";
+                    targetElement2.style.display = "none";
+                    targetElement.hidden = true;
+                    targetElement2.hidden = true;
+                }
+            }
+        </script>
 
     <!-- End Google Tag Manager (noscript) -->
 
