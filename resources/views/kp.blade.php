@@ -30,12 +30,15 @@
                         @foreach ($jadwal_kp as $item)
                             <tr>
                                 <td class="center-align">{{ $loop->iteration }}</td>
-                                <td class="center-align">{{ $item->skp->mahasiswa->npm}}</td>
-                                <td class="center-align">{{ $item->skp->mahasiswa->nama_mahasiswa}}</td>
-                                <td class="center-align">{{ $item->skp->judul_kp}}</td>
-                                <td class="center-align">{{ $item->tanggal_skp}}</td>
-                                <td class="center-align">{{ $item->skp->dosen->nama_dosen}}</td>
-                                <td class="center-align">{{ $item->skp->lokasi->nama_lokasi}}</td>
+                                <td class="center-align">{{ $item->skp->mahasiswa->npm }}</td>
+                                <td class="center-align">{{ $item->skp->mahasiswa->nama_mahasiswa }}</td>
+                                <td class="center-align">
+                                    <textarea style="text-align: center;" disabled cols="25" rows="4">{{ $item->skp->judul_kp }}</textarea>
+                                </td>
+                                <td class="center-align">{{ $carbon::parse($item->tanggal_skp)->format('d F Y') }} <br>
+                                    {{ $item->jam_mulai_skp . ' - ' . $item->jam_selesai_skp }} </td>
+                                <td class="center-align">{{ $item->skp->dosen->nama_dosen }}</td>
+                                <td class="center-align">{{ $item->lokasi->nama_lokasi }}</td>
                             </tr>
                         @endforeach
                     </tbody>

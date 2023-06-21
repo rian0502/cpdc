@@ -26,10 +26,10 @@
                                     <th>No.</th>
                                     <th>Nama Dosen</th>
                                     @role('jurusan')
-                                    <th>NIP</th>
-                                    <th>NIDN</th>
-                                    <th>Umur</th>
-                                    <th>Status</th>
+                                        <th>NIP</th>
+                                        <th>NIDN</th>
+                                        <th>Umur</th>
+                                        <th>Status</th>
                                     @endrole
                                     <th>Email</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
@@ -43,26 +43,25 @@
                                             {{ $loop->iteration }}
                                         </td>
                                         <td>
-                                            {{ $item->nama_dosen }}
+                                            {{ $item->name }}
                                         </td>
                                         @role('jurusan')
-                                        <td>
-                                            {{ $item->nip }}
-                                        </td>
-                                        <td>
-                                            {{ $item->nidn }}
-                                        </td>
-                                        <td class="umur">
-                                            {{ //generate umur dari tanggal lahir
-                                                \Carbon\Carbon::parse($item->tanggal_lahir)->age
-                                                }}
-                                        </td>
-                                        <td>
-                                            {{ $item->status }}
-                                        </td>
+                                            <td>
+                                                {{ $item->nip }}
+                                            </td>
+                                            <td>
+                                                {{ $item->nidn }}
+                                            </td>
+                                            <td class="umur">
+                                                {{ //generate umur dari tanggal lahir
+                                                    \Carbon\Carbon::parse($item->tanggal_lahir)->age }}
+                                            </td>
+                                            <td>
+                                                {{ $item->status }}
+                                            </td>
                                         @endrole
                                         <td>
-                                            {{ $item->user->email }}
+                                            {{ $item->email }}
                                         </td>
                                         <td>
                                             <div class="dropdown">
@@ -79,7 +78,7 @@
                                                                 class="fa fa-pencil"></i> Edit</a>
                                                         <form
                                                             action="
-                                                {{ route('sudo.akun_dosen.destroy', 1) }}
+                                                {{ route('sudo.akun_dosen.destroy', $item->id) }}
                                                 "
                                                             method="POST">
                                                             @csrf
@@ -91,7 +90,7 @@
                                                     @endrole
                                                     @role('jurusan')
                                                         <a class="dropdown-item"
-                                                            href="{{route('sudo.akun_dosen.show', $item->encrypt_id)}}"><i
+                                                            href="{{ route('sudo.akun_dosen.show', $item->encrypt_id) }}"><i
                                                                 class="fal fa-eye"></i> Detail</a>
                                                     @endrole
                                                 </div>
@@ -136,30 +135,29 @@
             });
         });
     </script>
-<script>
-    $(document).ready(function() {
-        $('.umur').each(function() {
-            var umur = parseInt($(this).text());
-            var maxUmur = 70; // Umur maksimum yang dianggap
-            var minUmur = 0; // Umur minimum yang dianggap
-            var maxHue = 0; // HUE maksimum untuk warna merah
-            var minHue = 120; // HUE minimum untuk warna kuning
-            if (umur > maxUmur) {
+    <script>
+        $(document).ready(function() {
+            $('.umur').each(function() {
+                var umur = parseInt($(this).text());
+                var maxUmur = 70; // Umur maksimum yang dianggap
+                var minUmur = 0; // Umur minimum yang dianggap
+                var maxHue = 0; // HUE maksimum untuk warna merah
+                var minHue = 120; // HUE minimum untuk warna kuning
+                if (umur > maxUmur) {
                     umur = maxUmur;
                 } else if (umur < minUmur) {
                     umur = minUmur;
                 }
-            // Hitung nilai HUE berdasarkan umur
-            var hue = ((umur - minUmur) / (maxUmur - minUmur)) * (maxHue - minHue) + minHue;
+                // Hitung nilai HUE berdasarkan umur
+                var hue = ((umur - minUmur) / (maxUmur - minUmur)) * (maxHue - minHue) + minHue;
 
-            // Konversi HUE menjadi warna RGB
-            var color = "hsl(" + hue + ", 100%, 50%)";
+                // Konversi HUE menjadi warna RGB
+                var color = "hsl(" + hue + ", 100%, 50%)";
 
-            // Atur warna latar belakang dan teks
-            $(this).css('background-color', color);
-            $(this).css('color', 'blue');
+                // Atur warna latar belakang dan teks
+                $(this).css('background-color', color);
+                $(this).css('color', 'blue');
+            });
         });
-    });
-</script>
-
+    </script>
 @endsection

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Dosen;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\OrganisasiDosen;
 use Illuminate\Routing\Controller;
@@ -185,6 +184,10 @@ class ProfileDosenController extends Controller
         $dosen->jenis_kelamin = $request->gender;
         $dosen->updated_at = date('Y-m-d H:i:s');
         $dosen->save();
+        $user = User::find(Auth::user()->id);
+        $user->name = $request->nama_dosen;
+        $user->save();
+
         return redirect()->route('dosen.profile.index')->with('success', 'Profile Berhasil Diperbarui');
     }
 
