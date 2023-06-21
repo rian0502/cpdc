@@ -85,7 +85,13 @@
                                                     {{ old('id_dospemkp') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            <option value="Tidak Ada di Daftar Ini">Tidak Ada di Daftar Ini</option>
+
+                                            @if (old('pbl2_nama') || $errors->has('pbl2_nama'))
+                                                <option value="new" selected>Tidak Ada diDaftar Ini</option>
+                                            @else
+                                                <option value="new">Tidak Ada diDaftar Ini</option>
+                                            @endif
+
                                         </optgroup>
                                     </select>
                                 </div>
@@ -165,7 +171,7 @@
                                 {{-- hanya tampil saat mode mobile --}}
                                 <div class="form-group" id="form-mobile">
                                     <label>Judul atau Topik Tugas Akhir</label>
-                                    <textarea name="judul_ta" id="judul_ta" class="form-control">{{ old('judul') }}</textarea>
+                                    <textarea name="judul_ta" id="judul_ta" rows="" class="form-control">{{ old('judul') }}</textarea>
                                     @error('judul_ta')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -206,16 +212,17 @@
             var selectedValue = selectElement.value;
             var inputElement = selectElement.parentNode.querySelector('input[name="pbl2_nip"]');
             var targetElement = document.getElementById(targetId);
-            if (selectedValue === "Tidak Ada di Daftar Ini") {
+            if (selectedValue === "new") {
                 if (!inputElement) {
                     inputElement = document.createElement("input");
                     inputElement.setAttribute("type", "text");
-                    inputElement.setAttribute("name", "pbl2_nip");
-                    inputElement.setAttribute("id", "pbl2_nip");
+                    inputElement.setAttribute("name", "pbl2_nama");
+                    inputElement.setAttribute("id", "pbl2_nama");
                     inputElement.setAttribute("class", "form-control");
-                    inputElement.setAttribute("value", "{!! old('pbl2_nip') !!}");
                     inputElement.setAttribute("placeholder", "Masukkan Nama Pembimbing 2 Disini");
                     inputElement.setAttribute("style", "margin-top: 10px;");
+                    inputElement.setAttribute("value", "{{ old('pbl2_nama') }}");
+
                     selectElement.parentNode.appendChild(inputElement);
                 } else {
                     inputElement.style.display = "block";
@@ -225,7 +232,7 @@
                     inputElement.style.display = "none";
                 }
             }
-            if (selectedValue === "Tidak Ada di Daftar Ini") {
+            if (selectedValue === "new") {
                 targetElement.style.display = "block";
             } else {
                 targetElement.style.display = "none";
@@ -248,88 +255,10 @@
             option.text = tahun + "/" + (tahun + 1);
             select.add(option);
         }
-
-        // function toggleInput(selectElement, targetId) {
-        //     var selectedValue = selectElement.value;
-        //     var inputElement = selectElement.parentNode.querySelector('input[name="pbl2_nip"]');
-        //     var targetElement = document.getElementById(targetId);
-        //     if (selectedValue === "Tidak Ada di Daftar Ini") {
-        //         if (!inputElement) {
-        //             inputElement = document.createElement("input");
-        //             inputElement.setAttribute("type", "text");
-        //             inputElement.setAttribute("name", "pbl2_nip");
-        //             inputElement.setAttribute("id", "pbl2_nip");
-        //             inputElement.setAttribute("class", "form-control");
-        //             inputElement.setAttribute("value", "{!! old('pbl2_nip') !!}");
-        //             inputElement.setAttribute("placeholder", "Masukan Nama Pembimbing 2 Disini Jika Tidak Ada di Daftar");
-        //             inputElement.setAttribute("style", "margin-top: 10px;");
-        //             selectElement.parentNode.appendChild(inputElement);
-        //         } else {
-        //             inputElement.style.display = "block";
-        //         }
-        //     } else {
-        //         if (inputElement) {
-        //             inputElement.style.display = "none";
-        //         }
-        //     }
-
-        //     if (selectedValue === "Tidak Ada di Daftar Ini") {
-        //         inputElement.style.display = "block";
-        //     } else {
-        //         inputElement.style.display = "none";
-        //     }
-        // }
-
-
-
-        // function toggleInput(selectElement, targetId) {
-        //     var selectedValue = selectElement.value;
-        //     var inputElement = selectElement.parentNode.querySelector('input[name="' + selectElement.getAttribute("name") +
-        //         '"]');
-        //     var targetElement = document.getElementById(targetId);
-        //     if (selectedValue === "Tidak Ada di Daftar Ini") {
-        //         if (!inputElement) {
-        //             inputElement = document.createElement("input");
-        //             inputElement.setAttribute("type", "text");
-        //             inputElement.setAttribute("name", selectElement.getAttribute("name"));
-        //             inputElement.setAttribute("id", selectElement.getAttribute("id"));
-        //             inputElement.setAttribute("value", "{!! old('" + selectElement.getAttribute("name") + "') !!}");
-        //             inputElement.setAttribute("class", "form-control");
-        //             inputElement.setAttribute("style", "margin-top: 10px;");
-        //             selectElement.parentNode.appendChild(inputElement);
-        //         } else {
-        //             inputElement.style.display = "block";
-        //         }
-        //     } else {
-        //         if (inputElement) {
-        //             inputElement.style.display = "none";
-        //         }
-        //     }
-        //     if (selectedValue === "Tidak Ada di Daftar Ini") {
-        //         targetElement.style.display = "block";
-        //     } else {
-        //         targetElement.style.display = "none";
-        //     }
-        // }
     </script>
-
-    {{-- <div class="form-group">
-                                    <label>Pembimbing 2</label>
-                                    <select class="custom-select2 form-control" name="id_pembimbing_dua"
-                                        id="id_pembimbing_dua" style="width: 100%; height: 38px"
-                                        onchange="toggleInput(this, 'Pembimbing2')">
-                                        <optgroup label="Pembimbing 2">
-
-                                            @foreach ($dosens as $item)
-                                                <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
-                                                    {{ $item->nama_dosen }}
-                                                </option>
-                                            @endforeach
-                                            <option value="Tidak Ada di Daftar Ini">
-                                                Tidak Ada di Daftar Ini
-                                            </option>
-                                        </optgroup>
-                                    </select>
-                                </div> --}}
+    <script>
+        @if (old('pbl2_nama'))
+            toggleInput(document.getElementById('id_pembimbing_dua'), 'Pembimbing2')
+        @endif
+    </script>
 @endsection

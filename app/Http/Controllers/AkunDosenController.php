@@ -24,7 +24,7 @@ class AkunDosenController extends Controller
     public function index()
     {
         $data = [
-            'lecturers' => Dosen::orderBy('tanggal_lahir', 'desc')->get(),
+            'lecturers' => User::role('dosen')->get(),
         ];
         return view('akun.dosen.index', $data);
     }
@@ -98,10 +98,8 @@ class AkunDosenController extends Controller
     public function edit($id)
     {
         //
-        $lecturer = Dosen::find($id);
-        $account = User::find($lecturer->user_id);
+        $account = User::find($id);
         $data = [
-            'lecturer' => $lecturer,
             'account' => $account,
         ];
 
@@ -118,16 +116,20 @@ class AkunDosenController extends Controller
     public function update(Request $request, $id)
     {
 
-        $dosen = Dosen::find($id);
-        $user = User::find($dosen->user_id);
+        $user = User::find($id);
+        $dosen = Dosen::where('user_id', $id)->first();
         $user->email = $request->email;
-        $dosen->status = $request->status;
+
         if ($request->password != null) {
             $user->password = bcrypt($request->password);
         }
         $user->syncRoles($request->role);
         $user->save();
-        $dosen->save();
+
+        if($user->dosen){
+            $dosen->status = $request->status;
+            $dosen->save();
+        }
         return redirect()->route('sudo.akun_dosen.index')->with('success', 'Akun Dosen Berhasil Diubah');
     }
 

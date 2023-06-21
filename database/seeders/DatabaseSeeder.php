@@ -26,7 +26,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RolePermision::class);
         $this->call(Locations::class);
-        $this->call(BaseNPMSeeder::class);
         $this->call(SeederDosen::class);
         $this->call(SeederAdministrasi::class);
         $this->call(Mahasiswa::class);
