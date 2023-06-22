@@ -37,7 +37,7 @@ class StoreSeminarKP extends FormRequest
             'ni_pemlap' => ['required', 'numeric', 'min:3'],
             'rencana_seminar' => ['required'],
             'toefl' => ['nullable','numeric', 'max:255'],
-            'ipk' => ['required', 'numeric', 'max:4', 'min:3'],
+            'ipk' => ['required', 'numeric', 'max:4', 'min:1'],
             'berkas_seminar_pkl' => ['required', 'mimes:pdf', 'max:2048'],
             'agreement' => ['required'],
         ];
@@ -77,8 +77,8 @@ class StoreSeminarKP extends FormRequest
             'toefl.max' => 'Nilai TOEFL maksimal 255 karakter',
             'ipk.required' => 'IPK harus diisi',
             'ipk.numeric' => 'IPK harus berupa angka',
-            'ipk.max' => 'IPK maksimal 4 karakter',
-            'ipk.min' => 'IPK minimal 3 karakter',
+            'ipk.max' => 'IPK maksimal 4',
+            'ipk.min' => 'IPK minimal 1',
             'berkas_seminar_pkl.required' => 'Berkas seminar harus diunggah',
             'berkas_seminar_pkl.mimes' => 'Berkas seminar harus berupa pdf',
             'berkas_seminar_pkl.max' => 'Berkas seminar maksimal 1MB'

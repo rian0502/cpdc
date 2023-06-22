@@ -53,6 +53,7 @@ use App\Http\Controllers\MahasiswaBimbinganTA2Controller;
 use App\Http\Controllers\MahasiswaBimbinganAkademikController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
+use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,8 +106,8 @@ Route::get('chart/jabatandosen', [AkunDosenController::class, 'chartJabatanDosen
 Route::prefix('admin/berkas')->name('berkas.')->middleware(['auth', 'profile', 'verified', 'role:admin berkas'])->group(function () {
     Route::resource('berkas_persyaratan', BerkasPersyaratanController::class);
     Route::resource('validasi/seminar/kp', ValidasiSeminarKPController::class)->names('validasi.seminar.kp');
-    Route::resource('validasi/seminar/ta1', ValidasiBerkasTA1Controller::class)->names('validasi.seminar.ta1');
-    Route::resource('validasi/seminar/ta2', ValidasiBerkasTA2Controller::class)->names('validasi.seminar.ta2');
+    Route::resource('validasi/seminar/ta1', ValidasiAdminTaSatu::class)->names('validasi.seminar.ta1');
+    Route::resource('validasai/seminar/ta2', ValidasiBerkasTA2Controller::class)->names('validasi.seminar.ta2');
     Route::resource('validasi/sidang/kompre', ValidasiKompreController::class)->names('validasi.sidang.kompre');
 });
 //end admin berkas

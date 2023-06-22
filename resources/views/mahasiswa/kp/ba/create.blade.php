@@ -25,14 +25,14 @@
                                 <div class="form-group">
                                     <label>Nilai Pembimbing Lapangan</label>
                                     <input autofocus name="nilai_lapangan" id="nilai_lapangan" class="form-control"
-                                        type="number" value="{{ old('nilai_lapangan') }}" placeholder="Masukkan Nilai">
+                                        type="text" value="{{ old('nilai_lapangan') }}" placeholder="Masukkan Nilai">
                                     @error('nilai_lapangan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Nilai Dosen Pembimbing</label>
-                                    <input autofocus name="nilai_akd" id="nilai_akd" class="form-control" type="number"
+                                    <input autofocus name="nilai_akd" id="nilai_akd" class="form-control" type="text"
                                         value="{{ old('nilai_akd') }}" placeholder="Masukkan Nilai">
                                     @error('nilai_akd')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nilai Akhir</label>
-                                    <input autofocus name="nilai_akhir" id="nilai_akhir" class="form-control" type="number"
+                                    <input autofocus name="nilai_akhir" id="nilai_akhir" class="form-control" type="text"
                                         value="{{ old('nilai_akhir') }}" placeholder="Masukkan Nilai">
                                     @error('nilai_akhir')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>

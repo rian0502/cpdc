@@ -49,6 +49,6 @@ class Mahasiswa extends Model
         return $this->hasOne(SeminarKP::class);
     }
     public function ta_satu(){
-        return $this->hasOne(ModelSeminarTaSatu::class, 'id_mahasiswa');
+        return $this->hasMany(ModelSeminarTaSatu::class, 'id_mahasiswa');
     }
 }

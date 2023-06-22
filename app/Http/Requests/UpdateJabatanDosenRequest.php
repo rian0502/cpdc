@@ -28,7 +28,7 @@ class UpdateJabatanDosenRequest extends FormRequest
         return [
             'jabatan' => 'required|string|in:"' . implode('","', $jaban) . '"',
             'tanggal_sk' => 'required|date:Y-m-d',
-            'file_sk' => 'required|file|mimes:pdf|max:2048',
+            'file_sk' => 'nullable|file|mimes:pdf|max:2048',
         ];
     }
     public function messages()
@@ -39,10 +39,9 @@ class UpdateJabatanDosenRequest extends FormRequest
             'jabatan.in' => 'Jabatan tidak valid',
             'tanggal_sk.required' => 'Tanggal SK Jabatan tidak boleh kosong',
             'tanggal_sk.date' => 'Tanggal SK Jabatan tidak valid',
-            'file_sk.required' => 'File SK Jabatan tidak boleh kosong',
             'file_sk.file' => 'File SK Jabatan tidak valid',
             'file_sk.mimes' => 'File SK Jabatan harus berupa PDF',
-            'file_sk.max' => 'File SK Jabatan maksimal 2MB',
+            'file_sk.max' => 'File SK Jabatan maksimal 1MB',
         ];
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePrestasiMahasiswaRequest;
+use App\Http\Requests\UpdatePrestasiMahasiswaRequest;
 use App\Models\PrestasiMahasiswa;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -39,7 +41,7 @@ class PrestasiMahasiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePrestasiMahasiswaRequest $request)
     {
         $file_prestasi = $request->file('file_prestasi');
         $nama_file = $file_prestasi->hashName();
@@ -97,7 +99,7 @@ class PrestasiMahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\ResponseP
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePrestasiMahasiswaRequest $request, $id)
     {
         //
         $prestasi = PrestasiMahasiswa::find(Crypt::decrypt($id));

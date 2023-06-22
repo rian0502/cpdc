@@ -36,11 +36,11 @@
             background-color: #dc3545;
             color: white
         }
+
         .Failed {
-            background-color:black;
+            background-color: black;
             color: white
         }
-
     </style>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -98,7 +98,7 @@
                             </small>
 
                         </div>
-                        @if ($seminar->status_seminar == 'Belum Selesai')
+                        @if ($seminar->proses_admin != 'Valid')
                             <a target="_blank" href="/mahasiswa/seminar/kp/{{ $seminar->encrypt_id }}/edit">
                                 <button class="btn btn-primary right">Edit Data</button>
                             </a>
@@ -280,11 +280,10 @@
                                     <b>
                                         <p
                                             class="mb-30 text-center
-                                            @if($seminar->status_seminar == 'Selesai') {{'Valid'}}
-                                            @elseif($seminar->status_seminar == 'Belum Selesai') {{'Proses'}}
-                                            @elseif($seminar->status_seminar == 'Perbaikan') {{'Invalid'}}
-                                            @else {{'Failed'}}
-                                            @endif">
+                                            @if ($seminar->status_seminar == 'Selesai') {{ 'Valid' }}
+                                            @elseif($seminar->status_seminar == 'Belum Selesai') {{ 'Proses' }}
+                                            @elseif($seminar->status_seminar == 'Perbaikan') {{ 'Invalid' }}
+                                            @else {{ 'Failed' }} @endif">
                                             {{ $seminar->status_seminar }}
                                         </p>
                                     </b>
@@ -320,7 +319,8 @@
                                     <div class="row border-bottom mt-2">
                                         <label class="col-md-3 bold"> <strong>Laporan Final PKL/KP</strong></label>
                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            <a target="_blank" href="/uploads/laporan_kp/{{ $berita_acara->laporan_kp }}">Lihat</a>
+                                            <a target="_blank"
+                                                href="/uploads/laporan_kp/{{ $berita_acara->laporan_kp }}">Lihat</a>
                                         </div>
                                         <label class="col-md-3 bold mt-1"><strong>Status Bukti</strong></label>
                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">

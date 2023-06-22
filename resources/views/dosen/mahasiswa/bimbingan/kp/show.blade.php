@@ -120,7 +120,7 @@
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a target="_blank" href="/uploads/syarat_seminar_kp/">Unduh Berkas</a>
+                                    <a target="_blank" href="/uploads/syarat_seminar_kp/">Lihat Berkas</a>
                                     {{-- <a target="_blank" href="/uploads/syarat_seminar_kp/{{ $seminar->berkas_seminar_pkl}}">Unduh Berkas</a> --}}
                                 </div>
                             </div>

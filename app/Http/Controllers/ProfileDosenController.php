@@ -67,6 +67,11 @@ class ProfileDosenController extends Controller
         $foto = $request->file('foto_profile');
         $nama_foto_profile = Str::random() . '.' . $foto->getClientOriginalExtension();
         $foto->move(public_path('uploads/foto_profile'), $nama_foto_profile);
+        $user = User::find(Auth::user()->id);
+        $user->profile_picture = $nama_foto_profile;
+        $user->name = $request->nama_dosen;
+        $user->save();
+
         $profileDosen = [
             'nip' => $request->nip,
             'nidn' => $request->nidn,
@@ -77,8 +82,6 @@ class ProfileDosenController extends Controller
             'tanggal_lahir' => $request->tanggal_lahir,
             'status' => 'Aktif',
             'user_id' => Auth::user()->id,
-            'foto_profile' => $nama_foto_profile,
-
         ];
 
         $insertProfile = Dosen::create($profileDosen);
@@ -121,9 +124,6 @@ class ProfileDosenController extends Controller
             'encrypted_id' => Crypt::encrypt($idPangkat)
         ]);
         //end insert data ketable pangkat dosen
-        $updateNamaProfile = User::find(Auth::user()->id)->update([
-            'name' => $request->nama_dosen
-        ]);
         return redirect()->route('dosen.profile.index')->with('success', 'Profile Berhasil Disimpan');
     }
 
