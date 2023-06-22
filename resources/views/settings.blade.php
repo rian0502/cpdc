@@ -14,7 +14,6 @@
     <!-- Helpers -->
     <script src="/Assets/setting/assets/vendor/js/helpers.js"></script>
 
-
     <div class="main-container ms-4 me-4">
         <div class=" flex-grow-1 container-p-y">
             <h4 class="fw-bold py-3 mb-4">Pengaturan</h4>
@@ -34,7 +33,6 @@
                     </ul>
                 </div>
                 <div class="card mb-4">
-
                     <h1 class="card-header mb-3 mt-3" style="font-size: 20px;">Ubah Kata Sandi </h1>
                     <div class="card-body">
                         <form action="{{ route('auth.change.password') }}" method="POST" enctype="multipart/form-data">
