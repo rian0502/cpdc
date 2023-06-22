@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\HistoryJabatanDosen;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreJabatanDosenRequest;
+use App\Http\Requests\UpdateJabatanDosenRequest;
 use Illuminate\Support\Facades\Crypt;
 
 class JabatanController extends Controller
@@ -88,9 +89,8 @@ class JabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateJabatanDosenRequest $request, $id)
     {
-        //
         $jabatan = HistoryJabatanDosen::find(Crypt::decrypt($id));
         $id_Dosen = auth()->user()->dosen->id;
         if($jabatan->dosen_id == $id_Dosen){
