@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="/Assets/setting/assets/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="/Assets/setting/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
 
-
     <!-- Vendors CSS -->
     {{-- <link rel="stylesheet" href="/Assets/setting/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" /> --}}
 
@@ -22,7 +21,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-pills flex-column flex-md-row mb-4">
-
+                        <li class="nav-item">
+                            <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-lock me-1"></i>
+                                Kata Sandi</a>
+                        </li>
                         {{-- <li class="nav-item">
                                 <a class="nav-link" href=""><i class="bx bx-bell me-1"></i> Notifikasi</a>
                             </li>
@@ -32,7 +34,7 @@
                     </ul>
                 </div>
                 <div class="card mb-4">
-                    
+
                     <h1 class="card-header mb-3 mt-3" style="font-size: 20px;">Ubah Kata Sandi </h1>
                     <div class="card-body">
                         <form action="{{ route('auth.change.password') }}" method="POST" enctype="multipart/form-data">
