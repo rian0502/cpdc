@@ -25,7 +25,7 @@
                                 <div class="form-group">
                                     <label>Nilai Pembimbing Lapangan</label>
                                     <input autofocus name="nilai_lapangan" id="nilai_lapangan" class="form-control"
-                                        type="text" value="{{ old('nilai_lapangan') }}" placeholder="Masukkan Nilai">
+                                        type="text" value="{{ old('nilai_lapangan') }}" placeholder="Contoh : 89.87">
                                     @error('nilai_lapangan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -33,7 +33,7 @@
                                 <div class="form-group">
                                     <label>Nilai Dosen Pembimbing</label>
                                     <input autofocus name="nilai_akd" id="nilai_akd" class="form-control" type="text"
-                                        value="{{ old('nilai_akd') }}" placeholder="Masukkan Nilai">
+                                        value="{{ old('nilai_akd') }}" placeholder="Contoh : 89.87">
                                     @error('nilai_akd')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -41,7 +41,7 @@
                                 <div class="form-group">
                                     <label>Nilai Akhir</label>
                                     <input autofocus name="nilai_akhir" id="nilai_akhir" class="form-control" type="text"
-                                        value="{{ old('nilai_akhir') }}" placeholder="Masukkan Nilai">
+                                        value="{{ old('nilai_akhir') }}" placeholder="Contoh : 89.87">
                                     @error('nilai_akhir')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -49,7 +49,7 @@
                                 <div class="form-group">
                                     <label>No Berita Acara Seminar Kerja Praktik</label>
                                     <input autofocus name="no_ba_seminar_kp" id="no_ba_seminar_kp" class="form-control"
-                                        type="text" value="{{ old('no_ba_seminar_kp') }}" placeholder="ex : 123UN">
+                                        type="text" value="{{ old('no_ba_seminar_kp') }}" placeholder="Contoh : 123UN">
                                     @error('no_ba_seminar_kp')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror

@@ -56,7 +56,7 @@
                                 <div class="form-group">
                                     <label>IPK</label>
                                     <input autofocus name="ipk" id="ipk" class="form-control" type="text"
-                                        value="{{ old('ipk') }}" placeholder="Nilai IPK Saat Ini">
+                                        value="{{ old('ipk') }}" placeholder="Contoh : 3.55">
                                     @error('ipk')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -101,8 +101,7 @@
                                     <div class="form-group">
                                         <label>Dosen Pembimbing 2</label>
                                         <input autofocus name="pbl2_nama" class="form-control" type="text"
-                                            value="{{ old('pbl2_nama') }}"
-                                            placeholder="Masukkan Nama Dosen Pembimbing 2">
+                                            value="{{ old('pbl2_nama') }}" placeholder="Masukkan Nama Dosen Pembimbing 2">
                                         @error('pbl2_nama')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
@@ -133,7 +132,7 @@
                                         <optgroup label="Pembahas">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_dospemkp') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('pembahas') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}
                                                 </option>
                                             @endforeach
@@ -204,6 +203,9 @@
                                             seminar saya minimal 1 semester atau bahkan sanksi yang lebih berat hingga
                                             dikeluarkan (Drop Out).
                                         </label>
+                                        @error('agreement')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 {{-- hanya tampil saat mode mobile --}}

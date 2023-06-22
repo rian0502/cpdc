@@ -122,8 +122,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>IPK</label>
-                                    <input autofocus name="ipk" id="ipk" class="form-control" type="text"
-                                        value="{{ old('ipk') }}" placeholder="Nilai IPK">
+                                    <input autofocus name="ipk" id="ipk"  class="form-control" type="text"
+                                        value="{{ old('ipk') }}" placeholder="Contoh : 3.55">
                                     @error('ipk')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
