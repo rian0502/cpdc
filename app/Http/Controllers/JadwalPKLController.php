@@ -317,4 +317,9 @@ class JadwalPKLController extends Controller
         //
         return redirect()->back();
     }
+
+
+    public function checkJadwal(Request $request){
+        return $request->all();
+    }
 }

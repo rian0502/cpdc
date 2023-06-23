@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class PenjadwalanTaSatu extends Controller
 {
-    //
+    //koor
 
     public function index(){
 
