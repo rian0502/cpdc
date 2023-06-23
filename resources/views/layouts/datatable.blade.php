@@ -198,8 +198,7 @@
                             {{-- <img src="{{ asset('/Assets/images/profile_picture/' . $user->profile_picture) }}"
                                 alt="" /> --}}
                             <img src="/uploads/profile/{{ Auth::user()->profile_picture }}"
-                                onerror="this.src='/uploads/profile/default.png'" alt=""
-                                class="photo-profil" />
+                                onerror="this.src='/uploads/profile/default.png'" alt="" class="photo-profil" />
                         </span>
                         <span class="user-name">{{ Auth::user()->name }}</span>
                     </a>
@@ -569,6 +568,20 @@
                             </a>
                         </li>
                     @endrole
+                    @role('ta1')
+                        <li>
+                            <a href="{{ route('koor.jadwalTA1.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalTA1*') ? 'active' : '' }}">
+                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA 1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaTA1*') ? 'active' : '' }}">
+                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA 1</span>
+                            </a>
+                        </li>
+                    @endrole
                 </ul>
             </div>
         </div>
@@ -691,24 +704,24 @@
             }
         }
     </script>
-        <script>
-            function toggleInput(selectElement, targetId, targetId2) {
-                var selectedValue = selectElement.value;
-               var targetElement2 = document.getElementById(targetId2);
-               var targetElement = document.getElementById(targetId);
-                if (selectedValue === "new") {
-                    targetElement.style.display = "block";
-                    targetElement2.style.display = "block";
-                    targetElement.hidden = false;
-                    targetElement2.hidden = false;
-                } else {
-                    targetElement.style.display = "none";
-                    targetElement2.style.display = "none";
-                    targetElement.hidden = true;
-                    targetElement2.hidden = true;
-                }
+    <script>
+        function toggleInput(selectElement, targetId, targetId2) {
+            var selectedValue = selectElement.value;
+            var targetElement2 = document.getElementById(targetId2);
+            var targetElement = document.getElementById(targetId);
+            if (selectedValue === "new") {
+                targetElement.style.display = "block";
+                targetElement2.style.display = "block";
+                targetElement.hidden = false;
+                targetElement2.hidden = false;
+            } else {
+                targetElement.style.display = "none";
+                targetElement2.style.display = "none";
+                targetElement.hidden = true;
+                targetElement2.hidden = true;
             }
-        </script>
+        }
+    </script>
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     {{-- <script type="text/javascript"
         src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-colvis-2.0.1/b-html5-2.0.1/datatables.min.js">

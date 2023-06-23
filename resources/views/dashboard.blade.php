@@ -1087,21 +1087,21 @@
                                 text: 'Jabatan Dosen'
                             },
                             plotOptions: {
-                            pie: {
-                                cursor: 'pointer',
-                                allowPointSelect: true,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                                    style: {
-                                        textOutline: 'none'
+                                pie: {
+                                    cursor: 'pointer',
+                                    allowPointSelect: true,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                        style: {
+                                            textOutline: 'none'
+                                        }
                                     }
                                 }
-                            }
-                        },
-                        tooltip: {
-                            pointFormat: '<b>Jumlah: {point.y}</b>'
-                        },
+                            },
+                            tooltip: {
+                                pointFormat: '<b>Jumlah: {point.y}</b>'
+                            },
                             series: [{
                                 name: 'Jumlah',
                                 data: data.map(item => ({

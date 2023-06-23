@@ -50,10 +50,12 @@ use App\Http\Controllers\MahasiswaBimbinganKPController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\MahasiswaBimbinganTA1Controller;
 use App\Http\Controllers\MahasiswaBimbinganTA2Controller;
+use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
+use App\Http\Controllers\tugas_akhir_satu\PenjadwalanTaSatu;
 use App\Http\Controllers\MahasiswaBimbinganAkademikController;
+use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
-use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,6 +134,8 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
 
 Route::prefix('koor')->name('koor.')->group(function () {
     Route::resource('jadwalPKL', JadwalPKLController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('jadwalPKL');
+    Route::resource('jadwalTA1', PenjadwalanTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('jadwalTA1');
+    Route::resource('jadwalTA2', PenjadwalanTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('jadwalTA2');
     Route::get('/jadwalPPKL/resend/{id}', [JadwalPKLController::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:pkl'])->name('jadwalPKL.resend');
     Route::resource('validasiBaPKL', ValidasiBaPKLController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('validasiBaPKL');
 });
