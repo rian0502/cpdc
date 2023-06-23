@@ -182,8 +182,7 @@
                         <span class="user-icon">
                             {{-- <img src="/Assets/images/profile_picture/default.png" alt="" /> --}}
                             <img src="/uploads/profile/{{ Auth::user()->profile_picture }}"
-                                onerror="this.src='/uploads/profile/default.png'" alt=""
-                                class="photo-profil" />
+                                onerror="this.src='/uploads/profile/default.png'" alt="" class="photo-profil" />
                         </span>
                         <span class="user-name">{{ Auth::user()->name }}</span>
                     </a>
@@ -635,6 +634,20 @@
                             </a>
                         </li>
                     @endrole
+                    @role('ta1')
+                        <li>
+                            <a href="{{ route('koor.jadwalPKL.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalTA1*') ? 'active' : '' }}">
+                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA 1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('koor.validasiBaPKL.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
+                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA 1</span>
+                            </a>
+                        </li>
+                    @endrole
                 </ul>
             </div>
         </div>
@@ -747,24 +760,24 @@
             showConfirmationForm();
         });
     </script>
-        <script>
-            function toggleInput(selectElement, targetId, targetId2) {
-                var selectedValue = selectElement.value;
-               var targetElement2 = document.getElementById(targetId2);
-               var targetElement = document.getElementById(targetId);
-                if (selectedValue === "new") {
-                    targetElement.style.display = "block";
-                    targetElement2.style.display = "block";
-                    targetElement.hidden = false;
-                    targetElement2.hidden = false;
-                } else {
-                    targetElement.style.display = "none";
-                    targetElement2.style.display = "none";
-                    targetElement.hidden = true;
-                    targetElement2.hidden = true;
-                }
+    <script>
+        function toggleInput(selectElement, targetId, targetId2) {
+            var selectedValue = selectElement.value;
+            var targetElement2 = document.getElementById(targetId2);
+            var targetElement = document.getElementById(targetId);
+            if (selectedValue === "new") {
+                targetElement.style.display = "block";
+                targetElement2.style.display = "block";
+                targetElement.hidden = false;
+                targetElement2.hidden = false;
+            } else {
+                targetElement.style.display = "none";
+                targetElement2.style.display = "none";
+                targetElement.hidden = true;
+                targetElement2.hidden = true;
             }
-        </script>
+        }
+    </script>
 
     <!-- End Google Tag Manager (noscript) -->
 
