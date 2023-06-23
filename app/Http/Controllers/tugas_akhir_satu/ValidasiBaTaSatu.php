@@ -7,5 +7,5 @@ use Illuminate\Http\Request;
 
 class ValidasiBaTaSatu extends Controller
 {
-    //
+    //koor
 }

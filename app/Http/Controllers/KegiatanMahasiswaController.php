@@ -124,7 +124,6 @@ class KegiatanMahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
         $aktivitas = AktivitasMahasiswa::find(Crypt::decrypt($id));
         if($aktivitas->mahasiswa_id != Auth::user()->mahasiswa->id){
             return redirect()->back();

@@ -254,8 +254,7 @@ Route::prefix('dosen')->name('dosen.')->group(function () {
 });
 
 
-Route::prefix('koor')->name('koor.')->group(function () {
-});
+
 
 
 Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo|jurusan'])->group(function () {
