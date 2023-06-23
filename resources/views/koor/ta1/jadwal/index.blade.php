@@ -33,10 +33,10 @@
                                             {{ $item->mahasiswa->npm }}
                                         </td>
                                         <td>
-                                            {{ \Illuminate\Support\Str::limit($item->judul_kp, $limit = 40, $end = '...') }}
+                                            {{ \Illuminate\Support\Str::limit($item->judul_ta, $limit = 40, $end = '...') }}
                                         </td>
                                         <td>
-                                            {{ $item->rencana_seminar }}
+                                            {{ $item->periode_seminar }}
                                         </td>
                                         @if ($item->jadwal)
                                             <td>
@@ -74,12 +74,12 @@
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     @if ($item->jadwal)
                                                         <a class="dropdown-item"
-                                                            href="{{ route('koor.jadwalPKL.index', $item->encrypt_id) }}"><i
+                                                            href="{{ route('koor.jadwalTA1.edit', $item->encrypt_id) }}"><i
                                                                 class="fa fa-pencil"></i>
                                                             Edit</a>
                                                     @else
                                                         <a class="dropdown-item"
-                                                            href="{{ route('koor.jadwalPKL.create', $item->encrypt_id) }}"><i
+                                                            href="{{ route('koor.jadwalTA1.create', $item->encrypt_id) }}"><i
                                                                 class="bi bi-calendar-plus-fill"></i>
                                                             Jadwalkan</a>
                                                     @endif
