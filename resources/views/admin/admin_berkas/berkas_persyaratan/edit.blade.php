@@ -20,11 +20,9 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Nama File</label>
-                                        <label class="custom-file-label" for="link-nama_file"
-                                            id="label-nama_file">Pilih File</label>
-                                        <input value="{{ old('nama_file') }}" accept=".pdf" autofocus
+                                        <input value="{{ old('nama_file') }}" autofocus
                                             name="nama_file"
-                                            class="custom-file-input form-control @error('nama_file') form-control-danger @enderror"
+                                            class="form-control @error('nama_file') form-control-danger @enderror"
                                             type="text">
 
                                     @error('nama_file')
@@ -32,23 +30,23 @@
                                     @enderror
                                 </div>
 
+                                <div class="form-group">
+                                    <label>FILE PERSYARATAN <small> <a id="link-file_persyaratan" href="#"
+                                        target="_blank" style="display: none;">Lihat File</a> </small></label>
+                                    <div class=" custom-file">
+                                        <label class="custom-file-label" for="file_persyaratan" id="label-file_persyaratan">Pilih File</label>
 
+                                        <input accept=".pdf" value="{{old('file_persyaratan')}}" autofocus name="file_persyaratan" id="file_persyaratan"
+                                            class="custom-file-input form-control @error('file_persyaratan') form-control-danger @enderror"
+                                            type="file" placeholder="FILE PERSYARATAN" onchange="updateFileNameAndLink('file_persyaratan','label-file_persyaratan','link-file_persyaratan')">
+                                    </div>
+                                    @error('file_persyaratan')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                             {{-- form untuk sebelah kanan --}}
-                            <div class="form-group">
-                                <label>FILE PERSYARATAN <small> <a id="link-file_persyaratan" href="#"
-                                    target="_blank" style="display: none;">Lihat File</a> </small></label>
-                                <div class=" custom-file">
-                                    <label class="custom-file-label" for="file_persyaratan" id="label-file_persyaratan">Pilih File</label>
 
-                                    <input accept=".pdf" value="{{old('file_persyaratan')}}" autofocus name="file_persyaratan" id="file_persyaratan"
-                                        class="custom-file-input form-control @error('file_persyaratan') form-control-danger @enderror"
-                                        type="file" placeholder="FILE PERSYARATAN" onchange="updateFileNameAndLink('file_persyaratan','label-file_persyaratan','link-file_persyaratan')">
-                                </div>
-                                @error('file_persyaratan')
-                                    <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
                         </div>
 
 
