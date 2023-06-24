@@ -36,7 +36,7 @@ class StoreSeminarKP extends FormRequest
             'pembimbing_lapangan' => ['required', 'string', 'max:255', 'min:3'],
             'ni_pemlap' => ['required', 'numeric', 'min:3'],
             'rencana_seminar' => ['required'],
-            'toefl' => ['nullable','numeric', 'max:255'],
+            'toefl' => ['nullable','numeric', 'max:600'],
             'ipk' => ['required', 'numeric', 'max:4', 'min:1'],
             'berkas_seminar_pkl' => ['required', 'mimes:pdf', 'max:2048'],
             'agreement' => ['required'],
@@ -81,7 +81,8 @@ class StoreSeminarKP extends FormRequest
             'ipk.min' => 'IPK minimal 1',
             'berkas_seminar_pkl.required' => 'Berkas seminar harus diunggah',
             'berkas_seminar_pkl.mimes' => 'Berkas seminar harus berupa pdf',
-            'berkas_seminar_pkl.max' => 'Berkas seminar maksimal 1MB'
+            'berkas_seminar_pkl.max' => 'Berkas seminar maksimal 1MB',
+            'agreement.required' => 'Anda harus menyetujui persyaratan seminar KP',
         ];
     }
 }
