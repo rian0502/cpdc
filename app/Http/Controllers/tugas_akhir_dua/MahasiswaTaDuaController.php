@@ -4,7 +4,9 @@ namespace App\Http\Controllers\tugas_akhir_dua;
 
 use App\Models\Dosen;
 use Illuminate\Http\Request;
+use App\Models\ModelSeminarTaSatu;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Crypt;
 
 class MahasiswaTaDuaController extends Controller
 {
@@ -16,7 +18,11 @@ class MahasiswaTaDuaController extends Controller
     public function index()
     {
         //
-        return view('mahasiswa.ta2.index');
+        $data = [
+            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')->get(),
+            // 'seminar' => ModelSeminarTaSatu::find(Crypt::decrypt($id)),
+        ];
+        return view('mahasiswa.ta2.index', $data);
     }
 
     /**

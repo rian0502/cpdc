@@ -43,19 +43,15 @@
                                                 {{ $item->jadwal->tanggal_skp }}
                                             </td>
                                             <td>
-                                                {{ $item->no_ba_seminar_kp}}
+                                                {{ $item->no_ba_seminar_kp }}
                                             </td>
-   
-
-
                                             <td>
-            
-                                                    <a class="btn btn-warning"
-                                                        href="
+                                                <a class="btn btn-warning"
+                                                    href="
                                                         {{ route('koor.validasiBaPKL.edit', $item->encrypt_id) }}
                                                         "><i
-                                                            class="bi bi-pencil-square"></i>
-                                                        Validasi</a>
+                                                        class="bi bi-pencil-square"></i>
+                                                    Validasi</a>
                                             </td>
                                         </tr>
                                     @endif
