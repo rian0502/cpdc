@@ -189,6 +189,7 @@ class JadwalPKLController extends Controller
             'id_lokasi.required' => 'Lokasi tidak boleh kosong',
             'id_lokasi.exists' => 'Lokasi tidak ditemukan',
         ]);
+
         $cekJadwal = JadwalSKP::where('tanggal_skp', '=', $request->tanggal_skp)->where('jam_mulai_skp', '=', $request->jam_mulai_skp)->where('jam_selesai_skp', '=', $request->jam_selesai_skp)->where('id_lokasi', '=', Crypt::decrypt($request->id_lokasi))->first();
         if ($cekJadwal) {
             return redirect()->back()->with('error', 'Jadwal Sudah Terdaftar');
@@ -313,7 +314,47 @@ class JadwalPKLController extends Controller
     }
 
 
-    public function checkJadwal(Request $request){
+    public function checkJadwal(Request $request)
+    {
+        $validation = $request->validate([
+            'tanggal_skp' => 'required|date|after_or_equal:tomorrow',
+            'jam_mulai_skp' => 'required',
+            'jam_selesai_skp' => 'required|after:jam_mulai_skp',
+            'id_lokasi' => 'required|exists:lokasi,encrypt_id',
+        ], [
+            'tanggal_skp.required' => 'Tanggal Harus Diisi',
+            'tanggal_skp.date' => 'Tanggal harus berupa tanggal',
+            'tanggal_skp.after_or_equal' => 'Tanggal Minimal Besok',
+            'jam_mulai_skp.required' => 'Jam mulai tidak boleh kosong',
+            'jam_selesai_skp.required' => 'Jam selesai tidak boleh kosong',
+            'id_lokasi.required' => 'Lokasi tidak boleh kosong',
+            'id_lokasi.exists' => 'Lokasi tidak ditemukan',
+            'jam_selesai_skp.after' => 'Jam selesai harus lebih besar dari jam mulai',
+        ]);
+
+
+        $cekJadwal = JadwalSKP::where(
+                'tanggal_skp',
+                '=',
+                $request->tanggal_skp
+            )->where(
+                'jam_mulai_skp',
+                '=',
+                $request->jam_mulai_skp
+            )->where(
+                'jam_selesai_skp',
+                '=',
+                $request->jam_selesai_skp
+            )->where(
+                'id_lokasi',
+                '=',
+                Crypt::decrypt($request->id_lokasi)
+            )->count();
+        if ($cekJadwal > 0) {
+            return response()->json(['message' => 'Failed']);
+        }else{
+            return response()->json(['message' => 'Valid']);
+        }
         return $request->all();
     }
 }
