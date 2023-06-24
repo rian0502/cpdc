@@ -31,7 +31,6 @@ class LitabmasController extends Controller
      */
     public function create()
     {
-        //
         $data = [
             'dosens' => Dosen::whereNotIn('id', [Auth::user()->dosen->id])->get(),
         ];

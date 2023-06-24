@@ -133,12 +133,7 @@ class AkunDosenController extends Controller
         return redirect()->route('sudo.akun_dosen.index')->with('success', 'Akun Dosen Berhasil Diubah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
     }
@@ -162,7 +157,7 @@ class AkunDosenController extends Controller
     }
 
 
-    public function chartJabatanDosen(Request $request)
+    public function chartJabatanDosen()
     {
         $results = DB::table('dosen')
             ->select('jabatan', DB::raw('COUNT(*) as jumlah_dosen'))
