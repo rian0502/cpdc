@@ -15,6 +15,6 @@ class BaseNPMSeeder extends Seeder
      */
     public function run()
     {
-        BaseNPM::factory()->count(20)->create();
+        BaseNPM::factory()->count(100)->create();
     }
 }
