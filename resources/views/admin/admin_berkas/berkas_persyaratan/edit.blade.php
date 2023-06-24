@@ -25,12 +25,13 @@
                                         <input value="{{ old('nama_file') }}" accept=".pdf" autofocus
                                             name="nama_file"
                                             class="custom-file-input form-control @error('nama_file') form-control-danger @enderror"
-                                            type="text""
+                                            type="text">
 
                                     @error('nama_file')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
+
 
                             </div>
                             {{-- form untuk sebelah kanan --}}

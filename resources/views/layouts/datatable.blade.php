@@ -533,7 +533,7 @@
                     @role('dosen')
                         <li class="dropdown {{ Request::is('dosen/mahasiswa/bimbingan*') ? 'show' : '' }}">
                             <a href="javascript:;" class="dropdown-toggle">
-                                <span class="micon fa-solid fa-user"></span><span class="mtext">Mahasiswa</span>
+                                <span class="micon fa-solid fa-user"></span><span class="mtext">Bimbingan</span>
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.akademik.index') }}"
