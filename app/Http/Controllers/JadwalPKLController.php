@@ -66,10 +66,7 @@ class JadwalPKLController extends Controller
             'id_lokasi.required' => 'Lokasi tidak boleh kosong',
             'id_lokasi.exists' => 'Lokasi tidak ditemukan',
         ]);
-        $cekJadwal = JadwalSKP::where('tanggal_skp', '=', $request->tanggal_skp)->where('jam_mulai_skp', '=', $request->jam_mulai_skp)->where('jam_selesai_skp', '=', $request->jam_selesai_skp)->where('id_lokasi', '=', Crypt::decrypt($request->id_lokasi))->first();
-        if ($cekJadwal) {
-            return redirect()->back()->with('error', 'Jadwal Sudah Terdaftar');
-        }
+
         $id_seminar = array_key_last($request->all());
         $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();

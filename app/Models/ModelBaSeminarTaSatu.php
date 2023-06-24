@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ModelBaSeminarTaSatu extends Model
 {
     use HasFactory;
+
     protected $table = 'ba_seminar_ta_satu';
     protected $fillable = [
         'encrypt_id',
@@ -25,6 +26,6 @@ class ModelBaSeminarTaSatu extends Model
         return $this->belongsTo(ModelSeminarTaSatu::class, 'id_seminar');
     }
     public function seminar(){
-        return $this->belongsTo(ModelSeminarTaSatu::class);
+        return $this->belongsTo(ModelSeminarTaSatu::class, 'id_seminar');
     }
 }
