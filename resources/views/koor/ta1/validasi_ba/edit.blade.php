@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Laporan Final PKL/KP</strong></label>
+                                <label class="col-md-3 bold"> <strong>Laporan Final Tugas Akhir 1</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a href="/uploads/laporan_kp/{{ $seminar->berita_acara->laporan_kp }}"
                                         target="_blank">Lihat</a>
