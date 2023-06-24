@@ -722,6 +722,62 @@
             }
         }
     </script>
+    @role('kompre|ta2|ta1|pkl')
+    <script>
+        $(document).ready(function() {
+            $('#formJadwal').submit(function(e) {
+                e.preventDefault();
+                var request = new FormData(this);
+                var endpoint = '/api/check-jadwal';
+                $.ajax({
+                    url: endpoint,
+                    method: "POST",
+                    data: request,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(data) {
+                        if (data['message'] == 'Valid') {
+                            swal({
+                                title: "Berhasil",
+                                text: "Jadwal Bisa digunakan",
+                                type: "question",
+                                showCancelButton: true,
+                                confirmButtonText: "Ya, Buat Jadwal",
+                            }).then(function(result) {
+                                if (result.value) {
+                                    $('#formJadwal').unbind('submit').submit();
+                                }
+                            });
+                        } else {
+                            swal({
+                                title: "Gagal",
+                                text: "Jadwal yang anda masukkan sudah terdaftar",
+                                type: "error",
+                                button: "Ok",
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                        var error_data = JSON.parse(xhr.responseText)['errors'];
+
+                        var error_msg = "";
+                        for (var key in error_data) {
+                            error_msg += error_data[key] + ",";
+                        }
+                        swal({
+                            title: "Gagal",
+                            text: error_msg,
+                            type: "error",
+                            button: "Ok",
+                        });
+                    },
+                });
+            });
+        });
+    </script>
+    @endrole
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     {{-- <script type="text/javascript"
         src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-colvis-2.0.1/b-html5-2.0.1/datatables.min.js">

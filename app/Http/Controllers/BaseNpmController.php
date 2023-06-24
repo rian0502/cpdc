@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\BaseNpm;
 use App\Models\PrestasiMahasiswa;
+use Error;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class BaseNpmController extends Controller
@@ -93,8 +94,11 @@ class BaseNpmController extends Controller
      */
     public function edit($id)
     {
+        $data = [
+            'item' => BaseNpm::where('id', $id)->first(),
+        ];
         //
-        return view('npm.edit');
+        return view('npm.edit', $data);
     }
 
     /**
@@ -107,6 +111,17 @@ class BaseNpmController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $data = [
+            'npm' => $request->npm,
+            'updated_at' => now()
+        ];
+        $update = BaseNpm::where('id', $id)->update($data);
+        if ($update) {
+            return redirect()->route('sudo.base_npm.index')->with('success', 'Data berhasil diubah');
+        } else {
+            return redirect()->route('sudo.base_npm.index')->with('error', 'Data gagal diubah');
+        }
     }
 
     /**
@@ -122,9 +137,8 @@ class BaseNpmController extends Controller
     public function BaseNpm(Request $request)
     {
         if ($request->ajax()) {
-            $data = BaseNpm::latest()->get();
-            return DataTables::of($data)
-                ->toJson();
+            $model = BaseNpm::query();
+            return DataTables::of($model)->toJson();
         }
     }
 }

@@ -20,7 +20,7 @@ class AkunMahasiswaController extends Controller
     {
 
         if ($request->ajax()) {
-            $data = Mahasiswa::all();
+            $data = Mahasiswa::query();
             return DataTables::of($data)
                 ->addColumn('email', function ($row) {
                     return $row->user->email;

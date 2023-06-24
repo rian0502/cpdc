@@ -11,17 +11,17 @@
                             <h4 class="text-dark h4">Edit NPM</h4>
                         </div>
                 </div>
-                <form action="{{ route('sudo.base_npm.update', $student->id) }}" method="POST">
+                <form action="{{ route('sudo.base_npm.update', $item->id) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="profile-edit-list row">
                         {{-- form untuk sebelah kiri --}}
                         <div class="weight-500 col-md-6">
                             <div class="form-group">
-                                <label>npm</label>
+                                <label>NPM</label>
                                 <input autofocus name="npm" id="npm" value="{{ $item->npm }} "
                                     class="form-control @error('npm') form-control-danger @enderror" type="text"
-                                    placeholder="npm">
+                                    placeholder="NPM">
                                 @error('npm')
                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                 @enderror

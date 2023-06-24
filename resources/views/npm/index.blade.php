@@ -210,44 +210,43 @@
         });
     </script>
 
-    <script>
-        var dataNpm = null; // Menyimpan referensi ke objek DataTable
+<script>
+    var dataNpm = null; // Menyimpan referensi ke objek DataTable
 
-        $(function() {
-            dataNpm = $('.data-npm').DataTable({
+    $(function() {
+        dataNpm = $('.data-npm').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ route('sudo.base_npm.ajax') }}',
+            columns: [
+                {
+                    data: null,
+                    name: 'npm',
+                    render: function(data, type, row, meta) {
+                        // Menghasilkan nomor urutan perdata
+                        var index = meta.row + meta.settings._iDisplayStart + 1;
+                        return index;
+                    }
+                },
+                {
+                    data: 'npm',
+                    name: 'npm'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: null,
+                    name: 'null',
+                    orderable: false,
+                    searchable: false,
+                    exportable: false,
+                    render: function(data, type, row) {
+                        var editUrl = "{{ route('sudo.base_npm.edit', ':id') }}".replace(':id', row.id);
+                        var deleteUrl = "{{ route('sudo.base_npm.destroy', ':id') }}".replace(':id', row.id);
 
-                processing: true,
-                serverSide: true,
-                ajax: '{{ route('sudo.base_npm.ajax') }}',
-                columns: [{
-                        data: null,
-                        name: 'no',
-                        render: function(data, type, row, meta) {
-                            // Menghasilkan nomor urutan perdata
-                            var index = meta.row + meta.settings._iDisplayStart + 1;
-                            return index;
-                        }
-                    },
-                    {
-                        data: 'npm',
-                        name: 'npm'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status'
-                    },
-                    {
-                        data: 'null',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false,
-                        render: function(data, type, row) {
-                            var editUrl = "{{ route('sudo.base_npm.edit', ':id') }}".replace(':id',
-                                row.id);
-                            var deleteUrl = "{{ route('sudo.base_npm.destroy', ':id') }}".replace(
-                                ':id', row.id);
-
-                            return `
+                        return `
                         <div class="dropdown">
                             <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                 <i class="fa fa-ellipsis-h"></i>
@@ -265,15 +264,13 @@
                                 </form>
                             </div>
                         </div>`;
-                        }
                     }
-                ]
-            });
-
-            // getData2();
+                }
+            ]
         });
-        // dataTable.destroy();
-    </script>
+    });
+</script>
+
 
 
     <!-- Input Validation End -->
