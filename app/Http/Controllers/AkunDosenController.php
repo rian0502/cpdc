@@ -24,7 +24,8 @@ class AkunDosenController extends Controller
     public function index()
     {
         $data = [
-            'lecturers' => User::role('dosen')->get(),
+            'lecturers' => Dosen::all(),
+            'account' => User::role('dosen')->get(),
         ];
         return view('akun.dosen.index', $data);
     }
@@ -101,6 +102,7 @@ class AkunDosenController extends Controller
         $account = User::find($id);
         $data = [
             'account' => $account,
+            'lecturer' => $account->dosen,
         ];
 
         return view('akun.dosen.edit', $data);
