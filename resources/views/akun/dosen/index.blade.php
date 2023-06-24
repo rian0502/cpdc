@@ -18,34 +18,110 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="pb-20 m-3">
+                            <table class="table data-table-responsive stripe data-table-export nowrap" id="data">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Nama Dosen</th>
+                                        <th>Email</th>
+                                        <th>Aktivasi</th>
+                                        <th>Profile</th>
+                                        <th class="table-plus datatable-nosort">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach ($account as $item)
+                                        <tr>
+                                            <td>
+                                                {{ $loop->iteration }}
+                                            </td>
+                                            <td>
+                                                {{ $item->name }}
+                                            </td>
+
+                                            <td>
+                                                {{ $item->email }}
+                                            </td>
+                                            <td>
+                                                @if ($item->email_verified_at == null)
+                                                    <span class="badge badge-danger">Belum Aktivasi</span>
+                                                @else
+                                                    {{$carbon::parse($item->email_verified_at)->locale('id_ID')->isoFormat('D MMMM YYYY')}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($item->dosen)
+                                                    <span class="badge badge-success">Sudah</span>
+                                                @else
+                                                    <span class="badge badge-danger">Belum</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-outline-primary dropdown-toggle" href="#"
+                                                        role="button" data-toggle="dropdown">
+                                                        <i class="fa fa-ellipsis-h"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        @role('sudo')
+                                                            <a class="dropdown-item"
+                                                                href="
+                                                {{ route('sudo.akun_dosen.edit', $item->id) }}
+                                                "><i
+                                                                    class="fa fa-pencil"></i> Edit</a>
+                                                            <form
+                                                                action="
+                                                {{ route('sudo.akun_dosen.destroy', $item->id) }}
+                                                "
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="dropdown-item text-danger"><i
+                                                                        class="fa fa-trash"></i>
+                                                                    Delete</button>
+                                                            </form>
+                                                        @endrole
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     @endrole
-                    <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap" id="data">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Nama Dosen</th>
-                                    @role('jurusan')
+
+
+
+                    @role('jurusan')
+                        <div class="pb-20 m-3">
+                            <table class="table data-table-responsive stripe data-table-export nowrap" id="data">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Nama Dosen</th>
                                         <th>NIP</th>
                                         <th>NIDN</th>
                                         <th>Umur</th>
                                         <th>Status</th>
-                                    @endrole
-                                    <th>Email</th>
-                                    <th class="table-plus datatable-nosort">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                        <th>Email</th>
+                                        <th class="table-plus datatable-nosort">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                                @foreach ($lecturers as $item)
-                                    <tr>
-                                        <td>
-                                            {{ $loop->iteration }}
-                                        </td>
-                                        <td>
-                                            {{ $item->name }}
-                                        </td>
-                                        @role('jurusan')
+                                    @foreach ($lecturers as $item)
+                                        <tr>
+                                            <td>
+                                                {{ $loop->iteration }}
+                                            </td>
+                                            <td>
+                                                {{ $item->nama_dosen }}
+                                            </td>
+
                                             <td>
                                                 {{ $item->nip }}
                                             </td>
@@ -59,50 +135,37 @@
                                             <td>
                                                 {{ $item->status }}
                                             </td>
-                                        @endrole
-                                        <td>
-                                            {{ $item->email }}
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
-                                                    role="button" data-toggle="dropdown">
-                                                    <i class="fa fa-ellipsis-h"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    @role('sudo')
-                                                        <a class="dropdown-item"
-                                                            href="
-                                                {{ route('sudo.akun_dosen.edit', $item->id) }}
-                                                "><i
-                                                                class="fa fa-pencil"></i> Edit</a>
-                                                        <form
-                                                            action="
-                                                {{ route('sudo.akun_dosen.destroy', $item->id) }}
-                                                "
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="dropdown-item text-danger"><i
-                                                                    class="fa fa-trash"></i>
-                                                                Delete</button>
-                                                        </form>
-                                                    @endrole
-                                                    @role('jurusan')
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('sudo.akun_dosen.show', $item->encrypt_id) }}"><i
-                                                                class="fal fa-eye"></i> Detail</a>
-                                                    @endrole
+
+                                            <td>
+                                                {{ $item->user->email }}
+                                            </td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-outline-primary dropdown-toggle" href="#"
+                                                        role="button" data-toggle="dropdown">
+                                                        <i class="fa fa-ellipsis-h"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+
+                                                        @role('jurusan')
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('sudo.akun_dosen.show', $item->encrypt_id) }}"><i
+                                                                    class="fal fa-eye"></i> Detail</a>
+                                                        @endrole
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
 
-                            </tbody>
-                        </table>
-                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    @endrole
+
+
+
                 </div>
 
             </div>

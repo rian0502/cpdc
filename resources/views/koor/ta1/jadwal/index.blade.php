@@ -43,10 +43,10 @@
                                                 {{ $item->jadwal->lokasi->nama_lokasi }}
                                             </td>
                                             <td>
-                                                {{ $carbon::parse($item->jadwal->tanggal_skp)->format('d F Y') }}
+                                                {{ $carbon::parse($item->jadwal->tanggal_seminar_ta_satu)->format('d F Y') }}
                                             </td>
                                             <td>
-                                                {{ $item->jadwal->jam_mulai_skp . ' - ' . $item->jadwal->jam_selesai_skp }}
+                                                {{ $item->jadwal->jam_mulai_seminar_ta_satu . ' - ' . $item->jadwal->jam_selesai_seminar_ta_satu }}
                                             </td>
                                         @else
                                             <td>
