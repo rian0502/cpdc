@@ -106,7 +106,9 @@ Route::get('chart/jabatandosen', [AkunDosenController::class, 'chartJabatanDosen
 
 //admin berkas
 Route::prefix('admin/berkas')->name('berkas.')->middleware(['auth', 'profile', 'verified', 'role:admin berkas'])->group(function () {
-    Route::resource('berkas_persyaratan', BerkasPersyaratanController::class);
+    Route::resource('berkas_persyaratan', BerkasPersyaratanController::class)->except([
+        'create', 'store', 'show', 'destroy'
+    ]);
     Route::resource('validasi/seminar/kp', ValidasiSeminarKPController::class)->names('validasi.seminar.kp');
     Route::resource('validasi/seminar/ta1', ValidasiAdminTaSatu::class)->names('validasi.seminar.ta1');
     Route::resource('validasai/seminar/ta2', ValidasiBerkasTA2Controller::class)->names('validasi.seminar.ta2');
@@ -200,9 +202,9 @@ Route::post('/change-password', [AuthController::class, 'changePassword'])->midd
 
 //routing untuk aktivasi email
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    if(auth()->user()){
+    if (auth()->user()) {
         $request->fulfill();
-    }else{
+    } else {
         return redirect('/login')->with('error', 'Login dulu Sebelum Vertifikasi!');
     }
     return redirect('/dashboard')->with('success', 'Akun Berhasil di Aktivasi !');
