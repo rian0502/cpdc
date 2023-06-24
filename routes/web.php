@@ -56,6 +56,7 @@ use App\Http\Controllers\MahasiswaBimbinganAkademikController;
 use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
+use App\Models\ModelJadwalSeminarTaSatu;
 
 /*
 |--------------------------------------------------------------------------
@@ -290,7 +291,8 @@ Route::get('/kp', function () {
     return view('kp', compact('jadwal_kp'));
 });
 Route::get('/ta1', function () {
-    return view('ta1');
+    $jadwal_ta1 = ModelJadwalSeminarTaSatu::where('tanggal_seminar_ta_satu', '>=', date('Y-m-d'))->get();
+    return view('ta1', compact('jadwal_ta1'));
 });
 Route::get('/ta2', function () {
     return view('ta2');
