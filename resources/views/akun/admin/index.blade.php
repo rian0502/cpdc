@@ -8,10 +8,10 @@
                     <div class="pd-20">
                         <h4 class="text-blue h4">
                             @role('sudo')
-                            Akun Admin
+                                Akun Admin
                             @endrole
                             @role('jurusan')
-                            Data Admin
+                                Data Admin
                             @endrole
                         </h4>
                         @if (session('error'))
@@ -23,16 +23,16 @@
                             </div>
                         @endif
                         @role('sudo')
-                        <div class="d-flex">
+                            <div class="d-flex">
 
-                            <a href="{{route('sudo.akun_admin.create')}}" class="btn"  type="button">
-                                <button class="btn btn-success mt-3">
-                                    <i class="fa fa-add"></i>
-                                    Tambah Akun
-                                </button>
-                            </a>
+                                <a href="{{ route('sudo.akun_admin.create') }}" class="btn" type="button">
+                                    <button class="btn btn-success mt-3">
+                                        <i class="fa fa-add"></i>
+                                        Tambah Akun
+                                    </button>
+                                </a>
 
-                        </div>
+                            </div>
                         @endrole
 
 
@@ -45,7 +45,7 @@
                                     <th>Nama Admin</th>
                                     <th>NIP</th>
                                     @role('jurusan')
-                                    <th>Umur</th>
+                                        <th>Umur</th>
                                     @endrole
                                     <th>Email</th>
                                     <th>Admin</th>
@@ -66,11 +66,10 @@
                                             {{ $item->nip }}
                                         </td>
                                         @role('jurusan')
-                                        <td class="umur">
-                                            {{ //generate umur dari tanggal lahir
-                                                \Carbon\Carbon::parse($item->tanggal_lahir)->age
-                                                }}
-                                        </td>
+                                            <td class="umur">
+                                                {{ //generate umur dari tanggal lahir
+                                                    \Carbon\Carbon::parse($item->tanggal_lahir)->age }}
+                                            </td>
                                         @endrole
                                         <td>
                                             {{ $item->user->email }}
@@ -89,29 +88,29 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     @role('jurusan')
-                                                    <a class="dropdown-item"
-                                                        href="
+                                                        <a class="dropdown-item"
+                                                            href="
                                                     {{ route('sudo.akun_admin.show', $item->id) }}
                                                     "><i
-                                                            class="fal fa-eye"></i> Detail</a>
+                                                                class="fal fa-eye"></i> Detail</a>
                                                     @endrole
                                                     @role('sudo')
-                                                    <a class="dropdown-item"
-                                                        href="
+                                                        <a class="dropdown-item"
+                                                            href="
                                                     {{ route('sudo.akun_admin.edit', $item->id) }}
                                                     "><i
-                                                            class="fa fa-pencil"></i> Edit</a>
-                                                    <form
-                                                        action="
+                                                                class="fa fa-pencil"></i> Edit</a>
+                                                        <form
+                                                            action="
                                                     {{ route('sudo.akun_admin.destroy', $item->id) }}
                                                     "
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="dropdown-item text-danger"><i
-                                                                class="fa fa-trash"></i>
-                                                            Delete</button>
-                                                    </form>
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="dropdown-item text-danger"><i
+                                                                    class="fa fa-trash"></i>
+                                                                Delete</button>
+                                                        </form>
                                                     @endrole
                                                 </div>
                                             </div>
