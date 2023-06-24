@@ -6,12 +6,6 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Berkas Persyaratan</h4>
-                        <a href="#">
-                            <button class="btn btn-success mt-3">
-                                <i class="icon-copy fi-page-add"></i>
-                                Tambah Data
-                            </button>
-                        </a>
                     </div>
                     <div class="pb-20 m-3">
 
@@ -20,7 +14,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama File</th>
-                                    <th>Link Download</th>
+                                    <th>Link File</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
                                 </tr>
                             </thead>
@@ -29,7 +23,9 @@
                                 <tr>
                                     <td>{{ $loop->iteration}}</td>
                                     <td>{{ $item->nama_file}}</td>
-                                    <td>{{ $item->path_file}}</td>
+                                    <td>
+                                        <a href="/uploads/syarat_seminar/{{$item->path_file}}">Lihat</a>
+                                    </td>
                                     <td>
                                         <div class="dropdown">
                                             <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button"

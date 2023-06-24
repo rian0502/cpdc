@@ -8,20 +8,21 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Tambah Berkas Persyaratan</h4>
+                            <h4 class="text-dark h4">Edit Berkas Persyaratan</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
 
                     </div>
-                    <form action="" method="POST">
+                    <form action="{{ route('berkas.berkas_persyaratan.update', $file->encrypt_id) }}" method="POST" enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Nama File</label>
-                                        <input value="{{ old('nama_file') }}" autofocus
-                                            name="nama_file"
+                                        <input value="{{$file->nama_file}}" autofocus
+                                            name="nama_file" readonly
                                             class="form-control @error('nama_file') form-control-danger @enderror"
                                             type="text">
 
@@ -41,7 +42,7 @@
                                             type="file" placeholder="FILE PERSYARATAN" onchange="updateFileNameAndLink('file_persyaratan','label-file_persyaratan','link-file_persyaratan')">
                                     </div>
                                     @error('file_persyaratan')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
