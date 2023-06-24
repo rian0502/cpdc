@@ -133,7 +133,6 @@
                                         class="submit btn btn-primary">Submit</button>
                                 </div>
                             </form>
-
                             <a href="{{ route('koor.validasiBaPKL.index') }}">
                                 <button class="batal btn btn-secondary">Batal</button>
                             </a>

@@ -157,6 +157,7 @@
                     name: 'aksi',
                     orderable: false,
                     searchable: false,
+                    exportable: false,
                     render: function(data, type, row) {
                         var deleteUrl = "{{ route('sudo.akun_mahasiswa.destroy', ':id') }}".replace(':id', row.id);
                         var editUrl = "{{ route('sudo.akun_mahasiswa.edit', ':id') }}".replace(':id', row.id);
