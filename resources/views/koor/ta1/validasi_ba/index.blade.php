@@ -13,11 +13,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama</th>
                                     <th>NPM</th>
                                     <th>Judul</th>
-                                    <th>Tanggal Seminar</th>
                                     <th>No Surat</th>
+                                    <th>Status</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
                                 </tr>
                             </thead>
@@ -25,25 +24,23 @@
 
                                 @foreach ($berkas as $item)
                                     {{-- LOKASI TANGGAL JAM MULAI SELESAI MISAL BLM TERJADWAL MAKA OUTPUTIN KONDISIIN TULUSANNYA BLM TERJADWAL --}}
-                                    @if ($item->jadwal && $item->berita_acara)
+                                    @if ($item->jadwal && $item->ba_seminar)
                                         <tr>
                                             <td>
                                                 {{ $loop->iteration }}
                                             </td>
-                                            <td>
-                                                {{ $item->mahasiswa->nama_mahasiswa }}
-                                            </td>
+                    
                                             <td>
                                                 {{ $item->mahasiswa->npm }}
                                             </td>
                                             <td>
-                                                {{ $item->judul_kp }}
+                                                {{ $item->judul_ta }}
                                             </td>
                                             <td>
-                                                {{ $item->jadwal->tanggal_skp }}
+                                                {{ $item->ba_seminar->no_berkas_ba_seminar_ta_satu }}
                                             </td>
                                             <td>
-                                                {{ $item->no_ba_seminar_kp }}
+                                                {{ $item->status_koor }}
                                             </td>
                                             <td>
                                                 <a class="btn btn-warning"

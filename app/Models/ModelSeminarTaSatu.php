@@ -42,17 +42,20 @@ class ModelSeminarTaSatu extends Model
     {
         return $this->belongsTo(Dosen::class, 'id_pembimbing_satu');
     }
-    public function pembimbing_dua(){
+    public function pembimbing_dua()
+    {
         return $this->belongsTo(Dosen::class, 'id_pembimbing_dua');
     }
-    public function pembahas(){
+    public function pembahas()
+    {
         return $this->belongsTo(Dosen::class, 'id_pembahas');
     }
-    public function jadwal(){
+    public function jadwal()
+    {
         return $this->hasOne(ModelJadwalSeminarTaSatu::class, 'id_seminar');
     }
-    public function ba_seminar(){
+    public function ba_seminar()
+    {
         return $this->hasOne(ModelBaSeminarTaSatu::class, 'id_seminar');
     }
-    
 }
