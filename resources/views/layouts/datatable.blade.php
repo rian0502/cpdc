@@ -374,7 +374,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('sudo.akun_admin.index') }}"
+                            <a href="{{ route('jurusan.mahasiswa.index') }}"
                                 class="dropdown-toggle no-arrow{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">
                                 <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa</span>
                             </a>
