@@ -632,30 +632,63 @@
                         <li>
                             <a href="{{ route('koor.jadwalPKL.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalPKL*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan KP</span>
+                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan
+                                    PKL/KP</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('koor.validasiBaPKL.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
                                 <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti
-                                    KP</span>
+                                    PKL/KP</span>
                             </a>
                         </li>
                     @endrole
                     @role('ta1')
                         <li>
-                            <a href="{{ route('koor.jadwalPKL.index') }}"
+                            <a href="{{ route('koor.jadwalTA1.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalTA1*') ? 'active' : '' }}">
                                 <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
                                     1</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('koor.validasiBaPKL.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
+                            <a href="{{ route('koor.validasiTA1.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaTA1*') ? 'active' : '' }}">
                                 <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
                                     1</span>
+                            </a>
+                        </li>
+                    @endrole
+                    @role('ta2')
+                        <li>
+                            <a href="{{ route('koor.jadwalTA2.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalTA2*') ? 'active' : '' }}">
+                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
+                                    2</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('koor.validasiBaTA2.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaTA2*') ? 'active' : '' }}">
+                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
+                                    2</span>
+                            </a>
+                        </li>
+                    @endrole
+                    @role('kompre')
+                        <li>
+                            <a href="{{ route('koor.jadwalKompre.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalKompre*') ? 'active' : '' }}">
+                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan
+                                    Kompre</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('koor.validasiBaKompre.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaKompre*') ? 'active' : '' }}">
+                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti
+                                    Kompre</span>
                             </a>
                         </li>
                     @endrole

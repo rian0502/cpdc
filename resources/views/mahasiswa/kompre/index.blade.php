@@ -242,12 +242,12 @@
                                 <label class="col-md-3 bold"> <strong>Informasi Berkas</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <div>
-                                        @if ($seminar->jadwal)
+                                        {{-- @if ($seminar->jadwal)
                                             Silahkan Cek Berkas Keperluan Seminar Di Email Anda
                                             hubungi admin berkas jika dalam 1x24 jam tidak menerima email Berkas
                                         @else
                                             <div>Belum terjadwal</div>
-                                        @endif
+                                        @endif --}}
                                     </div>
                                 </div>
                             </div>
@@ -271,11 +271,11 @@
                         </div>
                         {{-- @if ($seminar->status_seminar != 'Selesai') --}}
                         {{-- @if ($berita_acara) --}}
-                        <a href="/mahasiswa/bata1/edit">
+                        <a href="/mahasiswa/bakompre/edit">
                             <button class="btn btn-primary right">Edit</button>
                         </a>
                         {{-- @else --}}
-                        <a href="/mahasiswa/bakerjapraktik/create">
+                        <a href="/mahasiswa/bakompre/create">
                             <button class="btn btn-primary right">Unggah</button>
                         </a>
                         {{-- @endif --}}

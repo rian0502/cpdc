@@ -15,6 +15,7 @@ class AdminKompreController extends Controller
     public function index()
     {
         //
+        return view('admin.admin_berkas.validasi.sidang.kompre.index');
     }
 
     /**

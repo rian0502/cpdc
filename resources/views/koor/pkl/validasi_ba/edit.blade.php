@@ -96,7 +96,7 @@
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>NO Surat Berita Acara</strong></label>
+                                <label class="col-md-3 bold"> <strong>Nomor Surat Berita Acara</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->berita_acara->no_ba_seminar_kp }}
                                 </div>

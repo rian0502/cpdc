@@ -265,7 +265,8 @@
                         <h4 class="text-dark h4">Bukti Seminar</h4>
                         <small>
                             <b>
-                                <p class="mb-30 text-center {{  $seminar->status_seminar == 'Selesai' ? 'Valid' : ''}} "> {{-- {{  $seminar->status_seminar == 'Selesai' ? 'Valid' : 'Proses'   }} --}} </p>
+                                <p class="mb-30 text-center {{ $seminar->status_seminar == 'Selesai' ? 'Valid' : '' }} ">
+                                    {{-- {{  $seminar->status_seminar == 'Selesai' ? 'Valid' : 'Proses'   }} --}} </p>
                             </b>
                         </small>
                     </div>
@@ -290,7 +291,7 @@
                             <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                 <a href="/uploads/berita_acara_seminar_ta1/">Lihat</a>
                             </div>
-                            <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
+                            <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
                             <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                 {{-- {{ $berita_acara->no_ba_seminar_kp }} --}}
                             </div>

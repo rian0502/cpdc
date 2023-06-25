@@ -5,7 +5,7 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Validasi Berita Acara Seminar Tugas Akhir 1</h4>
+                        <h4 class="text-blue h4">Validasi Berita Acara Sidang Komprehensif</h4>
                     </div>
                     <div class="pb-20 m-3">
 
@@ -43,20 +43,19 @@
                                                 {{ $item->jadwal->tanggal_skp }}
                                             </td>
                                             <td>
-                                                {{ $item->no_ba_seminar_kp }}
+                                                {{ $item->no_ba_seminar_kp}}
                                             </td>
                                             <td>
-                                                <a class="btn btn-warning"
-                                                    href="
-                                                        {{ route('koor.validasiBaTA1.edit', $item->encrypt_id) }}
+                                                    <a class="btn btn-warning"
+                                                        href="
+                                                        {{ route('koor.validasiBaTA2.edit', $item->encrypt_id) }}
                                                         "><i
-                                                        class="bi bi-pencil-square"></i>
-                                                    Validasi</a>
+                                                            class="bi bi-pencil-square"></i>
+                                                        Validasi</a>
                                             </td>
                                         </tr>
                                     @endif
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>

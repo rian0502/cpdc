@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\komprehensif;
+namespace App\Http\Controllers\tugas_akhir_dua;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class MahasiswaBaTaKompre extends Controller
+class ValidasiAdminTaDua extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class MahasiswaBaTaKompre extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.admin_berkas.validasi.seminar.ta2.index');
     }
 
     /**
