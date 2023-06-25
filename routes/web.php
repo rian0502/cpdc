@@ -47,7 +47,6 @@ use App\Http\Controllers\Kajur\PrestasiDataController;
 use App\Http\Controllers\Kajur\AktivitasDataController;
 use App\Http\Controllers\Kajur\PublikasiDataController;
 use App\Http\Controllers\BeritaAcaraSeminarKerjaPraktik;
-// use App\Http\Controllers\BeritaAcaraSeminarKerjaPraktik;
 use App\Http\Controllers\komprehensif\MahasiswaBaKompre;
 use App\Http\Controllers\MahasiswaBimbinganKPController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -123,7 +122,7 @@ Route::prefix('admin/berkas')->name('berkas.')->middleware(['auth', 'profile', '
     ]);
     Route::resource('validasi/seminar/kp', ValidasiSeminarKPController::class)->names('validasi.seminar.kp');
     Route::resource('validasi/seminar/ta1', ValidasiAdminTaSatu::class)->names('validasi.seminar.ta1');
-    Route::resource('validasai/seminar/ta2', ValidasiAdminTaDua::class)->names('validasi.seminar.ta2');
+    Route::resource('validasi/seminar/ta2', ValidasiAdminTaDua::class)->names('validasi.seminar.ta2');
     Route::resource('validasi/sidang/kompre', AdminKompreController::class)->names('validasi.sidang.kompre');
 });
 //end admin berkas
