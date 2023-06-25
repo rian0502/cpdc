@@ -89,19 +89,16 @@
                                                 <option value="new" selected>Tidak Ada diDaftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada diDaftar Ini</option>
-                                            @endif
-
-
-                                        </optgroup>
+                                            @endif/optgroup>
                                     </select>
                                 </div>
                                 <div id="pbl2_nama"
                                     style="display: {{ old('id_pembimbing_dua') == 'new' ? 'block' : 'none' }};"
                                     {{ old('id_pembimbing_dua') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
-                                        <label>Dosen Pembimbing 2</label>
+                                        <label>Nama Pembimbing 2</label>
                                         <input autofocus name="pbl2_nama" class="form-control" type="text"
-                                            value="{{ old('pbl2_nama') }}" placeholder="Masukkan Nama Dosen Pembimbing 2">
+                                            value="{{ old('pbl2_nama') }}" placeholder="Masukkan Nama Pembimbing 2">
                                         @error('pbl2_nama')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
@@ -113,7 +110,7 @@
                                     <div class="form-group">
                                         <label>NIP Pembimbing 2</label>
                                         <input autofocus name="pbl2_nip" class="form-control" type="text"
-                                            value="{{ old('pbl2_nip') }}" placeholder="Masukkan NIP Dosen Pembimbing 2">
+                                            value="{{ old('pbl2_nip') }}" placeholder="Masukkan Nomor Karyawan Pembimbing 2">
                                         @error('pbl2_nip')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
