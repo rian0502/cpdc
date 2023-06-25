@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\tugas_akhir_satu;
+namespace App\Http\Controllers\tugas_akhir_dua;
 
 use App\Http\Controllers\Controller;
-use App\Models\ModelSeminarTaSatu;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 
 class ValidasiAdminTaDua extends Controller
 {
