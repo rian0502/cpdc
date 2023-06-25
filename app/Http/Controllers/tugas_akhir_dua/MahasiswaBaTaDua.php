@@ -15,6 +15,7 @@ class MahasiswaBaTaDua extends Controller
     public function index()
     {
         //
+        return view('mahasiswa.ta2.ba.index');
     }
 
     /**
@@ -25,6 +26,7 @@ class MahasiswaBaTaDua extends Controller
     public function create()
     {
         //
+        return view('mahasiswa.ta2.ba.create');
     }
 
     /**
@@ -58,6 +60,7 @@ class MahasiswaBaTaDua extends Controller
     public function edit($id)
     {
         //
+        return view('mahasiswa.ta2.ba.edit');
     }
 
     /**

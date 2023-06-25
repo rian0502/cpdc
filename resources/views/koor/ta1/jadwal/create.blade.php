@@ -147,18 +147,18 @@
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
-                        <form id="formStatus" action="{{ route('koor.jadwalTA1.store', $seminar->encrypt_id ) }}" method="POST">
+                        <form id="formJadwal" action="{{ route('koor.jadwalTA1.store', $seminar->encrypt_id ) }}" method="POST">
                             @csrf
                             <div class="profile-edit-list row">
                                 {{-- form untuk sebelah kiri --}}
                                 <div class="weight-500 col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Seminar</label>
-                                        <input value="{{ old('tanggal_seminar_ta_satu') }}" autofocus
-                                            name="tanggal_seminar_ta_satu" id="tanggal_skp"
-                                            class="form-control @error('tanggal_seminar_ta_satu') form-control-danger @enderror"
+                                        <input value="{{ old('tanggal_skp') }}" autofocus
+                                            name="tanggal_skp" id="tanggal_skp"
+                                            class="form-control @error('tanggal_skp') form-control-danger @enderror"
                                             type="date" placeholder="Tanggal Pelaksanaan Seminar">
-                                        @error('tanggal_seminar_ta_satu')
+                                        @error('tanggal_skp')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -181,19 +181,19 @@
                                 <div class="kanan weight-500 col-md-6">
                                     <div class="form-group">
                                         <label>Jam Mulai</label>
-                                        <input type="time" value="{{ old('jam_mulai_seminar_ta_satu') }}"
-                                            name="jam_mulai_seminar_ta_satu"
-                                            class="form-control @error('jam_mulai_seminar_ta_satu') form-control-danger @enderror">
-                                        @error('jam_mulai_seminar_ta_satu')
+                                        <input type="time" value="{{ old('jam_mulai_skp') }}"
+                                            name="jam_mulai_skp"
+                                            class="form-control @error('jam_mulai_skp') form-control-danger @enderror">
+                                        @error('jam_mulai_skp')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label>Jam Selesai</label>
-                                        <input type="time" name="jam_selesai_seminar_ta_satu"
-                                            value="{{ old('jam_selesai_seminar_ta_satu') }}"
-                                            class="form-control @error('jam_selesai_seminar_ta_satu') form-control-danger @enderror">
-                                        @error('jam_selesai_seminar_ta_satu')
+                                        <input type="time" name="jam_selesai_skp"
+                                            value="{{ old('jam_selesai_skp') }}"
+                                            class="form-control @error('jam_selesai_skp') form-control-danger @enderror">
+                                        @error('jam_selesai_skp')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

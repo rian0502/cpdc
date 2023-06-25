@@ -10,6 +10,7 @@ use App\Http\Controllers\TA1Controller;
 use App\Http\Controllers\TA2Controller;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Models\ModelJadwalSeminarTaSatu;
 use App\Http\Controllers\ModelController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KompreController;
@@ -50,7 +51,9 @@ use App\Http\Controllers\MahasiswaBimbinganKPController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\MahasiswaBimbinganTA1Controller;
 use App\Http\Controllers\MahasiswaBimbinganTA2Controller;
+use App\Http\Controllers\tugas_akhir_dua\MahasiswaBaTaDua;
 use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
+use App\Http\Controllers\tugas_akhir_satu\MahasiswaBaTaSatu;
 use App\Http\Controllers\tugas_akhir_satu\PenjadwalanTaSatu;
 use App\Http\Controllers\MahasiswaBimbinganAkademikController;
 use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
@@ -174,6 +177,8 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
     Route::resource('prestasi', PrestasiMahasiswaController::class)->names('prestasi');
     Route::resource('kegiatan', KegiatanMahasiswaController::class)->names('kegiatan');
     Route::resource('bakerjapraktik', BeritaAcaraSeminarKerjaPraktik::class)->names('bakerjapraktik');
+    Route::resource('bata1', MahasiswaBaTaSatu::class)->names('bata1');
+    Route::resource('bata2', MahasiswaBaTaDua::class)->names('bata2');
 
     Route::group(['prefix' => 'seminar', 'as' => 'seminar.'], function () {
         Route::resource('kp', KPcontroller::class)->names('kp');
@@ -292,7 +297,8 @@ Route::get('/kp', function () {
     return view('kp', compact('jadwal_kp'));
 });
 Route::get('/ta1', function () {
-    return view('ta1');
+    $jadwal_ta1 = ModelJadwalSeminarTaSatu::where('tanggal_seminar_ta_satu', '>=', date('Y-m-d'))->get();
+    return view('ta1', compact('jadwal_ta1'));
 });
 Route::get('/ta2', function () {
     return view('ta2');

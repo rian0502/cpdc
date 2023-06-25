@@ -52,7 +52,7 @@ class ModelSeminarTaSatu extends Model
         return $this->hasOne(ModelJadwalSeminarTaSatu::class, 'id_seminar');
     }
     public function ba_seminar(){
-        return $this->hasOne(ModelBaSeminarTaSatu::class);
+        return $this->hasOne(ModelBaSeminarTaSatu::class, 'id_seminar');
     }
     
 }
