@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Foundation\Auth\User;
+use Yajra\DataTables\Facades\DataTables;
 
 class DataMahasiswaAllController extends Controller
 {
@@ -11,9 +16,13 @@ class DataMahasiswaAllController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        if ($request->ajax()) {
+            $data = Mahasiswa::query();
+            return DataTables::of($data)->toJson();
+        }
         return view('jurusan.data_mahasiswa.index');
     }
 

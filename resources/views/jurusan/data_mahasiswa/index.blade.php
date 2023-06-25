@@ -72,7 +72,7 @@
                     serverSide: true,
                     responsive: true,
                     autoWidth: false,
-                    ajax: '{{ route('sudo.akun_mahasiswa.index') }}',
+                    ajax: '{{ route('jurusan.mahasiswa.index') }}',
                     columns: [{
                             data: null,
                             name: 'nama_mahasiswa',

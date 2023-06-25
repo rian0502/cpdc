@@ -24,9 +24,9 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Nama Mahasiswa</th>
-                                    <th>NPM</th>
                                     <th>Email</th>
-                                    <th>Terakhir Diupdate</th>
+                                    <th>aktivasi</th>
+                                    <th>profile</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
                                 </tr>
                             </thead>
@@ -124,19 +124,14 @@
             columns: [
                 {
                     data: null,
-                    name: 'nama_mahasiswa',
+                    name: 'name',
                     render: function(data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }
                 },
                 {
-                    data: 'nama_mahasiswa',
-                    name: 'nama_mahasiswa',
-                    orderable: true
-                },
-                {
-                    data: 'npm',
-                    name: 'npm',
+                    data: 'name',
+                    name: 'name',
                     orderable: true
                 },
                 {
@@ -144,12 +139,18 @@
                     name: 'email'
                 },
                 {
-                    data: 'updated_at',
-                    name: 'updated_at',
-                    render: function(data) {
-                        var date = new Date(data);
-                        var formattedDate = date.toISOString().slice(0, 10);
-                        return formattedDate;
+                    data : 'aktivasi',
+                    name : 'aktivasi',
+                },
+                {
+                    data : null,
+                    name : 'profile',
+                    render: function(data, type, row) {
+                        if (row.profile == 'Sudah') {
+                            return `<span class="badge badge-success">Sudah</span>`;
+                        }else{
+                            return `<span class="badge badge-danger">Belum</span>`;
+                        }
                     }
                 },
                 {

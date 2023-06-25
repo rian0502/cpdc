@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AktivitasMahasiswa;
-use App\Models\Mahasiswa;
-use App\Models\PrestasiMahasiswa;
+use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Models\PrestasiMahasiswa;
+use App\Models\AktivitasMahasiswa;
+use Illuminate\Routing\Controller;
 
 class AkunMahasiswaController extends Controller
 {
@@ -18,16 +20,30 @@ class AkunMahasiswaController extends Controller
      */
     public function index(Request $request)
     {
-
         if ($request->ajax()) {
-            $data = Mahasiswa::query();
+            $data = User::role('mahasiswa');
             return DataTables::of($data)
-                ->addColumn('email', function ($row) {
-                    return $row->user->email;
-                })
+                ->addColumn(
+                    'aktivasi',
+                    function ($data) {
+                        if($data->email_verified_at == null){
+                            return "Belum Aktivasi";
+                        }else{
+                            return Carbon::parse($data->email_verified_at)->locale('id_ID')->isoFormat('D MMMM YYYY');
+                        }
+                    }
+                )
+                ->addColumn(
+                    'profile',
+                    function ($data) {
+                        if ($data->mahasiswa != null) {
+                            return "Sudah";
+                        } else {
+                            return "Belum";
+                        }
+                    }
+                )
                 ->toJson();
-
-            // dd($data);
         }
 
         return view('akun.mahasiswa.index');
@@ -79,10 +95,10 @@ class AkunMahasiswaController extends Controller
      */
     public function edit($id)
     {
-        $mahasiswa = Mahasiswa::find($id);
+        $user = User::find($id);
         $data = [
-            'student' => $mahasiswa,
-            'account' => User::where('id', $mahasiswa->user_id)->first(),
+            'student' => $user->mahasiswa,
+            'account' => $user,
         ];
         return view('akun.mahasiswa.edit', $data);
     }
@@ -113,5 +129,4 @@ class AkunMahasiswaController extends Controller
     {
         return redirect()->route('sudo.akun_mahasiswa.index');
     }
-
 }
