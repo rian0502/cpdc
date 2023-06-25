@@ -17,7 +17,7 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('mahasiswa.bakerjapraktik.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('mahasiswa.bata1.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
@@ -113,20 +113,12 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="mt-3"> Berkas PowerPoint Bahasa Inggris <small> <a
-                                                id="link-berkas_ppt_seminar_ta_satu" href="#" target="_blank"
-                                                style="display: none;">Lihat File</a> </small></label>
-                                    <div class="custom-file">
-                                        <label class="custom-file-label" for="link-berkas_ppt_seminar_ta_satu"
-                                            id="label-berkas_ppt_seminar_ta_satu">Pilih File</label>
-                                        <input value="{{ old('berkas_ppt_seminar_ta_satu') }}" accept=".pdf" autofocus
-                                            name="berkas_ppt_seminar_ta_satu" id="file-berkas_ppt_seminar_ta_satu"
-                                            class="custom-file-input form-control @error('berkas_ppt_seminar_ta_satu') form-control-danger @enderror"
-                                            type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_ppt_seminar_ta_satu','label-berkas_ppt_seminar_ta_satu','link-berkas_ppt_seminar_ta_satu')">
-                                    </div>
+                                    <label>Power Point Bahasa Inggris</label>
+                                    <input autofocus name="berkas_ppt_seminar_ta_satu" id="berkas_ppt_seminar_ta_satu"
+                                        class="form-control" type="text" value="{{ old('berkas_ppt_seminar_ta_satu') }}"
+                                        placeholder="Link Gdrive / Penyimpanan Cloud Power Point">
                                     @error('berkas_ppt_seminar_ta_satu')
-                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>

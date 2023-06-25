@@ -3,7 +3,13 @@
 namespace App\Http\Controllers\tugas_akhir_satu;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBaTaSatuRequest;
+use App\Http\Requests\UpdateBaTaSatuRequest;
+use App\Models\ModelBaSeminarTaSatu;
+use App\Models\ModelSeminarTaSatu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class MahasiswaBaTaSatu extends Controller
 {
@@ -35,9 +41,36 @@ class MahasiswaBaTaSatu extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBaTaSatuRequest $request)
     {
         //
+        if($request->_token != csrf_token()){
+            return redirect()->back();
+        }else{
+            $seminar = Auth::user()->mahasiswa->ta_satu->last();
+            $ba = $request->file('berkas_ba_seminar_ta_satu');
+            $file_ba = $ba->hashName();
+            $nilai = $request->file('berkas_nilai_seminar_ta_satu');
+            $file_nilai = $nilai->hashName();
+            $ba->move(public_path('/uploads/ba_seminar_ta_satu'), $file_ba);
+            $nilai->move(public_path('/uploads/nilai_seminar_ta_satu'), $file_nilai);
+
+            $data = [
+                'no_berkas_ba_seminar_ta_satu' => $request->no_berkas_ba_seminar_ta_satu,
+                'berkas_ba_seminar_ta_satu' => $file_ba,
+                'berkas_nilai_seminar_ta_satu' => $file_nilai,
+                'berkas_ppt_seminar_ta_satu' => $request->berkas_ppt_seminar_ta_satu,
+                'nilai' => $request->nilai,
+                'huruf_mutu' => $request->nilai_mutu,
+                'id_seminar' => $seminar->id,
+            ];
+            $insBa = ModelBaSeminarTaSatu::create($data);
+            $ins_id = $insBa->id;
+            $update = ModelBaSeminarTaSatu::find($ins_id);
+            $update->encrypt_id = Crypt::encrypt($ins_id);
+            $update->save();
+            return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('success', 'Berhasil mengunggah berita acara seminar TA 1');
+        }
     }
 
     /**
@@ -59,8 +92,9 @@ class MahasiswaBaTaSatu extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('mahasiswa.ta1.ba.edit');
+
+        $seminar = ModelBaSeminarTaSatu::find(Crypt::decrypt($id));
+        return view('mahasiswa.ta1.ba.edit', compact('seminar'));
     }
 
     /**
@@ -70,9 +104,46 @@ class MahasiswaBaTaSatu extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBaTaSatuRequest $request, $id)
     {
-        //
+        //validasi _token
+        if($request->_token != csrf_token()){
+            return redirect()->back();
+        }
+        //validasi user 
+        $ba = ModelBaSeminarTaSatu::find(Crypt::decrypt($id));
+        if(Auth::user()->mahasiswa->id != $ba->seminar->id_mahasiswa){
+            return redirect()->back();
+        }
+        $data = [
+            'no_berkas_ba_seminar_ta_satu' => $request->no_berkas_ba_seminar_ta_satu,
+            'huruf_mutu' => $request->nilai_mutu,
+            'nilai' => $request->nilai,
+            'updated_at' => date('Y-m-d H:i:s'),
+            'berkas_ppt_seminar_ta_satu' => $request->berkas_ppt_seminar_ta_satu,
+        ];
+        if($request->file('berkas_ba_seminar_ta_satu')){
+            $oldFile = $ba->berkas_ba_seminar_ta_satu;
+            if (file_exists(public_path('/uploads/ba_seminar_ta_satu/' . $oldFile))) {
+                unlink(public_path('/uploads/ba_seminar_ta_satu/' . $oldFile));
+            }
+            $ba_file = $request->file('berkas_ba_seminar_ta_satu');
+            $file_ba = $ba_file->hashName();
+            $ba_file->move(public_path('/uploads/ba_seminar_ta_satu'), $file_ba);
+            $data['berkas_ba_seminar_ta_satu'] = $file_ba;
+        }
+        if($request->file('berkas_nilai_seminar_ta_satu')){
+            $oldFile = $ba->berkas_nilai_seminar_ta_satu;
+            if (file_exists(public_path('/uploads/nilai_seminar_ta_satu/' . $oldFile))) {
+                unlink(public_path('/uploads/nilai_seminar_ta_satu/' . $oldFile));
+            }
+            $nilai_file = $request->file('berkas_nilai_seminar_ta_satu');
+            $file_nilai = $nilai_file->hashName();
+            $nilai_file->move(public_path('/uploads/nilai_seminar_ta_satu'), $file_nilai);
+            $data['berkas_nilai_seminar_ta_satu'] = $file_nilai;
+        }
+        $ba->update($data);
+        return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('success', 'Berhasil mengubah berita acara seminar TA 1');
     }
 
     /**

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\tugas_akhir_satu;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarKP;
 use App\Http\Controllers\Controller;
+use App\Models\ModelBaSeminarTaSatu;
+use App\Models\ModelSeminarTaSatu;
+use Illuminate\Support\Facades\Crypt;
 
 class ValidasiBaTaSatu extends Controller
 {
@@ -18,7 +21,10 @@ class ValidasiBaTaSatu extends Controller
     {
         //
         $data = [
-            'berkas' => (new ModelSeminarKP())->getSeminarKumpulBa()
+            'berkas' => ModelSeminarTaSatu::with('ba_seminar')
+                ->where('status_koor', 'Belum Selesai')
+                ->orWhere('status_koor', 'Perbaikan')
+                ->get(),
         ];
         return view('koor.ta1.validasi_ba.index', $data);
     }
@@ -64,8 +70,8 @@ class ValidasiBaTaSatu extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('koor.ta1.validasi_ba.edit');
+        $seminar = ModelSeminarTaSatu::find(Crypt::decrypt($id));
+        return view('koor.ta1.validasi_ba.edit', compact('seminar'));
     }
 
     /**
