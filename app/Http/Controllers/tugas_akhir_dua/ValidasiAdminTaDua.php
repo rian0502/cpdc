@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\tugas_akhir_dua;
+namespace App\Http\Controllers\tugas_akhir_satu;
 
 use App\Http\Controllers\Controller;
+use App\Models\ModelSeminarTaSatu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
-class PenjadwalanTaDua extends Controller
+class ValidasiAdminTaDua extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,7 @@ class PenjadwalanTaDua extends Controller
      */
     public function index()
     {
-        //
-        return view('koor.ta2.jadwal.index');
+        return view('admin.admin_berkas.validasi.seminar.ta2.index');
     }
 
     /**
@@ -26,7 +27,6 @@ class PenjadwalanTaDua extends Controller
     public function create()
     {
         //
-        return view('koor.ta2.jadwal.create');
     }
 
     /**
@@ -60,7 +60,6 @@ class PenjadwalanTaDua extends Controller
     public function edit($id)
     {
         //
-        return view('koor.ta2.jadwal.edit');
     }
 
     /**
