@@ -347,19 +347,19 @@
                         </li>
                         <li>
                             <a href="{{ route('sudo.akun_dosen.index') }}"
-                                class="dropdown-toggle no-arrow{{ Request::is('sudo/akun_dosen*') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_dosen*') ? 'active' : '' }}">
                                 <span class="micon bi bi-person-rolodex"></span><span class="mtext">Data Dosen</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('sudo.akun_admin.index') }}"
-                                class="dropdown-toggle no-arrow{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">
                                 <span class="micon bi bi-person-workspace"></span><span class="mtext">Data Admin</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('sudo.akun_admin.index') }}"
-                                class="dropdown-toggle no-arrow{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">
+                            <a href="{{ route('sudo.akun_mahasiswa.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/mahasiswa*') ? 'active' : '' }}">
                                 <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa</span>
                             </a>
                         </li>
@@ -622,6 +622,9 @@
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/ta2*') ? 'active' : '' }}">Bimbingan
                                         Tugas Akhir
                                         2</a></li>
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.kompre.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/kompre*') ? 'active' : '' }}">Bimbingan
+                                        Komprehensif</a></li>
                             </ul>
                         </li>
                     @endrole
@@ -644,13 +647,15 @@
                         <li>
                             <a href="{{ route('koor.jadwalPKL.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalTA1*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA 1</span>
+                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
+                                    1</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('koor.validasiBaPKL.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
-                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA 1</span>
+                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
+                                    1</span>
                             </a>
                         </li>
                     @endrole
@@ -786,60 +791,60 @@
     </script>
 
     @role('kompre|ta2|ta1|pkl')
-    <script>
-        $(document).ready(function() {
-            $('#formJadwal').submit(function(e) {
-                e.preventDefault();
-                var request = new FormData(this);
-                var endpoint = '/api/check-jadwal';
-                $.ajax({
-                    url: endpoint,
-                    method: "POST",
-                    data: request,
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(data) {
-                        if (data['message'] == 'Valid') {
-                            swal({
-                                title: "Berhasil",
-                                text: "Jadwal Bisa digunakan",
-                                type: "question",
-                                showCancelButton: true,
-                                confirmButtonText: "Ya, Buat Jadwal",
-                            }).then(function(result) {
-                                if (result.value) {
-                                    $('#formJadwal').unbind('submit').submit();
-                                }
-                            });
-                        } else {
+        <script>
+            $(document).ready(function() {
+                $('#formJadwal').submit(function(e) {
+                    e.preventDefault();
+                    var request = new FormData(this);
+                    var endpoint = '/api/check-jadwal';
+                    $.ajax({
+                        url: endpoint,
+                        method: "POST",
+                        data: request,
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: function(data) {
+                            if (data['message'] == 'Valid') {
+                                swal({
+                                    title: "Berhasil",
+                                    text: "Jadwal Bisa digunakan",
+                                    type: "question",
+                                    showCancelButton: true,
+                                    confirmButtonText: "Ya, Buat Jadwal",
+                                }).then(function(result) {
+                                    if (result.value) {
+                                        $('#formJadwal').unbind('submit').submit();
+                                    }
+                                });
+                            } else {
+                                swal({
+                                    title: "Gagal",
+                                    text: "Jadwal yang anda masukkan sudah terdaftar",
+                                    type: "error",
+                                    button: "Ok",
+                                });
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(xhr.responseText);
+                            var error_data = JSON.parse(xhr.responseText)['errors'];
+
+                            var error_msg = "";
+                            for (var key in error_data) {
+                                error_msg += error_data[key] + ",";
+                            }
                             swal({
                                 title: "Gagal",
-                                text: "Jadwal yang anda masukkan sudah terdaftar",
+                                text: error_msg,
                                 type: "error",
                                 button: "Ok",
                             });
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(xhr.responseText);
-                        var error_data = JSON.parse(xhr.responseText)['errors'];
-
-                        var error_msg = "";
-                        for (var key in error_data) {
-                            error_msg += error_data[key] + ",";
-                        }
-                        swal({
-                            title: "Gagal",
-                            text: error_msg,
-                            type: "error",
-                            button: "Ok",
-                        });
-                    },
+                        },
+                    });
                 });
             });
-        });
-    </script>
+        </script>
     @endrole
 
     <!-- End Google Tag Manager (noscript) -->

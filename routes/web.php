@@ -51,6 +51,7 @@ use App\Http\Controllers\MahasiswaBimbinganKPController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\MahasiswaBimbinganTA1Controller;
 use App\Http\Controllers\MahasiswaBimbinganTA2Controller;
+use App\Http\Controllers\MahasiswaBimbinganKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaBaTaDua;
 use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaBaTaSatu;
@@ -135,6 +136,7 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::resource('mahasiswa/bimbingan/kp', MahasiswaBimbinganKPController::class)->names('mahasiswa.bimbingan.kp');
     Route::resource('mahasiswa/bimbingan/ta1', MahasiswaBimbinganTA1Controller::class)->names('mahasiswa.bimbingan.ta1');
     Route::resource('mahasiswa/bimbingan/ta2', MahasiswaBimbinganTA2Controller::class)->names('mahasiswa.bimbingan.ta2');
+    Route::resource('mahasiswa/bimbingan/kompre', MahasiswaBimbinganKompreController::class)->names('mahasiswa.bimbingan.kompre');
 });
 //end dosen
 

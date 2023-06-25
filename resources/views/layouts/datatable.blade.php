@@ -375,12 +375,12 @@
                         </li>
                         <li>
                             <a href="{{ route('jurusan.mahasiswa.index') }}"
-                                class="dropdown-toggle no-arrow{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/mahasiswa*') ? 'active' : '' }}">
                                 <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('jurusan.prestasi.index') }}"
+                            <a href="{{ route('jurusan.mahasiswa.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/prestasi*') ? 'active' : '' }}">
                                 <span class="micon bi bi-award"></span><span class="mtext">Prestasi</span>
                             </a>
@@ -556,6 +556,9 @@
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/ta2*') ? 'active' : '' }}">Bimbingan
                                         Tugas Akhir
                                         2</a></li>
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.kompre.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/kompre*') ? 'active' : '' }}">Bimbingan
+                                        Komprehensif</a></li>
                             </ul>
                         </li>
                     @endrole

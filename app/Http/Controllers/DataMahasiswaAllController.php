@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
-use App\Models\ModelSeminarKP;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Crypt;
 
-class MahasiswaBimbinganKPController extends Controller
+class DataMahasiswaAllController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +14,7 @@ class MahasiswaBimbinganKPController extends Controller
     public function index()
     {
         //
-        $data = [
-            'kerja_praktik' => ModelSeminarKP::select('encrypt_id', 'judul_kp', 'mitra', 'tahun_akademik', 'id_dospemkp', 'id_mahasiswa')
-                ->where('id_dospemkp', auth()->user()->dosen->id)->get(),
-        ];
-        return view('dosen.mahasiswa.bimbingan.kp.index', $data);
+        return view('jurusan.data_mahasiswa.index');
     }
 
     /**
@@ -33,7 +25,6 @@ class MahasiswaBimbinganKPController extends Controller
     public function create()
     {
         //
-        return view('dosen.mahasiswa.bimbingan.kp.create');
     }
 
     /**
@@ -56,10 +47,7 @@ class MahasiswaBimbinganKPController extends Controller
     public function show($id)
     {
         //
-        // $data = [
-        //     'mahasiswa' => Mahasiswa::find(Crypt::decrypt($id))
-        // ];
-        return view('dosen.mahasiswa.bimbingan.kp.show');
+        return view('jurusan.data_mahasiswa.show');
     }
 
     /**
@@ -71,7 +59,6 @@ class MahasiswaBimbinganKPController extends Controller
     public function edit($id)
     {
         //
-        return view('dosen.mahasiswa.bimbingan.kp.edit');
     }
 
     /**
