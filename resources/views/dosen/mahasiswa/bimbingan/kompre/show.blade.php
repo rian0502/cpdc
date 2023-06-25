@@ -129,34 +129,28 @@
                                             <h5 class="h4 text-blue mb-20">Data Seminar Komprehensif</h5>
 
                                             <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                                <div class="row border-bottom">
-                                                    <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{-- {{ $mahasiswa->npm }} --}}
+                                                <div class="row border-bottom mt-3">
+                                                    <label class="col-md-12 bold"><b>Judul atau Topik Tugas Akhir</b></label>
+                                                    <div class="col-md-12 mb-3" style="display:block;word-wrap:break-word;">
+                                                        {{-- {{ $seminar->judul_kp }} --}}
                                                     </div>
+                                                </div>
+                                                <div class="row border-bottom">
                                                     <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         {{-- {{ $seminar->dosen->nama_dosen }} --}}
-                                                    </div>
-                                                </div>
-                                                <div class="row border-bottom mt-2">
-                                                    <label class="col-md-3 bold"><b>Nama Mahasiswa</b></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{-- {{ $mahasiswa->nama_mahasiswa }} --}}
                                                     </div>
                                                     <label class="col-md-3 bold mt-1"><strong>Pembimbing 2</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         {{-- {{ $seminar->region }} --}}
                                                     </div>
                                                 </div>
-
                                                 <div class="row border-bottom">
                                                     <label class="col-md-3 bold mt-2"> <strong>Tahun Akademik</strong></label>
                                                     <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                                         {{-- {{ $seminar->tahun_akademik }} --}}
                                                     </div>
-                                                    <label class="col-md-3 bold mt-2"> <strong>Nomor Karyawan / NIP Pembimbing
-                                                            2</strong></label>
+                                                    <label class="col-md-3 bold mt-2"> <strong>NIP Dosen External</strong trong></label>
                                                     <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                                         {{-- {{ $seminar->mitra }} --}}
                                                     </div>
@@ -196,7 +190,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="row border-bottom mt-2">
+                                                <div class="row mt-2">
                                                     <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         {{-- {{ $seminar->toefl }} --}}
@@ -208,12 +202,6 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="row border-bottom mt-3">
-                                                    <label class="col-md-12 bold"><b>Judul atau Topik Tugas Akhir</b></label>
-                                                    <div class="col-md-12 mb-3" style="display:block;word-wrap:break-word;">
-                                                        {{-- {{ $seminar->judul_kp }} --}}
-                                                    </div>
-                                                </div>
                                             </div>
                                             <style type="text/css">
                                                 a:hover {
@@ -311,7 +299,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
-                                                    <label class="col-md-3 bold mt-1"><strong>Status Bukti</strong></label>
+                                                    <label class="col-md-3 bold mt-1"><strong>Status Seminar</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         {{-- {{ $seminar->status_seminar }} --}}
                                                     </div>
