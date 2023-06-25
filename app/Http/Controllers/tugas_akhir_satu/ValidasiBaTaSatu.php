@@ -70,7 +70,7 @@ class ValidasiBaTaSatu extends Controller
      */
     public function edit($id)
     {
-        $seminar = ModelSeminarTaSatu::find(Crypt::decrypt($id));
+        $seminar = ModelSeminarTaSatu::with('ba_seminar')->find(Crypt::decrypt($id));
         return view('koor.ta1.validasi_ba.edit', compact('seminar'));
     }
 
@@ -83,7 +83,31 @@ class ValidasiBaTaSatu extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $seminar = ModelSeminarTaSatu::find(Crypt::decrypt($id));
+
+        if ($request->_token != csrf_token()) {
+            return redirect()->back();
+        } else {
+            if ($request->status_koor == 'Perbaikan' || $request->status_koor == 'Tidak Lulus') {
+                $validated = $request->validate([
+                    'keterangan' => 'required|min:3|max:255',
+                ], [
+                    'keterangan.required' => 'Keterangan harus diisi',
+                    'keterangan.min' => 'Keterangan minimal 3 karakter',
+                    'keterangan.max' => 'Keterangan maksimal 255 karakter',
+                ]);
+                $seminar->status_koor = $request->status_koor;
+                $seminar->komentar = $request->keterangan;
+                $seminar->updated_at = date('Y-m-d H:i:s');
+                $seminar->save();
+            } else {
+                $seminar->status_koor = $request->status_koor;
+                $seminar->updated_at = date('Y-m-d H:i:s');
+                $seminar->save();
+            }
+
+            return redirect()->route('koor.validasiBaTA1.index')->with('success', 'Berhasil memvalidasi berita acara seminar');
+        }
     }
 
     /**

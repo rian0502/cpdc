@@ -614,17 +614,9 @@
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.kp.index') }}"
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/kp*') ? 'active' : '' }}">Bimbingan
                                         PKL/KP</a></li>
-                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.ta1.index') }}"
-                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/ta1*') ? 'active' : '' }}">Bimbingan
-                                        Tugas Akhir
-                                        1</a></li>
-                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.ta2.index') }}"
-                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/ta2*') ? 'active' : '' }}">Bimbingan
-                                        Tugas Akhir
-                                        2</a></li>
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.kompre.index') }}"
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/kompre*') ? 'active' : '' }}">Bimbingan
-                                        Komprehensif</a></li>
+                                        Tugas Akhir</a></li>
                             </ul>
                         </li>
                     @endrole
@@ -653,7 +645,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('koor.validasiTA1.index') }}"
+                            <a href="{{ route('koor.validasiBaTA1.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaTA1*') ? 'active' : '' }}">
                                 <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
                                     1</span>
