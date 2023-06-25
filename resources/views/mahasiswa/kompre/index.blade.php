@@ -271,11 +271,11 @@
                         </div>
                         {{-- @if ($seminar->status_seminar != 'Selesai') --}}
                         {{-- @if ($berita_acara) --}}
-                        <a href="/mahasiswa/bata1/edit">
+                        <a href="/mahasiswa/bakompre/edit">
                             <button class="btn btn-primary right">Edit</button>
                         </a>
                         {{-- @else --}}
-                        <a href="/mahasiswa/bakerjapraktik/create">
+                        <a href="/mahasiswa/bakompre/create">
                             <button class="btn btn-primary right">Unggah</button>
                         </a>
                         {{-- @endif --}}
