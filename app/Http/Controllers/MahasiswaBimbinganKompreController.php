@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\tugas_akhir_dua;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PenjadwalanTaDua extends Controller
+class MahasiswaBimbinganKompreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class PenjadwalanTaDua extends Controller
     public function index()
     {
         //
-        return view('koor.ta2.jadwal.index');
+        return view('dosen.mahasiswa.bimbingan.kompre.index');
     }
 
     /**
@@ -26,7 +25,6 @@ class PenjadwalanTaDua extends Controller
     public function create()
     {
         //
-        return view('koor.ta2.jadwal.create');
     }
 
     /**
@@ -49,6 +47,7 @@ class PenjadwalanTaDua extends Controller
     public function show($id)
     {
         //
+        return view('dosen.mahasiswa.bimbingan.kompre.show');
     }
 
     /**
@@ -60,7 +59,6 @@ class PenjadwalanTaDua extends Controller
     public function edit($id)
     {
         //
-        return view('koor.ta2.jadwal.edit');
     }
 
     /**

@@ -1,5 +1,5 @@
-@extends('layouts.admin')
-@section('admin')
+@extends('layouts.datatable')
+@section('datatable')
     <style>
         .rounded-div {
             border-radius: 10px;
@@ -13,7 +13,6 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Detail Mahasiswa</h4>
@@ -116,17 +115,18 @@
                         <h5 class="h4 text-blue mb-20">Kegiatan</h5>
                         <div class="tab">
                             <ul class="nav nav-tabs" role="tablist">
+
                                 <li class="nav-item">
-                                    <a class="nav-link active text-blue" data-toggle="tab" href="#ta2" role="tab"
-                                        aria-selected="false">Tugas Akhir Dua</a>
-                                </li>
+                                    <a class="nav-link active text-blue" data-toggle="tab" href="#kompre" role="tab"
+                                        aria-selected="false">Komprehensif</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane fade show active" id="ta2" role="tabpanel">
+
+                                <div class="tab-pane fade show active" id="kompre" role="tabpanel">
                                     <div class="pd-20">
                                         <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Data Seminar Tugas Akhir Dua</h5>
+                                            <h5 class="h4 text-blue mb-20">Data Seminar Komprehensif</h5>
 
                                             <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                 <div class="row border-bottom">
@@ -136,7 +136,7 @@
                                                     </div>
                                                     <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{-- {{ $seminar->pembimbing_satu->nama_dosen }} --}}
+                                                        {{-- {{ $seminar->dosen->nama_dosen }} --}}
                                                     </div>
                                                 </div>
                                                 <div class="row border-bottom mt-2">
@@ -146,11 +146,7 @@
                                                     </div>
                                                     <label class="col-md-3 bold mt-1"><strong>Pembimbing 2</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{-- @if ($seminar->pembimbing_dua) --}}
-                                                            {{-- {{ $seminar->pembimbing_dua->nama_dosen }} --}}
-                                                        {{-- @else --}}
-                                                            {{-- {{ $seminar->pbl2_nama }} --}}
-                                                        {{-- @endif --}}
+                                                        {{-- {{ $seminar->region }} --}}
                                                     </div>
                                                 </div>
 
@@ -159,13 +155,10 @@
                                                     <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                                         {{-- {{ $seminar->tahun_akademik }} --}}
                                                     </div>
-                                                    <label class="col-md-3 bold mt-2"> <strong>NIP Dosen External</strong></label>
+                                                    <label class="col-md-3 bold mt-2"> <strong>Nomor Karyawan / NIP Pembimbing
+                                                            2</strong></label>
                                                     <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                                        {{-- @if ($seminar->pbl2_nip) --}}
-                                                            {{-- {{ $seminar->pbl2_nip }} --}}
-                                                        {{-- @else --}}
-                                                            -
-                                                        {{-- @endif --}}
+                                                        {{-- {{ $seminar->mitra }} --}}
                                                     </div>
                                                 </div>
 
@@ -176,7 +169,7 @@
                                                     </div>
                                                     <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{-- {{ $seminar->pembahas->nama_dosen }} --}}
+                                                        {{-- {{ $seminar->pembimbing_lapangan }} --}}
                                                     </div>
                                                 </div>
 
@@ -187,7 +180,7 @@
                                                     </div>
                                                     <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{-- {{ $seminar->periode_seminar }} --}}
+                                                        {{-- {{ $seminar->ni_pemlap }} --}}
                                                     </div>
                                                 </div>
 
@@ -198,8 +191,7 @@
                                                     </div>
                                                     <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <a target="_blank"
-                                                            href="/uploads/syarat_seminar_ta2/{{-- $seminar->berkas_ta_satu --}}">Lihat
+                                                        <a target="_blank" href="/uploads/syarat_seminar_ta1/">Unduh
                                                             Berkas</a>
                                                     </div>
                                                 </div>
@@ -212,14 +204,14 @@
 
                                                     <label class="col-md-3 bold"> <strong></strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{-- {{ $seminar->status_seminar }} --}}
+                                                        {{-- Kosongkan --}}
                                                     </div>
                                                 </div>
 
-                                                <div class="row mt-3">
+                                                <div class="row border-bottom mt-3">
                                                     <label class="col-md-12 bold"><b>Judul atau Topik Tugas Akhir</b></label>
                                                     <div class="col-md-12 mb-3" style="display:block;word-wrap:break-word;">
-                                                        {{-- {{ $seminar->judul_ta }} --}}
+                                                        {{-- {{ $seminar->judul_kp }} --}}
                                                     </div>
                                                 </div>
                                             </div>

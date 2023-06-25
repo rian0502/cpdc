@@ -56,10 +56,10 @@ class MahasiswaBimbinganKPController extends Controller
     public function show($id)
     {
         //
-        $data = [
-            'mahasiswa' => Mahasiswa::find(Crypt::decrypt($id))
-        ];
-        return view('dosen.mahasiswa.bimbingan.kp.show', $data);
+        // $data = [
+        //     'mahasiswa' => Mahasiswa::find(Crypt::decrypt($id))
+        // ];
+        return view('dosen.mahasiswa.bimbingan.kp.show');
     }
 
     /**

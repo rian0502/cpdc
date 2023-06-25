@@ -17,89 +17,74 @@
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Nomor Pokok Mahasiswa</label>
-                                    <input autofocus name="npm" id="npm" class="form-control" type="number"
-                                        placeholder="Nomor Pokok Mahasiswa">
-                                </div>
-                                <div class="form-group">
-                                    <label>Nama Mahasiswa</label>
-                                    <input autofocus name="nama_mahasiswa" id="nama_mahasiswa" class="form-control"
-                                        type="text" placeholder="Nama Mahasiswa">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Tanggal</label>
-                                    <input name="angkatan"
-                                        class="form-control @error('tanggal_seminar') form-control-danger @enderror"
-                                        type="date">
-                                    @error('tanggal_seminar')
-                                        <small class="text-danger">{{ $message }}</small>
+                                    <label>Semester</label>
+                                    <select name="semester" id="semester" class="selectpicker form-control" data-size="5"
+                                        name="semester">
+                                        <option value="Ganjil" {{ old('semester') == 'Ganjil' ? 'selected' : '' }}>Ganjil
+                                        </option>
+                                        <option value="Genap" {{ old('semester') == 'Ganjil' ? '' : 'selected' }}>Genap
+                                        </option>
+                                    </select>
+                                    @error('semester')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Waktu</label>
-                                    <input name="angkatan"
-                                        class="form-control @error('waktu_seminar') form-control-danger @enderror"
-                                        type="time">
-                                    @error('waktu_seminar')
-                                        <small class="text-danger">{{ $message }}</small>
+                                    <label>Tahun Akademik</label>
+                                    <select id="tahun_akademik" class="selectpicker form-control" data-size="5"
+                                        name="tahun_akademik">
+                                    </select>
+                                    @error('tahun_akademik')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Ruangan</label>
-                                    <select class="selectpicker form-control" data-size="5">
-                                        <option selected="">-- Pilih Ruangan --</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Judul</label>
-                                    <textarea class="form-control"></textarea>
-                                </div>
-                            </div>
-                            {{-- form untuk sebelah kanan --}}
-                            <div class="kanan weight-500 col-md-6">
-
-
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input autofocus name="email" id="email" class="form-control"
-                                        type="email" placeholder="Email">
+                                    <label>SKS</label>
+                                    <input autofocus name="sks" value="{{ old('sks') }}" id="jumlah_sks"
+                                        class="form-control" type="number" value="{{ old('sks') }}"
+                                        placeholder="Jumlah SKS Saat Ini">
+                                    @error('sks')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Prodi</label>
-                                    <select class="selectpicker form-control" data-size="5">
-                                        <option selected="">-- Pilih Prodi --</option>
-                                        <option value="S1 Kimia">S1 Kimia</option>
-                                    </select>
+                                    <label>IPK</label>
+                                    <input autofocus name="ipk" id="ipk" class="form-control" type="text"
+                                        value="{{ old('ipk') }}" placeholder="Contoh : 3.55">
+                                    @error('ipk')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Jenis Seminar</label>
-                                    <select class="selectpicker form-control" data-size="5">
-                                        <option selected="">-- Pilih Seminar --</option>
-                                        <option value="Kerja Praktik">Kerja Praktik</option>
-                                        <option value="Seminar Usul">Seminar Usul</option>
-                                        <option value="Seminar Hasil">Seminar Hasil</option>
-                                        <option value="Ujian Skripsi">Ujian Skripsi</option>
-                                        <option value="Seminar Tugas Akhir">Seminar Tugas Akhir</option>
+                                    <label>Pembimbing Akademik</label>
+                                    <select class="custom-select2 form-control" name="id_pembimbing_akd"
+                                        id="id_pembimbing_akd" style="width: 100%; height: 38px">
+                                        <optgroup label="Pembimbing Akademik">
+                                            @foreach ($dosens as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ old('id_pembimbing_satu') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $item->nama_dosen }}</option>
+                                            @endforeach
+                                        </optgroup>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Pembimbing 1</label>
-                                    <select class="selectpicker form-control" data-size="5">
-                                        <option selected="">-- Pilih Pembimbing 1 --</option>
-                                        <option value="Dr. Hj. Nurhasanah, M.Pd.">Dr. Hj. Nurhasanah, M.Pd.</option>
-                                        <option value="Dr. rer. nat. Ir. H. Ahmad Yusuf, M.Pd.">Dr. rer. nat. Ir. H. Ahmad Yusuf, M.Pd.</option>
-                                        <option value="Prof. Dr. Ir. Soetarto, M.Sc.">Prof. Dr. Ir. Soetarto, M.Sc.</option>
-                                        <option value="Drs. H. Abdul Azis, M.Pd.">Drs. H. Abdul Azis, M.Pd.</option>
+                                    <select class="custom-select2 form-control" name="id_pembimbing_satu"
+                                        id="id_pembimbing_satu" style="width: 100%; height: 38px">
+                                        <optgroup label="Pembimbing 1">
+                                            @foreach ($dosens as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ old('id_pembimbing_satu') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $item->nama_dosen }}</option>
+                                            @endforeach
+                                        </optgroup>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Pembimbing 2</label>
                                     <select class="custom-select2 form-control" name="id_pembimbing_dua"
-                                        id="id_pembimbing_dua"
+                                        id="id_pembimbing_dua" style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'Pembimbing2', 'pbl2_nama')">
                                         <optgroup label="Pembimbing 2">
                                             @foreach ($dosens as $item)
@@ -107,32 +92,128 @@
                                                     {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-
-                                            @if (old('id_pembimbing_dua')=='new' || $errors->has('pbl2_nama'))
-                                                <option value="new" selected>Tidak Ada diDaftar Ini</option>
+                                            @if (old('id_pembimbing_dua') == 'new' || $errors->has('pbl2_nama'))
+                                                <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
-                                                <option value="new">Tidak Ada diDaftar Ini</option>
-                                            @endif
-
-                                        </optgroup>
+                                                <option value="new">Tidak Ada di Daftar Ini</option>
+                                            @endif/optgroup>
                                     </select>
                                 </div>
-                                <div id="pbl2_nama" style="display: {{old('id_pembimbing_dua')=='new'?'block':'none'}};" {{old('id_pembimbing_dua')=='new'? '':'hidden'}}>
+                                <div id="pbl2_nama"
+                                    style="display: {{ old('id_pembimbing_dua') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembimbing_dua') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
-                                        <label>Nomor Karyawan / NIP Pembimbing 2</label>
+                                        <label>Nama Pembimbing 2</label>
                                         <input autofocus name="pbl2_nama" class="form-control" type="text"
-                                            value="{{ old('pbl2_nama') }}" placeholder="Masukkan Juga NIP / Nomor Karyawan">
+                                            value="{{ old('pbl2_nama') }}" placeholder="Masukkan Nama Pembimbing 2">
                                         @error('pbl2_nama')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div id="Pembimbing2" style="display: {{old('id_pembimbing_dua')=='new'?'block':'none'}};" {{old('id_pembimbing_dua')=='new'? '':'hidden'}}>
+                                <div id="Pembimbing2"
+                                    style="display: {{ old('id_pembimbing_dua') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembimbing_dua') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
-                                        <label>Nomor Karyawan / NIP Pembimbing 2</label>
+                                        <label>NIP Pembimbing 2</label>
                                         <input autofocus name="pbl2_nip" class="form-control" type="text"
-                                            value="{{ old('pbl2_nip') }}" placeholder="Masukkan Juga NIP / Nomor Karyawan">
+                                            value="{{ old('pbl2_nip') }}" placeholder="Masukkan Nomor Karyawan Pembimbing 2">
                                         @error('pbl2_nip')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            {{-- form untuk sebelah kanan --}}
+                            <div class="kanan weight-500 col-md-6">
+
+                                <div class="form-group">
+                                    <label>Pembahas</label>
+                                    <select class="custom-select2 form-control" name="pembahas" id="pembahas"
+                                        style="width: 100%; height: 38px" onchange="toggleInput(this)">
+                                        {{-- style="width: 100%; height: 38px" onchange="toggleInput(this, 'Pembahas')"> --}}
+                                        <optgroup label="Pembahas">
+                                            @foreach ($dosens as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ old('id_dospemkp') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $item->nama_dosen }}
+                                                </option>
+                                            @endforeach
+                                            {{-- <option value="Tidak Ada di Daftar Ini">Tidak Ada di Daftar Ini</option> --}}
+                                        </optgroup>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Periode Seminar</label>
+                                    <input autofocus class="form-control month-picker" type="text" name="periode_seminar"
+                                        value="{{ old('periode_seminar') }}" id="periode_seminar"
+                                        placeholder="Periode Seminar">
+                                    @error('periode_seminar')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>TOEFL
+                                        <small>
+                                            <em>
+                                                Jika belum ada Ketik 0
+                                            </em>
+                                        </small>
+                                    </label>
+                                    <input autofocus name="toefl" id="toefl" class="form-control" type="number"
+                                        min="0" value="{{ old('toefl') }}" placeholder="Nilai TOEFL">
+                                    @error('toefl')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        Berkas Kelengkapan
+                                        <small>
+                                            <a target="_blank" href="/uploads/syarat_seminar/">Lihat
+                                                Persyaratan</a>
+                                        </small>
+                                    </label>
+                                    <div class="custom-file mb-1">
+                                        <label class="custom-file-label" for="link-berkas_sidang_kompre"
+                                            id="label-berkas_sidang_kompre">Pilih File</label>
+                                        <input value="{{ old('berkas_sidang_kompre') }}" accept=".pdf" autofocus
+                                            name="berkas_sidang_kompre" id="file-berkas_sidang_kompre"
+                                            class="custom-file-input form-control @error('berkas_sidang_kompre') form-control-danger @enderror"
+                                            type="file" placeholder="FILE SK"
+                                            onchange="updateFileNameAndLink('file-berkas_sidang_kompre','label-berkas_sidang_kompre','link-berkas_sidang_kompre')">
+                                    </div>
+                                    <small class="mt-2"> <a id="link-berkas_sidang_kompre" href="#"
+                                            target="_blank" style="display: none;">Lihat File</a> </small>
+                                    @error('berkas_sidang_kompre')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Judul atau Topik Tugas Akhir</label>
+                                    <textarea name="judul_ta" id="judul_ta" class="form-control">{{ old('judul') }}</textarea>
+                                    @error('judul_ta')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="weight-600">Persetujuan</label>
+                                    <div class="custom-control custom-checkbox mb-5">
+                                        <input type="checkbox" class="custom-control-input" name="agreement"
+                                            id="agreement" />
+                                        <label class="custom-control-label" for="agreement">
+                                            Saya dengan ini menyatakan bahwa dokumen kelengkapan berkas yang telah saya
+                                            kirimkan semuanya adalah benar dan dapat saya pertanggung-jawabkan. Saya
+                                            bersedia menerima sanksi bilamana saya terbukti melakukan pemalsuan dokumen
+                                            (seperti tanda tangan, Bukti Bayar UKT, Transkrip/KRS, dll) dengan ditunda
+                                            seminar saya minimal 1 semester atau bahkan sanksi yang lebih berat hingga
+                                            dikeluarkan (Drop Out).
+                                        </label>
+                                        @error('agreement')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -152,4 +233,25 @@
         </div>
         <!-- Input Validation End -->
     </div>
+    <script>
+        // Mendapatkan elemen select
+        var select = document.getElementById("tahun_akademik");
+
+        // Mendapatkan tahun saat ini
+        var tahunSekarang = new Date().getFullYear();
+
+        // Loop untuk menghasilkan 5 tahun ke belakang
+        for (var i = 0; i < 5; i++) {
+            var tahun = tahunSekarang - i;
+            var option = document.createElement("option");
+            option.value = tahun + "/" + (tahun + 1);
+            option.text = tahun + "/" + (tahun + 1);
+            select.add(option);
+        }
+    </script>
+    <script>
+        @if (old('pbl2_nama'))
+            toggleInput(document.getElementById('id_pembimbing_dua'), 'Pembimbing2')
+        @endif
+    </script>
 @endsection

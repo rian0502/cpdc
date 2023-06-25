@@ -52,14 +52,23 @@ use App\Http\Controllers\MahasiswaBimbinganKPController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\MahasiswaBimbinganTA1Controller;
 use App\Http\Controllers\MahasiswaBimbinganTA2Controller;
+use App\Http\Controllers\tugas_akhir_dua\ValidasiBaTaDua;
+use App\Http\Controllers\MahasiswaBimbinganKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaBaTaDua;
 use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
+use App\Http\Controllers\tugas_akhir_satu\ValidasiBaTaSatu;
+use App\Http\Controllers\komprehensif\AdminKompreController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaBaTaSatu;
 use App\Http\Controllers\tugas_akhir_satu\PenjadwalanTaSatu;
 use App\Http\Controllers\MahasiswaBimbinganAkademikController;
 use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
+use App\Http\Controllers\tugas_akhir_dua\ValidasiAdminTaDua;
+use App\Http\Controllers\komprehensif\MahasiswaKompreController;
+use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
+use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
+use App\Http\Controllers\DataMahasiswaAllController;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,8 +124,8 @@ Route::prefix('admin/berkas')->name('berkas.')->middleware(['auth', 'profile', '
     ]);
     Route::resource('validasi/seminar/kp', ValidasiSeminarKPController::class)->names('validasi.seminar.kp');
     Route::resource('validasi/seminar/ta1', ValidasiAdminTaSatu::class)->names('validasi.seminar.ta1');
-    Route::resource('validasai/seminar/ta2', ValidasiBerkasTA2Controller::class)->names('validasi.seminar.ta2');
-    Route::resource('validasi/sidang/kompre', ValidasiKompreController::class)->names('validasi.sidang.kompre');
+    Route::resource('validasi/seminar/ta2', ValidasiAdminTaDua::class)->names('validasi.seminar.ta2');
+    Route::resource('validasi/sidang/kompre', AdminKompreController::class)->names('validasi.sidang.kompre');
 });
 //end admin berkas
 
@@ -135,6 +144,7 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::resource('mahasiswa/bimbingan/kp', MahasiswaBimbinganKPController::class)->names('mahasiswa.bimbingan.kp');
     Route::resource('mahasiswa/bimbingan/ta1', MahasiswaBimbinganTA1Controller::class)->names('mahasiswa.bimbingan.ta1');
     Route::resource('mahasiswa/bimbingan/ta2', MahasiswaBimbinganTA2Controller::class)->names('mahasiswa.bimbingan.ta2');
+    Route::resource('mahasiswa/bimbingan/kompre', MahasiswaBimbinganKompreController::class)->names('mahasiswa.bimbingan.kompre');
 });
 //end dosen
 
@@ -142,8 +152,12 @@ Route::prefix('koor')->name('koor.')->group(function () {
     Route::resource('jadwalPKL', JadwalPKLController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('jadwalPKL');
     Route::resource('jadwalTA1', PenjadwalanTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('jadwalTA1');
     Route::resource('jadwalTA2', PenjadwalanTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('jadwalTA2');
+    Route::resource('jadwalKompre', PenjadwalanKompreController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('jadwalKompre');
     Route::get('/jadwalPPKL/resend/{id}', [JadwalPKLController::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:pkl'])->name('jadwalPKL.resend');
     Route::resource('validasiBaPKL', ValidasiBaPKLController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('validasiBaPKL');
+    Route::resource('validasiBaTA1', ValidasiBaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('validasiBaTA1');
+    Route::resource('validasiBaTA2', ValidasiBaTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('validasiBaTA2');
+    Route::resource('validasiBaKompre', ValidasiBaKompreController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('validasiBaKompre');
 });
 
 
@@ -155,6 +169,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::resource('aktivitas', AktivitasDataController::class);
     Route::resource('publikasi', PublikasiDataController::class);
     Route::resource('litabmas', LitabmasDataController::class);
+    Route::resource('mahasiswa', DataMahasiswaAllController::class);
     Route::get('chartCapaianPrestasi', [PrestasiDataController::class, 'pieChartCapaian'])->name('prestasi.chartCapaian');
     Route::get('chartScalaPrestasi', [PrestasiDataController::class, 'pieChartScala'])->name('prestasi.chartScala');
     Route::get('barChartPrestasi', [PrestasiDataController::class, 'barChartPrestasi'])->name('prestasi.barChartPrestasi');
@@ -186,7 +201,7 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
         Route::resource('tugas_akhir_2', MahasiswaTaDuaController::class)->names('tugas_akhir_2');
     });
     Route::group(['prefix' => 'sidang', 'as' => 'sidang.'], function () {
-        Route::resource('kompre', KompreController::class)->names('kompre');
+        Route::resource('kompre', MahasiswaKompreController::class)->names('kompre');
     });
 });
 
