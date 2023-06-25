@@ -512,8 +512,7 @@
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('berkas.validasi.seminar.kp.index') }}"
-                                        class="{{ Request::is('admin/berkas/validasi/seminar/kp*') ? 'active' : '' }}">Kerja
-                                        Praktik</a>
+                                        class="{{ Request::is('admin/berkas/validasi/seminar/kp*') ? 'active' : '' }}">PKL/KP</a>
                                 </li>
                                 <li><a href="{{ route('berkas.validasi.seminar.ta1.index') }}"
                                         class="{{ Request::is('admin/berkas/validasi/seminar/ta1*') ? 'active' : '' }}">Tugas
@@ -557,14 +556,14 @@
                         <li>
                             <a href="{{ route('koor.jadwalPKL.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalPKL*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan KP</span>
+                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan PKL/KP</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('koor.validasiBaPKL.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
                                 <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti
-                                    KP</span>
+                                    PKL/KP</span>
                             </a>
                         </li>
                     @endrole

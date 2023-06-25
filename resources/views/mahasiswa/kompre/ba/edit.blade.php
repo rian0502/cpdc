@@ -135,7 +135,7 @@
                             <button type="submit" class="submit btn btn-primary">Submit</button>
                         </div>
                     </form>
-                    <a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}">
+                    <a href="/mahasiswa/seminar/ta1">
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>
                 </div>

@@ -47,6 +47,7 @@ use App\Http\Controllers\Kajur\PrestasiDataController;
 use App\Http\Controllers\Kajur\AktivitasDataController;
 use App\Http\Controllers\Kajur\PublikasiDataController;
 use App\Http\Controllers\BeritaAcaraSeminarKerjaPraktik;
+use App\Http\Controllers\komprehensif\MahasiswaBaKompre;
 use App\Http\Controllers\MahasiswaBimbinganKPController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\MahasiswaBimbinganTA1Controller;
@@ -177,6 +178,7 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
     Route::resource('bakerjapraktik', BeritaAcaraSeminarKerjaPraktik::class)->names('bakerjapraktik');
     Route::resource('bata1', MahasiswaBaTaSatu::class)->names('bata1');
     Route::resource('bata2', MahasiswaBaTaDua::class)->names('bata2');
+    Route::resource('bakompre', MahasiswaBaKompre::class)->names('bakompre');
 
     Route::group(['prefix' => 'seminar', 'as' => 'seminar.'], function () {
         Route::resource('kp', KPcontroller::class)->names('kp');
