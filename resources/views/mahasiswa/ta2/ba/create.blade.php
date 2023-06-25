@@ -39,6 +39,14 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label>Nilai Pembahas</label>
+                                    <input autofocus name="nilai_pembahas" id="nilai_pembahas" class="form-control"
+                                        type="text" value="{{ old('nilai_pembahas') }}" placeholder="Contoh : 89.87">
+                                    @error('nilai_pembahas')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label>Nilai Akhir</label>
                                     <input autofocus name="nilai_akhir" id="nilai_akhir" class="form-control" type="text"
                                         value="{{ old('nilai_akhir') }}" placeholder="Contoh : 89.87">
@@ -64,17 +72,28 @@
                                     <select class="custom-select2 form-control" name="nilai_mutu"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Huruf Mutu">
-                                            <option value="A"{{ old('nilai_mutu') == 'A' ? 'selected' : '' }}>A</option>
-                                            <option value="A-"{{ old('nilai_mutu') == 'A-' ? 'selected' : '' }}>A-</option>
-                                            <option value="AB"{{ old('nilai_mutu') == 'AB' ? 'selected' : '' }}B>AB</option>
-                                            <option value="B+"{{ old('nilai_mutu') == 'B+' ? 'selected' : '' }}>B+</option>
-                                            <option value="B"{{ old('nilai_mutu') == 'B' ? 'selected' : '' }}>B</option>
-                                            <option value="B-"{{ old('nilai_mutu') == 'B-' ? 'selected' : '' }}>B-</option>
-                                            <option value="BC"{{ old('nilai_mutu') == 'BC' ? 'selected' : '' }}C>BC</option>
-                                            <option value="C+"{{ old('nilai_mutu') == 'C+' ? 'selected' : '' }}>C+</option>
-                                            <option value="C"{{ old('nilai_mutu') == 'C' ? 'selected' : '' }}>C</option>
-                                            <option value="D"{{ old('nilai_mutu') == 'D' ? 'selected' : '' }}>D+</option>
-                                            <option value="E"{{ old('nilai_mutu') == 'E' ? 'selected' : '' }}>E</option>
+                                            <option value="A"{{ old('nilai_mutu') == 'A' ? 'selected' : '' }}>A
+                                            </option>
+                                            <option value="A-"{{ old('nilai_mutu') == 'A-' ? 'selected' : '' }}>A-
+                                            </option>
+                                            <option value="AB"{{ old('nilai_mutu') == 'AB' ? 'selected' : '' }}B>AB
+                                            </option>
+                                            <option value="B+"{{ old('nilai_mutu') == 'B+' ? 'selected' : '' }}>B+
+                                            </option>
+                                            <option value="B"{{ old('nilai_mutu') == 'B' ? 'selected' : '' }}>B
+                                            </option>
+                                            <option value="B-"{{ old('nilai_mutu') == 'B-' ? 'selected' : '' }}>B-
+                                            </option>
+                                            <option value="BC"{{ old('nilai_mutu') == 'BC' ? 'selected' : '' }}C>BC
+                                            </option>
+                                            <option value="C+"{{ old('nilai_mutu') == 'C+' ? 'selected' : '' }}>C+
+                                            </option>
+                                            <option value="C"{{ old('nilai_mutu') == 'C' ? 'selected' : '' }}>C
+                                            </option>
+                                            <option value="D"{{ old('nilai_mutu') == 'D' ? 'selected' : '' }}>D+
+                                            </option>
+                                            <option value="E"{{ old('nilai_mutu') == 'E' ? 'selected' : '' }}>E
+                                            </option>
                                         </optgroup>
 
 
@@ -106,8 +125,8 @@
                                     <div class="custom-file">
                                         <label class="custom-file-label" for="link-laporan_ta2" id="label-laporan_ta2">Pilih
                                             File</label>
-                                        <input value="{{ old('laporan_ta2') }}" accept=".pdf" autofocus name="laporan_ta2"
-                                            id="file-laporan_ta2"
+                                        <input value="{{ old('laporan_ta2') }}" accept=".pdf" autofocus
+                                            name="laporan_ta2" id="file-laporan_ta2"
                                             class="custom-file-input form-control @error('laporan_ta2') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
                                             onchange="updateFileNameAndLink('file-laporan_ta2','label-laporan_ta2','link-laporan_ta2')">
