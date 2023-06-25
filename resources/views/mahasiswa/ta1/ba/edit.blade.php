@@ -17,9 +17,7 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('mahasiswa.bakerjapraktik.update', $seminar->encrypt_id) }}" method="POST"
-                        enctype="multipart/form-data">
-                        @method('PUT')
+                    <form action="{{ route('mahasiswa.bakerjapraktik.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
@@ -40,7 +38,7 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label>Nilai Pembahas</label>
                                     <input autofocus name="nilai_pembahas" id="nilai_pembahas" class="form-control" type="text"
                                         value="{{ old('nilai_pembahas') }}" placeholder="Contoh : 89.87">
@@ -49,7 +47,7 @@
                                     @enderror
                                 </div> --}}
                                 <div class="form-group">
-                                    <label>Nilai Akhir</label>
+                                    <label>Nilai</label>
                                     <input autofocus name="nilai_akhir" id="nilai_akhir" class="form-control" type="text"
                                         value="{{ old('nilai_akhir') }}" placeholder="Contoh : 89.87">
                                     @error('nilai_akhir')
