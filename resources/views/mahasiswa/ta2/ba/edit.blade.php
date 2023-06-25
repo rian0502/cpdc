@@ -24,7 +24,7 @@
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label>Nilai Pembimbing 1</label>
                                     <input autofocus name="nilai_pemb1" id="nilai_pemb1" class="form-control" type="text"
                                         value="{{ old('nilai_pemb1') }}" placeholder="Contoh : 89.87">
@@ -47,7 +47,7 @@
                                     @error('nilai_pembahas')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label>Nilai Akhir</label>
                                     <input autofocus name="nilai_akhir" id="nilai_akhir" class="form-control" type="text"
@@ -65,10 +65,6 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
-                            </div>
-                            {{-- form untuk sebelah kanan --}}
-                            <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Pilih Huruf Mutu</label>
                                     <select class="custom-select2 form-control" name="nilai_mutu"
@@ -102,6 +98,9 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                            </div>
+                            {{-- form untuk sebelah kanan --}}
+                            <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
                                     <label> Berkas Berita Acara<small> <a id="link-berkas_ba_seminar_ta2" href="#"
                                                 target="_blank" style="display: none;">Lihat File</a> </small></label>
@@ -125,8 +124,8 @@
                                     <div class="custom-file">
                                         <label class="custom-file-label" for="link-laporan_ta2" id="label-laporan_ta2">Pilih
                                             File</label>
-                                        <input value="{{ old('laporan_ta2') }}" accept=".pdf" autofocus
-                                            name="laporan_ta2" id="file-laporan_ta2"
+                                        <input value="{{ old('laporan_ta2') }}" accept=".pdf" autofocus name="laporan_ta2"
+                                            id="file-laporan_ta2"
                                             class="custom-file-input form-control @error('laporan_ta2') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
                                             onchange="updateFileNameAndLink('file-laporan_ta2','label-laporan_ta2','link-laporan_ta2')">
