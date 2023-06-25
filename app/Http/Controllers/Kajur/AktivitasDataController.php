@@ -17,7 +17,7 @@ class AktivitasDataController extends Controller
         $endDate = $request->input('endDate', null);
 
         if ($startDate && $endDate) {
-            $data = AktivitasMahasiswa::whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc')->get();
+            $data = AktivitasMahasiswa::whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc');
             return DataTables::of($data)
                 ->addColumn('nama_mahasiswa', function ($row) {
                     return $row->mahasiswa->nama_mahasiswa;
@@ -27,7 +27,7 @@ class AktivitasDataController extends Controller
                 })
                 ->toJson();
         }  else if ($request->ajax()&& $startDate == null && $endDate == null) {
-            $data = AktivitasMahasiswa::orderBy('tanggal', 'desc')->get();
+            $data = AktivitasMahasiswa::orderBy('tanggal', 'desc');
             return DataTables::of($data)
                 ->addColumn('nama_mahasiswa', function ($row) {
                     return $row->mahasiswa->nama_mahasiswa;

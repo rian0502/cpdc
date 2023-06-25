@@ -119,7 +119,7 @@
                     },
                     columns: [{
                             data: null,
-                            name: 'no',
+                            name: 'nama_litabmas',
                             render: function(data, type, row, meta) {
                                 var index = meta.row + meta.settings._iDisplayStart + 1;
                                 return index;

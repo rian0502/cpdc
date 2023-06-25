@@ -95,10 +95,10 @@ class AkunMahasiswaController extends Controller
      */
     public function edit($id)
     {
-        $mahasiswa = Mahasiswa::find($id);
+        $user = User::find($id);
         $data = [
-            'student' => $mahasiswa,
-            'account' => User::where('id', $mahasiswa->user_id)->first(),
+            'student' => $user->mahasiswa,
+            'account' => $user,
         ];
         return view('akun.mahasiswa.edit', $data);
     }

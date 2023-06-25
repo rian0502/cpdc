@@ -21,7 +21,7 @@ class PublikasiDataController extends Controller
          $startDate = $request->input('startDate', null);
          $endDate = $request->input('endDate', null);
          if ($startDate && $endDate) {
-             $data = PublikasiDosen::whereBetween('tahun', [$startDate, $endDate])->orderBy('tahun', 'desc')->get();
+             $data = PublikasiDosen::whereBetween('tahun', [$startDate, $endDate])->orderBy('tahun', 'desc');
              return DataTables::of($data)->toJson();
          }  else if ($request->ajax()&& $startDate == null && $endDate == null) {
              $data = PublikasiDosen::orderBy('tahun', 'desc')->get();
@@ -37,8 +37,7 @@ class PublikasiDataController extends Controller
         if ($startDate && $endDate) {
             $data = PublikasiDosen::select('scala', DB::raw('count(*) as total'))
             ->whereBetween('tahun', [$startDate, $endDate])
-            ->groupBy('scala')
-            ->get();
+            ->groupBy('scala');
             return response()->json($data);
         }
         else{

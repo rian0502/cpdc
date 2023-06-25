@@ -21,10 +21,10 @@ class LitabmasDataController extends Controller
           $startDate = $request->input('startDate', null);
           $endDate = $request->input('endDate', null);
           if ($startDate && $endDate) {
-              $data = LitabmasDosen::whereBetween('tahun_penelitian', [$startDate, $endDate])->orderBy('tahun_penelitian', 'desc')->get();
+              $data = LitabmasDosen::whereBetween('tahun_penelitian', [$startDate, $endDate])->orderBy('tahun_penelitian', 'desc');
               return DataTables::of($data)->toJson();
           } else if ($request->ajax()&& $startDate == null && $endDate == null) {
-              $data = LitabmasDosen::orderBy('tahun_penelitian', 'desc')->get();
+              $data = LitabmasDosen::orderBy('tahun_penelitian', 'desc');
               return DataTables::of($data)->toJson();
           }
             return view('jurusan.litabmas.index');
@@ -56,14 +56,14 @@ class LitabmasDataController extends Controller
         $endDate = $request->input('endDate', null);
         //prestasi pertahun
         if ($startDate && $endDate) {
-            $data = LitabmasDosen::select(\DB::raw('tahun_penelitian as year'), DB::raw('count(*) as total'))
+            $data = LitabmasDosen::select(DB::raw('tahun_penelitian as year'), DB::raw('count(*) as total'))
             ->whereBetween('tahun_penelitian', [$startDate, $endDate])
             ->groupBy('year')
             ->get();
             return response()->json($data);
         }
         else{
-            $data = LitabmasDosen::select(\DB::raw('tahun_penelitian as year'), DB::raw('count(*) as total'))
+            $data = LitabmasDosen::select(DB::raw('tahun_penelitian as year'), DB::raw('count(*) as total'))
             ->groupBy('year')
             ->get();
             return response()->json($data);
