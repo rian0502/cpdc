@@ -6,7 +6,7 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Mahasiswa Bimbingan Tugas Akhir 2</h4>
-                        
+
                     </div>
                     <div class="pb-20 m-3">
 
@@ -16,7 +16,7 @@
                                     <th>No</th>
                                     <th>Nama Mahasiswa</th>
                                     <th>NPM</th>
-                                    <th>Semester</th>
+                                    <th>Tahun Akademik</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
                                 </tr>
                             </thead>

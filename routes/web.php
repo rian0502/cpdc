@@ -53,6 +53,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\MahasiswaBimbinganTA1Controller;
 use App\Http\Controllers\MahasiswaBimbinganTA2Controller;
 use App\Http\Controllers\tugas_akhir_dua\ValidasiBaTaDua;
+use App\Http\Controllers\MahasiswaBimbinganKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaBaTaDua;
 use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
 use App\Http\Controllers\tugas_akhir_satu\ValidasiBaTaSatu;
@@ -67,6 +68,7 @@ use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
 use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
+use App\Http\Controllers\DataMahasiswaAllController;
 
 /*
 |--------------------------------------------------------------------------
@@ -142,6 +144,7 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::resource('mahasiswa/bimbingan/kp', MahasiswaBimbinganKPController::class)->names('mahasiswa.bimbingan.kp');
     Route::resource('mahasiswa/bimbingan/ta1', MahasiswaBimbinganTA1Controller::class)->names('mahasiswa.bimbingan.ta1');
     Route::resource('mahasiswa/bimbingan/ta2', MahasiswaBimbinganTA2Controller::class)->names('mahasiswa.bimbingan.ta2');
+    Route::resource('mahasiswa/bimbingan/kompre', MahasiswaBimbinganKompreController::class)->names('mahasiswa.bimbingan.kompre');
 });
 //end dosen
 
@@ -166,6 +169,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::resource('aktivitas', AktivitasDataController::class);
     Route::resource('publikasi', PublikasiDataController::class);
     Route::resource('litabmas', LitabmasDataController::class);
+    Route::resource('mahasiswa', DataMahasiswaAllController::class);
     Route::get('chartCapaianPrestasi', [PrestasiDataController::class, 'pieChartCapaian'])->name('prestasi.chartCapaian');
     Route::get('chartScalaPrestasi', [PrestasiDataController::class, 'pieChartScala'])->name('prestasi.chartScala');
     Route::get('barChartPrestasi', [PrestasiDataController::class, 'barChartPrestasi'])->name('prestasi.barChartPrestasi');

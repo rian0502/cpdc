@@ -347,14 +347,20 @@
                         </li>
                         <li>
                             <a href="{{ route('sudo.akun_dosen.index') }}"
-                                class="dropdown-toggle no-arrow{{ Request::is('sudo/akun_dosen*') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_dosen*') ? 'active' : '' }}">
                                 <span class="micon bi bi-person-rolodex"></span><span class="mtext">Data Dosen</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('sudo.akun_admin.index') }}"
-                                class="dropdown-toggle no-arrow{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">
                                 <span class="micon bi bi-person-workspace"></span><span class="mtext">Data Admin</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('sudo.akun_mahasiswa.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/mahasiswa*') ? 'active' : '' }}">
+                                <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa</span>
                             </a>
                         </li>
                         <li>
@@ -616,6 +622,9 @@
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/ta2*') ? 'active' : '' }}">Bimbingan
                                         Tugas Akhir
                                         2</a></li>
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.kompre.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/kompre*') ? 'active' : '' }}">Bimbingan
+                                        Komprehensif</a></li>
                             </ul>
                         </li>
                     @endrole
