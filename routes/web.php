@@ -59,7 +59,6 @@ use App\Http\Controllers\tugas_akhir_satu\ValidasiBaTaSatu;
 use App\Http\Controllers\komprehensif\AdminKompreController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaBaTaSatu;
 use App\Http\Controllers\tugas_akhir_satu\PenjadwalanTaSatu;
-// use App\Http\Controllers\tugas_akhir_dua\ValidasiAdminTaDua;
 use App\Http\Controllers\MahasiswaBimbinganAkademikController;
 use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
 use App\Http\Controllers\tugas_akhir_dua\ValidasiAdminTaDua;
