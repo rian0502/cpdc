@@ -75,7 +75,7 @@ class ProfileAdminController extends Controller
         $update = Administrasi::where('id', $id_insert)->update(['encrypt_id' => Crypt::encrypt($id_insert)]);
         $file_sk = $request->file('file_sk');
         $nama_file = Str::random() . $file_sk->getClientOriginalName();
-        $file_sk->move(public_path('uploads/sk_pangkat_admin'), $nama_file);
+        $file_sk->move('uploads/sk_pangkat_admin', $nama_file);
         $pangkat = [
             "pangkat" => $request->kepangkatan,
             "tgl_sk" => $request->tanggal_sk,
@@ -139,7 +139,7 @@ class ProfileAdminController extends Controller
             $user = User::find(Auth::user()->id);
             $user->profile_picture = $nama_file;
             $user->save();
-            $profile->move(public_path('uploads/profile'), $nama_file);
+            $profile->move('uploads/profile', $nama_file);
         } else {
             $administrasi->nama_administrasi = $request->nama_admin;
             $administrasi->nip = $request->nip;

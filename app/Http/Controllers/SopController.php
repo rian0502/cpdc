@@ -52,7 +52,7 @@ class SopController extends Controller
     {
         $file_sop = $request->file('file_sop');
         $file_name = $file_sop->hashName();
-        $file_sop->move(public_path('uploads/sop'), $file_name);
+        $file_sop->move('uploads/sop', $file_name);
         $data = [
             'nama_sop' => $request->nama_sop,
             'file_sop' => $file_name,
@@ -118,7 +118,7 @@ class SopController extends Controller
                 File::delete(public_path('uploads/sop/' . $sop->file_sop));
             }
             $file_name = Str::random(45) . '.' . $file_sop->getClientOriginalExtension();
-            $file_sop->move(public_path('uploads/sop'), $file_name);
+            $file_sop->move('uploads/sop', $file_name);
             $sop->file_sop = $file_name;
         }
         $sop->id_lokasi = Crypt::decrypt($request->id_lokasi);

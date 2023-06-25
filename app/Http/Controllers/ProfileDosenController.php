@@ -66,7 +66,7 @@ class ProfileDosenController extends Controller
     {
         $foto = $request->file('foto_profile');
         $nama_foto_profile = Str::random() . '.' . $foto->getClientOriginalExtension();
-        $foto->move(public_path('uploads/foto_profile'), $nama_foto_profile);
+        $foto->move('uploads/foto_profile', $nama_foto_profile);
         $user = User::find(Auth::user()->id);
         $user->profile_picture = $nama_foto_profile;
         $user->name = $request->nama_dosen;
@@ -93,7 +93,7 @@ class ProfileDosenController extends Controller
         //insert data ketable jabatan dosen
         $file_sk_jabatan = $request->file('file_sk_jabatan');
         $nama_file_sk_jabatan = Str::random() . '.' . $file_sk_jabatan->getClientOriginalExtension();
-        $file_sk_jabatan->move(public_path('uploads/sk_jabatan_dosen'), $nama_file_sk_jabatan);
+        $file_sk_jabatan->move('uploads/sk_jabatan_dosen', $nama_file_sk_jabatan);
         $dataJabatan = [
             'jabatan' => $request->jabatan,
             'tgl_sk' => $request->tanggal_sk_jabatan,
@@ -111,7 +111,7 @@ class ProfileDosenController extends Controller
         //insert data ketable pangkat dosen
         $file_sk_pangkat = $request->file('file_sk_pangkat');
         $nama_file_sk_pangkat = Str::random() . '.' . $file_sk_pangkat->getClientOriginalExtension();
-        $file_sk_pangkat->move(public_path('uploads/sk_pangkat_dosen'), $nama_file_sk_pangkat);
+        $file_sk_pangkat->move('uploads/sk_pangkat_dosen', $nama_file_sk_pangkat);
         $dataPangkat = [
             'kepangkatan' => $request->kepangkatan,
             'tgl_sk' => $request->tanggal_sk_pangkat,
@@ -169,7 +169,7 @@ class ProfileDosenController extends Controller
         if ($request->file('foto_profile') != null) {
             $foto = $request->file('foto_profile');
             $nama_foto = $foto->hashName();
-            $foto->move(public_path('uploads/profile'), $nama_foto);
+            $foto->move('uploads/profile', $nama_foto);
             $user = User::find(Auth::user()->id);
             $user->profile_picture = $nama_foto;
             $user->save();

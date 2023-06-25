@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePrestasiMahasiswaRequest;
@@ -55,11 +56,11 @@ class PrestasiMahasiswaController extends Controller
         ];
         $insert_data = PrestasiMahasiswa::create($data);
         $id_insert = $insert_data->id;
-        $file_prestasi->move(public_path('uploads/file_prestasi'), $nama_file);
+        $file_prestasi->move('uploads/file_prestasi', $nama_file);
         $update = PrestasiMahasiswa::where('id', $id_insert)->update(['encrypt_id' => Crypt::encrypt($id_insert)]);
-        if($update){
+        if ($update) {
             return redirect()->route('mahasiswa.profile.index')->with('success', 'Data berhasil ditambahkan');
-        }else{
+        } else {
             return redirect()->route('mahasiswa.profile.index')->with('error', 'Data gagal ditambahkan');
         }
     }
@@ -85,7 +86,7 @@ class PrestasiMahasiswaController extends Controller
     {
         //
         $prestasi = PrestasiMahasiswa::find(Crypt::decrypt($id));
-        if($prestasi->mahasiswa_id != Auth::user()->mahasiswa->id){
+        if ($prestasi->mahasiswa_id != Auth::user()->mahasiswa->id) {
             return redirect()->back();
         }
 
@@ -103,10 +104,10 @@ class PrestasiMahasiswaController extends Controller
     {
         //
         $prestasi = PrestasiMahasiswa::find(Crypt::decrypt($id));
-        if($prestasi->mahasiswa_id != Auth::user()->mahasiswa->id){
+        if ($prestasi->mahasiswa_id != Auth::user()->mahasiswa->id) {
             return redirect()->back();
         }
-        if($request->file('file_prestasi') != null){
+        if ($request->file('file_prestasi') != null) {
             $file_prestasi = $request->file('file_prestasi');
             $nama_file = $file_prestasi->hashName();
             $file_prestasi->move(public_path('uploads/file_prestasi'), $nama_file);
@@ -118,10 +119,10 @@ class PrestasiMahasiswaController extends Controller
                 'tanggal' => $request->tanggal,
                 'updated_at' => date('Y-m-d H:i:s'),
             ];
-            if($prestasi->file_prestasi != null){
-                unlink(public_path('uploads\file_prestasi\\'.$prestasi->file_prestasi));
+            if ($prestasi->file_prestasi != null) {
+                unlink(public_path('uploads\file_prestasi\\' . $prestasi->file_prestasi));
             }
-        }else{
+        } else {
             $data = [
                 'nama_prestasi' => $request->nama_prestasi,
                 'scala' => $request->scala,
@@ -143,11 +144,11 @@ class PrestasiMahasiswaController extends Controller
     public function destroy($id)
     {
         $prestasi = PrestasiMahasiswa::find(Crypt::decrypt($id));
-        if($prestasi->mahasiswa_id != Auth::user()->mahasiswa->id){
+        if ($prestasi->mahasiswa_id != Auth::user()->mahasiswa->id) {
             return redirect()->back();
-        }else{
-            if($prestasi->file_prestasi != null){
-                unlink(public_path('uploads/file_prestasi/'.$prestasi->file_prestasi));
+        } else {
+            if ($prestasi->file_prestasi != null) {
+                unlink(public_path('uploads/file_prestasi/' . $prestasi->file_prestasi));
             }
             $prestasi->delete();
             return redirect()->route('mahasiswa.profile.index')->with('success', 'Data berhasil dihapus');
