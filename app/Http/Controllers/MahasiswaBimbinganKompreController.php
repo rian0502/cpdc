@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ModelSeminarTaSatu;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class MahasiswaBimbinganKompreController extends Controller
 {
@@ -13,8 +16,10 @@ class MahasiswaBimbinganKompreController extends Controller
      */
     public function index()
     {
-        //
-        return view('dosen.mahasiswa.bimbingan.kompre.index');
+        $seminar = ModelSeminarTaSatu::where('id_pembimbing_satu', Auth::user()->dosen->id)->
+        orWhere('id_pembimbing_dua', Auth::user()->dosen->id)->get();
+
+        return view('dosen.mahasiswa.bimbingan.kompre.index', compact('seminar'));
     }
 
     /**

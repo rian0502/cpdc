@@ -614,17 +614,9 @@
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.kp.index') }}"
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/kp*') ? 'active' : '' }}">Bimbingan
                                         PKL/KP</a></li>
-                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.ta1.index') }}"
-                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/ta1*') ? 'active' : '' }}">Bimbingan
-                                        Tugas Akhir
-                                        1</a></li>
-                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.ta2.index') }}"
-                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/ta2*') ? 'active' : '' }}">Bimbingan
-                                        Tugas Akhir
-                                        2</a></li>
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.kompre.index') }}"
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/kompre*') ? 'active' : '' }}">Bimbingan
-                                        Komprehensif</a></li>
+                                        Tugas Akhir</a></li>
                             </ul>
                         </li>
                     @endrole

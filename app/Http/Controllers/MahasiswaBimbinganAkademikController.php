@@ -17,17 +17,22 @@ class MahasiswaBimbinganAkademikController extends Controller
     {
         //
         $data = [
-            'mahasiswa' => Mahasiswa::select('id', 'nama_mahasiswa', 'npm','angkatan', 'id_dosen')->where('id_dosen', auth()->user()->dosen->first()->id)->get(),
+            'mahasiswa' => Mahasiswa::select('id', 'nama_mahasiswa', 'npm', 'angkatan', 'id_dosen')->where('id_dosen', auth()->user()->dosen->first()->id)->get(),
         ];
-        return view('dosen.mahasiswa.bimbingan.akademik.index',$data);
+        return view('dosen.mahasiswa.bimbingan.akademik.index', $data);
     }
 
 
     public function show($id)
     {
         $mahasiswa = Mahasiswa::where('npm', $id)->first();
-        return view('dosen.mahasiswa.bimbingan.akademik.show', compact('mahasiswa'));
+        $data = [
+            'mahasiswa' => $mahasiswa,
+            'kp' => $mahasiswa->seminar_kp,
+            'ta1' => $mahasiswa->ta_satu,
+            'prestasi' => $mahasiswa->prestasi,
+            'aktivitas' => $mahasiswa->aktivitas,
+        ];
+        return view('dosen.mahasiswa.bimbingan.akademik.show', $data);
     }
-
- 
 }
