@@ -123,7 +123,7 @@
                     },
                     columns: [{
                             data: null,
-                            name: 'no',
+                            name: 'mahasiswa.nama_mahasiswa',
                             render: function(data, type, row, meta) {
                                 var index = meta.row + meta.settings._iDisplayStart + 1;
                                 return index;

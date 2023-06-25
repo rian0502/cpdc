@@ -24,8 +24,8 @@ class PrestasiDataController extends Controller
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
 
-        if($startDate && $endDate){
-            $data = PrestasiMahasiswa::with('mahasiswa')->whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc')->get();
+        if ($startDate && $endDate) {
+            $data = PrestasiMahasiswa::with('mahasiswa')->whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc');
             return DataTables::of($data)
                 ->addColumn('nama_mahasiswa', function ($row) {
                     return $row->mahasiswa->nama_mahasiswa;
@@ -34,9 +34,8 @@ class PrestasiDataController extends Controller
                     return $row->mahasiswa->npm;
                 })
                 ->toJson();
-        }
-        else if ($request->ajax()&& $startDate == null && $endDate == null) {
-            $data = PrestasiMahasiswa::with('mahasiswa')->orderBy('tanggal', 'desc')->get();
+        } else if ($request->ajax() && $startDate == null && $endDate == null) {
+            $data = PrestasiMahasiswa::with('mahasiswa')->orderBy('tanggal', 'desc');
 
             return DataTables::of($data)
                 ->addColumn('nama_mahasiswa', function ($row) {
@@ -117,63 +116,60 @@ class PrestasiDataController extends Controller
     {
         //
     }
-    public function pieChartCapaian(Request $request){
+    public function pieChartCapaian(Request $request)
+    {
         //get per capaian untuk pie chart
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($startDate && $endDate) {
             $data = PrestasiMahasiswa::select('capaian', DB::raw('count(*) as total'))
-            ->whereBetween('tanggal', [$startDate, $endDate])
-            ->groupBy('capaian')
-            ->get();
+                ->whereBetween('tanggal', [$startDate, $endDate])
+                ->groupBy('capaian')
+                ->get();
             return response()->json($data);
-        }
-        else{
+        } else {
             $data = PrestasiMahasiswa::select('capaian', DB::raw('count(*) as total'))
-            ->groupBy('capaian')
-            ->get();
+                ->groupBy('capaian')
+                ->get();
             return response()->json($data);
         }
-
     }
-    public function pieChartScala(Request $request){
+    public function pieChartScala(Request $request)
+    {
         //get per scala untuk pie chart
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($startDate && $endDate) {
             $data = PrestasiMahasiswa::select('scala', DB::raw('count(*) as total'))
-            ->whereBetween('tanggal', [$startDate, $endDate])
-            ->groupBy('scala')
-            ->get();
+                ->whereBetween('tanggal', [$startDate, $endDate])
+                ->groupBy('scala')
+                ->get();
             return response()->json($data);
-        }
-        else{
+        } else {
             $data = PrestasiMahasiswa::select('scala', DB::raw('count(*) as total'))
-            ->groupBy('scala')
-            ->get();
+                ->groupBy('scala')
+                ->get();
             return response()->json($data);
         }
-
     }
 
-    public function  barChartPrestasi(Request $request){
+    public function  barChartPrestasi(Request $request)
+    {
         //get per scala untuk pie chart
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         //prestasi pertahun
         if ($startDate && $endDate) {
             $data = PrestasiMahasiswa::select(DB::raw('YEAR(tanggal) as year'), DB::raw('count(*) as total'))
-            ->whereBetween('tanggal', [$startDate, $endDate])
-            ->groupBy('year')
-            ->get();
+                ->whereBetween('tanggal', [$startDate, $endDate])
+                ->groupBy('year')
+                ->get();
             return response()->json($data);
-        }
-        else{
+        } else {
             $data = PrestasiMahasiswa::select(DB::raw('YEAR(tanggal) as year'), DB::raw('count(*) as total'))
-            ->groupBy('year')
-            ->get();
+                ->groupBy('year')
+                ->get();
             return response()->json($data);
         }
-
     }
 }
