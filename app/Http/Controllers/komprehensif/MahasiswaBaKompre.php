@@ -5,7 +5,7 @@ namespace App\Http\Controllers\komprehensif;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class MahasiswaBaTaKompre extends Controller
+class MahasiswaBaKompre extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +15,7 @@ class MahasiswaBaTaKompre extends Controller
     public function index()
     {
         //
+        return view('mahasiswa.kompre.ba.index');
     }
 
     /**
@@ -25,6 +26,7 @@ class MahasiswaBaTaKompre extends Controller
     public function create()
     {
         //
+        return view('mahasiswa.kompre.ba.create');
     }
 
     /**
@@ -58,6 +60,7 @@ class MahasiswaBaTaKompre extends Controller
     public function edit($id)
     {
         //
+        return view('mahasiswa.kompre.ba.edit');
     }
 
     /**
