@@ -265,7 +265,7 @@
                         <h4 class="text-dark h4">Bukti Seminar</h4>
                         <small>
                             <b>
-                                <p {{-- class="mb-30 text-center {{  $seminar->status_seminar == 'Selesai' ? 'Valid' : ''}} "> --}} {{-- {{  $seminar->status_seminar == 'Selesai' ? 'Valid' : 'Proses'   }} --}} </p>
+                                <p class="mb-30 text-center {{  $seminar->status_seminar == 'Selesai' ? 'Valid' : ''}} "> {{-- {{  $seminar->status_seminar == 'Selesai' ? 'Valid' : 'Proses'   }} --}} </p>
                             </b>
                         </small>
                     </div>
@@ -275,7 +275,7 @@
                                 <button class="btn btn-primary right">Edit</button>
                             </a>
                         @else
-                            <a href="/mahasiswa/bakerjapraktik/create">
+                            <a href="/mahasiswa/bata1/create">
                                 <button class="btn btn-primary right">Unggah</button>
                             </a>
                         @endif
