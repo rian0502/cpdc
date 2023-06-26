@@ -212,7 +212,7 @@
                 @if ($seminar->status_admin == 'Valid')
                     <div class="pd-20 card-box mb-30">
                         <div class="clearfix">
-                            <div class="pull-left">
+                            <div class="pull-left mb-4" >
                                 <h4 class="text-dark h4">Jadwal Seminar</h4>
 
                             </div>
@@ -275,116 +275,116 @@
             <!-- Jadwal Seminar End -->
 
             <!-- Bukti Seminar Start -->
-            <div class="pd-20 card-box mb-30">
-                <div class="clearfix">
-                    <div class="pull-left">
-                        <h4 class="text-dark h4">Bukti Seminar</h4>
-                        <small>
-                            <b>
-                                <p
-                                    class="mb-30 text-center 
+            @if ($seminar->jadwal != null)
+                <div class="pd-20 card-box mb-30">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <h4 class="text-dark h4">Bukti Seminar</h4>
+                            <small>
+                                <b>
+                                    <p
+                                        class="mb-30 text-center 
                                 @if ($seminar->status_koor == 'Selesai') {{ 'Valid' }}
                                             @elseif($seminar->status_koor == 'Belum Selesai') {{ 'Proses' }}
                                             @elseif($seminar->status_koor == 'Perbaikan') {{ 'Invalid' }}
                                             @else {{ 'Failed' }} @endif">
-                                    {{ $seminar->status_koor == 'Selesai' ? 'Valid' : 'Proses' }} </p>
-                            </b>
-                        </small>
-                    </div>
-                    @if ($seminar->status_koor != 'Selesai')
-                        @if ($seminar->ba_seminar)
-                            <a href="{{ route('mahasiswa.bata1.edit', $seminar->ba_seminar->encrypt_id) }}">
-                                <button class="btn btn-primary right">Edit</button>
-                            </a>
-                        @else
-                            <a href="/mahasiswa/bata1/create">
-                                <button class="btn btn-primary right">Unggah</button>
-                            </a>
+                                        {{ $seminar->status_koor == 'Selesai' ? 'Valid' : 'Proses' }} </p>
+                                </b>
+                            </small>
+                        </div>
+                        @if ($seminar->status_koor != 'Selesai')
+                            @if ($seminar->ba_seminar)
+                                <a href="{{ route('mahasiswa.bata1.edit', $seminar->ba_seminar->encrypt_id) }}">
+                                    <button class="btn btn-primary right">Edit</button>
+                                </a>
+                            @else
+                                <a href="/mahasiswa/bata1/create">
+                                    <button class="btn btn-primary right">Unggah</button>
+                                </a>
+                            @endif
                         @endif
+                        {{-- jika sudah diupload end --}}
+                    </div>
+                    @if ($seminar->ba_seminar)
+                        <div class="bukti_seminar">
+                            <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+                                <div class="row border-bottom">
+                                    <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        <a target="_blank"
+                                            href="/uploads/ba_seminar_ta_satu/{{ $seminar->ba_seminar->berkas_ba_seminar_ta_satu }}">Lihat</a>
+                                    </div>
+                                    <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        {{ $seminar->ba_seminar->no_berkas_ba_seminar_ta_satu }}
+                                    </div>
+                                </div>
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        <a target="_blank"
+                                            href="/uploads/nilai_seminar_ta_satu/{{ $seminar->ba_seminar->berkas_nilai_seminar_ta_satu }}">Lihat</a>
+                                    </div>
+                                    <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        {{ $seminar->ba_seminar->huruf_mutu }}
+                                    </div>
+                                </div>
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"> <strong>Power Point</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        <a target="_blank"
+                                            href="{{ $seminar->ba_seminar->berkas_ppt_seminar_ta_satu }}">Lihat</a>
+                                    </div>
+                                    <label class="col-md-3 bold"> <strong>Nilai</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        {{ $seminar->ba_seminar->nilai }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="bukti_seminar">
+                            <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+                                <div class="row border-bottom">
+                                    <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        Belum Unggah
+                                    </div>
+                                    <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        Belum Unggah
+                                    </div>
+                                </div>
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        Belum Unggah
+                                    </div>
+                                    <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        Belum Unggah
+                                    </div>
+                                </div>
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"> <strong>Power Point</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        Belum Unggah
+                                    </div>
+                                    <label class="col-md-3 bold"> <strong>Nilai</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        Belum Unggah
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endif
-                    {{-- jika sudah diupload end --}}
-                </div>
-                @if ($seminar->ba_seminar)
-                    <div class="bukti_seminar">
-                        <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                            <div class="row border-bottom">
-                                <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a target="_blank"
-                                        href="/uploads/ba_seminar_ta_satu/{{ $seminar->ba_seminar->berkas_ba_seminar_ta_satu }}">Lihat</a>
-                                </div>
-                                <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->ba_seminar->no_berkas_ba_seminar_ta_satu }}
-                                </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a target="_blank"
-                                        href="/uploads/nilai_seminar_ta_satu/{{ $seminar->ba_seminar->berkas_nilai_seminar_ta_satu }}">Lihat</a>
-                                </div>
-                                <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->ba_seminar->huruf_mutu }}
-                                </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Power Point</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a target="_blank"
-                                        href="{{ $seminar->ba_seminar->berkas_ppt_seminar_ta_satu }}">Lihat</a>
-                                </div>
-                                <label class="col-md-3 bold"> <strong>Nilai</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->ba_seminar->nilai }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @else
-                    <div class="bukti_seminar">
-                        <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                            <div class="row border-bottom">
-                                <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    Belum Unggah
-                                </div>
-                                <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    Belum Unggah
-                                </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    Belum Unggah
-                                </div>
-                                <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    Belum Unggah
-                                </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Power Point</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    Belum Unggah
-                                </div>
-                                <label class="col-md-3 bold"> <strong>Nilai</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    Belum Unggah
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-
-
-            </div>
             @endif
-            <!-- Bukti Seminar End -->
-
         </div>
+        @endif
+        <!-- Bukti Seminar End -->
+
+    </div>
     </div>
     <!-- Input Validation End -->
     </div>

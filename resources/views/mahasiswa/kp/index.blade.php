@@ -273,135 +273,132 @@
                     <!-- Jadwal Seminar End -->
                     <!-- Bukti Seminar Start -->
                     @if ($seminar->jadwal != null)
-
-
-                    <div class="pd-20 card-box mb-30">
-                        <div class="clearfix">
-                            <div class="pull-left">
-                                <h4 class="text-dark h4">Bukti Seminar</h4>
-                                <small>
-                                    <b>
-                                        <p
-                                            class="mb-30 text-center
+                        <div class="pd-20 card-box mb-30">
+                            <div class="clearfix">
+                                <div class="pull-left">
+                                    <h4 class="text-dark h4">Bukti Seminar</h4>
+                                    <small>
+                                        <b>
+                                            <p
+                                                class="mb-30 text-center
                                             @if ($seminar->status_seminar == 'Selesai') {{ 'Valid' }}
                                             @elseif($seminar->status_seminar == 'Belum Selesai') {{ 'Proses' }}
                                             @elseif($seminar->status_seminar == 'Perbaikan') {{ 'Invalid' }}
                                             @else {{ 'Failed' }} @endif">
-                                            {{ $seminar->status_seminar }}
-                                        </p>
-                                    </b>
-                                </small>
-                            </div>
-                            @if ($seminar->status_seminar != 'Selesai')
-                                @if ($berita_acara)
-                                    <a target="_blank" href="/mahasiswa/bakerjapraktik/{{ $seminar->encrypt_id }}/edit">
-                                        <button class="btn btn-primary right">Edit</button>
-                                    </a>
-                                @else
-                                    <a target="_blank" href="/mahasiswa/bakerjapraktik/create">
-                                        <button class="btn btn-primary right">Unggah</button>
-                                    </a>
+                                                {{ $seminar->status_seminar }}
+                                            </p>
+                                        </b>
+                                    </small>
+                                </div>
+                                @if ($seminar->status_seminar != 'Selesai')
+                                    @if ($berita_acara)
+                                        <a target="_blank"
+                                            href="/mahasiswa/bakerjapraktik/{{ $seminar->encrypt_id }}/edit">
+                                            <button class="btn btn-primary right">Edit</button>
+                                        </a>
+                                    @else
+                                        <a target="_blank" href="/mahasiswa/bakerjapraktik/create">
+                                            <button class="btn btn-primary right">Unggah</button>
+                                        </a>
+                                    @endif
                                 @endif
+                                {{-- jika sudah diupload end --}}
+                            </div>
+                            @if ($berita_acara)
+                                <div class="bukti_seminar">
+                                    <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+                                        <div class="row border-bottom">
+                                            <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                <a target="_blank"
+                                                    href="/uploads/berita_acara_seminar_kp/{{ $berita_acara->berkas_ba_seminar_kp }}">Lihat</a>
+                                            </div>
+                                            <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                {{ $berita_acara->no_ba_seminar_kp }}
+                                            </div>
+                                        </div>
+                                        <div class="row border-bottom mt-2">
+                                            <label class="col-md-3 bold"> <strong>Laporan Final PKL/KP</strong></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                <a target="_blank"
+                                                    href="/uploads/laporan_kp/{{ $berita_acara->laporan_kp }}">Lihat</a>
+                                            </div>
+                                            <label class="col-md-3 bold mt-1"><strong>Status Bukti</strong></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                {{ $seminar->status_seminar }}
+                                            </div>
+                                        </div>
+                                        <div class="row border-bottom mt-2">
+                                            <label class="col-md-3 bold"> <strong>Nilai Lapangan</strong></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                {{ $berita_acara->nilai_lapangan }}
+                                            </div>
+                                            <label class="col-md-3 bold mt-1"><strong>Nilai Akademik</strong></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                {{ $berita_acara->nilai_akd }}
+                                            </div>
+                                        </div>
+                                        <div class="row border-bottom mt-2">
+                                            <label class="col-md-3 bold"> <strong>Nilai Total</strong></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                {{ $berita_acara->nilai_akhir }}
+                                            </div>
+                                            <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                <b> {{ $berita_acara->nilai_mutu }} </b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="bukti_seminar">
+                                    <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+                                        <div class="row border-bottom">
+                                            <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                -
+                                            </div>
+                                            <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                -
+                                            </div>
+                                        </div>
+                                        <div class="row border-bottom mt-2">
+                                            <label class="col-md-3 bold"> <strong>Laporan Final PKL/KP</strong></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                <a target="_blank" href="">-</a>
+                                            </div>
+                                            <label class="col-md-3 bold mt-1"><strong>Status Bukti</strong></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                -
+                                            </div>
+                                        </div>
+                                        <div class="row border-bottom mt-2">
+                                            <label class="col-md-3 bold"> <strong>Nilai Seminar Angka</strong></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                -
+                                            </div>
+                                            <label class="col-md-3 bold mt-1"><strong>Nilai PKL/KP Angka</strong></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                -
+                                            </div>
+                                        </div>
+                                        <div class="row border-bottom mt-2">
+                                            <label class="col-md-3 bold"> <strong>Nilai Total</strong></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                -
+                                            </div>
+                                            <label class="col-md-3 bold"> <strong>Nilai Seminar Huruf</strong></label>
+                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                -
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @endif
-                            {{-- jika sudah diupload end --}}
                         </div>
-                        @if ($berita_acara)
-                            <div class="bukti_seminar">
-                                <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                                    <div class="row border-bottom">
-                                        <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            <a target="_blank"
-                                                href="/uploads/berita_acara_seminar_kp/{{ $berita_acara->berkas_ba_seminar_kp }}">Lihat</a>
-                                        </div>
-                                        <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            {{ $berita_acara->no_ba_seminar_kp }}
-                                        </div>
-                                    </div>
-                                    <div class="row border-bottom mt-2">
-                                        <label class="col-md-3 bold"> <strong>Laporan Final PKL/KP</strong></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            <a target="_blank"
-                                                href="/uploads/laporan_kp/{{ $berita_acara->laporan_kp }}">Lihat</a>
-                                        </div>
-                                        <label class="col-md-3 bold mt-1"><strong>Status Bukti</strong></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            {{ $seminar->status_seminar }}
-                                        </div>
-                                    </div>
-                                    <div class="row border-bottom mt-2">
-                                        <label class="col-md-3 bold"> <strong>Nilai Lapangan</strong></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            {{ $berita_acara->nilai_lapangan }}
-                                        </div>
-                                        <label class="col-md-3 bold mt-1"><strong>Nilai Akademik</strong></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            {{ $berita_acara->nilai_akd }}
-                                        </div>
-                                    </div>
-                                    <div class="row border-bottom mt-2">
-                                        <label class="col-md-3 bold"> <strong>Nilai Total</strong></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            {{ $berita_acara->nilai_akhir }}
-                                        </div>
-                                        <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            <b> {{ $berita_acara->nilai_mutu }} </b>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @else
-                            <div class="bukti_seminar">
-                                <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                                    <div class="row border-bottom">
-                                        <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            -
-                                        </div>
-                                        <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            -
-                                        </div>
-                                    </div>
-                                    <div class="row border-bottom mt-2">
-                                        <label class="col-md-3 bold"> <strong>Laporan Final PKL/KP</strong></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            <a target="_blank" href="">-</a>
-                                        </div>
-                                        <label class="col-md-3 bold mt-1"><strong>Status Bukti</strong></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            -
-                                        </div>
-                                    </div>
-                                    <div class="row border-bottom mt-2">
-                                        <label class="col-md-3 bold"> <strong>Nilai Seminar Angka</strong></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            -
-                                        </div>
-                                        <label class="col-md-3 bold mt-1"><strong>Nilai PKL/KP Angka</strong></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            -
-                                        </div>
-                                    </div>
-                                    <div class="row border-bottom mt-2">
-                                        <label class="col-md-3 bold"> <strong>Nilai Total</strong></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            -
-                                        </div>
-                                        <label class="col-md-3 bold"> <strong>Nilai Seminar Huruf</strong></label>
-                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                            -
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-
-
-                    </div>
-                @endif
+                    @endif
                 @endif
                 <!-- Bukti Seminar End -->
 
