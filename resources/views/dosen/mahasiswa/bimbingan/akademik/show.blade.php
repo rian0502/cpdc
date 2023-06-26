@@ -21,7 +21,7 @@
                     <div class="mb-3 pb-2">
                         <div class="form-group">
                             <div class="profile-photo">
-                                <img id="preview-image" src="/uploads/profile/{{-- $mahasiswa->profile_picture --}}" alt="Foto Profile"
+                                <img id="preview-image" src="/uploads/profile/{{ $mahasiswa->user->profile_picture }}" alt="Foto Profile"
                                     onerror="this.src='/uploads/profile/default.png'" class="foto">
 
                             </div>
