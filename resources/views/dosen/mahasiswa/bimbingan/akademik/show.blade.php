@@ -147,7 +147,7 @@
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Data Seminar Kerja Praktik</h5>
 
-                                            @if ($kp->judul_kp != null)
+                                            @if ($kp != null)
                                             <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="row border-bottom mt-3">
                                                         <label class="col-md-12 bold"><b>Judul atau Topik</b></label>
@@ -255,7 +255,7 @@
 
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Jadwal</h5>
-                                            @if ($kp->judul_kp != null)
+                                            @if ($kp)
                                             <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                 {{-- BUAT KONDISI DISINI --}}
                                                     <div class="row border-bottom">
@@ -320,7 +320,7 @@
 
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Berita Acara</h5>
-                                            @if ($kp->berita_acara != null)
+                                            @if ($kp && $kp->berita_acara)
                                             <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                 {{-- BUAT KONDISI DISINI --}}
                                                     <div class="row border-bottom">
