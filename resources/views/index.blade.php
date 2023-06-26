@@ -245,7 +245,7 @@
                     <div class="position-relative">
                         <img class="img-fluid" src="Assets/src/img/biokimia.png" alt="">
                         <div class="project-overlay">
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="img/biokimia.png"
+                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="Assets/src/img/biokimia.png"
                                 data-lightbox="project"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
                                     class="fa fa-link"></i></a>
@@ -260,7 +260,7 @@
                     <div class="position-relative">
                         <img class="img-fluid" src="Assets/src/img/analitik dan instrumental.png" alt="">
                         <div class="project-overlay">
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="img/analitik dan instrumental.png"
+                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="Assets/src/img/analitik dan instrumental.png"
                                 data-lightbox="project"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
                                     class="fa fa-link"></i></a>
@@ -275,7 +275,7 @@
                     <div class="position-relative">
                         <img class="img-fluid" src="Assets/src/img/kimia anorganik-fisik.png" alt="">
                         <div class="project-overlay">
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="img/kimia anorganik-fisik.png"
+                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="Assets/src/img/kimia anorganik-fisik.png"
                                 data-lightbox="project"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
                                     class="fa fa-link"></i></a>
@@ -290,7 +290,7 @@
                     <div class="position-relative">
                         <img class="img-fluid" src="Assets/src/img/kimia organik.png" alt="">
                         <div class="project-overlay">
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="img/kimia organik.png"
+                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="Assets/src/img/kimia organik.png"
                                 data-lightbox="project"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
                                     class="fa fa-link"></i></a>
