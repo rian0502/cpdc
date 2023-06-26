@@ -209,7 +209,7 @@
                 <!-- Data Registrasi End -->
 
                 <!-- Jadwal Seminar Start -->
-                @if ($seminar->jadwal)
+                @if ($seminar->status_admin == 'Valid')
                     <div class="pd-20 card-box mb-30">
                         <div class="clearfix">
                             <div class="pull-left">
@@ -223,15 +223,21 @@
                                 <div class="row border-bottom">
                                     <label class="col-md-3 bold mt-2"> <strong>Tanggal Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-
-                                        {{ $seminar->jadwal->tanggal_seminar_ta_satu }}
+                                        @if ($seminar->jadwal)
+                                            {{ $seminar->jadwal->tanggal_seminar_ta_satu }}
+                                        @else
+                                            <div>Belum terjadwal</div>
+                                        @endif
 
                                     </div>
                                     <label class="col-md-3 bold mt-2"><b>Jam Mulai</b></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
 
-                                        {{ $seminar->jadwal->jam_mulai_seminar_ta_satu }} WIB
-
+                                        @if ($seminar->jadwal)
+                                            {{ $seminar->jadwal->jam_mulai_seminar_ta_satu }} WIB
+                                        @else
+                                            <div>Belum terjadwal</div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row border-bottom mt-2">
@@ -241,16 +247,23 @@
                                     </div>
                                     <label class="col-md-3 bold mt-1"><strong>Jam Selesai</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-
-                                        {{ $seminar->jadwal->jam_selesai_seminar_ta_satu }} WIB
+                                        @if ($seminar->jadwal)
+                                            {{ $seminar->jadwal->jam_selesai_seminar_ta_satu }} WIB
+                                        @else
+                                            <div>Belum terjadwal</div>
+                                        @endif
 
                                     </div>
                                 </div>
                                 <div class="row border-bottom mt-2">
                                     <label class="col-md-3 bold"> <strong>Informasi Berkas</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        Silahkan Cek Berkas Keperluan Seminar Di Email Anda
-                                        hubungi admin berkas jika dalam 1x24 jam tidak menerima email Berkas
+                                        @if ($seminar->jadwal)
+                                            Silahkan Cek Berkas Keperluan Seminar Di Email Anda
+                                            hubungi admin berkas jika dalam 1x24 jam tidak menerima email Berkas
+                                        @else
+                                            <div>Belum terjadwal</div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
