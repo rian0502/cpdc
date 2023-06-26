@@ -380,7 +380,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('jurusan.mahasiswa.index') }}"
+                            <a href="{{ route('jurusan.prestasi.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/prestasi*') ? 'active' : '' }}">
                                 <span class="micon bi bi-award"></span><span class="mtext">Prestasi</span>
                             </a>

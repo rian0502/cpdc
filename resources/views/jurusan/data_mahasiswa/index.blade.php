@@ -121,7 +121,7 @@
                             render: function(data, type, row) {
 
                                 var editUrl = "{{ route('jurusan.mahasiswa.show', ':id') }}".replace(
-                                    ':id', row.id);
+                                    ':id', row.npm);
                                 return `
                             <div class="dropdown">
                                 <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">

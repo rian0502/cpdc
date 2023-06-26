@@ -5,7 +5,6 @@
     <!-- Basic Page Info -->
     <meta charset="utf-8" />
     <title>Chemistry Program Data Center</title>
-
     <!-- Favicon -->
     <link href="/Assets/images/logo/color.png" rel="icon">
 

@@ -30,9 +30,13 @@ class MahasiswaBimbinganAkademikController extends Controller
             'mahasiswa' => $mahasiswa,
             'kp' => $mahasiswa->seminar_kp,
             'ta1' => $mahasiswa->ta_satu,
+            // 'ta2' => $mahasiswa->ta_dua,
+            // 'kompre' => $mahasiswa->kompre,
+
             'prestasi' => $mahasiswa->prestasi,
             'aktivitas' => $mahasiswa->aktivitas,
         ];
+        // dd($data);
         return view('dosen.mahasiswa.bimbingan.akademik.show', $data);
     }
 }

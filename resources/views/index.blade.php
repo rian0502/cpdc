@@ -237,68 +237,68 @@
         <div class="container">
             <div class="text-center text-md-start pb-5 pb-md-0 wow fadeInUp" data-wow-delay="0.1s"
                 style="max-width: 500px;">
-                <p class="fs-5 fw-medium text-primary">Highlight</p>
+                <p class="fs-5 fw-medium text-primary">Laboratorium</p>
                 <h1 class="display-5 mb-5">Jurusan Kimia</h1>
             </div>
             <div class="owl-carousel project-carousel wow fadeInUp" data-wow-delay="0.1s">
                 <div class="project-item mb-5">
                     <div class="position-relative">
-                        <img class="img-fluid" src="Assets/src/img/project-1.jpg" alt="">
+                        <img class="img-fluid" src="Assets/src/img/biokimia.png" alt="">
                         <div class="project-overlay">
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="img/project-1.jpg"
+                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="Assets/src/img/biokimia.png"
                                 data-lightbox="project"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
                                     class="fa fa-link"></i></a>
                         </div>
                     </div>
                     <div class="p-4">
-                        <a class="d-block h5" href="">Data Analytics & Insights</a>
-                        <span>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem</span>
+                        <a class="d-block h5" href="">Laboratorium Biokimia</a>
+                        {{-- <span>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem</span> --}}
                     </div>
                 </div>
                 <div class="project-item mb-5">
                     <div class="position-relative">
-                        <img class="img-fluid" src="Assets/src/img/project-2.jpg" alt="">
+                        <img class="img-fluid" src="Assets/src/img/analitik dan instrumental.png" alt="">
                         <div class="project-overlay">
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="img/project-2.jpg"
+                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="Assets/src/img/analitik dan instrumental.png"
                                 data-lightbox="project"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
                                     class="fa fa-link"></i></a>
                         </div>
                     </div>
                     <div class="p-4">
-                        <a class="d-block h5" href="">Marketing Content Strategy</a>
-                        <span>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem</span>
+                        <a class="d-block h5" href="">Laboratorium Kimia Analitik dan Instrumental</a>
+                        {{-- <span>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem</span> --}}
                     </div>
                 </div>
                 <div class="project-item mb-5">
                     <div class="position-relative">
-                        <img class="img-fluid" src="Assets/src/img/project-3.jpg" alt="">
+                        <img class="img-fluid" src="Assets/src/img/kimia anorganik-fisik.png" alt="">
                         <div class="project-overlay">
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="img/project-3.jpg"
+                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="Assets/src/img/kimia anorganik-fisik.png"
                                 data-lightbox="project"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
                                     class="fa fa-link"></i></a>
                         </div>
                     </div>
                     <div class="p-4">
-                        <a class="d-block h5" href="">Business Target Market</a>
-                        <span>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem</span>
+                        <a class="d-block h5" href="">Laboratorium Kimia Anorganik / Fisik</a>
+                        {{-- <span>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem</span> --}}
                     </div>
                 </div>
                 <div class="project-item mb-5">
                     <div class="position-relative">
-                        <img class="img-fluid" src="Assets/src/img/project-4.jpg" alt="">
+                        <img class="img-fluid" src="Assets/src/img/kimia organik.png" alt="">
                         <div class="project-overlay">
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="img/project-4.jpg"
+                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="Assets/src/img/kimia organik.png"
                                 data-lightbox="project"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
                                     class="fa fa-link"></i></a>
                         </div>
                     </div>
                     <div class="p-4">
-                        <a class="d-block h5" href="">Social Marketing Strategy</a>
-                        <span>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem</span>
+                        <a class="d-block h5" href="">Laboratorium Kimia Organik</a>
+                        {{-- <span>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem</span> --}}
                     </div>
                 </div>
             </div>

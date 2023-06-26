@@ -6,6 +6,7 @@ use App\Models\Dosen;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTugasAkhirSatuRequest;
 use App\Http\Requests\UpdateSeminarTaSatuRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ModelSeminarTaSatu;
@@ -42,7 +43,7 @@ class MahasiswaTaSatuController extends Controller
         return view('mahasiswa.ta1.edit', $data);
     }
 
-    public function store(Request $request)
+    public function store(StoreTugasAkhirSatuRequest $request)
     {
 
         $file = $request->file('berkas_seminar_ta_satu');
