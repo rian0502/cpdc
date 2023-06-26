@@ -274,7 +274,7 @@
                                             </style>
                                         </div>
                                         <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Bukti Acara</h5>
+                                            <h5 class="h4 text-blue mb-20">Berita Acara</h5>
                                             <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                 <div class="row border-bottom">
                                                     <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>

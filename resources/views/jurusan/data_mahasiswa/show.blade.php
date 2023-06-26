@@ -313,7 +313,7 @@
                                         </div>
 
                                         <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Bukti Acara</h5>
+                                            <h5 class="h4 text-blue mb-20">Berita Acara</h5>
                                             <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                             {{-- BUAT KONDISI DISINI --}}
                                             @if ($kp->berita_acara != null)
@@ -520,10 +520,10 @@
                                             </style>
                                         </div>
                                         <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Bukti Acara</h5>
+                                            <h5 class="h4 text-blue mb-20">Berita Acara</h5>
                                             <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                 <div class="row border-bottom">
-                                                    <label class="col-md-3 bold"> <strong>Bukti Acara</strong></label>
+                                                    <label class="col-md-3 bold"> <strong>Berita Acara</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         <a target="_blank"
                                                             href="/uploads/berita_acara_seminar_kp/{{-- $berita_acara->berkas_ba_seminar_kp --}}">Lihat</a>
@@ -722,10 +722,10 @@
                                             </style>
                                         </div>
                                         <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Bukti Acara</h5>
+                                            <h5 class="h4 text-blue mb-20">Berita Acara</h5>
                                             <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                 <div class="row border-bottom">
-                                                    <label class="col-md-3 bold"> <strong>Bukti Acara</strong></label>
+                                                    <label class="col-md-3 bold"> <strong>Berita Acara</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         <a target="_blank"
                                                             href="/uploads/berita_acara_seminar_kp/{{-- $berita_acara->berkas_ba_seminar_kp --}}">Lihat</a>
@@ -913,10 +913,10 @@
                                             </style>
                                         </div>
                                         <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Bukti Acara</h5>
+                                            <h5 class="h4 text-blue mb-20">Berita Acara</h5>
                                             <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                 <div class="row border-bottom">
-                                                    <label class="col-md-3 bold"> <strong>Bukti Acara</strong></label>
+                                                    <label class="col-md-3 bold"> <strong>Berita Acara</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         <a target="_blank"
                                                             href="/uploads/berita_acara_seminar_kp/{{-- $berita_acara->berkas_ba_seminar_kp --}}">Lihat</a>
