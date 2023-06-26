@@ -69,7 +69,7 @@
                         <div class="jadwal_seminar">
                             <div class="pl-3 pr-3 pb-0 mb-2 text-dark rounded-div">
                                 <div class="row mt-3">
-                                    {{-- <label class="col-md-12 bold"><b>Pesan</b></label> --}}
+                                    <label class="col-md-12 bold"><b>Pesan</b></label>
                                     <div class="col-md-12 mb-3"
                                         style="display:block;word-wrap:break-word; text-align: justify;">
                                         {{ $seminar->keterangan }}
@@ -272,6 +272,9 @@
                     </div>
                     <!-- Jadwal Seminar End -->
                     <!-- Bukti Seminar Start -->
+                    @if ($seminar->jadwal != null)
+
+
                     <div class="pd-20 card-box mb-30">
                         <div class="clearfix">
                             <div class="pull-left">
@@ -398,6 +401,7 @@
 
 
                     </div>
+                @endif
                 @endif
                 <!-- Bukti Seminar End -->
 

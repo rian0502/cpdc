@@ -40,7 +40,7 @@
                                             </a>
 
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="/dosen/mahasiswa/bimbingan/kp/show"><i
+                                                <a class="dropdown-item" href="{{ route('dosen.mahasiswa.bimbingan.kp.show', $item->mahasiswa->npm) }}"><i
                                                         class="fa fa-eye"></i>
                                                     Detail</a>
 
