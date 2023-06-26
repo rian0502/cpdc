@@ -57,16 +57,19 @@ class DataMahasiswaAllController extends Controller
     {
         //
         $mahasiswa = Mahasiswa::where('npm', $id)->first();
+
         $data = [
             'mahasiswa' => $mahasiswa,
             'kp' => $mahasiswa->seminar_kp,
             'ta1' => $mahasiswa->ta_satu,
-            // 'ta2' => $mahasiswa->ta_dua, 
+            // 'ta2' => $mahasiswa->ta_dua,
             // 'kompre' => $mahasiswa->kompre,
 
             'prestasi' => $mahasiswa->prestasi,
             'aktivitas' => $mahasiswa->aktivitas,
         ];
+
+
         return view('jurusan.data_mahasiswa.show', $data);
     }
 
