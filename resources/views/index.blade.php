@@ -237,7 +237,7 @@
         <div class="container">
             <div class="text-center text-md-start pb-5 pb-md-0 wow fadeInUp" data-wow-delay="0.1s"
                 style="max-width: 500px;">
-                <p class="fs-5 fw-medium text-primary">Highlight</p>
+                <p class="fs-5 fw-medium text-primary">Laboratorium</p>
                 <h1 class="display-5 mb-5">Jurusan Kimia</h1>
             </div>
             <div class="owl-carousel project-carousel wow fadeInUp" data-wow-delay="0.1s">
