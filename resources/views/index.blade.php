@@ -245,7 +245,7 @@
                     <div class="position-relative">
                         <img class="img-fluid" src="Assets/src/img/biokimia.png" alt="">
                         <div class="project-overlay">
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="img/project-1.jpg"
+                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="img/biokimia.png"
                                 data-lightbox="project"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
                                     class="fa fa-link"></i></a>
