@@ -51,4 +51,10 @@ class Mahasiswa extends Model
     public function ta_satu(){
         return $this->hasMany(ModelSeminarTaSatu::class, 'id_mahasiswa');
     }
+    public function ta_dua(){
+        return $this->hasMany(ModelSeminarTaDua::class, 'id_mahasiswa');
+    }
+    public function komprehensif(){
+        return $this->hasMany(ModelSeminarKompre::class, 'id_mahasiswa');
+    }
 }

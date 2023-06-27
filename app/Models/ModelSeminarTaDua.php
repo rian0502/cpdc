@@ -22,6 +22,7 @@ class ModelSeminarTaDua extends Model
         'ipk',
         'toefl',
         'berkas_ta_dua',
+        'komentar',
         'agreement',
         'status_admin',
         'status_koor',

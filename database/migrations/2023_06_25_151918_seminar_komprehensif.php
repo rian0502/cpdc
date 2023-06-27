@@ -26,6 +26,7 @@ class SeminarKomprehensif extends Migration
             $table->string('toefl');
             $table->string('berkas_kompre');
             $table->boolean('agreement');
+            $table->string('komentar')->nullable();
             $table->enum('status_admin', ['Valid', 'Invalid', 'Process'])->default('Process');
             $table->enum('status_koor', ['Selesai', 'Belum Selesai', 'Perbaikan', 'Tidak Lulus'])->default('Belum Selesai');
             $table->foreignId('id_pembimbing_satu')->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');

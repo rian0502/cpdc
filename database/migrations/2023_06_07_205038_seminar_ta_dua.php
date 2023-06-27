@@ -25,6 +25,7 @@ class SeminarTaDua extends Migration
             $table->string('ipk');
             $table->string('toefl');
             $table->string('berkas_ta_dua');
+            $table->string('komentar')->nullable();
             $table->boolean('agreement');
             $table->enum('status_admin', ['Valid', 'Invalid', 'Process'])->default('Process');
             $table->enum('status_koor', ['Selesai', 'Belum Selesai', 'Perbaikan', 'Tidak Lulus'])->default('Belum Selesai');

@@ -21,7 +21,7 @@ class PublikasiController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
