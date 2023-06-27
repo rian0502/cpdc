@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarTaSatu;
 use Illuminate\Routing\Controller;
@@ -51,8 +52,12 @@ class MahasiswaBimbinganKompreController extends Controller
      */
     public function show($id)
     {
-        //
-        return view('dosen.mahasiswa.bimbingan.kompre.show');
+        $mahasiswa = Mahasiswa::where('npm', $id)->first();
+        $data = [
+            'mahasiswa' => $mahasiswa,
+            'ta1' => $mahasiswa->ta_satu,
+        ];
+        return view('dosen.mahasiswa.bimbingan.kompre.show', $data);
     }
 
     /**
