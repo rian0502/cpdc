@@ -305,6 +305,7 @@
                         @endif
                         {{-- jika sudah diupload end --}}
                     </div>
+                    
                     @if ($seminar->ba_seminar)
                         <div class="bukti_seminar">
                             <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">

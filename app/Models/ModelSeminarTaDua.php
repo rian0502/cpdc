@@ -54,10 +54,10 @@ class ModelSeminarTaDua extends Model
     }
     public function jadwal()
     {
-        return $this->hasOne(ModelJadwalSeminarTaSatu::class, 'id_seminar');
+        return $this->hasOne(ModelJadwalSeminarTaDua::class, 'id_seminar');
     }
     public function ba_seminar()
     {
-        return $this->hasOne(ModelBaSeminarTaSatu::class, 'id_seminar');
+        return $this->hasOne(ModelBaSeminarTaDua::class, 'id_seminar');
     }
 }
