@@ -47,6 +47,7 @@ class RolePermision extends Seeder
             'email' => 'dosen2@mail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
+            'profile_picture' => 'dwi.jpg'
         ]);
         $mhs = User::create([
             'name' => 'Egon Otmar',
