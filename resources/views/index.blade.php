@@ -1,5 +1,11 @@
 @extends('layouts.umum')
 @section('umum')
+    <style>
+        .text-justify {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+    </style>
     <!-- Features Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -252,53 +258,66 @@
                         </div>
                     </div>
                     <div class="p-4">
-                        <a class="d-block h5" href="">Laboratorium Biokimia</a>
-                        {{-- <span>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem</span> --}}
+                        <a class="d-block h5 mb-3" href="">Laboratorium Biokimia</a>
+                        <p style="text-align: justify; text-justify: inter-word;">Tempat di mana penelitian dan eksperimen
+                            yang terstruktur dilakukan secara intensif oleh para ilmuwan dan peneliti untuk mempelajari,
+                            menguji, dan menganalisis reaksi kimia yang kompleks yang terjadi dalam sistem biologi yang
+                            dinamis.</p>
                     </div>
                 </div>
                 <div class="project-item mb-5">
                     <div class="position-relative">
                         <img class="img-fluid" src="Assets/src/img/analitik dan instrumental.png" alt="">
                         <div class="project-overlay">
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="Assets/src/img/analitik dan instrumental.png"
-                                data-lightbox="project"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-lg-square btn-light rounded-circle m-1"
+                                href="Assets/src/img/analitik dan instrumental.png" data-lightbox="project"><i
+                                    class="fa fa-eye"></i></a>
                             <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
                                     class="fa fa-link"></i></a>
                         </div>
                     </div>
                     <div class="p-4">
-                        <a class="d-block h5" href="">Laboratorium Kimia Analitik dan Instrumental</a>
-                        {{-- <span>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem</span> --}}
+                        <a class="d-block h5 mb-3" href="">Laboratorium Kimia Analitik dan Instrumental</a>
+                        <p style="text-align: justify; text-justify: inter-word;">Tempat di mana analisis dan pengujian
+                            dilakukan menggunakan berbagai instrumen dan metode kimia untuk mengidentifikasi dan mengukur
+                            komponen serta konsentrasi zat dalam sampel.</p>
                     </div>
                 </div>
                 <div class="project-item mb-5">
                     <div class="position-relative">
                         <img class="img-fluid" src="Assets/src/img/kimia anorganik-fisik.png" alt="">
                         <div class="project-overlay">
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="Assets/src/img/kimia anorganik-fisik.png"
-                                data-lightbox="project"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-lg-square btn-light rounded-circle m-1"
+                                href="Assets/src/img/kimia anorganik-fisik.png" data-lightbox="project"><i
+                                    class="fa fa-eye"></i></a>
                             <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
                                     class="fa fa-link"></i></a>
                         </div>
                     </div>
                     <div class="p-4">
-                        <a class="d-block h5" href="">Laboratorium Kimia Anorganik / Fisik</a>
-                        {{-- <span>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem</span> --}}
+                        <a class="d-block h5 mb-3" href="">Laboratorium Kimia Anorganik atau Fisik</a>
+                        <p style="text-align: justify; text-justify: inter-word;">Tempat di mana penelitian dan eksperimen
+                            dilakukan untuk mempelajari sifat dan reaksi kimia dari senyawa anorganik atau materi dalam
+                            bentuk fisik seperti kristal, struktur, konduktivitas, dan fenomena fisik lainnya.</p>
                     </div>
                 </div>
                 <div class="project-item mb-5">
                     <div class="position-relative">
                         <img class="img-fluid" src="Assets/src/img/kimia organik.png" alt="">
                         <div class="project-overlay">
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href="Assets/src/img/kimia organik.png"
-                                data-lightbox="project"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-lg-square btn-light rounded-circle m-1"
+                                href="Assets/src/img/kimia organik.png" data-lightbox="project"><i
+                                    class="fa fa-eye"></i></a>
                             <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
                                     class="fa fa-link"></i></a>
                         </div>
                     </div>
                     <div class="p-4">
-                        <a class="d-block h5" href="">Laboratorium Kimia Organik</a>
-                        {{-- <span>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem</span> --}}
+                        <a class="d-block h5 mb-3" href="">Laboratorium Kimia Organik</a>
+                        <p style="text-align: justify; text-justify: inter-word;">
+                            Tempat penelitian dan eksperimen tentang struktur, sifat, sintesis, dan reaksi senyawa organik.
+                            Metode dan teknik kimia digunakan untuk memahami dan mengembangkan molekul organik serta
+                            aplikasinya dalam bidang farmasi, material, dan industri kimia.</p>
                     </div>
                 </div>
             </div>
