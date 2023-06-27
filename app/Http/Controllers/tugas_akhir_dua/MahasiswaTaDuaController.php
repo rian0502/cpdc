@@ -68,7 +68,7 @@ class MahasiswaTaDuaController extends Controller
         $seminar = $mahasiswa->ta_satu->first();
         $file = $request->file('berkas_seminar_ta_dua');
         $name_file = $file->hashName();
-        $file->move('uploads/syarat_semianr_ta2', $name_file);
+        $file->move('uploads/syarat_seminar_ta2', $name_file);
         $ta2 = [
             'tahun_akademik' => $seminar->tahun_akademik,
             'semester' => $seminar->semester,
