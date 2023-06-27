@@ -25,70 +25,72 @@
                             <tbody>
                                 @foreach ($seminar as $item)
                                     {{-- LOKASI TANGGAL JAM MULAI SELESAI MISAL BLM TERJADWAL MAKA OUTPUTIN KONDISIIN TULUSANNYA BLM TERJADWAL --}}
-                                    <tr>
-                                        <td>
-                                            {{ $loop->iteration }}
-                                        </td>
-                                        <td>
-                                            {{ $item->mahasiswa->npm }}
-                                        </td>
-                                        <td>
-                                            {{ \Illuminate\Support\Str::limit($item->judul_kp, $limit = 40, $end = '...') }}
-                                        </td>
-                                        <td>
-                                            {{ $item->rencana_seminar }}
-                                        </td>
-                                        @if ($item->jadwal)
+                                    @if ($item->ba_seminar == null)
+                                        <tr>
                                             <td>
-                                                {{ $item->jadwal->lokasi->nama_lokasi }}
+                                                {{ $loop->iteration }}
                                             </td>
                                             <td>
-                                                {{ $carbon::parse($item->jadwal->tanggal_skp)->format('d F Y') }}
+                                                {{ $item->mahasiswa->npm }}
                                             </td>
                                             <td>
-                                                {{ $item->jadwal->jam_mulai_skp . ' - ' . $item->jadwal->jam_selesai_skp }}
-                                            </td>
-                                        @else
-                                            <td>
-                                                <span class="badge bg-warning">Belum Terjadwal</span>
+                                                {{ \Illuminate\Support\Str::limit($item->judul_ta, $limit = 40, $end = '...') }}
                                             </td>
                                             <td>
-                                                <span class="badge bg-warning">Belum Terjadwal</span>
+                                                {{ $item->periode_seminar }}
                                             </td>
+                                            @if ($item->jadwal)
+                                                <td>
+                                                    {{ $item->jadwal->lokasi->nama_lokasi }}
+                                                </td>
+                                                <td>
+                                                    {{ $carbon::parse($item->jadwal->tanggal_seminar_ta_dua)->format('d F Y') }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->jadwal->jam_mulai_seminar_ta_dua . ' - ' . $item->jadwal->jam_selesai_seminar_ta_dua }}
+                                                </td>
+                                            @else
+                                                <td>
+                                                    <span class="badge bg-warning">Belum Terjadwal</span>
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-warning">Belum Terjadwal</span>
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-warning">Belum Terjadwal</span>
+                                                </td>
+                                            @endif
+
                                             <td>
-                                                <span class="badge bg-warning">Belum Terjadwal</span>
-                                            </td>
-                                        @endif
+                                                <div class="dropdown">
+                                                    <a class="btn btn-outline-primary dropdown-toggle" href="#"
+                                                        role="button" data-toggle="dropdown">
+                                                        <i class="fa fa-ellipsis-h"></i>
+                                                    </a>
 
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
-                                                    role="button" data-toggle="dropdown">
-                                                    <i class="fa fa-ellipsis-h"></i>
-                                                </a>
-
-                                                {{-- DI KASIH KONDISI KLK UDAH TERJADWAL BAKAL MUNCUL EDIT JADWALKANNYA ILANG BEGITU JG SEBALIKNYA --}}
+                                                    {{-- DI KASIH KONDISI KLK UDAH TERJADWAL BAKAL MUNCUL EDIT JADWALKANNYA ILANG BEGITU JG SEBALIKNYA --}}
 
 
-                                                {{-- NANTI FITUR EDIT KLK MAU EDIT BERARTI DOKUMEN YANG TERGENERATE AKAN TERPEBAHARUI JUGA --}}
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    @if ($item->jadwal)
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('koor.jadwalPKL.index', $item->encrypt_id) }}"><i
-                                                                class="fa fa-pencil"></i>
-                                                            Edit</a>
-                                                    @else
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('koor.jadwalPKL.create', $item->encrypt_id) }}"><i
-                                                                class="bi bi-calendar-plus-fill"></i>
-                                                            Jadwalkan</a>
-                                                    @endif
+                                                    {{-- NANTI FITUR EDIT KLK MAU EDIT BERARTI DOKUMEN YANG TERGENERATE AKAN TERPEBAHARUI JUGA --}}
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        @if ($item->jadwal)
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('koor.jadwalTA2.edit', $item->encrypt_id) }}"><i
+                                                                    class="fa fa-pencil"></i>
+                                                                Edit</a>
+                                                        @else
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('koor.jadwalTA2.create', $item->encrypt_id) }}"><i
+                                                                    class="bi bi-calendar-plus-fill"></i>
+                                                                Jadwalkan</a>
+                                                        @endif
 
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
 
 
