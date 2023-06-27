@@ -20,6 +20,7 @@ class ModelSeminarKompre extends Model
         'toefl',
         'berkas_kompre',
         'agreement',
+        'komentar',
         'status_admin',
         'status_koor',
         'id_pembimbing_satu',

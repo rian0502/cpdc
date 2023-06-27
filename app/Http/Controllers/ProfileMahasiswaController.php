@@ -68,7 +68,7 @@ class ProfileMahasiswaController extends Controller
         $user = User::find(Auth::user()->id);
         $user->profile_picture = $nama_foto;
         $user->save();
-        $foto_profile->move(public_path('uploads/profile'), $nama_foto);
+        $foto_profile->move('uploads/profile', $nama_foto);
         return redirect()->route('dashboard')->with('success', 'Profile Berhasil Diperbarui');
 
     }
@@ -120,7 +120,7 @@ class ProfileMahasiswaController extends Controller
         if($request->file('foto_profile') != null){
             $foto_profile = $request->file('foto_profile');
             $nama_foto = $foto_profile->hashName();
-            $foto_profile->move(public_path('uploads/profile'), $nama_foto);
+            $foto_profile->move('uploads/profile', $nama_foto);
             $user = User::find($mahasiswa->user_id);
             $user->profile_picture = $nama_foto;
             $user->save();

@@ -86,7 +86,7 @@ class JadwalPKLController extends Controller
         //export word
         $seminar = ModelSeminarKP::find(Crypt::decrypt($id_seminar));
         //lokasi template
-        $path = public_path('uploads\template_ba_kp\\');
+        $path = ('uploads\template_ba_kp\\');
         $template = new TemplateProcessor($path . 'template_ba_kp.docx');
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
@@ -103,7 +103,7 @@ class JadwalPKLController extends Controller
         $template->setValue('lokasi', $lokasi->nama_lokasi);
         $template->setValue('pembimbing_lapangan', $request->pembimbing_lapangan);
         $template->setValue('nip_pembimbing_lapangan', $request->ni_pemlap);
-        $output = public_path('uploads\print_ba_kp\\');
+        $output = ('uploads\print_ba_kp\\');
         $namafile = $seminar->mahasiswa->npm . '_ba_kp_' . time() . '.docx';
         $template->saveAs($output . $namafile);
         //send email
@@ -200,7 +200,7 @@ class JadwalPKLController extends Controller
         $jadwal_skp->id_lokasi = Crypt::decrypt($request->id_lokasi);
         $jadwal_skp->save();
         //lokasi template
-        $path = public_path('uploads\template_ba_kp\\');
+        $path = ('uploads\template_ba_kp\\');
         $template = new TemplateProcessor($path . 'template_ba_kp.docx');
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
@@ -217,7 +217,7 @@ class JadwalPKLController extends Controller
         $template->setValue('lokasi', $jadwal_skp->lokasi->nama_lokasi);
         $template->setValue('pembimbing_lapangan', $request->pembimbing_lapangan);
         $template->setValue('nip_pembimbing_lapangan', $request->ni_pemlap);
-        $output = public_path('uploads\print_ba_kp\\');
+        $output = ('uploads\print_ba_kp\\');
         $namafile = $seminar->mahasiswa->npm . '_ba_kp_' . time() . '.docx';
         $template->saveAs($output . $namafile);
         //send email
@@ -248,6 +248,7 @@ class JadwalPKLController extends Controller
 
     public function resend($id)
     {
+        
         $seminar = ModelSeminarKP::find(Crypt::decrypt($id));
         $jadwal_skp = JadwalSKP::where('id_skp', '=', $seminar->id)->first();
         $hari = Carbon::parse($jadwal_skp->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
@@ -328,8 +329,6 @@ class JadwalPKLController extends Controller
             'id_lokasi.exists' => 'Lokasi tidak ditemukan',
             'jam_selesai_skp.after' => 'Jam selesai harus lebih besar dari jam mulai',
         ]);
-
-
         $cekJadwal = JadwalSKP::where(
                 'tanggal_skp',
                 '=',

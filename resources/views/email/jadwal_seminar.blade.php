@@ -100,12 +100,14 @@
 
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
     <!-- HIDDEN PREHEADER TEXT -->
-    <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"> We're thrilled to have you here! Get ready to dive into your new account.
+    <div
+        style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+        We're thrilled to have you here! Get ready to dive into your new account.
     </div>
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <!-- LOGO -->
         <tr>
-            <td bgcolor="#FFA73B" align="center">
+            <td bgcolor="#0d52d0" align="center">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td align="center" valign="top" style="padding: 40px 10px 40px 10px;"> </td>
@@ -114,12 +116,14 @@
             </td>
         </tr>
         <tr>
-            <td bgcolor="#FFA73B" align="center" style="padding: 0px 10px 0px 10px;">
+            <td bgcolor="#0d52d0" align="center" style="padding: 0px 10px 0px 10px;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
-                        <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                            <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Welcome!</h1> 
-                            <img src="{{url('Assets/images/logo/color.png')}}" width="125" height="120" style="display: block; border: 0px;" />
+                        <td bgcolor="#ffffff" align="center" valign="top"
+                            style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
+                            <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Selamat !</h1>
+                            <img src="https://data-kimia.fmipa.unila.ac.id/Assets/images/logo/colors.png" width="125"
+                                height="120" style="display: block; border: 0px;" />
                         </td>
                     </tr>
                 </table>
@@ -129,31 +133,37 @@
             <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
-                        <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">Selamat kepada {{ $name }} Seminar anda Telah dijadwalkan Oleh Koordinator Kerja Praktik.</p>
+                        <td bgcolor="#ffffff" align="left"
+                            style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                            <p style="margin: 0;">Selamat kepada {{ $name }} Seminar anda Telah dijadwalkan Oleh
+                                Koordinator Kerja Praktik.</p>
                         </td>
                     </tr>
                     <tr>
                     </tr> <!-- COPY -->
                     <tr>
-                        <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">{{$body}}</p>
+                        <td bgcolor="#ffffff" align="left"
+                            style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                            <p style="margin: 0;">{{ $body }}</p>
                         </td>
                     </tr> <!-- COPY -->
                     <tr>
-                        <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">Judul {{$seminar}}</p>
+                        <td bgcolor="#ffffff" align="left"
+                            style="padding: 20px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                            <p style="margin: 0;">Judul {{ $seminar }}</p>
                         </td>
                     </tr>
                     <tr>
-                        <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">Tanggal {{ $tanggal}}</p>
-                            <p style="margin: 0;">Jam {{ $jam_mulai}} - {{ $jam_selesai}}</p>
-                            <p style="margin: 0;">Lokasi {{ $lokasi}}</p>
+                        <td bgcolor="#ffffff" align="left"
+                            style="padding: 0px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                            <p style="margin: 0;">Tanggal {{ $tanggal }}</p>
+                            <p style="margin: 0;">Jam {{ $jam_mulai }} - {{ $jam_selesai }}</p>
+                            <p style="margin: 0;">Lokasi {{ $lokasi }}</p>
                         </td>
                     </tr>
                     <tr>
-                        <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                        <td bgcolor="#ffffff" align="left"
+                            style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                             <p style="margin: 0;">Informasi Lebih lanjut silahkan kunjungi web.</p>
                         </td>
                     </tr>
@@ -164,16 +174,19 @@
             <td bgcolor="#f4f4f4" align="center" style="padding: 30px 10px 0px 10px;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
-                        <td bgcolor="#FFECD1" align="center" style="padding: 30px 30px 30px 30px; border-radius: 4px 4px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <h2 style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;">Need more help?</h2>
-                            <p style="margin: 0;"><a href="#" target="_blank" style="color: #FFA73B;">We&rsquo;re here to help you out</a></p>
+                        <td bgcolor="#FFECD1" align="center"
+                            style="padding: 30px 30px 30px 30px; border-radius: 4px 4px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                            <h2 style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;">Need more help?
+                            </h2>
+                            <p style="margin: 0;"><a href="#" target="_blank" style="color: #0d52d0;">We&rsquo;re
+                                    here to help you out</a></p>
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr>
-           
+
         </tr>
     </table>
 </body>
