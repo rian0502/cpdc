@@ -38,7 +38,7 @@
 
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <a class="dropdown-item"
-                                                        href="/dosen/mahasiswa/bimbingan/akademik/show"><i
+                                                        href="{{route('dosen.mahasiswa.bimbingan.kompre.show', $item->mahasiswa->npm)}}"><i
                                                             class="fa fa-eye"></i>
                                                         Detail</a>
 
