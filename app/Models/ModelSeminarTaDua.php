@@ -36,11 +36,15 @@ class ModelSeminarTaDua extends Model
         'updated_at'
     ];
 
-    public function pembimbingSatu()
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa');
+    }
+    public function pembimbing_satu()
     {
         return $this->belongsTo(Dosen::class, 'id_pembimbing_satu');
     }
-    public function pembimbingDua()
+    public function pembimbing_dua()
     {
         return $this->belongsTo(Dosen::class, 'id_pembimbing_dua');
     }
@@ -48,16 +52,12 @@ class ModelSeminarTaDua extends Model
     {
         return $this->belongsTo(Dosen::class, 'id_pembahas');
     }
-    public function mahasiswa()
-    {
-        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa');
-    }
     public function jadwal()
     {
-        return $this->hasOne(JadwalSeminarTaDua::class, 'id_seminar');
+        return $this->hasOne(ModelJadwalSeminarTaDua::class, 'id_seminar');
     }
-    public function beritaAcara()
+    public function ba_seminar()
     {
-        return $this->hasOne(BeritaAcaraSeminarTaDua::class, 'id_seminar');
+        return $this->hasOne(ModelBaSeminarTaDua::class, 'id_seminar');
     }
 }
