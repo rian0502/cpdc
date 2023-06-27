@@ -23,7 +23,8 @@ class MahasiswaTaDuaController extends Controller
 
         if (Auth::user()->mahasiswa->ta_dua->count() > 0) {
             $data = [
-                'seminar' => ModelSeminarTaDua::where('id_mahasiswa', Auth::user()->mahasiswa->id)->latest(),
+                'seminar' => ModelSeminarTaDua::where('id_mahasiswa', Auth::user()->mahasiswa->id)->latest()->first(),
+                'mahasiswa' => Auth::user()->mahasiswa,
             ];
             return view('mahasiswa.ta2.index', $data);
         } else {
