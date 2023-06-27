@@ -177,7 +177,7 @@
                                 <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/syarat_seminar_ta1/{{ $seminar->berkas_ta_satu }}">Lihat
+                                        href="/uploads/syarat_seminar_ta2/{{ $seminar->berkas_ta_dua }}">Lihat
                                         Berkas</a>
                                 </div>
                             </div>
@@ -224,7 +224,7 @@
                                     <label class="col-md-3 bold mt-2"> <strong>Tanggal Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         @if ($seminar->jadwal)
-                                            {{ $seminar->jadwal->tanggal_seminar_ta_satu }}
+                                            {{ $seminar->jadwal->tanggal_seminar_ta_dua }}
                                         @else
                                             <div>Belum terjadwal</div>
                                         @endif
@@ -234,7 +234,7 @@
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
 
                                         @if ($seminar->jadwal)
-                                            {{ $seminar->jadwal->jam_mulai_seminar_ta_satu }} WIB
+                                            {{ $seminar->jadwal->jam_mulai_seminar_ta_dua }} WIB
                                         @else
                                             <div>Belum terjadwal</div>
                                         @endif
@@ -248,7 +248,7 @@
                                     <label class="col-md-3 bold mt-1"><strong>Jam Selesai</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         @if ($seminar->jadwal)
-                                            {{ $seminar->jadwal->jam_selesai_seminar_ta_satu }} WIB
+                                            {{ $seminar->jadwal->jam_selesai_seminar_ta_dua }} WIB
                                         @else
                                             <div>Belum terjadwal</div>
                                         @endif
@@ -294,11 +294,11 @@
                         </div>
                         @if ($seminar->status_koor != 'Selesai')
                             @if ($seminar->ba_seminar)
-                                <a href="{{ route('mahasiswa.bata1.edit', $seminar->ba_seminar->encrypt_id) }}">
+                                <a href="{{ route('mahasiswa.bata2.edit', $seminar->ba_seminar->encrypt_id) }}">
                                     <button class="btn btn-primary right">Edit</button>
                                 </a>
                             @else
-                                <a href="/mahasiswa/bata1/create">
+                                <a href="/mahasiswa/bata2/create">
                                     <button class="btn btn-primary right">Unggah</button>
                                 </a>
                             @endif
@@ -313,18 +313,18 @@
                                     <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="/uploads/ba_seminar_ta_satu/{{ $seminar->ba_seminar->berkas_ba_seminar_ta_satu }}">Lihat</a>
+                                            href="/uploads/ba_seminar_ta_dua/{{ $seminar->ba_seminar->berkas_ba_seminar_ta_dua }}">Lihat</a>
                                     </div>
                                     <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        {{ $seminar->ba_seminar->no_berkas_ba_seminar_ta_satu }}
+                                        {{ $seminar->ba_seminar->no_berkas_ba_seminar_ta_dua }}
                                     </div>
                                 </div>
                                 <div class="row border-bottom mt-2">
                                     <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="/uploads/nilai_seminar_ta_satu/{{ $seminar->ba_seminar->berkas_nilai_seminar_ta_satu }}">Lihat</a>
+                                            href="/uploads/nilai_seminar_ta_dua/{{ $seminar->ba_seminar->berkas_nilai_seminar_ta_dua }}">Lihat</a>
                                     </div>
                                     <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -335,7 +335,7 @@
                                     <label class="col-md-3 bold"> <strong>Power Point</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="{{ $seminar->ba_seminar->berkas_ppt_seminar_ta_satu }}">Lihat</a>
+                                            href="{{ $seminar->ba_seminar->berkas_ppt_seminar_ta_dua }}">Lihat</a>
                                     </div>
                                     <label class="col-md-3 bold"> <strong>Nilai</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">

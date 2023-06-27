@@ -17,7 +17,7 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('mahasiswa.bakerjapraktik.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('mahasiswa.bata2.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
@@ -31,11 +31,12 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Nomor Berita Acara Seminar Tugas Akhir 1</label>
-                                    <input autofocus name="no_berkas_ba_seminar_ta_dua	" id="no_berkas_ba_seminar_ta_dua	" class="form-control"
-                                        type="text" value="{{ old('no_berkas_ba_seminar_ta_dua	') }}"
+                                    <label>Nomor Berita Acara Seminar Tugas Akhir 2</label>
+                                    <input autofocus name="no_berkas_ba_seminar_ta_dua" id="no_berkas_ba_seminar_ta_dua"
+                                        class="form-control" type="text"
+                                        value="{{ old('no_berkas_ba_seminar_ta_dua') }}"
                                         placeholder="Contoh : 986/UN26.17.03/DT/2022">
-                                    @error('no_berkas_ba_seminar_ta_dua	')
+                                    @error('no_berkas_ba_seminar_ta_dua')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -94,13 +95,15 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label> Berkas Nilai Tugas Akhir 2 <small> <a id="link-berkas_nilai_seminar_ta_dua" href="#"
-                                                target="_blank" style="display: none;">Lihat File</a> </small></label>
+                                    <label> Berkas Nilai Tugas Akhir 2 <small> <a id="link-berkas_nilai_seminar_ta_dua"
+                                                href="#" target="_blank" style="display: none;">Lihat File</a>
+                                        </small></label>
                                     <div class="custom-file">
-                                        <label class="custom-file-label" for="link-berkas_nilai_seminar_ta_dua" id="label-berkas_nilai_seminar_ta_dua">Pilih
+                                        <label class="custom-file-label" for="link-berkas_nilai_seminar_ta_dua"
+                                            id="label-berkas_nilai_seminar_ta_dua">Pilih
                                             File</label>
-                                        <input value="{{ old('berkas_nilai_seminar_ta_dua') }}" accept=".pdf" autofocus name="berkas_nilai_seminar_ta_dua"
-                                            id="file-berkas_nilai_seminar_ta_dua"
+                                        <input value="{{ old('berkas_nilai_seminar_ta_dua') }}" accept=".pdf" autofocus
+                                            name="berkas_nilai_seminar_ta_dua" id="file-berkas_nilai_seminar_ta_dua"
                                             class="custom-file-input form-control @error('berkas_nilai_seminar_ta_dua') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
                                             onchange="updateFileNameAndLink('file-berkas_nilai_seminar_ta_dua','label-berkas_nilai_seminar_ta_dua','link-berkas_nilai_seminar_ta_dua')">
@@ -111,20 +114,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="mt-3">Berkas PowerPoint Bahasa Inggris <small> <a
-                                                id="link-berkas_ppt_seminar_ta_dua" href="#" target="_blank"
-                                                style="display: none;">Lihat File</a> </small></label>
-                                    <div class="custom-file">
-                                        <label class="custom-file-label" for="link-berkas_ppt_seminar_ta_dua"
-                                            id="label-berkas_ppt_seminar_ta_dua">Pilih File</label>
-                                        <input value="{{ old('berkas_ppt_seminar_ta_dua') }}" accept=".pdf" autofocus
-                                            name="berkas_ppt_seminar_ta_dua" id="file-berkas_ppt_seminar_ta_dua"
-                                            class="custom-file-input form-control @error('berkas_ppt_seminar_ta_dua') form-control-danger @enderror"
-                                            type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_ppt_seminar_ta_dua','label-berkas_ppt_seminar_ta_dua','link-berkas_ppt_seminar_ta_dua')">
-                                    </div>
+                                    <label>Power Point Bahasa Inggris</label>
+                                    <input autofocus name="berkas_ppt_seminar_ta_dua" id="berkas_ppt_seminar_ta_dua"
+                                        class="form-control" type="text" value="{{ old('berkas_ppt_seminar_ta_dua') }}"
+                                        placeholder="Link Gdrive / Penyimpanan Cloud Power Point">
                                     @error('berkas_ppt_seminar_ta_dua')
-                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>

@@ -24,8 +24,7 @@
                             <tbody>
 
                                 @foreach ($berkas as $item)
-                                    {{-- LOKASI TANGGAL JAM MULAI SELESAI MISAL BLM TERJADWAL MAKA OUTPUTIN KONDISIIN TULUSANNYA BLM TERJADWAL --}}
-                                    @if ($item->jadwal && $item->berita_acara)
+                                    @if ($item->jadwal != null && $item->ba_seminar)
                                         <tr>
                                             <td>
                                                 {{ $loop->iteration }}
@@ -40,18 +39,18 @@
                                                 {{ $item->judul_kp }}
                                             </td>
                                             <td>
-                                                {{ $item->jadwal->tanggal_skp }}
+                                                {{ $item->jadwal->tanggal_seminar_ta_dua }}
                                             </td>
                                             <td>
-                                                {{ $item->no_ba_seminar_kp}}
+                                                {{ $item->ba_seminar->no_berkas_ba_seminar_ta_dua }}
                                             </td>
                                             <td>
-                                                    <a class="btn btn-warning"
-                                                        href="
+                                                <a class="btn btn-warning"
+                                                    href="
                                                         {{ route('koor.validasiBaTA2.edit', $item->encrypt_id) }}
                                                         "><i
-                                                            class="bi bi-pencil-square"></i>
-                                                        Validasi</a>
+                                                        class="bi bi-pencil-square"></i>
+                                                    Validasi</a>
                                             </td>
                                         </tr>
                                     @endif

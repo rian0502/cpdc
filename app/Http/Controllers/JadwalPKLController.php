@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lokasi;
 use App\Models\JadwalSKP;
+use App\Models\ModelJadwalSeminarTaSatu;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarKP;
 use Carbon\Carbon;
@@ -248,7 +249,7 @@ class JadwalPKLController extends Controller
 
     public function resend($id)
     {
-        
+
         $seminar = ModelSeminarKP::find(Crypt::decrypt($id));
         $jadwal_skp = JadwalSKP::where('id_skp', '=', $seminar->id)->first();
         $hari = Carbon::parse($jadwal_skp->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
@@ -329,26 +330,44 @@ class JadwalPKLController extends Controller
             'id_lokasi.exists' => 'Lokasi tidak ditemukan',
             'jam_selesai_skp.after' => 'Jam selesai harus lebih besar dari jam mulai',
         ]);
-        $cekJadwal = JadwalSKP::where(
-                'tanggal_skp',
-                '=',
-                $request->tanggal_skp
-            )->where(
-                'jam_mulai_skp',
-                '=',
-                $request->jam_mulai_skp
-            )->where(
-                'jam_selesai_skp',
-                '=',
-                $request->jam_selesai_skp
-            )->where(
-                'id_lokasi',
-                '=',
-                Crypt::decrypt($request->id_lokasi)
-            )->count();
-        if ($cekJadwal > 0) {
+        $cekJadwalPkl = JadwalSKP::where(
+            'tanggal_skp',
+            '=',
+            $request->tanggal_skp
+        )->where(
+            'jam_mulai_skp',
+            '=',
+            $request->jam_mulai_skp
+        )->where(
+            'jam_selesai_skp',
+            '=',
+            $request->jam_selesai_skp
+        )->where(
+            'id_lokasi',
+            '=',
+            Crypt::decrypt($request->id_lokasi)
+        )->count();
+        $cekJadwalTa1 = ModelJadwalSeminarTaSatu::where(
+            'jam_selesai_seminar_ta_satu',
+            '=',
+            $request->tanggal_skp
+        )->where(
+            'jam_mulai_seminar_ta_satu',
+            '=',
+            $request->jam_mulai_skp
+        )->where(
+            'jam_selesai_seminar_ta_satu',
+            '=',
+            $request->jam_selesai_skp
+        )->where(
+            'id_lokasi',
+            '=',
+            Crypt::decrypt($request->id_lokasi)
+        )->count();
+
+        if ($cekJadwalPkl > 0 || $cekJadwalTa1 > 0) {
             return response()->json(['message' => 'Failed']);
-        }else{
+        } else {
             return response()->json(['message' => 'Valid']);
         }
         return $request->all();
