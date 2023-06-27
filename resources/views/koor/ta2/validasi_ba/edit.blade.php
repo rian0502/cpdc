@@ -54,58 +54,59 @@
                     <div class="bukti_seminar">
                         <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
                             <div class="row border-bottom">
-                                <label class="col-md-3 bold"> <strong>Berita Acara Seminar</strong></label>
+                                <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a href="/uploads/berita_acara_seminar_kp/{{ $seminar->berita_acara->berkas_ba_seminar_kp }}"
-                                        target="_blank">Lihat</a>
+                                    <a target="_blank"
+                                        href="/uploads/ba_seminar_ta_dua/{{ $seminar->ba_seminar->berkas_ba_seminar_ta_dua }}">Lihat</a>
                                 </div>
-                                <label class="col-md-3 bold mt-2"><b>Tanggal Seminar</b></label>
+                                <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->jadwal->tanggal_skp }}
-                                </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Laporan Final Tugas Akhir 1</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a href="/uploads/laporan_kp/{{ $seminar->berita_acara->laporan_kp }}"
-                                        target="_blank">Lihat</a>
-                                </div>
-                                <label class="col-md-3 bold mt-1"><strong>Status Bukti</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->proses_admin }}
+                                    {{ $seminar->ba_seminar->no_berkas_ba_seminar_ta_dua }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
+                                <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    <a target="_blank"
+                                        href="/uploads/nilai_seminar_ta_dua/{{ $seminar->ba_seminar->berkas_nilai_seminar_ta_dua }}">Lihat</a>
+                                </div>
+                                <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    {{ $seminar->ba_seminar->huruf_mutu }}
+                                </div>
+                            </div>
+                            <div class="row border-bottom mt-2">
+                                <label class="col-md-3 bold"> <strong>Power Point</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    <a target="_blank"
+                                        href="{{ $seminar->ba_seminar->berkas_ppt_seminar_ta_dua }}">Lihat</a>
+                                </div>
                                 <label class="col-md-3 bold"> <strong>Nilai</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->berita_acara->nilai_lapangan }}
-                                </div>
-                                <label class="col-md-3 bold mt-1"><strong>Nilai Mutu</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->berita_acara->nilai_mutu }}
-                                </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Nomor Surat Berita Acara</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->berita_acara->no_ba_seminar_kp }}
+                                    {{ $seminar->ba_seminar->nilai }}
                                 </div>
                             </div>
 
-                            <form id="formStatus" action="{{ route('koor.validasiBaPKL.update', $seminar->encrypt_id) }}"
+                            <form id="formStatus" action="{{ route('koor.validasiBaTA2.update', $seminar->encrypt_id) }}"
                                 method="post">
                                 @method('put')
                                 @csrf
                                 <div class="form-group" style="margin-top: 20px">
                                     <label><b>Status Seminar</b></label>
-                                    <select name="status_seminar" id="status" class="selectpicker form-control"
+                                    <select name="status_koor" id="status" class="selectpicker form-control"
                                         onchange="toggleCatatan()" data-size="5">
                                         <option value="Belum Selesai"
-                                            {{ $seminar->status_seminar == 'Belum Selesai' ? 'selected' : '' }}>Belum
+                                            {{ $seminar->status_koor == 'Belum Selesai' ? 'selected' : '' }}>Belum
                                             Selesai
                                         </option>
-                                        <option value="Selesai"
-                                            {{ $seminar->status_seminar == 'Selesai' ? 'selected' : '' }}>Selesai</option>
+                                        <option value="Perbaikan"
+                                            {{ $seminar->status_koor == 'Perbaikan' ? 'selected' : '' }}>Perbaikan
+                                        </option>
+                                        <option value="Selesai" {{ $seminar->status_koor == 'Selesai' ? 'selected' : '' }}>
+                                            Selesai</option>
+                                        <option value="Tidak Lulus"
+                                            {{ $seminar->status_koor == 'Tidak Lulus' ? 'selected' : '' }}>Tidak Lulus
+                                        </option>
                                     </select>
                                     @error('status_seminar')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -113,7 +114,7 @@
                                 </div>
                                 <div class="row border-bottom mt-3">
                                     <label class="col-md-12 bold"><b>Catatan</b></label>
-                                    <textarea id="catatan" name="keterangan" class="form-control m-3" style="height: 100px;">{{ $seminar->keterangan }}</textarea>
+                                    <textarea id="catatan" name="keterangan" class="form-control m-3" style="height: 100px;">{{ old('keterangan', $seminar->keterangan) }}</textarea>
                                     @error('keterangan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\tugas_akhir_dua;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarKP;
 use App\Http\Controllers\Controller;
+use App\Models\ModelBaSeminarTaDua;
+use App\Models\ModelSeminarTaDua;
+use Illuminate\Support\Facades\Crypt;
 
 class ValidasiBaTaDua extends Controller
 {
@@ -17,10 +20,11 @@ class ValidasiBaTaDua extends Controller
     public function index()
     {
         //
-        $data = [
-            'berkas' => (new ModelSeminarKP())->getSeminarKumpulBa()
-        ];
-        return view('koor.ta2.validasi_ba.index', $data);
+        $berkas = ModelSeminarTaDua::with('ba_seminar')
+            ->where('status_koor', '!=', 'Selesai')
+            ->get();
+
+        return view('koor.ta2.validasi_ba.index', compact('berkas'));
     }
 
     /**
@@ -65,7 +69,8 @@ class ValidasiBaTaDua extends Controller
     public function edit($id)
     {
         //
-        return view('koor.ta2.validasi_ba.edit');
+        $seminar = ModelSeminarTaDua::find(Crypt::decrypt($id));
+        return view('koor.ta2.validasi_ba.edit', compact('seminar'));
     }
 
     /**
@@ -77,7 +82,31 @@ class ValidasiBaTaDua extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $seminar = ModelSeminarTaDua::find(Crypt::decrypt($id));
+
+        if ($request->_token != csrf_token()) {
+            return redirect()->back();
+        } else {
+            if ($request->status_koor == 'Perbaikan' || $request->status_koor == 'Tidak Lulus') {
+                $validated = $request->validate([
+                    'keterangan' => 'required|min:3|max:255',
+                ], [
+                    'keterangan.required' => 'Keterangan harus diisi',
+                    'keterangan.min' => 'Keterangan minimal 3 karakter',
+                    'keterangan.max' => 'Keterangan maksimal 255 karakter',
+                ]);
+                $seminar->status_koor = $request->status_koor;
+                $seminar->komentar = $request->keterangan;
+                $seminar->updated_at = date('Y-m-d H:i:s');
+                $seminar->save();
+            } else {
+                $seminar->status_koor = $request->status_koor;
+                $seminar->updated_at = date('Y-m-d H:i:s');
+                $seminar->save();
+            }
+
+            return redirect()->route('koor.validasiBaTA2.index')->with('success', 'Berhasil memvalidasi berita acara seminar');
+        }
     }
 
     /**
