@@ -22,6 +22,7 @@ class RolePermision extends Seeder
             'email' => 'kajur.kimia@mail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('kajur'),
+            'profile_picture' => '8AX3ucGqdrgoArSmbY3x54gItKOhEdKBttnf9cah.jpg'
         ]);
         $adminLab = User::create([
             'name' => 'Fulan bin Fulan',
@@ -52,12 +53,14 @@ class RolePermision extends Seeder
             'email' => 'omar.students@mail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
+            'profile_picture' => 'man.jpg'
         ]);
         $mhs2 = User::create([
             'name' => 'Melati Aminah',
             'email' => 'melatiaminah.students@mail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
+            'profile_picture' => 'woman.jpg'
         ]);
         $mhs3 = User::create([
             'name' => 'Wera Adamska',
