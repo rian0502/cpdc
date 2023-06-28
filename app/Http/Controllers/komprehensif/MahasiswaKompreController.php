@@ -28,7 +28,9 @@ class MahasiswaKompreController extends Controller
                 'seminar' => $kompre,
                 'mahasiswa' => Auth::user()->mahasiswa,
             ];
+
             return view('mahasiswa.kompre.index', $data);
+
         }
         return redirect()->route('mahasiswa.sidang.kompre.create');
     }

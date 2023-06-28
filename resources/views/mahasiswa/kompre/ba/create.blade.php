@@ -17,7 +17,7 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('mahasiswa.bakerjapraktik.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('mahasiswa.bakompre.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
@@ -32,11 +32,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nomor Berita Acara Sidang Komprehensif</label>
-                                    <input autofocus name="no_berkas_ba_seminar_ta_satu" id="no_berkas_ba_seminar_ta_satu"
-                                        class="form-control" type="text"
-                                        value="{{ old('no_berkas_ba_seminar_ta_satu') }}"
+                                    <input autofocus name="no_ba_berkas" id="no_ba_berkas" class="form-control"
+                                        type="text" value="{{ old('no_ba_berkas') }}"
                                         placeholder="Contoh : 986/UN26.17.03/DT/2022">
-                                    @error('no_berkas_ba_seminar_ta_satu')
+                                    @error('no_ba_berkas')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -78,55 +77,47 @@
                             <div class="kanan weight-500 col-md-6">
 
                                 <div class="form-group">
-                                    <label> Berkas Berita Acara<small> <a id="link-berkas_ba_seminar_ta_satu" href="#"
+                                    <label> Berkas Berita Acara<small> <a id="link-ba_seminar_komprehensif" href="#"
                                                 target="_blank" style="display: none;">Lihat File</a> </small></label>
                                     <div class="custom-file">
-                                        <label class="custom-file-label" for="link-berkas_ba_seminar_ta_satu"
-                                            id="label-berkas_ba_seminar_ta_satu">Pilih File</label>
-                                        <input value="{{ old('berkas_ba_seminar_ta_satu') }}" accept=".pdf" autofocus
-                                            name="berkas_ba_seminar_ta_satu" id="file-berkas_ba_seminar_ta_satu"
-                                            class="custom-file-input form-control @error('berkas_ba_seminar_ta_satu') form-control-danger @enderror"
+                                        <label class="custom-file-label" for="link-ba_seminar_komprehensif"
+                                            id="label-ba_seminar_komprehensif">Pilih File</label>
+                                        <input value="{{ old('ba_seminar_komprehensif') }}" accept=".pdf" autofocus
+                                            name="ba_seminar_komprehensif" id="file-ba_seminar_komprehensif"
+                                            class="custom-file-input form-control @error('ba_seminar_komprehensif') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_ba_seminar_ta_satu','label-berkas_ba_seminar_ta_satu','link-berkas_ba_seminar_ta_satu')">
+                                            onchange="updateFileNameAndLink('file-ba_seminar_komprehensif','label-ba_seminar_komprehensif','link-ba_seminar_komprehensif')">
                                     </div>
-                                    @error('berkas_ba_seminar_ta_satu')
+                                    @error('ba_seminar_komprehensif')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label class="mt-2">Berkas Nilai Sidang Komprehensif <small> <a
-                                                id="link-berkas_nilai_seminar_ta_satu" href="#" target="_blank"
+                                                id="link-berkas_nilai_kompre" href="#" target="_blank"
                                                 style="display: none;">Lihat File</a>
                                         </small></label>
                                     <div class="custom-file">
-                                        <label class="custom-file-label" for="link-berkas_nilai_seminar_ta_satu"
-                                            id="label-berkas_nilai_seminar_ta_satu">Pilih
+                                        <label class="custom-file-label" for="link-berkas_nilai_kompre"
+                                            id="label-berkas_nilai_kompre">Pilih
                                             File</label>
-                                        <input value="{{ old('berkas_nilai_seminar_ta_satu') }}" accept=".pdf" autofocus
-                                            name="berkas_nilai_seminar_ta_satu" id="file-berkas_nilai_seminar_ta_satu"
-                                            class="custom-file-input form-control @error('berkas_nilai_seminar_ta_satu') form-control-danger @enderror"
+                                        <input value="{{ old('berkas_nilai_kompre') }}" accept=".pdf" autofocus
+                                            name="berkas_nilai_kompre" id="file-berkas_nilai_kompre"
+                                            class="custom-file-input form-control @error('berkas_nilai_kompre') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_nilai_seminar_ta_satu','label-berkas_nilai_seminar_ta_satu','link-berkas_nilai_seminar_ta_satu')">
+                                            onchange="updateFileNameAndLink('file-berkas_nilai_kompre','label-berkas_nilai_kompre','link-berkas_nilai_kompre')">
                                     </div>
-                                    @error('berkas_nilai_seminar_ta_satu')
+                                    @error('berkas_nilai_kompre')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="mt-3">Berkas Tugas Akhir Keseluruhan<small> <a
-                                                id="link-berkas_ppt_seminar_ta_satu" href="#" target="_blank"
-                                                style="display: none;">Lihat File</a> </small></label>
-                                    <div class="custom-file">
-                                        <label class="custom-file-label" for="link-berkas_ppt_seminar_ta_satu"
-                                            id="label-berkas_ppt_seminar_ta_satu">Pilih File</label>
-                                        <input value="{{ old('berkas_ppt_seminar_ta_satu') }}" accept=".pdf" autofocus
-                                            name="berkas_ppt_seminar_ta_satu" id="file-berkas_ppt_seminar_ta_satu"
-                                            class="custom-file-input form-control @error('berkas_ppt_seminar_ta_satu') form-control-danger @enderror"
-                                            type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_ppt_seminar_ta_satu','label-berkas_ppt_seminar_ta_satu','link-berkas_ppt_seminar_ta_satu')">
-                                    </div>
-                                    @error('berkas_ppt_seminar_ta_satu')
-                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    <label>Laporan Tugas Akhir Lengkap</label>
+                                    <input autofocus name="laporan_ta" id="laporan_ta" class="form-control" type="text"
+                                        value="{{ old('laporan_ta') }}"
+                                        placeholder="Link Gdrive / Penyimpanan Cloud Tugas Akhir">
+                                    @error('laporan_ta')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>

@@ -294,11 +294,11 @@
                         </div>
                         @if ($seminar->status_koor != 'Selesai')
                             @if ($seminar->beritaAcara)
-                                <a href="{{ route('mahasiswa.bata2.edit', $seminar->beritaAcara->encrypt_id) }}">
+                                <a href="{{ route('mahasiswa.bakompre.edit', $seminar->beritaAcara->encrypt_id) }}">
                                     <button class="btn btn-primary right">Edit</button>
                                 </a>
                             @else
-                                <a href="/mahasiswa/bata2/create">
+                                <a href="/mahasiswa/bakompre/create">
                                     <button class="btn btn-primary right">Unggah</button>
                                 </a>
                             @endif
@@ -313,7 +313,7 @@
                                     <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="/uploads/ba_seminar_kompre/{{ $seminar->beritaAcara->berkas_ba_seminar_ta_dua }}">Lihat</a>
+                                            href="/uploads/ba_sidang_kompre/{{ $seminar->beritaAcara->ba_seminar_komprehensif }}">Lihat</a>
                                     </div>
                                     <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -324,7 +324,7 @@
                                     <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="/uploads/nilai_seminar_kompre/{{ $seminar->beritaAcara->berkas_nilai_kompre }}">Lihat</a>
+                                            href="/uploads/nilai_sidang_kompre/{{ $seminar->beritaAcara->berkas_nilai_kompre }}">Lihat</a>
                                     </div>
                                     <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
