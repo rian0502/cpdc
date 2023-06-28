@@ -36,6 +36,11 @@
             background-color: #dc3545;
             color: white
         }
+
+        .Failed {
+            background-color: black;
+            color: white
+        }
     </style>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -49,33 +54,33 @@
 
 
                 <!-- PESAN -->
-                {{-- @if ($seminar->keterangan) --}}
-                <div class="pd-20 card-box mb-30 bg-warning">
-                    <div class="clearfix">
-                        <div class="pull-left">
-                            <h4 class="text-dark h4">Pesan</h4>
-                            <small>
+                @if ($seminar->komentar)
+                    <div class="pd-20 card-box mb-30 bg-warning">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <h4 class="text-dark h4">Pesan</h4>
+                                <small>
 
-                                <p class="mb-30"></p>
-                            </small>
+                                    <p class="mb-30"></p>
+                                </small>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="jadwal_seminar">
-                        <div class="pl-3 pr-3 pb-0 mb-2 text-dark rounded-div">
-                            <div class="row mt-3">
-                                {{-- <label class="col-md-12 bold"><b>Pesan</b></label> --}}
-                                <div class="col-md-12 mb-3"
-                                    style="display:block;word-wrap:break-word; text-align: justify;">
-                                    {{-- {{ $seminar->keterangan }} --}}
+                        <div class="jadwal_seminar">
+                            <div class="pl-3 pr-3 pb-0 mb-2 text-dark rounded-div">
+                                <div class="row mt-3">
+                                    {{-- <label class="col-md-12 bold"><b>Pesan</b></label> --}}
+                                    <div class="col-md-12 mb-3"
+                                        style="display:block;word-wrap:break-word; text-align: justify;">
+                                        {{ $seminar->komentar }}
+                                    </div>
+
                                 </div>
 
                             </div>
-
                         </div>
                     </div>
-                </div>
-                {{-- @endif --}}
+                @endif
                 <!-- PESAN -->
 
                 <!-- Data Registrasi Start -->
@@ -85,85 +90,94 @@
                             <h4 class="text-dark h4">Data Registrasi</h4>
                             <small>
                                 <b>
-                                    <p {{-- class="mb-30 text-center {{ $seminar->proses_admin == 'Valid' ? 'Valid' : ($seminar->proses_admin == 'Proses' ? 'Proses' : 'Invalid') }}">
-                                        {{ $seminar->proses_admin }} --}} </p>
+                                    <p
+                                        class="mb-30 text-center
+                                        {{ $seminar->status_admin == 'Valid' ? 'Valid' : ($seminar->status_admin == 'Process' ? 'Proses' : 'Invalid') }}">
+                                        {{ $seminar->status_admin }} </p>
                                 </b>
                             </small>
 
                         </div>
-                        {{-- @if ($seminar->status_seminar == 'Belum Selesai')
-                        <a href="/mahasiswa/seminar/kp/{{ $seminar->encrypt_id }}/edit">
-                            <button class="btn btn-primary right">Edit Data</button>
-                        </a>
-                        @endif --}}
+                        @if ($seminar->status_admin != 'Valid')
+                            <a href="/mahasiswa/sidang/kompre/{{ $seminar->encrypt_id }}/edit">
+                                <button class="btn btn-primary right">Edit Data</button>
+                            </a>
+                        @endif
 
                     </div>
                     <div class="">
-
                         <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
                             <div class="row border-bottom">
                                 <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $mahasiswa->npm }} --}}
+                                    {{ $mahasiswa->npm }}
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->dosen->nama_dosen }} --}}
+                                    {{ $seminar->pembimbingSatu->nama_dosen }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"><b>Nama Mahasiswa</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $mahasiswa->nama_mahasiswa }} --}}
+                                    {{ $mahasiswa->nama_mahasiswa }}
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Pembimbing 2</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->region }} --}}
+                                    @if ($seminar->pembimbingDua)
+                                        {{ $seminar->pembimbingDua->nama_dosen }}
+                                    @else
+                                        {{ $seminar->pbl2_nama }}
+                                    @endif
                                 </div>
                             </div>
 
                             <div class="row border-bottom">
                                 <label class="col-md-3 bold mt-2"> <strong>Tahun Akademik</strong></label>
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->tahun_akademik }} --}}
+                                    {{ $seminar->tahun_akademik }}
                                 </div>
-                                <label class="col-md-3 bold mt-2"> <strong>Nomor Karyawan / NIP Pembimbing
-                                        2</strong></label>
+                                <label class="col-md-3 bold mt-2"> <strong>NIP Dosen External</strong></label>
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->mitra }} --}}
+                                    @if ($seminar->pbl2_nip)
+                                        {{ $seminar->pbl2_nip }}
+                                    @else
+                                        -
+                                    @endif
                                 </div>
                             </div>
 
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold mt-1"> <strong>Semester</strong></label>
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $mahasiswa->semester }} --}}
+                                    {{ $mahasiswa->semester }}
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->pembimbing_lapangan }} --}}
+                                    {{ $seminar->pembahas->nama_dosen }}
                                 </div>
                             </div>
 
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold mt-2"> <strong>SKS</strong></label>
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->sks }} --}}
+                                    {{ $seminar->sks }}
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->ni_pemlap }} --}}
+                                    {{ $seminar->periode_seminar }}
                                 </div>
                             </div>
 
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold mt-2"> <strong>IPK</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->ipk }} --}}
+                                    {{ $seminar->ipk }}
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a target="_blank" href="/uploads/syarat_seminar_ta1/">Unduh
+                                    <a target="_blank"
+                                        href="/uploads/syarat_sidang_kompre/{{ $seminar->berkas_kompre }}">Lihat
                                         Berkas</a>
                                 </div>
                             </div>
@@ -171,19 +185,19 @@
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->toefl }} --}}
+                                    {{ $seminar->toefl }}
                                 </div>
 
                                 <label class="col-md-3 bold"> <strong></strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- Kosongkan --}}
+                                    {{ $seminar->status_seminar }}
                                 </div>
                             </div>
 
                             <div class="row border-bottom mt-3">
                                 <label class="col-md-12 bold"><b>Judul atau Topik Tugas Akhir</b></label>
                                 <div class="col-md-12 mb-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->judul_kp }} --}}
+                                    {{ $seminar->judul_ta }}
                                 </div>
                             </div>
 
@@ -195,59 +209,61 @@
                 <!-- Data Registrasi End -->
 
                 <!-- Jadwal Seminar Start -->
-                {{-- @if ($seminar->proses_admin == 'Valid') --}}
-                <div class="pd-20 card-box mb-30">
-                    <div class="clearfix">
-                        <div class="pull-left">
-                            <h4 class="text-dark h4">Jadwal Seminar</h4>
+                @if ($seminar->status_admin == 'Valid')
+                    <div class="pd-20 card-box mb-30">
+                        <div class="clearfix">
+                            <div class="pull-left mb-4" >
+                                <h4 class="text-dark h4">Jadwal Seminar</h4>
 
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="jadwal_seminar">
-                        <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                            <div class="row border-bottom">
-                                <label class="col-md-3 bold mt-2"> <strong>Tanggal Seminar</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- @if ($seminar->jadwal)
-                                            {{ $seminar->jadwal->tanggal_skp }}
+                        <div class="jadwal_seminar">
+                            <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+                                <div class="row border-bottom">
+                                    <label class="col-md-3 bold mt-2"> <strong>Tanggal Seminar</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        @if ($seminar->jadwal)
+                                            {{ $seminar->jadwal->tanggal_komprehensif }}
                                         @else
                                             <div>Belum terjadwal</div>
-                                        @endif --}}
-                                </div>
-                                <label class="col-md-3 bold mt-2"><b>Jam Mulai</b></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- @if ($seminar->jadwal)
-                                            {{ $seminar->jadwal->jam_mulai_skp }} WIB
+                                        @endif
+
+                                    </div>
+                                    <label class="col-md-3 bold mt-2"><b>Jam Mulai</b></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+
+                                        @if ($seminar->jadwal)
+                                            {{ $seminar->jadwal->jam_mulai_komprehensif }} WIB
                                         @else
                                             <div>Belum terjadwal</div>
-                                        @endif --}}
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Berkas Seminar</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a href="">Unduh Berkas</a>
-                                </div>
-                                <label class="col-md-3 bold mt-1"><strong>Jam Selesai</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- @if ($seminar->jadwal)
-                                            {{ $seminar->jadwal->jam_selesai_skp }} WIB
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"> <strong>Berkas Seminar</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        <a href="">Unduh Berkas</a>
+                                    </div>
+                                    <label class="col-md-3 bold mt-1"><strong>Jam Selesai</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        @if ($seminar->jadwal)
+                                            {{ $seminar->jadwal->jam_selesai_komprehensif }} WIB
                                         @else
                                             <div>Belum terjadwal</div>
-                                        @endif --}}
+                                        @endif
+
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Informasi Berkas</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <div>
-                                        {{-- @if ($seminar->jadwal)
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"> <strong>Informasi Berkas</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        @if ($seminar->jadwal)
                                             Silahkan Cek Berkas Keperluan Seminar Di Email Anda
                                             hubungi admin berkas jika dalam 1x24 jam tidak menerima email Berkas
                                         @else
                                             <div>Belum terjadwal</div>
-                                        @endif --}}
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -255,133 +271,123 @@
                         </div>
                     </div>
 
-                </div>
-                <!-- Jadwal Seminar End -->
+            </div>
+            <!-- Jadwal Seminar End -->
 
-                <!-- Bukti Seminar Start -->
+            <!-- Bukti Seminar Start -->
+            @if ($seminar->jadwal != null)
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
                             <h4 class="text-dark h4">Bukti Seminar</h4>
                             <small>
                                 <b>
-                                    <p {{-- class="mb-30 text-center {{  $seminar->status_seminar == 'Selesai' ? 'Valid' : ''}} "> --}} {{-- {{  $seminar->status_seminar == 'Selesai' ? 'Valid' : 'Proses'   }} --}} </p>
+                                    <p
+                                        class="mb-30 text-center 
+                                @if ($seminar->status_koor == 'Selesai') {{ 'Valid' }}
+                                            @elseif($seminar->status_koor == 'Belum Selesai') {{ 'Proses' }}
+                                            @elseif($seminar->status_koor == 'Perbaikan') {{ 'Invalid' }}
+                                            @else {{ 'Failed' }} @endif">
+                                        {{ $seminar->status_koor == 'Selesai' ? 'Valid' : 'Proses' }} </p>
                                 </b>
                             </small>
                         </div>
-                        {{-- @if ($seminar->status_seminar != 'Selesai') --}}
-                        {{-- @if ($berita_acara) --}}
-                        <a href="/mahasiswa/bakompre/edit">
-                            <button class="btn btn-primary right">Edit</button>
-                        </a>
-                        {{-- @else --}}
-                        <a href="/mahasiswa/bakompre/create">
-                            <button class="btn btn-primary right">Unggah</button>
-                        </a>
-                        {{-- @endif --}}
-                        {{-- @endif --}}
+                        @if ($seminar->status_koor != 'Selesai')
+                            @if ($seminar->beritaAcara)
+                                <a href="{{ route('mahasiswa.bata2.edit', $seminar->beritaAcara->encrypt_id) }}">
+                                    <button class="btn btn-primary right">Edit</button>
+                                </a>
+                            @else
+                                <a href="/mahasiswa/bata2/create">
+                                    <button class="btn btn-primary right">Unggah</button>
+                                </a>
+                            @endif
+                        @endif
                         {{-- jika sudah diupload end --}}
                     </div>
-                    {{-- @if ($berita_acara) --}}
-                    <div class="bukti_seminar">
-                        <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                            <div class="row border-bottom">
-                                <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a href="/uploads/berita_acara_seminar_ta1/">Lihat</a>
+                    
+                    @if ($seminar->beritaAcara)
+                        <div class="bukti_seminar">
+                            <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+                                <div class="row border-bottom">
+                                    <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        <a target="_blank"
+                                            href="/uploads/ba_seminar_kompre/{{ $seminar->beritaAcara->berkas_ba_seminar_ta_dua }}">Lihat</a>
+                                    </div>
+                                    <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        {{ $seminar->beritaAcara->no_ba_berkas }}
+                                    </div>
                                 </div>
-                                <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $berita_acara->no_ba_seminar_kp }} --}}
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        <a target="_blank"
+                                            href="/uploads/nilai_seminar_kompre/{{ $seminar->beritaAcara->berkas_nilai_kompre }}">Lihat</a>
+                                    </div>
+                                    <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        {{ $seminar->beritaAcara->huruf_mutu }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Laporan Final PKL/KP</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a href="/uploads/laporan_kp/">Lihat</a>
-                                </div>
-                                <label class="col-md-3 bold mt-1"><strong>Status Bukti</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->status_seminar }} --}}
-                                </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Nilai Lapangan</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $berita_acara->nilai_lapangan }} --}}
-                                </div>
-                                <label class="col-md-3 bold mt-1"><strong>Nilai Akademik</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $berita_acara->nilai_akd }} --}}
-                                </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Nilai Total</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $berita_acara->nilai_akhir }} --}}
-                                </div>
-                                <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- <b> {{ $berita_acara->nilai_mutu }} </b> --}}
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"> <strong>Laporan</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        <a target="_blank"
+                                            href="{{ $seminar->beritaAcara->laporan_ta }}">Lihat</a>
+                                    </div>
+                                    <label class="col-md-3 bold"> <strong>Nilai</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        {{ $seminar->beritaAcara->nilai }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {{-- @else --}}
-                    <div class="bukti_seminar">
-                        <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                            <div class="row border-bottom">
-                                <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a href="">Belum Upload</a>
+                    @else
+                        <div class="bukti_seminar">
+                            <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+                                <div class="row border-bottom">
+                                    <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        Belum Unggah
+                                    </div>
+                                    <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        Belum Unggah
+                                    </div>
                                 </div>
-                                <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    -
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        Belum Unggah
+                                    </div>
+                                    <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        Belum Unggah
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Laporan Final PKL/KP</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a href="">-</a>
-                                </div>
-                                <label class="col-md-3 bold mt-1"><strong>Status Bukti</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    -
-                                </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Nilai Seminar Angka</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    -
-                                </div>
-                                <label class="col-md-3 bold mt-1"><strong>Nilai PKL/KP Angka</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    -
-                                </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Nilai Total</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    -
-                                </div>
-                                <label class="col-md-3 bold"> <strong>Nilai Seminar Huruf</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    -
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"> <strong>Power Point</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        Belum Unggah
+                                    </div>
+                                    <label class="col-md-3 bold"> <strong>Nilai</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        Belum Unggah
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {{-- @endif --}}
-
-
-                </div>
-                {{-- @endif --}}
-                <!-- Bukti Seminar End -->
-
-            </div>
+                    @endif
+            @endif
         </div>
-        <!-- Input Validation End -->
+        @endif
+        <!-- Bukti Seminar End -->
+
+    </div>
+    </div>
+    <!-- Input Validation End -->
     </div>
 
     <script>

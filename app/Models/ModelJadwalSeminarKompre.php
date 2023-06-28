@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Lokasi;
+use App\Models\ModelSeminarKompre;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ModelJadwalSeminarKompre extends Model
 {
@@ -26,6 +28,6 @@ class ModelJadwalSeminarKompre extends Model
     }
     public function lokasi()
     {
-        return $this->belongsTo(ModelLokasiSeminar::class, 'id_lokasi');
+        return $this->belongsTo(Lokasi::class, 'id_lokasi');
     }
 }

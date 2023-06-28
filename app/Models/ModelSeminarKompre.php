@@ -51,10 +51,10 @@ class ModelSeminarKompre extends Model
     }
     public function jadwal()
     {
-        return $this->hasOne(JadwalSeminarKompre::class, 'id_seminar');
+        return $this->hasOne(ModelJadwalSeminarKompre::class, 'id_seminar');
     }
     public function beritaAcara()
     {
-        return $this->hasOne(BeritaAcaraSeminarKompre::class, 'id_seminar');
+        return $this->hasOne(ModelBaSeminarKompre::class, 'id_seminar');
     }
 }

@@ -17,6 +17,7 @@ class ModelBaSeminarKompre extends Model
         'laporan_ta',
         'nilai',
         'huruf_mutu',
+        'id_seminar'
     ];
 
     public function seminar()
