@@ -159,6 +159,7 @@ class MahasiswaKompreController extends Controller
         $seminar->ipk = $request->ipk;
         $seminar->toefl = $request->toefl;
         $seminar->agreement = 1;
+    
         $seminar->id_pembimbing_satu = Crypt::decrypt($request->id_pembimbing_satu);
         $seminar->id_pembahas = Crypt::decrypt($request->pembahas);
 
