@@ -195,11 +195,8 @@ class PenjadwalanTaSatu extends Controller
         });
         unlink(public_path('uploads\print_ba_ta1\\' . $namafile));
         return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Menjadwalkan Ulang Seminar Tugas Akhir 1');
-
     }
-    public function resend($id){
-
+    public function resend($id)
+    {
     }
-
-
 }
