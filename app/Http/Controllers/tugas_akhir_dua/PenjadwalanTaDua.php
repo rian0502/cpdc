@@ -115,13 +115,11 @@ class PenjadwalanTaDua extends Controller
         $data = [
             'name' => $seminar->mahasiswa->nama_mahasiswa,
             'body' => 'Berikut adalah jadwal Seminar Tugas Akhir 2 Anda',
-            'seminar' => $seminar->judul_kp,
+            'seminar' => $seminar->judul_ta,
             'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'),
             'jam_mulai' => $request->jam_mulai_skp,
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
-            'pembimbing_lapangan' => $request->pembimbing_lapangan,
-            'ni_pemlap' => $request->ni_pemlap,
         ];
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 2');

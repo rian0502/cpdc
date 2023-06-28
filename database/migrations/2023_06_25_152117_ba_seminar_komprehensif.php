@@ -22,6 +22,7 @@ class BaSeminarKomprehensif extends Migration
             $table->string('laporan_ta');
             $table->string('nilai');
             $table->string('huruf_mutu');
+            $table->foreignId('id_seminar')->constrained('seminar_komprehensif')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
