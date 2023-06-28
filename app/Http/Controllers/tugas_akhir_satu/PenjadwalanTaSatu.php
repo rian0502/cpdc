@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaSatu;
 use App\Models\Mahasiswa;
-use JadwalSeminarTaSatu;
 
 class PenjadwalanTaSatu extends Controller
 {
