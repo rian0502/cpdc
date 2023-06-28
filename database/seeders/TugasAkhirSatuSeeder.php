@@ -65,5 +65,55 @@ class TugasAkhirSatuSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s')
         ];
         $ba = ModelBaSeminarTaSatu::create($berita_acara);
+
+
+        $ta2 = [
+            'encrypt_id' => Crypt::encrypt('2'),
+            'tahun_akademik' => '2020/2021',
+            'semester' => 'Ganjil',
+            'periode_seminar' => 'Jun 2023',
+            'judul_ta' => 'Analisis Kimia Pada Air Sungai Citarum Menggunakan Metode Spektrofotometri',
+            'sks' => '144',
+            'ipk' => '3.5',
+            'toefl' => '500',
+            'berkas_ta_satu' => 'ta1.pdf',
+            'agreement' => '1',
+            'komentar' => null,
+            'status_admin' => 'Valid',
+            'status_koor' => 'Selesai',
+            'id_pembimbing_satu' => '5',
+            'pbl2_nama' => 'Dr. Eng. Budi',
+            'pbl2_nip' => '123456789123456789',
+            'id_pembahas' => '1',
+            'id_mahasiswa' => '2',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')  
+        ];
+        $ta2 = ModelSeminarTaSatu::create($ta2);
+        $jadwal2 = [
+            'encrypt_id' => Crypt::encrypt('2'),
+            'tanggal_seminar_ta_satu' => '2023-06-29',
+            'jam_mulai_seminar_ta_satu' => '08:00',
+            'jam_selesai_seminar_ta_satu' => '10:00',
+            'id_lokasi' => '2',
+            'id_seminar' => $ta2->id,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+        $jadwal_ta2 = ModelJadwalSeminarTaSatu::create($jadwal2);
+
+        $berita_acara2 = [
+            'encrypt_id' => Crypt::encrypt('2'),
+            'no_berkas_ba_seminar_ta_satu' => 'BA/UNIKOM/2021/1',
+            'berkas_ba_seminar_ta_satu' => 'ba_seminar_ta1.pdf',
+            'berkas_nilai_seminar_ta_satu' => 'nilai_seminar_ta1.pdf',
+            'berkas_ppt_seminar_ta_satu' => 'https://drive',
+            'nilai' => 80.5,
+            'huruf_mutu' => 'A',
+            'id_seminar' => $ta2->id,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+        $ba2 = ModelBaSeminarTaSatu::create($berita_acara2);
     }
 }
