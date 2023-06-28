@@ -114,7 +114,7 @@ class PenjadwalanKompreController extends Controller
         $data = [
             'name' => $seminar->mahasiswa->nama_mahasiswa,
             'body' => 'Berikut adalah jadwal Sidang Komprehensif Anda',
-            'seminar' => $seminar->judul_kp,
+            'seminar' => $seminar->judul_ta,
             'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'),
             'jam_mulai' => $request->jam_mulai_skp,
             'jam_selesai' => $request->jam_selesai_skp,
