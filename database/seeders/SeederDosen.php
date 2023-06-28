@@ -21,7 +21,7 @@ class SeederDosen extends Seeder
 
 
         Dosen::create([
-            'encrypt_id' => Crypt::encrypt('2'),
+            'encrypt_id' => Crypt::encrypt('1'),
             'nip' => '18212312312',
             'nidn' => '1234567899',
             'nama_dosen' => 'Nathaniel Holmgren, S.T., M.T.',

@@ -25,7 +25,7 @@
 
                                 @foreach ($berkas as $item)
                                     {{-- LOKASI TANGGAL JAM MULAI SELESAI MISAL BLM TERJADWAL MAKA OUTPUTIN KONDISIIN TULUSANNYA BLM TERJADWAL --}}
-                                    @if ($item->jadwal && $item->berita_acara)
+                                    @if ($item->jadwal && $item->beritaAcara)
                                         <tr>
                                             <td>
                                                 {{ $loop->iteration }}
@@ -37,18 +37,18 @@
                                                 {{ $item->mahasiswa->npm }}
                                             </td>
                                             <td>
-                                                {{ $item->judul_kp }}
+                                                {{ $item->judul_ta }}
                                             </td>
                                             <td>
-                                                {{ $item->jadwal->tanggal_skp }}
+                                                {{ $item->jadwal->tanggal_komprehensif }}
                                             </td>
                                             <td>
-                                                {{ $item->no_ba_seminar_kp}}
+                                                {{ $item->beritaAcara->no_ba_berkas}}
                                             </td>
                                             <td>
                                                     <a class="btn btn-warning"
                                                         href="
-                                                        {{ route('koor.validasiBaTA2.edit', $item->encrypt_id) }}
+                                                        {{ route('koor.validasiBaKompre.edit', $item->encrypt_id) }}
                                                         "><i
                                                             class="bi bi-pencil-square"></i>
                                                         Validasi</a>

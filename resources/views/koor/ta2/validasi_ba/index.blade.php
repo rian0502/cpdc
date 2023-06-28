@@ -36,7 +36,7 @@
                                                 {{ $item->mahasiswa->npm }}
                                             </td>
                                             <td>
-                                                {{ $item->judul_kp }}
+                                                {{ $item->judul_ta }}
                                             </td>
                                             <td>
                                                 {{ $item->jadwal->tanggal_seminar_ta_dua }}

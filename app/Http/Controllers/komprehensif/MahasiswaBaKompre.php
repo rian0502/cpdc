@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\komprehensif;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\ModelBaSeminarKompre;
+use App\Models\ModelSeminarKompre;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class MahasiswaBaKompre extends Controller
 {
@@ -37,7 +41,33 @@ class MahasiswaBaKompre extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->_token != csrf_token()) {
+            return redirect()->back();
+        } else {
+            $seminar = Auth::user()->mahasiswa->komprehensif->last();
+            $ba = $request->file('ba_seminar_komprehensif');
+            $file_ba = $ba->hashName();
+            $nilai = $request->file('berkas_nilai_kompre');
+            $file_nilai = $nilai->hashName();
+            $ba->move(public_path('/uploads/ba_sidang_kompre/'), $file_ba);
+            $nilai->move(public_path('/uploads/nilai_sidang_kompre/'), $file_nilai);
+
+            $data = [
+                'no_ba_berkas' => $request->no_ba_berkas,
+                'ba_seminar_komprehensif' => $file_ba,
+                'berkas_nilai_kompre' => $file_nilai,
+                'laporan_ta' => $request->laporan_ta,
+                'nilai' => $request->nilai,
+                'huruf_mutu' => $request->nilai_mutu,
+                'id_seminar' => $seminar->id,
+            ];
+            $insBa = ModelBaSeminarKompre::create($data);
+            $ins_id = $insBa->id;
+            $update = ModelBaSeminarKompre::find($ins_id);
+            $update->encrypt_id = Crypt::encrypt($ins_id);
+            $update->save();
+            return redirect()->route('mahasiswa.sidang.kompre.index')->with('success', 'Berhasil mengunggah berita acara sidang komprehensif');
+        }
     }
 
     /**
@@ -59,8 +89,11 @@ class MahasiswaBaKompre extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('mahasiswa.kompre.ba.edit');
+        $berkas = ModelBaSeminarKompre::with('seminar')->where('id', Crypt::decrypt($id))->first();
+        if ($berkas->seminar->id_mahasiswa !=  Auth::user()->mahasiswa->id) {
+            return redirect()->back();
+        }
+        return view('mahasiswa.kompre.ba.edit', compact('berkas'));
     }
 
     /**
@@ -72,7 +105,49 @@ class MahasiswaBaKompre extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->_token != csrf_token()) {
+            return redirect()->back();
+        }
+        //validasi user 
+        $ba = ModelBaSeminarKompre::find(Crypt::decrypt($id));
+        if (Auth::user()->mahasiswa->id != $ba->seminar->id_mahasiswa) {
+            return redirect()->back();
+        }
+        $data = [
+            'no_ba_berkas' => $request->no_ba_berkas,
+            'huruf_mutu' => $request->nilai_mutu,
+            'nilai' => $request->nilai,
+            'updated_at' => date('Y-m-d H:i:s'),
+            'laporan_ta' => $request->laporan_ta,
+        ];
+        if ($request->file('ba_seminar_komprehensif')) {
+            $oldFile = $ba->ba_seminar_komprehensif;
+            if (file_exists(public_path('/uploads/ba_sidang_kompre/' . $oldFile))) {
+                unlink(public_path('/uploads/ba_sidang_kompre/' . $oldFile));
+            }
+            $ba_file = $request->file('ba_seminar_komprehensif');
+            $file_ba = $ba_file->hashName();
+            $ba_file->move(public_path('/uploads/ba_sidang_kompre'), $file_ba);
+            $data['ba_seminar_komprehensif'] = $file_ba;
+        }
+        if ($request->file('berkas_nilai_kompre')) {
+            $oldFile = $ba->berkas_nilai_kompre;
+            if (file_exists(public_path('/uploads/nilai_sidang_kompre/' . $oldFile))) {
+                unlink(public_path('/uploads/nilai_sidang_kompre/' . $oldFile));
+            }
+            $nilai_file = $request->file('berkas_nilai_kompre');
+            $file_nilai = $nilai_file->hashName();
+            $nilai_file->move(public_path('/uploads/nilai_sidang_kompre'), $file_nilai);
+            $data['berkas_nilai_kompre'] = $file_nilai;
+        }
+        $ba->update($data);
+        $seminar = ModelSeminarKompre::find($ba->id_seminar);
+        $seminar->komentar = null;
+        $seminar->status_koor = 'Belum Selesai';
+        $seminar->save();
+
+
+        return redirect()->route('mahasiswa.sidang.kompre.index')->with('success', 'Berhasil mengubah berita acara sidang komprehensif');
     }
 
     /**

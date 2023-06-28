@@ -94,7 +94,7 @@ class PenjadwalanTaDua extends Controller
             $template->setValue('nip_pb_2', $seminar->pembimbing_dua->nip);
         } else {
             $template->setValue('pb_2', $seminar->pbl2_nama);
-            $template->setValue('pb_2', $seminar->pbl2_nip);
+            $template->setValue('nip_pb_2', $seminar->pbl2_nip);
         }
         $template->setValue('pbhs', $seminar->pembahas->nama_dosen);
         $template->setValue('nip_pbhs', $seminar->pembahas->nip);

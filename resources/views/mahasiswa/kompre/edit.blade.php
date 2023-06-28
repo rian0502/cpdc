@@ -71,7 +71,7 @@
                                         <optgroup label="Pembimbing 1">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_satu',$seminar->pembimbingSatu->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_satu', $seminar->pembimbingSatu->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
                                         </optgroup>

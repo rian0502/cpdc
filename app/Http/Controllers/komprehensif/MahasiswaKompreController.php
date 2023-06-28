@@ -28,7 +28,9 @@ class MahasiswaKompreController extends Controller
                 'seminar' => $kompre,
                 'mahasiswa' => Auth::user()->mahasiswa,
             ];
+
             return view('mahasiswa.kompre.index', $data);
+
         }
         return redirect()->route('mahasiswa.sidang.kompre.create');
     }
@@ -159,6 +161,7 @@ class MahasiswaKompreController extends Controller
         $seminar->ipk = $request->ipk;
         $seminar->toefl = $request->toefl;
         $seminar->agreement = 1;
+    
         $seminar->id_pembimbing_satu = Crypt::decrypt($request->id_pembimbing_satu);
         $seminar->id_pembahas = Crypt::decrypt($request->pembahas);
 

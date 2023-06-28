@@ -146,7 +146,7 @@ class MahasiswaBaTaDua extends Controller
             $data['berkas_nilai_seminar_ta_dua'] = $file_nilai;
         }
         $ba->update($data);
-        return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('success', 'Berhasil mengubah berita acara seminar TA 1');
+        return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('success', 'Berhasil mengubah berita acara seminar TA 2');
     }
 
     /**
