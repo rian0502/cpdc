@@ -9,7 +9,10 @@ use App\Models\ModelSeminarKompre;
 use App\Models\ModelSeminarTaSatu;
 use Illuminate\Routing\Controller;
 use App\Models\ModelBaSeminarKompre;
+use App\Models\ModelBaSeminarTaDua;
 use App\Models\ModelBaSeminarTaSatu;
+use BaSeminarTaDua;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class MahasiswaBimbinganKompreController extends Controller
@@ -58,20 +61,17 @@ class MahasiswaBimbinganKompreController extends Controller
         $mahasiswa = Mahasiswa::where('npm', $id)->first();
         $seminarTa1 = ModelSeminarTaSatu::where('id_mahasiswa', $mahasiswa->id)->first();
         $seminarTa2 = ModelSeminarTaDua::where('id_mahasiswa', $mahasiswa->id)->first();
-
         $sidangKompre = ModelSeminarKompre::where('id_mahasiswa', $mahasiswa->id)->first();
-        $BaTaSatu = ModelBaSeminarTaSatu::where('id_seminar', $seminarTa1->id)->first();
-        $BaTaDua = ModelBaSeminarTaSatu::where('id_seminar', $seminarTa1->id)->first();
-
         $data = [
             'mahasiswa' => $mahasiswa,
             'seminarTa1' => $seminarTa1,
             'seminarTa2' => $seminarTa2,
             'sidangKompre' => $sidangKompre,
-            'berita_acara' => $BaTaSatu,
-            'ba_ta2' => $BaTaDua,
-            'ta1' => $mahasiswa->ta_satu,
+            'ba_ta1' => $seminarTa1 ? $seminarTa1->ba_seminar : null,
+            'ba_ta2' => $seminarTa2 ? $seminarTa2->ba_seminar : null,
+            'ba_kompre' => $sidangKompre ? $sidangKompre->ba_seminar : null,
         ];
+
         return view('dosen.mahasiswa.bimbingan.kompre.show', $data);
     }
 
