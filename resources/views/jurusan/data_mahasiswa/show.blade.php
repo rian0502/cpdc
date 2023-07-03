@@ -8,6 +8,23 @@
             margin-bottom: 10px;
         }
 
+        .rounded-circle {
+            border-radius: 50%;
+        }
+
+        .circle-wrapper {
+            width: 150px;
+            /* Sesuaikan dengan ukuran yang diinginkan */
+            height: 150px;
+            /* Sesuaikan dengan ukuran yang diinginkan */
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .foto {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
     <div class="main-container">
@@ -21,13 +38,15 @@
                     <div class="mb-3 pb-2">
                         <div class="form-group">
                             <div class="profile-photo">
-                                <img id="preview-image" src="/uploads/profile/{{ $mahasiswa->user->profile_picture }}"
-                                    alt="Foto Profile" onerror="this.src='/uploads/profile/default.png'" class="foto">
-
+                                <div class="circle-wrapper">
+                                    <img id="preview-image" src="/uploads/profile/{{ $mahasiswa->user->profile_picture }}"
+                                        alt="Foto Profile" onerror="this.src='/uploads/profile/default.png'" class="foto">
+                                </div>
                             </div>
-
                         </div>
                     </div>
+
+
                     <div class="p-md-4">
 
                         <div class="p-3 mb-2 bg-light text-dark rounded-div">
@@ -148,7 +167,7 @@
                                             <h5 class="h4 text-blue mb-20">Data Seminar Kerja Praktik</h5>
 
                                             @if ($kp != null)
-                                            <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="row border-bottom mt-3">
                                                         <label class="col-md-12 bold"><b>Judul atau Topik</b></label>
                                                         <div class="col-md-12 mb-3"
@@ -234,15 +253,15 @@
                                                     </div>
 
 
-                                            </div>
-                                        @else
-                                        <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                            <div class="d-flex justify-content-center align-items-center mt-2">
-                                                <div>
-                                                    <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            @else
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    <div class="d-flex justify-content-center align-items-center mt-2">
+                                                        <div>
+                                                            <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @endif
 
                                             <style type="text/css">
@@ -256,8 +275,8 @@
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Jadwal</h5>
                                             @if ($kp)
-                                            <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                                {{-- BUAT KONDISI DISINI --}}
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    {{-- BUAT KONDISI DISINI --}}
                                                     <div class="row border-bottom">
                                                         <label class="col-md-3 bold mt-2"> <strong>Tanggal
                                                                 Seminar</strong></label>
@@ -301,15 +320,15 @@
                                                     </div>
 
 
-                                            </div>
-                                        @else
-                                        <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                            <div class="d-flex justify-content-center align-items-center mt-2">
-                                                <div>
-                                                    <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
                                                 </div>
-                                            </div>
-                                            </div>
+                                            @else
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    <div class="d-flex justify-content-center align-items-center mt-2">
+                                                        <div>
+                                                            <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @endif
                                             <style type="text/css">
                                                 a:hover {
@@ -321,8 +340,8 @@
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Berita Acara</h5>
                                             @if ($kp && $kp->berita_acara)
-                                            <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                                {{-- BUAT KONDISI DISINI --}}
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    {{-- BUAT KONDISI DISINI --}}
                                                     <div class="row border-bottom">
                                                         <label class="col-md-3 bold"> <strong>Bukti
                                                                 Seminar</strong></label>
@@ -359,15 +378,15 @@
                                                         </div>
                                                     </div>
 
-                                            </div>
-                                        @else
-                                        <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                            <div class="d-flex justify-content-center align-items-center mt-2">
-                                                <div>
-                                                    <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
                                                 </div>
-                                            </div>
-                                            </div>
+                                            @else
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    <div class="d-flex justify-content-center align-items-center mt-2">
+                                                        <div>
+                                                            <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @endif
 
                                             <style type="text/css">
@@ -1007,29 +1026,28 @@
                                 </div>
                                 <div class="tab-pane fade" id="prestasi" role="tabpanel">
                                     <div class="pd-20">
-                                        <table
-                                        class="table data-table-responsive stripe data-table-noexport wrap ">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Judul Kegiatan</th>
-                                                <th>Peran</th>
-                                                <th>Tanggal</th>
-                                                <th>SKS Konversi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($aktivitas as $item)
+                                        <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                            <thead>
                                                 <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->nama_aktivitas }}</td>
-                                                    <td>{{ $item->peran }}</td>
-                                                    <td>{{ $item->tanggal }}</td>
-                                                    <td>{{ $item->sks_konversi }} SKS</td>
+                                                    <th>No</th>
+                                                    <th>Judul Kegiatan</th>
+                                                    <th>Peran</th>
+                                                    <th>Tanggal</th>
+                                                    <th>SKS Konversi</th>
                                                 </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($aktivitas as $item)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $item->nama_aktivitas }}</td>
+                                                        <td>{{ $item->peran }}</td>
+                                                        <td>{{ $item->tanggal }}</td>
+                                                        <td>{{ $item->sks_konversi }} SKS</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="extra_activity" role="tabpanel">
@@ -1046,24 +1064,24 @@
                                             </thead>
                                             <tbody>
                                                 @foreach ($aktivitas as $item)
-                                                <tr>
-                                                    <td>
-                                                        {{ $loop->iteration }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->nama_aktivitas }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->peran }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->tanggal }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->sks_konversi }}
-                                                        SKS</td>
+                                                    <tr>
+                                                        <td>
+                                                            {{ $loop->iteration }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->nama_aktivitas }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->peran }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->tanggal }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->sks_konversi }}
+                                                            SKS</td>
 
-                                                </tr>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
