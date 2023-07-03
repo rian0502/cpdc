@@ -71,7 +71,7 @@ class MahasiswaBimbinganKompreController extends Controller
             'ba_ta2' => $seminarTa2 ? $seminarTa2->ba_seminar : null,
             'ba_kompre' => $sidangKompre ? $sidangKompre->ba_seminar : null,
         ];
-
+        // return dd($data);
         return view('dosen.mahasiswa.bimbingan.kompre.show', $data);
     }
 
