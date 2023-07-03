@@ -201,7 +201,7 @@
                             </div>
                             <a href="{{ route('koor.jadwalPKL.index') }}">
 
-                                <button class="batal btn btn-secondary" id="submitButton">Batal</button>
+                                <button class="batal btn btn-secondary">Batal</button>
                             </a>
 
                         </form>
@@ -230,5 +230,5 @@
             select.add(option);
         }
     </script>
-   
+
 @endsection
