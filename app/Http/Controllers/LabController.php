@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Lokasi;
 use App\Models\Laboratorium;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\StoreActivityLab;
+use Yajra\DataTables\DataTables;
+use Illuminate\Http\Request;
 
 class LabController extends Controller
 {
@@ -20,10 +21,10 @@ class LabController extends Controller
     public function index()
     {
         //
-        $data = [
-            'activities' => Laboratorium::all()
-        ];
-        return view('admin.admin_lab.lab.index', $data);
+        // $data = [
+        //     'activities' => Laboratorium::all()
+        // ];
+        return view('admin.admin_lab.lab.index');
     }
 
     /**
@@ -118,74 +119,84 @@ class LabController extends Controller
         //
     }
     public function chartAktivitasLab(Request $request)
-{
-    $start = $request->input('startDate', null);
-    $end = $request->input('endDate', null);
+    {
+        $start = $request->input('startDate', null);
+        $end = $request->input('endDate', null);
 
-    $query = DB::table('activity_lab')
-        ->join('lokasi', 'activity_lab.id_lokasi', '=', 'lokasi.id')
-        ->select(
-            'lokasi.nama_lokasi as lab',
-            DB::raw('DAYOFWEEK(activity_lab.tanggal_kegiatan) as hari'),
-            DB::raw('COUNT(activity_lab.id) as jumlah_kegiatan')
-        )
-        ->whereNotNull('activity_lab.tanggal_kegiatan')
-        ->groupBy('lokasi.nama_lokasi', 'hari');
+        $query = DB::table('activity_lab')
+            ->join('lokasi', 'activity_lab.id_lokasi', '=', 'lokasi.id')
+            ->select(
+                'lokasi.nama_lokasi as lab',
+                DB::raw('DAYOFWEEK(activity_lab.tanggal_kegiatan) as hari'),
+                DB::raw('COUNT(activity_lab.id) as jumlah_kegiatan')
+            )
+            ->whereNotNull('activity_lab.tanggal_kegiatan')
+            ->groupBy('lokasi.nama_lokasi', 'hari');
 
-    if ($start != null && $end != null) {
-        $query->whereBetween('activity_lab.tanggal_kegiatan', [$start, $end]);
-    }
-
-    $results = $query->get();
-
-    $data = [];
-    $labs = [];
-
-    foreach ($results as $result) {
-        $lab = $result->lab;
-        $dayOfWeek = $result->hari;
-        $jumlahKegiatas = $result->jumlah_kegiatan;
-
-        if (!isset($labs[$lab])) {
-            $labs[$lab] = [];
+        if ($start != null && $end != null) {
+            $query->whereBetween('activity_lab.tanggal_kegiatan', [$start, $end]);
         }
 
-        $labs[$lab][$dayOfWeek] = $jumlahKegiatas;
-    }
+        $results = $query->get();
 
-    foreach ($labs as $lab => $aktivitas) {
-        $item = [];
-        $item['lab'] = $lab;
-        $jumlahAktivitas = [];
+        $data = [];
+        $labs = [];
 
-        for ($i = 1; $i <= 7; $i++) {
-            if (isset($aktivitas[$i])) {
-                $jumlahAktivitas[] = $aktivitas[$i];
-            } else {
-                $jumlahAktivitas[] = 0;
+        foreach ($results as $result) {
+            $lab = $result->lab;
+            $dayOfWeek = $result->hari;
+            $jumlahKegiatas = $result->jumlah_kegiatan;
+
+            if (!isset($labs[$lab])) {
+                $labs[$lab] = [];
             }
+
+            $labs[$lab][$dayOfWeek] = $jumlahKegiatas;
         }
 
-        $item['jumlah_aktivitas'] = $jumlahAktivitas;
-        $data[] = $item;
+        foreach ($labs as $lab => $aktivitas) {
+            $item = [];
+            $item['lab'] = $lab;
+            $jumlahAktivitas = [];
+
+            for ($i = 1; $i <= 7; $i++) {
+                if (isset($aktivitas[$i])) {
+                    $jumlahAktivitas[] = $aktivitas[$i];
+                } else {
+                    $jumlahAktivitas[] = 0;
+                }
+            }
+
+            $item['jumlah_aktivitas'] = $jumlahAktivitas;
+            $data[] = $item;
+        }
+
+        // Tambahkan lab yang tidak memiliki aktivitas
+        $allLabs = DB::table('lokasi')->pluck('nama_lokasi')->toArray();
+        $labsWithActivities = array_column($data, 'lab');
+        $labsWithoutActivities = array_diff($allLabs, $labsWithActivities);
+
+        foreach ($labsWithoutActivities as $lab) {
+            $item = [
+                'lab' => $lab,
+                'jumlah_aktivitas' => array_fill(0, 7, 0)
+            ];
+            $data[] = $item;
+        }
+
+        return response()->json($data);
     }
 
-    // Tambahkan lab yang tidak memiliki aktivitas
-    $allLabs = DB::table('lokasi')->pluck('nama_lokasi')->toArray();
-    $labsWithActivities = array_column($data, 'lab');
-    $labsWithoutActivities = array_diff($allLabs, $labsWithActivities);
+    public function dataLaboratorium(Request $request)
+    {
+        // if ($request->ajax()) {
+            $model = Laboratorium::query();
 
-    foreach ($labsWithoutActivities as $lab) {
-        $item = [
-            'lab' => $lab,
-            'jumlah_aktivitas' => array_fill(0, 7, 0)
-        ];
-        $data[] = $item;
+            return DataTables::of($model)
+                ->addColumn('nama_lokasi', function ($model) {
+                    return $model->lokasi->nama_lokasi;
+                })
+                ->toJson();
+        // }
     }
-
-    return response()->json($data);
-}
-
-
-
 }

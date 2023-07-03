@@ -15,7 +15,7 @@
                     </div>
                     <div class="pb-20 m-3">
 
-                        <table class="table data-table-responsive stripe data-table-export nowrap ">
+                        <table id="data-laboratorium" class="data-laboratorium table table-striped table-hover nowrap ">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -25,34 +25,7 @@
                                     <th class="table-plus datatable-nosort">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($activities as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->lokasi->nama_lokasi }}</td>
-                                        <td>{{ $carbon::parse($item->updated_at)->format('d F Y') }}</td>
-                                        <td>{{ $item->keperluan }}</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
-                                                    role="button" data-toggle="dropdown">
-                                                    <i class="fa fa-ellipsis-h"></i>
-                                                </a>
 
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('lab.ruang.show', $item->encrypted_id) }}"><i
-                                                            class="fal fa-eye"></i> Detail</a>
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('lab.ruang.edit', $item->encrypted_id) }}"><i
-                                                            class="fa fa-pencil"></i> Edit</a>
-
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
                         </table>
 
                     </div>
@@ -61,4 +34,64 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function() {
+            var dataLab = $('.data-laboratorium').DataTable({
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                autoWidth: false,
+                ajax: '{{ route('lab.data.ajax') }}',
+                columns: [
+                    {
+                        data: null,
+                        name: 'encrypted_id',
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    {
+                        data: 'nama_lokasi',
+                        name: 'nama_lokasi',
+                        orderable: true
+                    },
+                    {
+                        data: 'tanggal_kegiatan',
+                        name: 'tanggal_kegiatan',
+                        orderable: true
+                    },
+                    {
+                        data: 'keperluan',
+                        name: 'keperluan',
+                        orderable: true
+                    },
+                    {
+                        data: null,
+                        name: 'aksi',
+                        orderable: false,
+                        searchable: false,
+                        exportable: false,
+                        render: function(data, type, row) {
+                            var showUrl = "{{ route('lab.ruang.show', ':id') }}".replace(':id', row.encrypted_id);
+                            var editUrl = "{{ route('lab.ruang.edit', ':id') }}".replace(':id', row.encrypted_id);
+
+                            return `
+                                <div class="dropdown">
+                                    <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                        <i class="fa fa-ellipsis-h"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="${showUrl}"><i class="fal fa-eye"></i> Detail</a>
+                                        <a class="dropdown-item" href="${editUrl}"><i class="fa fa-pencil"></i> Edit</a>
+                                    </div>
+                                </div>`;
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+
 @endsection

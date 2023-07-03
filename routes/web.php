@@ -110,6 +110,7 @@ Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verifi
             'destroy' => 'barang.history.destroy',
         ]
     );
+    Route::get('dataAktivitas', [LabController::class, 'dataLaboratorium'])->name('data.ajax');
     //chart line aktivitas lab
 });
 Route::get('chart/aktivitas', [LabController::class, 'chartAktivitasLab'])->name('chart.aktivitas.lab')->middleware('auth', 'verified', 'role:admin lab|jurusan');

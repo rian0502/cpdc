@@ -1,8 +1,10 @@
 <?php
 
 namespace Database\Factories;
-
+use Illuminate\Support\Str;
+use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Crypt;
 
 class LaboratoriumFactory extends Factory
 {
@@ -13,14 +15,19 @@ class LaboratoriumFactory extends Factory
      */
     public function definition()
     {
+        $jamMulai = $this->faker->time();
+        $jamSelesai = $this->faker->dateTimeBetween($jamMulai, '23:59:59');
+        $id = $this->faker->unique()->numberBetween(1, 999999);
         return [
-            'nama_kegiatan' => $this->faker->name,
-            'id_lokasi' => $this->faker->randomElement([1,2,3]),
+            'id' => $id,
+            'encrypted_id' => Crypt::encrypt($id),
+            'nama_kegiatan' => $this->faker->sentence(3),
+            'id_lokasi' => $this->faker->numberBetween(1, 4),
             'keperluan' => $this->faker->randomElement(['Praktikum', 'Seminar', 'Ujian', 'Penlitian', 'Lainnya']),
             'tanggal_kegiatan' => $this->faker->date(),
-            'jam_mulai' => $this->faker->time(),
-            'jam_selesai' => $this->faker->time(),
-            'keterangan' => $this->faker->text(),
+            'jam_mulai' => $jamMulai,
+            'jam_selesai' => $jamSelesai,
+            'keterangan' => substr($this->faker->paragraph, 0, 255),
             'created_at' => now(),
             'updated_at' => now(),
         ];
