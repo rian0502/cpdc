@@ -94,14 +94,6 @@
                         <i class="fa-solid fa-calendar-days me-3"></i>
                         <small id="tanggal" style="scale: 1;"></small>
                     </small>
-                    {{-- <div class="ms-3 d-flex">
-                        <a class="btn btn-sm-square btn-light text-primary rounded-circle ms-2" href=""><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-sm-square btn-light text-primary rounded-circle ms-2" href=""><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-sm-square btn-light text-primary rounded-circle ms-2" href=""><i
-                                class="fab fa-linkedin-in"></i></a>
-                    </div> --}}
                 </div>
             </div>
         </div>
@@ -270,10 +262,6 @@
                         </a>
                     </p>
                     <div class="d-flex pt-3">
-                        {{-- <a class="btn btn-square btn-light rounded-circle me-2" target="_blank"
-                            href="https://mobile.twitter.com/HimakiUnila">
-                            <i class="fab fa-twitter"></i>
-                        </a> --}}
                         <a class="btn btn-square btn-light rounded-circle me-2" target="_blank"
                             href="https://www.facebook.com/jurkimiafmipaunila/">
                             <i class="fab fa-facebook-f"></i>
@@ -289,12 +277,6 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-6">
-                    {{-- <h4 class="text-white mb-2">Tautan</h4>
-                    <a class="btn btn-link" target="_blank" href="https://www.unila.ac.id/ ">Universitas</a>
-                    <a class="btn btn-link" target="_blank" href="https://fmipa.unila.ac.id/">Fakultas</a>
-                    <a class="btn btn-link" target="_blank" href="https://kimia.fmipa.unila.ac.id/">Jurusan</a>
-                    <a class="btn btn-link" target="_blank" href="https://siakadu.unila.ac.id/">Siakadu</a>
-                    <a class="btn btn-link" target="_blank" href="https://vclass.unila.ac.id/">VClass</a> --}}
                 </div>
                 <div class="col-lg-5 col-md-12">
                     <div class="col-lg-5 col-md-6 px-lg-5">
@@ -314,34 +296,6 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Our Services</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">Support</a>
-                </div> --}}
-                {{-- <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Business Hours</h4>
-                    <p class="mb-1">Monday - Friday</p>
-                    <h6 class="text-light">09:00 am - 07:00 pm</h6>
-                    <p class="mb-1">Saturday</p>
-                    <h6 class="text-light">09:00 am - 12:00 pm</h6>
-                    <p class="mb-1">Sunday</p>
-                    <h6 class="text-light">Closed</h6>
-                </div> --}}
-                {{-- <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div class="position-relative w-100">
-                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text"
-                            placeholder="Your email">
-                        <button type="button"
-                            class="btn btn-light py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </div>
