@@ -179,7 +179,6 @@
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                {{-- hanya tampil saat mode mobile --}}
                                 <div class="form-group" id="form-mobile">
                                     <label>Judul atau Topik Tugas Akhir</label>
                                     <textarea name="judul_ta" id="judul_ta" rows="" class="form-control">{{ old('judul_ta') }}</textarea>
@@ -205,7 +204,6 @@
                                         @enderror
                                     </div>
                                 </div>
-                                {{-- hanya tampil saat mode mobile --}}
                             </div>
                         </div>
                         <div class="form-group">

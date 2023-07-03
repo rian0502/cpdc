@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-md-3 bold"><b>No Telphone</b></label>
+                                <label class="col-md-3 bold"><b>Nomor Telepon</b></label>
                                 <div class="col-md-3">
                                     {{ $mahasiswa->no_hp }}
                                 </div>
@@ -128,7 +128,7 @@
                                             <h5 class="h4 text-blue mb-20">Data Seminar Kerja Praktik</h5>
 
                                             @if ($kp != null)
-                                            <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="row border-bottom mt-3">
                                                         <label class="col-md-12 bold"><b>Judul atau Topik</b></label>
                                                         <div class="col-md-12 mb-3"
@@ -214,15 +214,15 @@
                                                     </div>
 
 
-                                            </div>
-                                        @else
-                                        <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                            <div class="d-flex justify-content-center align-items-center mt-2">
-                                                <div>
-                                                    <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            @else
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    <div class="d-flex justify-content-center align-items-center mt-2">
+                                                        <div>
+                                                            <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @endif
 
                                             <style type="text/css">
@@ -236,8 +236,8 @@
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Jadwal</h5>
                                             @if ($kp)
-                                            <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                                {{-- BUAT KONDISI DISINI --}}
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    {{-- BUAT KONDISI DISINI --}}
                                                     <div class="row border-bottom">
                                                         <label class="col-md-3 bold mt-2"> <strong>Tanggal
                                                                 Seminar</strong></label>
@@ -281,15 +281,15 @@
                                                     </div>
 
 
-                                            </div>
-                                        @else
-                                        <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                            <div class="d-flex justify-content-center align-items-center mt-2">
-                                                <div>
-                                                    <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
                                                 </div>
-                                            </div>
-                                            </div>
+                                            @else
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    <div class="d-flex justify-content-center align-items-center mt-2">
+                                                        <div>
+                                                            <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @endif
                                             <style type="text/css">
                                                 a:hover {
@@ -301,8 +301,8 @@
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Berita Acara</h5>
                                             @if ($kp && $kp->berita_acara)
-                                            <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                                {{-- BUAT KONDISI DISINI --}}
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    {{-- BUAT KONDISI DISINI --}}
                                                     <div class="row border-bottom">
                                                         <label class="col-md-3 bold"> <strong>Bukti
                                                                 Seminar</strong></label>
@@ -339,15 +339,15 @@
                                                         </div>
                                                     </div>
 
-                                            </div>
-                                        @else
-                                        <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                            <div class="d-flex justify-content-center align-items-center mt-2">
-                                                <div>
-                                                    <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
                                                 </div>
-                                            </div>
-                                            </div>
+                                            @else
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    <div class="d-flex justify-content-center align-items-center mt-2">
+                                                        <div>
+                                                            <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @endif
 
                                             <style type="text/css">
