@@ -204,7 +204,7 @@
                             </div>
                             <a href="{{ route('koor.jadwalTA1.index') }}">
 
-                                <button class="batal btn btn-secondary" id="submitButton">Batal</button>
+                                <button class="batal btn btn-secondary" >Batal</button>
                             </a>
 
                         </form>
