@@ -491,82 +491,9 @@
                                 <li><a href="{{ route('mahasiswa.sidang.kompre.index') }}"
                                         class="{{ Request::is('mahasiswa/sidang/kompre*') ? 'active' : '' }}">Sidang
                                         Komprehensif</a></li>
-                                {{-- <li class="dropdown">
-                                    <a href="javascript:;" class="dropdown-toggle">
-                                        <span class="micon fa-solid fa-graduation-cap"></span><span
-                                            class="mtext">Skripsi</span>
-                                    </a>
-                                    <ul class="submenu child">
-                                        <li><a href="javascript:;">Seminar Usul Penelitian</a></li>
-                                        <li><a href="{{ route('mahasiswa.seminar.sempro.index') }}"
-                                                class="{{ Request::is('mahasiswa/seminar/sempro*') ? 'active' : '' }}">Seminar
-                                                Proposal</a>
-                                        </li>
-                                        <li><a href="{{ route('mahasiswa.seminar.semhas.index') }}"
-                                                class="{{ Request::is('mahasiswa/seminar/semhas*') ? 'active' : '' }}">Seminar
-                                                Hasil
-                                                Penelitian</a></li>
-                                        <li><a href="{{ route('mahasiswa.sidang.kompre.index') }}"
-                                                class="{{ Request::is('mahasiswa/seminar/kompre*') ? 'active' : '' }}">Sidang
-                                                Komprehensif</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="javascript:;" class="dropdown-toggle">
-                                        <span class="micon fa-solid fa-graduation-cap"></span><span class="mtext">Tugas
-                                            Akhir</span>
-                                    </a>
-                                    <ul class="submenu child">
-                                        <li><a href="javascript:;">Seminar Tugas Akhir 1</a></li>
-                                        <li><a href="javascript:;">Seminar Tugas Akhir 2</a></li>
-                                        <li><a href="javascript:;">Sidang Komprehensif</a></li>
-                                    </ul>
-                                </li> --}}
                             </ul>
                         </li>
                     @endrole
-
-
-                    {{-- <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon bi bi-back"></span><span class="mtext">Extra Pages</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a href="blank.html">Blank</a></li>
-                            <li><a href="contact-directory.html">Contact Directory</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="blog-detail.html">Blog Detail</a></li>
-                            <li><a href="product.html">Product</a></li>
-                            <li><a href="product-detail.html">Product Detail</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="profile.html">Profile</a></li>
-                            <li><a href="gallery.html">Gallery</a></li>
-                            <li><a href="pricing-table.html">Pricing Tables</a></li>
-                        </ul>
-                    </li> --}}
-                    {{-- <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon bi bi-hdd-stack"></span><span class="mtext">Multi Level Menu</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a href="javascript:;">Level 1</a></li>
-                            <li><a href="javascript:;">Level 1</a></li>
-                            <li><a href="javascript:;">Level 1</a></li>
-                            <li class="dropdown">
-                                <a href="javascript:;" class="dropdown-toggle">
-                                    <span class="micon fa fa-plug"></span><span class="mtext">Level 2</span>
-                                </a>
-                                <ul class="submenu child">
-                                    <li><a href="javascript:;">Level 2</a></li>
-                                    <li><a href="javascript:;">Level 2</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="javascript:;">Level 1</a></li>
-                            <li><a href="javascript:;">Level 1</a></li>
-                            <li><a href="javascript:;">Level 1</a></li>
-                        </ul>
-                    </li> --}}
 
                     @role('admin berkas')
                         <li>

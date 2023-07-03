@@ -62,27 +62,15 @@
         <div class="container py-3">
             <div class="d-flex align-items-center">
                 <a href="">
-                    {{-- <h2 class="text-white fw-bold m-0">C P D C</h2> --}}
                     <img src="/Assets/images/logo/white.png" width="55" style="margin-top:-22px;" alt="Logo CPDC">
                 </a>
                 <div class="ms-auto d-flex align-items-center">
-                    {{-- <small class="ms-4"><i class="fa fa-map-marker-alt me-3"></i>Jl. Prof. Dr. Ir.
-                        Soemantri Brodjonegoro, Gedong Meneng, Rajabasa, Bandar Lampung</small> --}}
                     <small class="ms-4"><i class="fa fa-envelope me-3"></i>chemistry@fmipa.unila.ac.id</small>
                     <small class="ms-4"><i class="fa fa-phone-alt me-3"></i>0721-704625</small>
                     <small class="ms-4">
                         <i class="fa-solid fa-calendar-days me-3"></i>
                         <small id="tanggal" style="scale: 1;"></small>
                     </small>
-                    {{-- <small class="ms-4"><i class=" me-3" id="tanggal"> </i></small> --}}
-                    {{-- <div class="ms-3 d-flex">
-                        <a class="btn btn-sm-square btn-light text-primary rounded-circle ms-2" href=""><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-sm-square btn-light text-primary rounded-circle ms-2" href=""><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-sm-square btn-light text-primary rounded-circle ms-2" href=""><i
-                                class="fab fa-linkedin-in"></i></a>
-                    </div> --}}
                 </div>
             </div>
         </div>
@@ -94,10 +82,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light p-lg-0">
                 <a href="{{ route('dashboard') }}" class="navbar-brand d-lg-none">
-                    {{-- Tampilan mobile --}}
-                    {{-- <h1 class="fw-bold m-0">C P D C</h1> --}}
                     <img src="/Assets/images/logo/color.svg" width="45" style="margin-top: -25px;" alt="" />
-                    {{-- Tampilan mobile --}}
                 </a>
                 <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
@@ -179,9 +164,6 @@
                                     </p>
                                     <h1 class="display-1 text-white mb-4 animated slideInRight">Chemistry is the bridge
                                         between physics and biology</h1>
-                                    {{-- <a href=""
-                                        class="btn btn-primary rounded-pill py-3 px-5 animated slideInRight">Explore
-                                        More</a> --}}
                                 </div>
                             </div>
                         </div>
@@ -199,9 +181,6 @@
                                     <h1 class="display-1 text-white mb-5 animated slideInLeft">Chemistry is science
                                         that
                                         changed the world</h1>
-                                    {{-- <a href=""
-                                        class="btn btn-primary rounded-pill py-3 px-5 animated slideInLeft">Explore
-                                        More</a> --}}
                                 </div>
                             </div>
                         </div>
@@ -259,10 +238,6 @@
                     </p>
 
                     <div class="d-flex pt-3">
-                        {{-- <a class="btn btn-square btn-light rounded-circle me-2" target="_blank"
-                            href="https://mobile.twitter.com/HimakiUnila">
-                            <i class="fab fa-twitter"></i>
-                        </a> --}}
                         <a class="btn btn-square btn-light rounded-circle me-2" target="_blank"
                             href="https://www.facebook.com/jurkimiafmipaunila/">
                             <i class="fab fa-facebook-f"></i>
@@ -298,26 +273,6 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Business Hours</h4>
-                    <p class="mb-1">Monday - Friday</p>
-                    <h6 class="text-light">09:00 am - 07:00 pm</h6>
-                    <p class="mb-1">Saturday</p>
-                    <h6 class="text-light">09:00 am - 12:00 pm</h6>
-                    <p class="mb-1">Sunday</p>
-                    <h6 class="text-light">Closed</h6>
-                </div> --}}
-                {{-- <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div class="position-relative w-100">
-                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text"
-                            placeholder="Your email">
-                        <button type="button"
-                            class="btn btn-light py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </div>

@@ -293,8 +293,6 @@
             <a href="/" class="text-dark">
 
                 <img src="/Assets/images/logo/color-text.png" width="" alt="Logo CPDC">
-                {{-- <img src="/Assets/admin/vendors/images/deskapp-logo.svg" alt="" class="dark-logo" /> --}}
-                {{-- <img src="/Assets/admin/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" /> --}}
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
