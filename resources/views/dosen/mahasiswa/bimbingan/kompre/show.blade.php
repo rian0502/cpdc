@@ -11,7 +11,6 @@
         a:hover {
             cursor: pointer;
         }
-
     </style>
     </style>
     <div class="main-container">
@@ -304,55 +303,61 @@
                                         </div>
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Berita Acara</h5>
-                                            <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                                <div class="row border-bottom">
-                                                    <label class="col-md-3 bold"> <strong>Berita Acara</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <a target="_blank"
-                                                            href="/uploads/berita_acara_seminar_kp/{{ $ba_ta1->berkas_ba_seminar_ta_satu }}">Lihat</a>
+                                            @if ($ba_ta1 != null)
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    <div class="row border-bottom">
+                                                        <label class="col-md-3 bold"> <strong>Berita Acara</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            <a target="_blank"
+                                                                href="/uploads/ba_seminar_ta_satu/{{ $ba_ta1->berkas_ba_seminar_ta_satu }}">Lihat</a>
+                                                        </div>
+                                                        <label class="col-md-3 bold mt-2"><b>Nomor Bukti
+                                                                Seminar</b></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $ba_ta1->no_berkas_ba_seminar_ta_satu }}
+                                                        </div>
                                                     </div>
-                                                    <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $ba_ta1->no_berkas_ba_seminar_ta_satu }}
+                                                    <div class="row border-bottom mt-2">
+                                                        <label class="col-md-3 bold"> <strong>PPT</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            <a target="_blank"
+                                                                href="/uploads/ta_satu/{{ $ba_ta1->ta_satu }}">Lihat</a>
+                                                        </div>
+                                                        <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            <a target="_blank"
+                                                                href="/uploads/ta_satu/{{ $ba_ta1->ta_satu }}">Lihat</a>
+                                                        </div>
+
                                                     </div>
-                                                </div>
-                                                <div class="row border-bottom mt-2">
-                                                    <label class="col-md-3 bold"> <strong>PPT</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <a target="_blank"
-                                                            href="/uploads/ta_satu/{{ $ba_ta1->ta_satu }}">Lihat</a>
+                                                    <div class="row border-bottom mt-2">
+                                                        <label class="col-md-3 bold"> <strong>Nilai Total</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $ba_ta1->nilai }}
+                                                        </div>
+                                                        <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            <b> {{ $ba_ta1->nilai_mutu }} </b>
+                                                        </div>
                                                     </div>
-                                                    <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <a target="_blank"
-                                                            href="/uploads/ta_satu/{{ $ba_ta1->ta_satu }}">Lihat</a>
+                                                    <div class="row mt-2">
+                                                        <label class="col-md-3 bold mt-1"><strong>Status
+                                                                Seminar</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $seminarTa1->status_seminar }}
+                                                        </div>
                                                     </div>
 
                                                 </div>
-                                                <div class="row border-bottom mt-2">
-                                                    <label class="col-md-3 bold"> <strong>Nilai Total</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $ba_ta1->nilai_akhir }}
-                                                    </div>
-                                                    <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <b> {{ $ba_ta1->nilai_mutu }} </b>
+                                            @else
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    <div class="d-flex justify-content-center align-items-center mt-2">
+                                                        <div>
+                                                            <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="row mt-2">
-                                                    <label class="col-md-3 bold mt-1"><strong>Status
-                                                            Seminar</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $seminarTa1->status_seminar }}
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <style type="text/css">
-                                                a:hover {
-                                                    cursor: pointer;
-                                                }
-                                            </style>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -434,13 +439,13 @@
                                                     <div class="row border-bottom mt-2">
                                                         <label class="col-md-3 bold mt-2"> <strong>IPK</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{-- {{ $seminarTa2->ipk }} --}}
+                                                            {{ $seminarTa2->ipk }}
                                                         </div>
                                                         <label class="col-md-3 bold"> <strong>Berkas
                                                                 Kelengkapan</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/syarat_seminar_ta1/{{ $seminarTa2->berkas_ta_dua }}">Lihat
+                                                                href="/uploads/syarat_seminar_ta2/{{ $seminarTa2->berkas_ta_dua }}">Lihat
                                                                 Berkas</a>
                                                         </div>
                                                     </div>
@@ -548,7 +553,7 @@
                                                         <label class="col-md-3 bold"> <strong>PPT</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/ta_satu/{{ $ba_ta2->berkas_ppt_seminar_ta_dua }}">Lihat</a>
+                                                                href="/uploads/ta_dua/{{ $ba_ta2->berkas_ppt_seminar_ta_dua }}">Lihat</a>
                                                         </div>
                                                         <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -587,11 +592,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <style type="text/css">
-                                                a:hover {
-                                                    cursor: pointer;
-                                                }
-                                            </style>
+
                                         </div>
                                     </div>
                                 </div>
@@ -606,18 +607,28 @@
                                                                 Akhir</b></label>
                                                         <div class="col-md-12 mb-3"
                                                             style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->judul_kp }}
+                                                            {{ $sidangKompre->judul_ta }}
                                                         </div>
                                                     </div>
                                                     <div class="row border-bottom">
                                                         <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->dosen->nama_dosen }}
+                                                            @if ($sidangKompre->dosen)
+                                                                {{ $sidangKompre->dosen->nama_dosen }}
+                                                            @else
+                                                                -
+                                                            @endif
                                                         </div>
                                                         <label class="col-md-3 bold mt-1"><strong>Pembimbing
                                                                 2</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->region }}
+                                                            @if ($sidangKompre->pembimbing_dua)
+                                                                {{ $sidangKompre->pembimbing_dua->nama_dosen }}
+                                                            @elseif ($sidangKompre->pbl2_nama)
+                                                                {{ $sidangKompre->pbl2_nama }}
+                                                            @else
+                                                                -
+                                                            @endif
                                                         </div>
                                                     </div>
                                                     <div class="row border-bottom">
@@ -629,6 +640,14 @@
                                                         </div>
                                                         <label class="col-md-3 bold mt-2"> <strong>NIP Dosen
                                                                 External</strong trong></label>
+                                                        <div class="col-md-3 mt-2"
+                                                            style="display:block;word-wrap:break-word;">
+                                                            @if ($seminarTa2->pbl2_nip)
+                                                                {{ $seminarTa2->pbl2_nip }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </div>
                                                         <div class="col-md-3 mt-2"
                                                             style="display:block;word-wrap:break-word;">
                                                             {{ $sidangKompre->mitra }}
@@ -644,7 +663,7 @@
                                                         </div>
                                                         <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->pembimbing_lapangan }}
+                                                            {{ $sidangKompre->pembahas->nama_dosen }}
                                                         </div>
                                                     </div>
 
@@ -657,7 +676,7 @@
                                                         <label class="col-md-3 bold"> <strong>Rencana
                                                                 Seminar</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->ni_pemlap }}
+                                                            {{ $sidangKompre->periode_seminar }}
                                                         </div>
                                                     </div>
 
@@ -669,7 +688,8 @@
                                                         <label class="col-md-3 bold"> <strong>Berkas
                                                                 Kelengkapan</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <a target="_blank" href="/uploads/syarat_seminar_ta1/">Unduh
+                                                            <a target="_blank"
+                                                                href="/uploads/syarat_sidang_kompre/{{ $sidangKompre->berkas_kompre }}">Unduh
                                                                 Berkas</a>
                                                         </div>
                                                     </div>
@@ -681,10 +701,10 @@
                                                             {{ $sidangKompre->toefl }}
                                                         </div>
 
-                                                        <label class="col-md-3 bold"> <strong></strong></label>
+                                                        {{-- <label class="col-md-3 bold"> <strong></strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             Kosongkan
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
 
                                                 </div>
@@ -764,7 +784,7 @@
                                                                 Acara</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/berita_acara_seminar_kp/{{ $ba_kompre->ba_seminar_komprehensif }}">Lihat</a>
+                                                                href="/uploads/ba_sidang_kompre/{{ $ba_kompre->ba_seminar_komprehensif }}">Lihat</a>
                                                         </div>
                                                         <label class="col-md-3 bold mt-2"><b>Nomor Bukti
                                                                 Seminar</b></label>
@@ -773,7 +793,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="row border-bottom mt-2">
-                                                        <label class="col-md-3 bold"> <strong>Laporan Akhir</strong></label>
+                                                        <label class="col-md-3 bold"> <strong>Laporan
+                                                                Akhir</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
                                                                 href="{{ $ba_kompre->laporan_ta }}">Lihat</a>
