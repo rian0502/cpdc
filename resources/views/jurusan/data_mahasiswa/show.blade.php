@@ -26,6 +26,10 @@
             height: 100%;
             object-fit: cover;
         }
+
+        a:hover {
+            cursor: pointer;
+        }
     </style>
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
@@ -91,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-md-3 bold"><b>No Telphone</b></label>
+                                <label class="col-md-3 bold"><b>Nomor Telepon</b></label>
                                 <div class="col-md-3">
                                     {{ $mahasiswa->no_hp }}
                                 </div>
@@ -123,11 +127,6 @@
 
                             </div>
                         </div>
-                        <style type="text/css">
-                            a:hover {
-                                cursor: pointer;
-                            }
-                        </style>
                     </div>
                 </div>
                 <div class="card-box mb-30">
@@ -264,11 +263,6 @@
                                                 </div>
                                             @endif
 
-                                            <style type="text/css">
-                                                a:hover {
-                                                    cursor: pointer;
-                                                }
-                                            </style>
                                         </div>
 
 
@@ -330,11 +324,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <style type="text/css">
-                                                a:hover {
-                                                    cursor: pointer;
-                                                }
-                                            </style>
+                                  
                                         </div>
 
                                         <div class="p-md-4">
@@ -349,7 +339,7 @@
                                                             <a target="_blank"
                                                                 href="/uploads/berita_acara_seminar_kp/{{ $kp->berita_acara->berkas_ba_seminar_kp }}">Lihat</a>
                                                         </div>
-                                                        <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
+                                                        <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             {{ $kp->berita_acara->no_ba_seminar_kp }}
                                                         </div>
@@ -389,11 +379,6 @@
                                                 </div>
                                             @endif
 
-                                            <style type="text/css">
-                                                a:hover {
-                                                    cursor: pointer;
-                                                }
-                                            </style>
                                         </div>
 
 
@@ -499,11 +484,7 @@
 
 
                                             </div>
-                                            <style type="text/css">
-                                                a:hover {
-                                                    cursor: pointer;
-                                                }
-                                            </style>
+                                        
                                         </div>
 
                                         {{-- BUAT KONDISI DISINI --}}
@@ -551,11 +532,7 @@
                                                 </div>
 
                                             </div>
-                                            <style type="text/css">
-                                                a:hover {
-                                                    cursor: pointer;
-                                                }
-                                            </style>
+                                           
                                         </div>
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Berita Acara</h5>
@@ -566,7 +543,7 @@
                                                         <a target="_blank"
                                                             href="/uploads/berita_acara_seminar_kp/{{-- $berita_acara->berkas_ba_seminar_kp --}}">Lihat</a>
                                                     </div>
-                                                    <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
+                                                    <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         {{-- {{ $berita_acara->no_ba_seminar_kp }} --}}
                                                     </div>
@@ -603,11 +580,7 @@
                                                 </div>
 
                                             </div>
-                                            <style type="text/css">
-                                                a:hover {
-                                                    cursor: pointer;
-                                                }
-                                            </style>
+                                         
                                         </div>
                                     </div>
                                 </div>
@@ -711,11 +684,7 @@
 
 
                                             </div>
-                                            <style type="text/css">
-                                                a:hover {
-                                                    cursor: pointer;
-                                                }
-                                            </style>
+                                            
                                         </div>
 
                                         {{-- BUAT KONDISI DISINI --}}
@@ -763,11 +732,7 @@
                                                 </div>
 
                                             </div>
-                                            <style type="text/css">
-                                                a:hover {
-                                                    cursor: pointer;
-                                                }
-                                            </style>
+                                          
                                         </div>
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Berita Acara</h5>
@@ -778,7 +743,7 @@
                                                         <a target="_blank"
                                                             href="/uploads/berita_acara_seminar_kp/{{-- $berita_acara->berkas_ba_seminar_kp --}}">Lihat</a>
                                                     </div>
-                                                    <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
+                                                    <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         {{-- {{ $berita_acara->no_ba_seminar_kp }} --}}
                                                     </div>
@@ -813,13 +778,7 @@
                                                         {{-- {{ $seminar->status_seminar }} --}}
                                                     </div>
                                                 </div>
-
                                             </div>
-                                            <style type="text/css">
-                                                a:hover {
-                                                    cursor: pointer;
-                                                }
-                                            </style>
                                         </div>
                                     </div>
                                 </div>
@@ -907,16 +866,10 @@
 
                                                     <label class="col-md-3 bold"> <strong></strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{-- Kosongkan --}}
+                                                        Kosongkan
                                                     </div>
                                                 </div>
-
                                             </div>
-                                            <style type="text/css">
-                                                a:hover {
-                                                    cursor: pointer;
-                                                }
-                                            </style>
                                         </div>
 
                                         {{-- BUAT KONDISI DISINI --}}
@@ -964,11 +917,7 @@
                                                 </div>
 
                                             </div>
-                                            <style type="text/css">
-                                                a:hover {
-                                                    cursor: pointer;
-                                                }
-                                            </style>
+                                            
                                         </div>
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Berita Acara</h5>
@@ -979,7 +928,7 @@
                                                         <a target="_blank"
                                                             href="/uploads/berita_acara_seminar_kp/{{-- $berita_acara->berkas_ba_seminar_kp --}}">Lihat</a>
                                                     </div>
-                                                    <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
+                                                    <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         {{-- {{ $berita_acara->no_ba_seminar_kp }} --}}
                                                     </div>
@@ -1016,11 +965,7 @@
                                                 </div>
 
                                             </div>
-                                            <style type="text/css">
-                                                a:hover {
-                                                    cursor: pointer;
-                                                }
-                                            </style>
+                                            
                                         </div>
                                     </div>
                                 </div>
