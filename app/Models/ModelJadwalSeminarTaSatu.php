@@ -17,10 +17,12 @@ class ModelJadwalSeminarTaSatu extends Model
         'id_lokasi',
         'id_seminar'
     ];
-    public function seminar (){
+    public function seminar()
+    {
         return $this->belongsTo(ModelSeminarTaSatu::class, 'id_seminar');
     }
-    public function lokasi(){
+    public function lokasi()
+    {
         return $this->belongsTo(Lokasi::class, 'id_lokasi');
     }
 }
