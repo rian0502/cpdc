@@ -39,7 +39,10 @@ class MahasiswaTaDuaController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->mahasiswa->ta_satu->first()->status_koor != 'Selesai'){
+        if (Auth::user()->mahasiswa->ta_satu->first()) {
+            return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Anda belum dapat menyelesaikan tugas akhir 1');
+        }
+        if (Auth::user()->mahasiswa->ta_satu->first()->status_koor != 'Selesai') {
             return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Anda belum dapat menyelesaikan tugas akhir 1');
         }
         return view('mahasiswa.ta2.create');
@@ -57,7 +60,7 @@ class MahasiswaTaDuaController extends Controller
             'periode_seminar' => ['required'],
             'agreement' => ['required'],
             'berkas_seminar_ta_dua' => ['required', 'mimes:pdf', 'max:2048', 'file', 'mimetypes:application/pdf'],
-        ],[
+        ], [
             'periode_seminar.required' => 'Periode seminar tidak boleh kosong',
             'agreement.required' => 'agreement harus di ceklis',
             'berkas_seminar_ta_dua.required' => 'Berkas seminar tidak boleh kosong',
@@ -85,9 +88,9 @@ class MahasiswaTaDuaController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
-        if($seminar->id_pembimbing_dua != null){
+        if ($seminar->id_pembimbing_dua != null) {
             $ta2['id_pembimbing_dua'] = $seminar->id_pembimbing_dua;
-        }else{
+        } else {
             $ta2['pbl2_nama'] = $seminar->pbl2_nama;
             $ta2['pbl2_nip'] = $seminar->pbl2_nip;
         }
