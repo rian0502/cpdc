@@ -88,7 +88,7 @@
                                             @if (old('id_pembimbing_dua') == 'new' || $errors->has('pbl2_nama'))
                                                 <option value="new" selected>Tidak Ada diDaftar Ini</option>
                                             @else
-                                                <option value="new">Tidak Ada diDaftar Ini</option>
+                                                <option value="new">Tidak Ada di Daftar Ini</option>
                                             @endif/optgroup>
                                     </select>
                                 </div>
@@ -116,7 +116,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
                             </div>
 
                             {{-- form untuk sebelah kanan --}}
@@ -133,11 +132,9 @@
                                                     {{ $item->nama_dosen }}
                                                 </option>
                                             @endforeach
-                                            {{-- <option value="Tidak Ada di Daftar Ini">Tidak Ada di Daftar Ini</option> --}}
                                         </optgroup>
                                     </select>
                                 </div>
-                                {{-- fungsi jika tidak ada tersedia nama pembimbing dan pembahas di data diatas --}}
 
                                 <div class="form-group">
                                     <label>Periode Seminar</label>
