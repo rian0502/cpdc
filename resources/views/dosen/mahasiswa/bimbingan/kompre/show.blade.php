@@ -128,7 +128,6 @@
                                 </li>
                             </ul>
                             <div class="tab-content">
-
                                 <div class="tab-pane fade show active" id="ta1" role="tabpanel">
                                     <div class="pd-20">
                                         <div class="p-md-4">
@@ -244,7 +243,6 @@
                                             @endif
                                         </div>
 
-                                        {{-- BUAT KONDISI DISINI --}}
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Jadwal</h5>
                                             @if ($seminarTa1)
