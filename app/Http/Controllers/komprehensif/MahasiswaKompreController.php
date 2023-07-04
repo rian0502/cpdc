@@ -50,11 +50,11 @@ class MahasiswaKompreController extends Controller
         if (!$seminar_ta_dua) {
             return redirect()->route('mahasiswa.seminar.tugas_akhir_2.create')->with('error', 'Anda belum menyelesaikan seminar TA 2');
         }
-        if(!$seminar_ta_dua->status_koor != 'Selesai'){
+        if($seminar_ta_dua->status_koor != 'Selesai'){
             return redirect()->route('mahasiswa.seminar.tugas_akhir_2.create')->with('error', 'Anda belum menyelesaikan seminar TA 2');
         }
         $data = [
-            'berkas' => BerkasPersyaratanSeminar::find(4)
+            'syarat' => BerkasPersyaratanSeminar::find(4)
         ];
         return view('mahasiswa.kompre.create', $data);
     }
