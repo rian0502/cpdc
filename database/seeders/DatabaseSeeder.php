@@ -12,6 +12,7 @@ use Database\Seeders\BaseNPMSeeder;
 use Database\Seeders\RolePermision;
 use Database\Seeders\AktivitasLabSeeder;
 use Database\Seeders\SeederAdministrasi;
+use Database\Seeders\TugasAkhirSatuSeeder;
 use Database\Seeders\BerkasKelengkapanSeeder;
 
 
@@ -32,5 +33,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BerkasKelengkapanSeeder::class);
         $this->call(BaseNPMSeeder::class);
         $this->call(TugasAkhirSatuSeeder::class);
+        $this->call(AktivitasLabSeeder::class);
     }
 }

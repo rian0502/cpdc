@@ -1209,15 +1209,7 @@
                                 column: {
                                     pointPadding: 0.2,
                                     borderWidth: 0,
-                                    dataLabels: {
-                                        enabled: true,
-                                        align: 'right',
-                                        inside: false,
-                                        format: '{point.y:,.0f}', // Menggunakan format dengan koma sebagai pemisah ribuan
-                                        style: {
-                                            fontWeight: 'bold'
-                                        }
-                                    }
+                                    
                                 }
                             },
 
