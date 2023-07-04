@@ -258,7 +258,7 @@
                     <p class="mb-2">
                         <i class="fa fa-envelope me-3"></i>
                         <a target="_blank" href="mailto:chemistryprogramdatacenter@gmail.com" class="alamat">
-                            chemistryprogramdatacenter@gmail.com
+                            Chemistryprogramdatacenter@gmail.com
                         </a>
                     </p>
                     <div class="d-flex pt-3">
