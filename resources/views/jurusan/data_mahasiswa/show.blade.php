@@ -546,7 +546,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
+                                                @if($seminarTa1->ba_seminar)
                                                 <div class="p-md-4">
                                                     <h5 class="h4 text-blue mb-20">Berita Acara</h5>
                                                     <div class="p-3 mb-2 bg-light text-dark rounded-div">
@@ -595,6 +596,7 @@
                                                     </div>
         
                                                 </div>
+                                                @endif
                                             @else
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="d-flex justify-content-center align-items-center mt-2">
