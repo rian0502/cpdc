@@ -591,7 +591,7 @@
                                                     </div>
                                                     <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <b> {{ $ba_ta1->nilai_mutu }} </b>
+                                                        <b> {{ $ba_ta1->huruf_mutu }} </b>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
