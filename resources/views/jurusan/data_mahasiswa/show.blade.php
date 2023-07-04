@@ -479,9 +479,10 @@
                                                             {{ $seminarTa1->toefl }}
                                                         </div>
 
-                                                        <label class="col-md-3 bold"> <strong></strong></label>
+                                                        <label class="col-md-3 bold"> <strong>Status
+                                                                Berkas</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa1->status_seminar }}
+                                                            {{ $seminarTa1->status_admin }}
                                                         </div>
                                                     </div>
 
@@ -508,7 +509,7 @@
                                                                 Seminar</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             @if ($seminarTa1->jadwal)
-                                                                 {{ $seminarTa1->jadwal->tanggal_seminar_ta_satu }}
+                                                                {{ $seminarTa1->jadwal->tanggal_seminar_ta_satu }}
                                                             @else
                                                                 <div>Belum terjadwal</div>
                                                             @endif
@@ -590,14 +591,14 @@
                                                     </div>
                                                     <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <b> {{ $ba_ta1->nilai_mutu }} </b>
+                                                        <b> {{ $ba_ta1->huruf_mutu }} </b>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
                                                     <label class="col-md-3 bold mt-2"><strong>Status
                                                             Seminar</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $seminarTa1->status_seminar }}
+                                                        {{ $seminarTa1->status_koor }}
                                                     </div>
                                                 </div>
 
@@ -701,9 +702,10 @@
                                                             {{ $seminarTa2->toefl }}
                                                         </div>
 
-                                                        <label class="col-md-3 bold"> <strong></strong></label>
+                                                        <label class="col-md-3 bold"> <strong>Status
+                                                                Berkas</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa2->status_seminar }}
+                                                            {{ $seminarTa2->status_admin }}
                                                         </div>
                                                     </div>
 
@@ -823,7 +825,7 @@
                                                         <label class="col-md-3 bold mt-1"><strong>Status
                                                                 Seminar</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa2->status_seminar }}
+                                                            {{ $seminarTa2->status_koor }}
                                                         </div>
                                                     </div>
 
@@ -837,7 +839,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -858,16 +860,16 @@
                                                     <div class="row border-bottom">
                                                         <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            @if ($sidangKompre->dosen)
-                                                                {{ $sidangKompre->dosen->nama_dosen }}
-                                                            @else
-                                                                <div>-</div>
-                                                            @endif
+                                                            {{ $sidangKompre->pembimbingSatu->nama_dosen }}
                                                         </div>
                                                         <label class="col-md-3 bold mt-1"><strong>Pembimbing
                                                                 2</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->region }}
+                                                            @if ($sidangKompre->pembimbingDua)
+                                                                {{ $sidangKompre->pembimbingDua->nama_dosen }}
+                                                            @else
+                                                                {{ $sidangKompre->pbl2_nama }}
+                                                            @endif
                                                         </div>
                                                     </div>
                                                     <div class="row border-bottom">
@@ -879,6 +881,14 @@
                                                         </div>
                                                         <label class="col-md-3 bold mt-2"> <strong>NIP Dosen
                                                                 External</strong trong></label>
+                                                        <div class="col-md-3 mt-2"
+                                                            style="display:block;word-wrap:break-word;">
+                                                            @if ($sidangKompre->pbl2_nip)
+                                                                {{ $sidangKompre->pbl2_nip }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </div>
                                                         <div class="col-md-3 mt-2"
                                                             style="display:block;word-wrap:break-word;">
                                                             {{ $sidangKompre->mitra }}
@@ -894,7 +904,7 @@
                                                         </div>
                                                         <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->pembimbing_lapangan }}
+                                                            {{ $sidangKompre->pembahas->nama_dosen }}
                                                         </div>
                                                     </div>
 
@@ -907,7 +917,7 @@
                                                         <label class="col-md-3 bold"> <strong>Rencana
                                                                 Seminar</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->ni_pemlap }}
+                                                            {{ $sidangKompre->periode_seminar }}
                                                         </div>
                                                     </div>
 
@@ -919,7 +929,8 @@
                                                         <label class="col-md-3 bold"> <strong>Berkas
                                                                 Kelengkapan</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <a target="_blank" href="/uploads/syarat_sidang_kompre/{{ $sidangKompre->berkas_kompre }}">Unduh
+                                                            <a target="_blank"
+                                                                href="/uploads/syarat_sidang_kompre/{{ $sidangKompre->berkas_kompre }}">Unduh
                                                                 Berkas</a>
                                                         </div>
                                                     </div>
@@ -930,10 +941,10 @@
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             {{ $sidangKompre->toefl }}
                                                         </div>
-
-                                                        <label class="col-md-3 bold"> <strong></strong></label>
+                                                        <label class="col-md-3 bold"> <strong>Status
+                                                                Berkas</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            Kosongkan
+                                                            {{ $sidangKompre->status_admin }}
                                                         </div>
                                                     </div>
 
@@ -1033,7 +1044,7 @@
                                                                 Nilai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/nilai_sidang_kompre/{{ $berita_acara->berkas_nilai_kompre }}">Lihat</a>
+                                                                href="/uploads/nilai_sidang_kompre/{{ $ba_kompre->berkas_nilai_kompre }}">Lihat</a>
                                                         </div>
 
                                                     </div>
@@ -1046,14 +1057,14 @@
                                                         <label class="col-md-3 bold"> <strong>Huruf
                                                                 Mutu</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <b> {{ $ba_kompre->nilai_mutu }} </b>
+                                                            <b> {{ $ba_kompre->huruf_mutu }} </b>
                                                         </div>
                                                     </div>
                                                     <div class="row mt-2">
                                                         <label class="col-md-3 bold mt-1"><strong>Status
                                                                 Seminar</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->status_seminar }}
+                                                            {{ $sidangKompre->status_koor }}
                                                         </div>
                                                     </div>
 
@@ -1070,77 +1081,78 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="prestasi" role="tabpanel">
-                                    <div class="pd-20">
-                                        <table class="table data-table-responsive stripe data-table-noexport wrap ">
-                                            <thead>
+                            </div>
+                            <div class="tab-pane fade" id="prestasi" role="tabpanel">
+                                <div class="pd-20">
+                                    <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Judul Kegiatan</th>
+                                                <th>Peran</th>
+                                                <th>Tanggal</th>
+                                                <th>SKS Konversi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($aktivitas as $item)
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Judul Kegiatan</th>
-                                                    <th>Peran</th>
-                                                    <th>Tanggal</th>
-                                                    <th>SKS Konversi</th>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->nama_aktivitas }}</td>
+                                                    <td>{{ $item->peran }}</td>
+                                                    <td>{{ $item->tanggal }}</td>
+                                                    <td>{{ $item->sks_konversi }} SKS</td>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($aktivitas as $item)
-                                                    <tr>
-                                                        <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $item->nama_aktivitas }}</td>
-                                                        <td>{{ $item->peran }}</td>
-                                                        <td>{{ $item->tanggal }}</td>
-                                                        <td>{{ $item->sks_konversi }} SKS</td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="tab-pane fade" id="extra_activity" role="tabpanel">
-                                    <div class="pd-20">
-                                        <table class="table data-table-responsive stripe data-table-noexport wrap ">
-                                            <thead>
+                            </div>
+                            <div class="tab-pane fade" id="extra_activity" role="tabpanel">
+                                <div class="pd-20">
+                                    <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Judul Kegiatan</th>
+                                                <th>Peran</th>
+                                                <th>Tanggal</th>
+                                                <th>SKS Konversi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($aktivitas as $item)
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Judul Kegiatan</th>
-                                                    <th>Peran</th>
-                                                    <th>Tanggal</th>
-                                                    <th>SKS Konversi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($aktivitas as $item)
-                                                    <tr>
-                                                        <td>
-                                                            {{ $loop->iteration }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $item->nama_aktivitas }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $item->peran }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $item->tanggal }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $item->sks_konversi }}
-                                                            SKS</td>
+                                                    <td>
+                                                        {{ $loop->iteration }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->nama_aktivitas }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->peran }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->tanggal }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->sks_konversi }}
+                                                        SKS</td>
 
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
+
+
         </div>
+    </div>
     </div>
     <script>
         // Ambil elemen tanggal lahir dan umur dari HTML

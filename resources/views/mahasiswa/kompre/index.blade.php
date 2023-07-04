@@ -212,7 +212,7 @@
                 @if ($seminar->status_admin == 'Valid')
                     <div class="pd-20 card-box mb-30">
                         <div class="clearfix">
-                            <div class="pull-left mb-4" >
+                            <div class="pull-left mb-4">
                                 <h4 class="text-dark h4">Jadwal Seminar</h4>
 
                             </div>
@@ -305,7 +305,7 @@
                         @endif
                         {{-- jika sudah diupload end --}}
                     </div>
-                    
+
                     @if ($seminar->beritaAcara)
                         <div class="bukti_seminar">
                             <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
@@ -334,8 +334,7 @@
                                 <div class="row border-bottom mt-2">
                                     <label class="col-md-3 bold"> <strong>Laporan</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        <a target="_blank"
-                                            href="{{ $seminar->beritaAcara->laporan_ta }}">Lihat</a>
+                                        <a target="_blank" href="{{ $seminar->beritaAcara->laporan_ta }}">Lihat</a>
                                     </div>
                                     <label class="col-md-3 bold"> <strong>Nilai</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">

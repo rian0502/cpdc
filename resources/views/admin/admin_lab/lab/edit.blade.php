@@ -31,7 +31,7 @@
                                     <select class="custom-select form-control" style="width: 100%; height: 38px"
                                         name="keperluan">
                                         <option value="Praktikum"{{$lab->keperluan == 'Praktikum' ? 'selected' ; ''}}>Praktikum</option>
-                                        <option value="Penilitian" {{$lab->keperluan == 'Penilitian' ? 'selected' ; ''}}>Penilitian</option>
+                                        <option value="Penelitian" {{$lab->keperluan == 'Penelitian' ? 'selected' ; ''}}>Penelitian</option>
                                         <option value="Lainnya" {{$lab->keperluan == 'Lainnya' ? 'selected' ; ''}}>Lainnya</option>
                                     </select>
                                 </div>

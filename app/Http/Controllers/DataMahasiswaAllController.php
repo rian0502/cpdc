@@ -75,7 +75,7 @@ class DataMahasiswaAllController extends Controller
             'sidangKompre' => $sidangKompre,
             'ba_ta1' => $seminarTa1 ? $seminarTa1->ba_seminar : null,
             'ba_ta2' => $seminarTa2 ? $seminarTa2->ba_seminar : null,
-            'ba_kompre' => $sidangKompre ? $sidangKompre->ba_seminar : null,
+            'ba_kompre' => $sidangKompre ? $sidangKompre->beritaAcara : null,
         ];
 
 
