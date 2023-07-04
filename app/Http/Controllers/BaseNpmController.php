@@ -7,6 +7,7 @@ use Yajra\DataTables\DataTables;
 use App\Models\BaseNpm;
 use App\Models\PrestasiMahasiswa;
 use Error;
+use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Base;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class BaseNpmController extends Controller
@@ -133,6 +134,8 @@ class BaseNpmController extends Controller
     public function destroy($id)
     {
         //
+        BaseNpm::where('id', $id)->delete();
+        return redirect()->route('sudo.base_npm.index')->with('success', 'Data berhasil dihapus');
     }
     public function BaseNpm(Request $request)
     {
