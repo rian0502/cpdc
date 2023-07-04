@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTugasAkhirSatuRequest;
 use App\Http\Requests\UpdateSeminarTaSatuRequest;
+use App\Models\BerkasPersyaratanSeminar;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ModelSeminarTaSatu;
 use Illuminate\Http\File;
@@ -29,6 +30,7 @@ class MahasiswaTaSatuController extends Controller
     {
         $data = [
             'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')->get(),
+            'syarat' => BerkasPersyaratanSeminar::find(2),
         ];
         return view('mahasiswa.ta1.create', $data);
     }
