@@ -545,8 +545,58 @@
                                                             @endif
                                                         </div>
                                                     </div>
-
                                                 </div>
+
+                                                @if($seminarTa1->ba_seminar)
+                                                <div class="p-md-4">
+                                                    <h5 class="h4 text-blue mb-20">Berita Acara</h5>
+                                                    <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                        <div class="row border-bottom">
+                                                            <label class="col-md-3 bold"> <strong>Berita Acara</strong></label>
+                                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                                <a target="_blank"
+                                                                    href="/uploads/ba_seminar_ta_satu/{{ $ba_ta1->berkas_ba_seminar_ta_satu }}">Lihat</a>
+                                                            </div>
+                                                            <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
+                                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                                {{ $ba_ta1->no_berkas_ba_seminar_ta_satu }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row border-bottom mt-2">
+                                                            <label class="col-md-3 bold"> <strong>PPT</strong></label>
+                                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                                <a target="_blank"
+                                                                    href="/uploads/ta_satu/{{ $ba_ta1->ta_satu }}">Lihat</a>
+                                                            </div>
+                                                            <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
+                                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                                <a target="_blank"
+                                                                    href="/uploads/ta_satu/{{ $ba_ta1->ta_satu }}">Lihat</a>
+                                                            </div>
+        
+                                                        </div>
+                                                        <div class="row border-bottom mt-2">
+                                                            <label class="col-md-3 bold"> <strong>Nilai Total</strong></label>
+                                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                                {{ $ba_ta1->nilai }}
+                                                            </div>
+                                                            <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
+                                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                                <b> {{ $ba_ta1->huruf_mutu }} </b>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-2">
+                                                            <label class="col-md-3 bold mt-2"><strong>Status
+                                                                    Seminar</strong></label>
+                                                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                                {{ $seminarTa1->status_koor }}
+                                                            </div>
+                                                        </div>
+        
+                                                    </div>
+        
+                                                </div>
+                                                @endif
                                             @else
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="d-flex justify-content-center align-items-center mt-2">
@@ -557,54 +607,7 @@
                                                 </div>
                                             @endif
                                         </div>
-                                        <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Berita Acara</h5>
-                                            <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                                <div class="row border-bottom">
-                                                    <label class="col-md-3 bold"> <strong>Berita Acara</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <a target="_blank"
-                                                            href="/uploads/ba_seminar_ta_satu/{{ $ba_ta1->berkas_ba_seminar_ta_satu }}">Lihat</a>
-                                                    </div>
-                                                    <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $ba_ta1->no_berkas_ba_seminar_ta_satu }}
-                                                    </div>
-                                                </div>
-                                                <div class="row border-bottom mt-2">
-                                                    <label class="col-md-3 bold"> <strong>PPT</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <a target="_blank"
-                                                            href="/uploads/ta_satu/{{ $ba_ta1->ta_satu }}">Lihat</a>
-                                                    </div>
-                                                    <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <a target="_blank"
-                                                            href="/uploads/ta_satu/{{ $ba_ta1->ta_satu }}">Lihat</a>
-                                                    </div>
-
-                                                </div>
-                                                <div class="row border-bottom mt-2">
-                                                    <label class="col-md-3 bold"> <strong>Nilai Total</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $ba_ta1->nilai }}
-                                                    </div>
-                                                    <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <b> {{ $ba_ta1->huruf_mutu }} </b>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-2">
-                                                    <label class="col-md-3 bold mt-2"><strong>Status
-                                                            Seminar</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $seminarTa1->status_koor }}
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
+                                       
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="ta2" role="tabpanel">
