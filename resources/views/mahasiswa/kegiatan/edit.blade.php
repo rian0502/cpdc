@@ -7,7 +7,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Tambah Data Kegiatan</h4>
+                            <h4 class="text-dark h4">Edit Data Kegiatan</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
                                     <label>Nama Aktivitas</label>
                                     <input autofocus name="nama_aktivitas" id="nama_aktivitas"
                                         class="form-control @error('nama_aktivitas') form-control-danger @enderror"
-                                        type="number" value="{{old('nama_aktivitas', $kegiatan->nama_aktivitas)}}"
+                                        type="text" value="{{old('nama_aktivitas', $kegiatan->nama_aktivitas)}}"
                                         placeholder="Nama Aktivitas">
                                     @error('nama_aktivitas')
                                     <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>

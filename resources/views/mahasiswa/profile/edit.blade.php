@@ -46,9 +46,12 @@
                                     name="foto_profile" id="foto_profile"
                                     class="mt-2 file-foto form-control @error('foto_profile') form-control-danger @enderror"
                                     type="file" placeholder="FOTO PROFILE" onchange="previewFile(event)">
+
+                                </div>
+                                <div class="center-div">
                                     @error('foto_profile')
                                     <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
-                                    @enderror
+                                @enderror
                                 </div>
                             </div>
                         </div>
@@ -86,7 +89,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Alamat</label>
-                                    <textarea name="alamat" class="form-control">{{ old('alamat', $mahasiswa->alamat) }}</textarea>
+                                    <textarea name="alamat" class="form-control @error('alamat') form-control-danger @enderror">{{ old('alamat', $mahasiswa->alamat) }}</textarea>
                                     @error('alamat')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -126,7 +129,7 @@
 
                                 <div class="form-group">
                                     <label>Tempat Lahir</label>
-                                    <input autofocus name="tempat_lahir" id="tempat_lahir" class="form-control"
+                                    <input autofocus name="tempat_lahir" id="tempat_lahir" class="form-control @error('tempat_lahir') form-control-danger @enderror"
                                         value="{{ old('tempat_lahir', $mahasiswa->tempat_lahir) }}" type="text"
                                         placeholder="Tempat Lahir">
                                     @error('tempat_lahir')
@@ -140,7 +143,7 @@
                                         value="{{ old('angkatan', $mahasiswa->angkatan) }}" type="number"
                                         placeholder="Angkatan">
                                     @error('angkatan')
-                                        <small class="text-danger">{{ $message }}</small>
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
