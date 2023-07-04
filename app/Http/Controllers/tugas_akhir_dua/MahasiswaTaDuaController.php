@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\tugas_akhir_dua;
 
 use App\Models\Dosen;
-use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarTaDua;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\BerkasPersyaratanSeminar;
 
 
 class MahasiswaTaDuaController extends Controller
@@ -46,7 +46,9 @@ class MahasiswaTaDuaController extends Controller
         if (Auth::user()->mahasiswa->ta_satu->first()->status_koor != 'Selesai') {
             return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Anda belum dapat menyelesaikan tugas akhir 1');
         }
-        return view('mahasiswa.ta2.create');
+
+        $syarat = BerkasPersyaratanSeminar::find(3);
+        return view('mahasiswa.ta2.create', compact(['syarat']));
     }
 
     /**

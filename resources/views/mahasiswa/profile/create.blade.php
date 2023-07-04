@@ -50,9 +50,12 @@
                                         id="foto_profile"
                                         class="mt-2 file-foto form-control @error('foto_profile') form-control-danger @enderror"
                                         type="file" placeholder="FOTO PROFILE" onchange="previewFile(event)">
+
+                                </div>
+                                <div class="center-div">
                                     @error('foto_profile')
-                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
-                                    @enderror
+                                    <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                @enderror
                                 </div>
                             </div>
                         </div>
@@ -65,7 +68,7 @@
                                         class="form-control @error('tanggal_lahir') form-control-danger @enderror" value="{{ old('tanggal_lahir') }}"
                                         type="date">
                                     @error('tanggal_lahir')
-                                        <small class="text-danger">{{ $message }}</small>
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
@@ -86,7 +89,7 @@
                                         class="form-control @error('tanggal_masuk') form-control-danger @enderror" value="{{ old('tanggal_masuk') }}"
                                         type="date">
                                     @error('tanggal_masuk')
-                                        <small class="text-danger">{{ $message }}</small>
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -96,7 +99,7 @@
                                         class="form-control @error('tempat_lahir') form-control-danger @enderror" value="{{ old('tempat_lahir') }}"
                                         type="text" placeholder="Tempat Lahir">
                                     @error('tempat_lahir')
-                                        <small class="text-danger">{{ $message }}</small>
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -106,7 +109,7 @@
                                         class="form-control @error('semester') form-control-danger @enderror" type="number" value="{{ old('semester') }}"
                                         placeholder="Semester">
                                     @error('semester')
-                                        <small class="text-danger">{{ $message }}</small>
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
