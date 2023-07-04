@@ -149,7 +149,15 @@ class PenjadwalanKompreController extends Controller
     public function edit($id)
     {
         //
-        return view('koor.kompre.jadwal.edit');
+
+
+        $seminar =  ModelSeminarKompre::find(Crypt::decrypt($id));
+        $data = [
+            'locations' => Lokasi::all(),
+            'seminar' => $seminar,
+            'mahasiswa' => $seminar->mahasiswa,
+        ];
+        return view('koor.kompre.jadwal.edit', $data);
     }
 
     /**
