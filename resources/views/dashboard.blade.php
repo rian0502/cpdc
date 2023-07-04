@@ -245,6 +245,20 @@
                                     id="endDate" autocomplete="off">
                             </div>
                         </div>
+                        @role('jurusan')
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="endDate">Lokasi</label>
+                                    <select name="lokasi" id="lokasi" class="form-control">
+                                        <option value="all">Semua</option>
+                                        <option value="1">Lab Biokimia A</option>
+                                        <option value="2">Lab Biokimia B</option>
+                                        <option value="3">Lab Biokimia C</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        @endrole
                     </div>
                     <div id="chart_lab"></div>
                 </div>
@@ -1130,10 +1144,16 @@
     @role('admin lab|jurusan')
         <script>
             // Data dummy untuk aktivitas penggunaan laboratorium
-            function lineChartAktivitasLab(startDate = null, endDate = null) {
+            function lineChartAktivitasLab(startDate = null, endDate = null, lokasi = null) {
                 // Mengambil nilai tanggal awal dan akhir dari input
                 var startDate = $('#startDate').val();
                 var endDate = $('#endDate').val();
+                @role('admin lab')
+                    var lokasi = 'all';
+                @endrole
+                @role('jurusan')
+                    var lokasi = $('#lokasi').val();
+                @endrole
 
                 // Mengirim permintaan Ajax ke server untuk mendapatkan data
                 $.ajax({
@@ -1142,7 +1162,8 @@
                     dataType: 'json',
                     data: {
                         startDate: startDate, // Menggunakan nilai tanggal awal yang diambil dari input
-                        endDate: endDate // Menggunakan nilai tanggal akhir yang diambil dari input
+                        endDate: endDate, // Menggunakan nilai tanggal akhir yang diambil dari input
+                        lokasi: lokasi
                     },
                     success: function(response) {
                         // Menangani respons data dari server
@@ -1150,37 +1171,89 @@
 
 
                         // Mengubah format data menjadi format yang dapat digunakan oleh Highcharts
-                        var chartData = data.map(function(item) {
-                            return {
-                                name: item.lab,
-                                data: item.jumlah_aktivitas
-                            };
-                        });
-                        console.log(chartData);
+
+                        console.log(data);
                         var options = {
                             chart: {
-                                type: 'line'
+                                type: 'column'
                             },
                             title: {
-                                text: ' '
+                                text: 'Statistik Aktivitas Lab'
                             },
                             xAxis: {
-                                categories: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']
+                                categories: data.categories,
+                                crosshair: true
                             },
                             yAxis: {
                                 title: {
-                                    text: 'Jumlah Aktivitas'
+                                    text: 'Jumlah'
                                 }
                             },
-                            series: chartData,
+                            tooltip: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                pointFormatter: function() {
+                                    return '<tr><td style="text-align: left; padding:0; color:' + this
+                                        .series.color + '">' +
+                                        this.series.name + ': </td>' +
+                                        '<td style="text-align: right; padding:0"><b>' + Highcharts
+                                        .numberFormat(this.y, 0, ".", ",") +
+                                        '</b></td></tr>';
+                                },
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                            },
+
+
                             plotOptions: {
-                                line: {
-                                    marker: {
-                                        enabled: true
+                                column: {
+                                    pointPadding: 0.2,
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        align: 'right',
+                                        inside: false,
+                                        format: '{point.y:,.0f}', // Menggunakan format dengan koma sebagai pemisah ribuan
+                                        style: {
+                                            fontWeight: 'bold'
+                                        }
                                     }
                                 }
                             },
+
+
+
+                            series: [{
+                                    name: 'Jumlah Jam Aktivitas',
+                                    data: data.jumlah_jam_aktivitas
+                                },
+                                {
+                                    name: 'Jumlah Mahasiswa',
+                                    data: data.jumlah_mahasiswa
+                                },
+                                {
+                                    name: 'Jumlah Praktikum',
+                                    data: data.jumlah_praktikum
+                                },
+                                {
+                                    name: 'Jumlah Seminar',
+                                    data: data.jumlah_seminar
+                                },
+                                {
+                                    name: 'Jumlah Ujian',
+                                    data: data.jumlah_ujian
+                                },
+                                {
+                                    name: 'Jumlah Penelitian',
+                                    data: data.jumlah_penelitian
+                                },
+                                {
+                                    name: 'Jumlah Kegiatan Lainnya',
+                                    data: data.jumlah_kegiatan_lainnya
+                                }
+                            ]
                         };
+
 
                         // Membuat line chart menggunakan Highcharts
                         Highcharts.chart('chart_lab', options);
@@ -1198,7 +1271,8 @@
             lineChartAktivitasLab();
 
             // Atur event listener untuk mengaktifkan pemfilteran berdasarkan tanggal saat nilai tanggal berubah
-            $('#startDate, #endDate').change(function() {
+            $('#startDate, #endDate, #lokasi').change(function() {
+
                 lineChartAktivitasLab();
             });
 

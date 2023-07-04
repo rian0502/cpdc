@@ -23,13 +23,14 @@ class LaboratoriumFactory extends Factory
             'encrypted_id' => Crypt::encrypt($id),
             'nama_kegiatan' => $this->faker->sentence(3),
             'id_lokasi' => $this->faker->numberBetween(1, 4),
-            'keperluan' => $this->faker->randomElement(['Praktikum', 'Seminar', 'Ujian', 'Penlitian', 'Lainnya']),
+            'keperluan' => $this->faker->randomElement(['Praktikum', 'Seminar', 'Ujian', 'Penelitian', 'Lainnya']),
             'tanggal_kegiatan' => $this->faker->date(),
             'jam_mulai' => $jamMulai,
             'jam_selesai' => $jamSelesai,
             'keterangan' => substr($this->faker->paragraph, 0, 255),
             'created_at' => now(),
             'updated_at' => now(),
+            'jumlah_mahasiswa' => $this->faker->numberBetween(1, 100),
         ];
     }
 }
