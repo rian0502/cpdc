@@ -42,7 +42,6 @@ class MahasiswaBimbinganAkademikController extends Controller
             'ba_ta1' => $seminarTa1 ? $seminarTa1->ba_seminar : null,
             'ba_ta2' => $seminarTa2 ? $seminarTa2->ba_seminar : null,
             'ba_kompre' => $sidangKompre ? $sidangKompre->beritaAcara : null,
-
             'prestasi' => $mahasiswa->prestasi,
             'aktivitas' => $mahasiswa->aktivitas,
         ];

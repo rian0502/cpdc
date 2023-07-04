@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Lokasi;
 use App\Models\JadwalSKP;
+use App\Models\ModelJadwalSeminarKompre;
+use App\Models\ModelJadwalSeminarTaDua;
 use App\Models\ModelJadwalSeminarTaSatu;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarKP;
@@ -365,7 +367,35 @@ class JadwalPKLController extends Controller
             Crypt::decrypt($request->id_lokasi)
         )->count();
 
-        if ($cekJadwalPkl > 0 || $cekJadwalTa1 > 0) {
+        $cekJadwalTa2 = ModelJadwalSeminarTaDua::where(
+            'tanggal_seminar_ta_dua',
+            $request->tanggal_skp
+        )->where(
+            'jam_mulai_seminar_ta_dua',
+            $request->jam_mulai_skp
+        )->where(
+            'jam_selesai_seminar_ta_dua',
+            $request->jam_selesai_skp
+        )->where(
+            'id_lokasi',
+            Crypt::decrypt($request->id_lokasi)
+        )->count();
+
+        $cekJadwalKompre = ModelJadwalSeminarKompre::where(
+            'tanggal_komprehensif',
+            $request->tanggal_skp
+        )->where(
+            'jam_mulai_komprehensif',
+            $request->jam_mulai_skp
+        )->where(
+            'jam_selesai_komprehensif',
+            $request->jam_selesai_skp
+        )->where(
+            'id_lokasi',
+            Crypt::decrypt($request->id_lokasi)
+        )->count();
+
+        if ($cekJadwalPkl > 0 || $cekJadwalTa1 > 0 || $cekJadwalTa2 > 0 || $cekJadwalKompre > 0) {
             return response()->json(['message' => 'Failed']);
         } else {
             return response()->json(['message' => 'Valid']);
