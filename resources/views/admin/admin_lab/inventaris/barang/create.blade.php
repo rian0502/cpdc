@@ -18,7 +18,7 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Nama Barang</label>
-                                    <input value="{{old('nama_barang')}}" autofocus name="nama_barang" id="nama_barang"
+                                    <input value="{{ old('nama_barang') }}" autofocus name="nama_barang" id="nama_barang"
                                         class="form-control @error('nama_barang') form-control-danger @enderror"
                                         type="text" placeholder="Nama Barang">
                                     @error('nama_barang')
@@ -27,7 +27,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jumlah</label>
-                                    <input value="{{old('jumlah_akhir')}}" autofocus name="jumlah_akhir" id="jumlah_akhir" min="0"
+                                    <input value="{{ old('jumlah_akhir') }}" autofocus name="jumlah_akhir" id="jumlah_akhir"
+                                        min="0"
                                         class="form-control @error('jumlah_akhir') form-control-danger @enderror"
                                         type="number" placeholder="Jumlah">
                                     @error('jumlah_akhir')
@@ -35,16 +36,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Lokasi</label>
-                                    <select class="custom-select2 form-control" style="width: 100%; height: 38px" name="id_lokasi" required>
-                                        @foreach ($locations as $item)
-                                            <option value="{{ $item->encrypt_id }}" {{old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
-                                                {{ $item->nama_lokasi . ', Lt-' . $item->lantai_tingkat }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+
 
                             </div>
                             {{-- form untuk sebelah kanan --}}
@@ -52,15 +44,29 @@
 
                                 <div class="form-group">
                                     <label>Model</label>
-                                    <select class="custom-select2 form-control" style="width: 100%; height: 38px" name="id_model">
+                                    <select class="custom-select2 form-control" style="width: 100%; height: 38px"
+                                        name="id_model">
                                         @foreach ($models as $item)
-                                            <option value="{{ $item->encrypt_id }}" {{old('id_model') == $item->encrypt_id ? 'selected' : '' }}>
+                                            <option value="{{ $item->encrypt_id }}"
+                                                {{ old('id_model') == $item->encrypt_id ? 'selected' : '' }}>
                                                 {{ $item->merk . ', ' . $item->nama_model }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
-
+                                
+                                <div class="form-group">
+                                    <label>Lokasi</label>
+                                    <select class="custom-select2 form-control" style="width: 100%; height: 38px"
+                                        name="id_lokasi" required>
+                                        @foreach ($locations as $item)
+                                            <option value="{{ $item->encrypt_id }}"
+                                                {{ old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
+                                                {{ $item->nama_lokasi . ', Lt-' . $item->lantai_tingkat }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
                             </div>
                         </div>
