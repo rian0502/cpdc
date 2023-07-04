@@ -33,6 +33,7 @@ class StoreActivityLab extends FormRequest
             'jam_mulai' => 'required|date_format:H:i:s',
             'jam_selesai' => 'required|date_format:H:i:s|after:jam_mulai',
             'ket' => 'required|string|max:255',
+            'jumlah_mahasiswa' => 'required|integer|min:1',
         ];
     }
     public function messages()
@@ -55,6 +56,10 @@ class StoreActivityLab extends FormRequest
             'ket.required' => 'Keterangan harus diisi',
             'ket.string' => 'Keterangan harus berupa Kata',
             'ket.max' => 'Keterangan maksimal 255 karakter',
+            'jumlah_mahasiswa.required' => 'Jumlah Mahasiswa harus diisi',
+            'jumlah_mahasiswa.integer' => 'Jumlah Mahasiswa harus berupa angka',
+            'jumlah_mahasiswa.min' => 'Jumlah Mahasiswa minimal 1',
+            
         ];
     }
 

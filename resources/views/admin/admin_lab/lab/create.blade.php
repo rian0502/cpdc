@@ -33,8 +33,8 @@
                                         name="keperluan">
                                         <option value="Praktikum"{{ old('keperluan') == 'Praktikum' ? 'selected' : '' }}>
                                             Praktikum</option>
-                                        <option value="Penilitian" {{ old('keperluan') == 'Penilitian' ? 'selected' : '' }}>
-                                            Penilitian</option>
+                                        <option value="Penelitian" {{ old('keperluan') == 'Penelitian' ? 'selected' : '' }}>
+                                            Penelitian</option>
                                         <option value="Lainnya" {{ old('keperluan') == 'Lainnya' ? 'selected' : '' }}>Lainnya
                                         </option>
                                     </select>
@@ -89,6 +89,20 @@
                                         placeholder="time" type="text" name="jam_selesai"
                                         value="{{ old('jam_selesai') }}" />
                                 </div>
+                                @error('jam_selesai')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                <div class="form-group">
+                                    <label>Jumlah Mahasiswa</label>
+                                    <input
+                                        class="form-control @error('jumlah_mahasiswa') form-control-danger @enderror"
+                                        placeholder="Jumlah Mahasiswa" type="number" name="jumlah_mahasiswa" min="1"
+                                        value="{{ old('jumlah_mahasiswa') }}" />
+                                </div>
+                                @error('jumlah_mahasiswa')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+
                             </div>
                         </div>
 
