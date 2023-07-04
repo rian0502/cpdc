@@ -846,6 +846,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="tab-pane fade" id="kompre" role="tabpanel">
                                     <div class="pd-20">
                                         <div class="p-md-4">
@@ -1084,68 +1085,69 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="prestasi" role="tabpanel">
-                                <div class="pd-20">
-                                    <table class="table data-table-responsive stripe data-table-noexport wrap ">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Judul Kegiatan</th>
-                                                <th>Peran</th>
-                                                <th>Tanggal</th>
-                                                <th>SKS Konversi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($aktivitas as $item)
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->nama_aktivitas }}</td>
-                                                    <td>{{ $item->peran }}</td>
-                                                    <td>{{ $item->tanggal }}</td>
-                                                    <td>{{ $item->sks_konversi }} SKS</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="extra_activity" role="tabpanel">
-                                <div class="pd-20">
-                                    <table class="table data-table-responsive stripe data-table-noexport wrap ">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Judul Kegiatan</th>
-                                                <th>Peran</th>
-                                                <th>Tanggal</th>
-                                                <th>SKS Konversi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($aktivitas as $item)
-                                                <tr>
-                                                    <td>
-                                                        {{ $loop->iteration }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->nama_aktivitas }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->peran }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->tanggal }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->sks_konversi }}
-                                                        SKS</td>
 
+                                <div class="tab-pane fade" id="prestasi" role="tabpanel">
+                                    <div class="pd-20">
+                                        <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama Prestasi</th>
+                                                    <th>Scala</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Capaian</th>
                                                 </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($prestasi as $item)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $item->nama_prestasi }}</td>
+                                                        <td>{{ $item->scala }}</td>
+                                                        <td>{{ $item->tanggal }}</td>
+                                                        <td>{{ $item->capaian }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="extra_activity" role="tabpanel">
+                                    <div class="pd-20">
+                                        <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Judul Kegiatan</th>
+                                                    <th>Peran</th>
+                                                    <th>Tanggal</th>
+                                                    <th>SKS Konversi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($aktivitas as $item)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $loop->iteration }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->nama_aktivitas }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->peran }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->tanggal }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->sks_konversi }}
+                                                            SKS</td>
+    
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
