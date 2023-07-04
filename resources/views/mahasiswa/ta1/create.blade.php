@@ -86,10 +86,11 @@
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
                                             @if (old('id_pembimbing_dua') == 'new' || $errors->has('pbl2_nama'))
-                                                <option value="new" selected>Tidak Ada diDaftar Ini</option>
+                                                <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
-                                            @endif/optgroup>
+                                            @endif
+                                        </optgroup>
                                     </select>
                                 </div>
                                 <div id="pbl2_nama"
@@ -110,7 +111,8 @@
                                     <div class="form-group">
                                         <label>NIP Pembimbing 2</label>
                                         <input autofocus name="pbl2_nip" class="form-control" type="text"
-                                            value="{{ old('pbl2_nip') }}" placeholder="Masukkan Nomor Karyawan Pembimbing 2">
+                                            value="{{ old('pbl2_nip') }}"
+                                            placeholder="Masukkan Nomor Karyawan Pembimbing 2">
                                         @error('pbl2_nip')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
@@ -157,7 +159,8 @@
                                     <label>
                                         Berkas Kelengkapan
                                         <small>
-                                            <a target="_blank" href="/uploads/syarat_seminar/{{$syarat->path_file}}">Lihat
+                                            <a target="_blank"
+                                                href="/uploads/syarat_seminar/{{ $syarat->path_file }}">Lihat
                                                 Persyaratan</a>
                                         </small>
                                     </label>

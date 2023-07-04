@@ -89,7 +89,7 @@
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
                                             @if (old('id_pembimbing_dua') == 'new' || $errors->has('pbl2_nama') || $seminar->pbl2_nama != null)
-                                                <option value="new" selected>Tidak Ada diDaftar Ini</option>
+                                                <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
                                             @endif
