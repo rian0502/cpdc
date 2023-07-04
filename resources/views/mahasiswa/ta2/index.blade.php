@@ -212,7 +212,7 @@
                 @if ($seminar->status_admin == 'Valid')
                     <div class="pd-20 card-box mb-30">
                         <div class="clearfix">
-                            <div class="pull-left mb-4" >
+                            <div class="pull-left mb-4">
                                 <h4 class="text-dark h4">Jadwal Seminar</h4>
 
                             </div>
@@ -305,7 +305,7 @@
                         @endif
                         {{-- jika sudah diupload end --}}
                     </div>
-                    
+
                     @if ($seminar->ba_seminar)
                         <div class="bukti_seminar">
                             <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">

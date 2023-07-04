@@ -69,7 +69,9 @@ class MahasiswaBimbinganKompreController extends Controller
             'sidangKompre' => $sidangKompre,
             'ba_ta1' => $seminarTa1 ? $seminarTa1->ba_seminar : null,
             'ba_ta2' => $seminarTa2 ? $seminarTa2->ba_seminar : null,
-            'ba_kompre' => $sidangKompre ? $sidangKompre->ba_seminar : null,
+            'ba_kompre' => $sidangKompre ? $sidangKompre->beritaAcara : null,
+            'prestasi' => $mahasiswa->prestasi,
+            'aktivitas' => $mahasiswa->aktivitas,
         ];
         // return dd($data);
         return view('dosen.mahasiswa.bimbingan.kompre.show', $data);

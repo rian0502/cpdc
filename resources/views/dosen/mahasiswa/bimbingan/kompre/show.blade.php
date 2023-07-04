@@ -224,9 +224,10 @@
                                                             {{ $seminarTa1->toefl }}
                                                         </div>
 
-                                                        <label class="col-md-3 bold"> <strong></strong></label>
+                                                        <label class="col-md-3 bold"> <strong>Status
+                                                                Berkas</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa1->status_seminar }}
+                                                            {{ $seminarTa1->status_admin }}
                                                         </div>
                                                     </div>
 
@@ -337,14 +338,14 @@
                                                         </div>
                                                         <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <b> {{ $ba_ta1->nilai_mutu }} </b>
+                                                            <b> {{ $ba_ta1->huruf_mutu }} </b>
                                                         </div>
                                                     </div>
                                                     <div class="row mt-2">
                                                         <label class="col-md-3 bold mt-1"><strong>Status
                                                                 Seminar</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa1->status_seminar }}
+                                                            {{ $seminarTa1->status_koor }}
                                                         </div>
                                                     </div>
 
@@ -456,9 +457,10 @@
                                                             {{ $seminarTa2->toefl }}
                                                         </div>
 
-                                                        <label class="col-md-3 bold"> <strong></strong></label>
+                                                        <label class="col-md-3 bold"> <strong>Status
+                                                                Berkas</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa2->status_seminar }}
+                                                            {{ $seminarTa2->status_admin }}
                                                         </div>
                                                     </div>
 
@@ -521,7 +523,6 @@
                                                             @endif
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             @else
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
@@ -560,7 +561,6 @@
                                                             <a target="_blank"
                                                                 href="/uploads/ta_dua/{{ $ba_ta2->berkas_nilai_seminar_ta_dua }}">Lihat</a>
                                                         </div>
-
                                                     </div>
                                                     <div class="row border-bottom mt-2">
                                                         <label class="col-md-3 bold"> <strong>Nilai
@@ -571,17 +571,16 @@
                                                         <label class="col-md-3 bold"> <strong>Huruf
                                                                 Mutu</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <b> {{ $ba_ta2->nilai_mutu }} </b>
+                                                            <b> {{ $ba_ta2->huruf_mutu }} </b>
                                                         </div>
                                                     </div>
                                                     <div class="row mt-2">
                                                         <label class="col-md-3 bold mt-1"><strong>Status
                                                                 Seminar</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa2->status_seminar }}
+                                                            {{ $seminarTa2->status_koor }}
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             @else
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
@@ -592,7 +591,6 @@
                                                     </div>
                                                 </div>
                                             @endif
-
                                         </div>
                                     </div>
                                 </div>
@@ -613,21 +611,15 @@
                                                     <div class="row border-bottom">
                                                         <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            @if ($sidangKompre->dosen)
-                                                                {{ $sidangKompre->dosen->nama_dosen }}
-                                                            @else
-                                                                -
-                                                            @endif
+                                                            {{ $sidangKompre->pembimbingSatu->nama_dosen }}
                                                         </div>
                                                         <label class="col-md-3 bold mt-1"><strong>Pembimbing
                                                                 2</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            @if ($sidangKompre->pembimbing_dua)
-                                                                {{ $sidangKompre->pembimbing_dua->nama_dosen }}
-                                                            @elseif ($sidangKompre->pbl2_nama)
-                                                                {{ $sidangKompre->pbl2_nama }}
+                                                            @if ($sidangKompre->pembimbingDua)
+                                                                {{ $sidangKompre->pembimbingDua->nama_dosen }}
                                                             @else
-                                                                -
+                                                                {{ $sidangKompre->pbl2_nama }}
                                                             @endif
                                                         </div>
                                                     </div>
@@ -642,8 +634,8 @@
                                                                 External</strong trong></label>
                                                         <div class="col-md-3 mt-2"
                                                             style="display:block;word-wrap:break-word;">
-                                                            @if ($seminarTa2->pbl2_nip)
-                                                                {{ $seminarTa2->pbl2_nip }}
+                                                            @if ($sidangKompre->pbl2_nip)
+                                                                {{ $sidangKompre->pbl2_nip }}
                                                             @else
                                                                 -
                                                             @endif
@@ -700,13 +692,11 @@
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             {{ $sidangKompre->toefl }}
                                                         </div>
-
-                                                        {{-- <label class="col-md-3 bold"> <strong></strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            Kosongkan
-                                                        </div> --}}
                                                     </div>
-
+                                                    <label class="col-md-3 bold"> <strong>Status Berkas</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        {{ $sidangKompre->status_admin }}
+                                                    </div>
                                                 </div>
                                             @else
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
@@ -775,69 +765,68 @@
                                                     </div>
                                             @endif
                                         </div>
-                                        <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Berita Acara</h5>
-                                            @if ($ba_kompre)
-                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                                    <div class="row border-bottom">
-                                                        <label class="col-md-3 bold"> <strong>Berita
-                                                                Acara</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <a target="_blank"
-                                                                href="/uploads/ba_sidang_kompre/{{ $ba_kompre->ba_seminar_komprehensif }}">Lihat</a>
-                                                        </div>
-                                                        <label class="col-md-3 bold mt-2"><b>Nomor Bukti
-                                                                Seminar</b></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $ba_kompre->no_ba_berkas }}
-                                                        </div>
+                                    </div>
+                                    <div class="p-md-4">
+                                        <h5 class="h4 text-blue mb-20">Berita Acara</h5>
+                                        @if ($ba_kompre != null)
+                                            <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                <div class="row border-bottom">
+                                                    <label class="col-md-3 bold"> <strong>Berita
+                                                            Acara</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        <a target="_blank"
+                                                            href="/uploads/ba_sidang_kompre/{{ $ba_kompre->ba_seminar_komprehensif }}">Lihat</a>
                                                     </div>
-                                                    <div class="row border-bottom mt-2">
-                                                        <label class="col-md-3 bold"> <strong>Laporan
-                                                                Akhir</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <a target="_blank"
-                                                                href="{{ $ba_kompre->laporan_ta }}">Lihat</a>
-                                                        </div>
-                                                        <label class="col-md-3 bold"> <strong>Berkas
-                                                                Nilai</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <a target="_blank"
-                                                                href="/uploads/nilai_sidang_kompre/{{ $berita_acara->berkas_nilai_kompre }}">Lihat</a>
-                                                        </div>
-
+                                                    <label class="col-md-3 bold mt-2"><b>Nomor Bukti
+                                                            Seminar</b></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        {{ $ba_kompre->no_ba_berkas }}
                                                     </div>
-                                                    <div class="row border-bottom mt-2">
-                                                        <label class="col-md-3 bold"> <strong>Nilai
-                                                                Total</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $ba_kompre->nilai }}
-                                                        </div>
-                                                        <label class="col-md-3 bold"> <strong>Huruf
-                                                                Mutu</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <b> {{ $ba_kompre->nilai_mutu }} </b>
-                                                        </div>
+                                                </div>
+                                                <div class="row border-bottom mt-2">
+                                                    <label class="col-md-3 bold"> <strong>Laporan
+                                                            Akhir</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        <a target="_blank" href="{{ $ba_kompre->laporan_ta }}">Lihat</a>
                                                     </div>
-                                                    <div class="row mt-2">
-                                                        <label class="col-md-3 bold mt-1"><strong>Status
-                                                                Seminar</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->status_seminar }}
-                                                        </div>
+                                                    <label class="col-md-3 bold"> <strong>Berkas
+                                                            Nilai</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        <a target="_blank"
+                                                            href="/uploads/nilai_sidang_kompre/{{ $ba_kompre->berkas_nilai_kompre }}">Lihat</a>
                                                     </div>
 
                                                 </div>
-                                            @else
-                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                                    <div class="d-flex justify-content-center align-items-center mt-2">
-                                                        <div>
-                                                            <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
-                                                        </div>
+                                                <div class="row border-bottom mt-2">
+                                                    <label class="col-md-3 bold"> <strong>Nilai
+                                                            Total</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        {{ $ba_kompre->nilai }}
+                                                    </div>
+                                                    <label class="col-md-3 bold"> <strong>Huruf
+                                                            Mutu</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        <b> {{ $ba_kompre->huruf_mutu }} </b>
                                                     </div>
                                                 </div>
-                                            @endif
-                                        </div>
+                                                <div class="row mt-2">
+                                                    <label class="col-md-3 bold mt-1"><strong>Status
+                                                            Seminar</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        {{ $sidangKompre->status_koor }}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        @else
+                                            <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                <div class="d-flex justify-content-center align-items-center mt-2">
+                                                    <div>
+                                                        <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
