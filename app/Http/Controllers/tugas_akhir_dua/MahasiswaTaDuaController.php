@@ -39,9 +39,10 @@ class MahasiswaTaDuaController extends Controller
      */
     public function create()
     {
-        if (Auth::user()->mahasiswa->ta_satu->first()) {
+        if (Auth::user()->mahasiswa->ta_satu->first() == null) {
             return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Anda belum dapat menyelesaikan tugas akhir 1');
         }
+        
         if (Auth::user()->mahasiswa->ta_satu->first()->status_koor != 'Selesai') {
             return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Anda belum dapat menyelesaikan tugas akhir 1');
         }
