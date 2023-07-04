@@ -116,7 +116,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
                             </div>
 
                             {{-- form untuk sebelah kanan --}}
@@ -133,11 +132,9 @@
                                                     {{ $item->nama_dosen }}
                                                 </option>
                                             @endforeach
-                                            {{-- <option value="Tidak Ada di Daftar Ini">Tidak Ada di Daftar Ini</option> --}}
                                         </optgroup>
                                     </select>
                                 </div>
-                                {{-- fungsi jika tidak ada tersedia nama pembimbing dan pembahas di data diatas --}}
 
                                 <div class="form-group">
                                     <label>Periode Seminar</label>
