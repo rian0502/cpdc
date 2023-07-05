@@ -207,7 +207,7 @@
                                                                                 <div
                                                                                     class="dropdown-menu dropdown-menu-right">
                                                                                     <a class="dropdown-item"
-                                                                                        href="{{ route('dosen.organisasi.edit', $item->encrypt_id) }}">>
+                                                                                        href="{{ route('dosen.organisasi.edit', $item->encrypt_id) }}">
                                                                                         <i class="fa fa-pencil"></i>
                                                                                         Edit</a>
                                                                                     <form action="" method="POST">
