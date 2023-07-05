@@ -20,6 +20,7 @@ class Administrasi extends Model
         'jenis_kelamin',
         'status',
         'user_id',
+        'lokasi_id',
         'created_at',
         'updated_at'
     ];
@@ -31,5 +32,9 @@ class Administrasi extends Model
     public function historyPangkatAdmin()
     {
         return $this->hasMany(HistoryPangkatAdmin::class, 'administrasi_id');
+    }
+    public function lokasi()
+    {
+        return $this->belongsTo(Lokasi::class);
     }
 }
