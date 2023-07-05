@@ -75,7 +75,7 @@ class PublikasiController extends Controller
         $data = [
             'posisi' => 'Ketua',
             'id_publikasi' => $id,
-            'id_dosen' => Auth::user()->dosen[0]->id,
+            'id_dosen' => Auth::user()->dosen->id,
         ];
         AnggotaPublikasiDosen::create($data);
 
