@@ -26,6 +26,7 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->enum('status', ['Aktif', 'Pensiun']);
             $table->foreignId('user_id')->index()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('lokasi_id')->nullable()->index()->constrained('lokasi')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
