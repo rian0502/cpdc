@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nama_lokasi');
             $table->string('lantai_tingkat');
             $table->string('nama_gedung');
+            $table->enum('jenis_ruangan', ['Kelas', 'Lab']);
             $table->timestamps();
         });
     }

@@ -11,9 +11,10 @@ class Lokasi extends Model
     protected $table = 'lokasi';
     protected $fillable = [
         'encrypt_id',
-        'nama_lokasi', 
+        'nama_lokasi',
         'lantai_tingkat',
         'nama_gedung',
+        'jenis_ruangan',
         'created_at',
         'updated_at'
     ];
@@ -29,5 +30,8 @@ class Lokasi extends Model
     {
         return $this->hasMany(SopLab::class, 'id_lokasi');
     }
-
+    public function admin()
+    {
+        return $this->hasMany(Administrasi::class, 'lokasi_id');
+    }
 }

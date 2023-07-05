@@ -22,6 +22,7 @@ class Locations extends Seeder
             'nama_lokasi' => 'Lab. Kimia Analitik & Instrumentasi',
             'lantai_tingkat' => '1',
             'nama_gedung' => 'Gedung Kimia Terpadu',
+            'jenis_ruangan' => 'Lab'
         ];
         Lokasi::create($lab1);
         $lab2 = [
@@ -29,6 +30,7 @@ class Locations extends Seeder
             'nama_lokasi' => 'Lab. Kimia Anorganik-Fisik',
             'lantai_tingkat' => '2',
             'nama_gedung' => 'Gedung Kimia Terpadu',
+            'jenis_ruangan' => 'Lab'
         ];
         Lokasi::create($lab2);
         $lab3 = [
@@ -36,6 +38,7 @@ class Locations extends Seeder
             'nama_lokasi' => 'Lab. Kimia Organik',
             'lantai_tingkat' => '3',
             'nama_gedung' => 'Gedung Biokimia',
+            'jenis_ruangan' => 'Lab'
         ];
         Lokasi::create($lab3);
         $rsem = [
@@ -50,6 +53,7 @@ class Locations extends Seeder
             'nama_lokasi' => 'Lab. Kimia Dasar',
             'lantai_tingkat' => '3',
             'nama_gedung' => 'Gedung Laboratorium Kimia Dasar',
+            'jenis_ruangan' => 'Lab'
         ];
         Lokasi::create($lab4);
         $lab5 = [
@@ -57,6 +61,7 @@ class Locations extends Seeder
             'nama_lokasi' => 'Lab. Biokimia',
             'lantai_tingkat' => '3',
             'nama_gedung' => 'Gedung Kimia Terpadu',
+            'jenis_ruangan' => 'Lab'
         ];
         Lokasi::create($lab5);
     }
