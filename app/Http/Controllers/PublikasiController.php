@@ -117,7 +117,7 @@ class PublikasiController extends Controller
             }
             $data = [
                 'publikasi' => PublikasiDosen::find(Crypt::decrypt($id)),
-                'dosens' => Dosen::whereNotIn('id', [Auth::user()->dosen[0]->id])->get(),
+                'dosens' => Dosen::whereNotIn('id', [Auth::user()->dosen->id])->get(),
                 'anggota' => $anggota_id,
             ];
         } else {
@@ -159,7 +159,7 @@ class PublikasiController extends Controller
                 }
                 array_shift($decrypt);
                 if (count($jumlah) < count($decrypt)) {
-                    $publikasi->dosen()->sync([Auth::user()->dosen[0]->id], ['posisi' => 'Ketua',  'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+                    $publikasi->dosen()->sync([Auth::user()->dosen->id], ['posisi' => 'Ketua',  'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
                     $publikasi->dosen()->attach($decrypt, ['posisi' => 'Anggota',  'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
                 } else {
                     $publikasi->dosen()->detach($decrypt);
