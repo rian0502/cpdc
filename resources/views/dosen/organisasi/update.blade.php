@@ -19,7 +19,8 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Nama Organisasi</label>
-                                    <input value="{{$organisasi->nama_organisasi}}" autofocus name="nama_organisasi" id="nama_organisasi"
+                                    <input value="{{ $organisasi->nama_organisasi }}" autofocus name="nama_organisasi"
+                                        id="nama_organisasi"
                                         class="form-control @error('nama_organisasi') form-control-danger @enderror"
                                         type="text" placeholder="Nama Organisasi">
                                     @error('nama_organisasi')
@@ -28,16 +29,20 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jabatan</label>
-                                    <input value="{{$organisasi->jabatan}}" autofocus name="jabatan" id="jabatan"
+                                    <input value="{{ $organisasi->jabatan }}" autofocus name="jabatan" id="jabatan"
                                         class="form-control @error('jabatan') form-control-danger @enderror" type="text"
                                         placeholder="jabatan">
                                     @error('jabatan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                            </div>
+                            {{-- form untuk sebelah kanan --}}
+                            <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Tahun Menjabat</label>
-                                    <input value="{{$organisasi->tahun_menjabat}}" autofocus name="tahun_menjabat" id="tahun_menjabat"
+                                    <input value="{{ old('tahun_menjabat') }}" autofocus name="tahun_menjabat"
+                                        id="tahun_menjabat"
                                         class="form-control @error('tahun_menjabat') form-control-danger @enderror"
                                         type="year" placeholder="Tahun Menjabat">
                                     @error('tahun_menjabat')
@@ -46,7 +51,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tahun Berakhir</label>
-                                    <input value="{{$organisasi->tahun_berakhir}}" autofocus name="tahun_berakhir" id="tahun_berakhir"
+                                    <input value="{{ old('tahun_berakhir') }}" autofocus name="tahun_berakhir"
+                                        id="tahun_berakhir"
                                         class="form-control @error('tahun_berakhir') form-control-danger @enderror"
                                         type="year" placeholder="Tahun Berakhir">
                                     @error('tahun_berakhir')
@@ -54,15 +60,13 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{-- form untuk sebelah kanan --}}
-
                         </div>
                         <div class="form-group">
                             <button type="submit" class="submit btn btn-primary">Submit</button>
                         </div>
 
                     </form>
-                    <a href="{{route('dosen.profile.index')}}">
+                    <a href="{{ route('dosen.profile.index') }}">
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>
                 </div>
