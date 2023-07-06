@@ -119,11 +119,8 @@ class AuthController extends Controller
         $mahasiswa = Mahasiswa::create($mhs);
         $user->sendEmailVerificationNotification();
         auth()->login($user);
-        return redirect()->route('verification.notice')->with('registered', 
-            'Pendaftaran berhasil, 
-            silahkan cek email untuk melakukan verifikasi, 
-            Jika Vertifikasi tidak ada di kotak masuk, 
-            silahkan cek di kotak spam, atau klik tombol Kirim Kembali'
+        return redirect()->route('verification.notice')->with('registered',
+            'Pendaftaran berhasil, silahkan cek email untuk melakukan verifikasi, Jika Vertifikasi tidak ada di kotak masuk, silahkan cek di kotak spam, atau klik tombol Kirim Kembali'
         );
     }
 
@@ -137,11 +134,11 @@ class AuthController extends Controller
     }
     public function changePassword(Request $req)
     {
-        //validasi token 
+        //validasi token
         if ($req->_token != session()->token()) {
             return redirect()->back();
         } else {
-            //check password old 
+            //check password old
             $user = User::find(Auth::user()->id);
             if (password_verify($req->current_password, $user->password)) {
                 $validation = $req->validate([
