@@ -69,7 +69,7 @@ use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 use App\Http\Controllers\DataMahasiswaAllController;
-
+use Illuminate\Auth\Events\Verified;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -224,28 +224,30 @@ Route::post('/change-password', [AuthController::class, 'changePassword'])->midd
 //end AUTH
 
 //routing untuk aktivasi email
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    if (auth()->user()) {
-        $request->fulfill();
-    } else {
-        return redirect('/login')->with('error', 'Login dulu Sebelum Vertifikasi!');
+Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
+    $user = App\Models\User::find($id);
+
+    if (! $user || ! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+        return redirect('/login')->with('error', 'Invalid verification link.');
     }
-    return redirect('/dashboard')->with('success', 'Akun Berhasil di Aktivasi !');
-})->name('verification.verify');
 
-
-Route::get(
-    '/email/verify',
-    [AuthController::class, 'reactivation']
-)->middleware(['auth', 'unverified'])->name('verification.notice');
-
-Route::get(
-    '/email/activation-notification',
-    function (Request $request) {
-        $request->user()->sendEmailVerificationNotification();
-        return back()->with('message', 'Verification link sent!');
+    if ($user->hasVerifiedEmail()) {
+        return redirect('/dashboard')->with('success', 'Akun anda sudah terverivikasi.');
     }
-)->middleware(['auth', 'unverified', 'throttle:6,1'])->name('activation.send');
+
+    $user->markEmailAsVerified();
+    event(new Verified($user));
+
+    return redirect('/dashboard')->with('success', 'Akun anda berhasil terverivikasi!');
+})->middleware('signed')->name('verification.verify');
+
+Route::get('/email/verify',[AuthController::class, 'reactivation'])->middleware(['auth', 'unverified'])
+->name('verification.notice');
+
+Route::get('/email/activation-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Tautan verifikasi telah dikirim!');
+})->middleware(['auth', 'unverified', 'throttle:6,1'])->name('activation.send');
 //end routing untuk aktivasi email
 
 

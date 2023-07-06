@@ -106,6 +106,8 @@
                 </div>
             </div>
         </div>
+
+
     </div>
     <!-- js -->
     <script src="/Assets/auth/vendors/scripts/core.js"></script>
@@ -115,11 +117,11 @@
     <script src="/Assets/src/js/nocopy.js"></script>
     <script src="/Assets/admin/src/plugins/sweetalert2/sweetalert2.all.js"></script>
     <!-- Google Tag Manager (noscript) -->
-    
+
     <!-- End Google Tag Manager (noscript) -->
-</body>
 <script>
     //sweetalert registered
+
     @if (session('registered'))
         swal({
             title: "Berhasil",
@@ -136,5 +138,5 @@
         });
     @endif
 </script>
-
+</body>
 </html>

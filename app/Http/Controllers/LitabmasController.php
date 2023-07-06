@@ -144,7 +144,7 @@ class LitabmasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreLitabmasDosenRequest $request, $id)
     {
         $jumlahAnggota = AnggotaLitabmas::where('litabmas_id', Crypt::decrypt($id))->get();
         if ($jumlahAnggota[0]->dosen_id == Auth::user()->dosen->id) {
