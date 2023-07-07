@@ -404,8 +404,10 @@ class JadwalPKLController extends Controller
     }
 
 
+
     public function checkUpdate(Request $request)
     {
+
         $validation = $request->validate([
             'tanggal_skp' => 'required|date|after_or_equal:tomorrow',
             'jam_mulai_skp' => 'required',
