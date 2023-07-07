@@ -726,6 +726,7 @@
             showConfirmationForm();
         });
     </script>
+    
     <script>
         function updateFileNameAndLink(inputId, labelId, linkId) {
             var input = document.getElementById(inputId);
@@ -782,6 +783,61 @@
                                 }).then(function(result) {
                                     if (result.value) {
                                         $('#formJadwal').unbind('submit').submit();
+                                    }
+                                });
+                            } else {
+                                swal({
+                                    title: "Gagal",
+                                    text: "Jadwal yang anda masukkan sudah terdaftar",
+                                    type: "error",
+                                    button: "Ok",
+                                });
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(xhr.responseText);
+                            var error_data = JSON.parse(xhr.responseText)['errors'];
+
+                            var error_msg = "";
+                            for (var key in error_data) {
+                                error_msg += error_data[key] + ",";
+                            }
+                            swal({
+                                title: "Gagal",
+                                text: error_msg,
+                                type: "error",
+                                button: "Ok",
+                            });
+                        },
+                    });
+                });
+            });
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                $('#formJadwalUpdate').submit(function(e) {
+                    e.preventDefault();
+                    var request = new FormData(this);
+                    var endpoint = '/api/check-update';
+                    $.ajax({
+                        url: endpoint,
+                        method: "POST",
+                        data: request,
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: function(data) {
+                            if (data['message'] == 'Valid') {
+                                swal({
+                                    title: "Berhasil",
+                                    text: "Jadwal Bisa digunakan",
+                                    type: "question",
+                                    showCancelButton: true,
+                                    confirmButtonText: "Ya, Buat Jadwal",
+                                }).then(function(result) {
+                                    if (result.value) {
+                                        $('#formJadwalUpdate').unbind('submit').submit();
                                     }
                                 });
                             } else {
