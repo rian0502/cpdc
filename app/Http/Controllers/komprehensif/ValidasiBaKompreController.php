@@ -122,5 +122,6 @@ class ValidasiBaKompreController extends Controller
     public function destroy($id)
     {
         //
+        return redirect()->back();
     }
 }
