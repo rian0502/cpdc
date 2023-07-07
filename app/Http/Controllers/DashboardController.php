@@ -9,6 +9,8 @@ use App\Models\AktivitasMahasiswa;
 use App\Models\BaseNPM;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
+use App\Models\ModelBaSeminarTaDua;
+use App\Models\ModelSeminarKompre;
 use App\Models\ModelSeminarKP;
 use App\Models\ModelSeminarTaDua;
 use App\Models\ModelSeminarTaSatu;
@@ -44,8 +46,22 @@ class DashboardController extends Controller
             $data = [
                 'jadwalskp' => (new ModelSeminarKP())->getJadwalDosenDate(Auth::user()->dosen->id),
             ];
-            if (Auth::user()->hasRole('jurusan')) {
-                //query hitung jumlah usia dosen dari table dosen melalui column tanggal_lahir kelompokkan dan hitung junlah umur tersebvut
+            if (Auth::user()->hasRole('pkl')) {
+                $data['unvalid_kp'] = ModelSeminarKP::where('proses_admin', 'Valid')->where('status_seminar', '!=', 'Invalid')->count();
+                $data['jadwal_seminar'] = ModelSeminarKP::leftJoin('jadwal_skp', 'seminar_kp.id', '=', 'jadwal_skp.id_skp')->count();
+            }
+            if (Auth::user()->hasRole('ta1')) {
+                $data['unvalid_ta1'] = ModelSeminarTaSatu::where('status_admin', 'Valid')->where('status_seminar', '!=', 'Invalid')->count();
+                $data['jadwal_seminar'] = ModelSeminarTaSatu::leftJoin('jadwal_seminar_ta_satu', 'seminar_ta_satu.id', '=', 'jadwal_seminar_ta_satu.id_seminar')->count();
+            }
+            if (Auth::user()->hasRole('ta2')) {
+                $data['unvalid_ta2'] = ModelBaSeminarTaDua::where('status_admin', 'Valid')->where('status_seminar', '!=', 'Invalid')->count();
+
+                $data['jadwal_seminar'] = ModelBaSeminarTaDua::leftJoin('jadwal_seminar_ta_dua', 'seminar_ta_dua.id', '=', 'jadwal_seminar_ta_dua.id_seminar')->count();
+            }
+            if (Auth::user()->hasRole('kompre')) {
+                $data['unvalid_kompre'] = ModelSeminarKompre::where('status_admin', 'Valid')->where('status_seminar', '!=', 'Invalid')->count();
+                $data['jadwal_seminar'] = ModelSeminarKompre::leftJoin('jadwal_seminar_komprehensif', 'seminar_komprehensif.id', '=', 'jadwal_seminar_komprehensif.id_seminar')->count();
             }
             return view('dashboard', $data);
         } else {
