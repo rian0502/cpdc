@@ -17,13 +17,13 @@ class AktivitasAlumni extends Migration
         Schema::create('aktivitas_alumni', function(Blueprint $table){
             $table->id();
             $table->string('encrypted_id');
-            $table->string('tempat_kerja');
-            $table->string('alamat_kerja');
+            $table->string('tempat');
+            $table->string('alamat');
             $table->string('jabatan');
             $table->string('tahun_masuk');
-            $table->enum('hubungan_kerja', ['Sangat Erat', 'Cukup Erat', 'Tidak Erat', 'Erat']);
-            $table->string('gaji');
-            $table->enum('tingkat_perusahaan', ['Nasional', 'Multinasional', 'Regional', 'Local']);
+            $table->enum('hubungan', ['Sangat Erat', 'Cukup Erat', 'Tidak Erat', 'Erat']);
+            $table->double('gaji');
+            $table->enum('status', ['Kerja', 'Kuliah', 'Wirausaha', 'Lainnya']);
             $table->timestamps();
         });
     }
