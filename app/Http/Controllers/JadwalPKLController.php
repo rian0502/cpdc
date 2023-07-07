@@ -402,4 +402,93 @@ class JadwalPKLController extends Controller
         }
         return $request->all();
     }
+
+
+    public function checkUpdate(Request $request)
+    {
+        $validation = $request->validate([
+            'tanggal_skp' => 'required|date|after_or_equal:tomorrow',
+            'jam_mulai_skp' => 'required',
+            'jam_selesai_skp' => 'required|after:jam_mulai_skp',
+            'id_lokasi' => 'required|exists:lokasi,encrypt_id',
+        ], [
+            'tanggal_skp.required' => 'Tanggal Harus Diisi',
+            'tanggal_skp.date' => 'Tanggal harus berupa tanggal',
+            'tanggal_skp.after_or_equal' => 'Tanggal Minimal Besok',
+            'jam_mulai_skp.required' => 'Jam mulai tidak boleh kosong',
+            'jam_selesai_skp.required' => 'Jam selesai tidak boleh kosong',
+            'id_lokasi.required' => 'Lokasi tidak boleh kosong',
+            'id_lokasi.exists' => 'Lokasi tidak ditemukan',
+            'jam_selesai_skp.after' => 'Jam selesai harus lebih besar dari jam mulai',
+        ]);
+        $cekJadwalPkl = JadwalSKP::where(
+            'tanggal_skp',
+            '=',
+            $request->tanggal_skp
+        )->where(
+            'jam_mulai_skp',
+            '=',
+            $request->jam_mulai_skp
+        )->where(
+            'jam_selesai_skp',
+            '=',
+            $request->jam_selesai_skp
+        )->where(
+            'id_lokasi',
+            '=',
+            Crypt::decrypt($request->id_lokasi)
+        )->count();
+        $cekJadwalTa1 = ModelJadwalSeminarTaSatu::where(
+            'jam_selesai_seminar_ta_satu',
+            '=',
+            $request->tanggal_skp
+        )->where(
+            'jam_mulai_seminar_ta_satu',
+            '=',
+            $request->jam_mulai_skp
+        )->where(
+            'jam_selesai_seminar_ta_satu',
+            '=',
+            $request->jam_selesai_skp
+        )->where(
+            'id_lokasi',
+            '=',
+            Crypt::decrypt($request->id_lokasi)
+        )->count();
+
+        $cekJadwalTa2 = ModelJadwalSeminarTaDua::where(
+            'tanggal_seminar_ta_dua',
+            $request->tanggal_skp
+        )->where(
+            'jam_mulai_seminar_ta_dua',
+            $request->jam_mulai_skp
+        )->where(
+            'jam_selesai_seminar_ta_dua',
+            $request->jam_selesai_skp
+        )->where(
+            'id_lokasi',
+            Crypt::decrypt($request->id_lokasi)
+        )->count();
+
+        $cekJadwalKompre = ModelJadwalSeminarKompre::where(
+            'tanggal_komprehensif',
+            $request->tanggal_skp
+        )->where(
+            'jam_mulai_komprehensif',
+            $request->jam_mulai_skp
+        )->where(
+            'jam_selesai_komprehensif',
+            $request->jam_selesai_skp
+        )->where(
+            'id_lokasi',
+            Crypt::decrypt($request->id_lokasi)
+        )->count();
+
+        if ($cekJadwalPkl > 0 || $cekJadwalTa1 > 0 || $cekJadwalTa2 > 0 || $cekJadwalKompre > 0) {
+            return response()->json(['message' => 'Failed']);
+        } else {
+            return response()->json(['message' => 'Valid']);
+        }
+        return $request->all();
+    }
 }
