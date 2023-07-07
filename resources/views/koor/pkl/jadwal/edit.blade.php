@@ -140,7 +140,7 @@
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
-                    <form id="formJadwal" action="{{ route('koor.jadwalPKL.update',$jadwal->encrypt_id) }}" method="POST">
+                    <form id="formJadwalUpdate" action="{{ route('koor.jadwalPKL.update',$jadwal->encrypt_id) }}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="profile-edit-list row">

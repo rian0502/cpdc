@@ -204,7 +204,7 @@
                             <div class="form-group">
                                 <button type="submit" class="submit btn btn-primary">Submit</button>
                             </div>
-                            <a href="{{ route('koor.jadwalTA1.index') }}">
+                            <a href="{{ route('koor.jadwalTA2.index') }}">
 
                                 <button class="batal btn btn-secondary">Batal</button>
                             </a>
