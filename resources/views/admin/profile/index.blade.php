@@ -155,7 +155,7 @@
                                                         <form id="delete" action="{{ route('admin.pangkat.destroy', $item->encrypt_id) }}" method="POST">
                                                             @method('DELETE')
                                                             @csrf
-                                                            <button type="submit" class="dropdown-item text-danger"><i
+                                                            <button type="submit" id="deleteBtn" class="dropdown-item text-danger"><i
                                                                     class="fa fa-trash"></i>
                                                                 Delete</button>
                                                         </form>

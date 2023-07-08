@@ -423,7 +423,6 @@
                                 <span class="micon bi bi-box"></span><span class="mtext">Inventaris</span>
                             </a>
                         </li>
-                      
                     @endrole
                     @role('sudo')
                         <li
@@ -730,7 +729,34 @@
             showConfirmationForm();
         });
     </script>
+    <script>
+        function deleteConfirmationForm() {
+            swal({
+                title: 'Apakah Anda yakin ingin submit data ini ?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
+            }).then((result) => {
+                if (result.value) {
+                    document.getElementById('delete').submit();
+                }
+            })
+        }
 
+        // Mengambil elemen tombol submit
+        const submitButton2 = document.getElementById('deleteBtn');
+
+        // Menangani klik tombol submit
+        submitButton2.addEventListener('click', function(e) {
+            e.preventDefault(); // Mencegah pengiriman form secara langsung
+
+            // Panggil fungsi untuk menampilkan konfirmasi
+            deleteConfirmationForm();
+        });
+    </script>
     <script>
         function updateFileNameAndLink(inputId, labelId, linkId) {
             var input = document.getElementById(inputId);

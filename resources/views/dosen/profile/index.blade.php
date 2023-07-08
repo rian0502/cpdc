@@ -223,7 +223,7 @@
                                                                                         Edit</a>
                                                                                     <form id="delete" action="{{route('dosen.organisasi.destroy', $item->encrypt_id)}}" method="POST">
                                                                                     @method('DELETE')
-                                                                                        <button type="submit"
+                                                                                        <button type="submit" id="deleteBtn"
                                                                                             class="dropdown-item text-danger"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>
@@ -304,7 +304,7 @@
                                                                                         <form id="delete" action="{{route('dosen.litabmas.destroy', $item->encrypt_id)}}"
                                                                                         @method('DELETE')
                                                                                             method="POST">
-                                                                                            <button type="submit"
+                                                                                            <button type="submit" id="deleteBtn"
                                                                                                 class="dropdown-item text-danger"><i
                                                                                                     class="fa fa-trash"></i>
                                                                                                 Delete</button>
@@ -387,7 +387,7 @@
                                                                                         @method('DELETE')
                                                                                             method="POST">
 
-                                                                                            <button type="submit"
+                                                                                            <button type="submit" id="deleteBtn"
                                                                                                 class="dropdown-item text-danger"><i
                                                                                                     class="fa fa-trash"></i>
                                                                                                 Delete</button>
@@ -457,7 +457,7 @@
                                                                                         Edit</a>
                                                                                     <form id="delete" action="{{route('dosen.jabatan.destroy', $item->encrypted_id)}}" method="POST">
                                                                                     @method('DELETE')
-                                                                                        <button type="submit"
+                                                                                        <button type="submit" id="deleteBtn"
                                                                                             class="dropdown-item text-danger"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>
@@ -528,7 +528,7 @@
                                                                                         Edit</a>
                                                                                     <form id="delete" action="{{route('dosen.pangkat.destroy', $item->encrypted_id)}}" method="POST">
                                                                                     @method('DELETE')
-                                                                                        <button type="submit"
+                                                                                        <button type="submit" id="deleteBtn"
                                                                                             class="dropdown-item text-danger"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>

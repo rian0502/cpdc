@@ -143,7 +143,7 @@
                                                                                     method="POST">
                                                                                     @csrf
                                                                                     @method('DELETE')
-                                                                                    <button type="submit"
+                                                                                    <button type="submit" id="deleteBtn"
                                                                                         class="dropdown-item text-danger"><i
                                                                                             class="fa fa-trash"></i>
                                                                                         Delete</button>
@@ -212,7 +212,7 @@
                                                                                     method="POST">
                                                                                     @csrf
                                                                                     @method('DELETE')
-                                                                                    <button type="submit"
+                                                                                    <button type="submit" id="deleteBtn"
                                                                                         class="dropdown-item text-danger"><i
                                                                                             class="fa fa-trash"></i>
                                                                                         Delete</button>
@@ -328,7 +328,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group mb-0">
-                                                                <input type="submit" class="btn btn-primary"
+                                                                <input type="submit" id="deleteBtn" class="btn btn-primary"
                                                                     value="Update Information" />
                                                             </div>
                                                         </li>
@@ -387,7 +387,7 @@
                                                                     placeholder="Paste your link here" />
                                                             </div>
                                                             <div class="form-group mb-0">
-                                                                <input type="submit" class="btn btn-primary"
+                                                                <input type="submit" id="deleteBtn" class="btn btn-primary"
                                                                     value="Save & Update" />
                                                             </div>
                                                         </li>

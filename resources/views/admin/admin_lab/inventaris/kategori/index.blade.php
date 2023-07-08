@@ -43,12 +43,12 @@
                                                         <i class="fa fa-pencil"></i>
                                                         Edit</a>
                                                     @if ($item->barangs->count() < 1)
-                                                        <form id="delete" 
+                                                        <form id="delete"
                                                             action="{{ route('sudo.kategori.destroy', $item->encrypt_id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="dropdown-item text-danger">
+                                                            <button type="submit" id="deleteBtn" class="dropdown-item text-danger">
                                                                 <i class="fa fa-trash"></i>
                                                                 Delete
                                                             </button>

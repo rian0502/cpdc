@@ -726,6 +726,7 @@
             showConfirmationForm();
         });
     </script>
+c
     <script>
         function toggleInput(selectElement, targetId, targetId2) {
             var selectedValue = selectElement.value;

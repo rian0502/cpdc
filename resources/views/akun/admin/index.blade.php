@@ -107,7 +107,7 @@
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="dropdown-item text-danger"><i
+                                                            <button type="submit" id="deleteBtn" class="dropdown-item text-danger"><i
                                                                     class="fa fa-trash"></i>
                                                                 Delete</button>
                                                         </form>
