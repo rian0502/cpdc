@@ -79,7 +79,7 @@ class PenjadwalanKompreController extends Controller
         $update->encrypt_id = Crypt::encrypt($ins_id);
         $update->save();
         $mahasiswa = $seminar->mahasiswa;
-        $path = public_path('uploads\template_ba_kompre\\');
+        $path = ('uploads\template_ba_kompre\\');
         $template = new \PhpOffice\PhpWord\TemplateProcessor($path . 'template_ba_kompre.docx');
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
@@ -104,7 +104,7 @@ class PenjadwalanKompreController extends Controller
         $template->setValue('jam_mulai', $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
-        $output  = public_path('uploads\print_ba_kompre\\');
+        $output  = ('uploads\print_ba_kompre\\');
         $namafile = $mahasiswa->npm . '_ba_kompre.docx';
         $template->saveAs($output . $namafile);
         $to_name = $mahasiswa->nama_mahasiswa;
@@ -121,9 +121,9 @@ class PenjadwalanKompreController extends Controller
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Sidang Komprehensif');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach(public_path('uploads\print_ba_kompre\\') . $namafile);
+            $message->attach(('uploads\print_ba_kompre\\') . $namafile);
         });
-        unlink(public_path('uploads\print_ba_kompre\\' . $namafile));
+        unlink(('uploads\print_ba_kompre\\' . $namafile));
         return redirect()->route('koor.jadwalKompre.index')->with('success', 'Berhasil Menjadwalkan Sidang Komprehensif');
     }
 
@@ -179,7 +179,7 @@ class PenjadwalanKompreController extends Controller
         ];
         $update = ModelJadwalSeminarKompre::where('id_seminar', Crypt::decrypt($id))->first();
         $update->update($data);
-        $path = public_path('uploads\template_ba_kompre\\');
+        $path = ('uploads\template_ba_kompre\\');
         $template = new \PhpOffice\PhpWord\TemplateProcessor($path . 'template_ba_kompre.docx');
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
@@ -204,7 +204,7 @@ class PenjadwalanKompreController extends Controller
         $template->setValue('jam_mulai', $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
-        $output  = public_path('uploads\print_ba_kompre\\');
+        $output  = ('uploads\print_ba_kompre\\');
         $namafile = $mahasiswa->npm . '_ba_kompre.docx';
         $template->saveAs($output . $namafile);
         $to_name = $mahasiswa->nama_mahasiswa;
@@ -221,9 +221,9 @@ class PenjadwalanKompreController extends Controller
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Sidang Komprehensif');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach(public_path('uploads\print_ba_kompre\\') . $namafile);
+            $message->attach(('uploads\print_ba_kompre\\') . $namafile);
         });
-        unlink(public_path('uploads\print_ba_kompre\\' . $namafile));
+        unlink(('uploads\print_ba_kompre\\' . $namafile));
         return redirect()->route('koor.jadwalKompre.index')->with('success', 'Berhasil Merubah Jadwal Sidang Komprehensif');
     }
 
@@ -233,7 +233,7 @@ class PenjadwalanKompreController extends Controller
         $jadwal_semianr = $seminar->jadwal;
         $hari =  $hari = Carbon::parse($jadwal_semianr->tanggal_komprehensif)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', $jadwal_semianr->id_lokasi)->first();
-        $path = public_path('uploads\template_ba_kompre\\');
+        $path = ('uploads\template_ba_kompre\\');
         $template = new \PhpOffice\PhpWord\TemplateProcessor($path . 'template_ba_kompre.docx');
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
@@ -258,7 +258,7 @@ class PenjadwalanKompreController extends Controller
         $template->setValue('jam_mulai', $jadwal_semianr->jam_mulai_komprehensif);
         $template->setValue('jam_selesai', $jadwal_semianr->jam_selesai_komprehensif);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
-        $output  = public_path('uploads\print_ba_kompre\\');
+        $output  = ('uploads\print_ba_kompre\\');
         $namafile = $mahasiswa->npm . '_ba_kompre.docx';
         $template->saveAs($output . $namafile);
         $to_name = $mahasiswa->nama_mahasiswa;
@@ -275,9 +275,9 @@ class PenjadwalanKompreController extends Controller
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Sidang Komprehensif');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach(public_path('uploads\print_ba_kompre\\') . $namafile);
+            $message->attach(('uploads\print_ba_kompre\\') . $namafile);
         });
-        unlink(public_path('uploads\print_ba_kompre\\' . $namafile));
+        unlink(('uploads\print_ba_kompre\\' . $namafile));
         return redirect()->route('koor.jadwalKompre.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Sidang Komprehensif');
 
     }

@@ -34,8 +34,8 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
         $file_laporan = $request->file('laporan_kp');
         $nama_file_ba = $file_ba->hashName();
         $nama_file_laporan = $file_laporan->hashName();
-        $file_ba->move('/uploads/berita_acara_seminar_kp', $nama_file_ba);
-        $file_laporan->move('/uploads/laporan_kp', $nama_file_laporan);
+        $file_ba->move('uploads/berita_acara_seminar_kp', $nama_file_ba);
+        $file_laporan->move('uploads/laporan_kp', $nama_file_laporan);
         $baskp = BaSKP::create([
             'no_ba_seminar_kp' => $request->no_ba_seminar_kp,
             'nilai_lapangan' => $replace_lapangan,
@@ -98,10 +98,10 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
         if ($file_ba && $file_laporan) {
             $nama_file_ba = $file_ba->hashName();
             $nama_file_laporan = $file_laporan->hashName();
-            $file_ba->move('/uploads/berita_acara_seminar_kp', $nama_file_ba);
-            $file_laporan->move('/uploads/laporan_kp', $nama_file_laporan);
-            unlink('/uploads/berita_acara_seminar_kp/' . $update->berkas_ba_seminar_kp);
-            unlink('/uploads/laporan_kp/' . $update->laporan_kp);
+            $file_ba->move('uploads/berita_acara_seminar_kp', $nama_file_ba);
+            $file_laporan->move('uploads/laporan_kp', $nama_file_laporan);
+            unlink('uploads/berita_acara_seminar_kp/' . $update->berkas_ba_seminar_kp);
+            unlink('uploads/laporan_kp/' . $update->laporan_kp);
             $berita_acara = [
                 'no_ba_seminar_kp' => $request->no_ba_seminar_kp,
                 'nilai_lapangan' => $replace_lapangan,
@@ -114,8 +114,8 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
             ];
         } else if ($file_ba) {
             $nama_file_ba = $file_ba->hashName();
-            $file_ba->move('/uploads/berita_acara_seminar_kp', $nama_file_ba);
-            unlink('/uploads/berita_acara_seminar_kp/' . $update->berkas_ba_seminar_kp);
+            $file_ba->move('uploads/berita_acara_seminar_kp', $nama_file_ba);
+            unlink('uploads/berita_acara_seminar_kp/' . $update->berkas_ba_seminar_kp);
             $berita_acara = [
                 'no_ba_seminar_kp' => $request->no_ba_seminar_kp,
                 'nilai_lapangan' => $replace_lapangan,
@@ -127,8 +127,8 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
             ];
         } else if ($file_laporan) {
             $nama_file_laporan = $file_laporan->hashName();
-            $file_laporan->move('/uploads/laporan_kp', $nama_file_laporan);
-            unlink('/uploads/laporan_kp/' . $update->laporan_kp);
+            $file_laporan->move('uploads/laporan_kp', $nama_file_laporan);
+            unlink('uploads/laporan_kp/' . $update->laporan_kp);
             $berita_acara = [
                 'no_ba_seminar_kp' => $request->no_ba_seminar_kp,
                 'nilai_lapangan' => $replace_lapangan,

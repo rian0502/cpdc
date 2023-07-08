@@ -130,9 +130,9 @@ class JadwalPKLController extends Controller
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach(public_path('uploads\print_ba_kp\\') . $namafile);
+            $message->attach(('uploads\print_ba_kp\\') . $namafile);
         });
-        unlink(public_path('uploads\print_ba_kp\\' . $namafile));
+        unlink(('uploads\print_ba_kp\\' . $namafile));
 
         return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Ditambahkan');
     }
@@ -243,9 +243,9 @@ class JadwalPKLController extends Controller
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach(public_path('uploads\print_ba_kp\\') . $namafile);
+            $message->attach(('uploads\print_ba_kp\\') . $namafile);
         });
-        unlink(public_path('uploads\print_ba_kp\\' . $namafile));
+        unlink(('uploads\print_ba_kp\\' . $namafile));
         return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Diubah');
     }
 
@@ -256,7 +256,7 @@ class JadwalPKLController extends Controller
         $jadwal_skp = JadwalSKP::where('id_skp', '=', $seminar->id)->first();
         $hari = Carbon::parse($jadwal_skp->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         //lokasi template
-        $path = public_path('uploads\template_ba_kp\\');
+        $path = ('uploads\template_ba_kp\\');
         $template = new TemplateProcessor($path . 'template_ba_kp.docx');
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
@@ -273,7 +273,7 @@ class JadwalPKLController extends Controller
         $template->setValue('lokasi', $jadwal_skp->lokasi->nama_lokasi);
         $template->setValue('pembimbing_lapangan', $jadwal_skp->pembimbing_lapangan);
         $template->setValue('nip_pembimbing_lapangan', $jadwal_skp->ni_pemlap);
-        $output = public_path('uploads\print_ba_kp\\');
+        $output = ('uploads\print_ba_kp\\');
         $namafile = $seminar->mahasiswa->npm . '_ba_kp_' . time() . '.docx';
         $template->saveAs($output . $namafile);
         //send email
@@ -296,9 +296,9 @@ class JadwalPKLController extends Controller
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach(public_path('uploads\print_ba_kp\\') . $namafile);
+            $message->attach(('uploads\print_ba_kp\\') . $namafile);
         });
-        unlink(public_path('uploads\print_ba_kp\\' . $namafile));
+        unlink(('uploads\print_ba_kp\\' . $namafile));
         return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Dikirim Ulang');
     }
 

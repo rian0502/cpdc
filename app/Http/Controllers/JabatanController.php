@@ -100,7 +100,7 @@ class JabatanController extends Controller
             $jabatan->tgl_sk = $request->tanggal_sk;
 
             if($request->hasFile('file_sk')){
-                unlink(public_path('uploads/sk_jabatan_dosen/' . $jabatan->file_sk));
+                unlink(('uploads/sk_jabatan_dosen/' . $jabatan->file_sk));
                 $file = $request->file('file_sk');
                 $nama_file = Str::random() . '.' . $file->getClientOriginalExtension();
                 $file->move(('uploads/sk_jabatan_dosen'), $nama_file);

@@ -50,7 +50,7 @@ class MahasiswaTaSatuController extends Controller
 
         $file = $request->file('berkas_seminar_ta_satu');
         $file_name = $file->hashName();
-        $file->move(public_path('uploads/syarat_seminar_ta1'), $file_name);
+        $file->move(('uploads/syarat_seminar_ta1'), $file_name);
 
         $data = [
             'tahun_akademik' => $request->tahun_akademik,
@@ -150,11 +150,11 @@ class MahasiswaTaSatuController extends Controller
         if ($request->file('berkas_seminar_ta_satu')) {
             $file = $request->file('berkas_seminar_ta_satu');
             $file_name = $file->hashName();
-            if (file_exists(public_path('uploads/syarat_seminar_ta1/' . $seminar->berkas_ta_satu))) {
-                unlink(public_path('uploads/syarat_seminar_ta1/' . $seminar->berkas_ta_satu));
+            if (file_exists(('uploads/syarat_seminar_ta1/' . $seminar->berkas_ta_satu))) {
+                unlink(('uploads/syarat_seminar_ta1/' . $seminar->berkas_ta_satu));
             }
             $seminar->berkas_ta_satu = $file_name;
-            $file->move(public_path('uploads/syarat_seminar_ta1'), $file_name);
+            $file->move(('uploads/syarat_seminar_ta1'), $file_name);
         }
         $seminar->updated_at = date('Y-m-d H:i:s');
         $seminar->komentar = null;
