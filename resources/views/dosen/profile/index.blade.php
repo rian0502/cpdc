@@ -50,16 +50,27 @@
                             <div class="title">
                                 <h4>Profile</h4>
                             </div>
-                            <nav aria-label="breadcrumb" role="navigation">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="index.html">Home</a>
-                                    </li>
-                                    <li class="breadcrumb-item active" aria-current="page">
-                                        Profile
-                                    </li>
-                                </ol>
-                            </nav>
+                            <div class="col-md-12 col-sm-12 d-flex align-items-center justify-content-between">
+                                <nav aria-label="breadcrumb" role="navigation">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="index.html">Home</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            Profile
+                                        </li>
+                                    </ol>
+                                </nav>
+                                <div class="text-right">
+                                    <a href="{{-- LINK export CV --}}">
+                                      <button class="btn btn-primary mt-3">
+                                        <i class="bi bi-file-earmark-word-fill"></i>
+                                        Export CV
+                                      </button>
+                                    </a>
+                                  </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -210,8 +221,9 @@
                                                                                         href="{{ route('dosen.organisasi.edit', $item->encrypt_id) }}">
                                                                                         <i class="fa fa-pencil"></i>
                                                                                         Edit</a>
-                                                                                    <form action="" method="POST">
-                                                                                        <button type="submit"
+                                                                                    <form id="delete" action="{{route('dosen.organisasi.destroy', $item->encrypt_id)}}" method="POST">
+                                                                                    @method('DELETE')
+                                                                                        <button type="submit" id="deleteBtn"
                                                                                             class="dropdown-item text-danger"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>
@@ -289,9 +301,10 @@
                                                                                             href="{{ route('dosen.litabmas.edit', $item->encrypt_id) }}">
                                                                                             <i class="fa fa-pencil"></i>
                                                                                             Edit</a>
-                                                                                        <form action=""
+                                                                                        <form id="delete" action="{{route('dosen.litabmas.destroy', $item->encrypt_id)}}"
+                                                                                        @method('DELETE')
                                                                                             method="POST">
-                                                                                            <button type="submit"
+                                                                                            <button type="submit" id="deleteBtn"
                                                                                                 class="dropdown-item text-danger"><i
                                                                                                     class="fa fa-trash"></i>
                                                                                                 Delete</button>
@@ -370,10 +383,11 @@
                                                                                             href="{{ route('dosen.publikasi.edit', $item->encrypt_id) }}">
                                                                                             <i class="fa fa-pencil"></i>
                                                                                             Edit</a>
-                                                                                        <form action=""
+                                                                                        <form id="delete" action="{{route('dosen.publikasi.destroy', $item->encrypt_id)}}"
+                                                                                        @method('DELETE')
                                                                                             method="POST">
 
-                                                                                            <button type="submit"
+                                                                                            <button type="submit" id="deleteBtn"
                                                                                                 class="dropdown-item text-danger"><i
                                                                                                     class="fa fa-trash"></i>
                                                                                                 Delete</button>
@@ -441,8 +455,9 @@
                                                                                         href="{{ route('dosen.jabatan.edit', $item->encrypted_id) }}">
                                                                                         <i class="fa fa-pencil"></i>
                                                                                         Edit</a>
-                                                                                    <form action="" method="POST">
-                                                                                        <button type="submit"
+                                                                                    <form id="delete" action="{{route('dosen.jabatan.destroy', $item->encrypted_id)}}" method="POST">
+                                                                                    @method('DELETE')
+                                                                                        <button type="submit" id="deleteBtn"
                                                                                             class="dropdown-item text-danger"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>
@@ -511,8 +526,9 @@
                                                                                         href="{{ route('dosen.pangkat.edit', $item->encrypted_id) }}">
                                                                                         <i class="fa fa-pencil"></i>
                                                                                         Edit</a>
-                                                                                    <form action="" method="POST">
-                                                                                        <button type="submit"
+                                                                                    <form id="delete" action="{{route('dosen.pangkat.destroy', $item->encrypted_id)}}" method="POST">
+                                                                                    @method('DELETE')
+                                                                                        <button type="submit" id="deleteBtn"
                                                                                             class="dropdown-item text-danger"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>

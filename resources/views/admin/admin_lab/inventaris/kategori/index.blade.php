@@ -8,7 +8,7 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Kategori</h4>
-                        <a href="{{ route('lab.kategori.create') }}">
+                        <a href="{{ route('sudo.kategori.create') }}">
                             <button class="btn btn-success mt-3">
                                 <i class="icon-copy fi-page-add"></i>
                                 Tambah Data
@@ -39,17 +39,16 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('lab.kategori.edit', $item->encrypt_id) }}">
+                                                        href="{{ route('sudo.kategori.edit', $item->encrypt_id) }}">
                                                         <i class="fa fa-pencil"></i>
                                                         Edit</a>
                                                     @if ($item->barangs->count() < 1)
-                                                        <form
-                                                            action="{{ route('lab.kategori.destroy', $item->encrypt_id) }}"
+                                                        <form id="delete"
+                                                            action="{{ route('sudo.kategori.destroy', $item->encrypt_id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="dropdown-item text-danger"
-                                                                onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
+                                                            <button type="submit" id="deleteBtn" class="dropdown-item text-danger">
                                                                 <i class="fa fa-trash"></i>
                                                                 Delete
                                                             </button>

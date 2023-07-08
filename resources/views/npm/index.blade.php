@@ -255,10 +255,10 @@
                                 <a class="dropdown-item" href="${editUrl}">
                                     <i class="fa fa-pencil"></i> Edit
                                 </a>
-                                <form action="${deleteUrl}" method="POST">
+                                <form id="delete" action="${deleteUrl}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="dropdown-item text-danger">
+                                    <button type="submit" id="deleteBtn" class="dropdown-item text-danger">
                                         <i class="fa fa-trash"></i> Delete
                                     </button>
                                 </form>

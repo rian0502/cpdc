@@ -14,7 +14,7 @@ class StoreModelBarangRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->hasRole('admin lab');;
+        return Auth::user()->hasRole('sudo');;
     }
 
     /**
@@ -42,7 +42,7 @@ class StoreModelBarangRequest extends FormRequest
             'id_kategori.exists' => 'Kategori tidak ditemukan',
         ];
     }
-    
+
     protected function prepareForValidation()
     {
         $input = $this->all();

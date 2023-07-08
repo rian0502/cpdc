@@ -94,9 +94,8 @@ Route::prefix('admin/')->name('admin.')->middleware(['auth', 'profile', 'verifie
 
 // ADMIN LAB
 Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verified', 'role:admin lab'])->group(function () {
-    Route::resource('model', ModelController::class);
+
     Route::resource('barang', BarangController::class);
-    Route::resource('kategori', KategoriController::class);
     Route::resource('ruang', LabController::class);
     Route::resource('sop', SopController::class);
     Route::resource('barang/history', HistoryController::class)->names(
@@ -154,7 +153,7 @@ Route::prefix('koor')->name('koor.')->group(function () {
     Route::resource('jadwalTA1', PenjadwalanTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('jadwalTA1');
     Route::resource('jadwalTA2', PenjadwalanTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('jadwalTA2');
     Route::resource('jadwalKompre', PenjadwalanKompreController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('jadwalKompre');
-    
+
     Route::get('/jadwalPPKL/resend/{id}', [JadwalPKLController::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:pkl'])->name('jadwalPKL.resend');
     Route::get('/jadwalTA1/resend/{id}', [PenjadwalanTaSatu::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1.resend');
     Route::get('/jadwalTA2/resend/{id}', [PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('jadwalTA2.resend');
@@ -296,6 +295,8 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::resource('akun_admin', AkunAdminController::class);
     Route::resource('base_npm', BaseNpmController::class);
     Route::get('BaseNpm', [BaseNpmController::class, 'BaseNpm'])->name('base_npm.ajax');
+    Route::resource('model', ModelController::class);
+    Route::resource('kategori', KategoriController::class);
 });
 
 // route FE

@@ -72,13 +72,14 @@
                                                 "><i
                                                                     class="fa fa-pencil"></i> Edit</a>
                                                             <form
+                                                            id="delete"
                                                                 action="
                                                 {{ route('sudo.akun_dosen.destroy', $item->id) }}
                                                 "
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="dropdown-item text-danger"><i
+                                                                <button type="submit" id="deleteBtn" class="dropdown-item text-danger"><i
                                                                         class="fa fa-trash"></i>
                                                                     Delete</button>
                                                             </form>
