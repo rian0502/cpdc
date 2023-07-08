@@ -44,7 +44,7 @@ class JabatanController extends Controller
         //
         $file = $request->file('file_sk_jabatan');
         $nama_file = Str::random() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('uploads/sk_jabatan_dosen'), $nama_file);
+        $file->move(('uploads/sk_jabatan_dosen'), $nama_file);
         $insertJabatan = HistoryJabatanDosen::create([
             'jabatan' => $request->jaban,
             'tgl_sk' => $request->tanggal_sk_jabatan,
@@ -100,10 +100,10 @@ class JabatanController extends Controller
             $jabatan->tgl_sk = $request->tanggal_sk;
 
             if($request->hasFile('file_sk')){
-                unlink(public_path('uploads/sk_jabatan_dosen/' . $jabatan->file_sk));
+                unlink(('uploads/sk_jabatan_dosen/' . $jabatan->file_sk));
                 $file = $request->file('file_sk');
                 $nama_file = Str::random() . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('uploads/sk_jabatan_dosen'), $nama_file);
+                $file->move(('uploads/sk_jabatan_dosen'), $nama_file);
                 $jabatan->file_sk = $nama_file;
             }
             $jabatan->updated_at = date('Y-m-d H:i:s');
@@ -123,6 +123,13 @@ class JabatanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $jabatan = HistoryJabatanDosen::find(Crypt::decrypt($id));
+        if($jabatan->dosen_id == auth()->user()->dosen->id){
+            unlink('uploads/sk_jabatan_dosen/' . $jabatan->file_sk);
+            $jabatan->delete();
+            return redirect()->route('dosen.profile.index')->with('success', 'Jabatan berhasil dihapus');
+        }else{
+            return redirect()->route('dosen.profile.index')->with('error', 'Anda tidak memiliki akses untuk menghapus data ini');
+        }
     }
 }

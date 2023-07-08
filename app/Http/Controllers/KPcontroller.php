@@ -69,7 +69,7 @@ class KPcontroller extends Controller
         $file_seminar = $request->file('berkas_seminar_pkl');
         $mahasiswa = Mahasiswa::select('id')->where('user_id', auth()->user()->id)->first();
         $nama_file = $file_seminar->hashName();
-        $file_seminar->move(public_path('uploads/syarat_seminar_kp'), $nama_file);
+        $file_seminar->move(('uploads/syarat_seminar_kp'), $nama_file);
         $data = [
             'judul_kp' => Str::title($request->judul_kp),
             'semester' => $request->semester,
@@ -142,9 +142,9 @@ class KPcontroller extends Controller
         if ($request->file('berkas_seminar_pkl')) {
             $file_seminar = $request->file('berkas_seminar_pkl');
             $file_before = $seminarKp->berkas_seminar_pkl;
-            unlink(public_path('uploads/syarat_seminar_kp/' . $file_before));
+            unlink(('uploads/syarat_seminar_kp/' . $file_before));
             $nama_file = $file_seminar->hashName();
-            $file_seminar->move(public_path('uploads/syarat_seminar_kp'), $nama_file);
+            $file_seminar->move(('uploads/syarat_seminar_kp'), $nama_file);
             $seminarKp->berkas_seminar_pkl = $nama_file;
         }
         $seminarKp->mitra = $request->mitra;
