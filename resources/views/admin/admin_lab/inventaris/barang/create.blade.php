@@ -54,18 +54,13 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label>Lokasi</label>
-                                    <select class="custom-select2 form-control" style="width: 100%; height: 38px"
-                                        name="id_lokasi" required>
-                                        @foreach ($locations as $item)
-                                            <option value="{{ $item->encrypt_id }}"
-                                                {{ old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
-                                                {{ $item->nama_lokasi . ', Lt-' . $item->lantai_tingkat }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <input 
+                                        class="form-control" readonly disabled
+                                        value="{{$lokasi->nama_lokasi}}"
+                                        type="text" placeholder="Lokasi">
                                 </div>
 
                             </div>
