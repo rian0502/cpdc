@@ -11,6 +11,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\StoreBarangRequest;
 use App\Http\Requests\UpdateBarangRequest;
+use Illuminate\Support\Facades\Auth;
 
 class BarangController extends Controller
 {
@@ -33,9 +34,9 @@ class BarangController extends Controller
     public function create()
     {
         $data = [
-            'locations' => Lokasi::all(),
             'models' => ModelBarang::all(),
             'categories' => Kategori::all(),
+            'lokasi' => Auth::user()->administrasi->lokasi,
         ];
 
         return view('admin.admin_lab.inventaris.barang.create', $data);
@@ -52,7 +53,7 @@ class BarangController extends Controller
         $data = [
             'nama_barang' => $request->nama_barang,
             'jumlah_akhir' => $request->jumlah_akhir,
-            'id_lokasi' => Crypt::decrypt($request->id_lokasi),
+            'id_lokasi' => Auth::user()->administrasi->lokasi,
             'id_model' => Crypt::decrypt($request->id_model),
             'created_at' => now(),
             'updated_at' => now(),
@@ -81,7 +82,6 @@ class BarangController extends Controller
             'histories' => History::where('id_barang', Crypt::decrypt($id))->get(),
         ];
         return view('admin.admin_lab.inventaris.barang.show', $data);
-
     }
 
     /**
@@ -94,7 +94,7 @@ class BarangController extends Controller
     {
         $data = [
             'barang' => Barang::where('id', Crypt::decrypt($id))->first(),
-            'locations' => Lokasi::all(),
+            'lokasi' => Auth::user()->administrasi->lokasi,
             'models' => ModelBarang::all(),
             'categories' => Kategori::all(),
         ];
@@ -129,7 +129,7 @@ class BarangController extends Controller
             //proses update table barang
             $data = [
                 'nama_barang' => $request->nama_barang,
-                'id_lokasi' => Crypt::decrypt($request->id_lokasi),
+                'id_lokasi' => Auth::user()->administrasi->lokasi,
                 'id_model' => Crypt::decrypt($request->id_model),
                 'jumlah_akhir' => $request->jumlah_akhir,
                 'updated_at' => now(),
@@ -143,7 +143,7 @@ class BarangController extends Controller
         } else {
             $data = [
                 'nama_barang' => $request->nama_barang,
-                'id_lokasi' => Crypt::decrypt($request->id_lokasi),
+                'id_lokasi' => Auth::user()->administrasi->lokasi,
                 'id_model' => Crypt::decrypt($request->id_model),
                 'updated_at' => now(),
             ];
