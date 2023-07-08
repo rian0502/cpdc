@@ -123,5 +123,14 @@ class PangkatDosenController extends Controller
     public function destroy($id)
     {
         //
+        $pangkat = HistoryPangkatDosen::find(Crypt::decrypt($id));
+        if ($pangkat->dosen_id == Auth::user()->dosen->id) {
+            $path = ('uploads/sk_pangkat_dosen/' . $pangkat->file_sk);
+            unlink($path);
+            $pangkat->delete();
+            return redirect()->route('dosen.profile.index')->with('success', 'Data Kepangkatan Berhasil dihapus');
+        } else {
+            return redirect()->route('dosen.profile.index')->with('error', 'Anda tidak memiliki akses untuk menghapus data ini');
+        }
     }
 }

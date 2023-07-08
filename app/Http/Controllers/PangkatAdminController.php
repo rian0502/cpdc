@@ -77,7 +77,7 @@ class PangkatAdminController extends Controller
     {
         //
         $pangkat = HistoryPangkatAdmin::find(Crypt::decrypt($id));
-        
+
         return view('admin.profile.pangkat_edit', compact('pangkat'));
     }
 
@@ -91,6 +91,7 @@ class PangkatAdminController extends Controller
     public function update(Request $request, $id)
     {
         //cek token 
+
         if ($request->_token != csrf_token()) {
             return redirect()->back();
         }
@@ -100,16 +101,18 @@ class PangkatAdminController extends Controller
             return redirect()->route('admin.profile.index')->with('error', 'Anda tidak memiliki akses');
         }
         if ($request->file('file_sk') != null) {
+            $old_file = $pangkat->file_sk;
+            unlink('uploads/sk_pangkat_admin/' . $old_file);
             $file = $request->file('file_sk');
             $nama_file = $file->hashName();
-            $old_file = $pangkat->file_sk;
-            unlink(public_path('uploads/sk_pangkat_admin/') . $old_file);
             $pangkat->file_sk = $nama_file;
-            $file->move(public_path('uploads/sk_pangkat_admin'), $nama_file);
-        }else{
+            $file->move('uploads/sk_pangkat_admin', $nama_file);
+        } else {
             $pangkat->pangkat = $request->kepangkatan;
             $pangkat->tgl_sk = $request->tanggal_sk;
         }
+        $pangkat->save();
+
         return redirect()->route('admin.profile.index')->with('success', 'Data berhasil diubah');
     }
 
