@@ -60,4 +60,16 @@ class ModelSeminarTaDua extends Model
     {
         return $this->hasOne(ModelBaSeminarTaDua::class, 'id_seminar');
     }
+
+    public function getJadwalDosenDate($id_dosen)
+    {
+        return $this->join('jadwal_seminar_ta_dua', 'seminar_ta_dua.id', '=', 'jadwal_seminar_ta_dua.id_seminar')
+            ->where('seminar_ta_dua.id_pembimbing_satu', $id_dosen)
+            ->orWhere('seminar_ta_dua.id_pembimbing_dua', $id_dosen)
+            ->orWhere('seminar_ta_dua.id_pembahas', $id_dosen)
+            ->where('jadwal_seminar_ta_dua.tanggal_seminar_ta_dua', '>=', date('Y-m-d'))
+            ->select('seminar_ta_dua.id', 'seminar_ta_dua.judul_ta', 'seminar_ta_dua.id_mahasiswa')
+            ->orderBy('jadwal_seminar_ta_dua.tanggal_seminar_ta_dua', 'asc')
+            ->get();
+    }
 }

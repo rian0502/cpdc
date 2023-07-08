@@ -57,4 +57,16 @@ class ModelSeminarKompre extends Model
     {
         return $this->hasOne(ModelBaSeminarKompre::class, 'id_seminar');
     }
+
+    public function getJadwalDosenDate($id_dosen)
+    {
+        return $this->join('jadwal_seminar_komprehensif', 'seminar_komprehensif.id', '=', 'jadwal_seminar_komprehensif.id_seminar')
+            ->where('seminar_komprehensif.id_pembimbing_satu', $id_dosen)
+            ->orWhere('seminar_komprehensif.id_pembimbing_dua', $id_dosen)
+            ->orWhere('seminar_komprehensif.id_pembahas', $id_dosen)
+            ->where('jadwal_seminar_komprehensif.tanggal_komprehensif', '>=', date('Y-m-d'))
+            ->select('seminar_komprehensif.id', 'seminar_komprehensif.judul_ta', 'seminar_komprehensif.id_mahasiswa')
+            ->orderBy('jadwal_seminar_komprehensif.tanggal_komprehensif', 'asc')
+            ->get();
+    }
 }
