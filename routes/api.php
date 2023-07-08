@@ -23,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/check-jadwal', [JadwalPKLController::class, 'checkJadwal']);
+Route::put('/check-update', [JadwalPKLController::class, 'checkUpdate']);

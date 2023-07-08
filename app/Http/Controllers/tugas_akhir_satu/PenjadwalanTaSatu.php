@@ -196,7 +196,60 @@ class PenjadwalanTaSatu extends Controller
         unlink(public_path('uploads\print_ba_ta1\\' . $namafile));
         return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Menjadwalkan Ulang Seminar Tugas Akhir 1');
     }
+    
     public function resend($id)
     {
+        $seminar = ModelSeminarTaSatu::find(Crypt::decrypt($id));
+        $mahasiswa = $seminar->mahasiswa;
+        $jadwal = $seminar->jadwal;
+        $hari =  $hari = Carbon::parse($jadwal->tanggal_seminar_ta_satu)->locale('id_ID')->isoFormat('dddd');
+        $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', $jadwal->id_lokasi)->first();
+        $path = public_path('uploads\template_ba_ta1\\');
+        $template = new \PhpOffice\PhpWord\TemplateProcessor($path . 'template_ba_ta1.docx');
+        $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
+        $template->setValue('npm', $seminar->mahasiswa->npm);
+        $template->setValue('judul_ta', $seminar->judul_ta);
+        $template->setValue('pb_1', $seminar->pembimbing_satu->nama_dosen);
+        $template->setValue('nip_pb_1', $seminar->pembimbing_satu->nip);
+
+        if ($seminar->pembimbing_dua) {
+            $template->setValue('pb_2', $seminar->pembimbing_dua->nama_dosen);
+            $template->setValue('nip_pb_2', $seminar->pembimbing_dua->nip);
+        } else {
+            $template->setValue('pb_2', $seminar->pbl2_nama);
+            $template->setValue('nip_pb_2', $seminar->pbl2_nip);
+        }
+        $template->setValue('pbhs', $seminar->pembahas->nama_dosen);
+        $template->setValue('nip_pbhs', $seminar->pembahas->nip);
+        $template->setValue('dospa', $mahasiswa->dosen->nama_dosen);
+        $template->setValue('nip_dospa', $mahasiswa->dosen->nip);
+        $template->setValue('koor_acc', Auth::user()->name);
+        $template->setValue('nip_koor_acc', Auth::user()->dosen->nip);
+        $template->setValue('hari', $hari);
+        $template->setValue('tanggal', Carbon::parse($jadwal->tanggal_seminar_ta_satu)->locale('id_ID')->isoFormat('D MMMM YYYY'));
+        $template->setValue('jam_mulai', $jadwal->jam_mulai_seminar_ta_satu);
+        $template->setValue('jam_selesai', $jadwal->jam_selesai_seminar_ta_satu);
+        $template->setValue('lokasi', $lokasi->nama_lokasi);
+        $output  = public_path('uploads\print_ba_ta1\\');
+        $namafile = $mahasiswa->npm . '_ba_ta1.docx';
+        $template->saveAs($output . $namafile);
+        $to_name = $mahasiswa->nama_mahasiswa;
+        $to_email = $mahasiswa->user->email;
+        $data = [
+            'name' => $seminar->mahasiswa->nama_mahasiswa,
+            'body' => 'Berikut adalah jadwal Seminar Tugas Akhir 1 Anda',
+            'seminar' => $seminar->judul_ta,
+            'tanggal' => $hari . ', ' . Carbon::parse($jadwal->tanggal_seminar_ta_satu)->locale('id_ID')->isoFormat('D MMMM YYYY'),
+            'jam_mulai' => $jadwal->jam_mulai_seminar_ta_satu,
+            'jam_selesai' => $jadwal->jam_selesai_seminar_ta_satu,
+            'lokasi' => $lokasi->nama_lokasi,
+        ];
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 1');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach(public_path('uploads\print_ba_ta1\\') . $namafile);
+        });
+        unlink(public_path('uploads\print_ba_ta1\\' . $namafile));
+        return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar Tugas Akhir 1');
     }
 }

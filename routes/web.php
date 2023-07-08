@@ -69,7 +69,7 @@ use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 use App\Http\Controllers\DataMahasiswaAllController;
-
+use Illuminate\Auth\Events\Verified;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -154,7 +154,12 @@ Route::prefix('koor')->name('koor.')->group(function () {
     Route::resource('jadwalTA1', PenjadwalanTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('jadwalTA1');
     Route::resource('jadwalTA2', PenjadwalanTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('jadwalTA2');
     Route::resource('jadwalKompre', PenjadwalanKompreController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('jadwalKompre');
+    
     Route::get('/jadwalPPKL/resend/{id}', [JadwalPKLController::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:pkl'])->name('jadwalPKL.resend');
+    Route::get('/jadwalTA1/resend/{id}', [PenjadwalanTaSatu::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1.resend');
+    Route::get('/jadwalTA2/resend/{id}', [PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('jadwalTA2.resend');
+    Route::get('/jadwalKompre/resend/{id}', [PenjadwalanKompreController::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('jadwalKompre.resend');
+
     Route::resource('validasiBaPKL', ValidasiBaPKLController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('validasiBaPKL');
     Route::resource('validasiBaTA1', ValidasiBaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('validasiBaTA1');
     Route::resource('validasiBaTA2', ValidasiBaTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('validasiBaTA2');
@@ -224,28 +229,30 @@ Route::post('/change-password', [AuthController::class, 'changePassword'])->midd
 //end AUTH
 
 //routing untuk aktivasi email
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    if (auth()->user()) {
-        $request->fulfill();
-    } else {
-        return redirect('/login')->with('error', 'Login dulu Sebelum Vertifikasi!');
+Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
+    $user = App\Models\User::find($id);
+
+    if (! $user || ! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+        return redirect('/login')->with('error', 'Invalid verification link.');
     }
-    return redirect('/dashboard')->with('success', 'Akun Berhasil di Aktivasi !');
-})->name('verification.verify');
 
-
-Route::get(
-    '/email/verify',
-    [AuthController::class, 'reactivation']
-)->middleware(['auth', 'unverified'])->name('verification.notice');
-
-Route::get(
-    '/email/activation-notification',
-    function (Request $request) {
-        $request->user()->sendEmailVerificationNotification();
-        return back()->with('message', 'Verification link sent!');
+    if ($user->hasVerifiedEmail()) {
+        return redirect('/dashboard')->with('success', 'Akun anda sudah terverivikasi.');
     }
-)->middleware(['auth', 'unverified', 'throttle:6,1'])->name('activation.send');
+
+    $user->markEmailAsVerified();
+    event(new Verified($user));
+
+    return redirect('/dashboard')->with('success', 'Akun anda berhasil terverivikasi!');
+})->middleware('signed')->name('verification.verify');
+
+Route::get('/email/verify',[AuthController::class, 'reactivation'])->middleware(['auth', 'unverified'])
+->name('verification.notice');
+
+Route::get('/email/activation-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Tautan verifikasi telah dikirim!');
+})->middleware(['auth', 'unverified', 'throttle:6,1'])->name('activation.send');
 //end routing untuk aktivasi email
 
 

@@ -71,6 +71,158 @@
             <div class="title pb-20">
                 <h2 class="h2 mb-0">Dashboard</h2>
             </div>
+            @role('sudo')
+                <div class="row pb-10">
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap" style="width: -300px">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        {{ $npm }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        NPM
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#fff">
+                                        <i class="fas fa-id-card-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $profile }}
+
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Profile
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon">
+                                        <i class="icon-copy fa-solid fa-user" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $noVertif }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Belum Aktivasi
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="far fa-paper-plane"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $acc }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">Jumlah Akun</div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pb-10">
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap" style="width: -300px">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        {{ $actNpm }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        NPM Aktif
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#fff">
+                                        <i class="far fa-check-square"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $noNpm }}
+
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        NPM Nonaktif
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        {{ $nonAcc }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Akun Nonaktif
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="far fa-times-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $role }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">Jumlah Role</div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="fas fa-user-tag"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endrole
+
             @role('admin berkas')
                 <div class="row pb-10">
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
@@ -97,7 +249,7 @@
                             <div class="card-box height-100-p widget-style3 ">
                                 <div class="d-flex flex-wrap">
                                     <div class="widget-data">
-                                        <div class="weight-700 font-24 text-dark">75</div>
+                                        <div class="weight-700 font-24 text-dark">{{ $ta1 }}</div>
                                         <div class="font-14 text-secondary weight-500">
                                             Belum Tervalidasi
                                         </div>
@@ -116,7 +268,7 @@
                             <div class="card-box height-100-p widget-style3 ">
                                 <div class="d-flex flex-wrap">
                                     <div class="widget-data">
-                                        <div class="weight-700 font-24 text-dark">75</div>
+                                        <div class="weight-700 font-24 text-dark">{{ $ta2 }}</div>
                                         <div class="font-14 text-secondary weight-500">
                                             Belum Tervalidasi
                                         </div>
@@ -135,7 +287,7 @@
                             <div class="card-box height-100-p widget-style3 ">
                                 <div class="d-flex flex-wrap">
                                     <div class="widget-data">
-                                        <div class="weight-700 font-24 text-dark">75</div>
+                                        <div class="weight-700 font-24 text-dark">{{ $kompre }}</div>
                                         <div class="font-14 text-secondary weight-500">
                                             Belum Tervalidasi
                                         </div>
@@ -158,7 +310,7 @@
                             <div class="card-box height-100-p widget-style3 ">
                                 <div class="d-flex flex-wrap">
                                     <div class="widget-data">
-                                        <div class="weight-700 font-24 text-dark">75</div>
+                                        <div class="weight-700 font-24 text-dark">{{ $jadwal_seminar }}</div>
                                         <div class="font-14 text-secondary weight-500">
                                             Belum Terjadwal
                                         </div>
@@ -177,7 +329,7 @@
                             <div class="card-box height-100-p widget-style3 ">
                                 <div class="d-flex flex-wrap">
                                     <div class="widget-data">
-                                        <div class="weight-700 font-24 text-dark">75</div>
+                                        <div class="weight-700 font-24 text-dark">{{ $unvalid_kp }}</div>
                                         <div class="font-14 text-secondary weight-500">
                                             Belum Tervalidasi
                                         </div>
@@ -464,7 +616,7 @@
 
     </html>
 
-    
+
 
 
     </div>
@@ -772,7 +924,7 @@
                                     allowPointSelect: true,
                                     dataLabels: {
                                         enabled: true,
-                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                        format: '{point.percentage:.1f} %',
                                         style: {
                                             textOutline: 'none'
                                         }
