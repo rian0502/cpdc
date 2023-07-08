@@ -50,7 +50,7 @@
                                             <a class="dropdown-item"
                                                 href="{{route('lab.barang.edit', $item->encrypt_id ) }}"><i
                                                     class="fa fa-pencil"></i> Edit</a>
-                                            <form
+                                            <form id="delete"
                                                 action="{{route('lab.barang.destroy', $item->encrypt_id )  }}"
                                                 method="POST">
                                                 @csrf

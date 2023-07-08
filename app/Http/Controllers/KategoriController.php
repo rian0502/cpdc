@@ -54,9 +54,9 @@ class KategoriController extends Controller
         $simpan = Kategori::where('id', $simpan->id)->update(['encrypt_id' => $id]);
 
         if ($simpan) {
-            return redirect()->route('lab.kategori.index')->with('success', 'Data berhasil disimpan');
+            return redirect()->route('sudo.kategori.index')->with('success', 'Data berhasil disimpan');
         } else {
-            return redirect()->route('lab.kategori.create')->with('error', 'Data gagal disimpan');
+            return redirect()->route('sudo.kategori.create')->with('error', 'Data gagal disimpan');
         }
     }
 
@@ -103,9 +103,9 @@ class KategoriController extends Controller
         ];
         $simpan = Kategori::where('id', Crypt::decrypt($id))->update($data);
         if ($simpan) {
-            return redirect()->route('lab.kategori.index')->with('success', 'Data berhasil disimpan');
+            return redirect()->route('sudo.kategori.index')->with('success', 'Data berhasil disimpan');
         } else {
-            return redirect()->route('lab.kategori.index')->with('error', 'Data gagal disimpan');
+            return redirect()->route('sudo.kategori.index')->with('error', 'Data gagal disimpan');
         }
     }
 
@@ -119,9 +119,9 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::where('encrypt_id', $id)->first();
         if (!$kategori) {
-            return redirect()->route('lab.kategori.index')->with('error', 'Kategori tidak ditemukan!');
+            return redirect()->route('sudo.kategori.index')->with('error', 'Kategori tidak ditemukan!');
         }
         $kategori->delete();
-        return redirect()->route('lab.kategori.index')->with('success', 'Kategori berhasil dihapus!');
+        return redirect()->route('sudo.kategori.index')->with('success', 'Kategori berhasil dihapus!');
     }
 }

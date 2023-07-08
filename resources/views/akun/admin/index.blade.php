@@ -100,7 +100,7 @@
                                                     {{ route('sudo.akun_admin.edit', $item->id) }}
                                                     "><i
                                                                 class="fa fa-pencil"></i> Edit</a>
-                                                        <form
+                                                        <form id="delete"
                                                             action="
                                                     {{ route('sudo.akun_admin.destroy', $item->id) }}
                                                     "

@@ -255,7 +255,7 @@
                                 <a class="dropdown-item" href="${editUrl}">
                                     <i class="fa fa-pencil"></i> Edit
                                 </a>
-                                <form action="${deleteUrl}" method="POST">
+                                <form id="delete" action="${deleteUrl}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="dropdown-item text-danger">

@@ -13,7 +13,7 @@
                         </div>
 
                     </div>
-                    <form action="{{ route('lab.kategori.update',$kategori->encrypt_id) }}" method="POST">
+                    <form action="{{ route('sudo.kategori.update',$kategori->encrypt_id) }}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="profile-edit-list row">
@@ -55,7 +55,7 @@
                         </div>
 
                     </form>
-                    <a href="{{route('lab.kategori.index')}}">
+                    <a href="{{route('sudo.kategori.index')}}">
 
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>

@@ -13,7 +13,7 @@
                         </div>
 
                     </div>
-                    <form action="{{ route('lab.model.update', $model->encrypt_id) }}" method="POST">
+                    <form action="{{ route('sudo.model.update', $model->encrypt_id) }}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="profile-edit-list row">
@@ -37,6 +37,19 @@
                                     <div class="form-control-feedback has-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="weight-500 col-md-6">
+                                <label>Kategori</label>
+                                <select class="custom-select2 form-control" style="width: 100%; height: 38px" name="id_kategori">
+                                    @foreach ($categories as $item)
+                                        <option value="{{ $item->encrypt_id }}"
+                                            {{ old('id_kategori', $model->id_kategori) == $item->id_kategori ? 'selected' : '' }}>
+                                            {{ $item->nama_kategori }}</option>
+                                    @endforeach
+                                </select>
+                                @error('id_kategori')
+                                    <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
 
 
@@ -46,7 +59,7 @@
                         </div>
 
                     </form>
-                    <a href="{{route('lab.model.index')}}">
+                    <a href="{{route('sudo.model.index')}}">
 
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>

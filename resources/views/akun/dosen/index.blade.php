@@ -72,6 +72,7 @@
                                                 "><i
                                                                     class="fa fa-pencil"></i> Edit</a>
                                                             <form
+                                                            id="delete"
                                                                 action="
                                                 {{ route('sudo.akun_dosen.destroy', $item->id) }}
                                                 "

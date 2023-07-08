@@ -55,9 +55,9 @@ class ModelController extends Controller
         $id = ModelBarang::latest()->first()->id;
         $update = ModelBarang::where('id', $id)->update(['encrypt_id' => Crypt::encrypt($id)]);
         if ($simpan && $update) {
-            return redirect()->route('lab.model.index')->with('success', 'Data berhasil ditambahkan');
+            return redirect()->route('sudo.model.index')->with('success', 'Data berhasil ditambahkan');
         } else {
-            return redirect()->route('lab.model.index')->with('error', 'Data gagal ditambahkan');
+            return redirect()->route('sudo.model.index')->with('error', 'Data gagal ditambahkan');
         }
     }
 
@@ -82,7 +82,8 @@ class ModelController extends Controller
     {
         //
         $data = [
-            'model' => ModelBarang::where('id', Crypt::decrypt($id))->first()
+            'model' => ModelBarang::where('id', Crypt::decrypt($id))->first(),
+            'categories' => Kategori::all()
         ];
         return view('admin.admin_lab.inventaris.model.edit', $data);
     }
@@ -105,9 +106,9 @@ class ModelController extends Controller
         ];
         $update = ModelBarang::where('id', Crypt::decrypt($id))->update($data);
         if ($update) {
-            return redirect()->route('lab.model.index')->with('success', 'Data berhasil disimpan');
+            return redirect()->route('sudo.model.index')->with('success', 'Data berhasil disimpan');
         } else {
-            return redirect()->route('lab.model.index')->with('error', 'Data gagal disimpan');
+            return redirect()->route('sudo.model.index')->with('error', 'Data gagal disimpan');
         }
     }
 
@@ -122,9 +123,9 @@ class ModelController extends Controller
         //
         $model = ModelBarang::where('encrypt_id', $id)->first();
         if (!$model) {
-            return redirect()->route('lab.model.index')->with('error', 'model tidak ditemukan!');
+            return redirect()->route('sudo.model.index')->with('error', 'model tidak ditemukan!');
         }
         $model->delete();
-        return redirect()->route('lab.model.index')->with('success', 'Kategori berhasil dihapus!');
+        return redirect()->route('sudo.model.index')->with('success', 'Kategori berhasil dihapus!');
     }
 }
