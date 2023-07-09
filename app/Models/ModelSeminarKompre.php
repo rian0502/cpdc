@@ -69,4 +69,18 @@ class ModelSeminarKompre extends Model
             ->orderBy('jadwal_seminar_komprehensif.tanggal_komprehensif', 'asc')
             ->get();
     }
+    public function getInvalidJumlahBerkas()
+    {
+        return $this->where('status_koor', 'Belum Selesai')
+            ->orWhere('status_koor', 'Perbaikan')
+            ->whereHas('beritaAcara', function ($query) {
+                $query->where('seminar_komprehensif.id', 'ba_seminar_komprehensif.id_seminar');
+            })->count();
+    }
+
+    public function getJumlahJadwal()
+    {
+        return $this->where('status_admin', 'Valid')
+            ->whereDoesntHave('jadwal')->count();
+    }
 }
