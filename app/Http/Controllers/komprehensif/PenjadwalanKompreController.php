@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use App\Models\Lokasi;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarKompre;
-use App\Models\ModelSeminarTaSatu;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;

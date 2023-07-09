@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
-use Illuminate\Http\Request;
 use App\Models\ModelSeminarTaDua;
 use App\Models\ModelSeminarKompre;
 use App\Models\ModelSeminarTaSatu;
