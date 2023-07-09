@@ -61,12 +61,16 @@ class DashboardController extends Controller
                 $data['jumlah_ta1'] = ModelSeminarTaSatu::count();
             }
             if (Auth::user()->hasRole('ta2')) {
-                $data['unvalid_ta2'] = ModelSeminarTaDua::where('status_admin', 'Valid')->where('status_koor', '!=', 'Invalid')->count();
-                $data['jadwal_seminar'] = ModelSeminarTaDua::leftJoin('jadwal_seminar_ta_dua', 'seminar_ta_dua.id', '=', 'jadwal_seminar_ta_dua.id_seminar')->count();
+                $data['invalid_berkas'] = (new ModelSeminarTaDua())->getInvalidJumlahBerkas();
+                $data['invalid_jadwal'] = (new ModelSeminarTaDua())->getJumlahJadwal();
+                $data['total_berkas']  = ModelBaSeminarTaDua::count();
+                $data['jumlah_ta1'] = ModelSeminarTaDua::count();
             }
             if (Auth::user()->hasRole('kompre')) {
-                $data['unvalid_kompre'] = ModelSeminarKompre::where('status_admin', 'Valid')->where('status_koor', '!=', 'Invalid')->count();
-                $data['jadwal_seminar'] = ModelSeminarKompre::leftJoin('jadwal_seminar_komprehensif', 'seminar_komprehensif.id', '=', 'jadwal_seminar_komprehensif.id_seminar')->count();
+                $data['invalid_berkas'] = (new ModelSeminarTaDua())->getInvalidJumlahBerkas();
+                $data['invalid_jadwal'] = (new ModelSeminarTaDua())->getJumlahJadwal();
+                $data['total_berkas']  = ModelBaSeminarTaDua::count();
+                $data['jumlah_ta1'] = ModelSeminarTaDua::count();
             }
             return view('dashboard', $data);
         } else {
