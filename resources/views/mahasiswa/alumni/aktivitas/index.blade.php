@@ -23,70 +23,76 @@
                     <div class="timeline mb-30">
                         <ul>
                             {{-- BAGIAN SINI ENTAR YANG DI LOOP --}}
-                            <li>
-                                <div class="timeline-date">15 Jan 2020</div>
-                                <div class="timeline-desc card-box">
-                                    <div class="pd-20">
-                                        <dl>
-                                            <dt class="d-flex align-items-start mb-2">
-                                                <h3><i class="fas fa-solid fa-building mr-3 mt-1" data-toggle="tooltip"
-                                                        title="Nama Tempat/Universitas"></i></h3>
-                                                <h3>PT. Bukit Asam</h3>
-                                            </dt>
-                                            <dd class="d-flex align-items-start ml-3">
-                                                <i class="fa fa-solid fa-location-dot mr-3 mt-1" data-toggle="tooltip"
-                                                    title="Lokasi"></i>
-                                                <div>Kelurahan Kuningan Timur, kecamatan Setia Budi, kabupaten kota Kota
-                                                    Jakarta Selatan,
-                                                    Provinsi DKI Jakarta.</div>
-                                            </dd>
-                                            <dd class="d-flex align-items-start ml-3">
-                                                <i class="fa fa-user-tie-hair mr-3 mt-1" data-toggle="tooltip"
-                                                    title="Posisi/Jabatan"></i>
-                                                <div>Project Manager</div>
-                                            </dd>
-                                            <dd class="d-flex align-items-start ml-3">
-                                                <i class="fa fa-link mr-3 mt-1" data-toggle="tooltip" title="Hubungan"></i>
-                                                <div>Erat</div>
-                                            </dd>
-                                            <dd class="d-flex align-items-start ml-3">
-                                                <i class="fa-solid fa-rupiah-sign mr-3 mt-1" data-toggle="tooltip"
-                                                    title="Gaji"></i>
-                                                <div class="gaji">10000000</div>
-                                            </dd>
-                                            <dd class="d-flex align-items-start ml-3">
-                                                <i class="fa-solid fa-user-tag mr-3 mt-1" data-toggle="tooltip"
-                                                    title="Status"></i>
-                                                <div>Kerja</div>
-                                            </dd>
-                                            <dt class="d-flex justify-content-end">
-                                                <div class="dropdown">
-                                                    <a class="btn btn-outline-primary dropdown-toggle"
-                                                        href="#" role="button"
-                                                        data-toggle="dropdown">
-                                                        <i class="fa fa-ellipsis-h"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('mahasiswa.aktivitas_alumni.edit',1) }}"><i
-                                                                class="fa fa-pencil"></i> Edit</a>
-                                                        <form id="delete"
-                                                            action="{{ route('mahasiswa.aktivitas_alumni.destroy',1) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" id="deleteBtn"
-                                                                class="dropdown-item text-danger"><i
-                                                                    class="fa fa-trash"></i>
-                                                                Delete</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </dt>
-                                        </dl>
+
+                            @foreach ($aktivitas as $item)
+                                <li>
+                                    <div class="timeline-date">
+                                        {{ $carbon::parse($item->tahun_masuk)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
                                     </div>
-                                </div>
-                            </li>
+                                    <div class="timeline-desc card-box">
+                                        <div class="pd-20">
+                                            <dl>
+                                                <dt class="d-flex align-items-start mb-2">
+                                                    <h3><i class="fas fa-solid fa-building mr-3 mt-1" data-toggle="tooltip"
+                                                            title="Nama Tempat/Universitas"></i></h3>
+                                                    <h3>{{ $item->tempat }}</h3>
+                                                </dt>
+                                                <dd class="d-flex align-items-start ml-3">
+                                                    <i class="fa fa-solid fa-location-dot mr-3 mt-1" data-toggle="tooltip"
+                                                        title="Lokasi"></i>
+                                                    <div>{{ $item->alamat }}</div>
+                                                </dd>
+                                                <dd class="d-flex align-items-start ml-3">
+                                                    <i class="fa fa-user-tie-hair mr-3 mt-1" data-toggle="tooltip"
+                                                        title="Posisi/Jabatan"></i>
+                                                    <div>{{ $item->jabatan }}</div>
+                                                </dd>
+                                                <dd class="d-flex align-items-start ml-3">
+                                                    <i class="fa fa-link mr-3 mt-1" data-toggle="tooltip"
+                                                        title="Hubungan"></i>
+                                                    <div>{{ $item->hubungan }}</div>
+                                                </dd>
+                                                <dd class="d-flex align-items-start ml-3">
+                                                    <i class="fa-solid fa-rupiah-sign mr-3 mt-1" data-toggle="tooltip"
+                                                        title="Gaji"></i>
+                                                    <div class="gaji">{{ $item->gaji }}</div>
+                                                </dd>
+                                                <dd class="d-flex align-items-start ml-3">
+                                                    <i class="fa-solid fa-user-tag mr-3 mt-1" data-toggle="tooltip"
+                                                        title="Status"></i>
+                                                    <div>{{ $item->status }}</div>
+                                                </dd>
+                                                <dt class="d-flex justify-content-end">
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-outline-primary dropdown-toggle" href="#"
+                                                            role="button" data-toggle="dropdown">
+                                                            <i class="fa fa-ellipsis-h"></i>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('mahasiswa.aktivitas_alumni.edit', $item->encrypted_id) }}"><i
+                                                                    class="fa fa-pencil"></i> Edit</a>
+                                                            <form id="delete"
+                                                                action="{{ route('mahasiswa.aktivitas_alumni.destroy', $item->encrypted_id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" id="deleteBtn"
+                                                                    class="dropdown-item text-danger"><i
+                                                                        class="fa fa-trash"></i>
+                                                                    Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </dt>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+
+
+
                             {{-- DISINI END FOREACHNYA --}}
 
                         </ul>

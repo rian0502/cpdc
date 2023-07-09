@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Masuk</label>
-                                    <input autofocus class="form-control @error('tanggal_masuk') form-control-danger @enderror date-picker" type="text" name="tanggal_masuk"
+                                    <input autofocus class="form-control @error('tanggal_masuk') form-control-danger @enderror" type="date" name="tanggal_masuk"
                                         value="{{ old('tanggal_masuk') }}" id="tanggal_masuk"
                                         placeholder="Tanggal Masuk">
                                     @error('tanggal_masuk')
