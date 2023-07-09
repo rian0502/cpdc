@@ -52,17 +52,19 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>FILE SK PANGKAT</label>
-                                    <div class=" custom-file">
-                                        <label class="custom-file-label" for="file_sk">Pilih File</label>
-
-                                        <input value="{{old('file_sk')}}" autofocus name="file_sk" id="file_sk"
-                                            class="custom-file-input form-control @error('file_sk') form-control-danger @enderror"
-                                            type="file" placeholder="FILE SK">
-                                    </div>
-                                    @error('file_sk')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
+                                    <label>FILE SK PANGKAT <small> <a id="view-file-link-pangkat" href="#"
+                                        target="_blank" style="display: none;">Lihat File</a> </small></label>
+                            <div class="custom-file">
+                                <label class="custom-file-label" for="file_sk" id="file-label-pangkat">Pilih
+                                    File</label>
+                                <input value="{{ old('file_sk') }}" accept=".pdf" autofocus name="file_sk"
+                                    id="file_sk"
+                                    class="custom-file-input form-control @error('file_sk') form-control-danger @enderror"
+                                    type="file" placeholder="FILE SK" onchange="updateFileNamePangkat(event)">
+                            </div>
+                            @error('file_sk')
+                                <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
 
@@ -84,4 +86,16 @@
 
 
     </div>
+
+    <script>
+        function updateFileNamePangkat(event) {
+            var input = event.target;
+            var label = document.getElementById("file-label-pangkat");
+            var viewFileLink = document.getElementById("view-file-link-pangkat");
+
+            label.textContent = input.files[0].name;
+            viewFileLink.href = URL.createObjectURL(input.files[0]);
+            viewFileLink.style.display = "inline";
+        }
+    </script>
 @endsection

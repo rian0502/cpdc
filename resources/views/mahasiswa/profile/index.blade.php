@@ -138,12 +138,12 @@
                                                                                 <a class="dropdown-item"
                                                                                     href="{{ route('mahasiswa.prestasi.edit', $item->encrypt_id) }}"><i
                                                                                         class="fa fa-pencil"></i> Edit</a>
-                                                                                <form
+                                                                                <form id="delete"
                                                                                     action="{{ route('mahasiswa.prestasi.destroy', $item->encrypt_id) }}"
                                                                                     method="POST">
                                                                                     @csrf
                                                                                     @method('DELETE')
-                                                                                    <button type="submit"
+                                                                                    <button type="submit" id="deleteBtn"
                                                                                         class="dropdown-item text-danger"><i
                                                                                             class="fa fa-trash"></i>
                                                                                         Delete</button>
@@ -207,12 +207,12 @@
                                                                                 <a class="dropdown-item"
                                                                                     href="{{ route('mahasiswa.kegiatan.edit', $item->encrypt_id) }}"><i
                                                                                         class="fa fa-pencil"></i> Edit</a>
-                                                                                <form
+                                                                                <form id="delete"
                                                                                     action="{{ route('mahasiswa.kegiatan.destroy', $item->encrypt_id) }}"
                                                                                     method="POST">
                                                                                     @csrf
                                                                                     @method('DELETE')
-                                                                                    <button type="submit"
+                                                                                    <button type="submit" id="deleteBtn"
                                                                                         class="dropdown-item text-danger"><i
                                                                                             class="fa fa-trash"></i>
                                                                                         Delete</button>
@@ -233,7 +233,7 @@
                                         <!-- Setting Tab start -->
                                         <div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
                                             <div class="profile-setting">
-                                                <form>
+                                                <form id="delete">
                                                     <ul class="profile-edit-list row">
                                                         <li class="weight-500 col-md-6">
                                                             <h4 class="text-blue h5 mb-20">
@@ -328,7 +328,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group mb-0">
-                                                                <input type="submit" class="btn btn-primary"
+                                                                <input type="submit" id="deleteBtn" class="btn btn-primary"
                                                                     value="Update Information" />
                                                             </div>
                                                         </li>
@@ -387,7 +387,7 @@
                                                                     placeholder="Paste your link here" />
                                                             </div>
                                                             <div class="form-group mb-0">
-                                                                <input type="submit" class="btn btn-primary"
+                                                                <input type="submit" id="deleteBtn" class="btn btn-primary"
                                                                     value="Save & Update" />
                                                             </div>
                                                         </li>

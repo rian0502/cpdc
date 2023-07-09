@@ -197,11 +197,11 @@ class MahasiswaKompreController extends Controller
         if ($request->file('berkas_kompre')) {
             $file = $request->file('berkas_kompre');
             $file_name = $file->hashName();
-            if (file_exists(public_path('uploads/syarat_sidang_kompre/' . $seminar->berkas_kompre))) {
-                unlink(public_path('uploads/syarat_sidang_kompre/' . $seminar->berkas_kompre));
+            if (file_exists(('uploads/syarat_sidang_kompre/' . $seminar->berkas_kompre))) {
+                unlink(('uploads/syarat_sidang_kompre/' . $seminar->berkas_kompre));
             }
             $seminar->berkas_kompre = $file_name;
-            $file->move(public_path('uploads/syarat_sidang_kompre'), $file_name);
+            $file->move(('uploads/syarat_sidang_kompre'), $file_name);
         }
         $seminar->updated_at = date('Y-m-d H:i:s');
         $seminar->komentar = null;

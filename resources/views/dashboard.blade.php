@@ -306,42 +306,304 @@
             @role('pkl')
                 <div class="row pb-10">
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <a href="{{ route('berkas.validasi.seminar.kp.index') }}">
-                            <div class="card-box height-100-p widget-style3 ">
-                                <div class="d-flex flex-wrap">
-                                    <div class="widget-data">
-                                        <div class="weight-700 font-24 text-dark">{{ $jadwal_seminar }}</div>
-                                        <div class="font-14 text-secondary weight-500">
-                                            Belum Terjadwal
-                                        </div>
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap" style="width: -300px">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        0
                                     </div>
-                                    <div class="widgets">
-                                        <div class="icon" data-color="#00eccf">
-                                            <STROng>KP</STROng>
-                                        </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Total Berkas
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#fff">
+                                        <i class="far fa-folder-open"></i>
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <a href="link validasi berkas ta 1">
-                            <div class="card-box height-100-p widget-style3 ">
-                                <div class="d-flex flex-wrap">
-                                    <div class="widget-data">
-                                        <div class="weight-700 font-24 text-dark">{{ $unvalid_kp }}</div>
-                                        <div class="font-14 text-secondary weight-500">
-                                            Belum Tervalidasi
-                                        </div>
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        {{ $unvalid_kp }}
                                     </div>
-                                    <div class="widgets">
-                                        <div class="icon" data-color="#00eccf">
-                                            <STRong>KP</STRong>
-                                        </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Belum Valid
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon">
+                                        <i class="fas fa-tasks"></i>
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">10
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Total Seminar
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $jadwal_seminar }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">Belum Terjadwal</div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="far fa-calendar-times"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endrole
+            @role('ta1')
+                <div class="row pb-10">
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap" style="width: -300px">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        {{ $total_berkas }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Total Berkas
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#fff">
+                                        <i class="far fa-folder-open"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        {{ $invalid_berkas }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Belum Sah
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon">
+                                        <i class="fas fa-tasks"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $jumlah_ta1 }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Total Seminar
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $invalid_jadwal }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">Belum Terjadwal</div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="far fa-calendar-times"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endrole
+            @role('ta2')
+                <div class="row pb-10">
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap" style="width: -300px">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        0
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Total Berkas
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#fff">
+                                        <i class="far fa-folder-open"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        0
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Belum Valid
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon">
+                                        <i class="fas fa-tasks"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">10
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Total Seminar
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">0
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">Belum Terjadwal</div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="far fa-calendar-times"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endrole
+            @role('kompre')
+                <div class="row pb-10">
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap" style="width: -300px">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        0
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Total Berkas
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#fff">
+                                        <i class="far fa-folder-open"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        0
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Belum Valid
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon">
+                                        <i class="fas fa-tasks"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">10
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Total Seminar
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">0
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">Belum Terjadwal</div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="far fa-calendar-times"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             @endrole
@@ -494,7 +756,7 @@
                 <div class="card-box pb-10" style="margin-bottom: 30px">
                     <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Kerja Praktik</div>
 
-                    <table class="table data-table-responsive stripe data-table-noexport p-2">
+                    <table class="table data-table-responsive warp stripe data-table-noexport p-2">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -534,15 +796,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>2017031016
-                                </td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
-                                <td>10-10-2023</td>
-                                <td>10.10</td>
-                                <td>Ruangan Seminar</td>
-                            </tr>
+                            @foreach ($jadwalta1 as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->mahasiswa->npm }}</td>
+                                    <td>{{ $item->judul_ta }}</td>
+                                    <td>{{ $item->jadwal->tanggal_seminar_ta_satu }}</td>
+                                    <td>{{ $item->jadwal->jam_mulai_seminar_ta_satu }} -
+                                        {{ $item->jadwal->jam_selesai_seminar_ta_satu }} WIB</td>
+                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -560,21 +824,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>2017031016
-                                </td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
-                                <td>10-10-2023</td>
-                                <td>10.10</td>
-                                <td>Ruangan Seminar</td>
-                            </tr>
+                            @foreach ($jadwalta2 as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->mahasiswa->npm }}</td>
+                                    <td>{{ $item->judul_ta }}</td>
+                                    <td>{{ $item->jadwal->tanggal_seminar_ta_dua }}</td>
+                                    <td>{{ $item->jadwal->jam_mulai_seminar_ta_dua }} -
+                                        {{ $item->jadwal->jam_selesai_seminar_ta_dua }} WIB</td>
+                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
                 <div class="card-box pb-10" style="margin-bottom: 30px">
                     <div class="h5 pd-20 mb-0">Data Pelaksanaan Sidang Komprehensif</div>
-                    <table class="table data-table-responsive stripe data-table-noexport p-2">
+                    <table class="table data-table-responsive stripe data-table-noexport p-2 nowarp">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -586,15 +852,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>2017031016
-                                </td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, tenetur.</td>
-                                <td>10-10-2023</td>
-                                <td>10.10</td>
-                                <td>Ruangan Seminar</td>
-                            </tr>
+                            @foreach ($jadwalkompre as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->mahasiswa->npm }}</td>
+                                    <td>{{ $item->judul_ta }}</td>
+                                    <td>{{ $item->jadwal->tanggal_komprehensif }}</td>
+                                    <td>{{ $item->jadwal->jam_mulai_komprehensif }} -
+                                        {{ $item->jadwal->jam_selesai_komprehensif }} WIB</td>
+                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

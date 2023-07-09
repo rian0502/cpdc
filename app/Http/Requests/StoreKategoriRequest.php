@@ -14,7 +14,7 @@ class StoreKategoriRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->hasRole('admin lab');;
+        return Auth::user()->hasRole('sudo');;
     }
 
     /**

@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Lokasi;
 use App\Models\SopLab;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSopLabRequest;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 class SopController extends Controller
@@ -114,8 +112,8 @@ class SopController extends Controller
         $file_sop = $request->file('file_sop');
         if ($file_sop) {
             // Menghapus file lama
-            if (File::exists(public_path('uploads/sop/' . $sop->file_sop))) {
-                File::delete(public_path('uploads/sop/' . $sop->file_sop));
+            if (File::exists(('uploads/sop/' . $sop->file_sop))) {
+                File::delete(('uploads/sop/' . $sop->file_sop));
             }
             $file_name = Str::random(45) . '.' . $file_sop->getClientOriginalExtension();
             $file_sop->move('uploads/sop', $file_name);

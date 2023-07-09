@@ -52,8 +52,8 @@ class MahasiswaBaTaSatu extends Controller
             $file_ba = $ba->hashName();
             $nilai = $request->file('berkas_nilai_seminar_ta_satu');
             $file_nilai = $nilai->hashName();
-            $ba->move(public_path('/uploads/ba_seminar_ta_satu'), $file_ba);
-            $nilai->move(public_path('/uploads/nilai_seminar_ta_satu'), $file_nilai);
+            $ba->move(('/uploads/ba_seminar_ta_satu'), $file_ba);
+            $nilai->move(('/uploads/nilai_seminar_ta_satu'), $file_nilai);
 
             $data = [
                 'no_berkas_ba_seminar_ta_satu' => $request->no_berkas_ba_seminar_ta_satu,
@@ -124,22 +124,22 @@ class MahasiswaBaTaSatu extends Controller
         ];
         if($request->file('berkas_ba_seminar_ta_satu')){
             $oldFile = $ba->berkas_ba_seminar_ta_satu;
-            if (file_exists(public_path('/uploads/ba_seminar_ta_satu/' . $oldFile))) {
-                unlink(public_path('/uploads/ba_seminar_ta_satu/' . $oldFile));
+            if (file_exists(('/uploads/ba_seminar_ta_satu/' . $oldFile))) {
+                unlink(('/uploads/ba_seminar_ta_satu/' . $oldFile));
             }
             $ba_file = $request->file('berkas_ba_seminar_ta_satu');
             $file_ba = $ba_file->hashName();
-            $ba_file->move(public_path('/uploads/ba_seminar_ta_satu'), $file_ba);
+            $ba_file->move(('/uploads/ba_seminar_ta_satu'), $file_ba);
             $data['berkas_ba_seminar_ta_satu'] = $file_ba;
         }
         if($request->file('berkas_nilai_seminar_ta_satu')){
             $oldFile = $ba->berkas_nilai_seminar_ta_satu;
-            if (file_exists(public_path('/uploads/nilai_seminar_ta_satu/' . $oldFile))) {
-                unlink(public_path('/uploads/nilai_seminar_ta_satu/' . $oldFile));
+            if (file_exists(('/uploads/nilai_seminar_ta_satu/' . $oldFile))) {
+                unlink(('/uploads/nilai_seminar_ta_satu/' . $oldFile));
             }
             $nilai_file = $request->file('berkas_nilai_seminar_ta_satu');
             $file_nilai = $nilai_file->hashName();
-            $nilai_file->move(public_path('/uploads/nilai_seminar_ta_satu'), $file_nilai);
+            $nilai_file->move(('/uploads/nilai_seminar_ta_satu'), $file_nilai);
             $data['berkas_nilai_seminar_ta_satu'] = $file_nilai;
         }
         $ba->update($data);

@@ -44,7 +44,7 @@
                                                         href="{{ route('jurusan.lokasi.edit', $item->encrypt_id) }}"><i
                                                             class="fa fa-pencil"></i> Edit</a>
                                                     @if($item->barangs->count() < 1)
-                                                        <form action="{{ route('jurusan.lokasi.destroy', $item->encrypt_id) }}"
+                                                        <form id="delete" action="{{ route('jurusan.lokasi.destroy', $item->encrypt_id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')

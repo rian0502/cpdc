@@ -49,8 +49,8 @@ class MahasiswaBaKompre extends Controller
             $file_ba = $ba->hashName();
             $nilai = $request->file('berkas_nilai_kompre');
             $file_nilai = $nilai->hashName();
-            $ba->move(public_path('/uploads/ba_sidang_kompre/'), $file_ba);
-            $nilai->move(public_path('/uploads/nilai_sidang_kompre/'), $file_nilai);
+            $ba->move(('/uploads/ba_sidang_kompre/'), $file_ba);
+            $nilai->move(('/uploads/nilai_sidang_kompre/'), $file_nilai);
 
             $data = [
                 'no_ba_berkas' => $request->no_ba_berkas,
@@ -122,22 +122,22 @@ class MahasiswaBaKompre extends Controller
         ];
         if ($request->file('ba_seminar_komprehensif')) {
             $oldFile = $ba->ba_seminar_komprehensif;
-            if (file_exists(public_path('/uploads/ba_sidang_kompre/' . $oldFile))) {
-                unlink(public_path('/uploads/ba_sidang_kompre/' . $oldFile));
+            if (file_exists(('/uploads/ba_sidang_kompre/' . $oldFile))) {
+                unlink(('/uploads/ba_sidang_kompre/' . $oldFile));
             }
             $ba_file = $request->file('ba_seminar_komprehensif');
             $file_ba = $ba_file->hashName();
-            $ba_file->move(public_path('/uploads/ba_sidang_kompre'), $file_ba);
+            $ba_file->move(('/uploads/ba_sidang_kompre'), $file_ba);
             $data['ba_seminar_komprehensif'] = $file_ba;
         }
         if ($request->file('berkas_nilai_kompre')) {
             $oldFile = $ba->berkas_nilai_kompre;
-            if (file_exists(public_path('/uploads/nilai_sidang_kompre/' . $oldFile))) {
-                unlink(public_path('/uploads/nilai_sidang_kompre/' . $oldFile));
+            if (file_exists(('/uploads/nilai_sidang_kompre/' . $oldFile))) {
+                unlink(('/uploads/nilai_sidang_kompre/' . $oldFile));
             }
             $nilai_file = $request->file('berkas_nilai_kompre');
             $file_nilai = $nilai_file->hashName();
-            $nilai_file->move(public_path('/uploads/nilai_sidang_kompre'), $file_nilai);
+            $nilai_file->move(('/uploads/nilai_sidang_kompre'), $file_nilai);
             $data['berkas_nilai_kompre'] = $file_nilai;
         }
         $ba->update($data);

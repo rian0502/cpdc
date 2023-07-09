@@ -121,6 +121,14 @@ class OrganisasiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $organisasi = OrganisasiDosen::find(Crypt::decrypt($id));
+        if($organisasi->dosen_id == Auth::user()->dosen->id){
+            $organisasi->delete();
+            return redirect()->route('dosen.profile.index')->with('success', 'Data berhasil dihapus');
+        }
+        else{
+            return redirect()->route('dosen.profile.index')->with('error', 'Data gagal dihapus');
+        }
+
     }
 }

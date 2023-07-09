@@ -44,7 +44,7 @@ class PangkatDosenController extends Controller
         //
         $file_sk = $request->file('file_sk');
         $nama =  Str::random() . '.' . $file_sk->getClientOriginalExtension();
-        $file_sk->move(public_path('uploads/sk_pangkat_dosen'), $nama);
+        $file_sk->move(('uploads/sk_pangkat_dosen'), $nama);
 
         $insertPangkat = HistoryPangkatDosen::create([
             'kepangkatan' => $request->kepangkatan,
@@ -98,13 +98,13 @@ class PangkatDosenController extends Controller
             $pangkat->kepangkatan = $request->kepangkatan;
             $pangkat->tgl_sk = $request->tgl_sk;
             if ($request->hasFile('file_sk')) {
-                $path = public_path('uploads/sk_pangkat_dosen/' . $pangkat->file_sk);
+                $path = ('uploads/sk_pangkat_dosen/' . $pangkat->file_sk);
                 if (file_exists($path)) {
                     unlink($path);
                 }
                 $file_sk = $request->file('file_sk');
                 $nama =  Str::random() . '.' . $file_sk->getClientOriginalExtension();
-                $file_sk->move(public_path('uploads/sk_pangkat_dosen'), $nama);
+                $file_sk->move(('uploads/sk_pangkat_dosen'), $nama);
                 $pangkat->file_sk = $nama;
             }
             $pangkat->save();
@@ -123,5 +123,14 @@ class PangkatDosenController extends Controller
     public function destroy($id)
     {
         //
+        $pangkat = HistoryPangkatDosen::find(Crypt::decrypt($id));
+        if ($pangkat->dosen_id == Auth::user()->dosen->id) {
+            $path = ('uploads/sk_pangkat_dosen/' . $pangkat->file_sk);
+            unlink($path);
+            $pangkat->delete();
+            return redirect()->route('dosen.profile.index')->with('success', 'Data Kepangkatan Berhasil dihapus');
+        } else {
+            return redirect()->route('dosen.profile.index')->with('error', 'Anda tidak memiliki akses untuk menghapus data ini');
+        }
     }
 }

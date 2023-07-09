@@ -6,13 +6,10 @@ use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Support\Str;
 use App\Models\Administrasi;
-use Illuminate\Http\Request;
 use App\Models\HistoryPangkatAdmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Support\Facades\Crypt;
-use App\Http\Requests\StorePangkatAdmin;
 use App\Http\Requests\StoreProfileAdminRequest;
 use App\Http\Requests\UpdateProfileAdminRequest;
 

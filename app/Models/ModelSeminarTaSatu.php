@@ -58,4 +58,30 @@ class ModelSeminarTaSatu extends Model
     {
         return $this->hasOne(ModelBaSeminarTaSatu::class, 'id_seminar');
     }
+
+    public function getJadwalDosenDate($id_dosen)
+    {
+        return $this->join('jadwal_seminar_ta_satu', 'seminar_ta_satu.id', '=', 'jadwal_seminar_ta_satu.id_seminar')
+            ->where('seminar_ta_satu.id_pembimbing_satu', $id_dosen)
+            ->orWhere('seminar_ta_satu.id_pembimbing_dua', $id_dosen)
+            ->orWhere('seminar_ta_satu.id_pembahas', $id_dosen)
+            ->where('jadwal_seminar_ta_satu.tanggal_seminar_ta_satu', '>=', date('Y-m-d'))
+            ->select('seminar_ta_satu.id', 'seminar_ta_satu.judul_ta', 'seminar_ta_satu.id_mahasiswa')
+            ->orderBy('jadwal_seminar_ta_satu.tanggal_seminar_ta_satu', 'asc')
+            ->get();
+    }
+
+    public function getInvalidJumlahBerkas()
+    {
+        return $this->where('status_koor', 'Belum Selesai')
+            ->orWhere('status_koor', 'Perbaikan')
+            ->whereHas('ba_seminar', function ($query) {
+                $query->where('seminar_ta_satu.id', 'ba_seminar_ta_satu.id_seminar');
+            })->count();
+    }
+
+    public function getJumlahJadwal(){
+        return $this->where('status_admin', 'Valid')
+        ->whereDoesntHave('jadwal')->count();
+    }
 }

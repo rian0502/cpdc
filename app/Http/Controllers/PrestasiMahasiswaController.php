@@ -110,7 +110,7 @@ class PrestasiMahasiswaController extends Controller
         if ($request->file('file_prestasi') != null) {
             $file_prestasi = $request->file('file_prestasi');
             $nama_file = $file_prestasi->hashName();
-            $file_prestasi->move(public_path('uploads/file_prestasi'), $nama_file);
+            $file_prestasi->move(('uploads/file_prestasi'), $nama_file);
             $data = [
                 'nama_prestasi' => $request->nama_prestasi,
                 'scala' => $request->scala,
@@ -120,7 +120,7 @@ class PrestasiMahasiswaController extends Controller
                 'updated_at' => date('Y-m-d H:i:s'),
             ];
             if ($prestasi->file_prestasi != null) {
-                unlink(public_path('uploads\file_prestasi\\' . $prestasi->file_prestasi));
+                unlink(('uploads\file_prestasi\\' . $prestasi->file_prestasi));
             }
         } else {
             $data = [
@@ -148,7 +148,7 @@ class PrestasiMahasiswaController extends Controller
             return redirect()->back();
         } else {
             if ($prestasi->file_prestasi != null) {
-                unlink(public_path('uploads/file_prestasi/' . $prestasi->file_prestasi));
+                unlink(('uploads/file_prestasi/' . $prestasi->file_prestasi));
             }
             $prestasi->delete();
             return redirect()->route('mahasiswa.profile.index')->with('success', 'Data berhasil dihapus');

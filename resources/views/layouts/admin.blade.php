@@ -411,25 +411,11 @@
                                 <span class="micon bi bi-file-earmark-ruled"></span><span class="mtext">SOP</span>
                             </a>
                         </li>
-                        <li
-                            class="dropdown {{ Request::is('admin/lab/barang*') || Request::is('admin/lab/kategori*') || Request::is('admin/lab/model*') ? 'show' : '' }}">
-                            <a href="javascript:;" class="dropdown-toggle"
-                                data-option="{{ Request::is('admin/lab/barang*') || Request::is('admin/lab/kategori*') || Request::is('admin/lab/model*') ? 'on' : '' }}">
-
+                        <li>
+                            <a href="{{ route('lab.barang.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('admin/lab/barang*') ? 'active' : '' }}">
                                 <span class="micon bi bi-box"></span><span class="mtext">Inventaris</span>
                             </a>
-                            <ul class="submenu">
-                                <li><a href="{{ route('lab.kategori.index') }}"
-                                        class="{{ Request::is('admin/lab/kategori*') ? 'active' : '' }}">Kategori</a>
-                                </li>
-                                <li><a href="{{ route('lab.model.index') }}"
-                                        class="{{ Request::is('admin/lab/model*') ? 'active' : '' }}">Model</a>
-                                </li>
-                                <li><a href="{{ route('lab.barang.index') }}"
-                                        class="{{ Request::is('admin/lab/barang*') ? 'active' : '' }}">Barang</a>
-                                </li>
-
-                            </ul>
                         </li>
                     @endrole
 
@@ -450,6 +436,23 @@
                                 </li>
                                 <li><a href="{{ route('sudo.akun_admin.index') }}"
                                         class="{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">Admin</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li
+                            class="dropdown {{ Request::is('sudo/kategori*') || Request::is('sudo/model*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle"
+                                data-option="{{ Request::is('sudo/kategori*') || Request::is('sudo/model*') ? 'on' : '' }}">
+
+                                <span class="micon bi bi-box"></span><span class="mtext">Inventaris</span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('sudo.kategori.index') }}"
+                                        class="{{ Request::is('sudo/kategori*') ? 'active' : '' }}">Kategori</a>
+                                </li>
+                                <li><a href="{{ route('sudo.model.index') }}"
+                                        class="{{ Request::is('sudo/model*') ? 'active' : '' }}">Model</a>
                                 </li>
 
                             </ul>
@@ -723,6 +726,7 @@
             showConfirmationForm();
         });
     </script>
+c
     <script>
         function toggleInput(selectElement, targetId, targetId2) {
             var selectedValue = selectElement.value;
@@ -796,9 +800,8 @@
                     });
                 });
             });
-            
         </script>
-          <script>
+        <script>
             $(document).ready(function() {
                 $('#formJadwalUpdate').submit(function(e) {
                     e.preventDefault();

@@ -94,9 +94,9 @@ class BerkasPersyaratanController extends Controller
         $syarat->path_file = $nama_file;
         $syarat->updated_at = date('Y-m-d H:i:s');
         $syarat->save();
-        $file->move(public_path('uploads/syarat_seminar'), $nama_file);
-        if (file_exists(public_path('uploads/syarat_seminar/' . $old_file))) {
-            unlink(public_path('uploads/syarat_seminar/' . $old_file));
+        $file->move(('uploads/syarat_seminar'), $nama_file);
+        if (file_exists(('uploads/syarat_seminar/' . $old_file))) {
+            unlink(('uploads/syarat_seminar/' . $old_file));
         }
         return redirect()->route('berkas.berkas_persyaratan.index')->with('success', 'File persyaratan seminar berhasil diubah');
     }

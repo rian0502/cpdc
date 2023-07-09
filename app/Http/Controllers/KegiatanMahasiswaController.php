@@ -58,7 +58,7 @@ class KegiatanMahasiswaController extends Controller
         $updated = AktivitasMahasiswa::find($insert_id);
         $updated->encrypt_id = Crypt::encrypt($insert_id);
         $updated->save();
-        $file->move(public_path('uploads/file_act_mhs'), $nama_file);
+        $file->move(('uploads/file_act_mhs'), $nama_file);
         return redirect()->route('mahasiswa.profile.index')->with('success', 'Data berhasil ditambahkan');
     }
 
@@ -101,9 +101,9 @@ class KegiatanMahasiswaController extends Controller
         if($request->file('file_aktivitas') != null){
             $file = $request->file('file_aktivitas');
             $nama_file = $file->hashName();
-            $file->move(public_path('uploads/file_act_mhs'), $nama_file);
+            $file->move(('uploads/file_act_mhs'), $nama_file);
             if($kegaitan->file_aktivitas != null){
-                File::delete(public_path('uploads/file_act_mhs/'.$kegaitan->file_aktivitas));
+                File::delete(('uploads/file_act_mhs/'.$kegaitan->file_aktivitas));
             }
             $kegaitan->file_aktivitas = $nama_file;
         }
@@ -129,7 +129,7 @@ class KegiatanMahasiswaController extends Controller
             return redirect()->back();
         }
         if($aktivitas->file_aktivitas != null){
-            File::delete(public_path('uploads/file_act_mhs/'.$aktivitas->file_aktivitas));
+            File::delete(('uploads/file_act_mhs/'.$aktivitas->file_aktivitas));
         }
         $aktivitas->delete();
         return redirect()->route('mahasiswa.profile.index')->with('success', 'Data berhasil dihapus');
