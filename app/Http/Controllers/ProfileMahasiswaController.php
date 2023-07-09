@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
-use Illuminate\Http\Request;
 use App\Models\PrestasiMahasiswa;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProfileMahasiswa;

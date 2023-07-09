@@ -7,13 +7,11 @@ use App\Models\Lokasi;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarTaDua;
-use App\Models\ModelSeminarTaSatu;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaDua;
-use App\Models\ModelJadwalSeminarTaSatu;
 
 class PenjadwalanTaDua extends Controller
 {

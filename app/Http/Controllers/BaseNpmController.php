@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\BaseNpm;
-use App\Models\PrestasiMahasiswa;
-use Error;
-use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Base;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class BaseNpmController extends Controller
