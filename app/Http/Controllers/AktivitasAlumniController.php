@@ -20,7 +20,9 @@ class AktivitasAlumniController extends Controller
      */
     public function index()
     {
-        //
+        if (!Auth::user()->hasRole('alumni')) {
+            return redirect()->back();
+        }
         $aktivitas = AktivitasAlumni::where('mahasiswa_id', Auth::user()->mahasiswa->id)->orderBy('tahun_masuk', 'desc')->get();
         return view('mahasiswa.alumni.aktivitas.index', compact('aktivitas'));
     }
@@ -47,6 +49,9 @@ class AktivitasAlumniController extends Controller
      */
     public function store(StoreAktivitasAlumniRequest $request)
     {
+        if (!Auth::user()->hasRole('alumni')) {
+            return redirect()->back();
+        }
         $data = [
             'tempat' => Str::title($request->tempat),
             'alamat' => $request->alamat,
@@ -71,6 +76,9 @@ class AktivitasAlumniController extends Controller
     public function show($id)
     {
         //
+        if (!Auth::user()->hasRole('alumni')) {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -82,6 +90,9 @@ class AktivitasAlumniController extends Controller
     public function edit($id)
     {
         //
+        if (!Auth::user()->hasRole('alumni')) {
+            return redirect()->back();
+        }
         $item = AktivitasAlumni::find(Crypt::decrypt($id));
         if($item->mahasiswa_id != Auth::user()->mahasiswa->id){
             return redirect()->back();
@@ -99,6 +110,9 @@ class AktivitasAlumniController extends Controller
     public function update(StoreAktivitasAlumniRequest $request, $id)
     {
         //
+        if (!Auth::user()->hasRole('alumni')) {
+            return redirect()->back();
+        }
         $aktivitas = AktivitasAlumni::find(Crypt::decrypt($id));
         $aktivitas->tempat = Str::title($request->tempat);
         $aktivitas->alamat = $request->alamat;
@@ -120,6 +134,9 @@ class AktivitasAlumniController extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::user()->hasRole('alumni')) {
+            return redirect()->back();
+        }
         $aktivitas = AktivitasAlumni::find(Crypt::decrypt($id));
         if($aktivitas->mahasiswa_id != Auth::user()->mahasiswa->id){
             return redirect()->back();

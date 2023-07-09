@@ -496,12 +496,15 @@
                                         Komprehensif</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni*') ? 'active' : '' }}">
-                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Aktivitas Alumni</span>
-                            </a>
-                        </li>
+                        @role('alumni')
+                            <li>
+                                <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni*') ? 'active' : '' }}">
+                                    <span class="micon fa fa-user-graduate"></span><span class="mtext">Aktivitas
+                                        Alumni</span>
+                                </a>
+                            </li>
+                        @endrole
                     @endrole
 
                     @role('admin berkas')
@@ -732,7 +735,7 @@
             showConfirmationForm();
         });
     </script>
-c
+    c
     <script>
         function toggleInput(selectElement, targetId, targetId2) {
             var selectedValue = selectElement.value;
