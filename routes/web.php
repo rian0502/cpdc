@@ -60,6 +60,7 @@ use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 use App\Http\Controllers\DataMahasiswaAllController;
+use App\Http\Controllers\AktivitasAlumniController;
 use Illuminate\Auth\Events\Verified;
 /*
 |--------------------------------------------------------------------------
@@ -199,6 +200,7 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
     Route::group(['prefix' => 'sidang', 'as' => 'sidang.'], function () {
         Route::resource('kompre', MahasiswaKompreController::class)->names('kompre');
     });
+    Route::resource('aktivitas_alumni', AktivitasAlumniController::class)->names('aktivitas_alumni');
 });
 
 
