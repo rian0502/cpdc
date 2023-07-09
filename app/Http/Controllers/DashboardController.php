@@ -64,13 +64,13 @@ class DashboardController extends Controller
                 $data['invalid_berkas'] = (new ModelSeminarTaDua())->getInvalidJumlahBerkas();
                 $data['invalid_jadwal'] = (new ModelSeminarTaDua())->getJumlahJadwal();
                 $data['total_berkas']  = ModelBaSeminarTaDua::count();
-                $data['jumlah_ta1'] = ModelSeminarTaDua::count();
+                $data['jumlah_ta2'] = ModelSeminarTaDua::count();
             }
             if (Auth::user()->hasRole('kompre')) {
                 $data['invalid_berkas'] = (new ModelSeminarTaDua())->getInvalidJumlahBerkas();
                 $data['invalid_jadwal'] = (new ModelSeminarTaDua())->getJumlahJadwal();
                 $data['total_berkas']  = ModelBaSeminarTaDua::count();
-                $data['jumlah_ta1'] = ModelSeminarTaDua::count();
+                $data['jumlah_kompre'] = ModelSeminarTaDua::count();
             }
             return view('dashboard', $data);
         } else {

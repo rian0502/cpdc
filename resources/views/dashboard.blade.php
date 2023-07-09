@@ -462,7 +462,7 @@
                             <div class="d-flex flex-wrap" style="width: -300px">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">
-                                        0
+                                        {{ $total_berkas }}
                                     </div>
                                     <div class="font-14 text-secondary weight-500">
                                         Total Berkas
@@ -481,7 +481,7 @@
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">
-                                        0
+                                        {{ $invalid_berkas }}
                                     </div>
                                     <div class="font-14 text-secondary weight-500">
                                         Belum Valid
@@ -499,7 +499,7 @@
                         <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark">10
+                                    <div class="weight-700 font-24 text-dark">{{ $jumlah_ta2 }}
                                     </div>
                                     <div class="font-14 text-secondary weight-500">
                                         Total Seminar
@@ -517,7 +517,7 @@
                         <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark">0
+                                    <div class="weight-700 font-24 text-dark">{{ $invalid_jadwal }}
                                     </div>
                                     <div class="font-14 text-secondary weight-500">Belum Terjadwal</div>
                                 </div>
@@ -538,7 +538,7 @@
                             <div class="d-flex flex-wrap" style="width: -300px">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">
-                                        0
+                                        {{ $total_berkas }}
                                     </div>
                                     <div class="font-14 text-secondary weight-500">
                                         Total Berkas
@@ -557,7 +557,7 @@
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">
-                                        0
+                                        {{ $invalid_berkas }}
                                     </div>
                                     <div class="font-14 text-secondary weight-500">
                                         Belum Valid
@@ -575,7 +575,7 @@
                         <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark">10
+                                    <div class="weight-700 font-24 text-dark">{{ $jumlah_kompre }}
                                     </div>
                                     <div class="font-14 text-secondary weight-500">
                                         Total Seminar
@@ -593,7 +593,7 @@
                         <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark">0
+                                    <div class="weight-700 font-24 text-dark">{{ $invalid_jadwal }}
                                     </div>
                                     <div class="font-14 text-secondary weight-500">Belum Terjadwal</div>
                                 </div>
