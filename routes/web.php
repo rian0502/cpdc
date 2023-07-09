@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\User;
 use App\Models\JadwalSKP;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KPcontroller;
 use App\Http\Controllers\LabController;
@@ -29,6 +31,8 @@ use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileDosenController;
 use App\Http\Controllers\AkunMahasiswaController;
 use App\Http\Controllers\ValidasiBaPKLController;
+use App\Http\Controllers\AktivitasAlumniController;
+use App\Http\Controllers\DataMahasiswaAllController;
 use App\Http\Controllers\ProfileMahasiswaController;
 use App\Http\Controllers\BerkasPersyaratanController;
 use App\Http\Controllers\KegiatanMahasiswaController;
@@ -48,20 +52,17 @@ use App\Http\Controllers\tugas_akhir_dua\MahasiswaBaTaDua;
 use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
 use App\Http\Controllers\tugas_akhir_satu\ValidasiBaTaSatu;
 use App\Http\Controllers\komprehensif\AdminKompreController;
+use App\Http\Controllers\MahasiswaBimbinganKompreController;
+use App\Http\Controllers\tugas_akhir_dua\ValidasiAdminTaDua;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaBaTaSatu;
 use App\Http\Controllers\tugas_akhir_satu\PenjadwalanTaSatu;
-use App\Http\Controllers\tugas_akhir_dua\ValidasiAdminTaDua;
-use App\Http\Controllers\MahasiswaBimbinganKompreController;
-use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
 use App\Http\Controllers\MahasiswaBimbinganAkademikController;
+use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
 use App\Http\Controllers\komprehensif\MahasiswaKompreController;
 use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
 use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
-use App\Http\Controllers\DataMahasiswaAllController;
-use App\Http\Controllers\AktivitasAlumniController;
-use Illuminate\Auth\Events\Verified;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
