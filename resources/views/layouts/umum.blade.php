@@ -106,6 +106,8 @@
                                 <a href="/ta2"
                                     class="dropdown-item margin-top {{ Request::is('ta2*') ? 'active' : '' }}">Tugas
                                     Akhir 2</a>
+                                <a href="/kompre"
+                                    class="dropdown-item margin-top {{ Request::is('kompre*') ? 'active' : '' }}">Komprehensif</a>
                             </div>
                             <style>
                                 .margin-top {
