@@ -34,4 +34,8 @@ class Lokasi extends Model
     {
         return $this->hasMany(Administrasi::class, 'lokasi_id');
     }
+    public function user()
+    {
+        return $this->hasMany(User::class, 'lokasi_id');
+    }
 }
