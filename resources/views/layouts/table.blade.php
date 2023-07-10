@@ -121,23 +121,25 @@
                         <a href="/about"
                             class="nav-item nav-link topbar{{ Request::is('/about*') ? 'active' : '' }}">Tentang</a>
                         <div
-                            class="nav-item dropdown {{ Request::is('/kp*') || Request::is('/ta1*') || Request::is('/ta2*') ? 'show' : '' }}">
+                            class="nav-item dropdown {{ Request::is('/kp*') || Request::is('/kompre*') || Request::is('/ta1*') || Request::is('/ta2*') ? 'show' : '' }}">
                             <a href="#" class="nav-link dropdown-toggle topbar"
                                 data-bs-toggle="dropdown">Seminar</a>
                             <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0">
                                 <a href="/kp"
-                                    class="dropdown-item margin-top {{ Request::is('/kp*') ? 'active' : '' }}">Kerja
+                                    class="dropdown-item margin-top {{ Request::is('kp*') ? 'active' : '' }}">Kerja
                                     Praktik</a>
                                 <a href="/ta1"
-                                    class="dropdown-item margin-top {{ Request::is('/ta1*') ? 'active' : '' }}">Tugas
+                                    class="dropdown-item margin-top {{ Request::is('ta1*') ? 'active' : '' }}">Tugas
                                     Akhir 1</a>
                                 <a href="/ta2"
-                                    class="dropdown-item margin-top {{ Request::is('/ta2*') ? 'active' : '' }}">Tugas
+                                    class="dropdown-item margin-top {{ Request::is('ta2*') ? 'active' : '' }}">Tugas
                                     Akhir 2</a>
                                 <a href="/kompre"
                                     class="dropdown-item margin-top {{ Request::is('kompre*') ? 'active' : '' }}">Komprehensif</a>
                             </div>
                         </div>
+                        <a href="/help"
+                            class="nav-item nav-link topbar{{ Request::is('help') ? 'active' : '' }}">Tentang</a>
                         @auth
 
                             {{-- tampil saat mode mobile --}}

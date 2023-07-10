@@ -90,11 +90,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse" style="margin-top:-20px;">
                     <div class="navbar-nav">
-                        <a href="/" class="nav-item nav-link {{ Request::is('/*') ? 'active' : '' }}">Beranda</a>
+                        <a href="/" class="nav-item nav-link {{ Request::is('/') ? 'active' : '' }}">Beranda</a>
                         <a href="/about"
-                            class="nav-item nav-link {{ Request::is('about*') ? 'active' : '' }}">Tentang</a>
+                            class="nav-item nav-link {{ Request::is('about') ? 'active' : '' }}">Tentang</a>
                         <div
-                            class="nav-item dropdown {{ Request::is('kp*') || Request::is('ta1*') || Request::is('ta2*') ? 'show' : '' }}">
+                            class="nav-item dropdown {{ Request::is('kp*') || Request::is('kompre*') || Request::is('ta1*') || Request::is('ta2*') ? 'show' : '' }}">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Seminar</a>
                             <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0">
                                 <a href="/kp"
@@ -115,6 +115,8 @@
                                 }
                             </style>
                         </div>
+                       <a href="/help"
+                            class="nav-item nav-link {{ Request::is('help') ? 'active' : '' }}">Bantuan</a>
                         @auth
 
                             {{-- tampil saat mode mobile --}}
