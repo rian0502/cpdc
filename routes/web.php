@@ -322,6 +322,9 @@ Route::get('/ta1', function () {
 Route::get('/ta2', function () {
     return view('ta2');
 });
+Route::get('/kompre', function () {
+    return view('kompre');
+});
 Route::get('/about', function () {
     return view('about');
 });
