@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('profile_picture')->default('default.png');
             $table->rememberToken();
+            $table->foreignId('lokasi_id')->nullable()->index()->constrained('lokasi')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

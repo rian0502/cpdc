@@ -25,6 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_picture',
         'email_verified_at',
         'password',
+        'lokasi_id',
     ];
 
     /**
@@ -59,5 +60,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function administrasi()
     {
         return $this->hasOne(Administrasi::class, 'user_id');
+    }
+    public function lokasi()
+    {
+        return $this->belongsTo(Lokasi::class, 'lokasi_id');
     }
 }
