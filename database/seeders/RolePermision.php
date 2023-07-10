@@ -127,9 +127,9 @@ class RolePermision extends Seeder
         $adminBerkas2->assignRole('admin berkas');
         $sudo1->assignRole('sudo');
         $mhs->assignRole(['mahasiswa', 'alumni']);
-        $mhs2->assignRole('mahasiswa');
-        $mhs3->assignRole('mahasiswa');
-        $mhs4->assignRole('mahasiswa');
+        $mhs2->assignRole(['mahasiswa', 'alumni']);
+        $mhs3->assignRole(['mahasiswa', 'alumni']);
+        $mhs4->assignRole(['mahasiswa', 'alumni']);
         $dosenKorKp->assignRole(['dosen', 'pkl']);
         $dosenKorTa1->assignRole(['dosen', 'ta1']);
         $dosenKorTa2->assignRole(['dosen', 'ta2']);

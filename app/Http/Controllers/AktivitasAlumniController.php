@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\StoreAktivitasAlumniRequest;
+use Illuminate\Support\Facades\DB;
 
 class AktivitasAlumniController extends Controller
 {
@@ -94,10 +95,10 @@ class AktivitasAlumniController extends Controller
             return redirect()->back();
         }
         $item = AktivitasAlumni::find(Crypt::decrypt($id));
-        if($item->mahasiswa_id != Auth::user()->mahasiswa->id){
+        if ($item->mahasiswa_id != Auth::user()->mahasiswa->id) {
             return redirect()->back();
         }
-        return  view('mahasiswa.alumni.aktivitas.edit',compact('item'));
+        return  view('mahasiswa.alumni.aktivitas.edit', compact('item'));
     }
 
     /**
@@ -138,10 +139,26 @@ class AktivitasAlumniController extends Controller
             return redirect()->back();
         }
         $aktivitas = AktivitasAlumni::find(Crypt::decrypt($id));
-        if($aktivitas->mahasiswa_id != Auth::user()->mahasiswa->id){
+        if ($aktivitas->mahasiswa_id != Auth::user()->mahasiswa->id) {
             return redirect()->back();
         }
         $aktivitas->delete();
         return redirect()->route('mahasiswa.aktivitas_alumni.index')->with('success', 'Aktivitas alumni berhasil dihapus');
+    }
+
+    public function chartAktivitasAlumni()
+    {
+        $latestActivities = DB::table('aktivitas_alumni')
+        ->select('aktivitas_alumni.status', DB::raw('count(*) as jumlah_alumni'))
+        ->whereIn('mahasiswa_id', function ($query) {
+            $query->select('mahasiswa_id')
+                ->from('aktivitas_alumni')
+                ->groupBy('mahasiswa_id')
+                ->havingRaw('tahun_masuk = MAX(tahun_masuk)');
+        })
+        ->groupBy('aktivitas_alumni.status')
+        ->get();
+
+        return response()->json($latestActivities);
     }
 }
