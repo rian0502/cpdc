@@ -1,19 +1,18 @@
 <?php
 
+use App\Models\User;
 use App\Models\JadwalSKP;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KPcontroller;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\SopController;
-use App\Http\Controllers\TA1Controller;
-use App\Http\Controllers\TA2Controller;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Models\ModelJadwalSeminarTaSatu;
 use App\Http\Controllers\ModelController;
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\KompreController;
 use App\Http\Controllers\BaseNpmController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\JabatanController;
@@ -30,17 +29,14 @@ use App\Http\Controllers\PangkatAdminController;
 use App\Http\Controllers\PangkatDosenController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileDosenController;
-use App\Http\Controllers\ValidasiUsulController;
 use App\Http\Controllers\AkunMahasiswaController;
 use App\Http\Controllers\ValidasiBaPKLController;
-use App\Http\Controllers\ValidasiKompreController;
-use App\Http\Controllers\ValidasiSemhasController;
+use App\Http\Controllers\AktivitasAlumniController;
+use App\Http\Controllers\DataMahasiswaAllController;
 use App\Http\Controllers\ProfileMahasiswaController;
 use App\Http\Controllers\BerkasPersyaratanController;
 use App\Http\Controllers\KegiatanMahasiswaController;
 use App\Http\Controllers\PrestasiMahasiswaController;
-use App\Http\Controllers\ValidasiBerkasTA1Controller;
-use App\Http\Controllers\ValidasiBerkasTA2Controller;
 use App\Http\Controllers\ValidasiSeminarKPController;
 use App\Http\Controllers\Kajur\LitabmasDataController;
 use App\Http\Controllers\Kajur\PrestasiDataController;
@@ -49,27 +45,24 @@ use App\Http\Controllers\Kajur\PublikasiDataController;
 use App\Http\Controllers\BeritaAcaraSeminarKerjaPraktik;
 use App\Http\Controllers\komprehensif\MahasiswaBaKompre;
 use App\Http\Controllers\MahasiswaBimbinganKPController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\MahasiswaBimbinganTA1Controller;
 use App\Http\Controllers\MahasiswaBimbinganTA2Controller;
 use App\Http\Controllers\tugas_akhir_dua\ValidasiBaTaDua;
-use App\Http\Controllers\MahasiswaBimbinganKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaBaTaDua;
 use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
 use App\Http\Controllers\tugas_akhir_satu\ValidasiBaTaSatu;
 use App\Http\Controllers\komprehensif\AdminKompreController;
+use App\Http\Controllers\MahasiswaBimbinganKompreController;
+use App\Http\Controllers\tugas_akhir_dua\ValidasiAdminTaDua;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaBaTaSatu;
 use App\Http\Controllers\tugas_akhir_satu\PenjadwalanTaSatu;
 use App\Http\Controllers\MahasiswaBimbinganAkademikController;
 use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
-use App\Http\Controllers\tugas_akhir_dua\ValidasiAdminTaDua;
 use App\Http\Controllers\komprehensif\MahasiswaKompreController;
 use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
 use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
-use App\Http\Controllers\DataMahasiswaAllController;
-use Illuminate\Auth\Events\Verified;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -208,6 +201,7 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
     Route::group(['prefix' => 'sidang', 'as' => 'sidang.'], function () {
         Route::resource('kompre', MahasiswaKompreController::class)->names('kompre');
     });
+    Route::resource('aktivitas_alumni', AktivitasAlumniController::class)->names('aktivitas_alumni');
 });
 
 
@@ -231,7 +225,7 @@ Route::post('/change-password', [AuthController::class, 'changePassword'])->midd
 Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
     $user = App\Models\User::find($id);
 
-    if (! $user || ! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+    if (!$user || !hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
         return redirect('/login')->with('error', 'Invalid verification link.');
     }
 
@@ -245,8 +239,8 @@ Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
     return redirect('/dashboard')->with('success', 'Akun anda berhasil terverivikasi!');
 })->middleware('signed')->name('verification.verify');
 
-Route::get('/email/verify',[AuthController::class, 'reactivation'])->middleware(['auth', 'unverified'])
-->name('verification.notice');
+Route::get('/email/verify', [AuthController::class, 'reactivation'])->middleware(['auth', 'unverified'])
+    ->name('verification.notice');
 
 Route::get('/email/activation-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();

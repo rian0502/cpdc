@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BaSKP;
 use App\Models\ModelSeminarKP;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;

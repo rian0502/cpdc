@@ -72,4 +72,18 @@ class ModelSeminarTaDua extends Model
             ->orderBy('jadwal_seminar_ta_dua.tanggal_seminar_ta_dua', 'asc')
             ->get();
     }
+    public function getInvalidJumlahBerkas()
+    {
+        return $this->where('status_koor', 'Belum Selesai')
+            ->orWhere('status_koor', 'Perbaikan')
+            ->whereHas('ba_seminar', function ($query) {
+                $query->where('seminar_ta_dua.id', 'ba_seminar_ta_dua.id_seminar');
+            })->count();
+    }
+
+    public function getJumlahJadwal()
+    {
+        return $this->where('status_admin', 'Valid')
+            ->whereDoesntHave('jadwal')->count();
+    }
 }

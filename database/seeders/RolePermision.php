@@ -126,7 +126,7 @@ class RolePermision extends Seeder
         $adminBerkas->assignRole('admin berkas');
         $adminBerkas2->assignRole('admin berkas');
         $sudo1->assignRole('sudo');
-        $mhs->assignRole('mahasiswa');
+        $mhs->assignRole(['mahasiswa', 'alumni']);
         $mhs2->assignRole('mahasiswa');
         $mhs3->assignRole('mahasiswa');
         $mhs4->assignRole('mahasiswa');

@@ -503,6 +503,15 @@
                                         Komprehensif</a></li>
                             </ul>
                         </li>
+                        @role('alumni')
+                            <li>
+                                <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni*') ? 'active' : '' }}">
+                                    <span class="micon fa fa-user-graduate"></span><span class="mtext">Aktivitas
+                                        Alumni</span>
+                                </a>
+                            </li>
+                        @endrole
                     @endrole
 
                     @role('admin berkas')
