@@ -95,6 +95,7 @@ class LabController extends Controller
     public function edit($id)
     {
         //
+        // return dd(Crypt::decrypt($id));
     }
 
     /**

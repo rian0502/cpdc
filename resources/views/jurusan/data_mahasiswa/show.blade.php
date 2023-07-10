@@ -158,6 +158,10 @@
                                     <a class="nav-link text-blue" data-toggle="tab" href="#extra_activity" role="tab"
                                         aria-selected="false">Kegiatan Lainnya</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-blue" data-toggle="tab" href="#aktivitas_alumni" role="tab"
+                                        aria-selected="false">Kegiatan Lainnya</a>
+                                </li>
                             </ul>
                             <div class="tab-content">
 
@@ -1161,6 +1165,57 @@
                                     </div>
                                     {{-- kegiatan lainnya end --}}
                                 </div>
+                                <div class="tab-pane fade" id="aktivitas_alumni" role="tabpanel">
+                                    <div class="pd-20">
+                                        <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Tempat</th>
+                                                    <th>Alamat</th>
+                                                    <th>Jabatan</th>
+                                                    <th>Tahun Masuk</th>
+                                                    <th>Hubungan</th>
+                                                    <th>Gaji</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($aktivitas as $item)
+                                                    <tr>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {{-- kegiatan lainnya end --}}
+                                </div>
+
                             </div>
 
                         </div>
