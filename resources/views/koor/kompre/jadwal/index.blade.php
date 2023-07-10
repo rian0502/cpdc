@@ -78,6 +78,10 @@
                                                                 href="{{ route('koor.jadwalKompre.edit', $item->encrypt_id) }}"><i
                                                                     class="fa fa-pencil"></i>
                                                                 Edit</a>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('koor.jadwalKompre.resend', $item->encrypt_id) }}"><i
+                                                                    class="fa fa-share"></i>
+                                                                Kirim Kembali</a>
                                                         @else
                                                             <a class="dropdown-item"
                                                                 href="{{ route('koor.jadwalKompre.create', $item->encrypt_id) }}"><i
