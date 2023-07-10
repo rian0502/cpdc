@@ -108,6 +108,7 @@ Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verifi
 Route::get('chart/aktivitas', [LabController::class, 'chartAktivitasLab'])->name('chart.aktivitas.lab')->middleware('auth', 'verified', 'role:admin lab|jurusan');
 Route::get('chart/usiadosen', [AkunDosenController::class, 'chartUsiaDosen'])->name('chart.usia.dosen')->middleware('auth', 'verified', 'role:jurusan');
 Route::get('chart/jabatandosen', [AkunDosenController::class, 'chartJabatanDosen'])->name('chart.jabatan.dosen')->middleware('auth', 'verified', 'role:jurusan');
+Route::get('chart/aktivitasalumni', [AktivitasAlumniController::class, 'chartAktivitasAlumni'])->name('chart.aktivitas.alumni')->middleware('auth', 'verified', 'role:jurusan');
 // end ADMIN LAB
 
 //admin berkas

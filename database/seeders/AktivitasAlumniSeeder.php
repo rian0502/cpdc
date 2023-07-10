@@ -16,6 +16,6 @@ class AktivitasAlumniSeeder extends Seeder
     public function run()
     {
         //
-        AktivitasAlumni::factory()->count(10)->create();
+        AktivitasAlumni::factory()->count(20)->create();
     }
 }

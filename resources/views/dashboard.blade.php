@@ -612,15 +612,13 @@
 
                     <div class="col-lg-4 col-md-6 mb-20">
                         <div class="card-box height-100-p pd-20 min-height-200px">
-                            <div class="d-flex justify-content-center mb-2">
-                                <h5 class="mb-0">Data Seminar</h5>
-                            </div>
+
                             <div class="d-flex justify-content-between">
 
 
                             </div>
 
-                            <div id="chart_seminar"></div>
+                            <div id="chart_aktivitas_alumni"></div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 mb-20">
@@ -1226,6 +1224,62 @@
             // Panggil fungsi untuk membuat pie chart
             jabatanDosen();
         </script>
+        <script>
+            function aktivitasAlumni() {
+                // Data dummy
+                $.ajax({
+                    url: "{{ route('chart.aktivitas.alumni') }}",
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        var options = {
+                            chart: {
+                                type: 'pie',
+                            },
+                            title: {
+                                text: 'Aktivitas Alumni'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    cursor: 'pointer',
+                                    allowPointSelect: true,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.percentage:.1f} %',
+                                        style: {
+                                            textOutline: 'none'
+                                        }
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                pointFormat: '<b>Jumlah: {point.y}</b>'
+                            },
+                            series: [{
+                                name: 'Jumlah',
+                                data: data.map(item => ({
+                                    name: item.status,
+                                    y: item.jumlah_alumni
+                                }))
+                            }]
+                        };
+
+                        // Membuat chart Highcharts
+                        Highcharts.chart('chart_aktivitas_alumni', options);
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+
+                // Konfigurasi chart Highcharts
+
+            }
+
+            // Panggil fungsi untuk membuat pie chart
+            aktivitasAlumni();
+        </script>
+
     @endrole
     @role('admin lab|jurusan')
         <script>
@@ -1258,7 +1312,7 @@
 
                         // Mengubah format data menjadi format yang dapat digunakan oleh Highcharts
 
-                        console.log(data);
+                        // console.log(data);
                         var options = {
                             chart: {
                                 type: 'column'
