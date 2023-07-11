@@ -228,7 +228,7 @@
                             <a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profil</a>
                         @endif
                         <a class="dropdown-item" href="/settings"><i class="dw dw-settings2"></i> Pengaturan</a>
-                        <a class="dropdown-item" href="/help"><i class="dw dw-help"></i> Bantuan</a>
+                        <a class="dropdown-item" href="/helps"><i class="dw dw-help"></i> Bantuan</a>
                         <a class="dropdown-item" href="/logout"><i class="dw dw-logout"></i> Keluar</a>
                     </div>
                 </div>
@@ -377,6 +377,12 @@
                             <a href="{{ route('jurusan.mahasiswa.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/mahasiswa*') ? 'active' : '' }}">
                                 <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jurusan.alumni.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/alumni*') ? 'active' : '' }}">
+                                <span class="micon fa-solid fa-users"></span><span class="mtext">Data Alumni</span>
                             </a>
                         </li>
                         <li>

@@ -37,7 +37,7 @@
 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Detail Mahasiswa</h4>
+                        <h4 class="text-blue h4">Detail Alumni</h4>
                     </div>
                     <div class="mb-3 pb-2">
                         <div class="form-group">
@@ -1207,7 +1207,7 @@
                                                             <td>
                                                                 {{ $item->hubungan }}
                                                             </td>
-                                                            <td class="gaji">
+                                                            <td>
                                                                 {{ $item->gaji }}
                                                             </td>
                                                             <td>
@@ -1262,19 +1262,6 @@
         umur.style.fontWeight = 'bold';
         umur.style.borderRadius = '10px';
         umur.style.textAlign = 'center';
-    </script>
-    <script>
-        function formatUang(angka) {
-            return angka.toLocaleString('id-ID');
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            var gajiElements = document.querySelectorAll(".gaji");
-            gajiElements.forEach(function(element) {
-                var gaji = parseInt(element.textContent);
-                element.textContent = formatUang(gaji);
-            });
-        });
     </script>
     <!-- Input Validation End -->
 @endsection
