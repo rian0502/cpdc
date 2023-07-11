@@ -20,6 +20,7 @@ class Laboratorium extends Model
         'id_lokasi',
         'keperluan',
         'keterangan',
+        'jumlah_mahasiswa',
         'created_at',
         'updated_at',
     ];
