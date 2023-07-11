@@ -158,9 +158,10 @@
                                     <a class="nav-link text-blue" data-toggle="tab" href="#extra_activity" role="tab"
                                         aria-selected="false">Kegiatan Lainnya</a>
                                 </li>
+                                {{-- Kondisiin --}}
                                 <li class="nav-item">
                                     <a class="nav-link text-blue" data-toggle="tab" href="#aktivitas_alumni" role="tab"
-                                        aria-selected="false">Kegiatan Lainnya</a>
+                                        aria-selected="false">Aktivitas Alumni</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -1165,6 +1166,7 @@
                                     </div>
                                     {{-- kegiatan lainnya end --}}
                                 </div>
+                                {{-- aktivitas alumni kondisiin --}}
                                 <div class="tab-pane fade" id="aktivitas_alumni" role="tabpanel">
                                     <div class="pd-20">
                                         <table class="table data-table-responsive stripe data-table-noexport wrap ">
