@@ -47,48 +47,40 @@
                             <div class="row border-bottom">
                                 <label class="col-md-3 bold mt-2"> <strong>Nomor Induk Dosen Nasional</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $mahasiswa->npm }} --}}
+                                    {{ $user->dosen->nidn }}
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Email</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->pembimbing_satu->nama_dosen }} --}}
+                                    {{ $user->email }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"><b>Nama Dosen</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $mahasiswa->nama_mahasiswa }} --}}
+                                    {{ $user->name }}
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Status</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $mahasiswa->nama_mahasiswa }} --}}
+                                    {{ $user->dosen->status }}
                                 </div>
                             </div>
 
-                            <form action="{{-- route('berkas.validasi.seminar.ta1.update',$seminar->encrypt_id) --}}" method="post" id="formStatus">
+                            <form action="{{ route('sudo.kalab.update', $user->id) }}" method="post" id="formStatus">
                                 @method('put')
                                 @csrf
-                                <div class="form-group" style="margin-top: 20px">
-                                    <label><b>Lokasi</b></label>
-                                    <select onchange="toggleCatatan()" name="status_admin" id="status"
-                                        class="selectpicker form-control" data-size="5">
-                                        <option value="Process" {{-- $seminar->status_admin=='Process'?'selected':'' --}}>
-                                            Diproses</option>
-                                        <option value="Valid" {{-- $seminar->status_admin=='Valid'?'selected':'' --}}>
-                                            Valid</option>
-                                        <option value="Invalid" {{-- $seminar->status_admin=='Invalid'?'selected':'' --}}>Invalid</option>
+                                <div class="form-group mt-5">
+                                    <label>Lokasi</label>
+                                    <select class="custom-select2 form-control" style="width: 100%; height: 38px"
+                                        name="id_lokasi" required>
+                                        @foreach ($locations as $item)
+                                            <option value="{{ $item->encrypt_id }}"
+                                                {{ old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
+                                                {{ $item->nama_lokasi }}
+                                            </option>
+                                        @endforeach
                                     </select>
-                                    @error('proses_admin')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
-                                <div class="row border-bottom mt-3">
-                                    <label class="col-md-12 bold"><b>Catatan</b></label>
-                                    <textarea id="catatan" name="komentar" class="form-control m-3" style="height: 100px;"></textarea>
-                                    @error('komentar')
-                                        <div class="form-control-feedback has-danger col-md-12 mb-3">{{ $message }}</div>
-                                    @enderror
-                                </div>
+
                                 <div class="form-group">
                                     <button class="submit btn btn-primary" value="submit" id="submitButton">Submit</button>
                                 </div>

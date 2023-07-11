@@ -65,8 +65,14 @@ use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
 use App\Http\Controllers\komprehensif\MahasiswaKompreController;
 use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
 use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
+use App\Http\Controllers\PenempatanAdminLabController;
+use App\Http\Controllers\PenempatanDosenLabController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
+use App\Models\ModelJadwalSeminarKompre;
+use App\Models\ModelJadwalSeminarTaDua;
+use App\Models\ModelSeminarKompre;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -284,10 +290,6 @@ Route::prefix('user')->name('user.')->group(function () {
 Route::prefix('dosen')->name('dosen.')->group(function () {
 });
 
-
-
-
-
 Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo|jurusan'])->group(function () {
     Route::resource('akun_dosen', AkunDosenController::class);
     Route::resource('akun_mahasiswa', AkunMahasiswaController::class);
@@ -297,8 +299,8 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::get('BaseNpm', [BaseNpmController::class, 'BaseNpm'])->name('base_npm.ajax');
     Route::resource('model', ModelController::class);
     Route::resource('kategori', KategoriController::class);
-    Route::resource('kalab', Kalab::class);
-    Route::resource('admin_jurusan', AdminJurusan::class);
+    Route::resource('kalab', PenempatanDosenLabController::class);
+    Route::resource('admin_jurusan', PenempatanAdminLabController::class);
 });
 
 // route FE
@@ -327,10 +329,12 @@ Route::get('/ta1', function () {
     return view('ta1', compact('jadwal_ta1'));
 });
 Route::get('/ta2', function () {
-    return view('ta2');
+    $ta2 = ModelJadwalSeminarTaDua::where('tanggal_seminar_ta_dua', '>=', date('Y-m-d'))->get();
+    return view('ta2', compact('ta2'));
 });
 Route::get('/kompre', function () {
-    return view('kompre');
+    $kompre = ModelJadwalSeminarKompre::where('tanggal_komprehensif', '>=', date('Y-m-d'))->get();
+    return view('kompre', compact('kompre'));
 });
 Route::get('/about', function () {
     return view('about');
