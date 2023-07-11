@@ -3,8 +3,11 @@
 use App\Models\User;
 use App\Models\JadwalSKP;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Kalab;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminJurusan;
+use App\Http\Controllers\AlokasiDosen;
 use App\Http\Controllers\KPcontroller;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\SopController;
@@ -32,7 +35,6 @@ use App\Http\Controllers\ProfileDosenController;
 use App\Http\Controllers\AkunMahasiswaController;
 use App\Http\Controllers\ValidasiBaPKLController;
 use App\Http\Controllers\AktivitasAlumniController;
-use App\Http\Controllers\AlokasiDosen;
 use App\Http\Controllers\DataMahasiswaAllController;
 use App\Http\Controllers\ProfileMahasiswaController;
 use App\Http\Controllers\BerkasPersyaratanController;
@@ -293,7 +295,8 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::get('BaseNpm', [BaseNpmController::class, 'BaseNpm'])->name('base_npm.ajax');
     Route::resource('model', ModelController::class);
     Route::resource('kategori', KategoriController::class);
-    Route::resource('alokasi_dosen', AlokasiDosen::class);
+    Route::resource('kalab', Kalab::class);
+    Route::resource('admin_jurusan', AdminJurusan::class);
 });
 
 // route FE
