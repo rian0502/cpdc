@@ -39,7 +39,7 @@
                                             </a>
 
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="{{-- route('berkas.berkas_persyaratan.edit',$item->encrypt_id) --}}"><i
+                                                <a class="dropdown-item" href="/sudo/admin_jurusan/1/edit"><i
                                                         class="fa fa-pencil"></i> Edit</a>
 
                                             </div>
