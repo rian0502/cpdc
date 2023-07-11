@@ -5,7 +5,7 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Penjadwalan Seminar Tugas Akhir 1</h4>
+                        <h4 class="text-blue h4">Kepala Laboratorium Jurusan Kimia</h4>
                     </div>
                     <div class="pb-20 m-3">
 
@@ -31,7 +31,20 @@
                                     <td>1</td>
                                     <td>1</td>
                                     <td>1</td>
-                                    <td>1</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button"
+                                                data-toggle="dropdown">
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item"
+                                                    href="{{-- route('berkas.berkas_persyaratan.edit',$item->encrypt_id) --}}"><i class="fa fa-pencil"></i> Edit</a>
+
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

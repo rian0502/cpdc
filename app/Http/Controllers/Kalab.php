@@ -13,7 +13,7 @@ class Kalab extends Controller
      */
     public function index()
     {
-        return view('sudo.alokasi_dosen.index');
+        return view('sudo.kalab.index');
     }
 
     /**
@@ -56,7 +56,7 @@ class Kalab extends Controller
      */
     public function edit($id)
     {
-        return view('sudo.alokasi_dosen.edit');
+        return view('sudo.kalab.edit');
     }
 
     /**
