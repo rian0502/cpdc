@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
+
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use App\Models\AktivitasAlumni;
 use App\Models\ModelSeminarTaDua;
 use App\Models\ModelSeminarKompre;
 use App\Models\ModelSeminarTaSatu;
 use Illuminate\Routing\Controller;
-use Illuminate\Foundation\Auth\User;
 use Yajra\DataTables\Facades\DataTables;
 
 class DataMahasiswaAllController extends Controller
@@ -77,6 +77,10 @@ class DataMahasiswaAllController extends Controller
             'ba_ta2' => $seminarTa2 ? $seminarTa2->ba_seminar : null,
             'ba_kompre' => $sidangKompre ? $sidangKompre->beritaAcara : null,
         ];
+        if($mahasiswa->user->hasRole('alumni')){
+            $data['alumni'] = AktivitasAlumni::where('mahasiswa_id', $mahasiswa->id)->
+            orderBy('tahun_masuk', 'desc')->get();
+        }
 
 
         return view('jurusan.data_mahasiswa.show', $data);

@@ -159,10 +159,12 @@
                                         aria-selected="false">Kegiatan Lainnya</a>
                                 </li>
                                 {{-- Kondisiin --}}
-                                <li class="nav-item">
-                                    <a class="nav-link text-blue" data-toggle="tab" href="#aktivitas_alumni" role="tab"
-                                        aria-selected="false">Aktivitas Alumni</a>
-                                </li>
+                                @if ($mahasiswa->user->hasRole('alumni'))
+                                    <li class="nav-item">
+                                        <a class="nav-link text-blue" data-toggle="tab" href="#aktivitas_alumni"
+                                            role="tab" aria-selected="false">Aktivitas Alumni</a>
+                                    </li>
+                                @endif
                             </ul>
                             <div class="tab-content">
 
@@ -1167,56 +1169,59 @@
                                     {{-- kegiatan lainnya end --}}
                                 </div>
                                 {{-- aktivitas alumni kondisiin --}}
-                                <div class="tab-pane fade" id="aktivitas_alumni" role="tabpanel">
-                                    <div class="pd-20">
-                                        <table class="table data-table-responsive stripe data-table-noexport wrap ">
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Tempat</th>
-                                                    <th>Alamat</th>
-                                                    <th>Jabatan</th>
-                                                    <th>Tahun Masuk</th>
-                                                    <th>Hubungan</th>
-                                                    <th>Gaji</th>
-                                                    <th>Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($aktivitas as $item)
+                                @if ($mahasiswa->user->hasRole('alumni'))
+                                    <div class="tab-pane fade" id="aktivitas_alumni" role="tabpanel">
+                                        <div class="pd-20">
+                                            <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                                <thead>
                                                     <tr>
-                                                        <td>
-
-                                                        </td>
-                                                        <td>
-
-                                                        </td>
-                                                        <td>
-
-                                                        </td>
-                                                        <td>
-
-                                                        </td>
-                                                        <td>
-
-                                                        </td>
-                                                        <td>
-
-                                                        </td>
-                                                        <td>
-
-                                                        </td>
-                                                        <td>
-
-                                                        </td>
-
+                                                        <th>No</th>
+                                                        <th>Tempat</th>
+                                                        <th>Alamat</th>
+                                                        <th>Jabatan</th>
+                                                        <th>Tahun Masuk</th>
+                                                        <th>Hubungan</th>
+                                                        <th>Gaji</th>
+                                                        <th>Status</th>
                                                     </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($alumni as $item)
+                                                        <tr>
+                                                            <td>
+                                                                {{ $loop->iteration }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->tempat }}
+
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->alamat }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->jabatan }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $carbon::parse($item->tahun_masuk)->format('d/M/Y') }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->hubungan }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->gaji }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->status }}
+                                                            </td>
+
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        {{-- kegiatan lainnya end --}}
                                     </div>
-                                    {{-- kegiatan lainnya end --}}
-                                </div>
+                                @endif
 
                             </div>
 
