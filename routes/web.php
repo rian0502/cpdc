@@ -338,6 +338,9 @@ Route::get('/about', function () {
 Route::get('/help', function () {
     return view('help');
 });
+Route::get('/helps', function () {
+    return view('helps');
+});
 Route::get('/contact', function () {
     return view('contact');
 });
