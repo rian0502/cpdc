@@ -93,7 +93,7 @@
                                     <button class="submit btn btn-primary" value="submit" id="submitButton">Submit</button>
                                 </div>
                             </form>
-                            <a href="{{ route('berkas.validasi.seminar.kp.index') }}">
+                            <a href="{{ route('sudo.kalab.index') }}">
                                 <button class="batal btn btn-secondary">Batal</button>
                             </a>
                         </div>
