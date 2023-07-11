@@ -1207,7 +1207,7 @@
                                                             <td>
                                                                 {{ $item->hubungan }}
                                                             </td>
-                                                            <td>
+                                                            <td class="gaji">
                                                                 {{ $item->gaji }}
                                                             </td>
                                                             <td>
@@ -1262,6 +1262,19 @@
         umur.style.fontWeight = 'bold';
         umur.style.borderRadius = '10px';
         umur.style.textAlign = 'center';
+    </script>
+    <script>
+        function formatUang(angka) {
+            return angka.toLocaleString('id-ID');
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var gajiElements = document.querySelectorAll(".gaji");
+            gajiElements.forEach(function(element) {
+                var gaji = parseInt(element.textContent);
+                element.textContent = formatUang(gaji);
+            });
+        });
     </script>
     <!-- Input Validation End -->
 @endsection
