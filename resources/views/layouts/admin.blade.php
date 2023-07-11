@@ -463,6 +463,13 @@
                                 <span class="micon bi bi-person-lines-fill"></span><span class="mtext">Data NPM</span>
                             </a>
                         </li>
+                        
+                        <li>
+                            <a href=""
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/base_npm') ? 'active' : '' }}">
+                                <span class="micon bi bi bi-person-fill"></span><span class="mtext">Pengalokasian Dosen</span>
+                            </a>
+                        </li>
                     @endrole
                     @role('mahasiswa')
                         {{-- <li>

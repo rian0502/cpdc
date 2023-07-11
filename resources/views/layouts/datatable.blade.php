@@ -468,6 +468,12 @@
                                 <span class="micon bi bi bi-person-lines-fill"></span><span class="mtext">Data NPM</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('sudo.alokasi_dosen.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/alokasi_dosen') ? 'active' : '' }}">
+                                <span class="micon bi bi bi-person-fill"></span><span class="mtext">Pengalokasian Dosen</span>
+                            </a>
+                        </li>
                     @endrole
 
                     @role('mahasiswa')
