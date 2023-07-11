@@ -61,7 +61,7 @@
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Status</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                            
+                                    {{-- {{ $mahasiswa->nama_mahasiswa }} --}}
                                 </div>
                             </div>
 
@@ -72,13 +72,11 @@
                                     <label><b>Lokasi</b></label>
                                     <select onchange="toggleCatatan()" name="status_admin" id="status"
                                         class="selectpicker form-control" data-size="5">
-                                        <option value="Process"
-                                            {{-- $seminar->status_admin=='Process'?'selected':'' --}}>
+                                        <option value="Process" {{-- $seminar->status_admin=='Process'?'selected':'' --}}>
                                             Diproses</option>
                                         <option value="Valid" {{-- $seminar->status_admin=='Valid'?'selected':'' --}}>
                                             Valid</option>
-                                        <option value="Invalid"
-                                            {{-- $seminar->status_admin=='Invalid'?'selected':'' --}}>Invalid</option>
+                                        <option value="Invalid" {{-- $seminar->status_admin=='Invalid'?'selected':'' --}}>Invalid</option>
                                     </select>
                                     @error('proses_admin')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
