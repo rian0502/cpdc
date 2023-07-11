@@ -8,7 +8,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Tambah Acticity Lab</h4>
+                            <h4 class="text-dark h4">Edit Acticity Lab</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
 
@@ -20,9 +20,10 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Nama Kegiatan</label>
-                                    <input value="{{$lab->nama_kegiatan}}" type="text" class="form-control @error('nama_kegiatan') form-control-danger @enderror"
+                                    <input value="{{ $lab->nama_kegiatan }}" type="text"
+                                        class="form-control @error('nama_kegiatan') form-control-danger @enderror"
                                         name="nama_kegiatan" placeholder="Nama Kegiatan" />
-                                        @error('nama_kegiatan')
+                                    @error('nama_kegiatan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -30,17 +31,20 @@
                                     <label>Keperluan</label>
                                     <select class="custom-select form-control" style="width: 100%; height: 38px"
                                         name="keperluan">
-                                        <option value="Praktikum"{{$lab->keperluan == 'Praktikum' ? 'selected' ; ''}}>Praktikum</option>
-                                        <option value="Penelitian" {{$lab->keperluan == 'Penelitian' ? 'selected' ; ''}}>Penelitian</option>
-                                        <option value="Lainnya" {{$lab->keperluan == 'Lainnya' ? 'selected' ; ''}}>Lainnya</option>
+                                        <option value="Praktikum"{{ $lab->keperluan == 'Praktikum' ? 'selected' : '' }}>
+                                            Praktikum</option>
+                                        <option value="Penelitian" {{ $lab->keperluan == 'Penelitian' ? 'selected' : '' }}>
+                                            Penelitian</option>
+                                        <option value="Lainnya" {{ $lab->keperluan == 'Lainnya' ? 'selected' : '' }}>Lainnya
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Keterangan</label>
-                                    <textarea class="form-control textarea @error('ket') form-control-danger @enderror" name="ket" value="{{$lab->keterangan}}"></textarea>
+                                    <textarea class="form-control textarea @error('ket') form-control-danger @enderror" name="ket">{{ $lab->keterangan }}</textarea>
                                     @error('ket')
-                                    <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                @enderror
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             {{-- form untuk sebelah kanan --}}
@@ -51,32 +55,36 @@
                                     <select class="custom-select2 form-control" style="width: 100%; height: 38px"
                                         name="id_lokasi">
                                         @foreach ($locations as $item)
-                                        <option value="{{ $item->encrypt_id }}" @if ($item->id == $lab->id_lokasi)
-                                            selected @endif>{{ $item->nama_lokasi.', Lt-'.$item->lantai_tingkat }}</option>
+                                            <option value="{{ $item->encrypt_id }}"
+                                                @if ($item->id == $lab->id_lokasi) selected @endif>
+                                                {{ $item->nama_lokasi . ', Lt-' . $item->lantai_tingkat }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Kegiatan</label>
-                                    <input value="{{$lab->tanggal_kegiatan}}" type="date" class="form-control @error('tanggal_kegiatan') form-control-danger @enderror"
+                                    <input value="{{ $lab->tanggal_kegiatan }}" type="date"
+                                        class="form-control @error('tanggal_kegiatan') form-control-danger @enderror"
                                         name="tanggal_kegiatan" placeholder="Tanggal Pakai" />
-                                        @error('tanggal_kegiatan')
+                                    @error('tanggal_kegiatan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Jam Mulai</label>
-                                    <input value="{{$lab->jam_mulai}}" class="form-control time-picker-default @error('jam_mulai') form-control-danger @enderror"
+                                    <input value="{{ $lab->jam_mulai }}"
+                                        class="form-control time-picker-default @error('jam_mulai') form-control-danger @enderror"
                                         placeholder="time" type="text" name="jam_mulai" />
-                                        @error('jam_mulai')
+                                    @error('jam_mulai')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Jam Selesai</label>
-                                    <input value="{{$lab->jam_selesai}}" class="form-control time-picker-default @error('jam_selesai') form-control-danger @enderror"
+                                    <input value="{{ $lab->jam_selesai }}"
+                                        class="form-control time-picker-default @error('jam_selesai') form-control-danger @enderror"
                                         placeholder="time" type="text" name="jam_selesai" />
-                                        @error('jam_selesai')
+                                    @error('jam_selesai')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>

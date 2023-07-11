@@ -22,6 +22,7 @@
                                     <th>Lokasi</th>
                                     <th>Tanggal Pakai</th>
                                     <th>Keperluan</th>
+                                    <th>Peserta</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
                                 </tr>
                             </thead>
@@ -64,6 +65,11 @@
                     {
                         data: 'keperluan',
                         name: 'keperluan',
+                        orderable: true
+                    },
+                    {
+                        data: 'jumlah_mahasiswa',
+                        name: 'peserta',
                         orderable: true
                     },
                     {
