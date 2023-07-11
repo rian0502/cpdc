@@ -13,26 +13,36 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>NPM</th>
-                                    <th>Judul</th>
-                                    <th>Pengajuan</th>
+                                    <th>NIP</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
                                     <th>Lokasi</th>
-                                    <th>Tanggal</th>
-                                    <th>Waktu</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
+                                @foreach ($adlab as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->administrasi->nip }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->lokasi_id ? $item->lokasi->nama_lokasi : 'Belum Terlokasi' }}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
+                                                    role="button" data-toggle="dropdown">
+                                                    <i class="fa fa-ellipsis-h"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('sudo.admin_jurusan.edit', $item->id) }}"><i
+                                                            class="fa fa-pencil"></i> Edit</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
