@@ -469,21 +469,21 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('sudo.alokasi_dosen.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/alokasi_dosen') ? 'active' : '' }}">
-                                <span class="micon bi bi bi-person-fill"></span><span class="mtext">Pengalokasian Dosen</span>
+                            <a href="{{ route('sudo.kalab.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/kalab') ? 'active' : '' }}">
+                                <span class="micon bi bi bi-person-fill"></span><span class="mtext">Kepala
+                                    Laboratorium</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('sudo.admin_jurusan.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/admin_jurusan') ? 'active' : '' }}">
+                                <span class="micon bi bi bi-person-fill"></span><span class="mtext">Admin Jurusan</span>
                             </a>
                         </li>
                     @endrole
 
                     @role('mahasiswa')
-                        {{-- <li>
-                            <a href="{{ route('mahasiswa.kp.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('seminar') ? 'active' : '' }}">
-                                <span class="micon fa-solid fa-graduation-cap"></span><span class="mtext">Kerja
-                                    Praktik</span>
-                            </a>
-                        </li> --}}
 
                         <li
                             class="dropdown {{ Request::is('mahasiswa/seminar/kp*') || Request::is('mahasiswa/seminar/skripsi*') || Request::is('mahasiswa/seminar/usul*') || Request::is('mahasiswa/seminar/semhas*') || Request::is('mahasiswa/seminar/kompre*') ? 'show' : '' }}">
