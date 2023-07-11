@@ -2,14 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\ModelBaSeminarTaSatu;
-use App\Models\ModelSeminarTaSatu;
-use App\Models\ModelJadwalSeminarTaSatu;
 use Illuminate\Database\Seeder;
+use App\Models\ModelSeminarTaDua;
+use App\Models\ModelBaSeminarTaDua;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\ModelJadwalSeminarTaDua;
 
-
-class TugasAkhirSatuSeeder extends Seeder
+class TugasAkhirDuaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -28,7 +27,7 @@ class TugasAkhirSatuSeeder extends Seeder
             'sks' => '144',
             'ipk' => '3.5',
             'toefl' => '500',
-            'berkas_ta_satu' => 'ta1.pdf',
+            'berkas_ta_dua' => 'ta1.pdf',
             'agreement' => '1',
             'komentar' => null,
             'status_admin' => 'Valid',
@@ -40,32 +39,32 @@ class TugasAkhirSatuSeeder extends Seeder
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
-        $ta1 = ModelSeminarTaSatu::create($ta1);
+        $ta1 = ModelSeminarTaDua::create($ta1);
         $jadwal = [
             'encrypt_id' => Crypt::encrypt('1'),
-            'tanggal_seminar_ta_satu' => '2023-06-29',
-            'jam_mulai_seminar_ta_satu' => '08:00',
-            'jam_selesai_seminar_ta_satu' => '10:00',
+            'tanggal_seminar_ta_dua' => '2023-06-29',
+            'jam_mulai_seminar_ta_dua' => '08:00',
+            'jam_selesai_seminar_ta_dua' => '10:00',
             'id_lokasi' => '1',
             'id_seminar' => $ta1->id,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
-        $jadwal_ta1 = ModelJadwalSeminarTaSatu::create($jadwal);
+        $jadwal_ta1 = ModelJadwalSeminarTaDua::create($jadwal);
 
         $berita_acara = [
             'encrypt_id' => Crypt::encrypt('1'),
-            'no_berkas_ba_seminar_ta_satu' => 'BA/STMIK-Bandung/2021/1',
-            'berkas_ba_seminar_ta_satu' => 'ba_seminar_ta1.pdf',
-            'berkas_nilai_seminar_ta_satu' => 'nilai_seminar_ta1.pdf',
-            'berkas_ppt_seminar_ta_satu' => 'https://drive',
+            'no_berkas_ba_seminar_ta_dua' => 'BA/STMIK-Bandung/2021/1',
+            'berkas_ba_seminar_ta_dua' => 'ba_seminar_ta1.pdf',
+            'berkas_nilai_seminar_ta_dua' => 'nilai_seminar_ta1.pdf',
+            'berkas_ppt_seminar_ta_dua' => 'https://drive',
             'nilai' => 80.5,
             'huruf_mutu' => 'A',
             'id_seminar' => $ta1->id,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
-        $ba = ModelBaSeminarTaSatu::create($berita_acara);
+        $ba = ModelBaSeminarTaDua::create($berita_acara);
 
         //mahasiswa 2
         $ta2 = [
@@ -77,7 +76,7 @@ class TugasAkhirSatuSeeder extends Seeder
             'sks' => '144',
             'ipk' => '3.5',
             'toefl' => '500',
-            'berkas_ta_satu' => 'ta1.pdf',
+            'berkas_ta_dua' => 'ta1.pdf',
             'agreement' => '1',
             'komentar' => null,
             'status_admin' => 'Valid',
@@ -90,32 +89,32 @@ class TugasAkhirSatuSeeder extends Seeder
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
-        $ta2 = ModelSeminarTaSatu::create($ta2);
+        $ta2 = ModelSeminarTaDua::create($ta2);
         $jadwal2 = [
             'encrypt_id' => Crypt::encrypt('2'),
-            'tanggal_seminar_ta_satu' => '2023-06-29',
-            'jam_mulai_seminar_ta_satu' => '08:00',
-            'jam_selesai_seminar_ta_satu' => '10:00',
+            'tanggal_seminar_ta_dua' => '2023-06-29',
+            'jam_mulai_seminar_ta_dua' => '08:00',
+            'jam_selesai_seminar_ta_dua' => '10:00',
             'id_lokasi' => '2',
             'id_seminar' => $ta2->id,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
-        $jadwal_ta2 = ModelJadwalSeminarTaSatu::create($jadwal2);
+        $jadwal_ta2 = ModelJadwalSeminarTaDua::create($jadwal2);
 
         $berita_acara2 = [
             'encrypt_id' => Crypt::encrypt('2'),
-            'no_berkas_ba_seminar_ta_satu' => 'BA/UNIKOM/2021/1',
-            'berkas_ba_seminar_ta_satu' => 'ba_seminar_ta1.pdf',
-            'berkas_nilai_seminar_ta_satu' => 'nilai_seminar_ta1.pdf',
-            'berkas_ppt_seminar_ta_satu' => 'https://drive',
+            'no_berkas_ba_seminar_ta_dua' => 'BA/UNIKOM/2021/1',
+            'berkas_ba_seminar_ta_dua' => 'ba_seminar_ta1.pdf',
+            'berkas_nilai_seminar_ta_dua' => 'nilai_seminar_ta1.pdf',
+            'berkas_ppt_seminar_ta_dua' => 'https://drive',
             'nilai' => 80.5,
             'huruf_mutu' => 'A',
             'id_seminar' => $ta2->id,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
-        $ba2 = ModelBaSeminarTaSatu::create($berita_acara2);
+        $ba2 = ModelBaSeminarTaDua::create($berita_acara2);
 
         //mahasiswa 3
         $ta3 = [
@@ -127,7 +126,7 @@ class TugasAkhirSatuSeeder extends Seeder
             'sks' => '144',
             'ipk' => '3.5',
             'toefl' => '500',
-            'berkas_ta_satu' => 'ta1.pdf',
+            'berkas_ta_dua' => 'ta1.pdf',
             'agreement' => '1',
             'komentar' => null,
             'status_admin' => 'Valid',
@@ -139,32 +138,32 @@ class TugasAkhirSatuSeeder extends Seeder
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
-        $ta3 = ModelSeminarTaSatu::create($ta3);
+        $ta3 = ModelSeminarTaDua::create($ta3);
         $jadwal = [
             'encrypt_id' => Crypt::encrypt('3'),
-            'tanggal_seminar_ta_satu' => '2023-06-29',
-            'jam_mulai_seminar_ta_satu' => '08:00',
-            'jam_selesai_seminar_ta_satu' => '10:00',
+            'tanggal_seminar_ta_dua' => '2023-06-29',
+            'jam_mulai_seminar_ta_dua' => '08:00',
+            'jam_selesai_seminar_ta_dua' => '10:00',
             'id_lokasi' => '1',
             'id_seminar' => $ta3->id,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
-        $jadwal_ta3 = ModelJadwalSeminarTaSatu::create($jadwal);
+        $jadwal_ta3 = ModelJadwalSeminarTaDua::create($jadwal);
 
         $berita_acara = [
             'encrypt_id' => Crypt::encrypt('3'),
-            'no_berkas_ba_seminar_ta_satu' => 'BA/STMIK-Bandung/2021/1',
-            'berkas_ba_seminar_ta_satu' => 'ba_seminar_ta1.pdf',
-            'berkas_nilai_seminar_ta_satu' => 'nilai_seminar_ta1.pdf',
-            'berkas_ppt_seminar_ta_satu' => 'https://drive',
+            'no_berkas_ba_seminar_ta_dua' => 'BA/STMIK-Bandung/2021/1',
+            'berkas_ba_seminar_ta_dua' => 'ba_seminar_ta1.pdf',
+            'berkas_nilai_seminar_ta_dua' => 'nilai_seminar_ta1.pdf',
+            'berkas_ppt_seminar_ta_dua' => 'https://drive',
             'nilai' => 80.5,
             'huruf_mutu' => 'A',
             'id_seminar' => $ta3->id,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
-        $ba = ModelBaSeminarTaSatu::create($berita_acara);
+        $ba = ModelBaSeminarTaDua::create($berita_acara);
 
 
         $ta2 = [
@@ -176,7 +175,7 @@ class TugasAkhirSatuSeeder extends Seeder
             'sks' => '144',
             'ipk' => '3.5',
             'toefl' => '500',
-            'berkas_ta_satu' => 'ta1.pdf',
+            'berkas_ta_dua' => 'ta1.pdf',
             'agreement' => '1',
             'komentar' => null,
             'status_admin' => 'Valid',
@@ -189,31 +188,31 @@ class TugasAkhirSatuSeeder extends Seeder
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
-        $ta2 = ModelSeminarTaSatu::create($ta2);
+        $ta2 = ModelSeminarTaDua::create($ta2);
         $jadwal2 = [
             'encrypt_id' => Crypt::encrypt('4'),
-            'tanggal_seminar_ta_satu' => '2023-06-29',
-            'jam_mulai_seminar_ta_satu' => '08:00',
-            'jam_selesai_seminar_ta_satu' => '10:00',
+            'tanggal_seminar_ta_dua' => '2023-06-29',
+            'jam_mulai_seminar_ta_dua' => '08:00',
+            'jam_selesai_seminar_ta_dua' => '10:00',
             'id_lokasi' => '2',
             'id_seminar' => $ta2->id,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
-        $jadwal_ta2 = ModelJadwalSeminarTaSatu::create($jadwal2);
+        $jadwal_ta2 = ModelJadwalSeminarTaDua::create($jadwal2);
 
         $berita_acara2 = [
             'encrypt_id' => Crypt::encrypt('4'),
-            'no_berkas_ba_seminar_ta_satu' => 'BA/UNIKOM/2021/1',
-            'berkas_ba_seminar_ta_satu' => 'ba_seminar_ta1.pdf',
-            'berkas_nilai_seminar_ta_satu' => 'nilai_seminar_ta1.pdf',
-            'berkas_ppt_seminar_ta_satu' => 'https://drive',
+            'no_berkas_ba_seminar_ta_dua' => 'BA/UNIKOM/2021/1',
+            'berkas_ba_seminar_ta_dua' => 'ba_seminar_ta1.pdf',
+            'berkas_nilai_seminar_ta_dua' => 'nilai_seminar_ta1.pdf',
+            'berkas_ppt_seminar_ta_dua' => 'https://drive',
             'nilai' => 80.5,
             'huruf_mutu' => 'A',
             'id_seminar' => $ta2->id,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
-        $ba2 = ModelBaSeminarTaSatu::create($berita_acara2);
+        $ba2 = ModelBaSeminarTaDua::create($berita_acara2);
     }
 }
