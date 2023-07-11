@@ -93,7 +93,7 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 <div class="form-group">
-                                    <label>Jumlah Mahasiswa</label>
+                                    <label>Jumlah Peserta</label>
                                     <input
                                         class="form-control @error('jumlah_mahasiswa') form-control-danger @enderror"
                                         placeholder="Jumlah Mahasiswa" type="number" name="jumlah_mahasiswa" min="1"

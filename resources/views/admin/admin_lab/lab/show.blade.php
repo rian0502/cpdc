@@ -51,13 +51,16 @@
                                     {{ $carbon::createFromFormat('H:i:s', $lab->jam_selesai)->format('h:i A') }}
                                 </div>
                             </div>
-
                             <div class="row border-bottom">
-                                <label class="col-md-7 bold"><b>Keterangan</b></label>
-                                <div class="col-md-7" style="display:block;word-wrap:break-word;">
+
+                                <label class="col-md-3 bold"> <strong>Jumlah Peserta</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    {{ $lab->jumlah_mahasiswa }}
+                                </div>
+                                <label class="col-md-3 bold"> <strong> Keterangan</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $lab->keterangan }}
                                 </div>
-
                             </div>
 
                         </div>
