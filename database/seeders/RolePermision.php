@@ -112,6 +112,31 @@ class RolePermision extends Seeder
             'password' =>  bcrypt('kajur'),
         ]);
 
+        $mhs5 = User::create([
+            'name' => 'Elvina Pratiwi',
+            'email' => 'vera.hastutigmail.com',
+            'email_verified_at' => now(),
+            'password' =>  bcrypt('kajur'),
+        ]);
+        $mhs6 = User::create([
+            'name' => 'Enteng Waluyo',
+            'email' => 'entengwaluyo10@mail.com',
+            'email_verified_at' => now(),
+            'password' =>  bcrypt('kajur'),
+        ]);
+        $mhs7 = User::create([
+            'name' => 'Nilam Palastri',
+            'email' => 'nilampalastri1010@mail.com',
+            'email_verified_at' => now(),
+            'password' =>  bcrypt('kajur'),
+        ]);
+        $mhs8 = User::create([
+            'name' => 'Cakrajiya Anggriawan',
+            'email' => 'cakrajiya@mail.com',
+            'email_verified_at' => now(),
+            'password' =>  bcrypt('kajur'),
+        ]);
+
         $roles = ['admin lab', 'admin berkas', 'mahasiswa', 'dosen', 'pkl', 'kompre', 'ta1', 'ta2', 'jurusan', 'alumni', 'kalab', 'sudo'];
         foreach ($roles as $role) {
             $role = Role::create([
@@ -130,6 +155,10 @@ class RolePermision extends Seeder
         $mhs2->assignRole(['mahasiswa', 'alumni']);
         $mhs3->assignRole(['mahasiswa', 'alumni']);
         $mhs4->assignRole(['mahasiswa', 'alumni']);
+        $mhs5->assignRole(['mahasiswa']);
+        $mhs6->assignRole(['mahasiswa']);
+        $mhs7->assignRole(['mahasiswa']);
+        $mhs8->assignRole(['mahasiswa']);
         $dosenKorKp->assignRole(['dosen', 'pkl']);
         $dosenKorTa1->assignRole(['dosen', 'ta1']);
         $dosenKorTa2->assignRole(['dosen', 'ta2']);

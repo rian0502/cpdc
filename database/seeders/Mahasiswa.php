@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Mahasiswa as ModelsMahasiswa;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Foundation\Console\ModelMakeCommand;
 
 class Mahasiswa extends Seeder
 {
@@ -84,5 +85,74 @@ class Mahasiswa extends Seeder
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
+        ModelsMahasiswa::create([
+            'npm' => '2015051013',
+            'nama_mahasiswa' => 'Elvina Pratiwi',
+            'tanggal_lahir' => '2001-01-01',
+            'tempat_lahir' => 'Jakarta',
+            'no_hp' => '081234567890',
+            'alamat' => 'KP. Babakan, Desa Babakan, Kec. Babakan Madang, Kab. Bogor, Jawa Barat 16810',
+            'jenis_kelamin' => 'Perempuan',
+            'tanggal_masuk' => '2019-08-30',
+            'angkatan' => '2019',
+            'status' => 'Aktif',
+            'id_dosen' => '4',
+            'semester' => '8',
+            'user_id' => '16',
+            'created_at' => '2020-08-30 00:00:00',
+            'updated_at' => '2020-08-30 00:00:00',
+        ]);
+        ModelsMahasiswa::create([
+            'npm' => '2015051014',
+            'nama_mahasiswa' => 'Enteng Waluyo',
+            'tanggal_lahir' => '2001-01-01',
+            'tempat_lahir' => 'Jakarta',
+            'no_hp' => '081234567890',
+            'alamat' => 'KP. Babakan, Desa Babakan, Kec. Babakan Madang, Kab. Bogor, Jawa Barat 16810',
+            'jenis_kelamin' => 'Laki-laki',
+            'tanggal_masuk' => '2019-08-30',
+            'angkatan' => '2019',
+            'status' => 'Aktif',
+            'id_dosen' => '5',
+            'semester' => '8',
+            'user_id' => '17',
+            'created_at' => '2020-08-30 00:00:00',
+            'updated_at' => '2020-08-30 00:00:00',
+        ]);
+        ModelsMahasiswa::create([
+            'npm' => '2015051015',
+            'nama_mahasiswa' => 'Nilam Palastri',
+            'tanggal_lahir' => '2001-01-01',
+            'tempat_lahir' => 'Jakarta',
+            'no_hp' => '081234567890',
+            'alamat' => 'KP. Babakan, Desa Babakan, Kec. Babakan Madang, Kab. Bogor, Jawa Barat 16810',
+            'jenis_kelamin' => 'Perempuan',
+            'tanggal_masuk' => '2019-08-30',
+            'angkatan' => '2019',
+            'status' => 'Aktif',
+            'id_dosen' => '6',
+            'semester' => '8',
+            'user_id' => '18',
+            'created_at' => '2020-08-30 00:00:00',
+            'updated_at' => '2020-08-30 00:00:00',
+        ]);
+        ModelsMahasiswa::create([
+            'npm' => '2015051014',
+            'nama_mahasiswa' => 'Cakrajiya Anggriawan',
+            'tanggal_lahir' => '2001-01-01',
+            'tempat_lahir' => 'Jakarta',
+            'no_hp' => '081234567890',
+            'alamat' => 'KP. Babakan, Desa Babakan, Kec. Babakan Madang, Kab. Bogor, Jawa Barat 16810',
+            'jenis_kelamin' => 'Laki-laki',
+            'tanggal_masuk' => '2019-08-30',
+            'angkatan' => '2019',
+            'status' => 'Aktif',
+            'id_dosen' => '7',
+            'semester' => '8',
+            'user_id' => '19',
+            'created_at' => '2020-08-30 00:00:00',
+            'updated_at' => '2020-08-30 00:00:00',
+        ]);
+
     }
 }
