@@ -36,8 +36,9 @@ class BarangController extends Controller
         $data = [
             'models' => ModelBarang::all(),
             'categories' => Kategori::all(),
-            'lokasi' => Auth::user()->administrasi->lokasi,
+            'lokasi' => Auth::user()->lokasi,
         ];
+
 
         return view('admin.admin_lab.inventaris.barang.create', $data);
     }
@@ -53,7 +54,7 @@ class BarangController extends Controller
         $data = [
             'nama_barang' => $request->nama_barang,
             'jumlah_akhir' => $request->jumlah_akhir,
-            'id_lokasi' => Auth::user()->administrasi->lokasi,
+            'id_lokasi' => Auth::user()->lokasi_id,
             'id_model' => Crypt::decrypt($request->id_model),
             'created_at' => now(),
             'updated_at' => now(),
@@ -129,7 +130,7 @@ class BarangController extends Controller
             //proses update table barang
             $data = [
                 'nama_barang' => $request->nama_barang,
-                'id_lokasi' => Auth::user()->administrasi->lokasi,
+                'id_lokasi' => Auth::user()->lokasi_id,
                 'id_model' => Crypt::decrypt($request->id_model),
                 'jumlah_akhir' => $request->jumlah_akhir,
                 'updated_at' => now(),
