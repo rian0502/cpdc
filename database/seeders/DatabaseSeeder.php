@@ -37,6 +37,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AktivitasAlumniSeeder::class);
         $this->call(TugasAkhirDuaSeeder::class);
         $this->call(KompreSeeder::class);
-        $this->call(KpSeeder::class);
+
     }
 }

@@ -27,7 +27,7 @@ class SeederAdministrasi extends Seeder
             'alamat' => 'Jl. Untung Suropati No. 1 ',
             'jenis_kelamin' => 'Laki-laki',
             'status' => 'Aktif',
-            'user_id' => '2',
+            'user_id' => '33',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
@@ -50,7 +50,7 @@ class SeederAdministrasi extends Seeder
             'alamat' => 'Jl. Panglima Polim Kavl.9 No. 1',
             'jenis_kelamin' => 'Laki-laki',
             'status' => 'Aktif',
-            'user_id' => '3',
+            'user_id' => '32',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);

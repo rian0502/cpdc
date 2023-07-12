@@ -92,7 +92,7 @@ class AuthController extends Controller
     public function register()
     {
         $data = [
-            'dosen' => Dosen::all(),
+            'dosen' => Dosen::where('status', 'Aktif')->get(),
         ];
         return view('auth.register', $data);
     }
