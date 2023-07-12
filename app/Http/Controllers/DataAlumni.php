@@ -13,7 +13,7 @@ class DataAlumni extends Controller
      */
     public function index()
     {
-        return view('sudo.data_alumni.index');
+        return view('jurusan.data_alumni.index');
     }
 
     /**
@@ -45,7 +45,7 @@ class DataAlumni extends Controller
      */
     public function show($id)
     {
-        return view('sudo.data_alumni.show');
+        return view('jurusan.data_alumni.show');
     }
 
     /**
