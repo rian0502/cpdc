@@ -17,7 +17,7 @@ class PenempatanDosenLabController extends Controller
         $kalab = User::role('kalab')->get();
 
 
-        return view('sudo.alokasi_dosen.index', compact('kalab'));
+        return view('sudo.kalab.index', compact('kalab'));
     }
 
     /**
@@ -64,7 +64,7 @@ class PenempatanDosenLabController extends Controller
             'user' => User::find($id),
             'locations' => Lokasi::all()
         ];
-        return view('sudo.alokasi_dosen.edit', $data);
+        return view('sudo.kalab.edit', $data);
     }
 
     /**
