@@ -107,8 +107,8 @@
                                         <div class="text-justify">
                                             Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah masuk
                                             pada akun, pastikan anda sudah menyelesaikan
-                                            <a class="bold" href="/mahasiswa/seminar/tugas_akhir_1">
-                                                <strong>Seminar Tugas Akhir 1</strong>
+                                            <a class="text-primary bold" href="/mahasiswa/seminar/tugas_akhir_1">
+                                                Seminar Tugas Akhir 1
                                             </a>
                                             terlebih dahulu sebelum mendaftar Seminar Tugas Akhir 2. Jika telah menyelesaikan
                                             <strong>Seminar Tugas
@@ -138,7 +138,7 @@
                                         <div class="text-justify">
                                             Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah masuk
                                             pada akun, pastikan anda sudah menyelesaikan
-                                            <a class="bold" href="/mahasiswa/seminar/tugas_akhir_2">
+                                            <a class="text-primary bold" href="/mahasiswa/seminar/tugas_akhir_2">
                                                 Seminar Tugas Akhir 2
                                             </a>
                                             terlebih dahulu sebelum mendaftar Sidang Komprehensif. Jika telah menyelesaikan
