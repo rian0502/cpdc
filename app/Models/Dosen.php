@@ -28,7 +28,6 @@ class Dosen extends Model
         'alamat',
         'status',
         'user_id',
-        'lokasi_id',
         'foto_profile',
         'created_at',
         'updated_at'
