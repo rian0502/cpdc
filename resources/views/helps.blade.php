@@ -208,7 +208,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#pengaturan">
-                                     Mengganti Kata Sandi Akun di Pengaturan
+                                    Mengganti Kata Sandi Akun di Pengaturan
                                 </button>
                             </div>
                             <div id="pengaturan" class="collapse" data-parent="#accordion2">
