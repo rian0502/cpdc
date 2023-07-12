@@ -1101,65 +1101,121 @@
                                 {{-- kompre end --}}
 
                                 {{-- prestasi start --}}
-                                <div class="tab-pane fade" id="prestasi" role="tabpanel">
-                                    <div class="pd-20">
-                                        <table class="table data-table-responsive stripe data-table-noexport wrap ">
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Judul Kegiatan</th>
-                                                    <th>Peran</th>
-                                                    <th>Tanggal</th>
-                                                    <th>SKS Konversi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($aktivitas as $item)
-                                                    <tr>
-                                                        <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $item->nama_aktivitas }}</td>
-                                                        <td>{{ $item->peran }}</td>
-                                                        <td>{{ $item->tanggal }}</td>
-                                                        <td>{{ $item->sks_konversi }} SKS</td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                {{-- prestasi end --}}
 
-                                {{-- kegiatan lainnya start --}}
-                                <div class="tab-pane fade" id="extra_activity" role="tabpanel">
+
+                            </div>
+                            <div class="tab-pane fade" id="prestasi" role="tabpanel">
+                                <div class="pd-20">
+                                    <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Judul Kegiatan</th>
+                                                <th>Peran</th>
+                                                <th>Tanggal</th>
+                                                <th>SKS Konversi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($aktivitas as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->nama_aktivitas }}</td>
+                                                    <td>{{ $item->peran }}</td>
+                                                    <td>{{ $item->tanggal }}</td>
+                                                    <td>{{ $item->sks_konversi }} SKS</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            {{-- prestasi end --}}
+
+                            {{-- kegiatan lainnya start --}}
+                            <div class="tab-pane fade" id="extra_activity" role="tabpanel">
+                                <div class="pd-20">
+                                    <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Judul Kegiatan</th>
+                                                <th>Peran</th>
+                                                <th>Tanggal</th>
+                                                <th>SKS Konversi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($aktivitas as $item)
+                                                <tr>
+                                                    <td>
+                                                        {{ $loop->iteration }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->nama_aktivitas }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->peran }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->tanggal }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->sks_konversi }}
+                                                        SKS</td>
+
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {{-- kegiatan lainnya end --}}
+                            </div>
+                            {{-- aktivitas alumni kondisiin --}}
+                            @if ($mahasiswa->user->hasRole('alumni'))
+                                <div class="tab-pane fade" id="aktivitas_alumni" role="tabpanel">
                                     <div class="pd-20">
                                         <table class="table data-table-responsive stripe data-table-noexport wrap ">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Judul Kegiatan</th>
-                                                    <th>Peran</th>
-                                                    <th>Tanggal</th>
-                                                    <th>SKS Konversi</th>
+                                                    <th>Tempat</th>
+                                                    <th>Alamat</th>
+                                                    <th>Jabatan</th>
+                                                    <th>Tahun Masuk</th>
+                                                    <th>Hubungan</th>
+                                                    <th>Gaji</th>
+                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($aktivitas as $item)
+                                                @foreach ($alumni as $item)
                                                     <tr>
                                                         <td>
                                                             {{ $loop->iteration }}
                                                         </td>
                                                         <td>
-                                                            {{ $item->nama_aktivitas }}
+                                                            {{ $item->tempat }}
+
                                                         </td>
                                                         <td>
-                                                            {{ $item->peran }}
+                                                            {{ $item->alamat }}
                                                         </td>
                                                         <td>
-                                                            {{ $item->tanggal }}
+                                                            {{ $item->jabatan }}
                                                         </td>
                                                         <td>
-                                                            {{ $item->sks_konversi }}
-                                                            SKS</td>
+                                                            {{ $carbon::parse($item->tahun_masuk)->format('d/M/Y') }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->hubungan }}
+                                                        </td>
+                                                        <td class="gaji">
+                                                            {{ $item->gaji }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->status }}
+                                                        </td>
 
                                                     </tr>
                                                 @endforeach
@@ -1168,63 +1224,7 @@
                                     </div>
                                     {{-- kegiatan lainnya end --}}
                                 </div>
-                                {{-- aktivitas alumni kondisiin --}}
-                                @if ($mahasiswa->user->hasRole('alumni'))
-                                    <div class="tab-pane fade" id="aktivitas_alumni" role="tabpanel">
-                                        <div class="pd-20">
-                                            <table class="table data-table-responsive stripe data-table-noexport wrap ">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Tempat</th>
-                                                        <th>Alamat</th>
-                                                        <th>Jabatan</th>
-                                                        <th>Tahun Masuk</th>
-                                                        <th>Hubungan</th>
-                                                        <th>Gaji</th>
-                                                        <th>Status</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($alumni as $item)
-                                                        <tr>
-                                                            <td>
-                                                                {{ $loop->iteration }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $item->tempat }}
-
-                                                            </td>
-                                                            <td>
-                                                                {{ $item->alamat }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $item->jabatan }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $carbon::parse($item->tahun_masuk)->format('d/M/Y') }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $item->hubungan }}
-                                                            </td>
-                                                            <td class="gaji">
-                                                                {{ $item->gaji }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $item->status }}
-                                                            </td>
-
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        {{-- kegiatan lainnya end --}}
-                                    </div>
-                                @endif
-
-                            </div>
-
+                            @endif
                         </div>
                     </div>
                 </div>

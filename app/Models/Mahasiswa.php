@@ -57,4 +57,10 @@ class Mahasiswa extends Model
     public function komprehensif(){
         return $this->hasMany(ModelSeminarKompre::class, 'id_mahasiswa');
     }
+    public function aktivitasAlumni(){
+        return $this->hasMany(AktivitasAlumni::class, 'mahasiswa_id');
+    }
+    public function kegiatanTerakhir(){
+        return $this->hasOne(AktivitasAlumni::class, 'mahasiswa_id')->latest('tahun_masuk');
+    }
 }

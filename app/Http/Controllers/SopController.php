@@ -7,6 +7,7 @@ use App\Models\SopLab;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSopLabRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\File;
 
@@ -35,7 +36,7 @@ class SopController extends Controller
     {
         //
         $data = [
-            'locations' => Lokasi::all(),
+            'locations' => Auth::user()->lokasi,
         ];
         return view('admin.admin_lab.sop.create', $data);
     }
@@ -54,7 +55,7 @@ class SopController extends Controller
         $data = [
             'nama_sop' => $request->nama_sop,
             'file_sop' => $file_name,
-            'id_lokasi' => Crypt::decrypt($request->id_lokasi),
+            'id_lokasi' => Auth::user()->lokasi_id,
         ];
         $insert = SopLab::create($data);
         $id = $insert->id;
@@ -119,7 +120,6 @@ class SopController extends Controller
             $file_sop->move('uploads/sop', $file_name);
             $sop->file_sop = $file_name;
         }
-        $sop->id_lokasi = Crypt::decrypt($request->id_lokasi);
         $sop->updated_at = date('Y-m-d H:i:s');
         $sop->save();
         $update = SopLab::where('id', $id)->update([

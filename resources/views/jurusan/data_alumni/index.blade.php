@@ -22,8 +22,8 @@
                                         <th>No.</th>
                                         <th>Nama Mahasiswa</th>
                                         <th>NPM</th>
-                                        <th>Angkatan</th>
-                                        <th>Jenis Kelamin</th>
+                                        <th>Pekerjaan</th>
+                                        <th>Mitra</th>
                                         <th>Status</th>
                                         <th>Tahun Masuk</th>
                                         <th class="table-plus datatable-nosort">Aksi</th>
@@ -75,36 +75,36 @@
                     ajax: '{{ route('jurusan.alumni.index') }}',
                     columns: [{
                             data: null,
-                            name: 'nama_mahasiswa',
+                            name: 'name',
                             render: function(data, type, row, meta) {
                                 return meta.row + meta.settings._iDisplayStart + 1;
                             }
                         },
                         {
-                            data: 'nama_mahasiswa',
+                            data: 'name',
                             name: 'nama_mahasiswa',
                             orderable: true
                         },
                         {
-                            data: 'npm',
+                            data: 'mahasiswa.npm',
                             name: 'npm',
                             orderable: true
                         },
                         {
-                            data: 'angkatan',
-                            name: 'angkatan',
+                            data: 'mahasiswa.kegiatan_terakhir.jabatan',
+                            name: 'mahasiswa.kegiatan_terakhir.jabatan',
                             orderable: true
                         },
                         {
-                            data: 'jenis_kelamin',
+                            data: 'mahasiswa.kegiatan_terakhir.tempat',
                             name: 'jenis_kelamin'
                         },
                         {
-                            data: 'status',
+                            data: 'mahasiswa.kegiatan_terakhir.status',
                             name: 'status'
                         },
                         {
-                            data: 'updated_at',
+                            data: 'mahasiswa.kegiatan_terakhir.tahun_masuk',
                             name: 'updated_at',
                             render: function(data) {
                                 var date = new Date(data);
@@ -120,8 +120,8 @@
                             exportable: false,
                             render: function(data, type, row) {
 
-                                var editUrl = "{{ route('jurusan.alumni.show', ':id') }}".replace(
-                                    ':id', row.npm);
+                                var editUrl = "{{ route('jurusan.mahasiswa.show', ':id') }}".replace(
+                                    ':id', row.mahasiswa.npm);
                                 return `
                             <div class="dropdown">
                                 <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">

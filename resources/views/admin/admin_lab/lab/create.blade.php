@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Keterangan</label>
-                                    <textarea class="form-control textarea @error('ket') form-control-danger @enderror" name="ket"></textarea>
+                                    <textarea class="form-control textarea @error('ket') form-control-danger @enderror" name="ket">{{ old('ket') }}</textarea>
                                     @error('ket')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -49,20 +49,6 @@
                             </div>
                             {{-- form untuk sebelah kanan --}}
                             <div class="merek weight-500 col-md-6">
-
-                                <div class="form-group">
-                                    <label>Lokasi</label>
-                                    <select class="custom-select2 form-control" style="width: 100%; height: 38px"
-                                        name="id_lokasi">
-                                        @foreach ($locations as $item)
-                                            <option value="{{ $item->encrypt_id }}"
-                                                {{ old('id_lokasi') == $item->id_lokasi ? 'selected' : '' }}>
-                                                {{ $item->nama_lokasi . ', Lt-' . $item->lantai_tingkat }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-
-                                </div>
                                 <div class="form-group">
                                     <label>Tanggal Kegiatan</label>
                                     <input type="date" value="{{ old('tanggal_kegiatan') }}"
