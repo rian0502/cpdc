@@ -47,11 +47,11 @@
                         <div id="accordion">
                             <div class="card">
                                 <div class="card-header">
-                                    <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq1">
+                                    <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#kp">
                                         Mendaftar Seminar Kerja Praktik
                                     </button>
                                 </div>
-                                <div id="faq1" class="collapse" data-parent="#accordion">
+                                <div id="kp" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
                                         <div>Daftar Seminar kerja praktik dapat dilakukan dengan cara berikut:</div>
                                         <div class="text-justify">
@@ -73,11 +73,11 @@
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq2">
+                                    <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#ta1">
                                         Mendaftar Seminar Tugas Akhir 1
                                     </button>
                                 </div>
-                                <div id="faq2" class="collapse" data-parent="#accordion">
+                                <div id="ta1" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
                                         <div>Daftar Seminar Tugas Akhir 1 dapat dilakukan dengan cara berikut:</div>
                                         <div class="text-justify">
@@ -85,7 +85,8 @@
                                             pada akun, kemudian klik pada tab <strong>Seminar</strong> yang terletak pada bagian
                                             bawah logo
                                             CPDC. Setelah itu, klik pada opsi
-                                            <a class="text-primary bold" href="/mahasiswa/seminar/tugas_akhir_1">Tugas Akhir 1</a>.
+                                            <a class="text-primary bold" href="/mahasiswa/seminar/tugas_akhir_1">Tugas Akhir
+                                                1</a>.
                                             Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
@@ -97,11 +98,11 @@
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq3">
+                                    <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#ta2">
                                         Mendaftar Seminar Tugas Akhir 2
                                     </button>
                                 </div>
-                                <div id="faq3" class="collapse" data-parent="#accordion">
+                                <div id="ta2" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
                                         <div>Daftar Seminar Tugas Akhir 2 dapat dilakukan dengan cara berikut:</div>
                                         <div class="text-justify">
@@ -128,11 +129,11 @@
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq4">
+                                    <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#kompre">
                                         Mendaftar Sidang Komprehensif
                                     </button>
                                 </div>
-                                <div id="faq4" class="collapse" data-parent="#accordion">
+                                <div id="kompre" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
                                         <div>Daftar Sidang Komprehensif dapat dilakukan dengan cara berikut:</div>
                                         <div class="text-justify">
@@ -146,8 +147,8 @@
                                                 Akhir 2</strong>, kemudian klik pada tab <strong>Seminar</strong> yang terletak
                                             pada bagian bawah logo
                                             CPDC. Setelah itu, klik pada opsi
-                                            <a class="text-primary bold"
-                                                href="/mahasiswa/sidang/kompre">Sidang Komprehensif</a>.
+                                            <a class="text-primary bold" href="/mahasiswa/sidang/kompre">Sidang
+                                                Komprehensif</a>.
                                             Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
@@ -161,502 +162,93 @@
                     @endrole
 
                     <h4 class="mb-30 h4 text-blue padding-top-30">Mengubah Data Profil Akun</h4>
-                    <div class="padding-bottom-30">
+                    <div id="accordion1">
                         <div class="card">
                             <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq1-1">
-                                    Collapsible Group Item #1
+                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#foto">
+                                    Mengganti Foto Profil
                                 </button>
                             </div>
-                            <div id="faq1-1" class="collapse">
+                            <div id="foto" class="collapse" data-parent="#accordion1">
                                 <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                    accusamus terry richardson ad squid. 3 wolf moon officia
-                                    aute, non cupidatat skateboard dolor brunch. Food truck
-                                    quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                                    sunt aliqua put a bird on it squid single-origin coffee
-                                    nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                    helvetica, craft beer labore wes anderson cred nesciunt
-                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                    Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them
-                                    accusamus labore sustainable VHS.
+
+                                    <div class="text-justify">
+                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus debitis ab
+                                        iusto quidem consequatur nesciunt corporis illo aliquam dignissimos necessitatibus!
+                                        Sed mollitia illum consectetur repellat, magni eaque. Possimus vero tempore ex
+                                        deserunt impedit tenetur eaque dolorum voluptatibus aliquid, quaerat quidem
+                                        deleniti! Inventore et itaque illum maxime sint distinctio maiores. Consectetur?
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq2-2">
-                                    Collapsible Group Item #2
+                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#bio">
+                                    Mengubah Biodata
                                 </button>
                             </div>
-                            <div id="faq2-2" class="collapse">
+                            <div id="bio" class="collapse" data-parent="#accordion1">
                                 <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                    accusamus terry richardson ad squid. 3 wolf moon officia
-                                    aute, non cupidatat skateboard dolor brunch. Food truck
-                                    quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                                    sunt aliqua put a bird on it squid single-origin coffee
-                                    nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                    helvetica, craft beer labore wes anderson cred nesciunt
-                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                    Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them
-                                    accusamus labore sustainable VHS.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq3-3">
-                                    Collapsible Group Item #3
-                                </button>
-                            </div>
-                            <div id="faq3-3" class="collapse">
-                                <div class="card-body">
-                                    <p>
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                        accusamus terry richardson ad squid. 3 wolf moon officia
-                                        aute, non cupidatat skateboard dolor brunch. Food truck
-                                        quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-                                        tempor, sunt aliqua put a bird on it squid single-origin
-                                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                        helvetica, craft beer labore wes anderson cred nesciunt
-                                        sapiente ea proident. Ad vegan excepteur butcher vice
-                                        lomo. Leggings occaecat craft beer farm-to-table, raw
-                                        denim aesthetic synth nesciunt you probably haven't heard
-                                        of them accusamus labore sustainable VHS.
-                                    </p>
-                                    <p class="mb-0">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                        accusamus terry richardson ad squid. 3 wolf moon officia
-                                        aute, non cupidatat skateboard dolor brunch. Food truck
-                                        quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-                                        tempor, sunt aliqua put a bird on it squid single-origin
-                                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                        helvetica, craft beer labore wes anderson cred nesciunt
-                                        sapiente ea proident. Ad vegan excepteur butcher vice
-                                        lomo. Leggings occaecat craft beer farm-to-table, raw
-                                        denim aesthetic synth nesciunt you probably haven't heard
-                                        of them accusamus labore sustainable VHS.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq4-4">
-                                    Collapsible Group Item #4
-                                </button>
-                            </div>
-                            <div id="faq4-4" class="collapse">
-                                <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                    accusamus terry richardson ad squid. 3 wolf moon officia
-                                    aute, non cupidatat skateboard dolor brunch. Food truck
-                                    quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                                    sunt aliqua put a bird on it squid single-origin coffee
-                                    nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                    helvetica, craft beer labore wes anderson cred nesciunt
-                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                    Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them
-                                    accusamus labore sustainable VHS.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq5-5">
-                                    Collapsible Group Item #5
-                                </button>
-                            </div>
-                            <div id="faq5-5" class="collapse">
-                                <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                    accusamus terry richardson ad squid. 3 wolf moon officia
-                                    aute, non cupidatat skateboard dolor brunch. Food truck
-                                    quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                                    sunt aliqua put a bird on it squid single-origin coffee
-                                    nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                    helvetica, craft beer labore wes anderson cred nesciunt
-                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                    Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them
-                                    accusamus labore sustainable VHS.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq6-6">
-                                    Collapsible Group Item #6
-                                </button>
-                            </div>
-                            <div id="faq6-6" class="collapse">
-                                <div class="card-body">
-                                    <p>
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                        accusamus terry richardson ad squid. 3 wolf moon officia
-                                        aute, non cupidatat skateboard dolor brunch. Food truck
-                                        quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-                                        tempor, sunt aliqua put a bird on it squid single-origin
-                                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                        helvetica, craft beer labore wes anderson cred nesciunt
-                                        sapiente ea proident. Ad vegan excepteur butcher vice
-                                        lomo. Leggings occaecat craft beer farm-to-table, raw
-                                        denim aesthetic synth nesciunt you probably haven't heard
-                                        of them accusamus labore sustainable VHS.
-                                    </p>
-                                    <p class="mb-0">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                        accusamus terry richardson ad squid. 3 wolf moon officia
-                                        aute, non cupidatat skateboard dolor brunch. Food truck
-                                        quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-                                        tempor, sunt aliqua put a bird on it squid single-origin
-                                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                        helvetica, craft beer labore wes anderson cred nesciunt
-                                        sapiente ea proident. Ad vegan excepteur butcher vice
-                                        lomo. Leggings occaecat craft beer farm-to-table, raw
-                                        denim aesthetic synth nesciunt you probably haven't heard
-                                        of them accusamus labore sustainable VHS.
-                                    </p>
+                                    <div class="text-justify">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ullam voluptatem
+                                        officia natus totam esse distinctio voluptate aspernatur quam molestias! Voluptate,
+                                        laborum minus quas recusandae molestiae, dolorum alias libero blanditiis nostrum
+                                        nihil, iste dignissimos explicabo enim mollitia! Optio sunt cum vitae repudiandae,
+                                        culpa, voluptates, cumque accusantium impedit ratione inventore dicta.
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <h4 class="mb-30 h4 text-blue padding-top-30">Mengubah Kata Sandi</h4>
-                    <div class="padding-bottom-30">
+
+                    <h4 class="mb-30 h4 text-blue padding-top-30">Kata Sandi</h4>
+                    <div id="accordion2">
                         <div class="card">
                             <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq1-1">
-                                    Collapsible Group Item #1
+                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#pengaturan">
+                                     Mengganti Kata Sandi Akun di Pengaturan
                                 </button>
                             </div>
-                            <div id="faq1-1" class="collapse">
+                            <div id="pengaturan" class="collapse" data-parent="#accordion2">
                                 <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                    accusamus terry richardson ad squid. 3 wolf moon officia
-                                    aute, non cupidatat skateboard dolor brunch. Food truck
-                                    quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                                    sunt aliqua put a bird on it squid single-origin coffee
-                                    nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                    helvetica, craft beer labore wes anderson cred nesciunt
-                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                    Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them
-                                    accusamus labore sustainable VHS.
+
+                                    <div class="text-justify">
+                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus debitis ab
+                                        iusto quidem consequatur nesciunt corporis illo aliquam dignissimos necessitatibus!
+                                        Sed mollitia illum consectetur repellat, magni eaque. Possimus vero tempore ex
+                                        deserunt impedit tenetur eaque dolorum voluptatibus aliquid, quaerat quidem
+                                        deleniti! Inventore et itaque illum maxime sint distinctio maiores. Consectetur?
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq2-2">
-                                    Collapsible Group Item #2
+                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#lupa">
+                                    Mengganti Kata Sandi Akun Jika Lupa
                                 </button>
                             </div>
-                            <div id="faq2-2" class="collapse">
+                            <div id="lupa" class="collapse" data-parent="#accordion2">
                                 <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                    accusamus terry richardson ad squid. 3 wolf moon officia
-                                    aute, non cupidatat skateboard dolor brunch. Food truck
-                                    quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                                    sunt aliqua put a bird on it squid single-origin coffee
-                                    nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                    helvetica, craft beer labore wes anderson cred nesciunt
-                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                    Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them
-                                    accusamus labore sustainable VHS.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq3-3">
-                                    Collapsible Group Item #3
-                                </button>
-                            </div>
-                            <div id="faq3-3" class="collapse">
-                                <div class="card-body">
-                                    <p>
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                        accusamus terry richardson ad squid. 3 wolf moon officia
-                                        aute, non cupidatat skateboard dolor brunch. Food truck
-                                        quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-                                        tempor, sunt aliqua put a bird on it squid single-origin
-                                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                        helvetica, craft beer labore wes anderson cred nesciunt
-                                        sapiente ea proident. Ad vegan excepteur butcher vice
-                                        lomo. Leggings occaecat craft beer farm-to-table, raw
-                                        denim aesthetic synth nesciunt you probably haven't heard
-                                        of them accusamus labore sustainable VHS.
-                                    </p>
-                                    <p class="mb-0">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                        accusamus terry richardson ad squid. 3 wolf moon officia
-                                        aute, non cupidatat skateboard dolor brunch. Food truck
-                                        quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-                                        tempor, sunt aliqua put a bird on it squid single-origin
-                                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                        helvetica, craft beer labore wes anderson cred nesciunt
-                                        sapiente ea proident. Ad vegan excepteur butcher vice
-                                        lomo. Leggings occaecat craft beer farm-to-table, raw
-                                        denim aesthetic synth nesciunt you probably haven't heard
-                                        of them accusamus labore sustainable VHS.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq4-4">
-                                    Collapsible Group Item #4
-                                </button>
-                            </div>
-                            <div id="faq4-4" class="collapse">
-                                <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                    accusamus terry richardson ad squid. 3 wolf moon officia
-                                    aute, non cupidatat skateboard dolor brunch. Food truck
-                                    quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                                    sunt aliqua put a bird on it squid single-origin coffee
-                                    nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                    helvetica, craft beer labore wes anderson cred nesciunt
-                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                    Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them
-                                    accusamus labore sustainable VHS.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq5-5">
-                                    Collapsible Group Item #5
-                                </button>
-                            </div>
-                            <div id="faq5-5" class="collapse">
-                                <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                    accusamus terry richardson ad squid. 3 wolf moon officia
-                                    aute, non cupidatat skateboard dolor brunch. Food truck
-                                    quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                                    sunt aliqua put a bird on it squid single-origin coffee
-                                    nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                    helvetica, craft beer labore wes anderson cred nesciunt
-                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                    Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them
-                                    accusamus labore sustainable VHS.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq6-6">
-                                    Collapsible Group Item #6
-                                </button>
-                            </div>
-                            <div id="faq6-6" class="collapse">
-                                <div class="card-body">
-                                    <p>
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                        accusamus terry richardson ad squid. 3 wolf moon officia
-                                        aute, non cupidatat skateboard dolor brunch. Food truck
-                                        quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-                                        tempor, sunt aliqua put a bird on it squid single-origin
-                                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                        helvetica, craft beer labore wes anderson cred nesciunt
-                                        sapiente ea proident. Ad vegan excepteur butcher vice
-                                        lomo. Leggings occaecat craft beer farm-to-table, raw
-                                        denim aesthetic synth nesciunt you probably haven't heard
-                                        of them accusamus labore sustainable VHS.
-                                    </p>
-                                    <p class="mb-0">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                        accusamus terry richardson ad squid. 3 wolf moon officia
-                                        aute, non cupidatat skateboard dolor brunch. Food truck
-                                        quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-                                        tempor, sunt aliqua put a bird on it squid single-origin
-                                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                        helvetica, craft beer labore wes anderson cred nesciunt
-                                        sapiente ea proident. Ad vegan excepteur butcher vice
-                                        lomo. Leggings occaecat craft beer farm-to-table, raw
-                                        denim aesthetic synth nesciunt you probably haven't heard
-                                        of them accusamus labore sustainable VHS.
-                                    </p>
+                                    <div class="text-justify">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ullam voluptatem
+                                        officia natus totam esse distinctio voluptate aspernatur quam molestias! Voluptate,
+                                        laborum minus quas recusandae molestiae, dolorum alias libero blanditiis nostrum
+                                        nihil, iste dignissimos explicabo enim mollitia! Optio sunt cum vitae repudiandae,
+                                        culpa, voluptates, cumque accusantium impedit ratione inventore dicta.
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <h4 class="mb-30 h4 text-blue padding-top-30">Lupa Kata Sandi</h4>
-                    <div class="padding-bottom-30">
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq1-1">
-                                    Collapsible Group Item #1
-                                </button>
-                            </div>
-                            <div id="faq1-1" class="collapse">
-                                <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                    accusamus terry richardson ad squid. 3 wolf moon officia
-                                    aute, non cupidatat skateboard dolor brunch. Food truck
-                                    quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                                    sunt aliqua put a bird on it squid single-origin coffee
-                                    nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                    helvetica, craft beer labore wes anderson cred nesciunt
-                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                    Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them
-                                    accusamus labore sustainable VHS.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq2-2">
-                                    Collapsible Group Item #2
-                                </button>
-                            </div>
-                            <div id="faq2-2" class="collapse">
-                                <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                    accusamus terry richardson ad squid. 3 wolf moon officia
-                                    aute, non cupidatat skateboard dolor brunch. Food truck
-                                    quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                                    sunt aliqua put a bird on it squid single-origin coffee
-                                    nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                    helvetica, craft beer labore wes anderson cred nesciunt
-                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                    Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them
-                                    accusamus labore sustainable VHS.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq3-3">
-                                    Collapsible Group Item #3
-                                </button>
-                            </div>
-                            <div id="faq3-3" class="collapse">
-                                <div class="card-body">
-                                    <p>
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                        accusamus terry richardson ad squid. 3 wolf moon officia
-                                        aute, non cupidatat skateboard dolor brunch. Food truck
-                                        quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-                                        tempor, sunt aliqua put a bird on it squid single-origin
-                                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                        helvetica, craft beer labore wes anderson cred nesciunt
-                                        sapiente ea proident. Ad vegan excepteur butcher vice
-                                        lomo. Leggings occaecat craft beer farm-to-table, raw
-                                        denim aesthetic synth nesciunt you probably haven't heard
-                                        of them accusamus labore sustainable VHS.
-                                    </p>
-                                    <p class="mb-0">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                        accusamus terry richardson ad squid. 3 wolf moon officia
-                                        aute, non cupidatat skateboard dolor brunch. Food truck
-                                        quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-                                        tempor, sunt aliqua put a bird on it squid single-origin
-                                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                        helvetica, craft beer labore wes anderson cred nesciunt
-                                        sapiente ea proident. Ad vegan excepteur butcher vice
-                                        lomo. Leggings occaecat craft beer farm-to-table, raw
-                                        denim aesthetic synth nesciunt you probably haven't heard
-                                        of them accusamus labore sustainable VHS.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq4-4">
-                                    Collapsible Group Item #4
-                                </button>
-                            </div>
-                            <div id="faq4-4" class="collapse">
-                                <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                    accusamus terry richardson ad squid. 3 wolf moon officia
-                                    aute, non cupidatat skateboard dolor brunch. Food truck
-                                    quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                                    sunt aliqua put a bird on it squid single-origin coffee
-                                    nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                    helvetica, craft beer labore wes anderson cred nesciunt
-                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                    Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them
-                                    accusamus labore sustainable VHS.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq5-5">
-                                    Collapsible Group Item #5
-                                </button>
-                            </div>
-                            <div id="faq5-5" class="collapse">
-                                <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                    accusamus terry richardson ad squid. 3 wolf moon officia
-                                    aute, non cupidatat skateboard dolor brunch. Food truck
-                                    quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                                    sunt aliqua put a bird on it squid single-origin coffee
-                                    nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                    helvetica, craft beer labore wes anderson cred nesciunt
-                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                    Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them
-                                    accusamus labore sustainable VHS.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq6-6">
-                                    Collapsible Group Item #6
-                                </button>
-                            </div>
-                            <div id="faq6-6" class="collapse">
-                                <div class="card-body">
-                                    <p>
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                        accusamus terry richardson ad squid. 3 wolf moon officia
-                                        aute, non cupidatat skateboard dolor brunch. Food truck
-                                        quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-                                        tempor, sunt aliqua put a bird on it squid single-origin
-                                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                        helvetica, craft beer labore wes anderson cred nesciunt
-                                        sapiente ea proident. Ad vegan excepteur butcher vice
-                                        lomo. Leggings occaecat craft beer farm-to-table, raw
-                                        denim aesthetic synth nesciunt you probably haven't heard
-                                        of them accusamus labore sustainable VHS.
-                                    </p>
-                                    <p class="mb-0">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                        accusamus terry richardson ad squid. 3 wolf moon officia
-                                        aute, non cupidatat skateboard dolor brunch. Food truck
-                                        quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-                                        tempor, sunt aliqua put a bird on it squid single-origin
-                                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                        helvetica, craft beer labore wes anderson cred nesciunt
-                                        sapiente ea proident. Ad vegan excepteur butcher vice
-                                        lomo. Leggings occaecat craft beer farm-to-table, raw
-                                        denim aesthetic synth nesciunt you probably haven't heard
-                                        of them accusamus labore sustainable VHS.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
 @endsection
