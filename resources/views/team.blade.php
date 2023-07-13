@@ -25,8 +25,9 @@
                         <img class="img-fluid mb-4" src="Assets/images/team/2.jpg" alt="">
                         <h5>Putu Putra Eka Persada</h5>
                         <span class="text-primary">UI/UX Designer & Frontend</span>
-                        <ul <li><a class="btn btn-square" href="https://www.linkedin.com/in/putupersada/" target="_blank"><i
-                                    class="fab fa-linkedin-in"></i></a></li>
+                        <ul class="team-social">
+                            <li><a class="btn btn-square" href="https://www.linkedin.com/in/putupersada/" target="_blank"><i
+                                        class="fab fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
                 </div>
