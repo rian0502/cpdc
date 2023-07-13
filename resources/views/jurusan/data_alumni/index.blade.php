@@ -82,30 +82,30 @@
                         },
                         {
                             data: 'name',
-                            name: 'nama_mahasiswa',
+                            name: 'name',
                             orderable: true
                         },
                         {
                             data: 'mahasiswa.npm',
-                            name: 'npm',
+                            name: 'mahasiswa.npm',
                             orderable: true
                         },
                         {
                             data: 'mahasiswa.kegiatan_terakhir.jabatan',
-                            name: 'mahasiswa.kegiatan_terakhir.jabatan',
+                            name: 'mahasiswa.kegiatanTerakhir.jabatan',
                             orderable: true
                         },
                         {
                             data: 'mahasiswa.kegiatan_terakhir.tempat',
-                            name: 'jenis_kelamin'
+                            name: 'mahasiswa.kegiatanTerakhir.tempat'
                         },
                         {
                             data: 'mahasiswa.kegiatan_terakhir.status',
-                            name: 'status'
+                            name: 'mahasiswa.kegiatanTerakhir.status'
                         },
                         {
                             data: 'mahasiswa.kegiatan_terakhir.tahun_masuk',
-                            name: 'updated_at',
+                            name: 'mahasiswa.kegiatanTerakhir.tahun_masuk',
                             render: function(data) {
                                 var date = new Date(data);
                                 var formattedDate = date.toISOString().slice(0, 10);

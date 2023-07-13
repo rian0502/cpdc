@@ -102,6 +102,7 @@ class LabController extends Controller
         //
 
         $lab = Laboratorium::find(Crypt::decrypt($id));
+     
         $locations = Lokasi::where('jenis_ruangan', 'Lab')->get();
         $data = [
             'lab' => $lab,
@@ -443,7 +444,7 @@ class LabController extends Controller
                     $data['jumlah_kegiatan_lainnya'][] = $jumlah_kegiatan_lainnya;;
                 }
             }
-        
+
             return response()->json($data);
         }
         
