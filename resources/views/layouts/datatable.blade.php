@@ -490,7 +490,6 @@
                     @endrole
 
                     @role('mahasiswa')
-
                         <li
                             class="dropdown {{ Request::is('mahasiswa/seminar/kp*') || Request::is('mahasiswa/seminar/skripsi*') || Request::is('mahasiswa/seminar/usul*') || Request::is('mahasiswa/seminar/semhas*') || Request::is('mahasiswa/seminar/kompre*') ? 'show' : '' }}">
                             <a href="javascript:;" class="dropdown-toggle"
@@ -514,6 +513,14 @@
                                         class="{{ Request::is('mahasiswa/sidang/kompre*') ? 'active' : '' }}">Sidang
                                         Komprehensif</a></li>
                             </ul>
+
+                        </li>
+                        <li>
+                            <a href="{{ route('mahasiswa.pendataan_alumni.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni*') ? 'active' : '' }}">
+                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Pendataan
+                                    Alumni</span>
+                            </a>
                         </li>
                         @role('alumni')
                             <li>
@@ -556,6 +563,13 @@
                                         class="{{ Request::is('admin/berkas/validasi/sidang/kompre*') ? 'active' : '' }}">Komprehensif</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="{{ route('berkas.validasi.pendataan_alumni.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('admin/berkas/validasi/pendataan_alumni*')?'active':'' }}">
+                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Validasi Data
+                                    Alumni</span>
+                            </a>
                         </li>
                     @endrole
 

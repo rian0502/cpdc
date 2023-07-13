@@ -746,6 +746,111 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-box pb-10" style="margin-bottom: 30px">
+                    <div class="h5 pd-20 mb-0">SOP Laboratorium Kimia Dasar</div>
+                    <table class="table data-table-responsive warp stripe data-table-noexport p-2">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama SOP</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a target="_blank" href="">Lihat</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-box pb-10" style="margin-bottom: 30px">
+                    <div class="h5 pd-20 mb-0">SOP Laboratorium Kimia Organik</div>
+                    <table class="table data-table-responsive warp stripe data-table-noexport p-2">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama SOP</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a target="_blank" href="">Lihat</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-box pb-10" style="margin-bottom: 30px">
+                    <div class="h5 pd-20 mb-0">SOP Laboratorium Kimia Anrganik atau Fisik</div>
+                    <table class="table data-table-responsive warp stripe data-table-noexport p-2">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama SOP</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a target="_blank" href="">Lihat</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-box pb-10" style="margin-bottom: 30px">
+                    <div class="h5 pd-20 mb-0">SOP Laboratorium Biokimia</div>
+                    <table class="table data-table-responsive warp stripe data-table-noexport p-2">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama SOP</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a target="_blank" href="">Lihat</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-box pb-10" style="margin-bottom: 30px">
+                    <div class="h5 pd-20 mb-0">SOP Laboratorium Kimia Analitik</div>
+                    <table class="table data-table-responsive warp stripe data-table-noexport p-2">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama SOP</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a target="_blank" href="">Lihat</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             @endrole
 
 
@@ -1279,7 +1384,6 @@
             // Panggil fungsi untuk membuat pie chart
             aktivitasAlumni();
         </script>
-
     @endrole
     @role('admin lab|jurusan')
         <script>
