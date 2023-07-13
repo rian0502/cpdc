@@ -464,7 +464,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="{{ route('sudo.base_npm.index') }}"
+                            <a href="{{ route('sudo.reset.seminar.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('sudo/base_npm') ? 'active' : '' }}">
                                 <span class="micon bi bi-arrow-counterclockwise"></span><span class="mtext">Reset TA</span>
                             </a>
