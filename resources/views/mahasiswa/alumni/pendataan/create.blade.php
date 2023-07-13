@@ -68,50 +68,6 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
-                                <div class="form-group">
-                                    <label>Penguji 1</label>
-                                    <select class="custom-select2 form-control" name="penguji_1" id="penguji_1"
-                                        style="width: 100%; height: 38px">
-                                        <optgroup label="Penguji 1">
-                                            @foreach ($dosens as $item)
-                                                <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_satu') == $item->encrypt_id ? 'selected' : '' }}>
-                                                    {{ $item->nama_dosen }}</option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Penguji 2</label>
-                                    <select class="custom-select2 form-control" name="penguji_2" id="penguji_2"
-                                        style="width: 100%; height: 38px">
-                                        <optgroup label="Penguji 2">
-                                            @foreach ($dosens as $item)
-                                                <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_satu') == $item->encrypt_id ? 'selected' : '' }}>
-                                                    {{ $item->nama_dosen }}</option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Penguji 3</label>
-                                    <select class="custom-select2 form-control" name="penguji_3" id="penguji_3"
-                                        style="width: 100%; height: 38px">
-                                        <optgroup label="Penguji 3">
-                                            @foreach ($dosens as $item)
-                                                <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_satu') == $item->encrypt_id ? 'selected' : '' }}>
-                                                    {{ $item->nama_dosen }}</option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
-                                </div>
-                            </div>
-
-                            {{-- form untuk sebelah kanan --}}
-                            <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label>Tanggal Lulus Sidang Komprehensif</label>
@@ -122,28 +78,39 @@
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label>Rencana Setelah Lulus</label>
-                                        <select name="rencana_lulus" id="rencana_lulus" class="selectpicker form-control"
-                                            data-size="5" name="rencana_lulus">
-                                            <option value="Bekerja" {{ old('rencana_lulus') == 'Bekerja' ? 'selected' : '' }}>
-                                                Bekerja
-                                            </option>
-                                            <option value="Studi Lanjut" {{ old('rencana_lulus') == 'Studi Lanjut' ? '' : 'selected' }}>
-                                                Studi Lanjut
-                                            </option>
-                                            <option value="Belum Ada" {{ old('rencana_lulus') == 'Belum Ada' ? '' : 'selected' }}>
-                                                Belum Ada
-                                            </option>
-                                        </select>
-                                        @error('rencana_lulus')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <label>Masa Studi</label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Masa Studi
+                                        <small>Dalam Tahun</small>
+                                    </label>
                                     <input name="nilai" id="nilai" class="form-control" type="number"
                                         value="{{ old('nilai') }}" placeholder="Masa Studi">
                                     @error('nilai')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                            </div>
+
+                            {{-- form untuk sebelah kanan --}}
+                            <div class="kanan weight-500 col-md-6">
+                                <div class="form-group">
+                                    <label>Rencana Setelah Lulus</label>
+                                    <select name="rencana_lulus" id="rencana_lulus" class="selectpicker form-control"
+                                        data-size="5" name="rencana_lulus">
+                                        <option value="Bekerja" {{ old('rencana_lulus') == 'Bekerja' ? 'selected' : '' }}>
+                                            Bekerja
+                                        </option>
+                                        <option value="Studi Lanjut"
+                                            {{ old('rencana_lulus') == 'Studi Lanjut' ? '' : 'selected' }}>
+                                            Studi Lanjut
+                                        </option>
+                                        <option value="Belum Ada"
+                                            {{ old('rencana_lulus') == 'Belum Ada' ? '' : 'selected' }}>
+                                            Belum Ada
+                                        </option>
+                                    </select>
+                                    @error('rencana_lulus')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
