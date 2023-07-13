@@ -121,6 +121,16 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{-- {{ $mahasiswa->semester }} --}}
                                 </div>
+                                <label class="col-md-3 bold mt-1"> <strong>Nomor Telepon</strong></label>
+                                <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                    {{-- {{ $mahasiswa->semester }} --}}
+                                </div>
+                            </div>
+                            <div class="row border-bottom mt-2">
+                                <label class="col-md-3 bold mt-1"> <strong>Rencana Setelah Lulus</strong></label>
+                                <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                    {{-- {{ $mahasiswa->semester }} --}}
+                                </div>
                                 <label class="col-md-3 bold"> <strong>Tim Penguji</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a href="/mahasiswa/pendataan_alumni/show">Lihat Penguji</a>
