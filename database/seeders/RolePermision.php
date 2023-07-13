@@ -123,7 +123,7 @@ class RolePermision extends Seeder
         ]);
         $nurhasanah = User::create([
             'name' => 'Dr. Nurhasanah, S.Si, M.Si',
-            'email' => 'nurhasanah@mail.com',
+            'email' => 'nur.hasanah@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
         ]);
@@ -223,6 +223,7 @@ class RolePermision extends Seeder
             'email' => 'admin.lab@mail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
+            'lokasi_id' => 1
         ]);//33
         //endadminlab
 
@@ -294,18 +295,21 @@ class RolePermision extends Seeder
         $ilim->assignRole(['dosen', 'ta1']);
         $devi->assignRole(['dosen', 'ta1']);
         $syaiful->assignRole(['dosen', 'ta2']);
-        $gede->assignRole(['dosen', 'ta2']);
         $mita->assignRole(['dosen', 'kompre']);
+        
+        $gede->assignRole(['dosen', 'ta2']);
+        $rinawati->assignRole(['dosen', 'kalab']);
+        $kamisah->assignRole(['dosen', 'kalab']);
+        $noviany->assignRole(['dosen', 'kalab']);
+        $dian->assignRole(['dosen', 'kalab']);
+
+
         $hardoko->assignRole('dosen');
         $buhani->assignRole('dosen');
         $suharso->assignRole('dosen');
         $agung->assignRole('dosen');
-        $rinawati->assignRole('dosen');
-        $dian->assignRole('dosen');
         $heri->assignRole('dosen');
         $sonny->assignRole('dosen');
-        $kamisah->assignRole('dosen');
-        $noviany->assignRole('dosen');
         $diky->assignRole('dosen');
         $suripto->assignRole('dosen');
         $yuli->assignRole('dosen');

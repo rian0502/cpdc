@@ -12,6 +12,8 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\at;
+
 class LabController extends Controller
 {
     /**
@@ -52,7 +54,7 @@ class LabController extends Controller
     {
    
         //
-        return dd($request->all());
+
         $data = [
             'nama_kegiatan' => $request->nama_kegiatan,
             'tanggal_kegiatan' => $request->tanggal_kegiatan,
@@ -61,7 +63,7 @@ class LabController extends Controller
             'keperluan' => $request->keperluan,
             'id_lokasi' => Auth::user()->lokasi_id,
             'keterangan' => $request->ket,
-            'jumlah_mahasiswa' => $request->jumlah_mahasisiswa,
+            'jumlah_mahasiswa' => $request->jumlah_mahasiswa,
         ];
 
         $insert = Laboratorium::create($data);
@@ -144,10 +146,10 @@ class LabController extends Controller
     }
     public function chartAktivitasLab(Request $request)
     {
-        if ($request->ajax()) {
+        if($request->ajax()){
             $startDate = $request->input('startDate', null);
             $endDate = $request->input('endDate', null);
-            $lokasi = $request->input('lokasi', null);
+            $lokasi = $request->input('lokasi', Auth::user()->lokasi_id);
 
             $categories = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             $data = [
@@ -252,7 +254,7 @@ class LabController extends Controller
                         ->where('keperluan', 'Lainnya')
                         ->count();
                     $data['categories'][] = $day; // ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday
-                    $data['jumlah_jam_aktivitas'][] = (int)$jumlah_jam_aktivitas;
+                    $data['jumlah_jam_aktivitas'][] = (double)$jumlah_jam_aktivitas/10000;
                     $data['jumlah_mahasiswa'][] = (int)$jumlah_mahasiswa;
                     $data['jumlah_praktikum'][] = $jumlah_praktikum;
                     $data['jumlah_seminar'][] = $jumlah_seminar;
@@ -331,7 +333,7 @@ class LabController extends Controller
                         ->where('keperluan', 'Lainnya')
                         ->count();
                     $data['categories'][] = $day; // ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday
-                    $data['jumlah_jam_aktivitas'][] = (int)$jumlah_jam_aktivitas;
+                    $data['jumlah_jam_aktivitas'][] = (double)$jumlah_jam_aktivitas/10000;
                     $data['jumlah_mahasiswa'][] = (int)$jumlah_mahasiswa;
                     $data['jumlah_praktikum'][] = $jumlah_praktikum;
                     $data['jumlah_seminar'][] = $jumlah_seminar;
@@ -369,7 +371,7 @@ class LabController extends Controller
                         ->where('keperluan', 'Lainnya')
                         ->count();
                     $data['categories'][] = $day; // ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday
-                    $data['jumlah_jam_aktivitas'][] = (int)$jumlah_jam_aktivitas;
+                    $data['jumlah_jam_aktivitas'][] = (double)$jumlah_jam_aktivitas/10000;
                     $data['jumlah_mahasiswa'][] = (int)$jumlah_mahasiswa;
                     $data['jumlah_praktikum'][] = $jumlah_praktikum;
                     $data['jumlah_seminar'][] = $jumlah_seminar;
@@ -378,57 +380,62 @@ class LabController extends Controller
                     $data['jumlah_kegiatan_lainnya'][] = $jumlah_kegiatan_lainnya;
                 }
             } elseif ($startDate == null && $endDate == null && $lokasi != null || $lokasi != 'all') {
-                foreach ($categories as $day) {
-                    $jumlah_jam_aktivitas = Laboratorium::whereRaw("DAYNAME(tanggal_kegiatan) = '{$day}'")
-                        ->when($lokasi, function ($query) use ($lokasi) {
-                            return $query->where('id_lokasi', $lokasi);
-                        })
-                        ->sum(DB::raw('jam_selesai - jam_mulai'));
 
-                    $jumlah_mahasiswa = Laboratorium::whereRaw("DAYNAME(tanggal_kegiatan) = '{$day}'")
-                        ->when($lokasi, function ($query) use ($lokasi) {
-                            return $query->where('id_lokasi', $lokasi);
-                        })
+                foreach ($categories as $day) {
+                    $jumlah_jam_aktivitas = Laboratorium::
+                    where('id_lokasi', $lokasi)->
+                    whereRaw("DAYNAME(tanggal_kegiatan) = '{$day}'")
+                 
+                    ->sum(DB::raw('jam_selesai - jam_mulai'));
+
+
+                    $jumlah_mahasiswa = Laboratorium::
+                    where('id_lokasi', $lokasi)->
+                    whereRaw("DAYNAME(tanggal_kegiatan) = '{$day}'")
+                       
                         ->sum('jumlah_mahasiswa');
 
 
-                    $jumlah_praktikum = Laboratorium::whereRaw("DAYNAME(tanggal_kegiatan) = '{$day}'")
+                    $jumlah_praktikum = Laboratorium::
+                        where('id_lokasi', $lokasi)->
+                    whereRaw("DAYNAME(tanggal_kegiatan) = '{$day}'")
                         ->when($lokasi, function ($query) use ($lokasi) {
                             return $query->where('id_lokasi', $lokasi);
                         })
                         ->where('keperluan', 'Praktikum')
                         ->count();
 
-                    $jumlah_seminar = Laboratorium::whereRaw("DAYNAME(tanggal_kegiatan) = '{$day}'")
-                        ->when($lokasi, function ($query) use ($lokasi) {
-                            return $query->where('id_lokasi', $lokasi);
-                        })
+                    $jumlah_seminar = Laboratorium::
+                        where('id_lokasi', $lokasi)->
+                    whereRaw("DAYNAME(tanggal_kegiatan) = '{$day}'")
+                        
                         ->where('keperluan', 'Seminar')
                         ->count();
 
-                    $jumlah_ujian = Laboratorium::whereRaw("DAYNAME(tanggal_kegiatan) = '{$day}'")
-                        ->when($lokasi, function ($query) use ($lokasi) {
-                            return $query->where('id_lokasi', $lokasi);
-                        })
+                    $jumlah_ujian = Laboratorium::
+                        where('id_lokasi', $lokasi)->
+                    whereRaw("DAYNAME(tanggal_kegiatan) = '{$day}'")
+                        
                         ->where('keperluan', 'Ujian')
                         ->count();
 
-                    $jumlah_penelitian = Laboratorium::whereRaw("DAYNAME(tanggal_kegiatan) = '{$day}'")
-                        ->when($lokasi, function ($query) use ($lokasi) {
-                            return $query->where('id_lokasi', $lokasi);
-                        })
+                    $jumlah_penelitian = Laboratorium::
+                        where('id_lokasi', $lokasi)->
+                    whereRaw("DAYNAME(tanggal_kegiatan) = '{$day}'")
+                      
                         ->where('keperluan', 'Penelitian')
                         ->count();
 
-                    $jumlah_kegiatan_lainnya = Laboratorium::whereRaw("DAYNAME(tanggal_kegiatan) = '{$day}'")
-                        ->when($lokasi, function ($query) use ($lokasi) {
-                            return $query->where('id_lokasi', $lokasi);
-                        })
+                    $jumlah_kegiatan_lainnya = Laboratorium::
+                        where('id_lokasi', $lokasi)->
+                    whereRaw("DAYNAME(tanggal_kegiatan) = '{$day}'")
+                        
                         ->where('keperluan', 'Lainnya')
                         ->count();
                     $data['categories'][] = $day; // ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday
-                    $data['jumlah_jam_aktivitas'][] = (int)$jumlah_jam_aktivitas;
+                    $data['jumlah_jam_aktivitas'][] = (double)$jumlah_jam_aktivitas/10000;
                     $data['jumlah_mahasiswa'][] = (int)$jumlah_mahasiswa;
+                    
                     $data['jumlah_praktikum'][] = $jumlah_praktikum;
                     $data['jumlah_seminar'][] = $jumlah_seminar;
                     $data['jumlah_ujian'][] = $jumlah_ujian;
@@ -436,9 +443,10 @@ class LabController extends Controller
                     $data['jumlah_kegiatan_lainnya'][] = $jumlah_kegiatan_lainnya;;
                 }
             }
-
+        
             return response()->json($data);
         }
+        
     }
 
 

@@ -1289,12 +1289,11 @@
                 var startDate = $('#startDate').val();
                 var endDate = $('#endDate').val();
                 @role('admin lab')
-                    var lokasi = 'all';
+                    var lokasi = '{{Auth::user()->lokasi_id}}';
                 @endrole
                 @role('jurusan')
                     var lokasi = $('#lokasi').val();
                 @endrole
-
                 // Mengirim permintaan Ajax ke server untuk mendapatkan data
                 $.ajax({
                     url: '{{ route('chart.aktivitas.lab') }}',
