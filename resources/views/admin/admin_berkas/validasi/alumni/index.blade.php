@@ -27,33 +27,27 @@
                             </thead>
                             <tbody>
 
-                                {{-- @foreach ($seminar as $item) --}}
-                                    <tr>
-                                        <td>{{-- $loop->iteration --}}</td>
-                                        <td>{{-- $item->mahasiswa->nama_mahasiswa --}}</td>
-                                        <td>{{-- $item->mahasiswa->npm --}}</td>
-                                        <td>
-                                            {{-- @if ($item->proses_admin == 'Proses')
-                                                <span class="badge badge-warning">Belum Divalidasi</span>
-                                            @elseif ($item->proses_admin == 'Invalid')
-                                                <span class="badge badge-danger">Invalid</span>
-                                            @endif</td> --}}
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
-                                                    role="button" data-toggle="dropdown">
-                                                    <i class="fa fa-ellipsis-h"></i>
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="/admin/berkas/validasi/pendataan_alumni/1/edit"><i class="fa fa-pencil"></i>
-                                                        Edit</a>
-
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                {{-- @endforeach --}}
+                               @foreach ($alumni as $item)
+                                   <tr>
+                                    <td>
+                                        {{ $loop->iteration }}
+                                    </td>
+                                    <td>
+                                        {{ $item->mahasiswa->nama_mahasiswa }}
+                                    </td>
+                                    <td>
+                                        {{ $item->mahasiswa->npm }}
+                                    </td>
+                                    <td>
+                                        {{ $item->status }}
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('berkas.validasi.pendataan_alumni.edit', $item->encrypted_id) }}" class="btn btn-warning">
+                                            Validasi
+                                        </a>
+                                    </td>
+                                   </tr>
+                               @endforeach
 
 
 
