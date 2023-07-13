@@ -2,25 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Dosen;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
-use Illuminate\Routing\Controller;
 
-class DataAlumni extends Controller
+class PendataanAlumni extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {        
-        if($request->ajax()) {
-            $data = User::role('alumni')->with('mahasiswa', 'mahasiswa.kegiatanTerakhir');
-            return DataTables::of($data)->toJson();
-        }
-        return view('jurusan.data_alumni.index');
+    public function index()
+    {
+        return view('mahasiswa.alumni.pendataan.index');
     }
 
     /**
@@ -30,7 +25,11 @@ class DataAlumni extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')->get(),
+
+        ];
+        return view('mahasiswa.alumni.pendataan.create', $data);
     }
 
     /**
@@ -52,7 +51,7 @@ class DataAlumni extends Controller
      */
     public function show($id)
     {
-        return view('jurusan.data_alumni.show');
+        return view('mahasiswa.alumni.pendataan.show');
     }
 
     /**
@@ -63,7 +62,11 @@ class DataAlumni extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')->get(),
+
+        ];
+        return view('mahasiswa.alumni.pendataan.edit', $data);
     }
 
     /**
@@ -88,5 +91,4 @@ class DataAlumni extends Controller
     {
         //
     }
-
 }

@@ -115,7 +115,7 @@
                                 }
                             </style>
                         </div>
-                       <a href="/help"
+                        <a href="/help"
                             class="nav-item nav-link {{ Request::is('help') ? 'active' : '' }}">Bantuan</a>
                         @auth
 

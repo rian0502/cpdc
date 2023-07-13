@@ -4,6 +4,8 @@ use App\Models\User;
 use App\Models\JadwalSKP;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Kalab;
+use App\Models\ModelSeminarKompre;
+use App\Http\Controllers\DataAlumni;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminJurusan;
@@ -11,10 +13,13 @@ use App\Http\Controllers\AlokasiDosen;
 use App\Http\Controllers\KPcontroller;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\SopController;
+use App\Models\ModelJadwalSeminarTaDua;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Models\ModelJadwalSeminarKompre;
 use App\Models\ModelJadwalSeminarTaSatu;
 use App\Http\Controllers\ModelController;
+use App\Http\Controllers\PendataanAlumni;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BaseNpmController;
 use App\Http\Controllers\HistoryController;
@@ -43,10 +48,11 @@ use App\Http\Controllers\PrestasiMahasiswaController;
 use App\Http\Controllers\ValidasiSeminarKPController;
 use App\Http\Controllers\Kajur\LitabmasDataController;
 use App\Http\Controllers\Kajur\PrestasiDataController;
+use App\Http\Controllers\PenempatanAdminLabController;
+use App\Http\Controllers\PenempatanDosenLabController;
 use App\Http\Controllers\Kajur\AktivitasDataController;
 use App\Http\Controllers\Kajur\PublikasiDataController;
 use App\Http\Controllers\BeritaAcaraSeminarKerjaPraktik;
-use App\Http\Controllers\DataAlumni;
 use App\Http\Controllers\komprehensif\MahasiswaBaKompre;
 use App\Http\Controllers\MahasiswaBimbinganKPController;
 use App\Http\Controllers\MahasiswaBimbinganTA1Controller;
@@ -65,13 +71,8 @@ use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
 use App\Http\Controllers\komprehensif\MahasiswaKompreController;
 use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
 use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
-use App\Http\Controllers\PenempatanAdminLabController;
-use App\Http\Controllers\PenempatanDosenLabController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
-use App\Models\ModelJadwalSeminarKompre;
-use App\Models\ModelJadwalSeminarTaDua;
-use App\Models\ModelSeminarKompre;
 
 /*
 |--------------------------------------------------------------------------
@@ -214,6 +215,7 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
         Route::resource('kompre', MahasiswaKompreController::class)->names('kompre');
     });
     Route::resource('aktivitas_alumni', AktivitasAlumniController::class)->names('aktivitas_alumni');
+    Route::resource('pendataan_alumni', PendataanAlumni::class)->names('pendataan_alumni');
 });
 
 

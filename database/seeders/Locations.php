@@ -41,15 +41,8 @@ class Locations extends Seeder
             'jenis_ruangan' => 'Lab'
         ];
         Lokasi::create($lab3);
-        $rsem = [
-            'encrypt_id' => Crypt::encrypt(4),
-            'nama_lokasi' => 'Ruang Seminar',
-            'lantai_tingkat' => '2',
-            'nama_gedung' => 'Gedung Kimia Terpadu',
-        ];
-        Lokasi::create($rsem);
         $lab4 = [
-            'encrypt_id' => Crypt::encrypt(5),
+            'encrypt_id' => Crypt::encrypt(4),
             'nama_lokasi' => 'Lab. Kimia Dasar',
             'lantai_tingkat' => '3',
             'nama_gedung' => 'Gedung Laboratorium Kimia Dasar',
@@ -57,12 +50,19 @@ class Locations extends Seeder
         ];
         Lokasi::create($lab4);
         $lab5 = [
-            'encrypt_id' => Crypt::encrypt(6),
+            'encrypt_id' => Crypt::encrypt(5),
             'nama_lokasi' => 'Lab. Biokimia',
             'lantai_tingkat' => '3',
             'nama_gedung' => 'Gedung Kimia Terpadu',
             'jenis_ruangan' => 'Lab'
         ];
         Lokasi::create($lab5);
+        $rsem = [
+            'encrypt_id' => Crypt::encrypt(6),
+            'nama_lokasi' => 'Ruang Seminar',
+            'lantai_tingkat' => '2',
+            'nama_gedung' => 'Gedung Kimia Terpadu',
+        ];
+        Lokasi::create($rsem);
     }
 }
