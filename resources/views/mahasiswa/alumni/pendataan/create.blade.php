@@ -17,8 +17,7 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{-- route('mahasiswa.seminar.tugas_akhir_1.store') --}}" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="{{-- route('mahasiswa.seminar.tugas_akhir_1.store') --}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
@@ -120,6 +119,24 @@
                                             value="{{ old('periode_seminar') }}" id="periode_seminar"
                                             placeholder="Periode Seminar">
                                         @error('periode_seminar')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Rencana Setelah Lulus</label>
+                                        <select name="rencana_lulus" id="rencana_lulus" class="selectpicker form-control"
+                                            data-size="5" name="rencana_lulus">
+                                            <option value="Bekerja" {{ old('rencana_lulus') == 'Bekerja' ? 'selected' : '' }}>
+                                                Bekerja
+                                            </option>
+                                            <option value="Studi Lanjut" {{ old('rencana_lulus') == 'Studi Lanjut' ? '' : 'selected' }}>
+                                                Studi Lanjut
+                                            </option>
+                                            <option value="Belum Ada" {{ old('rencana_lulus') == 'Belum Ada' ? '' : 'selected' }}>
+                                                Belum Ada
+                                            </option>
+                                        </select>
+                                        @error('rencana_lulus')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
