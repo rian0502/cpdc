@@ -1,24 +1,6 @@
 @extends('layouts.admin')
 @section('admin')
-    <style>
-        .numbered-list {
-            counter-reset: list-counter;
-            list-style-type: none;
-        }
-
-        .numbered-list-item::before {
-            counter-increment: list-counter;
-            content: counter(list-counter) ". ";
-        }
-
-        .numbered-list-item {
-            margin-bottom: 5px;
-        }
-
-        .bold {
-            font-weight: bold;
-        }
-    </style>
+<link rel="stylesheet" href="/Assets/css/helps.css">
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">

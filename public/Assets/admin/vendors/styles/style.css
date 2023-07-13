@@ -3846,7 +3846,6 @@ body.IE .register-page-wrap .container {
     color: #fff;
 }
 
-
 .right-sidebar {
     position: fixed;
     right: -315px;
@@ -4202,7 +4201,7 @@ body.IE .register-page-wrap .container {
     #account {
         justify-content: center;
     }
-    .col-lg-7{
+    .col-lg-7 {
         /* display: none; */
     }
     /* .boxeds{
