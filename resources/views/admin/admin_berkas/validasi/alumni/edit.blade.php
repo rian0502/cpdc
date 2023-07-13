@@ -31,13 +31,12 @@
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
 
-                <!-- Data Registrasi Start -->
+                <!-- Validasi Pendataan Alumni Start -->
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
                         <div class="pull-left">
-                            <h4 class="text-dark h4" style="margin-left: 10px">Data Registrasi</h4>
+                            <h4 class="text-dark h4" style="margin-left: 10px">Data Validasi</h4>
                         </div>
-
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
                         <div class="row border-bottom">
@@ -50,6 +49,7 @@
                                 {{ $pendataan->ipk }}
                             </div>
                         </div>
+
                         <div class="row border-bottom mt-2">
                             <label class="col-md-3 bold"><b>Nama Mahasiswa</b></label>
                             <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -95,6 +95,7 @@
                             </div>
 
                         </div>
+
                         <div class="row border-bottom mt-2">
                             <label class="col-md-3 bold mt-1"> <strong>Tanggal Selesai Kompre</strong></label>
                             <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
@@ -151,13 +152,10 @@
                         </a>
 
                     </div>
-
                 </div>
                 <!-- Data Registrasi End -->
-
             </div>
         </div>
-        <!-- Input Validation End -->
     </div>
     <script>
         // Mendapatkan elemen select
