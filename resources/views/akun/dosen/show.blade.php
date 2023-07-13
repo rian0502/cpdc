@@ -65,7 +65,7 @@
                             <div class="row">
                                 <label class="col-md-3 bold"><strong> Pangkat </strong></label>
                                 <div class="col-md-3">
-                                    {{ $pangkat->first()->kepangkatan}}
+                                    {{ $pangkat->first()->kepangkatan }}
                                 </div>
                                 <label class="col-md-3 bold"><b>No Telphone</b></label>
                                 <div class="col-md-3">
@@ -102,12 +102,12 @@
                             </thead>
                             <tbody>
                                 @foreach ($organisasi as $item)
-                                <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$item->nama_organisasi}}</td>
-                                    <td>{{ $item->tahun_menjabat. ' - ' . $item->tahun_berakhir }}</td>
-                                    <td>{{ $item->jabatan }}</td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->nama_organisasi }}</td>
+                                        <td>{{ $item->tahun_menjabat . ' - ' . $item->tahun_berakhir }}</td>
+                                        <td>{{ $item->jabatan }}</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -131,33 +131,33 @@
                             <tbody>
 
                                 @foreach ($litabmas as $item)
-                                <tr>
-                                    <td>
-                                        {{$loop->iteration}}
-                                    </td>
-                                    <td class="text-break max-w-md text-left">
+                                    <tr>
+                                        <td>
+                                            {{ $loop->iteration }}
+                                        </td>
+                                        <td class="text-break max-w-md text-left">
 
-                                        {{$item->nama_litabmas}}
-                                    </td>
-                                    <td>
-                                        {{$item->kategori}}
-                                    </td>
-                                    <td>
-                                        {{$item->tahun_penelitian}}
-                                    </td>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <a class="btn btn-warning" href="{{ route('dosen.litabmas.show', 1) }}"
-                                                role="button">
+                                            {{ $item->nama_litabmas }}
+                                        </td>
+                                        <td>
+                                            {{ $item->kategori }}
+                                        </td>
+                                        <td>
+                                            {{ $item->tahun_penelitian }}
+                                        </td>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="btn btn-warning" href="{{ route('dosen.litabmas.show', 1) }}"
+                                                    role="button">
 
 
-                                                <i class="fal fa-eye"></i>
-                                                Detail</a>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                                    <i class="fal fa-eye"></i>
+                                                    Detail</a>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -183,31 +183,31 @@
                             <tbody>
 
                                 @foreach ($publikasi as $item)
-                                <tr>
-                                    <td>
-                                        {{ $loop->iteration }}</td>
-                                    <td class="text-break max-w-md text-left">
-                                        {{ $item->judul }}</td>
-                                    <td>
-                                        {{ $item->tahun }}</td>
-                                    <td>
-                                        {{ $item->regional }}</td>
-                                    <td>
-                                        {{ $item->kategori }}</td>
-                                    <td>
-                                        {{ $item->litabmas }}</td>
-                                    <td>
-                                        <div>
-                                            <a class="btn btn-warning" href="{{ route('dosen.publikasi.show', 1) }}"
-                                                role="button">
+                                    <tr>
+                                        <td>
+                                            {{ $loop->iteration }}</td>
+                                        <td class="text-break max-w-md text-left">
+                                            {{ $item->judul }}</td>
+                                        <td>
+                                            {{ $item->tahun }}</td>
+                                        <td>
+                                            {{ $item->regional }}</td>
+                                        <td>
+                                            {{ $item->kategori }}</td>
+                                        <td>
+                                            {{ $item->litabmas }}</td>
+                                        <td>
+                                            <div>
+                                                <a class="btn btn-warning" href="{{ route('dosen.publikasi.show', 1) }}"
+                                                    role="button">
 
 
-                                                <i class="fal fa-eye"></i>
-                                                Detail</a>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                                    <i class="fal fa-eye"></i>
+                                                    Detail</a>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -234,8 +234,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->jabatan }}</td>
                                         <td>{{ $item->tgl_sk }}</td>
-                                        <td><a href="/uploads/sk_jabatan_dosen/{{ $item->file_sk }}" class="btn btn-success"
-                                                target="_blank"> Lihat</a>
+                                        <td><a href="/uploads/sk_jabatan_dosen/{{ $item->file_sk }}"
+                                                class="btn btn-success" target="_blank"> Lihat</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -289,14 +289,18 @@
 
         // Tentukan warna berdasarkan umur
         let warna;
-        if (selisihTahun < 30) {
-            warna =
-                `rgb(${212-selisihTahun-50}, ${217-selisihTahun-50}, ${37-selisihTahun})`; // warna hijau akan semakin kuat saat umur semakin muda
-        } else if (selisihTahun >= 30 && selisihTahun < 50) {
-            warna =
-                `rgb(${255-selisihTahun}, ${238-selisihTahun}, ${99-selisihTahun})`; // warna kuning akan semakin kuat saat umur mendekati 50 tahun
+        if (selisihTahun >= 20 && selisihTahun < 35) {
+            warna = 'lightgreen'; // Hijau muda
+        } else if (selisihTahun >= 35 && selisihTahun < 45) {
+            warna = 'green'; // Hijau tua
+        } else if (selisihTahun >= 45 && selisihTahun < 55) {
+            warna = 'khaki'; // Kuning tua
+        } else if (selisihTahun >= 55 && selisihTahun < 65) {
+            warna = 'pink'; // Merah muda
+        } else if (selisihTahun >= 65) {
+            warna = 'red'; // Merah tua
         } else {
-            warna = `rgb(${255-selisihTahun}, 0, 0)`; // warna merah akan semakin kuat saat umur mendekati 70 tahun
+            warna = 'black'; // Warna default jika umur di luar rentang yang ditentukan
         }
 
         // Update teks dan latar belakang pada elemen HTML
