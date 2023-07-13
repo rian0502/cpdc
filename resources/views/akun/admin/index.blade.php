@@ -107,8 +107,8 @@
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" id="deleteBtn" class="dropdown-item text-danger"><i
-                                                                    class="fa fa-trash"></i>
+                                                            <button type="submit" id="deleteBtn"
+                                                                class="dropdown-item text-danger"><i class="fa fa-trash"></i>
                                                                 Delete</button>
                                                         </form>
                                                     @endrole
@@ -156,25 +156,23 @@
         $(document).ready(function() {
             $('.umur').each(function() {
                 var umur = parseInt($(this).text());
-                var maxUmur = 60; // Umur maksimum yang dianggap
-                var minUmur = 18; // Umur minimum yang dianggap
-                var maxHue = 0; // HUE maksimum untuk warna merah
-                var minHue = 120; // HUE minimum untuk warna kuning
+                var color = '';
 
-                // Hitung nilai HUE berdasarkan umur
-                if (umur > maxUmur) {
-                    umur = maxUmur;
-                } else if (umur < minUmur) {
-                    umur = minUmur;
+                if (umur >= 20 && umur < 35) {
+                    color = 'lightgreen'; // Hijau muda
+                } else if (umur >= 35 && umur < 45) {
+                    color = 'green'; // Hijau tua
+                } else if (umur >= 45 && umur < 55) {
+                    color = 'khaki'; // Kuning tua
+                } else if (umur >= 55 && umur < 65) {
+                    color = 'pink'; // Merah muda
+                } else if (umur >= 65) {
+                    color = 'red'; // Merah tua
                 }
-                var hue = ((umur - minUmur) / (maxUmur - minUmur)) * (maxHue - minHue) + minHue;
-
-                // Konversi HUE menjadi warna RGB
-                var color = "hsl(" + hue + ", 100%, 50%)";
 
                 // Atur warna latar belakang dan teks
                 $(this).css('background-color', color);
-                $(this).css('color', 'blue');
+                $(this).css('color', 'white');
             });
         });
     </script>
