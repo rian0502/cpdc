@@ -663,9 +663,11 @@
                                     <label for="endDate">Lokasi</label>
                                     <select name="lokasi" id="lokasi" class="form-control">
                                         <option value="all">Semua</option>
-                                        <option value="1">Lab Biokimia A</option>
-                                        <option value="2">Lab Biokimia B</option>
-                                        <option value="3">Lab Biokimia C</option>
+                                        <option value="1">Lab. Kimia Analitik & Instrumentasi</option>
+                                        <option value="2">Lab. Kimia Anorganik-Fisik</option>
+                                        <option value="4">Lab. Kimia Organik</option>
+                                        <option value="5">Lab. Kimia Dasar</option>
+                                        <option value="6">Lab. Biokimia</option>
 
                                     </select>
                                 </div>
