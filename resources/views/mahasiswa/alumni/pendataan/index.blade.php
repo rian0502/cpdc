@@ -71,7 +71,7 @@
                         </a>
 
                     </div>
-                    <div class="">
+                  
                         <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
                             <div class="row border-bottom">
                                 <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
@@ -167,7 +167,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                   
 
                 </div>
 
