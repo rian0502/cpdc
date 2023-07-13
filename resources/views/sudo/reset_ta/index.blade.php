@@ -81,7 +81,7 @@
                             searchable: false,
                             exportable: false,
                             render: function(data, type, row) {
-                                var hapus = "{{ route('sudo.reset.seminar.destroy', ':id') }}".replace(':id', row.id);
+                                var hapus = "{{ route('sudo.reset.seminar.destroy', ':id') }}".replace(':id', row.mahasiswa.npm);
                                 return `
                                     <form  class="deleteForm2" action="${hapus}" method="POST">
                                         @csrf
