@@ -60,7 +60,7 @@
                                 <h4 class="text-dark h4">Pesan</h4>
                                 <small>
 
-                                    <p class="mb-30"></p>
+                                    {{-- <p class="mb-30"></p> --}}
                                 </small>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4" style="margin-bottom: 50px">Pendataan Alumni</h4>
+                            <h4 class="text-dark h4">Pendataan Alumni</h4>
                             <small>
                                 <b>
                                     <p
@@ -105,11 +105,11 @@
                     <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
                         <div class="row border-bottom">
                             <label class="col-md-3 bold mt-2"> <strong>Tahun Akademik</strong></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                 {{ $pendataan->tahun_akademik }}
                             </div>
                             <label class="col-md-3 bold mt-2"><b>SKS</b></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                 {{ $pendataan->sks }}
                             </div>
                         </div>
@@ -137,7 +137,7 @@
 
                         <div class="row border-bottom mt-2">
                             <label class="col-md-3 bold mt-1"> <strong>TOEFL</strong></label>
-                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                 {{ $pendataan->toefl }}
                             </div>
                             <label class="col-md-3 bold"> <strong>Berkas TOEFL</strong></label>
@@ -148,11 +148,11 @@
 
                         <div class="row border-bottom mt-2">
                             <label class="col-md-3 bold mt-1"> <strong>Berkas Transkrip</strong></label>
-                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                 <a target="_blank" href="/uploads/transkrip/{{ $pendataan->transkrip }}">Lihat</a>
                             </div>
                             <label class="col-md-3 bold mt-1"> <strong>Lembar Pengesahan</strong></label>
-                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                 <a target="_blank"
                                     href="/uploads/berkas_pengesahan/{{ $pendataan->berkas_pengesahan }}">Lihat</a>
                             </div>
