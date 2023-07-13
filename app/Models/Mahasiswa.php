@@ -4,8 +4,14 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Dosen;
+use App\Models\ModelSeminarKP;
+use App\Models\AktivitasAlumni;
+use App\Models\ModelSeminarTaDua;
 use App\Models\PrestasiMahasiswa;
 use App\Models\AktivitasMahasiswa;
+use App\Models\ModelSeminarKompre;
+use App\Models\ModelSeminarTaSatu;
+use App\Models\ModelPendataanAlumni;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -62,5 +68,8 @@ class Mahasiswa extends Model
     }
     public function kegiatanTerakhir(){
         return $this->hasOne(AktivitasAlumni::class, 'mahasiswa_id')->latest('tahun_masuk');
+    }
+    public function pendataanAlumni(){
+        return $this->hasOne(ModelPendataanAlumni::class, 'mahasiswa_id');
     }
 }

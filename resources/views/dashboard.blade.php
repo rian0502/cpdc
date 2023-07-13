@@ -757,13 +757,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <a target="_blank" href="">Lihat</a>
-                                </td>
-                            </tr>
+                            @foreach ($sop_kimdas as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nama_sop }}</td>
+                                    <td>
+                                        <a target="_blank" href="/uploads/sop/{{ $item->file_sop }}">Lihat</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -778,18 +780,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <a target="_blank" href="">Lihat</a>
-                                </td>
-                            </tr>
+                            @foreach ($sop_organik as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nama_sop }}</td>
+                                    <td>
+                                        <a target="_blank" href="/uploads/sop/{{ $item->file_sop }}">Lihat</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
                 <div class="card-box pb-10" style="margin-bottom: 30px">
-                    <div class="h5 pd-20 mb-0">SOP Laboratorium Kimia Anrganik atau Fisik</div>
+                    <div class="h5 pd-20 mb-0">SOP Laboratorium Kimia Anorganik atau Fisik</div>
                     <table class="table data-table-responsive warp stripe data-table-noexport p-2">
                         <thead>
                             <tr>
@@ -799,13 +803,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <a target="_blank" href="">Lihat</a>
-                                </td>
-                            </tr>
+                            @foreach ($sop_anorganik as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nama_sop }}</td>
+                                    <td>
+                                        <a target="_blank" href="/uploads/sop/{{ $item->file_sop }}">Lihat</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -820,13 +826,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <a target="_blank" href="">Lihat</a>
-                                </td>
-                            </tr>
+                            @foreach ($sop_biokimia as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nama_sop }}</td>
+                                    <td>
+                                        <a target="_blank" href="/uploads/sop/{{ $item->file_sop }}">Lihat</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -841,13 +849,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <a target="_blank" href="">Lihat</a>
-                                </td>
-                            </tr>
+                            @foreach ($sop_analitik as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nama_sop }}</td>
+                                    <td>
+                                        <a target="_blank" href="/uploads/sop/{{ $item->file_sop }}">Lihat</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -1393,7 +1403,7 @@
                 var startDate = $('#startDate').val();
                 var endDate = $('#endDate').val();
                 @role('admin lab')
-                    var lokasi = '{{Auth::user()->lokasi_id}}';
+                    var lokasi = '{{ Auth::user()->lokasi_id }}';
                 @endrole
                 @role('jurusan')
                     var lokasi = $('#lokasi').val();

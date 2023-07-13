@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use App\Models\ModelPendataanAlumni;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use App\Http\Requests\StorePendataanAlumniRequest;
+use App\Http\Requests\UpdatePendataanAlumniRequest;
 
 class PendataanAlumni extends Controller
 {
@@ -15,7 +20,16 @@ class PendataanAlumni extends Controller
      */
     public function index()
     {
-        return view('mahasiswa.alumni.pendataan.index');
+        if (Auth::user()->mahasiswa->pendataanAlumni == null) {
+            return redirect()->route('mahasiswa.pendataan_alumni.create');
+        }
+        $data = [
+            'mahasiswa' => Auth::user()->mahasiswa,
+            'pendataan' => Auth::user()->mahasiswa->pendataanAlumni,
+        ];
+
+
+        return view('mahasiswa.alumni.pendataan.index', $data);
     }
 
     /**
@@ -25,6 +39,9 @@ class PendataanAlumni extends Controller
      */
     public function create()
     {
+        if (Auth::user()->mahasiswa->pendataanAlumni) {
+            return redirect()->route('mahasiswa.pendataan_alumni.index');
+        }
         $data = [
             'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')->get(),
 
@@ -38,9 +55,37 @@ class PendataanAlumni extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePendataanAlumniRequest $request)
     {
         //
+        $berkas_pengesahan = $request->file('berkas_pengesahan');
+        $name_pengesahan = $berkas_pengesahan->hashName();
+        $berkas_transkrip = $request->file('transkrip');
+        $name_transkrip = $berkas_transkrip->hashName();
+        $berkas_toefl = $request->file('berkas_toefl');
+        $name_toefl = $berkas_toefl->hashName();
+        $berkas_pengesahan->move('uploads/berkas_pengesahan', $name_pengesahan);
+        $berkas_transkrip->move('uploads/transkrip', $name_transkrip);
+        $berkas_toefl->move('uploads/berkas_toefl', $name_toefl);
+        $insert = ModelPendataanAlumni::create([
+            'tahun_akademik' => $request->tahun_akademik,
+            'sks' => $request->sks,
+            'ipk' => $request->ipk,
+            'tgl_lulus' => $request->tgl_lulus,
+            'masa_studi' => $request->masa_studi,
+            'periode_wisuda' => $request->periode_wisuda,
+            'toefl' => $request->toefl,
+            'berkas_pengesahan' => $name_pengesahan,
+            'transkrip' => $name_transkrip,
+            'berkas_toefl' => $name_toefl,
+            'status' => 'Pending',
+            'mahasiswa_id' => Auth::user()->mahasiswa->id,
+        ]);
+        $id = $insert->id;
+        $update = ModelPendataanAlumni::find($id);
+        $update->encrypted_id = Crypt::encrypt($id);
+        $update->save();
+        return redirect()->route('mahasiswa.pendataan_alumni.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -51,7 +96,8 @@ class PendataanAlumni extends Controller
      */
     public function show($id)
     {
-        return view('mahasiswa.alumni.pendataan.show');
+
+        return redirect()->back();
     }
 
     /**
@@ -62,9 +108,13 @@ class PendataanAlumni extends Controller
      */
     public function edit($id)
     {
+        $pendataan = ModelPendataanAlumni::find(Crypt::decrypt($id));
+        if($pendataan->mahasiswa_id != Auth::user()->mahasiswa->id){
+            return redirect()->route('mahasiswa.pendataan_alumni.index');
+        }
         $data = [
-            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')->get(),
-
+            'mahasiswa' => Auth::user()->mahasiswa,
+            'pendataan' => $pendataan,
         ];
         return view('mahasiswa.alumni.pendataan.edit', $data);
     }
@@ -76,9 +126,49 @@ class PendataanAlumni extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePendataanAlumniRequest $request, $id)
     {
         //
+        $seminar = ModelPendataanAlumni::find(Crypt::decrypt($id));
+        if($seminar->mahasiswa_id != Auth::user()->mahasiswa->id){
+            return redirect()->route('mahasiswa.pendataan_alumni.index');
+        }
+        $seminar->tahun_akademik = $request->tahun_akademik;
+        $seminar->sks = $request->sks;
+        $seminar->ipk = $request->ipk;
+        $seminar->tgl_lulus = $request->tgl_lulus;
+        $seminar->masa_studi = $request->masa_studi;
+        $seminar->periode_wisuda = $request->periode_wisuda;
+        $seminar->toefl = $request->toefl;
+        $seminar->updated_at = date('Y-m-d H:i:s');
+        $seminar->komentar = null;
+        $seminar->status = 'Pending';
+        if($request->file('berkas_pengesahan')){
+            $oldFile = $seminar->berkas_pengesahan;
+            unlink('uploads/berkas_pengesahan/'.$oldFile);
+            $file = $request->file('berkas_pengesahan');
+            $name = $file->hashName();
+            $file->move('uploads/berkas_pengesahan', $name);
+            $seminar->berkas_pengesahan = $name;
+        }
+        if($request->file('transkrip')){
+            $oldFile = $seminar->transkrip;
+            unlink('uploads/transkrip/'.$oldFile);
+            $file = $request->file('transkrip');
+            $name = $file->hashName();
+            $file->move('uploads/transkrip', $name);
+            $seminar->transkrip = $name;   
+        }
+        if($request->file('berkas_toefl')){
+            $oldFile = $seminar->berkas_toefl;
+            unlink('uploads/berkas_toefl/'.$oldFile);
+            $file = $request->file('berkas_toefl');
+            $name = $file->hashName();
+            $file->move('uploads/berkas_toefl', $name);
+            $seminar->berkas_toefl = $name;
+        }
+        $seminar->save();
+        return redirect()->route('mahasiswa.pendataan_alumni.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -90,5 +180,6 @@ class PendataanAlumni extends Controller
     public function destroy($id)
     {
         //
+        return redirect()->back();
     }
 }

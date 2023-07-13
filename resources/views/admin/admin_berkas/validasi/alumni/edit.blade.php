@@ -37,105 +37,119 @@
                         <div class="pull-left">
                             <h4 class="text-dark h4" style="margin-left: 10px">Data Registrasi</h4>
                         </div>
-                        {{-- <a href="/mahasiswa/seminar/kp/create">
-                            <button class="btn btn-primary right">Edit Data</button>
-                        </a> --}}
 
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
                         <div class="row border-bottom">
                             <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
                             <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $mahasiswa->npm }} --}}
+                                {{ $mahasiswa->npm }}
                             </div>
                             <label class="col-md-3 bold mt-2"><b>IPK</b></label>
                             <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->pembimbing_satu->nama_dosen }} --}}
+                                {{ $pendataan->ipk }}
                             </div>
                         </div>
                         <div class="row border-bottom mt-2">
                             <label class="col-md-3 bold"><b>Nama Mahasiswa</b></label>
                             <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $mahasiswa->nama_mahasiswa }} --}}
+                                {{ $mahasiswa->nama_mahasiswa }}
                             </div>
-                            <label class="col-md-3 bold mt-1"><strong>Nilai</strong></label>
+                            <label class="col-md-3 bold mt-1"><strong>Sks</strong></label>
                             <div class="col-md-3" style="display:block;word-wrap:break-word;">
-
+                                {{ $pendataan->sks }}
                             </div>
                         </div>
 
                         <div class="row border-bottom">
                             <label class="col-md-3 bold mt-2"> <strong>Tahun Akademik</strong></label>
                             <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->tahun_akademik }} --}}
+                                {{ $pendataan->tahun_akademik }}
                             </div>
-                            <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
+                            <label class="col-md-3 bold mt-1"> <strong>Nomor Telepon</strong></label>
                             <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-
+                                {{ $mahasiswa->no_hp }}
                             </div>
                         </div>
 
                         <div class="row border-bottom mt-2">
                             <label class="col-md-3 bold mt-1"> <strong>Semester</strong></label>
                             <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $mahasiswa->semester }} --}}
+                                {{ $mahasiswa->semester }}
                             </div>
-                            <label class="col-md-3 bold"> <strong>SKS Akhir</strong></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->pembahas->nama_dosen }} --}}
+                            <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
+                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                {{ $pendataan->toefl }}
                             </div>
                         </div>
 
                         <div class="row border-bottom mt-2">
                             <label class="col-md-3 bold mt-1"> <strong>Masa Studi</strong></label>
                             <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $mahasiswa->semester }} --}}
+                                {{ $pendataan->masa_studi }}
                             </div>
-                            <label class="col-md-3 bold mt-1"> <strong>Nomor Telepon</strong></label>
-                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $mahasiswa->semester }} --}}
+
+                            <label class="col-md-3 bold"> <strong>Berkas TOEFL</strong></label>
+                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                <a target="_blank" href="/uploads/berkas_toefl/{{ $pendataan->berkas_toefl }}">Lihat</a>
                             </div>
+
                         </div>
                         <div class="row border-bottom mt-2">
-                            <label class="col-md-3 bold mt-1"> <strong>Rencana Setelah Lulus</strong></label>
+                            <label class="col-md-3 bold mt-1"> <strong>Tanggal Selesai Kompre</strong></label>
                             <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $mahasiswa->semester }} --}}
+                                {{ $pendataan->tgl_lulus }}
                             </div>
-                            <label class="col-md-3 bold"> <strong>Tim Penguji</strong></label>
+                            <label class="col-md-3 bold"> <strong>Berkas Pengesahan</strong></label>
                             <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                <a href="/mahasiswa/pendataan_alumni/show">Lihat Penguji</a>
+                                <a target="_blank"
+                                    href="/uploads/berkas_pengesahan/{{ $pendataan->berkas_pengesahan }}">Lihat</a>
                             </div>
                         </div>
 
                         <div class="row border-bottom mt-2">
                             <label class="col-md-3 bold mt-2"> <strong>Rencana Periode Wisuda</strong></label>
                             <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->sks }} --}}
+                                {{ $pendataan->periode_wisuda }}
                             </div>
-                            <label class="col-md-3 bold"> <strong>Berkas TOEFL</strong></label>
+                            <label class="col-md-3 bold"> <strong>Transkrip</strong></label>
                             <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                <a target="_blank" href="/uploads/syarat_seminar_ta1/{{-- $seminar->berkas_ta_satu --}}">Lihat
-                                    Berkas</a>
+                                <a target="_blank" href="/uploads/transkrip/{{ $pendataan->transkrip }}">Lihat</a>
                             </div>
                         </div>
 
-                        <div class="row border-bottom mt-2">
-                            <label class="col-md-3 bold mt-2"> <strong>Tanggal Lulus Komprehensif</strong></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->ipk }} --}}
+                        <form action="{{ route('berkas.validasi.pendataan_alumni.update', $pendataan->encrypted_id) }}"
+                            method="post" id="formStatus">
+                            @method('put')
+                            @csrf
+                            <div class="form-group" style="margin-top: 20px">
+                                <label><b>Status</b></label>
+                                <select onchange="toggleCatatan()" name="status" id="status"
+                                    class="selectpicker form-control" data-size="5">
+                                    <option value="Valid" {{ $pendataan->status == 'Valid' ? 'selected' : '' }}>
+                                        Valid</option>
+                                    <option value="Invalid" {{ $pendataan->status == 'Invalid' ? 'selected' : '' }}>
+                                        Invalid</option>
+                                </select>
+                                @error('status')
+                                    <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                @enderror
                             </div>
-                            <label class="col-md-3 bold"> <strong>Berkas Transkrip</strong></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                <a target="_blank" href="/uploads/syarat_seminar_ta1/{{-- $seminar->berkas_ta_satu --}}">Lihat
-                                    Berkas</a>
+                            <div class="row border-bottom mt-3">
+                                <label class="col-md-12 bold"><b>Catatan</b></label>
+                                <textarea id="catatan" name="keterangan" class="form-control m-3" style="height: 100px;">{{ $pendataan->keterangan }}</textarea>
+                                @error('keterangan')
+                                    <div class="form-control-feedback has-danger col-md-12 mb-3">{{ $message }}</div>
+                                @enderror
                             </div>
-                        </div>
-                        <div class="row border-bottom mt-3">
-                            <label class="col-md-12 bold"><b>Judul atau Topik Tugas Akhir</b></label>
-                            <div class="col-md-12 mb-3 text-justify" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->judul_ta }} --}}
+                            <div class="form-group">
+                                <button class="submit btn btn-primary" value="submit" id="submitButton">Submit</button>
                             </div>
-                        </div>
+                        </form>
+                        <a href="{{ route('berkas.validasi.pendataan_alumni.index') }}">
+                            <button class="batal btn btn-secondary">Batal</button>
+                        </a>
+
                     </div>
 
                 </div>

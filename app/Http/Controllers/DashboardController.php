@@ -16,6 +16,7 @@ use App\Models\ModelSeminarKP;
 use App\Models\ModelSeminarTaDua;
 use App\Models\ModelSeminarTaSatu;
 use App\Models\PrestasiMahasiswa;
+use App\Models\SopLab;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -41,6 +42,11 @@ class DashboardController extends Controller
             $data = [
                 'jumlah_prestasi' => PrestasiMahasiswa::select('mahasiswa_id')->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
                 'jumlah_aktivitas' => AktivitasMahasiswa::select('mahasiswa_id')->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
+                'sop_kimdas' => SopLab::where('id_lokasi', 4)->get(),
+                'sop_organik' => SopLab::where('id_lokasi', 3)->get(),
+                'sop_analitik' => SopLab::where('id_lokasi', 1)->get(),
+                'sop_anorganik' => SopLab::where('id_lokasi', 2)->get(),
+                'sop_biokimia' => SopLab::where('id_lokasi', 5)->get(),
             ];
             return view('dashboard', $data);
         } else if (Auth::user()->hasRole('dosen')) {

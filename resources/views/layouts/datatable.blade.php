@@ -567,7 +567,7 @@
                         <li>
                             <a href="{{ route('berkas.validasi.pendataan_alumni.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('admin/berkas/validasi/pendataan_alumni*')?'active':'' }}">
-                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Validasi Data
+                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Validasi
                                     Alumni</span>
                             </a>
                         </li>

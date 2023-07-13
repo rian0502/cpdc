@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use App\Models\ModelPendataanAlumni;
 use Illuminate\Support\Facades\Crypt;
 
 class ValidasiPendataanAlumni extends Controller
@@ -14,7 +18,8 @@ class ValidasiPendataanAlumni extends Controller
      */
     public function index()
     {
-        return view('admin.admin_berkas.validasi.alumni.index');
+        $alumni = ModelPendataanAlumni::where('status', 'Pending')->orderBy('updated_at', 'asc')->get();
+        return view('admin.admin_berkas.validasi.alumni.index', compact('alumni'));
     }
 
     /**
@@ -57,7 +62,11 @@ class ValidasiPendataanAlumni extends Controller
      */
     public function edit($id)
     {
-        return view('admin.admin_berkas.validasi.alumni.index');
+        $data = [
+            'pendataan' => ModelPendataanAlumni::find(Crypt::decrypt($id)),
+            'mahasiswa' => ModelPendataanAlumni::find(Crypt::decrypt($id))->mahasiswa,
+        ];
+        return view('admin.admin_berkas.validasi.alumni.edit', $data);
     }
 
     /**
@@ -69,7 +78,35 @@ class ValidasiPendataanAlumni extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $pendataan = ModelPendataanAlumni::find(Crypt::decrypt($id));
+        if($request->status == 'Invalid'){
+            $request->validate([
+                'keterangan' => 'required|min:10|string',
+            ],[
+                'keterangan.required' => 'Keterangan harus diisi',
+                'keterangan.min' => 'Keterangan minimal 10 karakter',
+                'keterangan.string' => 'Keterangan harus berupa string',
+            ]);
+            $pendataan->komentar = $request->keterangan;
+            $pendataan->status = $request->status;
+            $pendataan->updated_at = date('Y-m-d H:i:s');
+            $pendataan->save();    
+        }
+        else{
+            $pendataan->status = $request->status;
+            $pendataan->updated_at = date('Y-m-d H:i:s');
+            $pendataan->save();
+            $mahasiswa = Mahasiswa::find($pendataan->mahasiswa_id);
+            $mahasiswa->status = 'Alumni';
+            $mahasiswa->save();
+            $user = User::find($mahasiswa->user_id);
+            $user->assignRole('alumni');
+            $user->save();
+        }
+        return redirect()->route('berkas.validasi.pendataan_alumni.index')->with('success', 'Data berhasil divalidasi');
+
+
     }
 
     /**
