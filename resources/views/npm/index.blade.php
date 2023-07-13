@@ -258,7 +258,7 @@
                                 <form id="delete" action="${deleteUrl}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" id="deleteBtn" class="dropdown-item text-danger">
+                                    <button type="submit" id="delete" class="dropdown-item text-danger">
                                         <i class="fa fa-trash"></i> Delete
                                     </button>
                                 </form>

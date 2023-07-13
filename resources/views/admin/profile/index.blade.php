@@ -185,14 +185,18 @@
 
             // Tentukan warna berdasarkan umur
             let warna;
-            if (selisihTahun < 30) {
-                warna =
-                    `rgb(${212-selisihTahun-50}, ${217-selisihTahun-50}, ${37-selisihTahun})`; // warna hijau akan semakin kuat saat umur semakin muda
-            } else if (selisihTahun >= 30 && selisihTahun < 50) {
-                warna =
-                    `rgb(${255-selisihTahun}, ${238-selisihTahun}, ${99-selisihTahun})`; // warna kuning akan semakin kuat saat umur mendekati 50 tahun
+            if (selisihTahun >= 20 && selisihTahun < 35) {
+                warna = 'lightgreen'; // Hijau muda
+            } else if (selisihTahun >= 35 && selisihTahun < 45) {
+                warna = 'green'; // Hijau tua
+            } else if (selisihTahun >= 45 && selisihTahun < 55) {
+                warna = 'khaki'; // Kuning tua
+            } else if (selisihTahun >= 55 && selisihTahun < 65) {
+                warna = 'pink'; // Merah muda
+            } else if (selisihTahun >= 65) {
+                warna = 'red'; // Merah tua
             } else {
-                warna = `rgb(${255-selisihTahun}, 0, 0)`; // warna merah akan semakin kuat saat umur mendekati 70 tahun
+                warna = 'black'; // Warna default jika umur di luar rentang yang ditentukan
             }
 
             // Update teks dan latar belakang pada elemen HTML

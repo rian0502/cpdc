@@ -74,6 +74,7 @@ use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
 use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
+use App\Http\Controllers\ResetTA;
 
 /*
 |--------------------------------------------------------------------------
@@ -305,6 +306,9 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::resource('kategori', KategoriController::class);
     Route::resource('kalab', PenempatanDosenLabController::class);
     Route::resource('admin_jurusan', PenempatanAdminLabController::class);
+
+    Route::get('resetSeminar', [ResetTA::class, 'index'])->name('reset.seminar.index');
+    Route::delete('delete', [ResetTA::class, 'destroy'])->name('reset.seminar.destroy');
 });
 
 // route FE

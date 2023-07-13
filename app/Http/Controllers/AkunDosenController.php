@@ -143,19 +143,33 @@ class AkunDosenController extends Controller
     public function chartUsiaDosen()
     {
         $query = DB::table('dosen')
-            ->select(DB::raw('FLOOR((TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) + 10) / 10) * 10 as usia_group, COUNT(*) as total'))
-            ->groupBy('usia_group')
-            ->orderBy('usia_group')
-            ->get();
+        ->select(DB::raw('FLOOR((TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) + 10) / 10) * 10 as usia_group, COUNT(*) as total'))
+        ->groupBy('usia_group')
+        ->orderBy('usia_group')
+        ->get();
 
-        $data = $query->map(function ($result) {
-            return [
-                'usia_group' => $result->usia_group . '++',
-                'total' => $result->total,
-            ];
-        });
+    $data = $query->map(function ($result) {
+        $usia_group = $result->usia_group;
+        if ($usia_group >= 20 && $usia_group < 35) {
+            $usia_group = '20++';
+        } elseif ($usia_group >= 35 && $usia_group < 45) {
+            $usia_group = '35++';
+        } elseif ($usia_group >= 45 && $usia_group < 55) {
+            $usia_group = '45++';
+        } elseif ($usia_group >= 55 && $usia_group < 65) {
+            $usia_group = '55++';
+        } elseif ($usia_group >= 65) {
+            $usia_group = '65++';
+        }
 
-        return response()->json($data);
+        return [
+            'usia_group' => $usia_group,
+            'total' => $result->total,
+        ];
+    });
+
+    return response()->json($data);
+
     }
 
 

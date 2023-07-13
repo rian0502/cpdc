@@ -1,6 +1,7 @@
 @extends('layouts.datatable')
 @section('datatable')
     <style>
+
         .rounded-div {
             border-radius: 10px;
             border: 1px solid #e5e5e5;
@@ -8,7 +9,20 @@
             margin-bottom: 10px;
         }
 
+        .center-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+        .foto {
+            border-radius: 50%;
+            width: 170px;
+            /* Sesuaikan dengan lebar yang diinginkan */
+            height: 170px;
+            /* Sesuaikan dengan tinggi yang diinginkan */
+            object-fit: cover;
+        }
+
     </style>
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
@@ -19,7 +33,14 @@
                         <h4 class="text-blue h4">Detail Admin</h4>
                     </div>
                     <div class="p-md-4">
+                        <div class="profile-photo center-div mt-2">
+                            {{-- <a href="#" class="edit-avatar" data-toggle="modal" data-target="#modal"> --}}
+                            <a href="/uploads/profile/{{ $admin->user->profile_picture}}">
 
+                                <img src="/uploads/profile/{{ $admin->user->profile_picture}}"
+                                onerror="this.src='/uploads/profile/default.png';" class="foto" alt="Foto Profil" />
+                            </a>
+                        </div>
                         <div class="p-3 mb-2 bg-light text-dark rounded-div">
                             <div class="row">
                                 <label class="col-md-3 bold"> <strong> Nama Admin</strong></label>
@@ -124,14 +145,18 @@
 
         // Tentukan warna berdasarkan umur
         let warna;
-        if (selisihTahun < 30) {
-            warna =
-                `rgb(${212-selisihTahun-50}, ${217-selisihTahun-50}, ${37-selisihTahun})`; // warna hijau akan semakin kuat saat umur semakin muda
-        } else if (selisihTahun >= 30 && selisihTahun < 50) {
-            warna =
-                `rgb(${255-selisihTahun}, ${238-selisihTahun}, ${99-selisihTahun})`; // warna kuning akan semakin kuat saat umur mendekati 50 tahun
+        if (selisihTahun >= 20 && selisihTahun < 35) {
+            warna = 'lightgreen'; // Hijau muda
+        } else if (selisihTahun >= 35 && selisihTahun < 45) {
+            warna = 'green'; // Hijau tua
+        } else if (selisihTahun >= 45 && selisihTahun < 55) {
+            warna = 'khaki'; // Kuning tua
+        } else if (selisihTahun >= 55 && selisihTahun < 65) {
+            warna = 'pink'; // Merah muda
+        } else if (selisihTahun >= 65) {
+            warna = 'red'; // Merah tua
         } else {
-            warna = `rgb(${255-selisihTahun}, 0, 0)`; // warna merah akan semakin kuat saat umur mendekati 70 tahun
+            warna = 'black'; // Warna default jika umur di luar rentang yang ditentukan
         }
 
         // Update teks dan latar belakang pada elemen HTML
