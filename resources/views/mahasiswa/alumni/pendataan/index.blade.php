@@ -58,10 +58,6 @@
                         <div class="clearfix">
                             <div class="pull-left">
                                 <h4 class="text-dark h4">Pesan</h4>
-                                <small>
-
-                                    {{-- <p class="mb-30"></p> --}}
-                                </small>
                             </div>
                         </div>
 
@@ -157,14 +153,9 @@
                                     href="/uploads/berkas_pengesahan/{{ $pendataan->berkas_pengesahan }}">Lihat</a>
                             </div>
                         </div>
-
                     </div>
-
-
                 </div>
-
             </div>
-
         </div>
 
 
