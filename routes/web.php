@@ -306,6 +306,7 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::resource('admin_jurusan', PenempatanAdminLabController::class);
 
     Route::get('resetSeminar', [ResetTA::class, 'index'])->name('reset.seminar.index');
+    Route::delete('delete', [ResetTA::class, 'destroy'])->name('reset.seminar.destroy');
 });
 
 // route FE

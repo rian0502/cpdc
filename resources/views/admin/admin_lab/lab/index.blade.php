@@ -69,7 +69,7 @@
                     },
                     {
                         data: 'jumlah_mahasiswa',
-                        name: 'peserta',
+                        name: 'jumlah_mahasiswa',
                         orderable: true
                     },
                     {

@@ -349,7 +349,7 @@
                     @auth
                         <li>
                             <a href="{{ route('dashboard') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('dashboard') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('dashboard*') ? 'active' : '' }}">
                                 <span class="micon bi bi-grid-fill"></span><span class="mtext">Dashboard</span>
                             </a>
                         </li>
@@ -470,26 +470,27 @@
                         </li>
                         <li>
                             <a href="{{ route('sudo.reset.seminar.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/base_npm') ? 'active' : '' }}">
-                                <span class="micon bi bi-arrow-counterclockwise"></span><span class="mtext">Reset TA</span>
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/resetSeminar*') ? 'active' : '' }}">
+                                <span class="micon bi bi-arrow-counterclockwise"></span><span class="mtext">Reset
+                                    TA</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('sudo.base_npm.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/base_npm') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/base_npm*') ? 'active' : '' }}">
                                 <span class="micon bi bi bi-person-lines-fill"></span><span class="mtext">Data NPM</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('sudo.kalab.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/kalab') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/kalab*') ? 'active' : '' }}">
                                 <span class="micon bi bi bi-person-fill"></span><span class="mtext">Kepala
                                     Laboratorium</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('sudo.admin_jurusan.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/admin_jurusan') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/admin_jurusan*') ? 'active' : '' }}">
                                 <span class="micon bi bi bi-person-fill"></span><span class="mtext">Admin Jurusan</span>
                             </a>
                         </li>
@@ -763,10 +764,51 @@
             showConfirmationForm();
         });
     </script>
+
     <script>
-        function deleteConfirmationForm() {
+        function deleteConfirmationForm(event) {
+            event.preventDefault(); // Menghentikan aksi default dari event klik tombol
+
             swal({
-                title: 'Apakah Anda yakin ingin submit data ini ?',
+                title: 'Apakah Anda yakin ingin menghapus data ini?',
+                icon: 'warning',
+                buttons: {
+                    cancel: {
+                        text: 'Tidak',
+                        value: false,
+                        visible: true,
+                        className: 'btn btn-danger',
+                        closeModal: true,
+                    },
+                    confirm: {
+                        text: 'Ya',
+                        value: true,
+                        visible: true,
+                        className: 'btn btn-success',
+                        closeModal: true
+                    }
+                }
+            }).then((result) => {
+                if (result) {
+                    document.getElementById('deleteForm').submit();
+                }
+            });
+        }
+
+        // Mengambil elemen tombol submit
+        const deleteButton = document.getElementById('deleteBtn');
+
+        // Menangani klik tombol submit
+        deleteButton.addEventListener('click', deleteConfirmationForm);
+    </script>
+    <script>
+        function showDeleteConfirmation(event) {
+            event.preventDefault(); // Mencegah pengiriman form secara langsung
+
+            const form = event.target.closest('form'); // Mendapatkan elemen form terdekat dari tombol yang diklik
+
+            swal({
+                title: 'Apakah Anda yakin ingin menghapus data ini?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonClass: 'btn btn-success',
@@ -774,23 +816,15 @@
                 confirmButtonText: 'Ya',
                 cancelButtonText: 'Tidak'
             }).then((result) => {
-                if (result.value) {
-                    document.getElementById('delete').submit();
+                if (result && result.value) {
+                    form.submit();
                 }
-            })
+            });
         }
-
-        // Mengambil elemen tombol submit
-        const submitButton2 = document.getElementById('deleteBtn');
-
-        // Menangani klik tombol submit
-        submitButton2.addEventListener('click', function(e) {
-            e.preventDefault(); // Mencegah pengiriman form secara langsung
-
-            // Panggil fungsi untuk menampilkan konfirmasi
-            deleteConfirmationForm();
-        });
     </script>
+    </script>
+
+
     <script>
         function updateFileNameAndLink(inputId, labelId, linkId) {
             var input = document.getElementById(inputId);

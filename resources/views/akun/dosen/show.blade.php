@@ -8,6 +8,19 @@
             margin-bottom: 10px;
         }
 
+        .center-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .foto {
+            border-radius: 50%;
+            width: 170px;
+            /* Sesuaikan dengan lebar yang diinginkan */
+            height: 170px;
+            /* Sesuaikan dengan tinggi yang diinginkan */
+            object-fit: cover;
         }
     </style>
     <div class="main-container">
@@ -19,7 +32,14 @@
                         <h4 class="text-blue h4">Detail Dosen</h4>
                     </div>
                     <div class="p-md-4">
+                        <div class="profile-photo center-div mt-2">
+                            {{-- <a href="#" class="edit-avatar" data-toggle="modal" data-target="#modal"> --}}
+                            <a href="/uploads/profile/{{ $lecturer->user->profile_picture }}">
 
+                                <img src="/uploads/profile/{{ $lecturer->user->profile_picture }}"
+                                    onerror="this.src='/uploads/profile/default.png';" class="foto" alt="Foto Profil" />
+                            </a>
+                        </div>
                         <div class="p-3 mb-2 bg-light text-dark rounded-div">
                             <div class="row">
                                 <label class="col-md-3 bold"> <strong> Nama Dosen</strong></label>
@@ -55,7 +75,11 @@
                             <div class="row">
                                 <label class="col-md-3 bold"> <strong> Jabatan</strong></label>
                                 <div class="col-md-3">
-                                    {{ $jabatan->first()->jabatan }}
+                                    @if (count($jabatan) > 0)
+                                        {{ $jabatan->first()->jabatan }}
+                                    @else
+                                        -
+                                    @endif
                                 </div>
                                 <label class="col-md-3 bold"><b>Email</b></label>
                                 <div class="col-md-3">
@@ -65,7 +89,12 @@
                             <div class="row">
                                 <label class="col-md-3 bold"><strong> Pangkat </strong></label>
                                 <div class="col-md-3">
-                                    {{ $pangkat->first()->kepangkatan }}
+
+                                    @if (count($pangkat) > 0)
+                                        {{ $pangkat->first()->kepangkatan}}
+                                    @else
+                                        -
+                                    @endif
                                 </div>
                                 <label class="col-md-3 bold"><b>No Telphone</b></label>
                                 <div class="col-md-3">

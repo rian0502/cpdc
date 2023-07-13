@@ -333,7 +333,7 @@
                     @auth
                         <li>
                             <a href="{{ route('dashboard') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('dashboard') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('dashboard*') ? 'active' : '' }}">
                                 <span class="micon bi bi-grid-fill"></span><span class="mtext">Dashboard</span>
                             </a>
                         </li>
@@ -465,27 +465,27 @@
                         </li>
                         <li>
                             <a href="{{ route('sudo.reset.seminar.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/base_npm') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/resetSeminar*') ? 'active' : '' }}">
                                 <span class="micon bi bi-arrow-counterclockwise"></span><span class="mtext">Reset TA</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('sudo.base_npm.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/base_npm') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/base_npm*') ? 'active' : '' }}">
                                 <span class="micon bi bi-person-lines-fill"></span><span class="mtext">Data NPM</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="{{ route('sudo.kalab.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/kalab') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/kalab*') ? 'active' : '' }}">
                                 <span class="micon bi bi bi-person-fill"></span><span class="mtext">Kepala
                                     Laboratorium</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('sudo.admin_jurusan.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/admin_jurusan') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/admin_jurusan*') ? 'active' : '' }}">
                                 <span class="micon bi bi bi-person-fill"></span><span class="mtext">Admin Jurusan</span>
                             </a>
                         </li>
