@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
+use Illuminate\Routing\Controller;
 
 class DataAlumni extends Controller
 {
@@ -11,8 +14,12 @@ class DataAlumni extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {        
+        if($request->ajax()) {
+            $data = User::role('alumni')->with('mahasiswa', 'mahasiswa.kegiatanTerakhir');
+            return DataTables::of($data)->toJson();
+        }
         return view('jurusan.data_alumni.index');
     }
 
@@ -81,4 +88,5 @@ class DataAlumni extends Controller
     {
         //
     }
+
 }

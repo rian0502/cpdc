@@ -19,14 +19,17 @@
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Dokumen SOP<small> <a id="link-file_sop" href="#"
-                                        target="_blank" style="display: none;">Lihat File</a> </small></label>
+                                    <label>Dokumen SOP<small> <a id="link-file_sop" href="#" target="_blank"
+                                                style="display: none;">Lihat File</a> </small></label>
                                     <div class=" custom-file">
-                                        <label class="custom-file-label" for="file_sop" id="label-file_sop">Pilih File</label>
+                                        <label class="custom-file-label" for="file_sop" id="label-file_sop">Pilih
+                                            File</label>
 
-                                        <input value="{{old('file_sop')}}" autofocus name="file_sop" id="file_sop" accept=".pdf"
+                                        <input value="{{ old('file_sop') }}" autofocus name="file_sop" id="file_sop"
+                                            accept=".pdf"
                                             class="custom-file-input form-control @error('file_sop') form-control-danger @enderror"
-                                            type="file" placeholder="Dokumen SOP" onchange="updateFileNameAndLink('file_sop','label-file_sop','link-file_sop')">
+                                            type="file" placeholder="Dokumen SOP"
+                                            onchange="updateFileNameAndLink('file_sop','label-file_sop','link-file_sop')">
                                     </div>
                                     @error('file_sop')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -45,15 +48,9 @@
                             {{-- form untuk sebelah kanan --}}
                             <div class="merek weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Lokasi Penerapan</label>
-                                    <select class="custom-select2 form-control" style="width: 100%; height: 38px" name="id_lokasi" required>
-                                        @foreach ($locations as $item)
-                                            <option value="{{ $item->encrypt_id }}"
-                                                {{ old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
-                                                {{ $item->nama_lokasi . ', Lt-' . $item->lantai_tingkat }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <label>Lokasi</label>
+                                    <input type="text" value="{{ $locations->nama_lokasi }}"
+                                        class="form-control @error('nama_sop') form-control-danger @enderror" readonly/>
                                 </div>
                             </div>
                         </div>

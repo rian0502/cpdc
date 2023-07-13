@@ -13,7 +13,8 @@
                         </div>
 
                     </div>
-                    <form action="{{ route('lab.ruang.store') }}" method="POST">
+                    <form action="{{ route('lab.ruang.update', $lab->encrypted_id) }}" method="POST">
+                        @method('PUT')
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
@@ -49,18 +50,6 @@
                             </div>
                             {{-- form untuk sebelah kanan --}}
                             <div class="merek weight-500 col-md-6">
-
-                                <div class="form-group">
-                                    <label>Lokasi</label>
-                                    <select class="custom-select2 form-control" style="width: 100%; height: 38px"
-                                        name="id_lokasi">
-                                        @foreach ($locations as $item)
-                                            <option value="{{ $item->encrypt_id }}"
-                                                @if ($item->id == $lab->id_lokasi) selected @endif>
-                                                {{ $item->nama_lokasi . ', Lt-' . $item->lantai_tingkat }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
                                 <div class="form-group">
                                     <label>Tanggal Kegiatan</label>
                                     <input value="{{ $lab->tanggal_kegiatan }}" type="date"

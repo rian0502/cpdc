@@ -26,15 +26,12 @@ class StoreSopLabRequest extends FormRequest
     {
         return [
             'nama_sop' => 'required|string|max:255|min:3',
-            'id_lokasi' => 'required|exists:lokasi,encrypt_id',
             'file_sop' => 'required|file|mimes:pdf|max:1060',
         ];
     }
     public function messages()
     {
         return [
-            'id_lokasi.required' => 'Lokasi harus diisi',
-            'id_lokasi.exists' => 'Lokasi tidak ditemukan',
             'file_sop.required' => 'File SOP harus diupload',
             'file_sop.file' => 'File SOP harus berupa file',
             'file_sop.mimes' => 'File SOP harus berupa file PDF',

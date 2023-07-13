@@ -50,18 +50,20 @@ class LabController extends Controller
      */
     public function store(StoreActivityLab $request)
     {
+   
         //
+        return dd($request->all());
         $data = [
             'nama_kegiatan' => $request->nama_kegiatan,
             'tanggal_kegiatan' => $request->tanggal_kegiatan,
             'jam_mulai' => $request->jam_mulai,
             'jam_selesai' => $request->jam_selesai,
             'keperluan' => $request->keperluan,
-            'id_lokasi' => Crypt::decrypt($request->id_lokasi),
+            'id_lokasi' => Auth::user()->lokasi_id,
             'keterangan' => $request->ket,
-            'jumlah_mahasisiswa' => $request->jumlah_mahasiswa,
-            'created_at' => now()
+            'jumlah_mahasiswa' => $request->jumlah_mahasisiswa,
         ];
+
         $insert = Laboratorium::create($data);
         $id = Crypt::encrypt($insert->id);
         $update = Laboratorium::where('id', $insert->id)->update(['encrypted_id' => $id]);
@@ -113,10 +115,21 @@ class LabController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreActivityLab $request, $id)
     {
-        //
-        return dd($request->all());
+        
+        $lab = Laboratorium::find(Crypt::decrypt($id));
+        $lab->nama_kegiatan = $request->nama_kegiatan;
+        $lab->keperluan = $request->keperluan;
+        $lab->keterangan = $request->ket;
+        $lab->jumlah_mahasiswa = $request->jumlah_mahasiswa;
+        $lab->jam_mulai = $request->jam_mulai;
+        $lab->jam_selesai = $request->jam_selesai;
+        $lab->tanggal_kegiatan = $request->tanggal_kegiatan;
+        $lab->updated_at = date('Y-m-d H:i:s');
+        $lab->save();
+        return redirect()->route('lab.ruang.index')->with('success', 'Data berhasil diubah');
+
     }
 
     /**
