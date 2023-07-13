@@ -60,12 +60,14 @@ class RolePermision extends Seeder
             'email' => 'rinawati@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
+            'lokasi_id' => 1
         ]);
         $dian = User::create([
             'name' => 'Dr. Dian Herasari, M.Si.',
             'email' => 'dehayan@yahoo.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
+            'lokasi_id' => 5
         ]);
         $heri = User::create([
             'name' => 'Dr. Eng. Heri Satria, S.Si., M.Si.',
@@ -90,6 +92,7 @@ class RolePermision extends Seeder
             'email' => 'kamisah.delilawati@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
+            'lokasi_id' => 2
         ]);
         $syaiful = User::create([
             'name' => 'Syaiful Bahri, S.Si, M.Si',
@@ -102,6 +105,7 @@ class RolePermision extends Seeder
             'email' => 'noviany@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
+            'lokasi_id' => 3
         ]);
         $diky = User::create([
             'name' => 'Diky Hidayat, S.Si., M.Sc.',
@@ -132,6 +136,7 @@ class RolePermision extends Seeder
             'email' => 'ratnagede.juliasih@gmail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
+            'lokasi_id' => 4
         ]);
         $pratama = User::create([
             'name' => 'Dian Septiani Pratama, S.Si., M.Si.',
@@ -212,19 +217,47 @@ class RolePermision extends Seeder
         //admin berkas
         $adminBerkas = User::create([
             'name' => 'Rudi Santoso',
-            'email' => 'admin.berkas@mail.com',
+            'email' => 'rd.santoso181@gmail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);//32
+        ]); //32
         //end admin berkas
         //admin lab
-        $adminLab = User::create([
-            'name' => 'Fulan bin Fulan',
-            'email' => 'admin.lab@mail.com',
+        $analitik = User::create([
+            'name' => 'Fakhruddin, S.T',
+            'email' => 'fakhruddin1006@gmail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
             'lokasi_id' => 1
-        ]);//33
+        ]); //33
+        $anorganik = User::create([
+            'name' => 'Liza Apriliya Sukartiningsih, S.Si.',
+            'email' => 'lizaapriliya15@gmail.com',
+            'email_verified_at' => now(),
+            'password' =>  bcrypt('kajur'),
+            'lokasi_id' => 2
+        ]); //34
+        $organik = User::create([
+            'name' => 'Wiwit Kasmawati',
+            'email' => 'wiwitkasmawati02@gmail.com',
+            'email_verified_at' => now(),
+            'password' =>  bcrypt('kajur'),
+            'lokasi_id' => 3
+        ]); //35
+        $biokimia = User::create([
+            'name' => 'Della Rahmadhani Putri',
+            'email' => 'dellarahmadhaniputri@gmail.com',
+            'email_verified_at' => now(),
+            'password' =>  bcrypt('kajur'),
+            'lokasi_id' => 4
+        ]); //36
+        $kidas = User::create([
+            'name' => 'Tri Kismwantari, A.Md.',
+            'email' => 'trikiswantari@gmail.comg',
+            'email_verified_at' => now(),
+            'password' =>  bcrypt('kajur'),
+            'lokasi_id' => 5
+        ]); //37
         //endadminlab
 
         $mhs = User::create([
@@ -296,14 +329,11 @@ class RolePermision extends Seeder
         $devi->assignRole(['dosen', 'ta1']);
         $syaiful->assignRole(['dosen', 'ta2']);
         $mita->assignRole(['dosen', 'kompre']);
-        
-        $gede->assignRole(['dosen', 'ta2']);
+        $gede->assignRole(['dosen', 'ta2', 'kalab']);
         $rinawati->assignRole(['dosen', 'kalab']);
         $kamisah->assignRole(['dosen', 'kalab']);
         $noviany->assignRole(['dosen', 'kalab']);
         $dian->assignRole(['dosen', 'kalab']);
-
-
         $hardoko->assignRole('dosen');
         $buhani->assignRole('dosen');
         $suharso->assignRole('dosen');
@@ -326,8 +356,14 @@ class RolePermision extends Seeder
 
         //admin berkas
         $adminBerkas->assignRole('admin berkas');
-        $adminLab->assignRole('admin lab');
         //end admin berkas
+        //admin lab
+        $analitik->assignRole('admin lab');
+        $anorganik->assignRole('admin lab');
+        $organik->assignRole('admin lab');
+        $biokimia->assignRole('admin lab');
+        $kidas->assignRole('admin lab');
+        //end adminlab
         //mahasiswa
         $mhs->assignRole(['mahasiswa', 'alumni']);
         $mhs2->assignRole(['mahasiswa', 'alumni']);

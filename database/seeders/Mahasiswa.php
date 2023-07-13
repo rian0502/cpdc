@@ -30,7 +30,7 @@ class Mahasiswa extends Seeder
             'status' => 'Alumni',
             'id_dosen' => '1',
             'semester' => '6',
-            'user_id' => '34',
+            'user_id' => '38',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
@@ -47,7 +47,7 @@ class Mahasiswa extends Seeder
             'status' => 'Alumni',
             'id_dosen' => '2',
             'semester' => '6',
-            'user_id' => '35',
+            'user_id' => '39',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
@@ -64,7 +64,7 @@ class Mahasiswa extends Seeder
             'status' => 'Alumni',
             'id_dosen' => '3',
             'semester' => '6',
-            'user_id' => '36',
+            'user_id' => '40',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
@@ -81,7 +81,7 @@ class Mahasiswa extends Seeder
             'status' => 'Alumni',
             'id_dosen' => '3',
             'semester' => '6',
-            'user_id' => '37',
+            'user_id' => '41',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
@@ -98,7 +98,7 @@ class Mahasiswa extends Seeder
             'status' => 'Aktif',
             'id_dosen' => '4',
             'semester' => '8',
-            'user_id' => '38',
+            'user_id' => '42',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
@@ -115,7 +115,7 @@ class Mahasiswa extends Seeder
             'status' => 'Drop Out',
             'id_dosen' => '5',
             'semester' => '8',
-            'user_id' => '39',
+            'user_id' => '43',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
@@ -132,7 +132,7 @@ class Mahasiswa extends Seeder
             'status' => 'Drop Out',
             'id_dosen' => '6',
             'semester' => '8',
-            'user_id' => '40',
+            'user_id' => '44',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
@@ -149,7 +149,7 @@ class Mahasiswa extends Seeder
             'status' => 'Aktif',
             'id_dosen' => '7',
             'semester' => '8',
-            'user_id' => '41',
+            'user_id' => '45',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
