@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+
 use Illuminate\Database\Seeder;
 use App\Models\ModelSeminarTaDua;
 use App\Models\ModelBaSeminarTaDua;
@@ -18,6 +19,7 @@ class TugasAkhirDuaSeeder extends Seeder
     public function run()
     {
         //mahasiswa 1
+        $faker = \Faker\Factory::create('id_ID');
         $ta1 = [
             'encrypt_id' => Crypt::encrypt('1'),
             'tahun_akademik' => '2020/2021',
@@ -37,7 +39,7 @@ class TugasAkhirDuaSeeder extends Seeder
             'id_pembahas' => '3',
             'id_mahasiswa' => '1',
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ta1 = ModelSeminarTaDua::create($ta1);
         $jadwal = [
@@ -48,7 +50,7 @@ class TugasAkhirDuaSeeder extends Seeder
             'id_lokasi' => '1',
             'id_seminar' => $ta1->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $jadwal_ta1 = ModelJadwalSeminarTaDua::create($jadwal);
 
@@ -62,7 +64,7 @@ class TugasAkhirDuaSeeder extends Seeder
             'huruf_mutu' => 'A',
             'id_seminar' => $ta1->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ba = ModelBaSeminarTaDua::create($berita_acara);
 
@@ -87,7 +89,7 @@ class TugasAkhirDuaSeeder extends Seeder
             'id_pembahas' => '1',
             'id_mahasiswa' => '2',
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ta2 = ModelSeminarTaDua::create($ta2);
         $jadwal2 = [
@@ -98,7 +100,7 @@ class TugasAkhirDuaSeeder extends Seeder
             'id_lokasi' => '2',
             'id_seminar' => $ta2->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $jadwal_ta2 = ModelJadwalSeminarTaDua::create($jadwal2);
 
@@ -112,7 +114,7 @@ class TugasAkhirDuaSeeder extends Seeder
             'huruf_mutu' => 'A',
             'id_seminar' => $ta2->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ba2 = ModelBaSeminarTaDua::create($berita_acara2);
 
@@ -136,7 +138,7 @@ class TugasAkhirDuaSeeder extends Seeder
             'id_pembahas' => '1',
             'id_mahasiswa' => '3',
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ta3 = ModelSeminarTaDua::create($ta3);
         $jadwal = [
@@ -147,7 +149,7 @@ class TugasAkhirDuaSeeder extends Seeder
             'id_lokasi' => '1',
             'id_seminar' => $ta3->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $jadwal_ta3 = ModelJadwalSeminarTaDua::create($jadwal);
 
@@ -161,7 +163,7 @@ class TugasAkhirDuaSeeder extends Seeder
             'huruf_mutu' => 'A',
             'id_seminar' => $ta3->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ba = ModelBaSeminarTaDua::create($berita_acara);
 
@@ -186,7 +188,7 @@ class TugasAkhirDuaSeeder extends Seeder
             'id_pembahas' => '1',
             'id_mahasiswa' => '4',
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ta2 = ModelSeminarTaDua::create($ta2);
         $jadwal2 = [
@@ -197,7 +199,7 @@ class TugasAkhirDuaSeeder extends Seeder
             'id_lokasi' => '2',
             'id_seminar' => $ta2->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $jadwal_ta2 = ModelJadwalSeminarTaDua::create($jadwal2);
 
@@ -211,7 +213,7 @@ class TugasAkhirDuaSeeder extends Seeder
             'huruf_mutu' => 'A',
             'id_seminar' => $ta2->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ba2 = ModelBaSeminarTaDua::create($berita_acara2);
     }
