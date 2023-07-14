@@ -465,7 +465,6 @@
                                 <li><a href="{{ route('sudo.model.index') }}"
                                         class="{{ Request::is('sudo/model*') ? 'active' : '' }}">Model</a>
                                 </li>
-
                             </ul>
                         </li>
                         <li>
@@ -521,6 +520,12 @@
                                         Komprehensif</a></li>
                             </ul>
 
+                        </li>
+                        <li>
+                            <a href="{{ route('mahasiswa.pendataan_alumni.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni*') ? 'active' : '' }}">
+                                <span class="micon fa-solid fa-flask-vial"></span><span class="mtext">laboratorium TA</span>
+                            </a>
                         </li>
                         <li>
                             <a href="{{ route('mahasiswa.pendataan_alumni.index') }}"
