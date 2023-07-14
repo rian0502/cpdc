@@ -19,8 +19,9 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Lokasi</th>
+                                    <th>Kegiatan</th>
                                     <th>Tanggal Pakai</th>
+                                    <th>Waktu</th>
                                     <th>Keperluan</th>
                                     <th>Peserta</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
@@ -44,23 +45,26 @@
                 responsive: true,
                 autoWidth: false,
                 ajax: '{{ route('lab.data.ajax') }}',
-                columns: [
-                    {
-                        data: null,
+                columns: [{
+                        data: 'encrypted_id',
                         name: 'encrypted_id',
                         render: function(data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         }
                     },
                     {
-                        data: 'nama_lokasi',
-                        name: 'nama_lokasi',
+                        data: 'nama_kegiatan',
+                        name: 'nama_kegiatan',
                         orderable: true
                     },
                     {
                         data: 'tanggal_kegiatan',
                         name: 'tanggal_kegiatan',
                         orderable: true
+                    },
+                    {
+                        data: 'waktu',
+                        name: 'waktu',
                     },
                     {
                         data: 'keperluan',
@@ -73,14 +77,16 @@
                         orderable: true
                     },
                     {
-                        data: null,
+                        data: 'aksi',
                         name: 'aksi',
                         orderable: false,
                         searchable: false,
                         exportable: false,
                         render: function(data, type, row) {
-                            var showUrl = "{{ route('lab.ruang.show', ':id') }}".replace(':id', row.encrypted_id);
-                            var editUrl = "{{ route('lab.ruang.edit', ':id') }}".replace(':id', row.encrypted_id);
+                            var showUrl = "{{ route('lab.ruang.show', ':id') }}".replace(':id', row
+                                .encrypted_id);
+                            var editUrl = "{{ route('lab.ruang.edit', ':id') }}".replace(':id', row
+                                .encrypted_id);
 
                             return `
                                 <div class="dropdown">
@@ -99,5 +105,4 @@
             });
         });
     </script>
-
 @endsection
