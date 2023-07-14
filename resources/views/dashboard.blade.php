@@ -660,7 +660,7 @@
                         @role('jurusan')
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="endDate">Lokasi</label>
+                                    <label for="lokasi">Lokasi</label>
                                     <select name="lokasi" id="lokasi" class="form-control">
                                         <option value="all">Semua</option>
                                         <option value="1">Lab. Kimia Analitik & Instrumentasi</option>
@@ -675,6 +675,42 @@
                         @endrole
                     </div>
                     <div id="chart_lab"></div>
+                </div>
+            @endrole
+            @role('jurusan')
+                <div class="card-box height-100-p pd-20 min-height-200px mb-20">
+                    <div class="row align-items-center justify-content-center mb-3">
+                        <h2>Data Seminar</h2>
+                    </div>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="startDate2">Tanggal Awal</label>
+                                <input type="date" name="startDate2" class="form-control" placeholder="Tanggal Awal"
+                                    id="startDate2" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="endDate2">Tanggal Akhir</label>
+                                <input type="date" class="form-control" name="endDate2" placeholder="Tanggal Akhir"
+                                    id="endDate2" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="angkatan">Angkatan</label>
+                                <select class="form-control" id="angkatan" name="angkatan">
+
+                                        <option value="all" selected>Semua</option>
+                                        <option value="2019" selected>2019</option>
+                                        <option value="2020" selected>2020</option>
+                                        <option value="2021" selected>2020</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart_seminar2"></div>
                 </div>
             @endrole
             @role('mahasiswa')
@@ -1433,7 +1469,7 @@
                                 type: 'column'
                             },
                             title: {
-                                text: 'Statistik Aktivitas Lab'
+                                text: ''
                             },
                             xAxis: {
                                 categories: data.categories,
@@ -1525,5 +1561,104 @@
 
             //dengan filter berdasarkan
         </script>
+
+
+
+<script>
+    function chartSeminar2(startDate2, endDate2, angkatan) {
+        $.ajax({
+            url: '{{ route('chart.seminar.all') }}',
+            method: 'GET',
+            dataType: 'json',
+            data: {
+                startDate2: startDate2,
+                endDate2: endDate2,
+                angkatan: angkatan
+            },
+            success: function(response) {
+                var data = response;
+
+                var categories = data.categories;
+                var seminarData = data.seminar;
+                var nonseminarData = data.nonseminar;
+
+                var seriesData = [{
+                    name: 'Non-Seminar',
+                    data: nonseminarData
+
+                }, {
+                    name: 'Seminar',
+                    data: seminarData
+                }];
+
+                var options = {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: categories,
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Jumlah'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormatter: function() {
+                            return '<tr><td style="text-align: left; padding:0; color:' + this
+                                .series.color + '">' +
+                                this.series.name + ': </td>' +
+                                '<td style="text-align: right; padding:0"><b>' + Highcharts
+                                .numberFormat(this.y, 0, ".", ",") +
+                                '</b></td></tr>';
+                        },
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'normal',
+                            grouping: false,
+                            shadow: false,
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    colors: ['#FF1818','#5463FF'  ],
+                    series: seriesData
+                };
+
+                Highcharts.chart('chart_seminar2', options);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+
+    // Panggil fungsi chartSeminar2 dengan nilai awal tanggal dan angkatan
+    var startDate2 = null;
+    var endDate2 = null;
+    var angkatan = null;
+    chartSeminar2(startDate2, endDate2, angkatan);
+
+    // Atur event listener untuk mengaktifkan pemfilteran berdasarkan tanggal dan angkatan saat nilai berubah
+    $('#startDate2, #endDate2, #angkatan').change(function() {
+        startDate2 = $('#startDate2').val();
+        endDate2 = $('#endDate2').val();
+        angkatan = $('#angkatan').val();
+        console.log(startDate2, endDate2, angkatan);
+        chartSeminar2(startDate2, endDate2, angkatan);
+    });
+</script>
+
+
     @endrole
 @endsection

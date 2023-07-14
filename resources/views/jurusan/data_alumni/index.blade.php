@@ -74,7 +74,7 @@
                     autoWidth: false,
                     ajax: '{{ route('jurusan.alumni.index') }}',
                     columns: [{
-                            data: null,
+                            data: 'id',
                             name: 'name',
                             render: function(data, type, row, meta) {
                                 return meta.row + meta.settings._iDisplayStart + 1;
@@ -113,7 +113,7 @@
                             }
                         },
                         {
-                            data: null,
+                            data: 'aksi',
                             name: 'aksi',
                             orderable: false,
                             searchable: false,

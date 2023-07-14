@@ -27,145 +27,111 @@ class ChartSeminarController extends Controller
     //
     public function ChartSeminar(Request $request)
     {
-        $startDate = $request->input('startDate', null);
-        $endDate = $request->input('endDate', null);
-        $angkatan = $request->input('angkatan', null);
+        if ($request->ajax()) {
+            $startDate2 = $request->input('startDate2', null);
+            $endDate2 = $request->input('endDate2', null);
+            $angkatan = $request->input('angkatan', null);
 
-        $categories = ['Mahasiswa', 'Seminar KP', 'Seminar TA 1', 'Seminar TA 2', 'Sidang Kompre'];
-        $data = [
-            'categories' => $categories,
-            'seminar' => [],
-            'nonseminar' => [],
-        ];
-        if ($startDate != null && $endDate != null && $angkatan != null && $angkatan != 'all') {
+            $categories = ['Mahasiswa', 'Seminar KP', 'Seminar TA 1', 'Seminar TA 2', 'Sidang Kompre'];
+            $data = [
+                'categories' => $categories,
+                'seminar' => [],
+                'nonseminar' => [],
+            ];
 
-            $mahasiswaAktif = Mahasiswa::where('angkatan', $angkatan)->where('status', 'Aktif')->orWhere('status', 'Alumni')->count();
-            $mahasiswaNonAktif = Mahasiswa::where('angkatan', $angkatan)->where('status', 'Drop Out')->orWhere('status', 'Cuti')->count();
-            $SudahSeminarKP = ModelSeminarKP::whrere('status_seminar', 'selesai')->where('id_mahasiswa', Mahasiswa::where('angkatan', $angkatan)->pluck('id'))->whereBetween('updated_at', [
-                $startDate . ' 00:00:00',
-                $endDate . ' 23:59:59'
-            ])->count();
+            $mahasiswaAktifQuery = Mahasiswa::where(function ($query) {
+                $query->whereIn('status', ['Aktif', 'Alumni']);
+            });
+
+            $mahasiswaNonAktifQuery = Mahasiswa::where(function ($query) {
+                $query->whereIn('status', ['Drop Out', 'Cuti']);
+            });
+
+            if ($angkatan != null && $angkatan != 'all') {
+                $mahasiswaAktifQuery->where('angkatan', $angkatan);
+                $mahasiswaNonAktifQuery->where('angkatan', $angkatan);
+            }
+
+            $mahasiswaAktif = $mahasiswaAktifQuery->count();
+            $mahasiswaNonAktif = $mahasiswaNonAktifQuery->count();
+
+            $SudahSeminarKP = Mahasiswa::whereIn('status', ['Aktif', 'Alumni'])
+                ->whereHas('seminar_kp', function ($query) use ($startDate2, $endDate2) {
+                    $query->where('status_seminar', 'Selesai');
+                    if ($startDate2 != null && $endDate2 != null) {
+
+                        $query->whereBetween('updated_at', ["$startDate2 00:00:00", "$endDate2 23:59:59"]);
+                    }
+                });
+            if ($angkatan != null && $angkatan != 'all') {
+                $SudahSeminarKP->where('angkatan', $angkatan);
+            }
+            $SudahSeminarKP = $SudahSeminarKP->count();
+
+            $SudahSeminarTA1 = Mahasiswa::whereIn('status', ['Aktif', 'Alumni'])
+                ->whereHas('ta_satu', function ($query) use ($startDate2, $endDate2) {
+                    $query->where('status_koor', 'Selesai');
+                    if ($startDate2 != null && $endDate2 != null) {
+
+                        $query->whereBetween('updated_at', ["$startDate2 00:00:00", "$endDate2 23:59:59"]);
+                    }
+                });
+            if ($angkatan != null && $angkatan != 'all') {
+                $SudahSeminarTA1->where('angkatan', $angkatan);
+            }
+            $SudahSeminarTA1 = $SudahSeminarTA1->count();
+
+            $SudahSeminarTA2 = Mahasiswa::whereIn('status', ['Aktif', 'Alumni'])
+                ->whereHas('ta_dua', function ($query) use ($startDate2, $endDate2) {
+                    $query->where('status_koor', 'Selesai');
+                    if ($startDate2 != null && $endDate2 != null) {
+
+                        $query->whereBetween('updated_at', ["$startDate2 00:00:00", "$endDate2 23:59:59"]);
+                    }
+                });
+            if ($angkatan != null && $angkatan != 'all') {
+                $SudahSeminarTA2->where('angkatan', $angkatan);
+            }
+            $SudahSeminarTA2 = $SudahSeminarTA2->count();
+
+            $SudahSidangKompre = Mahasiswa::whereIn('status', ['Aktif', 'Alumni'])
+                ->whereHas('komprehensif', function ($query) use ($startDate2, $endDate2) {
+                    $query->where('status_koor', 'Selesai');
+                    if ($startDate2 != null && $endDate2 != null) {
+
+                        $query->whereBetween('updated_at', ["$startDate2 00:00:00", "$endDate2 23:59:59"]);
+                    }
+                });
+            if ($angkatan != null && $angkatan != 'all') {
+                $SudahSidangKompre->where('angkatan', $angkatan);
+            }
+
+            $SudahSidangKompre = $SudahSidangKompre->count();
+
             $BelumSeminarKP = $mahasiswaAktif - $SudahSeminarKP;
-            $SudahSeminarTA1 = ModelSeminarTaSatu::whrere('status_koor', 'selesai')->where('id_mahasiswa', Mahasiswa::where('angkatan', $angkatan)->pluck('id'))->whereBetween('updated_at', [
-                $startDate . ' 00:00:00',
-                $endDate . ' 23:59:59'
-            ])->count();
+
             $BelumSeminarTA1 = $mahasiswaAktif - $SudahSeminarTA1;
-            $SudahSeminarTA2 = ModelSeminarTaDua::whrere('status_koor', 'selesai')->where('id_mahasiswa', Mahasiswa::where('angkatan', $angkatan)->pluck('id'))->whereBetween('updated_at', [
-                $startDate . ' 00:00:00',
-                $endDate . ' 23:59:59'
-            ])->count();
+
             $BelumSeminarTA2 = $mahasiswaAktif - $SudahSeminarTA2;
-            $SudahSidangKompre = ModelSeminarKompre::whrere('status_koor', 'selesai')->where('id_mahasiswa', Mahasiswa::where('angkatan', $angkatan)->pluck('id'))->whereBetween('updated_at', [
-                $startDate . ' 00:00:00',
-                $endDate . ' 23:59:59'
-            ])->count();
+
             $BelumSidangKompre = $mahasiswaAktif - $SudahSidangKompre;
+
             $data['seminar'] = [
                 $mahasiswaAktif,
-                $BelumSeminarKP,
-                $BelumSeminarTA1,
-                $BelumSeminarTA2,
-                $BelumSidangKompre,
-            ];
-            $data['nonseminar'] = [
-                $mahasiswaNonAktif,
                 $SudahSeminarKP,
                 $SudahSeminarTA1,
                 $SudahSeminarTA2,
                 $SudahSidangKompre,
             ];
-        } elseif ($startDate != null && $endDate != null && $angkatan == null || $angkatan == 'all') {
-
-            $mahasiswaAktif = Mahasiswa::where('status', 'Aktif')->orWhere('status', 'Alumni')->count();
-            $mahasiswaNonAktif = Mahasiswa::where('status', 'Drop Out')->orWhere('status', 'Cuti')->count();
-            $SudahSeminarKP = ModelSeminarKP::whrere('status_seminar', 'selesai')->whereBetween('updated_at', [
-                $startDate . ' 00:00:00',
-                $endDate . ' 23:59:59'
-            ])->count();
-            $BelumSeminarKP = $mahasiswaAktif - $SudahSeminarKP;
-            $SudahSeminarTA1 = ModelSeminarTaSatu::whrere('status_koor', 'selesai')->whereBetween('updated_at', [
-                $startDate . ' 00:00:00',
-                $endDate . ' 23:59:59'
-            ])->count();
-            $BelumSeminarTA1 = $mahasiswaAktif - $SudahSeminarTA1;
-            $SudahSeminarTA2 = ModelSeminarTaDua::whrere('status_koor', 'selesai')->whereBetween('updated_at', [
-                $startDate . ' 00:00:00',
-                $endDate . ' 23:59:59'
-            ])->count();
-            $BelumSeminarTA2 = $mahasiswaAktif - $SudahSeminarTA2;
-            $SudahSidangKompre = ModelSeminarKompre::whrere('status_koor', 'selesai')->whereBetween('updated_at', [
-                $startDate . ' 00:00:00',
-                $endDate . ' 23:59:59'
-            ])->count();
-            $BelumSidangKompre = $mahasiswaAktif - $SudahSidangKompre;
-            $data['seminar'] = [
-                $mahasiswaAktif,
+            $data['nonseminar'] = [
+                $mahasiswaNonAktif,
                 $BelumSeminarKP,
                 $BelumSeminarTA1,
                 $BelumSeminarTA2,
                 $BelumSidangKompre,
             ];
-            $data['nonseminar'] = [
-                $mahasiswaNonAktif,
-                $SudahSeminarKP,
-                $SudahSeminarTA1,
-                $SudahSeminarTA2,
-                $SudahSidangKompre,
-            ];
-        } elseif ($startDate == null && $endDate == null && $angkatan == null || $angkatan == 'all') {
 
-                $mahasiswaAktif = Mahasiswa::where('status', 'Aktif')->orWhere('status', 'Alumni')->count();
-                $mahasiswaNonAktif = Mahasiswa::where('status', 'Drop Out')->orWhere('status', 'Cuti')->count();
-                $SudahSeminarKP = ModelSeminarKP::whrere('status_seminar', 'selesai')->count();
-                $BelumSeminarKP = $mahasiswaAktif - $SudahSeminarKP;
-                $SudahSeminarTA1 = ModelSeminarTaSatu::whrere('status_koor', 'selesai')->count();
-                $BelumSeminarTA1 = $mahasiswaAktif - $SudahSeminarTA1;
-                $SudahSeminarTA2 = ModelSeminarTaDua::whrere('status_koor', 'selesai')->count();
-                $BelumSeminarTA2 = $mahasiswaAktif - $SudahSeminarTA2;
-                $SudahSidangKompre = ModelSeminarKompre::whrere('status_koor', 'selesai')->count();
-                $BelumSidangKompre = $mahasiswaAktif - $SudahSidangKompre;
-                $data['seminar'] = [
-                    $mahasiswaAktif,
-                    $BelumSeminarKP,
-                    $BelumSeminarTA1,
-                    $BelumSeminarTA2,
-                    $BelumSidangKompre,
-                ];
-                $data['nonseminar'] = [
-                    $mahasiswaNonAktif,
-                    $SudahSeminarKP,
-                    $SudahSeminarTA1,
-                    $SudahSeminarTA2,
-                    $SudahSidangKompre,
-                ];
-            } elseif ($startDate == null && $endDate == null && $angkatan != null && $angkatan != 'all') {
-
-                $mahasiswaAktif = Mahasiswa::where('angkatan',$angkatan)->where('status', 'Aktif')->orWhere('status', 'Alumni')->count();
-                $mahasiswaNonAktif = Mahasiswa::where('angkatan',$angkatan)->where('status', 'Drop Out')->orWhere('status', 'Cuti')->count();
-                $SudahSeminarKP = ModelSeminarKP::whrere('status_seminar', 'selesai')->where('id_mahasiswa', Mahasiswa::where('angkatan', $angkatan)->pluck('id'))->count();
-                $BelumSeminarKP = $mahasiswaAktif - $SudahSeminarKP;
-                $SudahSeminarTA1 = ModelSeminarTaSatu::whrere('status_koor', 'selesai')->where('id_mahasiswa', Mahasiswa::where('angkatan', $angkatan)->pluck('id'))->count();
-                $BelumSeminarTA1 = $mahasiswaAktif - $SudahSeminarTA1;
-                $SudahSeminarTA2 = ModelSeminarTaDua::whrere('status_koor', 'selesai')->where('id_mahasiswa', Mahasiswa::where('angkatan', $angkatan)->pluck('id'))->count();
-                $BelumSeminarTA2 = $mahasiswaAktif - $SudahSeminarTA2;
-                $SudahSidangKompre = ModelSeminarKompre::whrere('status_koor', 'selesai')->where('id_mahasiswa', Mahasiswa::where('angkatan', $angkatan)->pluck('id'))->count();
-                $BelumSidangKompre = $mahasiswaAktif - $SudahSidangKompre;
-                $data['seminar'] = [
-                    $mahasiswaAktif,
-                    $BelumSeminarKP,
-                    $BelumSeminarTA1,
-                    $BelumSeminarTA2,
-                    $BelumSidangKompre,
-                ];
-                $data['nonseminar'] = [
-                    $mahasiswaNonAktif,
-                    $SudahSeminarKP,
-                    $SudahSeminarTA1,
-                    $SudahSeminarTA2,
-                    $SudahSidangKompre,
-                ];
+            return response()->json($data);
         }
-        return response()->json($data);
     }
 }

@@ -206,13 +206,13 @@
         var color = '';
 
         if (umur >= 20 && umur < 35) {
-            color = 'lightgreen'; // Hijau muda
+            color = '#539165'; // Hijau muda
         } else if (umur >= 35 && umur < 45) {
             color = 'green'; // Hijau tua
         } else if (umur >= 45 && umur < 55) {
-            color = 'khaki'; // Kuning tua
+            color = '#E8630A'; // Kuning tua
         } else if (umur >= 55 && umur < 65) {
-            color = 'pink'; // Merah muda
+            color = '#D864A9'; // Merah muda
         } else if (umur >= 65) {
             color = 'red'; // Merah tua
         }
