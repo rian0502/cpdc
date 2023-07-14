@@ -18,6 +18,7 @@ class KompreSeeder extends Seeder
     public function run()
     {
         //
+        $faker = \Faker\Factory::create('id_ID');
         $ta1 = [
             'encrypt_id' => Crypt::encrypt('1'),
             'tahun_akademik' => '2020/2021',
@@ -37,7 +38,7 @@ class KompreSeeder extends Seeder
             'id_pembahas' => '3',
             'id_mahasiswa' => '1',
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ta1 = ModelSeminarKompre::create($ta1);
         $jadwal = [
@@ -48,7 +49,7 @@ class KompreSeeder extends Seeder
             'id_lokasi' => '1',
             'id_seminar' => $ta1->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $jadwal_ta1 = ModelJadwalSeminarKompre::create($jadwal);
 
@@ -62,7 +63,7 @@ class KompreSeeder extends Seeder
             'huruf_mutu' => 'A',
             'id_seminar' => $ta1->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ba = ModelBaSeminarKompre::create($berita_acara);
 
@@ -87,7 +88,7 @@ class KompreSeeder extends Seeder
             'id_pembahas' => '1',
             'id_mahasiswa' => '2',
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ta2 = ModelSeminarKompre::create($ta2);
         $jadwal2 = [
@@ -98,7 +99,7 @@ class KompreSeeder extends Seeder
             'id_lokasi' => '2',
             'id_seminar' => $ta2->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $jadwal_ta2 = ModelJadwalSeminarKompre::create($jadwal2);
 
@@ -112,7 +113,7 @@ class KompreSeeder extends Seeder
             'huruf_mutu' => 'A',
             'id_seminar' => $ta2->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ba2 = ModelBaSeminarKompre::create($berita_acara2);
 
@@ -136,7 +137,7 @@ class KompreSeeder extends Seeder
             'id_pembahas' => '1',
             'id_mahasiswa' => '3',
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ta3 = ModelSeminarKompre::create($ta3);
         $jadwal = [
@@ -147,7 +148,7 @@ class KompreSeeder extends Seeder
             'id_lokasi' => '1',
             'id_seminar' => $ta3->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $jadwal_ta3 = ModelJadwalSeminarKompre::create($jadwal);
 
@@ -161,7 +162,7 @@ class KompreSeeder extends Seeder
             'huruf_mutu' => 'A',
             'id_seminar' => $ta3->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ba = ModelBaSeminarKompre::create($berita_acara);
 
@@ -186,7 +187,7 @@ class KompreSeeder extends Seeder
             'id_pembahas' => '1',
             'id_mahasiswa' => '4',
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ta2 = ModelSeminarKompre::create($ta2);
         $jadwal2 = [
@@ -197,7 +198,7 @@ class KompreSeeder extends Seeder
             'id_lokasi' => '2',
             'id_seminar' => $ta2->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $jadwal_ta2 = ModelJadwalSeminarKompre::create($jadwal2);
 
@@ -211,7 +212,7 @@ class KompreSeeder extends Seeder
             'huruf_mutu' => 'A',
             'id_seminar' => $ta2->id,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => $faker->dateTimeBetween('-2 months', '+2 months'),
         ];
         $ba2 = ModelBaSeminarKompre::create($berita_acara2);
     }
