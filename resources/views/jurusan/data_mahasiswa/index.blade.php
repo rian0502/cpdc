@@ -25,7 +25,7 @@
                                         <th>Angkatan</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Status</th>
-                                        <th>Tahun Masuk</th>
+                                        <th>Tanggal Masuk</th>
                                         <th class="table-plus datatable-nosort">Aksi</th>
                                     </tr>
                                 </thead>
@@ -74,11 +74,11 @@
                     autoWidth: false,
                     ajax: '{{ route('jurusan.mahasiswa.index') }}',
                     columns: [{
-                            data: null,
+                            data: 'id',
                             name: 'nama_mahasiswa',
                             render: function(data, type, row, meta) {
                                 return meta.row + meta.settings._iDisplayStart + 1;
-                            }
+                            },
                         },
                         {
                             data: 'nama_mahasiswa',
@@ -104,16 +104,11 @@
                             name: 'status'
                         },
                         {
-                            data: 'updated_at',
-                            name: 'updated_at',
-                            render: function(data) {
-                                var date = new Date(data);
-                                var formattedDate = date.toISOString().slice(0, 10);
-                                return formattedDate;
-                            }
+                            data: 'tanggal_masuk',
+                            name: 'tanggal_masuk',
                         },
                         {
-                            data: null,
+                            data: 'aksi',
                             name: 'aksi',
                             orderable: false,
                             searchable: false,

@@ -44,15 +44,6 @@
                             {{-- form untuk sebelah kanan --}}
                             <div class="merek weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Jam Mulai</label>
-                                    <input
-                                        class="form-control time-picker-default @error('jam_mulai') form-control-danger @enderror"
-                                        placeholder="time" type="text" name="jam_mulai" value="{{ old('jam_mulai') }}" />
-                                    @error('jam_mulai')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
                                     <label>Jam Selesai</label>
                                     <input
                                         class="form-control time-picker-default @error('jam_selesai') form-control-danger @enderror"
