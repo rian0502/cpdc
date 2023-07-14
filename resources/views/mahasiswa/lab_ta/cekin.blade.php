@@ -13,7 +13,7 @@
                         </div>
 
                     </div>
-                    <form action="{{ route('lab.ruang.store') }}" method="POST">
+                    <form action="{{ route('mahasiswa.lab.cekin.store') }}" method="POST">
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
@@ -21,18 +21,20 @@
                                 {{-- KONDISIIN INI MUNCUL KLK DIA BARU PERTAMA KALI CEKIN BAKAL MUNCUL FIELD PILIH LOKASI
                                     TRUS KLK MISAL HARI SEBELUMNYA UDAH PERNAH CEKIN MAKA PILIH LOKASINYA GA TAMPIL DAN BAKAL
                                     PAKE DATA LOKASI DI HARI SEBELUMNYA UNTUK SETERUSNYA ATAU KEK GIMANE TERSERAH LU DA --}}
-                                <div class="form-group">
-                                    <label>Lokasi</label>
-                                    <select class="custom-select2 form-control" style="width: 100%; height: 38px"
-                                        name="id_lokasi" required>
-                                        {{-- @foreach ($locations as $item)
-                                            <option value="{{ $item->encrypt_id }}"
-                                                {{ old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
-                                                {{ $item->nama_lokasi }}
-                                            </option>
-                                        @endforeach --}}
-                                    </select>
-                                </div>
+                                @if (!$user->lokasi_id)
+                                    <div class="form-group">
+                                        <label>Lokasi</label>
+                                        <select class="custom-select2 form-control" style="width: 100%; height: 38px"
+                                            name="id_lokasi" required>
+                                            @foreach ($lokasi as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $item->nama_lokasi }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @endif
                                 <div class="form-group">
                                     <label>Keterangan</label>
                                     <textarea class="form-control textarea @error('ket') form-control-danger @enderror" name="ket">{{ old('ket') }}</textarea>
@@ -49,6 +51,9 @@
                                         class="form-control time-picker-default @error('jam_selesai') form-control-danger @enderror"
                                         placeholder="time" type="text" name="jam_selesai"
                                         value="{{ old('jam_selesai') }}" />
+                                    @error('jam_selesai')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="d-flex">
 

@@ -66,30 +66,38 @@
                                 <div class="row border-bottom">
                                     <label class="col-md-3 bold mt-2"> <strong>Tanggal Presensi</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-
+                                        {{ $carbon::parse($lab->tanggal_kegiatan)->format('d F Y')  }}
                                     </div>
                                     <label class="col-md-3 bold mt-2"><b>Jam Mulai</b></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-
+                                        {{ $carbon::parse($lab->jam_mulai)->format('H:i') }} WIB
                                     </div>
                                 </div>
                                 <div class="row border-bottom mt-2">
                                     <label class="col-md-3 bold"> <strong>Lokasi Penelitian</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <div>
-
+                                            {{ $lab->lokasi->nama_lokasi }}
                                         </div>
                                     </div>
                                     <label class="col-md-3 bold mt-1"><strong>Jam Selesai</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-
+                                        {{ $carbon::parse($lab->jam_selesai)->format('H:i') }} WIB
+                                    </div>
+                                </div>
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"> <strong>Nama Kegiatan</strong></label>
+                                    <div class="col" style="display:block;word-wrap:break-word;">
+                                        <div>
+                                            {{ $lab->nama_kegiatan }}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row border-bottom mt-2">
                                     <label class="col-md-3 bold"> <strong>Keterangan</strong></label>
-                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    <div class="col" style="display:block;word-wrap:break-word;">
                                         <div>
-
+                                            {{ $lab->keterangan }}
                                         </div>
                                     </div>
                                 </div>
