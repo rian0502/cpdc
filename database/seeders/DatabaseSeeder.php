@@ -33,8 +33,11 @@ class DatabaseSeeder extends Seeder
         $this->call(BerkasKelengkapanSeeder::class);
         $this->call(BaseNPMSeeder::class);
         $this->call(TugasAkhirSatuSeeder::class);
-        
+        $this->call(TugasAkhirDuaSeeder::class);
+        $this->call(KompreSeeder::class);
+        $this->call(KpSeeder::class);
         $this->call(AktivitasAlumniSeeder::class);
+
 
 
     }

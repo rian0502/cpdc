@@ -15,6 +15,8 @@ class ModelSeminarKPFactory extends Factory
     public function definition()
     {
         $id = $this->faker->unique()->numberBetween(1, 999999);
+        $date = $this->faker->dateTimeBetween('-2 months', '+2 months');
+
         return [
             'encrypt_id' => Crypt::encrypt($id),
             'judul_kp' => $this->faker->sentence(3),
@@ -34,6 +36,8 @@ class ModelSeminarKPFactory extends Factory
             'proses_admin' => $this->faker->randomElement(['Proses', 'Valid', 'Invalid']),
             'id_dospemkp' => $this->faker->numberBetween(1, 7),
             'id_mahasiswa' => $this->faker->numberBetween(1, 8),
+            'created_at' => now(), // '2021-06-29 08:00:00'
+            'updated_at' => $date,
         ];
     }
 }
