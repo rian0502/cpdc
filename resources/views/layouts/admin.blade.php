@@ -519,11 +519,6 @@
                         <li>
                             <a href="{{ route('mahasiswa.pendataan_alumni.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni*') ? 'active' : '' }}">
-                                <span class="micon fa-solid fa-flask-vial"></span><span class="mtext">laboratorium TA</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('mahasiswa.pendataan_alumni.index') }}" class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni*')?'active':'' }}">
                                 <span class="micon fa fa-user-graduate"></span><span class="mtext">Pendataan
                                     Alumni</span>
                             </a>
@@ -570,6 +565,13 @@
                                         class="{{ Request::is('admin/berkas/validasi/sidang/kompre*') ? 'active' : '' }}">Komprehensif</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="{{ route('berkas.validasi.pendataan_alumni.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('admin/berkas/validasi/pendataan_alumni*') ? 'active' : '' }}">
+                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Validasi
+                                    Alumni</span>
+                            </a>
                         </li>
                     @endrole
 

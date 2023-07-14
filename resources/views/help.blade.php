@@ -18,8 +18,143 @@
             <div class="min-height-200px">
 
                 <div class="faq-wrap">
-                    @role('mahasiswa')
-                        <h4 class="mb-20 h4 text-blue mb-3">Daftar Seminar</h4>
+                    <h4 class="mb-20 h4 text-blue mb-3">Daftar Seminar</h4>
+                    @if (Auth::check())
+                        @role('mahasiswa')
+                            <div id="accordion">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#kp">
+                                            Mendaftar Seminar Kerja Praktik
+                                        </button>
+                                    </div>
+                                    <div id="kp" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <div>Daftar Seminar kerja praktik dapat dilakukan dengan cara berikut:</div>
+                                            <div class="text-justify">
+                                                Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah
+                                                masuk
+                                                pada akun, kemudian pergi ke tab <strong>Seminar</strong> yang terletak pada
+                                                bagian
+                                                bawah logo
+                                                CPDC. Setelah itu, klik pada opsi <a class="text-primary bold"
+                                                    href="/mahasiswa/seminar/kp">Kerja Praktik</a>.
+
+                                                Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah
+                                                mengisi
+                                                data, klik tombol <strong>Submit</strong> untuk melanjutkan.
+
+                                                Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
+                                                praktik
+                                                dengan mudah.
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#ta1">
+                                            Mendaftar Seminar Tugas Akhir 1
+                                        </button>
+                                    </div>
+                                    <div id="ta1" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <div>Daftar Seminar Tugas Akhir 1 dapat dilakukan dengan cara berikut:</div>
+                                            <div class="text-justify">
+                                                Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah
+                                                masuk
+                                                pada akun, kemudian klik pada tab <strong>Seminar</strong> yang terletak pada
+                                                bagian
+                                                bawah logo
+                                                CPDC. Setelah itu, klik pada opsi
+                                                <a class="text-primary bold" href="/mahasiswa/seminar/tugas_akhir_1">Tugas Akhir
+                                                    1</a>.
+                                                Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah
+                                                mengisi
+                                                data, klik tombol <strong>Submit</strong> untuk melanjutkan.
+
+                                                Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
+                                                praktik
+                                                dengan mudah.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#ta2">
+                                            Mendaftar Seminar Tugas Akhir 2
+                                        </button>
+                                    </div>
+                                    <div id="ta2" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <div>Daftar Seminar Tugas Akhir 2 dapat dilakukan dengan cara berikut:</div>
+                                            <div class="text-justify">
+                                                Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah
+                                                masuk
+                                                pada akun, pastikan anda sudah menyelesaikan
+                                                <a class="text-primary bold" href="/mahasiswa/seminar/tugas_akhir_1">
+                                                    Seminar Tugas Akhir 1
+                                                </a>
+                                                terlebih dahulu sebelum mendaftar Seminar Tugas Akhir 2. Jika telah
+                                                menyelesaikan
+                                                <strong>Seminar Tugas
+                                                    Akhir 1</strong>, kemudian klik pada tab <strong>Seminar</strong> yang
+                                                terletak
+                                                pada bagian bawah logo
+                                                CPDC. Setelah itu, klik pada opsi
+                                                <a class="text-primary bold" href="/mahasiswa/seminar/tugas_akhir_2">Tugas
+                                                    Akhir 2</a>.
+                                                Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah
+                                                mengisi
+                                                data, klik tombol <strong>Submit</strong> untuk melanjutkan.
+
+                                                Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
+                                                praktik
+                                                dengan mudah.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#kompre">
+                                            Mendaftar Sidang Komprehensif
+                                        </button>
+                                    </div>
+                                    <div id="kompre" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <div>Daftar Sidang Komprehensif dapat dilakukan dengan cara berikut:</div>
+                                            <div class="text-justify">
+                                                Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah
+                                                masuk
+                                                pada akun, pastikan anda sudah menyelesaikan
+                                                <a class="text-primary bold" href="/mahasiswa/seminar/tugas_akhir_2">
+                                                    Seminar Tugas Akhir 2
+                                                </a>
+                                                terlebih dahulu sebelum mendaftar Sidang Komprehensif. Jika telah menyelesaikan
+                                                <strong>Seminar Tugas
+                                                    Akhir 2</strong>, kemudian klik pada tab <strong>Seminar</strong> yang
+                                                terletak
+                                                pada bagian bawah logo
+                                                CPDC. Setelah itu, klik pada opsi
+                                                <a class="text-primary bold" href="/mahasiswa/sidang/kompre">Sidang
+                                                    Komprehensif</a>.
+                                                Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah
+                                                mengisi
+                                                data, klik tombol <strong>Submit</strong> untuk melanjutkan.
+
+                                                Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
+                                                praktik
+                                                dengan mudah.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endrole
+                    @else
                         <div id="accordion">
                             <div class="card">
                                 <div class="card-header">
@@ -29,18 +164,22 @@
                                 </div>
                                 <div id="kp" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
-                                        
+
                                         <div class="text-justify">
-                                            Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah masuk
-                                            pada akun, kemudian pergi ke tab <strong>Seminar</strong> yang terletak pada bagian
+                                            Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah
+                                            masuk
+                                            pada akun, kemudian pergi ke tab <strong>Seminar</strong> yang terletak pada
+                                            bagian
                                             bawah logo
                                             CPDC. Setelah itu, klik pada opsi <a class="text-primary"
                                                 style="font-weight: bold">Kerja Praktik</a>.
 
-                                            Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah mengisi
+                                            Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah
+                                            mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
-                                            Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja praktik
+                                            Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
+                                            praktik
                                             dengan mudah.
                                         </div>
 
@@ -55,18 +194,22 @@
                                 </div>
                                 <div id="ta1" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
-                                        
+
                                         <div class="text-justify">
-                                            Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah masuk
-                                            pada akun, kemudian klik pada tab <strong>Seminar</strong> yang terletak pada bagian
+                                            Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah
+                                            masuk
+                                            pada akun, kemudian klik pada tab <strong>Seminar</strong> yang terletak pada
+                                            bagian
                                             bawah logo
                                             CPDC. Setelah itu, klik pada opsi
-                                            <a class="text-primary" style="font-weight: bold">Tugas Akhir
-                                                1</a>.
-                                            Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah mengisi
+                                            <span class="text-primary" style="font-weight: bold">Tugas Akhir
+                                                1</span>.
+                                            Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah
+                                            mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
-                                            Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja praktik
+                                            Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
+                                            praktik
                                             dengan mudah.
                                         </div>
                                     </div>
@@ -80,24 +223,29 @@
                                 </div>
                                 <div id="ta2" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
-                                        
+
                                         <div class="text-justify">
-                                            Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah masuk
+                                            Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah
+                                            masuk
                                             pada akun, pastikan anda sudah menyelesaikan
                                             <a class="text-primary" style="font-weight: bold"">
                                                 Seminar Tugas Akhir 1
                                             </a>
-                                            terlebih dahulu sebelum mendaftar Seminar Tugas Akhir 2. Jika telah menyelesaikan
+                                            terlebih dahulu sebelum mendaftar Seminar Tugas Akhir 2. Jika telah
+                                            menyelesaikan
                                             <strong>Seminar Tugas
-                                                Akhir 1</strong>, kemudian klik pada tab <strong>Seminar</strong> yang terletak
+                                                Akhir 1</strong>, kemudian klik pada tab <strong>Seminar</strong> yang
+                                            terletak
                                             pada bagian bawah logo
                                             CPDC. Setelah itu, klik pada opsi
                                             <span class="text-primary" style="font-weight: bold">Tugas
                                                 Akhir 2</span>.
-                                            Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah mengisi
+                                            Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah
+                                            mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
-                                            Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja praktik
+                                            Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
+                                            praktik
                                             dengan mudah.
                                         </div>
                                     </div>
@@ -111,73 +259,88 @@
                                 </div>
                                 <div id="kompre" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
-                                        
+
                                         <div class="text-justify">
-                                            Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah masuk
+                                            Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah
+                                            masuk
                                             pada akun, pastikan anda sudah menyelesaikan
-                                            <span class="text-primary" style="font-weight: bold" >
+                                            <span class="text-primary" style="font-weight: bold">
                                                 Seminar Tugas Akhir 2
                                             </span>
                                             terlebih dahulu sebelum mendaftar Sidang Komprehensif. Jika telah menyelesaikan
                                             <strong>Seminar Tugas
-                                                Akhir 2</strong>, kemudian klik pada tab <strong>Seminar</strong> yang terletak
+                                                Akhir 2</strong>, kemudian klik pada tab <strong>Seminar</strong> yang
+                                            terletak
                                             pada bagian bawah logo
                                             CPDC. Setelah itu, klik pada opsi
-                                            <span class="text-primary" style="font-weight: bold" >Sidang
+                                            <span class="text-primary" style="font-weight: bold">Sidang
                                                 Komprehensif</span>.
-                                            Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah mengisi
+                                            Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah
+                                            mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
-                                            Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja praktik
+                                            Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
+                                            praktik
                                             dengan mudah.
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endrole
+                    @endif
+
 
                     <h4 class="mb-30 h4 text-blue padding-top-30 mb-4">Mengubah Data Profil Akun</h4>
-                    <div id="accordion1">
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#foto">
-                                    Mengganti Foto Profil
-                                </button>
-                            </div>
-                            <div id="foto" class="collapse" data-parent="#accordion1">
-                                <div class="card-body">
-
-                                    <div class="text-justify">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus debitis ab
-                                        iusto quidem consequatur nesciunt corporis illo aliquam dignissimos necessitatibus!
-                                        Sed mollitia illum consectetur repellat, magni eaque. Possimus vero tempore ex
-                                        deserunt impedit tenetur eaque dolorum voluptatibus aliquid, quaerat quidem
-                                        deleniti! Inventore et itaque illum maxime sint distinctio maiores. Consectetur?
-                                    </div>
-
+                    @if (Auth::check())
+                        <div id="accordion1">
+                            <div class="card">
+                                <div class="card-header">
+                                    <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#foto">
+                                        Mengganti Foto Profil
+                                    </button>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card mb-5">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#bio">
-                                    Mengubah Biodata
-                                </button>
-                            </div>
-                            <div id="bio" class="collapse" data-parent="#accordion1">
-                                <div class="card-body">
-                                    <div class="text-justify">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ullam voluptatem
-                                        officia natus totam esse distinctio voluptate aspernatur quam molestias! Voluptate,
-                                        laborum minus quas recusandae molestiae, dolorum alias libero blanditiis nostrum
-                                        nihil, iste dignissimos explicabo enim mollitia! Optio sunt cum vitae repudiandae,
-                                        culpa, voluptates, cumque accusantium impedit ratione inventore dicta.
+                                <div id="foto" class="collapse" data-parent="#accordion1">
+                                    <div class="card-body">
+                                        <div class="text-justify">
+                                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus
+                                            debitis ab
+                                            iusto quidem consequatur nesciunt corporis illo aliquam dignissimos
+                                            necessitatibus!
+                                            Sed mollitia illum consectetur repellat, magni eaque. Possimus vero tempore
+                                            ex
+                                            deserunt impedit tenetur eaque dolorum voluptatibus aliquid, quaerat quidem
+                                            deleniti! Inventore et itaque illum maxime sint distinctio maiores.
+                                            Consectetur?
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="card mb-5">
+                                <div class="card-header">
+                                    <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#bio">
+                                        Mengubah Biodata
+                                    </button>
+                                </div>
+                                <div id="bio" class="collapse" data-parent="#accordion1">
+                                    <div class="card-body">
+                                        <div class="text-justify">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ullam
+                                            voluptatem
+                                            officia natus totam esse distinctio voluptate aspernatur quam molestias!
+                                            Voluptate,
+                                            laborum minus quas recusandae molestiae, dolorum alias libero blanditiis
+                                            nostrum
+                                            nihil, iste dignissimos explicabo enim mollitia! Optio sunt cum vitae
+                                            repudiandae,
+                                            culpa, voluptates, cumque accusantium impedit ratione inventore dicta.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    @else
+                        <p>Teks yang muncul saat belum login</p>
+                    @endif
 
                     <h4 class="mb-30 h4 text-blue padding-top-30 mb-4">Kata Sandi</h4>
                     <div id="accordion2">
@@ -192,7 +355,8 @@
 
                                     <div class="text-justify">
                                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus debitis ab
-                                        iusto quidem consequatur nesciunt corporis illo aliquam dignissimos necessitatibus!
+                                        iusto quidem consequatur nesciunt corporis illo aliquam dignissimos
+                                        necessitatibus!
                                         Sed mollitia illum consectetur repellat, magni eaque. Possimus vero tempore ex
                                         deserunt impedit tenetur eaque dolorum voluptatibus aliquid, quaerat quidem
                                         deleniti! Inventore et itaque illum maxime sint distinctio maiores. Consectetur?
@@ -211,9 +375,11 @@
                                 <div class="card-body">
                                     <div class="text-justify">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ullam voluptatem
-                                        officia natus totam esse distinctio voluptate aspernatur quam molestias! Voluptate,
+                                        officia natus totam esse distinctio voluptate aspernatur quam molestias!
+                                        Voluptate,
                                         laborum minus quas recusandae molestiae, dolorum alias libero blanditiis nostrum
-                                        nihil, iste dignissimos explicabo enim mollitia! Optio sunt cum vitae repudiandae,
+                                        nihil, iste dignissimos explicabo enim mollitia! Optio sunt cum vitae
+                                        repudiandae,
                                         culpa, voluptates, cumque accusantium impedit ratione inventore dicta.
                                     </div>
                                 </div>
@@ -226,6 +392,4 @@
             </div>
         </div>
     </div>
-
-
 @endsection

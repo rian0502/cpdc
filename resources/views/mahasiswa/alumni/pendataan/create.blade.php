@@ -10,31 +10,18 @@
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
                 <!-- Default Basic Forms Start -->
-                <div class="pd-20 card-box mb-30">
+                <div class="pd-20 card-box">
                     <div class="clearfix">
                         <div class="pull-left">
                             <h4 class="text-dark h4">Pendatan Alumni</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{-- route('mahasiswa.seminar.tugas_akhir_1.store') --}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('mahasiswa.pendataan_alumni.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
-                                <div class="form-group">
-                                    <label>Semester</label>
-                                    <select name="semester" id="semester" class="selectpicker form-control" data-size="5"
-                                        name="semester">
-                                        <option value="Ganjil" {{ old('semester') == 'Ganjil' ? 'selected' : '' }}>Ganjil
-                                        </option>
-                                        <option value="Genap" {{ old('semester') == 'Ganjil' ? '' : 'selected' }}>Genap
-                                        </option>
-                                    </select>
-                                    @error('semester')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
                                 <div class="form-group">
                                     <label>Tahun Akademik</label>
                                     <select id="tahun_akademik" class="selectpicker form-control" data-size="5"
@@ -46,7 +33,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>SKS Akhir</label>
-                                    <input autofocus name="sks" id="jumlah_sks" class="form-control" type="number"
+                                    <input autofocus name="sks" id="jumlah_sks" class="form-control" type="number" value="{{ old('sks') }}"
                                         value="{{ old('sks') }}" placeholder="Jumlah SKS Saat Ini">
                                     @error('sks')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -54,78 +41,69 @@
                                 </div>
                                 <div class="form-group">
                                     <label>IPK</label>
-                                    <input autofocus name="ipk" id="ipk" class="form-control" type="text"
+                                    <input autofocus name="ipk" id="ipk" class="form-control" type="text" value="{{ old('ipk') }}"
                                         value="{{ old('ipk') }}" placeholder="Contoh : 3.55">
                                     @error('ipk')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Nilai</label>
-                                    <input autofocus name="nilai" id="nilai" class="form-control" type="text"
-                                        value="{{ old('nilai') }}" placeholder="Nilai">
-                                    @error('nilai')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
                                     <div class="form-group">
                                         <label>Tanggal Lulus Sidang Komprehensif</label>
-                                        <input class="form-control date-picker" type="text" name="periode_seminar"
-                                            value="{{ old('periode_seminar') }}" id="periode_seminar"
+                                        <input class="form-control" type="date" name="tgl_lulus" value="{{ old('tgl_lulus') }}"
+                                            value="{{ old('tgl_lulus') }}" id="tgl_lulus"
                                             placeholder="Periode Seminar">
-                                        @error('periode_seminar')
+                                        @error('tgl_lulus')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Masa Studi
-                                        <small>Dalam Tahun</small>
+                                    <label>
+                                        Lembar Pengesahan
                                     </label>
-                                    <input name="nilai" id="nilai" class="form-control" type="number"
-                                        value="{{ old('nilai') }}" placeholder="Masa Studi">
-                                    @error('nilai')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    <div class="custom-file mb-1">
+                                        <label class="custom-file-label" for="link-berkas_pengesahan"
+                                            id="label-berkas_pengesahan">Pilih File</label>
+                                        <input value="{{ old('berkas_pengesahan') }}" accept=".pdf" autofocus
+                                            name="berkas_pengesahan" id="file-berkas_pengesahan"
+                                            class="custom-file-input form-control @error('berkas_pengesahan') form-control-danger @enderror"
+                                            type="file" placeholder="FILE SK"
+                                            onchange="updateFileNameAndLink('file-berkas_pengesahan','label-berkas_pengesahan','link-berkas_pengesahan')">
+                                    </div>
+                                    <small class="mt-2"> <a id="link-berkas_pengesahan" href="#"
+                                            target="_blank" style="display: none;">Lihat File</a> </small>
+                                    @error('berkas_pengesahan')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-
                             </div>
 
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Rencana Setelah Lulus</label>
-                                    <select name="rencana_lulus" id="rencana_lulus" class="selectpicker form-control"
-                                        data-size="5" name="rencana_lulus">
-                                        <option value="Bekerja" {{ old('rencana_lulus') == 'Bekerja' ? 'selected' : '' }}>
-                                            Bekerja
-                                        </option>
-                                        <option value="Studi Lanjut"
-                                            {{ old('rencana_lulus') == 'Studi Lanjut' ? '' : 'selected' }}>
-                                            Studi Lanjut
-                                        </option>
-                                        <option value="Belum Ada"
-                                            {{ old('rencana_lulus') == 'Belum Ada' ? '' : 'selected' }}>
-                                            Belum Ada
-                                        </option>
-                                    </select>
-                                    @error('rencana_lulus')
+                                    <label>Masa Studi
+                                        <small>Dalam Tahun</small>
+                                    </label>
+                                    <input name="masa_studi" id="masa_studi" class="form-control" type="text" value="{{ old('masa_studi') }}"
+                                        value="{{ old('masa_studi') }}" placeholder="Masa Studi">
+                                    @error('masa_studi')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+
                                 <div class="form-group">
                                     <label>Rencana Periode Wisuda</label>
-                                    <input class="form-control month-picker" type="text" name="periode_seminar"
-                                        value="{{ old('periode_seminar') }}" id="periode_seminar"
-                                        placeholder="Periode Seminar">
-                                    @error('periode_seminar')
+                                    <input class="form-control month-picker" type="text" name="periode_wisuda" value="{{ old('periode_wisuda') }}"
+                                        value="{{ old('periode_wisuda') }}" id="periode_wisuda"
+                                        placeholder="Periode Wisuda">
+                                    @error('periode_wisuda')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>TOEFL</label>
-                                    <input autofocus name="toefl" id="toefl" class="form-control" type="number"
+                                    <input autofocus name="toefl" id="toefl" class="form-control" type="number" value="{{ old('toefl') }}"
                                         min="0" value="{{ old('toefl') }}" placeholder="Nilai TOEFL">
                                     @error('toefl')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -133,20 +111,20 @@
                                 </div>
                                 <div class="form-group">
                                     <label>
-                                        Berkas Transkrip Nilai
+                                        Transkrip
                                     </label>
                                     <div class="custom-file mb-1">
-                                        <label class="custom-file-label" for="link-berkas_seminar_ta_satu"
-                                            id="label-berkas_seminar_ta_satu">Pilih File</label>
-                                        <input value="{{ old('berkas_seminar_ta_satu') }}" accept=".pdf" autofocus
-                                            name="berkas_seminar_ta_satu" id="file-berkas_seminar_ta_satu"
-                                            class="custom-file-input form-control @error('berkas_seminar_ta_satu') form-control-danger @enderror"
+                                        <label class="custom-file-label" for="link-transkrip"
+                                            id="label-transkrip">Pilih File</label>
+                                        <input value="{{ old('transkrip') }}" accept=".pdf" autofocus
+                                            name="transkrip" id="file-transkrip"
+                                            class="custom-file-input form-control @error('transkrip') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_seminar_ta_satu','label-berkas_seminar_ta_satu','link-berkas_seminar_ta_satu')">
+                                            onchange="updateFileNameAndLink('file-transkrip','label-transkrip','link-transkrip')">
                                     </div>
-                                    <small class="mt-2"> <a id="link-berkas_seminar_ta_satu" href="#"
+                                    <small class="mt-2"> <a id="link-transkrip" href="#"
                                             target="_blank" style="display: none;">Lihat File</a> </small>
-                                    @error('berkas_seminar_ta_satu')
+                                    @error('transkrip')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -155,35 +133,28 @@
                                         Berkas TOEFL
                                     </label>
                                     <div class="custom-file mb-1">
-                                        <label class="custom-file-label" for="link-berkas_seminar_ta_satu"
-                                            id="label-berkas_seminar_ta_satu">Pilih File</label>
-                                        <input value="{{ old('berkas_seminar_ta_satu') }}" accept=".pdf" autofocus
-                                            name="berkas_seminar_ta_satu" id="file-berkas_seminar_ta_satu"
-                                            class="custom-file-input form-control @error('berkas_seminar_ta_satu') form-control-danger @enderror"
+                                        <label class="custom-file-label" for="link-berkas_toefl"
+                                            id="label-berkas_toefl">Pilih File</label>
+                                        <input value="{{ old('berkas_toefl') }}" accept=".pdf" autofocus
+                                            name="berkas_toefl" id="file-berkas_toefl"
+                                            class="custom-file-input form-control @error('berkas_toefl') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_seminar_ta_satu','label-berkas_seminar_ta_satu','link-berkas_seminar_ta_satu')">
+                                            onchange="updateFileNameAndLink('file-berkas_toefl','label-berkas_toefl','link-berkas_toefl')">
                                     </div>
-                                    <small class="mt-2"> <a id="link-berkas_seminar_ta_satu" href="#"
+                                    <small class="mt-2"> <a id="link-berkas_toefl" href="#"
                                             target="_blank" style="display: none;">Lihat File</a> </small>
-                                    @error('berkas_seminar_ta_satu')
+                                    @error('berkas_toefl')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 {{-- hanya tampil saat mode mobile --}}
-                                <div class="form-group" id="form-mobile">
-                                    <label>Judul atau Topik Tugas Akhir</label>
-                                    <textarea name="judul_ta" id="judul_ta" rows="" class="form-control">{{ old('judul_ta') }}</textarea>
-                                    @error('judul_ta')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="submit btn btn-primary">Submit</button>
                         </div>
                     </form>
-                    <a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}">
+                    <a href="{{ route('mahasiswa.pendataan_alumni.index') }}">
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>
                 </div>

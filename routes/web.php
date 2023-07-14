@@ -39,6 +39,7 @@ use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileDosenController;
 use App\Http\Controllers\AkunMahasiswaController;
 use App\Http\Controllers\ValidasiBaPKLController;
+use App\Http\Controllers\ValidasiPendataanAlumni;
 use App\Http\Controllers\AktivitasAlumniController;
 use App\Http\Controllers\DataMahasiswaAllController;
 use App\Http\Controllers\ProfileMahasiswaController;
@@ -132,6 +133,7 @@ Route::prefix('admin/berkas')->name('berkas.')->middleware(['auth', 'profile', '
     Route::resource('validasi/seminar/ta1', ValidasiAdminTaSatu::class)->names('validasi.seminar.ta1');
     Route::resource('validasi/seminar/ta2', ValidasiAdminTaDua::class)->names('validasi.seminar.ta2');
     Route::resource('validasi/sidang/kompre', AdminKompreController::class)->names('validasi.sidang.kompre');
+    Route::resource('validasi/pendataan_alumni', ValidasiPendataanAlumni::class)->names('validasi.pendataan_alumni');
 });
 //end admin berkas
 
@@ -306,7 +308,7 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::resource('admin_jurusan', PenempatanAdminLabController::class);
 
     Route::get('resetSeminar', [ResetTA::class, 'index'])->name('reset.seminar.index');
-    Route::delete('delete', [ResetTA::class, 'destroy'])->name('reset.seminar.destroy');
+    Route::delete('delete/{id}', [ResetTA::class, 'destroy'])->name('reset.seminar.destroy');
 });
 
 // route FE

@@ -52,127 +52,110 @@
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
 
+                <!-- PESAN -->
+                @if ($pendataan->komentar)
+                    <div class="pd-20 card-box mb-30 bg-warning">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <h4 class="text-dark h4">Pesan</h4>
+                            </div>
+                        </div>
+
+                        <div class="jadwal_seminar">
+                            <div class="pl-3 pr-3 pb-0 mb-2 text-dark rounded-div">
+                                <div class="row mt-3">
+                                    {{-- <label class="col-md-12 bold"><b>Pesan</b></label> --}}
+                                    <div class="col-md-12 mb-3"
+                                        style="display:block;word-wrap:break-word; text-align: justify;">
+                                        {{ $pendataan->komentar }}
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                <!-- PESAN -->
+
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4" style="margin-bottom: 50px">Pendataan Alumni</h4>
-                            {{-- <small>
+                            <h4 class="text-dark h4">Pendataan Alumni</h4>
+                            <small>
                                 <b>
                                     <p
                                         class="mb-30 text-center
-                                        {{ $seminar->status_admin == 'Valid' ? 'Valid' : ($seminar->status_admin == 'Process' ? 'Proses' : 'Invalid') }}">
-                                        {{ $seminar->status_admin }} </p>
+                                        {{ $pendataan->status == 'Valid' ? 'Valid' : ($pendataan->status == 'Pending' ? 'Proses' : 'Invalid') }}">
+                                        {{ $pendataan->status }} </p>
                                 </b>
-                            </small> --}}
+                            </small>
+                        </div>
+                        @if ($pendataan->status != 'Valid')
+                            <a href="{{ route('mahasiswa.pendataan_alumni.edit', $pendataan->encrypted_id) }}">
+                                <button class="btn btn-primary right">Edit Data</button>
+                            </a>
+                        @endif
+                    </div>
+
+                    <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+                        <div class="row border-bottom">
+                            <label class="col-md-3 bold mt-2"> <strong>Tahun Akademik</strong></label>
+                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                {{ $pendataan->tahun_akademik }}
+                            </div>
+                            <label class="col-md-3 bold mt-2"><b>SKS</b></label>
+                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                {{ $pendataan->sks }}
+                            </div>
+                        </div>
+                        <div class="row border-bottom mt-2">
+                            <label class="col-md-3 bold"><b>IPK</b></label>
+                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                {{ $pendataan->ipk }}
+                            </div>
+                            <label class="col-md-3 bold mt-1"><strong>Tanggal Lulus</strong></label>
+                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                {{ $pendataan->tgl_lulus }}
+                            </div>
                         </div>
 
-                        <a href="/mahasiswa/pendataan_alumni/1/edit">
-                            <button class="btn btn-primary right">Edit Data</button>
-                        </a>
-
-                    </div>
-                    <div class="">
-                        <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                            <div class="row border-bottom">
-                                <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $mahasiswa->npm }} --}}
-                                </div>
-                                <label class="col-md-3 bold mt-2"><b>IPK</b></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->pembimbing_satu->nama_dosen }} --}}
-                                </div>
+                        <div class="row border-bottom">
+                            <label class="col-md-3 bold mt-2"> <strong>Masa Studi</strong></label>
+                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                {{ $pendataan->masa_studi }}
                             </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"><b>Nama Mahasiswa</b></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $mahasiswa->nama_mahasiswa }} --}}
-                                </div>
-                                <label class="col-md-3 bold mt-1"><strong>Nilai</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-
-                                </div>
+                            <label class="col-md-3 bold mt-2"> <strong>Waktu Wisuda</strong></label>
+                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                {{ $pendataan->periode_wisuda }}
                             </div>
+                        </div>
 
-                            <div class="row border-bottom">
-                                <label class="col-md-3 bold mt-2"> <strong>Tahun Akademik</strong></label>
-                                <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->tahun_akademik }} --}}
-                                </div>
-                                <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
-                                <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                        <div class="row border-bottom mt-2">
+                            <label class="col-md-3 bold mt-1"> <strong>TOEFL</strong></label>
+                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                {{ $pendataan->toefl }}
+                            </div>
+                            <label class="col-md-3 bold"> <strong>Berkas TOEFL</strong></label>
+                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                <a target="_blank" href="/uploads/berkas_toefl/{{ $pendataan->berkas_toefl }}">Lihat</a>
+                            </div>
+                        </div>
 
-                                </div>
+                        <div class="row border-bottom mt-2">
+                            <label class="col-md-3 bold mt-1"> <strong>Berkas Transkrip</strong></label>
+                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                <a target="_blank" href="/uploads/transkrip/{{ $pendataan->transkrip }}">Lihat</a>
                             </div>
-
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold mt-1"> <strong>Semester</strong></label>
-                                <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $mahasiswa->semester }} --}}
-                                </div>
-                                <label class="col-md-3 bold"> <strong>SKS Akhir</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->pembahas->nama_dosen }} --}}
-                                </div>
-                            </div>
-
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold mt-1"> <strong>Masa Studi</strong></label>
-                                <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $mahasiswa->semester }} --}}
-                                </div>
-                                <label class="col-md-3 bold mt-1"> <strong>Nomor Telepon</strong></label>
-                                <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $mahasiswa->semester }} --}}
-                                </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold mt-1"> <strong>Rencana Setelah Lulus</strong></label>
-                                <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $mahasiswa->semester }} --}}
-                                </div>
-                                <label class="col-md-3 bold"> <strong>Tim Penguji</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a href="/mahasiswa/pendataan_alumni/show">Lihat Penguji</a>
-                                </div>
-                            </div>
-
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold mt-2"> <strong>Rencana Periode Wisuda</strong></label>
-                                <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->sks }} --}}
-                                </div>
-                                <label class="col-md-3 bold"> <strong>Berkas TOEFL</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a target="_blank" href="/uploads/syarat_seminar_ta1/{{-- $seminar->berkas_ta_satu --}}">Lihat
-                                        Berkas</a>
-                                </div>
-                            </div>
-
-                            <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold mt-2"> <strong>Tanggal Lulus Komprehensif</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->ipk }} --}}
-                                </div>
-                                <label class="col-md-3 bold"> <strong>Berkas Transkrip</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a target="_blank" href="/uploads/syarat_seminar_ta1/{{-- $seminar->berkas_ta_satu --}}">Lihat
-                                        Berkas</a>
-                                </div>
-                            </div>
-                            <div class="row border-bottom mt-3">
-                                <label class="col-md-12 bold"><b>Judul atau Topik Tugas Akhir</b></label>
-                                <div class="col-md-12 mb-3 text-justify" style="display:block;word-wrap:break-word;">
-                                    {{-- {{ $seminar->judul_ta }} --}}
-                                </div>
+                            <label class="col-md-3 bold mt-1"> <strong>Lembar Pengesahan</strong></label>
+                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                <a target="_blank"
+                                    href="/uploads/berkas_pengesahan/{{ $pendataan->berkas_pengesahan }}">Lihat</a>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
 
 
