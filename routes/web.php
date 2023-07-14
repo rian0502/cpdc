@@ -75,6 +75,7 @@ use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 use App\Http\Controllers\ResetTA;
+use App\Http\Controllers\LabTAController;
 
 /*
 |--------------------------------------------------------------------------
@@ -219,6 +220,9 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
     });
     Route::resource('aktivitas_alumni', AktivitasAlumniController::class)->names('aktivitas_alumni');
     Route::resource('pendataan_alumni', PendataanAlumni::class)->names('pendataan_alumni');
+
+    Route::get('lab', [LabTAController::class, 'index'])->name('lab.index');
+    Route::get('lab/cekin', [LabTAController::class, 'cekin'])->name('lab.cekin');
 });
 
 

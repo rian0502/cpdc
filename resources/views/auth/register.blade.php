@@ -128,6 +128,8 @@
                                                 <select class="custom-select2 form-control " value="{{ old('id_dosen') }}" name="id_dosen"
                                                     style="width: 100%; height: 38px">
                                                     <optgroup label="Dosen Pembimbing Akademik">
+                                                        //tidak ada di daftar
+                                                        <option value="">Tidak ada di daftar</option>
                                                         @foreach ($dosen as $PA)
                                                             <option value="{{ $PA->encrypt_id }}">{{ $PA->nama_dosen }}
                                                             </option>
@@ -135,6 +137,25 @@
                                                     </optgroup>
 
                                                 </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Jenis Akun</label>
+                                                <div class="">
+                                                    <div
+                                                        class="custom-control custom-radio custom-control-inline pb-0">
+                                                        <input type="radio" id="mahasiswa" name="gender"
+                                                            value="mahasiswa" class="custom-control-input" />
+                                                        <label class="custom-control-label"
+                                                            for="mahasiswa">Mahasiswa</label>
+                                                    </div>
+                                                    <div
+                                                        class="custom-control custom-radio custom-control-inline pb-0">
+                                                        <input type="radio" id="alumni" name="gender"
+                                                            value="alumni" class="custom-control-input" />
+                                                        <label class="custom-control-label"
+                                                            for="alumni">Alumni</label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -186,6 +207,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                     <div class="row mt-3">
