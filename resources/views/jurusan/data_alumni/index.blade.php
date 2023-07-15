@@ -74,8 +74,8 @@
                     autoWidth: false,
                     ajax: '{{ route('jurusan.alumni.index') }}',
                     columns: [{
-                            data: 'id',
-                            name: 'name',
+                            data: 'npm',
+                            name: 'npm',
                             render: function(data, type, row, meta) {
                                 return meta.row + meta.settings._iDisplayStart + 1;
                             }
@@ -86,26 +86,28 @@
                             orderable: true
                         },
                         {
-                            data: 'mahasiswa.npm',
-                            name: 'mahasiswa.npm',
-                            orderable: true
+                            data: 'npm',
+                            name: 'npm',
                         },
                         {
                             data: 'mahasiswa.kegiatan_terakhir.jabatan',
                             name: 'mahasiswa.kegiatanTerakhir.jabatan',
-                            orderable: true
+                            orderable: false,
                         },
                         {
                             data: 'mahasiswa.kegiatan_terakhir.tempat',
-                            name: 'mahasiswa.kegiatanTerakhir.tempat'
+                            name: 'mahasiswa.kegiatanTerakhir.tempat',
+                            orderable: false,
                         },
                         {
                             data: 'mahasiswa.kegiatan_terakhir.status',
-                            name: 'mahasiswa.kegiatanTerakhir.status'
+                            name: 'mahasiswa.kegiatanTerakhir.status',
+                            orderable: false,
                         },
                         {
                             data: 'mahasiswa.kegiatan_terakhir.tahun_masuk',
                             name: 'mahasiswa.kegiatanTerakhir.tahun_masuk',
+                            orderable: false,
                             render: function(data) {
                                 var date = new Date(data);
                                 var formattedDate = date.toISOString().slice(0, 10);

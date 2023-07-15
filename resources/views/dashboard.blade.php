@@ -713,7 +713,7 @@
                     <div id="chart_seminar2"></div>
                 </div>
             @endrole
-            @role('mahasiswa')
+            @role(['alumni', 'mahasiswa'])
                 <div class="row pb-10">
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                         <div class="card-box height-100-p widget-style3">

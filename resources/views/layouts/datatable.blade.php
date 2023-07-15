@@ -215,12 +215,9 @@
                         @elseif(auth()->user()->hasRole('dosen'))
                             <a class="dropdown-item" href="{{ route('dosen.profile.index') }} "><i
                                     class="dw dw-user1"></i> Profil</a>
-                        @elseif(auth()->user()->hasRole('mahasiswa'))
+                        @elseif(auth()->user()->hasRole(['mahasiswa','alumni']))
                             <a class="dropdown-item" href="{{ route('mahasiswa.profile.index') }}"><i
                                     class="dw dw-user1"></i>
-                                Profil</a>
-                        @elseif(auth()->user()->hasRole('alumni'))
-                            <a class="dropdown-item" href="{{-- {{ route('alumni.profile.index')}} --}}"><i class="dw dw-user1"></i>
                                 Profil</a>
                         @elseif(auth()->user()->hasRole('kalab'))
                             <a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profil</a>
@@ -524,7 +521,8 @@
                         <li>
                             <a href="{{ route('mahasiswa.lab.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/lab*') ? 'active' : '' }}">
-                                <span class="micon fa-solid fa-flask-vial"></span><span class="mtext">laboratorium TA</span>
+                                <span class="micon fa-solid fa-flask-vial"></span><span class="mtext">laboratorium
+                                    TA</span>
                             </a>
                         </li>
                         <li>
@@ -534,15 +532,15 @@
                                     Alumni</span>
                             </a>
                         </li>
-                        @role('alumni')
-                            <li>
-                                <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}"
-                                    class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni*') ? 'active' : '' }}">
-                                    <span class="micon fa fa-user-graduate"></span><span class="mtext">Aktivitas
-                                        Alumni</span>
-                                </a>
-                            </li>
-                        @endrole
+                    @endrole
+                    @role('alumni')
+                        <li>
+                            <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni*') ? 'active' : '' }}">
+                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Aktivitas
+                                    Alumni</span>
+                            </a>
+                        </li>
                     @endrole
 
                     @role('admin berkas')
@@ -578,7 +576,7 @@
                         </li>
                         <li>
                             <a href="{{ route('berkas.validasi.pendataan_alumni.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('admin/berkas/validasi/pendataan_alumni*')?'active':'' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('admin/berkas/validasi/pendataan_alumni*') ? 'active' : '' }}">
                                 <span class="micon fa fa-user-graduate"></span><span class="mtext">Validasi
                                     Alumni</span>
                             </a>

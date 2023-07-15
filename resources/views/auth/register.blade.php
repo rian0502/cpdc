@@ -143,14 +143,14 @@
                                                 <div class="">
                                                     <div
                                                         class="custom-control custom-radio custom-control-inline pb-0">
-                                                        <input type="radio" id="mahasiswa" name="gender"
+                                                        <input type="radio" id="mahasiswa" name="jenis_akun"
                                                             value="mahasiswa" class="custom-control-input" />
                                                         <label class="custom-control-label"
                                                             for="mahasiswa">Mahasiswa</label>
                                                     </div>
                                                     <div
                                                         class="custom-control custom-radio custom-control-inline pb-0">
-                                                        <input type="radio" id="alumni" name="gender"
+                                                        <input type="radio" id="alumni" name="jenis_akun"
                                                             value="alumni" class="custom-control-input" />
                                                         <label class="custom-control-label"
                                                             for="alumni">Alumni</label>
