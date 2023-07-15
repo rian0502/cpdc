@@ -49,8 +49,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="p-md-4">
 
                         <div class="p-3 mb-2 bg-light text-dark rounded-div">
@@ -269,10 +267,8 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                        </div>
-                                        <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Jadwal</h5>
-                                            @if ($kp)
+                                            <h5 class="h4 text-blue mb-20">Jadwal Seminar</h5>
+                                            @if ($kp != null && $kp->berita_acara != null)
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     {{-- BUAT KONDISI DISINI --}}
                                                     <div class="row border-bottom">
@@ -328,11 +324,8 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                        </div>
-
-                                        <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Berita Acara</h5>
-                                            @if ($kp && $kp->berita_acara)
+                                            @if ($kp != null && $kp->berita_acara != null)
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     {{-- BUAT KONDISI DISINI --}}
                                                     <div class="row border-bottom">
@@ -387,7 +380,6 @@
                                     </div>
                                 </div>
                                 {{-- kp end --}}
-
                                 {{-- ta1 start --}}
                                 <div class="tab-pane fade " id="ta1" role="tabpanel">
                                     <div class="pd-20">
@@ -502,10 +494,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                        </div>
-
-                                        <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Jadwal</h5>
+                                            <h5 class="h4 text-blue mb-20">Jadwal Seminar</h5>
                                             @if ($seminarTa1)
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="row border-bottom">
@@ -559,9 +548,6 @@
                                                     </div>
                                                 </div>
                                             @endif
-
-                                        </div>
-                                        <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Berita Acara</h5>
                                             @if ($ba_ta1 != null)
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
@@ -581,7 +567,7 @@
                                                         <label class="col-md-3 bold"> <strong>PPT</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/ta_satu/{{ $ba_ta1->ta_satu }}">Lihat</a>
+                                                                href="{{ $ba_ta1->ta_satu }}">Lihat</a>
                                                         </div>
                                                         <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -619,6 +605,9 @@
                                                 </div>
                                             @endif
                                         </div>
+
+
+
                                     </div>
                                 </div>
                                 {{-- ta1 end --}}
@@ -626,7 +615,6 @@
                                 {{-- ta2 start --}}
                                 <div class="tab-pane fade" id="ta2" role="tabpanel">
                                     <div class="pd-20">
-
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Data Seminar Tugas Akhir Dua</h5>
                                             @if ($seminarTa2 != null)
@@ -654,7 +642,6 @@
                                                             @endif
                                                         </div>
                                                     </div>
-
                                                     <div class="row border-bottom">
                                                         <label class="col-md-3 bold mt-2"> <strong>Tahun
                                                                 Akademik</strong></label>
@@ -726,8 +713,6 @@
                                                             {{ $seminarTa2->status_admin }}
                                                         </div>
                                                     </div>
-
-
                                                 </div>
                                             @else
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
@@ -738,10 +723,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                        </div>
-
-                                        <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Jadwal</h5>
+                                            <h5 class="h4 text-blue mb-20">Jadwal Seminar</h5>
                                             @if ($seminarTa2)
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="row border-bottom">
@@ -795,9 +777,6 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                        </div>
-
-                                        <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Berita Acara</h5>
                                             @if ($ba_ta2 != null)
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
@@ -817,7 +796,7 @@
                                                         <label class="col-md-3 bold"> <strong>PPT</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/ta_dua/{{ $ba_ta2->berkas_ppt_seminar_ta_dua }}">Lihat</a>
+                                                                href="{{ $ba_ta2->berkas_ppt_seminar_ta_dua }}">Lihat</a>
                                                         </div>
                                                         <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -855,7 +834,6 @@
                                                 </div>
                                             @endif
                                         </div>
-
                                     </div>
                                 </div>
                                 {{-- ta2 end --}}
@@ -863,9 +841,8 @@
                                 {{-- kompre start --}}
                                 <div class="tab-pane fade" id="kompre" role="tabpanel">
                                     <div class="pd-20">
-
                                         <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Data Seminar Komprehensif</h5>
+                                            <h5 class="h4 text-blue mb-20">Data Sidang Komprehensif</h5>
                                             @if ($sidangKompre != null)
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="row border-bottom mt-3">
@@ -899,7 +876,7 @@
                                                             {{ $sidangKompre->tahun_akademik }}
                                                         </div>
                                                         <label class="col-md-3 bold mt-2"> <strong>NIP Dosen
-                                                                External</strong trong></label>
+                                                                External</strong></label>
                                                         <div class="col-md-3 mt-2"
                                                             style="display:block;word-wrap:break-word;">
                                                             @if ($sidangKompre->pbl2_nip)
@@ -907,10 +884,6 @@
                                                             @else
                                                                 -
                                                             @endif
-                                                        </div>
-                                                        <div class="col-md-3 mt-2"
-                                                            style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->mitra }}
                                                         </div>
                                                     </div>
 
@@ -955,15 +928,16 @@
                                                     </div>
 
                                                     <div class="row mt-2">
-                                                        <label class="col-md-3 bold mt-2">
-                                                            <strong>TOEFL</strong></label>
+                                                        <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             {{ $sidangKompre->toefl }}
                                                         </div>
-                                                    </div>
-                                                    <label class="col-md-3 bold"> <strong>Status Berkas</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $sidangKompre->status_admin }}
+
+                                                        <label class="col-md-3 bold"> <strong>Status
+                                                                Berkas</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $sidangKompre->status_admin }}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             @else
@@ -975,10 +949,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                        </div>
-
-                                        <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Jadwal</h5>
+                                            <h5 class="h4 text-blue mb-20">Jadwal Seminar</h5>
                                             @if ($sidangKompre)
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="row border-bottom">
@@ -1022,24 +993,21 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                @else
-                                                    <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                                        <div class="d-flex justify-content-center align-items-center mt-2">
-                                                            <div>
-                                                                <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
-                                                            </div>
+                                                </div>
+                                            @else
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    <div class="d-flex justify-content-center align-items-center mt-2">
+                                                        <div>
+                                                            <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
                                                         </div>
                                                     </div>
+                                                </div>
                                             @endif
-                                        </div>
-
-                                        <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Berita Acara</h5>
                                             @if ($ba_kompre != null)
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="row border-bottom">
-                                                        <label class="col-md-3 bold"> <strong>Berita
-                                                                Acara</strong></label>
+                                                        <label class="col-md-3 bold"> <strong>Berita Acara</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
                                                                 href="/uploads/ba_sidang_kompre/{{ $ba_kompre->ba_seminar_komprehensif }}">Lihat</a>
@@ -1051,19 +1019,16 @@
                                                         </div>
                                                     </div>
                                                     <div class="row border-bottom mt-2">
-                                                        <label class="col-md-3 bold"> <strong>Laporan
-                                                                Akhir</strong></label>
+                                                        <label class="col-md-3 bold"> <strong>Laporan TA</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
                                                                 href="{{ $ba_kompre->laporan_ta }}">Lihat</a>
                                                         </div>
-                                                        <label class="col-md-3 bold"> <strong>Berkas
-                                                                Nilai</strong></label>
+                                                        <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
                                                                 href="/uploads/nilai_sidang_kompre/{{ $ba_kompre->berkas_nilai_kompre }}">Lihat</a>
                                                         </div>
-
                                                     </div>
                                                     <div class="row border-bottom mt-2">
                                                         <label class="col-md-3 bold"> <strong>Nilai
@@ -1084,7 +1049,6 @@
                                                             {{ $sidangKompre->status_koor }}
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             @else
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
@@ -1102,120 +1066,65 @@
 
                                 {{-- prestasi start --}}
 
-
-                            </div>
-                            <div class="tab-pane fade" id="prestasi" role="tabpanel">
-                                <div class="pd-20">
-                                    <table class="table data-table-responsive stripe data-table-noexport wrap ">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Judul Kegiatan</th>
-                                                <th>Peran</th>
-                                                <th>Tanggal</th>
-                                                <th>SKS Konversi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($aktivitas as $item)
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->nama_aktivitas }}</td>
-                                                    <td>{{ $item->peran }}</td>
-                                                    <td>{{ $item->tanggal }}</td>
-                                                    <td>{{ $item->sks_konversi }} SKS</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            {{-- prestasi end --}}
-
-                            {{-- kegiatan lainnya start --}}
-                            <div class="tab-pane fade" id="extra_activity" role="tabpanel">
-                                <div class="pd-20">
-                                    <table class="table data-table-responsive stripe data-table-noexport wrap ">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Judul Kegiatan</th>
-                                                <th>Peran</th>
-                                                <th>Tanggal</th>
-                                                <th>SKS Konversi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($aktivitas as $item)
-                                                <tr>
-                                                    <td>
-                                                        {{ $loop->iteration }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->nama_aktivitas }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->peran }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->tanggal }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->sks_konversi }}
-                                                        SKS</td>
-
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                                {{-- kegiatan lainnya end --}}
-                            </div>
-                            {{-- aktivitas alumni kondisiin --}}
-                            @if ($mahasiswa->user->hasRole('alumni'))
-                                <div class="tab-pane fade" id="aktivitas_alumni" role="tabpanel">
+                                <div class="tab-pane fade" id="prestasi" role="tabpanel">
                                     <div class="pd-20">
                                         <table class="table data-table-responsive stripe data-table-noexport wrap ">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Tempat</th>
-                                                    <th>Alamat</th>
-                                                    <th>Jabatan</th>
-                                                    <th>Tahun Masuk</th>
-                                                    <th>Hubungan</th>
-                                                    <th>Gaji</th>
-                                                    <th>Status</th>
+                                                    <th>Judul Kegiatan</th>
+                                                    <th>Peran</th>
+                                                    <th>Tanggal</th>
+                                                    <th>SKS Konversi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($alumni as $item)
+                                                @foreach ($aktivitas as $item)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $item->nama_aktivitas }}</td>
+                                                        <td>{{ $item->peran }}</td>
+                                                        <td>{{ $item->tanggal }}</td>
+                                                        <td>{{ $item->sks_konversi }} SKS</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                {{-- prestasi end --}}
+
+                                {{-- kegiatan lainnya start --}}
+                                <div class="tab-pane fade" id="extra_activity" role="tabpanel">
+                                    <div class="pd-20">
+                                        <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Judul Kegiatan</th>
+                                                    <th>Peran</th>
+                                                    <th>Tanggal</th>
+                                                    <th>SKS Konversi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($aktivitas as $item)
                                                     <tr>
                                                         <td>
                                                             {{ $loop->iteration }}
                                                         </td>
                                                         <td>
-                                                            {{ $item->tempat }}
-
+                                                            {{ $item->nama_aktivitas }}
                                                         </td>
                                                         <td>
-                                                            {{ $item->alamat }}
+                                                            {{ $item->peran }}
                                                         </td>
                                                         <td>
-                                                            {{ $item->jabatan }}
+                                                            {{ $item->tanggal }}
                                                         </td>
                                                         <td>
-                                                            {{ $carbon::parse($item->tahun_masuk)->format('d/M/Y') }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $item->hubungan }}
-                                                        </td>
-                                                        <td class="gaji">
-                                                            {{ $item->gaji }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $item->status }}
-                                                        </td>
+                                                            {{ $item->sks_konversi }}
+                                                            SKS</td>
 
                                                     </tr>
                                                 @endforeach
@@ -1224,7 +1133,61 @@
                                     </div>
                                     {{-- kegiatan lainnya end --}}
                                 </div>
-                            @endif
+                                {{-- aktivitas alumni kondisiin --}}
+                                @if ($mahasiswa->user->hasRole('alumni'))
+                                    <div class="tab-pane fade" id="aktivitas_alumni" role="tabpanel">
+                                        <div class="pd-20">
+                                            <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Tempat</th>
+                                                        <th>Alamat</th>
+                                                        <th>Jabatan</th>
+                                                        <th>Tahun Masuk</th>
+                                                        <th>Hubungan</th>
+                                                        <th>Gaji</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($alumni as $item)
+                                                        <tr>
+                                                            <td>
+                                                                {{ $loop->iteration }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->tempat }}
+
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->alamat }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->jabatan }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $carbon::parse($item->tahun_masuk)->format('d/M/Y') }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->hubungan }}
+                                                            </td>
+                                                            <td class="gaji">
+                                                                {{ $item->gaji }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->status }}
+                                                            </td>
+
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        {{-- kegiatan lainnya end --}}
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
