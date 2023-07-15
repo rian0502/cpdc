@@ -466,7 +466,8 @@
                         <li>
                             <a href="{{ route('sudo.reset.seminar.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('sudo/resetSeminar*') ? 'active' : '' }}">
-                                <span class="micon bi bi-arrow-counterclockwise"></span><span class="mtext">Reset TA</span>
+                                <span class="micon bi bi-arrow-counterclockwise"></span><span class="mtext">Reset
+                                    TA</span>
                             </a>
                         </li>
                         <li>
@@ -519,7 +520,8 @@
                         <li>
                             <a href="{{ route('mahasiswa.lab.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/lab*') ? 'active' : '' }}">
-                                <span class="micon fa-solid fa-flask-vial"></span><span class="mtext">laboratorium TA</span>
+                                <span class="micon fa-solid fa-flask-vial"></span><span class="mtext">laboratorium
+                                    TA</span>
                             </a>
                         </li>
                         <li>
@@ -529,15 +531,15 @@
                                     Alumni</span>
                             </a>
                         </li>
-                        @role('alumni')
-                            <li>
-                                <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}"
-                                    class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni*') ? 'active' : '' }}">
-                                    <span class="micon fa fa-user-graduate"></span><span class="mtext">Aktivitas
-                                        Alumni</span>
-                                </a>
-                            </li>
-                        @endrole
+                    @endrole
+                    @role('alumni')
+                        <li>
+                            <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni*') ? 'active' : '' }}">
+                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Aktivitas
+                                    Alumni</span>
+                            </a>
+                        </li>
                     @endrole
 
                     @role('admin berkas')

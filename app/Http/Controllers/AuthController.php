@@ -106,20 +106,29 @@ class AuthController extends Controller
         $aktifkan = BaseNPM::where('npm', $request->npm)->first();
         $aktifkan->status = 'aktif';
         $aktifkan->save();
-        event(new Registered($user));
-        $user->assignRole('mahasiswa');
         $mhs = [
             'npm' => $request->npm,
             'nama_mahasiswa' => Str::title($request->nama_lengkap),
             'angkatan' => $request->angkatan,
             'jenis_kelamin' => $request->gender,
             'user_id' => $user->id,
-            'id_dosen' => Crypt::decrypt($request->id_dosen),
         ];
+        if ($request->id_dosen != null) {
+            $mhs['dosen_id'] = Crypt::decrypt($request->id_dosen);
+        }
+        if ($request->jenis_akun == 'mahasiswa') {
+            $user->assignRole('mahasiswa');
+            $mhs['status'] = 'Aktif';
+        } else {
+            $user->assignRole('alumni');
+            $mhs['status'] = 'Alumni';
+        }
         $mahasiswa = Mahasiswa::create($mhs);
+        event(new Registered($user));
         $user->sendEmailVerificationNotification();
         auth()->login($user);
-        return redirect()->route('verification.notice')->with('registered',
+        return redirect()->route('verification.notice')->with(
+            'registered',
             'Pendaftaran berhasil, silahkan cek email untuk melakukan verifikasi, Jika Vertifikasi tidak ada di kotak masuk, silahkan cek di kotak spam, atau klik tombol Kirim Kembali'
         );
     }
