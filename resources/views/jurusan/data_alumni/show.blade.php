@@ -863,7 +863,6 @@
                                 {{-- kompre start --}}
                                 <div class="tab-pane fade" id="kompre" role="tabpanel">
                                     <div class="pd-20">
-
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Data Seminar Komprehensif</h5>
                                             @if ($sidangKompre != null)
