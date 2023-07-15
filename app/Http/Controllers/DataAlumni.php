@@ -15,10 +15,12 @@ class DataAlumni extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {        
-        if($request->ajax()) {
+    {
+        if ($request->ajax()) {
             $data = User::role('alumni')->with('mahasiswa', 'mahasiswa.kegiatanTerakhir');
-            return DataTables::of($data)->toJson();
+            return DataTables::of($data)->addColumn('npm', function ($data) {
+                return $data->mahasiswa->npm;
+            })->toJson();
         }
         return view('jurusan.data_alumni.index');
     }
@@ -88,5 +90,4 @@ class DataAlumni extends Controller
     {
         //
     }
-
 }

@@ -67,7 +67,17 @@ class Mahasiswa extends Model
         return $this->hasMany(AktivitasAlumni::class, 'mahasiswa_id');
     }
     public function kegiatanTerakhir(){
-        return $this->hasOne(AktivitasAlumni::class, 'mahasiswa_id')->latest('tahun_masuk');
+        return $this->hasOne(AktivitasAlumni::class, 'mahasiswa_id')->latest('tahun_masuk')
+        ->withDefault([
+            'id' => '-',
+            'tempat' => '-',
+            'alamat' => '-',
+            'jabatan' => '-',
+            'tahun_masuk' => date('Y:m:d'),
+            'hubungan' => '-',
+            'gaji' => '-',
+            'status' => '-'
+        ]);
     }
     public function pendataanAlumni(){
         return $this->hasOne(ModelPendataanAlumni::class, 'mahasiswa_id');
