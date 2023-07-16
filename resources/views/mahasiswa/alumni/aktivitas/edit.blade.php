@@ -98,8 +98,8 @@
                                         <option value="Kerja"
                                             {{ old('status',$item->status) == 'Kerja' ? 'selected' : '' }}>Kerja
                                         </option>
-                                        <option value="Kuliah"
-                                            {{ old('status',$item->status) == 'Kuliah' ? 'selected' : '' }}>Kuliah
+                                        <option value="Lanjut Studi"
+                                            {{ old('status',$item->status) == 'Lanjut Studi' ? 'selected' : '' }}>Lanjut Studi
                                         </option>
                                         <option value="Wirausaha"
                                             {{ old('status',$item->status) == 'Wirausaha' ? 'selected' : '' }}>Wirausaha

@@ -97,8 +97,8 @@
                                         <option value="Kerja"
                                             {{ old('status') == 'Kerja' ? 'selected' : '' }}>Kerja
                                         </option>
-                                        <option value="Kuliah"
-                                            {{ old('status') == 'Kuliah' ? 'selected' : '' }}>Kuliah
+                                        <option value="Lanjut Studi"
+                                            {{ old('status') == 'Lanjut Studi' ? 'selected' : '' }}>Lanjut Studi
                                         </option>
                                         <option value="Wirausaha"
                                             {{ old('status') == 'Wirausaha' ? 'selected' : '' }}>Wirausaha

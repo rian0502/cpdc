@@ -25,7 +25,7 @@ class StoreAktivitasAlumniRequest extends FormRequest
     public function rules()
     {
         $hubungan = ['Sangat Erat', 'Cukup Erat', 'Tidak Erat', 'Erat'];
-        $status = ['Kerja', 'Kuliah', 'Wirausaha', 'Lainnya'];
+        $status = ['Kerja', 'Lanjut Studi', 'Wirausaha', 'Lainnya'];
         return [
             'tempat' => ['required', 'string', 'max:255'],
             'alamat' => ['required', 'string', 'max:255'],

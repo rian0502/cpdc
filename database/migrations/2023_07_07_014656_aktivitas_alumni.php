@@ -23,7 +23,7 @@ class AktivitasAlumni extends Migration
             $table->date('tahun_masuk');
             $table->enum('hubungan', ['Sangat Erat', 'Cukup Erat', 'Tidak Erat', 'Erat']);
             $table->double('gaji');
-            $table->enum('status', ['Kerja', 'Kuliah', 'Wirausaha', 'Lainnya']);
+            $table->enum('status', ['Kerja', 'Lanjut Studi', 'Wirausaha', 'Lainnya']);
             $table->foreignId('mahasiswa_id')->constrained('mahasiswa')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
