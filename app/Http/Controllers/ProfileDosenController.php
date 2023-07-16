@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Dosen;
 use Illuminate\Support\Str;
+use App\Models\LitabmasDosen;
 use Illuminate\Http\Response;
+use PhpOffice\PhpWord\PhpWord;
 use App\Models\OrganisasiDosen;
+use PhpOffice\PhpWord\Settings;
+use PhpOffice\PhpWord\IOFactory;
 use Illuminate\Routing\Controller;
+use PhpOffice\PhpWord\Shared\Html;
 use App\Models\HistoryJabatanDosen;
+use App\Models\HistoryPangkatDosen;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use PhpOffice\PhpWord\TemplateProcessor;
 use App\Http\Requests\ProfileDosenRequest;
 use App\Http\Requests\UpdateProfileDosenRequest;
-use App\Models\HistoryPangkatDosen;
-use Carbon\Carbon;
 
 class ProfileDosenController extends Controller
 {
@@ -31,7 +37,7 @@ class ProfileDosenController extends Controller
             $now = Carbon::now();
             $umur = $tgl_lahir->diffInYears($now);
             $data = [
-                'organisasi' => OrganisasiDosen::select('encrypt_id','nama_organisasi','tahun_menjabat','tahun_berakhir', 'jabatan')->where('dosen_id', Auth::user()->dosen->id)->get(),
+                'organisasi' => OrganisasiDosen::select('encrypt_id', 'nama_organisasi', 'tahun_menjabat', 'tahun_berakhir', 'jabatan')->where('dosen_id', Auth::user()->dosen->id)->get(),
                 'kepangkatan' => HistoryPangkatDosen::where('dosen_id', Auth::user()->dosen->id)->orderBy('id', 'desc')->get(),
                 'jabatan' => HistoryJabatanDosen::where('dosen_id', Auth::user()->dosen->id)->get(),
                 'umur' => $umur,
@@ -50,7 +56,7 @@ class ProfileDosenController extends Controller
     public function create()
     {
         //
-        if(Auth::user()->dosen != null){
+        if (Auth::user()->dosen != null) {
             return redirect()->back();
         }
         return view('dosen.profile.create');
@@ -146,7 +152,7 @@ class ProfileDosenController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::user()->dosen->nip != $id){
+        if (Auth::user()->dosen->nip != $id) {
             return redirect()->back();
         }
         $dosen = Dosen::where('nip', $id)->first();
@@ -162,7 +168,7 @@ class ProfileDosenController extends Controller
      */
     public function update(UpdateProfileDosenRequest $request, $id)
     {
-        if(Auth::user()->dosen->nip != $id){
+        if (Auth::user()->dosen->nip != $id) {
             return redirect()->back();
         }
         $dosen = Dosen::where('nip', $id)->first();
@@ -200,5 +206,22 @@ class ProfileDosenController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function export()
+    {
+        $penelitian = LitabmasDosen::whereHas('dosen', function ($q) {
+            $q->where('dosen.id', Auth::user()->dosen->id);
+        })->where('kategori', 'Penelitian')->get();
+        $pengabdian = LitabmasDosen::whereHas('dosen', function ($q) {
+            $q->where('dosen.id', Auth::user()->dosen->id);
+        })->where('kategori', 'Pengabdian')->get();
+        
+
+        return view('resume', compact('penelitian', 'pengabdian'));
+  
+
+        return dd($penelitian, $pengabdian);
     }
 }

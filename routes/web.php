@@ -89,7 +89,7 @@ use App\Http\Controllers\ChartSeminarController;
 |
 */
 
-
+Route::get('/export', [ProfileDosenController::class, 'export']);
 
 // Admin Keseluruhan
 Route::get('admin/profile/create', [ProfileAdminController::class, 'create'])->name('admin.profile.create')->middleware('auth', 'verified', 'role:admin lab|admin berkas');

@@ -32,7 +32,17 @@ class Dosen extends Model
         'created_at',
         'updated_at'
     ];
-
+    public function litabmas()
+    {
+        return $this->hasManyThrough(
+            LitabmasDosen::class,
+            AnggotaLitabmas::class,
+            'dosen_id',
+            'id',
+            'id',
+            'litabmas_id'
+        );
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -53,17 +63,6 @@ class Dosen extends Model
     public function pangkat()
     {
         return $this->hasMany(HistoryPangkatDosen::class, 'dosen_id');
-    }
-    public function litabmas()
-    {
-        return $this->hasManyThrough(
-            LitabmasDosen::class,
-            AnggotaLitabmas::class,
-            'dosen_id',
-            'id',
-            'id',
-            'litabmas_id'
-        );
     }
     public function publikasi()
     {
