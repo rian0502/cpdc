@@ -51,16 +51,16 @@
                                     <label>Jumlah Dana</label>
                                     <input value="{{ old('jumlah_dana') }}" autofocus name="jumlah_dana" id="jumlah_dana"
                                         class="form-control @error('jumlah_dana') form-control-danger @enderror"
-                                        type="number" placeholder="jumlah Dana">
+                                        type="number" placeholder="Jumlah Dana">
                                     @error('jumlah_dana')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Tahun Pelaksanaan</label>
-                                    <input value="{{ old('tahun_pelaksanaan') }}" autofocus name="tahun_pelaksanaan"
+                                    <input value="{{ old('tahun_pelaksanaan') }}" name="tahun_pelaksanaan"
                                         id="tahun_pelaksanaan"
-                                        class="form-control @error('tahun_pelaksanaan') form-control-danger @enderror"
+                                        class="form-control year-picker @error('tahun_pelaksanaan') form-control-danger @enderror"
                                         type="year" placeholder="Tahun pelaksanaan">
                                     @error('tahun_pelaksanaan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
