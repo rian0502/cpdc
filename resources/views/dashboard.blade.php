@@ -661,7 +661,8 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="lokasi">Lokasi</label>
-                                    <select name="lokasi" id="lokasi" class="form-control">
+                                    <select name="lokasi" id="lokasi" data-size="7" class="selectpicker form-control"
+                                    data-style="btn-outline-primary">
                                         <option value="all">Semua</option>
                                         <option value="1">Lab. Kimia Analitik & Instrumentasi</option>
                                         <option value="2">Lab. Kimia Anorganik-Fisik</option>
@@ -700,12 +701,10 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="angkatan">Angkatan</label>
-                                <select class="form-control" id="angkatan" name="angkatan">
+                                <select class="selectpicker form-control"
+                                data-style="btn-outline-primary" data-size="5"  id="angkatan" name="angkatan">
+                                    <option value="all" selected>Semua</option>
 
-                                        <option value="all" selected>Semua</option>
-                                        <option value="2019" selected>2019</option>
-                                        <option value="2020" selected>2020</option>
-                                        <option value="2021" selected>2020</option>
                                 </select>
                             </div>
                         </div>
@@ -1564,101 +1563,121 @@
 
 
 
-<script>
-    function chartSeminar2(startDate2, endDate2, angkatan) {
-        $.ajax({
-            url: '{{ route('chart.seminar.all') }}',
-            method: 'GET',
-            dataType: 'json',
-            data: {
-                startDate2: startDate2,
-                endDate2: endDate2,
-                angkatan: angkatan
-            },
-            success: function(response) {
-                var data = response;
+        <script>
+            function chartSeminar2(startDate2, endDate2, angkatan) {
+                $.ajax({
+                    url: '{{ route('chart.seminar.all') }}',
+                    method: 'GET',
+                    dataType: 'json',
+                    data: {
+                        startDate2: startDate2,
+                        endDate2: endDate2,
+                        angkatan: angkatan
+                    },
+                    success: function(response) {
+                        var data = response;
 
-                var categories = data.categories;
-                var seminarData = data.seminar;
-                var nonseminarData = data.nonseminar;
+                        var categories = data.categories;
+                        var seminarData = data.seminar;
+                        var nonseminarData = data.nonseminar;
 
-                var seriesData = [{
-                    name: 'Non-Seminar',
-                    data: nonseminarData
+                        var seriesData = [{
+                            name: 'Non-Seminar',
+                            data: nonseminarData
 
-                }, {
-                    name: 'Seminar',
-                    data: seminarData
-                }];
+                        }, {
+                            name: 'Seminar',
+                            data: seminarData
+                        }];
 
-                var options = {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: ''
-                    },
-                    xAxis: {
-                        categories: categories,
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Jumlah'
-                        }
-                    },
-                    tooltip: {
-                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                        pointFormatter: function() {
-                            return '<tr><td style="text-align: left; padding:0; color:' + this
-                                .series.color + '">' +
-                                this.series.name + ': </td>' +
-                                '<td style="text-align: right; padding:0"><b>' + Highcharts
-                                .numberFormat(this.y, 0, ".", ",") +
-                                '</b></td></tr>';
-                        },
-                        footerFormat: '</table>',
-                        shared: true,
-                        useHTML: true
-                    },
-                    plotOptions: {
-                        column: {
-                            stacking: 'normal',
-                            grouping: false,
-                            shadow: false,
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true
-                            }
-                        }
-                    },
-                    colors: ['#FF1818','#5463FF'  ],
-                    series: seriesData
-                };
+                        var options = {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: categories,
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Jumlah'
+                                }
+                            },
+                            tooltip: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                pointFormatter: function() {
+                                    return '<tr><td style="text-align: left; padding:0; color:' + this
+                                        .series.color + '">' +
+                                        this.series.name + ': </td>' +
+                                        '<td style="text-align: right; padding:0"><b>' + Highcharts
+                                        .numberFormat(this.y, 0, ".", ",") +
+                                        '</b></td></tr>';
+                                },
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                            },
+                            plotOptions: {
+                                column: {
+                                    stacking: 'normal',
+                                    grouping: false,
+                                    shadow: false,
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true
+                                    }
+                                }
+                            },
+                            colors: ['#FF1818', '#5463FF'],
+                            series: seriesData
+                        };
 
-                Highcharts.chart('chart_seminar2', options);
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
+                        Highcharts.chart('chart_seminar2', options);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
             }
-        });
-    }
 
-    // Panggil fungsi chartSeminar2 dengan nilai awal tanggal dan angkatan
-    var startDate2 = null;
-    var endDate2 = null;
-    var angkatan = null;
-    chartSeminar2(startDate2, endDate2, angkatan);
+            // Panggil fungsi chartSeminar2 dengan nilai awal tanggal dan angkatan
+            var startDate2 = null;
+            var endDate2 = null;
+            var angkatan = null;
+            chartSeminar2(startDate2, endDate2, angkatan);
 
-    // Atur event listener untuk mengaktifkan pemfilteran berdasarkan tanggal dan angkatan saat nilai berubah
-    $('#startDate2, #endDate2, #angkatan').change(function() {
-        startDate2 = $('#startDate2').val();
-        endDate2 = $('#endDate2').val();
-        angkatan = $('#angkatan').val();
-        console.log(startDate2, endDate2, angkatan);
-        chartSeminar2(startDate2, endDate2, angkatan);
-    });
-</script>
+            // Atur event listener untuk mengaktifkan pemfilteran berdasarkan tanggal dan angkatan saat nilai berubah
+            $('#startDate2, #endDate2, #angkatan').change(function() {
+                startDate2 = $('#startDate2').val();
+                endDate2 = $('#endDate2').val();
+                angkatan = $('#angkatan').val();
+                console.log(startDate2, endDate2, angkatan);
+                chartSeminar2(startDate2, endDate2, angkatan);
+            });
+        </script>
+        <script>
+          var selectElement = document.getElementById("angkatan");
 
+// Mendapatkan tahun saat ini
+var currentYear = new Date().getFullYear();
 
+// Membuat array opsi tahun dari tahun terbaru ke tahun 1950
+var options = [];
+for (var year = 1950; year <= currentYear; year++) {
+  options.push(year);
+}
+options.reverse(); // Membalik urutan elemen array
+
+// Menambahkan opsi tahun ke elemen select
+for (var i = 0; i < options.length; i++) {
+  var optionElement = document.createElement("option");
+  optionElement.value = options[i];
+  optionElement.text = options[i];
+  selectElement.appendChild(optionElement);
+}
+
+        </script>
     @endrole
 @endsection
