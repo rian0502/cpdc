@@ -68,8 +68,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tahun</label>
-                                    <input value="{{ old('tahun') }}" autofocus name="tahun" id="tahun"
-                                        class="form-control @error('tahun') form-control-danger @enderror" type="number"
+                                    <input value="{{ old('tahun') }}" name="tahun" id="tahun"
+                                        class="form-control year-picker @error('tahun') form-control-danger @enderror" type="number"
                                         placeholder="Tahun pelaksanaan">
                                     @error('tahun')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
