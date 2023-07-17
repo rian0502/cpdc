@@ -1,152 +1,254 @@
-@extends('layouts.admin')
-@section('admin')
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="/Assets/images/logo/color.png" rel="icon">
     <link rel="stylesheet" href="/Assets/cv/css/cv.css">
+    <title>CV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* #header {
+    background-color: #333f50;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+} */
+
+        #header {
+            background-color: #333f50;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            /* Atur padding untuk memberikan jarak pada sel */
+        }
+
+        .back-button:hover,
+        .export-button:hover {
+            background-color: #ddd;
+        }
+
+        #main {
+            border-radius: 50px;
+            max-width: 100%;
+            min-width: 100%;
+            background-color: #fff;
+            padding-right: 50x;
+            padding-left: 50x;
+        }
+
+        .header-main {
+
+            padding-right: 50x;
+            padding-left: 50x;
+        }
+        .section
+        {
+            padding-right: 50x;
+            padding-left: 50x;
+        }
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+
+        .section ul li .date {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .biodata-section {
+            color: #fff;
+
+        }
+
+        .color {
+            background-color: #333f50;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            padding-right: 50px;
+            padding-left: 50px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .research-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-column-gap: 10px;
+        }
+
+        .research-item div:nth-child(1) {
+            justify-self: start;
+        }
+
+        .research-item div:nth-child(2) {
+            justify-self: end;
+        }
+
+        .biodata-section p {
+            margin-bottom: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 10fr;
+            align-items: center;
+        }
+
+
+
+        .year {
+            margin-top: 25px;
+        }
+
+        .nama {
+            font-size: 30px;
+            margin-top: 80px;
+        }
+
+        /* Media Queries */
+    </style>
+</head>
+
+<body>
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
-            <div class="page-header">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="title">
-                            <h4>Circulum Vitae</h4>
-                        </div>
-                        <div class="col-md-12 col-sm-12 d-flex align-items-center justify-content-between">
-                            <nav aria-label="breadcrumb" role="navigation">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="/">Home</a>
-                                    </li>
-                                    <li class="breadcrumb-item" aria-current="page">
-                                        Profile
-                                    </li>
-                                    <li class="breadcrumb-item active" aria-current="page">
-                                        Circulum Vitae
-                                    </li>
-                                </ol>
-                            </nav>
-                            <div class="text-right">
-                                <a href="/export">
-                                    <button class="btn btn-primary mt-3">
-                                        <i class="bi bi-file-earmark-word-fill"></i>
-                                        Export CV
-                                    </button>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div id="main">
                 <div class="section biodata-section color">
                     <div class="content">
-                        <p>081379284072</p>
-                        <p class="email">kamisah.delilawati@fmipa.unila.ac.id</p>
+                        <p>{{ Auth::user()->dosen->no_hp }}</p>
+                        <p class="email">{{ Auth::user()->email }}</p>
                         <h1 class="nama text-light">Kamisah Delilawati Pandiangan</h1>
                     </div>
                 </div>
                 <div class="header-main">
-
                     <div class="section">
                         <h2>Biodata</h2>
-                        <p>Kamisah Delilawati Pandiangan, dengan Nomor Induk Pegawai 197212051997032001, berpangkat Guru
-                            Besar
-                            dan menjabat sebagai Dosen.</p>
+                        <p>{{ Auth::user()->name }}, dengan Nomor Induk Pegawai {{ Auth::user()->dosen->nip }},
+                            berpangkat {{ Auth::user()->dosen->pangkatTerakhir->kepangkatan }}
+                            dan menjabat sebagai {{ Auth::user()->dosen->jabatanTerakhir->jabatan }} di Jurusan Kimia,
+                            Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Lampung.</p>
                     </div>
 
                     <div class="section">
                         <h2>Penelitian</h2>
                         <ul class="grid-container" id="grid-container">
-                            <li>
-                                <p class="date year">2018</p>
-                            </li>
-                            <li>
-                                <h3>Penelitian 1</h3>
-                                <p>sumber dana - Jumlah</p>
-                            </li>
-                            <li>
-                                <p class="date year">2016</p>
-                            </li>
-                            <li>
-                                <h3>Penelitian 2</h3>
-                                <p>sumber dana - Jumlah</p>
-                            </li>
+                            <table>
+                                @foreach ($penelitian as $item)
+                                    <tr>
+                                        <td rowspan="2">{{ $item->tahun_penelitian }}</td>
+                                        <td>{{ $item->nama_litabmas }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> {{ $item->sumber_dana }} - {{ $item->jumlah_dana }} </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+
+
                         </ul>
                     </div>
 
                     <div class="section">
                         <h2>Pengabdian</h2>
                         <ul class="grid-container" id="grid-container">
-                            <li>
-                                <p class="date year">2018</p>
-                            </li>
-                            <li>
-                                <h3>Pengabdian 1</h3>
-                                <p>sumber dana - Jumlah</p>
-                            </li>
-                            <li>
-                                <p class="date year">2016</p>
-                            </li>
-                            <li>
-                                <h3>Pengabdian 2</h3>
-                                <p>sumber dana - Jumlah</p>
-                            </li>
+                            <table>
+
+                                @foreach ($pengabdian as $item)
+                                    <tr>
+                                        <td rowspan="2">{{ $item->tahun_penelitian }}</td>
+                                        <td>{{ $item->nama_litabmas }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> {{ $item->sumber_dana }} - {{ $item->jumlah_dana }} </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+
                         </ul>
                     </div>
 
                     <div class="section">
                         <h2>Publikasi</h2>
                         <ul class="grid-container" id="grid-container">
-                            <li>
-                                <p class="date year">2018</p>
-                            </li>
-                            <li>
-                                <h3>Publikasi 1</h3>
-                                <p>sumber dana - jumlah</p>
-                            </li>
-                            <li>
-                                <p class="date year">2016</p>
-                            </li>
-                            <li>
-                                <h3>Publikasi 2</h3>
-                                <p>sumber dana - jumlah</p>
-                            </li>
+                            <table>
+                                @foreach ($publikasi as $item)
+                                    <tr>
+                                        <td rowspan="2">{{ $item->tahun }}</td>
+                                        <td>{{ $item->nama_publikasi }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> {{ $item->judul }}, Vol.{{ $item->vol }}, Hal.{{ $item->halaman }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
                         </ul>
                     </div>
 
                     <div class="section">
                         <h2>Organisasi</h2>
                         <ul class="grid-container" id="grid-container">
-                            <li>
-                                <p class="date year">2018</p>
-                            </li>
-                            <li>
-                                <h3>Organisasi 1</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque voluptate quod eligendi
-                                    ratione molestias dolorem dicta. Laborum labore nulla vitae voluptatibus! Tenetur in
-                                    officiis ipsam fugit. Maxime, quidem odit, veniam, incidunt excepturi dolores natus ad
-                                    eum
-                                    quasi doloribus eius. Nihil, id laborum hic animi doloribus voluptas dolores! Fugit
-                                    aspernatur dolorum animi quam ipsam inventore quasi. Aut maxime beatae officia
-                                    laudantium
-                                    neque consectetur dolore, nisi officiis fuga veritatis modi minus ipsum nemo cupiditate
-                                    nam
-                                    iste dignissimos. Natus accusamus veniam, amet officiis officia doloremque, maiores,
-                                    labore
-                                    autem saepe ipsam mollitia accusantium a! Veniam corporis eum vel ea nam amet tempore
-                                    dignissimos possimus!</p>
-                            </li>
-                            <li>
-                                <p class="date year">2016</p>
-                            </li>
-                            <li>
-                                <h3>Organisasi 2</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa tenetur</p>
-                            </li>
+                            <table>
+                                @foreach ($organisasi as $item)
+                                    <tr>
+                                        <td rowspan="2">{{ $item->tahun_menjabat }}</td>
+                                        <td>{{ $item->nama_organisasi }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> {{ $item->jabatan }}</td>
+                                    </tr>
+                                @endforeach
+                            </table>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+
+</body>
+
+</html>

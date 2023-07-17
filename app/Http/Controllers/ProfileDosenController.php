@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Dosen;
 use Illuminate\Support\Str;
 use App\Models\LitabmasDosen;
 use Illuminate\Http\Response;
-use PhpOffice\PhpWord\PhpWord;
 use App\Models\OrganisasiDosen;
-use PhpOffice\PhpWord\Settings;
-use PhpOffice\PhpWord\IOFactory;
 use Illuminate\Routing\Controller;
-use PhpOffice\PhpWord\Shared\Html;
 use App\Models\HistoryJabatanDosen;
 use App\Models\HistoryPangkatDosen;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
-use PhpOffice\PhpWord\TemplateProcessor;
 use App\Http\Requests\ProfileDosenRequest;
 use App\Http\Requests\UpdateProfileDosenRequest;
+use App\Models\PublikasiDosen;
+use Dompdf\Options;
+use Dompdf\Dompdf;
+
 
 class ProfileDosenController extends Controller
 {
@@ -217,11 +217,27 @@ class ProfileDosenController extends Controller
         $pengabdian = LitabmasDosen::whereHas('dosen', function ($q) {
             $q->where('dosen.id', Auth::user()->dosen->id);
         })->where('kategori', 'Pengabdian')->get();
-        
+        $publikasi = PublikasiDosen::whereHas('dosen', function ($q) {
+            $q->where('dosen.id', Auth::user()->dosen->id);
+        })->get();
+        $data = [
+            'penelitian' => $penelitian,
+            'pengabdian' => $pengabdian,
+            'publikasi' => $publikasi,
+            'organisasi' => Auth::user()->dosen->organisasi,
+        ];
+        $option = new Options();
+        $option->set('isRemoteEnabled', true); // Jika Anda menggunakan file CSS dari luar, atur ini ke true
+        $option->set('defaultPaperSize', 'A4');
+        $option->set('marginTop', 0);
 
-        return view('resume', compact('penelitian', 'pengabdian'));
-  
-
-        return dd($penelitian, $pengabdian);
+        $view =  view('dosen.cv.index', $data);
+        $domPdf = new Dompdf();
+        $domPdf->loadHtml($view->render());
+        $domPdf->render();
+        $pdf = PDF::loadView('dosen.cv.index', $data);
+        $pdf->setPaper('A4', 'portrait');
+        $pdf->setOptions([$option]);
+        return $pdf->stream('cv.pdf');
     }
 }

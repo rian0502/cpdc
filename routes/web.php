@@ -152,12 +152,12 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::resource('profile', ProfileDosenController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
     Route::resource('jabatan', JabatanController::class);
     Route::resource('pangkat', PangkatDosenController::class);
-    Route::resource('cv', CirculumVitae::class);
     Route::resource('mahasiswa/bimbingan/akademik', MahasiswaBimbinganAkademikController::class)->names('mahasiswa.bimbingan.akademik');
     Route::resource('mahasiswa/bimbingan/kp', MahasiswaBimbinganKPController::class)->names('mahasiswa.bimbingan.kp');
     Route::resource('mahasiswa/bimbingan/ta1', MahasiswaBimbinganTA1Controller::class)->names('mahasiswa.bimbingan.ta1');
     Route::resource('mahasiswa/bimbingan/ta2', MahasiswaBimbinganTA2Controller::class)->names('mahasiswa.bimbingan.ta2');
     Route::resource('mahasiswa/bimbingan/kompre', MahasiswaBimbinganKompreController::class)->names('mahasiswa.bimbingan.kompre');
+    Route::get('cv', [ProfileDosenController::class, 'export']);
 });
 //end dosen
 
@@ -301,13 +301,10 @@ Route::get('/seminar/detail', function () {
 })->name('mahasiswa.seminar.detail');
 
 
-Route::prefix('user')->name('user.')->group(function () {
-    Route::resource('profile', UserController::class);
-});
 
 
-Route::prefix('dosen')->name('dosen.')->group(function () {
-});
+
+
 
 Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo|jurusan'])->group(function () {
     Route::resource('akun_dosen', AkunDosenController::class);
