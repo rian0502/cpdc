@@ -18,9 +18,9 @@
             <div class="min-height-200px">
 
                 <div class="faq-wrap">
-                    <h4 class="mb-20 h4 text-blue mb-3">Daftar Seminar</h4>
                     @if (Auth::check())
                         @role('mahasiswa')
+                            <h4 class="mb-20 h4 text-blue mb-3">Daftar Seminar</h4>
                             <div id="accordion">
                                 <div class="card">
                                     <div class="card-header">
