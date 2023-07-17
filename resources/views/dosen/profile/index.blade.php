@@ -62,9 +62,8 @@
                                     </ol>
                                 </nav>
                                 <div class="text-right">
-                                    <a href="{{ route('dosen.cv.index') }}">
+                                    <a href="cv">
                                         <button class="btn btn-primary mt-3">
-                                            {{-- <i class="bi bi-file-earmark-word-fill"></i> --}}
                                             Circulum Vitae
                                         </button>
                                     </a>
@@ -227,8 +226,8 @@
                                                                                         @method('DELETE')
                                                                                         @csrf
                                                                                         <button type="button"
-
-                                                                                            class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)"><i
+                                                                                            class="dropdown-item text-danger deleteBtn2"
+                                                                                            onclick="showDeleteConfirmation(event)"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>
                                                                                     </form>
@@ -311,7 +310,8 @@
                                                                                             @method('DELETE')
                                                                                             @csrf
                                                                                             <button type="button"
-                                                                                                class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)">
+                                                                                                class="dropdown-item text-danger deleteBtn2"
+                                                                                                onclick="showDeleteConfirmation(event)">
                                                                                                 <i class="fa fa-trash"></i>
                                                                                                 Delete</button>
                                                                                         </form>
@@ -396,8 +396,8 @@
                                                                                             @csrf
                                                                                             @method('DELETE')
                                                                                             <button type="button"
-
-                                                                                                class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)"><i
+                                                                                                class="dropdown-item text-danger deleteBtn2"
+                                                                                                onclick="showDeleteConfirmation(event)"><i
                                                                                                     class="fa fa-trash"></i>
                                                                                                 Delete</button>
                                                                                         </form>
@@ -470,8 +470,8 @@
                                                                                         @method('DELETE')
                                                                                         @csrf
                                                                                         <button type="button"
-
-                                                                                            class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)"><i
+                                                                                            class="dropdown-item text-danger deleteBtn2"
+                                                                                            onclick="showDeleteConfirmation(event)"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>
                                                                                     </form>
@@ -545,8 +545,8 @@
                                                                                         @method('DELETE')
                                                                                         @csrf
                                                                                         <button type="button"
-
-                                                                                            class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)"><i
+                                                                                            class="dropdown-item text-danger deleteBtn2"
+                                                                                            onclick="showDeleteConfirmation(event)"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>
                                                                                     </form>
