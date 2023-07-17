@@ -25,12 +25,12 @@ class StorePublikasiRequest extends FormRequest
     public function rules()
     {
         $regional = ['Nasional', 'Internasional'];
-        $litabmas = ['Penelitian', 'Pengabdian'];
+        $kategori_litabmas = ['Penelitian', 'Pengabdian'];
         $kategori = [
-            'Buku Referensi', 
-            'Monograf', 
-            'Buku Nasional', 
-            'Buku Internasional', 
+            'Buku Referensi',
+            'Monograf',
+            'Buku Nasional',
+            'Buku Internasional',
             'Artikel Internasional Bereputasi',
             'Artikel Internasional Terindkes',
             'Jurnal Nasional Terakreditasi Dikti',
@@ -42,14 +42,14 @@ class StorePublikasiRequest extends FormRequest
         ];
         return [
             'nama_publikasi' => 'required|string|min:3|max:255',
-            'volume' =>['nullable', 'numeric', 'max:9999999'],
-            'no_halaman' => 'nullable|max:255',
+            'vol' =>['nullable', 'numeric', 'max:9999999'],
+            'halaman' => 'nullable|max:255',
             'judul' => 'required|string|min:3|max:255',
             'tahun' => 'required|numeric|min:4|digits:4',
             'url' => 'nullable|url',
-            'litabmas' => 'required|string|min:3|max:25|in:' . implode(',', $litabmas),
+            'kategori_litabmas' => 'required|string|min:3|max:25|in:' . implode(',', $kategori_litabmas),
             'scala' => 'required|string|min:3|max:25|in:' . implode(',', $regional),
-            'kategori' => 'required|string|min:3|max:25|in:' . implode(',', $kategori),
+            'kategori' => 'required|string|min:3|max:50|in:' . implode(',', $kategori),
             'anggota.*' => ['nullable', 'string', 'max:255', 'min:3', 'exists:dosen,encrypt_id', 'distinct'],
             'anggota_external' => ['nullable', 'string']
         ];
@@ -57,8 +57,8 @@ class StorePublikasiRequest extends FormRequest
     public function messages()
     {
         return [
-            'volumen.max' => 'Maximal 255 Karakter ',
-            'no_halaman.max' => 'Maximal 255 Karakter ',
+            'vol.max' => 'Maximal 255 Karakter ',
+            'halaman.max' => 'Maximal 255 Karakter ',
             'judul.required' => 'Judul tidak boleh kosong',
             'judul.string' => 'Judul harus berupa huruf',
             'judul.max' => 'Judul maksimal 255 karakter',
@@ -72,11 +72,11 @@ class StorePublikasiRequest extends FormRequest
             'daerah.string' => 'Daerah harus berupa huruf',
             'daerah.max' => 'Daerah maksimal 255 karakter',
             'daerah.min' => 'Daerah minimal 3 karakter',
-            'litabmas.required' => 'Litabmas tidak boleh kosong',
-            'litabmas.string' => 'Litabmas harus berupa huruf',
-            'litabmas.max' => 'Litabmas maksimal 25 karakter',
-            'litabmas.min' => 'Litabmas minimal 3 karakter',
-            'litabmas.in' => 'Litabmas harus berupa Penelitian atau Pengabdian',
+            'kategori_litabmas.required' => 'kategori_litabmas tidak boleh kosong',
+            'kategori_litabmas.string' => 'kategori_litabmas harus berupa huruf',
+            'kategori_litabmas.max' => 'kategori_litabmas maksimal 25 karakter',
+            'kategori_litabmas.min' => 'kategori_litabmas minimal 3 karakter',
+            'kategori_litabmas.in' => 'kategori_litabmas harus berupa Penelitian atau Pengabdian',
             'scala.required' => 'Skala tidak boleh kosong',
             'scala.string' => 'Skala harus berupa huruf',
             'scala.max' => 'Skala maksimal 25 karakter',
@@ -97,7 +97,7 @@ class StorePublikasiRequest extends FormRequest
             'nama_publikasi.string' => 'Nama Publikasi harus berupa huruf',
             'nama_publikasi.max' => 'Nama Publikasi maksimal 255 karakter',
             'nama_publikasi.min' => 'Nama Publikasi minimal 3 karakter',
-            
+
         ];
     }
 }

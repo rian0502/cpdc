@@ -37,40 +37,39 @@
                                 </div>
                                 <div class="form-group">
                                     <label>VOL</label>
-                                    <input value="{{ old('volume') }}" autofocus name="volume" id="volume"
-                                        class="form-control @error('volume') form-control-danger @enderror" type="number"
-                                        placeholder="volume publikasi">
-                                    @error('volume')
+                                    <input value="{{ old('vol') }}" autofocus name="vol" id="vol"
+                                        class="form-control @error('vol') form-control-danger @enderror" type="number"
+                                        placeholder="vol publikasi">
+                                    @error('vol')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Halaman</label>
-                                    <input value="{{ old('no_halaman') }}" autofocus name="no_halaman" id="no_halaman"
-                                        class="form-control @error('no_halaman') form-control-danger @enderror"
-                                        type="text" placeholder="Halaman publikasi">
-                                    @error('no_halaman')
+                                    <input value="{{ old('halaman') }}" autofocus name="halaman" id="halaman"
+                                        class="form-control @error('halaman') form-control-danger @enderror" type="text"
+                                        placeholder="Halaman publikasi">
+                                    @error('halaman')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
                                 <div class="form-group">
-                                    <label for="litabmas">Kategori LITABMAS</label>
-                                    <select name="litabmas" id="litabmas" class="selectpicker form-control">
-                                        <option value="Penelitian" {{ old('litabmas') == 'Penelitian' ? 'selected' : '' }}>
+                                    <label for="kategori_litabmas">LITABMAS</label>
+                                    <select name="kategori_litabmas" id="kategori_litabmas" class="selectpicker form-control">
+                                        <option value="Penelitian" {{ old('kategori_litabmas') == 'Penelitian' ? 'selected' : '' }}>
                                             Penelitian</option>
-                                        <option value="Pengabdian" {{ old('litabmas') == 'Pengabdian' ? 'selected' : '' }}>
+                                        <option value="Pengabdian" {{ old('kategori_litabmas') == 'Pengabdian' ? 'selected' : '' }}>
                                             Pengabdian</option>
                                     </select>
-                                    @error('litabmas')
+                                    @error('kategori_litabmas')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Tahun</label>
                                     <input value="{{ old('tahun') }}" name="tahun" id="tahun"
-                                        class="form-control year-picker @error('tahun') form-control-danger @enderror" type="number"
-                                        placeholder="Tahun pelaksanaan">
+                                        class="form-control year-picker @error('tahun') form-control-danger @enderror"
+                                        type="number" placeholder="Tahun pelaksanaan">
                                     @error('tahun')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -142,7 +141,7 @@
                                             {{ old('kategori') == 'Prosiding Nasional' ? 'selected' : '' }}>
                                             Prosiding Nasional</option>
                                     </select>
-                                    @error('Kategori')
+                                    @error('kategori')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -152,11 +151,14 @@
                                         name="anggota[]">
                                         <optgroup label="Nama Dosen">
                                             @foreach ($dosens as $item)
-                                                <option value="{{ $item->encrypt_id }}">{{ $item->nama_dosen }}</option>
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ collect(old('anggota'))->contains($item->encrypt_id) ? 'selected' : '' }}>
+                                                    {{ $item->nama_dosen }}</option>
                                             @endforeach
                                         </optgroup>
                                     </select>
                                 </div>
+
                                 <div class="form-group">
                                     <label>Anggota External</label>
                                     <textarea value="{{ old('anggota_external') }}" autofocus name="anggota_external" id="anggota_external"
