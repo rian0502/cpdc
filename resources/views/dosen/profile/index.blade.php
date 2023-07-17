@@ -116,7 +116,7 @@
                                     </li>
                                     <li>
                                         <span>Jenis Kelamin:</span>
-                                        {{-- {{ Auth::user()->dosen->jenis_kelamin }} --}}
+                                        {{ Auth::user()->dosen->jenis_kelamin }}
                                     </li>
                                     <li>
                                         <span>Alamat:</span>
