@@ -54,11 +54,17 @@ class Dosen extends Model
     }
     public function organisasi()
     {
-        return $this->hasMany(OrganisasiDosen::class, 'dosen_id');
+        return $this->hasMany(OrganisasiDosen::class, 'dosen_id')->orderBy('tahun_menjabat', 'desc');
     }
     public function jabatan()
     {
         return $this->hasMany(HistoryJabatanDosen::class, 'dosen_id');
+    }
+    public function jabatanTerakhir(){
+        return $this->hasOne(HistoryJabatanDosen::class, 'dosen_id')->orderBy('tgl_sk', 'desc');
+    }
+    public function pangkatTerakhir(){
+        return $this->hasOne(HistoryPangkatDosen::class, 'dosen_id')->orderBy('tgl_sk', 'desc');
     }
     public function pangkat()
     {
