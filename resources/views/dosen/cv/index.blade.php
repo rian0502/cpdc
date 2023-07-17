@@ -20,7 +20,7 @@
                                         Profile
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">
-                                        Export CV
+                                        Circulum Vitae
                                     </li>
                                 </ol>
                             </nav>
