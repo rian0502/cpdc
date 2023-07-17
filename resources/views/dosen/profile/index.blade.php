@@ -62,7 +62,7 @@
                                     </ol>
                                 </nav>
                                 <div class="text-right">
-                                    <a href="{{-- LINK export CV --}}">
+                                    <a href="/export">
                                         <button class="btn btn-primary mt-3">
                                             <i class="bi bi-file-earmark-word-fill"></i>
                                             Export CV
