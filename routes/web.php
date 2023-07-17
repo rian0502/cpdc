@@ -4,6 +4,7 @@ use App\Models\User;
 use App\Models\JadwalSKP;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Kalab;
+use App\Http\Controllers\ResetTA;
 use App\Models\ModelSeminarKompre;
 use App\Http\Controllers\DataAlumni;
 use Illuminate\Auth\Events\Verified;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminJurusan;
 use App\Http\Controllers\AlokasiDosen;
 use App\Http\Controllers\KPcontroller;
+use App\Http\Controllers\CirculumVitae;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\SopController;
 use App\Models\ModelJadwalSeminarTaDua;
@@ -18,6 +20,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Models\ModelJadwalSeminarKompre;
 use App\Models\ModelJadwalSeminarTaSatu;
+use App\Http\Controllers\LabTAController;
 use App\Http\Controllers\ModelController;
 use App\Http\Controllers\PendataanAlumni;
 use App\Http\Controllers\BarangController;
@@ -32,6 +35,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JadwalPKLController;
 use App\Http\Controllers\PublikasiController;
 use App\Http\Controllers\OrganisasiController;
+use App\Http\Controllers\ChartSeminarController;
 use App\Http\Controllers\Kajur\LokasiController;
 use App\Http\Controllers\PangkatAdminController;
 use App\Http\Controllers\PangkatDosenController;
@@ -74,9 +78,6 @@ use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
 use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
-use App\Http\Controllers\ResetTA;
-use App\Http\Controllers\LabTAController;
-use App\Http\Controllers\ChartSeminarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -151,6 +152,7 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::resource('profile', ProfileDosenController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
     Route::resource('jabatan', JabatanController::class);
     Route::resource('pangkat', PangkatDosenController::class);
+    Route::resource('cv', CirculumVitae::class);
     Route::resource('mahasiswa/bimbingan/akademik', MahasiswaBimbinganAkademikController::class)->names('mahasiswa.bimbingan.akademik');
     Route::resource('mahasiswa/bimbingan/kp', MahasiswaBimbinganKPController::class)->names('mahasiswa.bimbingan.kp');
     Route::resource('mahasiswa/bimbingan/ta1', MahasiswaBimbinganTA1Controller::class)->names('mahasiswa.bimbingan.ta1');
@@ -187,6 +189,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::resource('litabmas', LitabmasDataController::class);
     Route::resource('mahasiswa', DataMahasiswaAllController::class);
     Route::resource('alumni', DataAlumni::class);
+   
     Route::get('chartCapaianPrestasi', [PrestasiDataController::class, 'pieChartCapaian'])->name('prestasi.chartCapaian');
     Route::get('chartScalaPrestasi', [PrestasiDataController::class, 'pieChartScala'])->name('prestasi.chartScala');
     Route::get('barChartPrestasi', [PrestasiDataController::class, 'barChartPrestasi'])->name('prestasi.barChartPrestasi');

@@ -62,10 +62,10 @@
                                     </ol>
                                 </nav>
                                 <div class="text-right">
-                                    <a href="/export">
+                                    <a href="{{ route('dosen.cv.index') }}">
                                         <button class="btn btn-primary mt-3">
-                                            <i class="bi bi-file-earmark-word-fill"></i>
-                                            Export CV
+                                            {{-- <i class="bi bi-file-earmark-word-fill"></i> --}}
+                                            Circulum Vitae
                                         </button>
                                     </a>
                                 </div>
