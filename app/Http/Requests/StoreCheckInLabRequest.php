@@ -28,7 +28,7 @@ class StoreCheckInLabRequest extends FormRequest
         if(Auth::user()->lokasi_id == null){
             return [
 
-                'id_lokasi' => 'required|exists:lokasis,id',
+                'id_lokasi' => 'required|exists:lokasi,id',
                 'jam_selesai' => ['required','after:'.$jam_mulai],
                 'ket' => 'required|min:20|max:255',
             ];

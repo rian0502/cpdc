@@ -43,10 +43,11 @@ class LabTAController extends Controller
         return view('mahasiswa.lab_ta.cekin', $data);
     }
     public function cekinStore(StoreCheckInLabRequest $request)
+
     {
         $user = User::find(Auth::user()->id);
         if($user->lokasi_id == null){
-            $user->lokasi_id = $request->id_lokasi;
+            $user->lokasi_id = Crypt::decrypt($request->id_lokasi);
             $user->save();
         }
         $mahasiswa = Auth::user()->mahasiswa;
