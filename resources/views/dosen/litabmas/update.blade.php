@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Anggota External</label>
-                                    <textarea value="{{ $publikasi->anggota_external }}" autofocus name="anggota_external"
+                                    <textarea value="{{ $litabmas->anggota_external }}" autofocus name="anggota_external"
                                         id="anggota_external"
                                         class="form-control @error('anggota_external') form-control-danger @enderror"
                                         type="text"></textarea>
