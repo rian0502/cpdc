@@ -25,6 +25,7 @@ class StoreLitabmasDosenRequest extends FormRequest
      */
     public function rules()
     {
+
         $kategori = ['Penelitian', 'Pengabdian'];
         return [
             'nama_litabmas' => 'required|string|min:3|max:255',
