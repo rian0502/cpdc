@@ -21,7 +21,7 @@ class PublikasiController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -46,14 +46,15 @@ class PublikasiController extends Controller
      */
     public function store(StorePublikasiRequest $request)
     {
+        // dd($request->all());
         $data = [
             'judul' => $request->judul,
             'nama_publikasi' => $request->nama_publikasi,
-            'vol' => $request->volume,
-            'halaman' => $request->no_halaman,
+            'vol' => $request->vol,
+            'halaman' => $request->halaman,
             'tahun' => $request->tahun,
             'url' => $request->url,
-            'kategori_litabmas' => $request->litabmas,
+            'kategori_litabmas' => $request->kategori_litabmas,
             'scala' => $request->scala,
             'kategori' => $request->kategori,
             'anggota_external' => $request->anggota_external,
@@ -133,15 +134,15 @@ class PublikasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePublikasiRequest $request, $id)
     {
         $jumlah = AnggotaPublikasiDosen::where('id_publikasi', Crypt::decrypt($id))->get();
         if ($jumlah[0]->id_dosen == Auth::user()->dosen[0]->id) {
             $publikasi = PublikasiDosen::find(Crypt::decrypt($id));
             $publikasi->nama_publikasi = $request->nama_publikasi;
             $publikasi->judul = $request->judul;
-            $publikasi->vol = $request->volume;
-            $publikasi->halaman = $request->no_halaman;
+            $publikasi->vol = $request->vol;
+            $publikasi->halaman = $request->halaman;
             $publikasi->tahun = $request->tahun;
             $publikasi->url = $request->url;
             $publikasi->kategori_litabmas = $request->litabmas;
