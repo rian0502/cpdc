@@ -61,7 +61,12 @@ class PublikasiController extends Controller
         $insert = PublikasiDosen::create($data);
         $id = $insert->id;
         $update = PublikasiDosen::find($id)->update(['encrypt_id' => Crypt::encrypt($id)]);
-
+        $data = [
+            'posisi' => 'Ketua',
+            'id_publikasi' => $id,
+            'id_dosen' => Auth::user()->dosen->id,
+        ];
+        AnggotaPublikasiDosen::create($data);
         if ($request->anggota) {
             foreach ($request->anggota as $key => $value) {
                 $data = [
@@ -72,13 +77,6 @@ class PublikasiController extends Controller
                 AnggotaPublikasiDosen::create($data);
             }
         }
-        $data = [
-            'posisi' => 'Ketua',
-            'id_publikasi' => $id,
-            'id_dosen' => Auth::user()->dosen->id,
-        ];
-        AnggotaPublikasiDosen::create($data);
-
         if ($update) {
             return redirect()->route('dosen.profile.index')->with('success', 'Data berhasil ditambahkan');
         }
