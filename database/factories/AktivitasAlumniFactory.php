@@ -22,7 +22,7 @@ class AktivitasAlumniFactory extends Factory
             'tahun_masuk' => $this->faker->date(),
             'hubungan' => $this->faker->randomElement(['Sangat Erat', 'Erat', 'Cukup Erat', 'Tidak Erat']),
             'gaji' => $this->faker->numberBetween(1200000, 10000000),
-            'status' => $this->faker->randomElement(['Kerja', 'Kuliah', 'Wirausaha', 'Lainnya']),
+            'status' => $this->faker->randomElement(['Kerja', 'Lanjut Studi', 'Wirausaha', 'Lainnya']),
             'mahasiswa_id' => $this->faker->numberBetween(1, 4),
         ];
     }
