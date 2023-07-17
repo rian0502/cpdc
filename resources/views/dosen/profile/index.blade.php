@@ -64,7 +64,8 @@
                                 <div class="text-right">
                                     <a href="cv">
                                         <button class="btn btn-primary mt-3">
-                                            Circulum Vitae
+                                            <i class="bi bi-file-earmark-pdf-fill"></i>
+                                            Unduh CV
                                         </button>
                                     </a>
                                 </div>

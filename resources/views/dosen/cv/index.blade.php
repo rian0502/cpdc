@@ -63,11 +63,12 @@
             padding-right: 50x;
             padding-left: 50x;
         }
-        .section
-        {
+
+        .section {
             padding-right: 50x;
             padding-left: 50x;
         }
+
         h1 {
             font-size: 28px;
         }
@@ -160,7 +161,7 @@
                     <div class="content">
                         <p>{{ Auth::user()->dosen->no_hp }}</p>
                         <p class="email">{{ Auth::user()->email }}</p>
-                        <h1 class="nama text-light">Kamisah Delilawati Pandiangan</h1>
+                        <h1 class="nama text-light">{{ Auth::user()->name }}</h1>
                     </div>
                 </div>
                 <div class="header-main">
@@ -178,7 +179,7 @@
                             <table>
                                 @foreach ($penelitian as $item)
                                     <tr>
-                                        <td rowspan="2">{{ $item->tahun_penelitian }}</td>
+                                        <td rowspan="2" class="date year">{{ $item->tahun_penelitian }}</td>
                                         <td>{{ $item->nama_litabmas }}</td>
                                     </tr>
                                     <tr>
@@ -186,8 +187,6 @@
                                     </tr>
                                 @endforeach
                             </table>
-
-
                         </ul>
                     </div>
 
@@ -198,7 +197,7 @@
 
                                 @foreach ($pengabdian as $item)
                                     <tr>
-                                        <td rowspan="2">{{ $item->tahun_penelitian }}</td>
+                                        <td rowspan="2" class="date year">{{ $item->tahun_penelitian }}</td>
                                         <td>{{ $item->nama_litabmas }}</td>
                                     </tr>
                                     <tr>
@@ -216,7 +215,7 @@
                             <table>
                                 @foreach ($publikasi as $item)
                                     <tr>
-                                        <td rowspan="2">{{ $item->tahun }}</td>
+                                        <td rowspan="2" class="date year">{{ $item->tahun }}</td>
                                         <td>{{ $item->nama_publikasi }}</td>
                                     </tr>
                                     <tr>
@@ -234,7 +233,7 @@
                             <table>
                                 @foreach ($organisasi as $item)
                                     <tr>
-                                        <td rowspan="2">{{ $item->tahun_menjabat }}</td>
+                                        <td rowspan="2" class="date year">{{ $item->tahun_menjabat }}</td>
                                         <td>{{ $item->nama_organisasi }}</td>
                                     </tr>
                                     <tr>
