@@ -61,11 +61,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tahun Pelaksanaan</label>
-                                    <input value="{{ $litabmas->tahun_penelitian }}" autofocus name="tahun_penelitian"
-                                        id="tahun_penelitian" min="0"
-                                        class="form-control @error('tahun_penelitian') form-control-danger @enderror"
+                                    <input value="{{ $litabmas->tahun_penelitian }}" autofocus name="tahun_pelaksanaan"
+                                        id="tahun_pelaksanaan" min="0"
+                                        class="form-control @error('tahun_pelaksanaan') form-control-danger @enderror"
                                         type="year" placeholder="Tahun penelitian">
-                                    @error('tahun_penelitian')
+                                    @error('tahun_pelaksanaan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
