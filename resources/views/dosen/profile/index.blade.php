@@ -221,14 +221,14 @@
                                                                                         href="{{ route('dosen.organisasi.edit', $item->encrypt_id) }}">
                                                                                         <i class="fa fa-pencil"></i>
                                                                                         Edit</a>
-                                                                                    <form id="delete"
+                                                                                    <form class="deleteForm2"
                                                                                         action="{{ route('dosen.organisasi.destroy', $item->encrypt_id) }}"
                                                                                         method="POST">
                                                                                         @method('DELETE')
                                                                                         @csrf
-                                                                                        <button type="submit"
-                                                                                            id="deleteBtn"
-                                                                                            class="dropdown-item text-danger"><i
+                                                                                        <button type="button"
+
+                                                                                            class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>
                                                                                     </form>
@@ -305,13 +305,13 @@
                                                                                             href="{{ route('dosen.litabmas.edit', $item->encrypt_id) }}">
                                                                                             <i class="fa fa-pencil"></i>
                                                                                             Edit</a>
-                                                                                        <form id="delete"
+                                                                                        <form class="deleteForm2"
                                                                                             action="{{ route('dosen.litabmas.destroy', $item->encrypt_id) }}"
                                                                                             method="POST">
                                                                                             @method('DELETE')
                                                                                             @csrf
-                                                                                            <button type="submit"
-                                                                                                class="dropdown-item text-danger">
+                                                                                            <button type="button"
+                                                                                                class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)">
                                                                                                 <i class="fa fa-trash"></i>
                                                                                                 Delete</button>
                                                                                         </form>
@@ -390,15 +390,14 @@
                                                                                             href="{{ route('dosen.publikasi.edit', $item->encrypt_id) }}">
                                                                                             <i class="fa fa-pencil"></i>
                                                                                             Edit</a>
-                                                                                        <form id="delete"
+                                                                                        <form class="deleteForm2"
                                                                                             action="{{ route('dosen.publikasi.destroy', $item->encrypt_id) }}"
                                                                                             method="POST">
                                                                                             @csrf
                                                                                             @method('DELETE')
+                                                                                            <button type="button"
 
-                                                                                            <button type="submit"
-                                                                                                id="deleteBtn"
-                                                                                                class="dropdown-item text-danger"><i
+                                                                                                class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)"><i
                                                                                                     class="fa fa-trash"></i>
                                                                                                 Delete</button>
                                                                                         </form>
@@ -465,14 +464,14 @@
                                                                                         href="{{ route('dosen.jabatan.edit', $item->encrypted_id) }}">
                                                                                         <i class="fa fa-pencil"></i>
                                                                                         Edit</a>
-                                                                                    <form id="delete"
+                                                                                    <form class="deleteForm2"
                                                                                         action="{{ route('dosen.jabatan.destroy', $item->encrypted_id) }}"
                                                                                         method="POST">
                                                                                         @method('DELETE')
                                                                                         @csrf
-                                                                                        <button type="submit"
-                                                                                            id="deleteBtn"
-                                                                                            class="dropdown-item text-danger"><i
+                                                                                        <button type="button"
+
+                                                                                            class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>
                                                                                     </form>
@@ -540,14 +539,14 @@
                                                                                         href="{{ route('dosen.pangkat.edit', $item->encrypted_id) }}">
                                                                                         <i class="fa fa-pencil"></i>
                                                                                         Edit</a>
-                                                                                    <form id="delete"
+                                                                                    <form class="deleteForm2"
                                                                                         action="{{ route('dosen.pangkat.destroy', $item->encrypted_id) }}"
                                                                                         method="POST">
                                                                                         @method('DELETE')
                                                                                         @csrf
-                                                                                        <button type="submit"
-                                                                                            id="deleteBtn"
-                                                                                            class="dropdown-item text-danger"><i
+                                                                                        <button type="button"
+
+                                                                                            class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>
                                                                                     </form>

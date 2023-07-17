@@ -38,33 +38,33 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Vol</label>
-                                    <input value="{{ $publikasi->vol }}" autofocus name="volume" id="volume"
-                                        class="form-control @error('volume') form-control-danger @enderror" type="number"
-                                        placeholder="volume publikasi">
-                                    @error('volume')
+                                    <input value="{{ $publikasi->vol }}" autofocus name="vol" id="vol"
+                                        class="form-control @error('vol') form-control-danger @enderror" type="number"
+                                        placeholder="vol publikasi">
+                                    @error('vol')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>No Halaman</label>
-                                    <input value="{{ $publikasi->halaman }}" autofocus name="no_halaman" id="no_halaman"
-                                        class="form-control @error('no_halaman') form-control-danger @enderror"
-                                        type="text" placeholder="no_halaman publikasi">
-                                    @error('no_halaman')
+                                    <input value="{{ $publikasi->halaman }}" autofocus name="halaman" id="halaman"
+                                        class="form-control @error('halaman') form-control-danger @enderror"
+                                        type="text" placeholder="halaman publikasi">
+                                    @error('halaman')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="litabmas">LITABMAS</label>
-                                    <select name="litabmas" id="litabmas" class="selectpicker form-control">
+                                    <label for="kategori_litabmas">LITABMAS</label>
+                                    <select name="kategori_litabmas" id="kategori_litabmas" class="selectpicker form-control">
                                         <option value="Penelitian"
-                                            {{ $publikasi->litabmas == 'Penelitian' ? 'selected' : '' }}>
+                                            {{ $publikasi->kategori_litabmas == 'Penelitian' ? 'selected' : '' }}>
                                             Penelitian</option>
                                         <option value="Pengabdian"
-                                            {{ $publikasi->litabmas == 'Pengabdian' ? 'selected' : '' }}>
+                                            {{ $publikasi->kategori_litabmas == 'Pengabdian' ? 'selected' : '' }}>
                                             Pengabdian</option>
                                     </select>
-                                    @error('litabmas')
+                                    @error('kategori_litabmas')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -142,7 +142,7 @@
                                             {{ $publikasi->kategori == 'Prosiding Nasional' ? 'selected' : '' }}>
                                             Prosiding Nasion</option>
                                     </select>
-                                    @error('Kategori')
+                                    @error('kategori')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
