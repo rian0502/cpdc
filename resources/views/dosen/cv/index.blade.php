@@ -20,7 +20,7 @@
                                         Profile
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">
-                                        Export CV
+                                        Circulum Vitae
                                     </li>
                                 </ol>
                             </nav>
@@ -62,14 +62,14 @@
                             </li>
                             <li>
                                 <h3>Penelitian 1</h3>
-                                <p>sumber dana - jumlah</p>
+                                <p>sumber dana - Jumlah</p>
                             </li>
                             <li>
                                 <p class="date year">2016</p>
                             </li>
                             <li>
                                 <h3>Penelitian 2</h3>
-                                <p>sumber dana - jumlah</p>
+                                <p>sumber dana - Jumlah</p>
                             </li>
                         </ul>
                     </div>
@@ -82,14 +82,14 @@
                             </li>
                             <li>
                                 <h3>Pengabdian 1</h3>
-                                <p>sumber dana - jumlah</p>
+                                <p>sumber dana - Jumlah</p>
                             </li>
                             <li>
                                 <p class="date year">2016</p>
                             </li>
                             <li>
                                 <h3>Pengabdian 2</h3>
-                                <p>sumber dana - jumlah</p>
+                                <p>sumber dana - Jumlah</p>
                             </li>
                         </ul>
                     </div>
