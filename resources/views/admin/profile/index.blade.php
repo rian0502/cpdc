@@ -17,7 +17,7 @@
             border-radius: 50%;
             width: 170px;
             /* Sesuaikan dengan lebar yang diinginkan */
-            height: 170px;
+            height: 170px;.
             /* Sesuaikan dengan tinggi yang diinginkan */
             object-fit: cover;
         }
