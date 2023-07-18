@@ -1,5 +1,10 @@
 @extends('layouts.umum')
 @section('umum')
+    <style>
+        .text-justify {
+            text-align: justify;
+        }
+    </style>
     <link rel="stylesheet" href="/Assets/admin/vendors/styles/help.css">
     <script src="/Assets/js/help.js"></script>
     <script src="/Assets/admin/vendors/scripts/core.js"></script>
@@ -40,7 +45,8 @@
                                                 CPDC. Setelah itu, klik pada opsi <a class="text-primary bold"
                                                     href="/mahasiswa/seminar/kp">Kerja Praktik</a>.
 
-                                                Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang tersedia. Jika Anda telah
+                                                Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
+                                                kolom yang tersedia. Jika Anda telah
                                                 mengisi
                                                 data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
@@ -70,7 +76,8 @@
                                                 CPDC. Setelah itu, klik pada opsi
                                                 <a class="text-primary bold" href="/mahasiswa/seminar/tugas_akhir_1">Tugas Akhir
                                                     1</a>.
-                                                Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang tersedia. Jika Anda telah
+                                                Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
+                                                kolom yang tersedia. Jika Anda telah
                                                 mengisi
                                                 data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
@@ -106,7 +113,8 @@
                                                 CPDC. Setelah itu, klik pada opsi
                                                 <a class="text-primary bold" href="/mahasiswa/seminar/tugas_akhir_2">Tugas
                                                     Akhir 2</a>.
-                                                Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang tersedia. Jika Anda telah
+                                                Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
+                                                kolom yang tersedia. Jika Anda telah
                                                 mengisi
                                                 data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
@@ -141,7 +149,8 @@
                                                 CPDC. Setelah itu, klik pada opsi
                                                 <a class="text-primary bold" href="/mahasiswa/sidang/kompre">Sidang
                                                     Komprehensif</a>.
-                                                Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang tersedia. Jika Anda telah
+                                                Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
+                                                kolom yang tersedia. Jika Anda telah
                                                 mengisi
                                                 data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
@@ -235,7 +244,8 @@
                                                 <a class="text-primary bold" href="#">Profil</a>. Setelah
                                             @endif
                                             itu, klik ikon <strong>pensil</strong> untuk mengubah biodata profil Anda.
-                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang disediakan.
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
+                                            kolom yang disediakan.
                                             Terakhir, klik
                                             <strong>Submit</strong>
                                             untuk menyimpan biodata yang telah diubah sebelumnya.
@@ -287,13 +297,40 @@
                                 <div id="lupa" class="collapse" data-parent="#accordion2">
                                     <div class="card-body">
                                         <div class="text-justify">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ullam voluptatem
-                                            officia natus totam esse distinctio voluptate aspernatur quam molestias!
-                                            Voluptate,
-                                            laborum minus quas recusandae molestiae, dolorum alias libero blanditiis nostrum
-                                            nihil, iste dignissimos explicabo enim mollitia! Optio sunt cum vitae
-                                            repudiandae,
-                                            culpa, voluptates, cumque accusantium impedit ratione inventore dicta.
+                                            Klik tombol <a class="text-primary bold" href="/login">Masuk</a> yang
+                                            terletak pada halaman beranda. Setelah itu, cari dan
+                                            klik
+                                            opsi <a class="text-primary bold" href="/forgot-password">Lupa Kata
+                                                Sandi?</a>. Di
+                                            halaman selanjutnya, <strong>masukkan alamat email yang
+                                                terdaftar pada akun Anda</strong>, dan <span
+                                                class="text-danger bold">pastikan
+                                                bahwa email tersebut masih aktif</span>.
+                                            Setelah
+                                            itu, klik tombol <strong>Kirim</strong>. <strong>Buka kotak masuk email Anda dan
+                                                temukan email yang
+                                                dikirim
+                                                untuk mengganti kata sandi akun Anda</strong>. Klik tautan atau tombol
+                                            <strong>Reset Password</strong>
+                                            yang
+                                            disediakan dalam email tersebut. Di halaman reset password, <strong>masukkan
+                                                email Anda
+                                                dan
+                                                masukkan kata sandi baru yang ingin Anda gunakan</strong>. <span
+                                                class="text-danger bold">Pastikan kata sandi yang Anda
+                                                masukkan memiliki minimal 8 karakter dan merupakan kombinasi huruf atau
+                                                angka.
+                                                Selain itu, kata sandi harus mengandung setidaknya satu huruf besar, satu
+                                                huruf
+                                                kecil, satu angka, dan satu simbol</span>. Setelah memasukkan informasi yang
+                                            diperlukan,
+                                            klik tombol <strong>Reset</strong> untuk mengatur ulang kata sandi Anda. Setelah
+                                            berhasil
+                                            mereset
+                                            kata sandi, Anda dapat <a class="text-primary bold" href="/login">Masuk</a>
+                                            kembali ke akun dengan menggunakan kata sandi baru
+                                            yang
+                                            telah Anda tentukan.
                                         </div>
                                     </div>
                                 </div>
@@ -318,7 +355,8 @@
                                             bawah logo
                                             CPDC. Setelah itu, klik pada opsi
                                             <a class="text-primary bold">Kerja Praktik</a>.
-                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang tersedia. Jika Anda telah
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
+                                            kolom yang tersedia. Jika Anda telah
                                             mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
                                             Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
@@ -346,7 +384,8 @@
                                             CPDC. Setelah itu, klik pada opsi
                                             <span class="text-primary bold">Tugas Akhir
                                                 1</span>.
-                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang tersedia. Jika Anda telah
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
+                                            kolom yang tersedia. Jika Anda telah
                                             mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
@@ -380,7 +419,8 @@
                                             CPDC. Setelah itu, klik pada opsi
                                             <span class="text-primary bold"">Tugas
                                                 Akhir 2</span>.
-                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang tersedia. Jika Anda telah
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
+                                            kolom yang tersedia. Jika Anda telah
                                             mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
@@ -415,7 +455,8 @@
                                             CPDC. Setelah itu, klik pada opsi
                                             <span class="text-primary bold">Sidang
                                                 Komprehensif</span>.
-                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang tersedia. Jika Anda telah
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
+                                            kolom yang tersedia. Jika Anda telah
                                             mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
@@ -473,7 +514,8 @@
                                             nama akun yang berada di pojok kanan atas, kemudian pilih opsi
                                             <span class="text-primary bold">Profil</span>. Setelah itu, klik ikon
                                             <strong>pensil</strong> untuk mengubah biodata profil Anda.
-                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang disediakan.
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
+                                            kolom yang disediakan.
                                             Terakhir, klik <strong>Submit</strong>
                                             untuk menyimpan biodata yang telah diubah sebelumnya.
                                         </div>
@@ -522,13 +564,39 @@
                                 <div id="lupa" class="collapse" data-parent="#accordion2">
                                     <div class="card-body">
                                         <div class="text-justify">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ullam voluptatem
-                                            officia natus totam esse distinctio voluptate aspernatur quam molestias!
-                                            Voluptate,
-                                            laborum minus quas recusandae molestiae, dolorum alias libero blanditiis nostrum
-                                            nihil, iste dignissimos explicabo enim mollitia! Optio sunt cum vitae
-                                            repudiandae,
-                                            culpa, voluptates, cumque accusantium impedit ratione inventore dicta.
+                                            Klik tombol <a class="text-primary bold" href="/login">Masuk</a> yang
+                                            terletak pada halaman beranda. Setelah itu, cari dan
+                                            klik
+                                            opsi <a class="text-primary bold" href="/forgot-password">Lupa Kata
+                                                Sandi?</a>. Di
+                                            halaman selanjutnya, <strong>masukkan alamat email yang
+                                                terdaftar pada akun Anda</strong>, dan <span
+                                                class="text-danger bold">pastikan bahwa email tersebut masih aktif</span>.
+                                            Setelah
+                                            itu, klik tombol <strong>Kirim</strong>. <strong>Buka kotak masuk email Anda dan
+                                                temukan email yang
+                                                dikirim
+                                                untuk mengganti kata sandi akun Anda</strong>. Klik tautan atau tombol
+                                            <strong>Reset Password</strong>
+                                            yang
+                                            disediakan dalam email tersebut. Di halaman reset password, <strong>masukkan
+                                                email Anda
+                                                dan
+                                                masukkan kata sandi baru yang ingin Anda gunakan</strong>. <span
+                                                class="text-danger bold">Pastikan kata sandi yang Anda
+                                                masukkan memiliki minimal 8 karakter dan merupakan kombinasi huruf atau
+                                                angka.
+                                                Selain itu, kata sandi harus mengandung setidaknya satu huruf besar, satu
+                                                huruf
+                                                kecil, satu angka, dan satu simbol</span>. Setelah memasukkan informasi yang
+                                            diperlukan,
+                                            klik tombol <strong>Reset</strong> untuk mengatur ulang kata sandi Anda. Setelah
+                                            berhasil
+                                            mereset
+                                            kata sandi, Anda dapat <a class="text-primary bold" href="/login">Masuk</a>
+                                            kembali ke akun dengan menggunakan kata sandi baru
+                                            yang
+                                            telah Anda tentukan.
                                         </div>
                                     </div>
                                 </div>

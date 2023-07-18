@@ -279,17 +279,39 @@
                             <div id="lupa" class="collapse" data-parent="#accordion2">
                                 <div class="card-body">
                                     <div class="text-justify">
-                                        Klik tombol "masuk" pada halaman beranda, kemudian klik "lupa kata sandi?" lalu
-                                        masukan email yang terdaftar pada akun anda dan pastikan email tersebut masih aktif,
-                                        kemudian klik tombol "kirim" dan buka email anda untuk
-                                        mengganti kata sandi akun anda. kemudian klik tombol "reset password" dan masukan
-                                        email dam kata sandi baru. Pastikan kata sandi yang Anda masukkan
-                                        memiliki
-                                        minimal 8 digit dan
-                                        merupakan kombinasi huruf atau angka. Selain itu, kata sandi harus
-                                        mengandung
-                                        setidaknya satu huruf besar, satu huruf kecil, satu angka, dan satu
-                                        simbol. setelah itu klik reset
+                                        Klik tombol <a class="text-primary bold" href="/login">Masuk</a> yang
+                                        terletak pada halaman beranda. Setelah itu, cari dan
+                                        klik
+                                        opsi <a class="text-primary bold" href="/forgot-password">Lupa Kata
+                                            Sandi?</a>. Di
+                                        halaman selanjutnya, <strong>masukkan alamat email yang
+                                            terdaftar pada akun Anda</strong>, dan <span class="text-danger bold">pastikan
+                                            bahwa email tersebut masih aktif</span>.
+                                        Setelah
+                                        itu, klik tombol <strong>Kirim</strong>. <strong>Buka kotak masuk email Anda dan
+                                            temukan email yang
+                                            dikirim
+                                            untuk mengganti kata sandi akun Anda</strong>. Klik tautan atau tombol
+                                        <strong>Reset Password</strong>
+                                        yang
+                                        disediakan dalam email tersebut. Di halaman reset password, <strong>masukkan
+                                            email Anda
+                                            dan
+                                            masukkan kata sandi baru yang ingin Anda gunakan</strong>. <span
+                                            class="text-danger bold">Pastikan kata sandi yang Anda
+                                            masukkan memiliki minimal 8 karakter dan merupakan kombinasi huruf atau
+                                            angka.
+                                            Selain itu, kata sandi harus mengandung setidaknya satu huruf besar, satu
+                                            huruf
+                                            kecil, satu angka, dan satu simbol</span>. Setelah memasukkan informasi yang
+                                        diperlukan,
+                                        klik tombol <strong>Reset</strong> untuk mengatur ulang kata sandi Anda. Setelah
+                                        berhasil
+                                        mereset
+                                        kata sandi, Anda dapat <a class="text-primary bold" href="/login">Masuk</a>
+                                        kembali ke akun dengan menggunakan kata sandi baru
+                                        yang
+                                        telah Anda tentukan.
                                     </div>
                                 </div>
                             </div>
