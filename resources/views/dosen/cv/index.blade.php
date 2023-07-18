@@ -183,6 +183,17 @@
                 /* Pindahkan ke kertas berikutnya */
             }
         }
+
+        @media print {
+            @page {
+                size: A4;
+            }
+
+            #pindah-halaman {
+                page-break-after: always;
+                margin-top: 50px;
+            }
+        }
     </style>
 </head>
 
@@ -219,29 +230,29 @@
                             dan menjabat sebagai {{ Auth::user()->dosen->jabatanTerakhir->jabatan }} di Jurusan Kimia,
                             Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Lampung.</p>
                     </div>
-                    <div class="pindah-halaman">
-                        <div class="section">
-                            <h2 style="font-family: Arial, sans-serif;">Penelitian</h2>
-                            @foreach ($penelitian as $item)
-                                <table>
-                                    <tr>
-                                        <td rowspan="3" class="margin">
-                                            {{ $item->tahun_penelitian }}
-                                        </td>
-                                        <td class="text-justify">
-                                            <div class="judul">
-                                                {{ $item->nama_litabmas }}
-                                            </div>
-                                            {{-- <br> --}}
-                                            <div style="margin-top: 15px;"></div>
-                                            Sumber dana dari {{ $item->sumber_dana }}, dengan anggaran
-                                            Rp{{ number_format($item->jumlah_dana, 0, ',', '.') }}
-                                        </td>
-                                    </tr>
-                                </table>
-                            @endforeach
-                        </div>
+
+                    <div class="section">
+                        <h2 style="font-family: Arial, sans-serif;">Penelitian</h2>
+                        @foreach ($penelitian as $item)
+                            <table>
+                                <tr>
+                                    <td rowspan="3" class="margin">
+                                        {{ $item->tahun_penelitian }}
+                                    </td>
+                                    <td class="text-justify">
+                                        <div class="judul">
+                                            {{ $item->nama_litabmas }}
+                                        </div>
+                                        {{-- <br> --}}
+                                        <div style="margin-top: 15px;"></div>
+                                        Sumber dana dari {{ $item->sumber_dana }}, dengan anggaran
+                                        Rp{{ number_format($item->jumlah_dana, 0, ',', '.') }}
+                                    </td>
+                                </tr>
+                            </table>
+                        @endforeach
                     </div>
+
 
                     <div class="pindah-halaman">
                         <div class="section">
@@ -289,8 +300,7 @@
                             @endforeach
                         </div>
                     </div>
-
-                    <div class="pindah-halaman">
+                    <div class="pindah-halaman" id="pindah-halaman">
                         <div class="section">
                             <h2 style="font-family: Arial, sans-serif;">Organisasi</h2>
                             @foreach ($organisasi as $item)
@@ -317,20 +327,22 @@
         </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var h2Element = document.querySelector(".section h2");
-            var firstPage = document.querySelector(".page:nth-child(1)");
-            var secondPage = document.querySelector(".page:nth-child(2)");
+        // Periksa apakah elemen berada di bagian bawah halaman
+        function isElementAtBottom(element) {
+            return element.getBoundingClientRect().bottom <= window.innerHeight;
+        }
 
-            // Mengambil posisi relatif h2Element terhadap dokumen
-            var h2OffsetTop = h2Element.offsetTop;
+        // Periksa saat halaman dimuat
+        window.addEventListener('load', function() {
+            var element = document.getElementById('pindah-halaman');
 
-            // Mengambil tinggi halaman pertama
-            var firstPageHeight = firstPage.offsetHeight;
-
-            // Jika h2 berada di bawah kertas pertama, pindahkan ke kertas kedua
-            if (h2OffsetTop >= firstPageHeight) {
-                secondPage.appendChild(h2Element);
+            // Periksa apakah elemen ada
+            if (element) {
+                // Periksa apakah elemen berada di bagian bawah halaman saat ini
+                if (isElementAtBottom(element)) {
+                    // Terapkan gaya CSS
+                    element.style.marginBottom = '50px';
+                }
             }
         });
     </script>
