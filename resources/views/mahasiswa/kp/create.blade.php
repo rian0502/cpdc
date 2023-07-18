@@ -230,13 +230,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" id="submitButton" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" id="submitButton" class="submit btn btn-primary mt-4">Submit</button>
                         </div>
                     </form>
-                    <a href="/mahasiswa/seminar/kp">
-
-                        <button class="batal btn btn-secondary">Batal</button>
-                    </a>
                 </div>
             </div>
         </div>

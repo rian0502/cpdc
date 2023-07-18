@@ -56,8 +56,8 @@
                     <div class="pd-20 card-box mb-30">
                         <div class="clearfix mb-30">
                             <div class="pull-left">
-                                <h4 class="text-dark h4">Presensi Lab</h4>
-                                <div>Anda sudah melakukan presensi lab pada hari ini</div>
+                                <h4 class="text-dark h4">Daftar Hadir Pengerjaan Tugas Akhir di Laboratorium</h4>
+                                <div>Anda sudah melakukan pengisian daftar hadir pada hari ini</div>
                             </div>
                         </div>
 

@@ -8,7 +8,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">PRESENSI LAB TUGAS AKHIR</h4>
+                            <h4 class="text-dark h4">Daftar Hadir Pengerjaan Tugas Akhir di Laboratorium</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
 

@@ -1,5 +1,10 @@
 @extends('layouts.admin')
 @section('admin')
+    <style>
+        .right {
+            float: right;
+        }
+    </style>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -8,16 +13,17 @@
 
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
-            <div class="min-height-200px">
+            <div class="min-height-200px" >
                 <!-- Default Basic Forms Start -->
-                <div class="pd-20 card-box">
+                <div class="pd-20 card-box" >
                     <div class="clearfix">
                         <div class="pull-left">
                             <h4 class="text-dark h4">Pendatan Alumni</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('mahasiswa.pendataan_alumni.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('mahasiswa.pendataan_alumni.store') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
@@ -33,16 +39,17 @@
                                 </div>
                                 <div class="form-group">
                                     <label>SKS Akhir</label>
-                                    <input autofocus name="sks" id="jumlah_sks" class="form-control" type="number" value="{{ old('sks') }}"
-                                        value="{{ old('sks') }}" placeholder="Jumlah SKS Saat Ini">
+                                    <input autofocus name="sks" id="jumlah_sks" class="form-control" type="number"
+                                        value="{{ old('sks') }}" value="{{ old('sks') }}"
+                                        placeholder="Jumlah SKS Saat Ini">
                                     @error('sks')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>IPK</label>
-                                    <input autofocus name="ipk" id="ipk" class="form-control" type="text" value="{{ old('ipk') }}"
-                                        value="{{ old('ipk') }}" placeholder="Contoh : 3.55">
+                                    <input autofocus name="ipk" id="ipk" class="form-control" type="text"
+                                        value="{{ old('ipk') }}" value="{{ old('ipk') }}" placeholder="Contoh : 3.55">
                                     @error('ipk')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -50,8 +57,8 @@
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label>Tanggal Lulus Sidang Komprehensif</label>
-                                        <input class="form-control" type="date" name="tgl_lulus" value="{{ old('tgl_lulus') }}"
-                                            value="{{ old('tgl_lulus') }}" id="tgl_lulus"
+                                        <input class="form-control" type="date" name="tgl_lulus"
+                                            value="{{ old('tgl_lulus') }}" value="{{ old('tgl_lulus') }}" id="tgl_lulus"
                                             placeholder="Periode Seminar">
                                         @error('tgl_lulus')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -71,8 +78,8 @@
                                             type="file" placeholder="FILE SK"
                                             onchange="updateFileNameAndLink('file-berkas_pengesahan','label-berkas_pengesahan','link-berkas_pengesahan')">
                                     </div>
-                                    <small class="mt-2"> <a id="link-berkas_pengesahan" href="#"
-                                            target="_blank" style="display: none;">Lihat File</a> </small>
+                                    <small class="mt-2"> <a id="link-berkas_pengesahan" href="#" target="_blank"
+                                            style="display: none;">Lihat File</a> </small>
                                     @error('berkas_pengesahan')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -85,8 +92,9 @@
                                     <label>Masa Studi
                                         <small>Dalam Tahun</small>
                                     </label>
-                                    <input name="masa_studi" id="masa_studi" class="form-control" type="text" value="{{ old('masa_studi') }}"
-                                        value="{{ old('masa_studi') }}" placeholder="Masa Studi">
+                                    <input name="masa_studi" id="masa_studi" class="form-control" type="text"
+                                        value="{{ old('masa_studi') }}" value="{{ old('masa_studi') }}"
+                                        placeholder="Masa Studi">
                                     @error('masa_studi')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -94,17 +102,18 @@
 
                                 <div class="form-group">
                                     <label>Rencana Periode Wisuda</label>
-                                    <input class="form-control month-picker" type="text" name="periode_wisuda" value="{{ old('periode_wisuda') }}"
-                                        value="{{ old('periode_wisuda') }}" id="periode_wisuda"
-                                        placeholder="Periode Wisuda">
+                                    <input class="form-control month-picker" type="text" name="periode_wisuda"
+                                        value="{{ old('periode_wisuda') }}" value="{{ old('periode_wisuda') }}"
+                                        id="periode_wisuda" placeholder="Periode Wisuda">
                                     @error('periode_wisuda')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>TOEFL</label>
-                                    <input autofocus name="toefl" id="toefl" class="form-control" type="number" value="{{ old('toefl') }}"
-                                        min="0" value="{{ old('toefl') }}" placeholder="Nilai TOEFL">
+                                    <input autofocus name="toefl" id="toefl" class="form-control" type="number"
+                                        value="{{ old('toefl') }}" min="0" value="{{ old('toefl') }}"
+                                        placeholder="Nilai TOEFL">
                                     @error('toefl')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -114,16 +123,16 @@
                                         Transkrip
                                     </label>
                                     <div class="custom-file mb-1">
-                                        <label class="custom-file-label" for="link-transkrip"
-                                            id="label-transkrip">Pilih File</label>
-                                        <input value="{{ old('transkrip') }}" accept=".pdf" autofocus
-                                            name="transkrip" id="file-transkrip"
+                                        <label class="custom-file-label" for="link-transkrip" id="label-transkrip">Pilih
+                                            File</label>
+                                        <input value="{{ old('transkrip') }}" accept=".pdf" autofocus name="transkrip"
+                                            id="file-transkrip"
                                             class="custom-file-input form-control @error('transkrip') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
                                             onchange="updateFileNameAndLink('file-transkrip','label-transkrip','link-transkrip')">
                                     </div>
-                                    <small class="mt-2"> <a id="link-transkrip" href="#"
-                                            target="_blank" style="display: none;">Lihat File</a> </small>
+                                    <small class="mt-2"> <a id="link-transkrip" href="#" target="_blank"
+                                            style="display: none;">Lihat File</a> </small>
                                     @error('transkrip')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -141,22 +150,18 @@
                                             type="file" placeholder="FILE SK"
                                             onchange="updateFileNameAndLink('file-berkas_toefl','label-berkas_toefl','link-berkas_toefl')">
                                     </div>
-                                    <small class="mt-2"> <a id="link-berkas_toefl" href="#"
-                                            target="_blank" style="display: none;">Lihat File</a> </small>
+                                    <small class="mt-2"> <a id="link-berkas_toefl" href="#" target="_blank"
+                                            style="display: none;">Lihat File</a> </small>
                                     @error('berkas_toefl')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                {{-- hanya tampil saat mode mobile --}}
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button class=" btn btn-primary mt-4">Submit</button>
                         </div>
                     </form>
-                    <a href="{{ route('mahasiswa.pendataan_alumni.index') }}">
-                        <button class="batal btn btn-secondary">Batal</button>
-                    </a>
                 </div>
             </div>
         </div>
