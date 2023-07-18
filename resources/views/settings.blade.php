@@ -63,10 +63,10 @@
                                             id="toggle_new_password">
                                             <i class="fas fa-eye-slash"></i>
                                         </button>
-                                        @error('new_password')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
+                                    @error('new_password')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="confirm_new_password">Konfirmasi Kata Sandi
@@ -78,10 +78,10 @@
                                             id="toggle_confirm_new_password">
                                             <i class="fas fa-eye-slash"></i>
                                         </button>
-                                        @error('confirm_new_password')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
+                                    @error('confirm_new_password')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="mt-2">
