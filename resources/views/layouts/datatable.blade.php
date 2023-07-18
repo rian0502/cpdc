@@ -215,7 +215,7 @@
                         @elseif(auth()->user()->hasRole('dosen'))
                             <a class="dropdown-item" href="{{ route('dosen.profile.index') }} "><i
                                     class="dw dw-user1"></i> Profil</a>
-                        @elseif(auth()->user()->hasRole(['mahasiswa','alumni']))
+                        @elseif(auth()->user()->hasRole(['mahasiswa', 'alumni']))
                             <a class="dropdown-item" href="{{ route('mahasiswa.profile.index') }}"><i
                                     class="dw dw-user1"></i>
                                 Profil</a>
@@ -525,6 +525,8 @@
                                     TA</span>
                             </a>
                         </li>
+                    @endrole
+                    @role('alumni')
                         <li>
                             <a href="{{ route('mahasiswa.pendataan_alumni.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni*') ? 'active' : '' }}">
@@ -532,8 +534,6 @@
                                     Alumni</span>
                             </a>
                         </li>
-                    @endrole
-                    @role('alumni')
                         <li>
                             <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni*') ? 'active' : '' }}">
