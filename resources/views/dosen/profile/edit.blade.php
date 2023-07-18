@@ -61,26 +61,26 @@
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>NAMA</label>
+                                    <label>Nama</label>
                                     <input value="{{ old('nama_dosen', $dosen->nama_dosen) }}" autofocus name="nama_dosen"
                                         id="nama"
                                         class="form-control @error('nama_dosen') form-control-danger @enderror"
-                                        type="text" placeholder="NAMA">
+                                        type="text" placeholder="Nama">
                                     @error('nama_dosen')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>NIP</label>
+                                    <label>Nomor Induk Pegawai</label>
                                     <input value="{{ old('nip', $dosen->nip) }}" autofocus name="nip" id="nip"
                                         class="form-control @error('nip') form-control-danger @enderror" type="number"
-                                        placeholder="NIP">
+                                        placeholder="Nomor Induk Pegawai">
                                     @error('nip')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>NIDN</label>
+                                    <label>Nomor Induk Dosen Nasional</label>
                                     <input value="{{ old('nidn', $dosen->nidn) }}" autofocus name="nidn" id="nidn"
                                         class="form-control @error('nidn') form-control-danger @enderror" type="number"
                                         placeholder="NIDN">
@@ -89,10 +89,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>NO TELPHONE</label>
+                                    <label>Nomor Telepon</label>
                                     <input value="{{ old('no_hp', $dosen->no_hp) }}" autofocus name="no_hp"
                                         id="no_hp" class="form-control @error('no_hp') form-control-danger @enderror"
-                                        type="number" placeholder="NO TELPHONE">
+                                        type="number" placeholder="Nomor Telepon">
                                     @error('no_hp')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -102,42 +102,43 @@
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>ALAMAT</label>
+                                    <label>Alamat</label>
                                     <input value="{{ old('alamat', $dosen->alamat) }}" autofocus name="alamat"
                                         id="alamat" class="form-control @error('alamat') form-control-danger @enderror"
-                                        type="text" placeholder="ALAMAT">
+                                        type="text" placeholder="Alamat">
+                                    
                                     @error('alamat')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label>TEMPAT LAHIR</label>
+                                    <label>Tempat Lahir</label>
                                     <input value="{{ old('tempat_lahir', $dosen->tempat_lahir) }}" autofocus
                                         name="tempat_lahir" id="tempat_lahir"
                                         class="form-control @error('tempat_lahir') form-control-danger @enderror"
-                                        type="text" placeholder="TEMPAT LAHIR">
+                                        type="text" placeholder="Tempat Lahir">
                                     @error('tempat_lahir')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>TANGGAL LAHIR</label>
+                                    <label>Tanggal Lahir</label>
                                     <input value="{{ old('tanggal_lahir', $dosen->tanggal_lahir) }}" autofocus
                                         name="tanggal_lahir" id="tanggal_lahir"
                                         class="form-control @error('tanggal_lahir') form-control-danger @enderror"
-                                        type="date" placeholder="TANGGAL LAHIR">
+                                        type="date" placeholder="Tanggal Lahir">
                                     @error('tanggal_lahir')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Kelamin</label>
-                                    <div class="">
+                                    <div>
                                         <div class="custom-control custom-radio custom-control-inline pb-0">
                                             <input type="radio" id="male" name="gender" value="Laki-laki"
                                                 class="custom-control-input"
-                                                {{ old('gender', $dosen->jenis_kelamin) == 'Laki-laki' ? 'checked' : '' }} />
+                                                {{ old('gender', $dosen->jenis_kelamin) == 'Laki-laki' || $dosen->jenis_kelamin === null ? 'checked' : '' }} />
                                             <label class="custom-control-label" for="male">Pria</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline pb-0">
@@ -151,6 +152,7 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+
                             </div>
                         </div>
                         <div class="form-group">

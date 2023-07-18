@@ -87,6 +87,7 @@
                             </div>
                             <h5 class="text-center h5 mb-0">{{ Auth::user()->dosen->nama_dosen }}</h5>
                             <p class="text-center text-muted font-14">
+                                {{ ucwords(auth()->user()->roles->pluck('name')->implode(', ')) }} <br>
                                 NIP. {{ Auth::user()->dosen->nip }}
                             </p>
                             <div class="profile-info">
@@ -117,10 +118,6 @@
                                     <li>
                                         <span>Jenis Kelamin:</span>
                                         {{ Auth::user()->dosen->jenis_kelamin }}
-                                    </li>
-                                    <li>
-                                        <span>Alamat:</span>
-                                        {{ Auth::user()->dosen->alamat }}
                                     </li>
                                     <li>
                                         <span>Status:</span>

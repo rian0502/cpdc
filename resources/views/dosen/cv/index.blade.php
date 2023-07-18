@@ -11,17 +11,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            /* background-color: #f4f4f4; */
             margin: 0;
             padding: 0;
         }
-
-        /* #header {
-    background-color: #333f50;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-} */
 
         #header {
             background-color: #333f50;
@@ -32,28 +24,12 @@
 
         }
 
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        #grid-container {
+            padding-left: 30px;
+            margin-top: 20px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
 
-        table th {
-            font-size: 18px;
-            font-weight: bold;
-            text-align: left;
-            padding: 8px;
-        }
-
-        table td {
-            font-size: 16px;
-            padding: 8px;
-        }
 
         .back-button:hover,
         .export-button:hover {
@@ -149,18 +125,64 @@
             align-items: center;
         }
 
-
-
         .year {
             margin-top: 25px;
         }
 
         .nama {
-            font-size: 30px;
-            margin-top: 80px;
+            font-size: 24px;
+            margin-top: 50px;
+            margin-bottom: 2px;
+            color: black
         }
 
-        /* Media Queries */
+        .content {
+            text-align: center;
+        }
+
+        #text {
+            font-size: 20px;
+        }
+
+        .margin {
+            margin-top: -20px;
+        }
+
+        .litabmas {
+            justify-self: end;
+            text-align: right;
+            margin-right: 20px;
+            /* Adjust this value to control the distance from date year */
+        }
+
+        .text-justify {
+            text-align: justify;
+        }
+
+        .margin {
+            padding-right: 30px;
+            padding-left: 15px;
+        }
+
+        .judul {
+            font-weight: bold;
+        }
+
+        @media print {
+            @page {
+                size: auto;
+                /* Atur ukuran kertas */
+                margin: 0;
+                /* Hilangkan margin pada halaman cetak */
+            }
+
+            .section h2 {
+                break-after: always;
+                /* Pindahkan ke kertas berikutnya */
+                page-break-after: always;
+                /* Pindahkan ke kertas berikutnya */
+            }
+        }
     </style>
 </head>
 
@@ -168,96 +190,150 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div id="main">
-                <div class="section biodata-section color">
+                <div class="">
                     <div class="content">
-                        <p>{{ Auth::user()->dosen->no_hp }}</p>
-                        <p class="email">{{ Auth::user()->email }}</p>
-                        <h1 class="nama text-light">{{ Auth::user()->name }}</h1>
+                        <h1 class="nama">{{ Auth::user()->name }}</h1>
+                        <span style="color:black;text-align: center; margin-top:-20px;font-family: Arial, sans-serif;"
+                            id="text">
+                            @php
+                                $noHp = Auth::user()->dosen->no_hp;
+                                if (substr($noHp, 0, 1) === '0') {
+                                    $noHp = '+62' . substr($noHp, 1);
+                                }
+                                $noHp = preg_replace('/(\+62)(\d{3})(\d{4})(\d+)/', '$1-$2-$3-$4', $noHp);
+                            @endphp
+
+                            {{ $noHp }}
+
+                            |
+                            {{ Auth::user()->email }}
+                        </span>
                     </div>
                 </div>
                 <div class="header-main">
                     <div class="section">
-                        <h2>Biodata</h2>
-                        <p>{{ Auth::user()->name }}, dengan Nomor Induk Pegawai {{ Auth::user()->dosen->nip }},
+                        <h2 style="font-family: Arial, sans-serif;">Biodata</h2>
+                        <p style="font-family: Arial, sans-serif;">{{ Auth::user()->name }}, dengan Nomor Induk Pegawai
+                            {{ Auth::user()->dosen->nip }},
                             berpangkat {{ Auth::user()->dosen->pangkatTerakhir->kepangkatan }}
                             dan menjabat sebagai {{ Auth::user()->dosen->jabatanTerakhir->jabatan }} di Jurusan Kimia,
                             Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Lampung.</p>
                     </div>
-
-                    <div class="section">
-                        <h2>Penelitian</h2>
-                        {{-- <ul class="grid-container" id="grid-container"> --}}
-                        <table>
+                    <div class="pindah-halaman">
+                        <div class="section">
+                            <h2 style="font-family: Arial, sans-serif;">Penelitian</h2>
                             @foreach ($penelitian as $item)
-                                <tr>
-                                    <td rowspan="2" class="date year">{{ $item->tahun_penelitian }}</td>
-                                    <td>{{ $item->nama_litabmas }}</td>
-                                </tr>
-                                <tr>
-                                    <td> {{ $item->sumber_dana }} - {{ $item->jumlah_dana }} </td>
-                                </tr>
+                                <table>
+                                    <tr>
+                                        <td rowspan="3" class="margin">
+                                            {{ $item->tahun_penelitian }}
+                                        </td>
+                                        <td class="text-justify">
+                                            <div class="judul">
+                                                {{ $item->nama_litabmas }}
+                                            </div>
+                                            {{-- <br> --}}
+                                            <div style="margin-top: 15px;"></div>
+                                            Sumber dana dari {{ $item->sumber_dana }}, dengan anggaran
+                                            Rp{{ number_format($item->jumlah_dana, 0, ',', '.') }}
+                                        </td>
+                                    </tr>
+                                </table>
                             @endforeach
-                        </table>
-                        {{-- </ul> --}}
+                        </div>
                     </div>
 
-                    <div class="section">
-                        <h2>Pengabdian</h2>
-                        {{-- <ul class="grid-container" id="grid-container"> --}}
-                        <table>
-
+                    <div class="pindah-halaman">
+                        <div class="section">
+                            <h2 style="font-family: Arial, sans-serif;">Pengabdian</h2>
                             @foreach ($pengabdian as $item)
-                                <tr>
-                                    <td rowspan="2" class="date year">{{ $item->tahun_penelitian }}</td>
-                                    <td>{{ $item->nama_litabmas }}</td>
-                                </tr>
-                                <tr>
-                                    <td> {{ $item->sumber_dana }} - {{ $item->jumlah_dana }} </td>
-                                </tr>
+                                <table>
+                                    <tr>
+                                        <td rowspan="3" class="margin">
+                                            {{ $item->tahun_penelitian }}
+                                        </td>
+                                        <td class="text-justify">
+                                            <div class="judul">
+                                                {{ $item->nama_litabmas }}
+                                            </div>
+                                            {{-- <br> --}}
+                                            <div style="margin-top: 15px;"></div>
+                                            Sumber dana dari {{ $item->sumber_dana }}, dengan anggaran
+                                            Rp{{ number_format($item->jumlah_dana, 0, ',', '.') }}
+                                        </td>
+                                    </tr>
+                                </table>
                             @endforeach
-                        </table>
-
-                        {{-- </ul> --}}
+                        </div>
                     </div>
 
-                    <div class="section">
-                        <h2>Publikasi</h2>
-                        {{-- <ul class="grid-container" id="grid-container"> --}}
-                        <table>
+                    <div class="pindah-halaman">
+                        <div class="section">
+                            <h2 style="font-family: Arial, sans-serif;">Publikasi</h2>
                             @foreach ($publikasi as $item)
-                                <tr>
-                                    <td rowspan="2" class="date year">{{ $item->tahun }}</td>
-                                    <td>{{ $item->nama_publikasi }}</td>
-                                </tr>
-                                <tr>
-                                    <td> {{ $item->judul }}, Vol.{{ $item->vol }}, Hal.{{ $item->halaman }}
-                                    </td>
-                                </tr>
+                                <table>
+                                    <tr>
+                                        <td rowspan="3" class="margin">
+                                            {{ $item->tahun }}
+                                        </td>
+                                        <td class="text-justify">
+                                            <div class="judul">
+                                                {{ $item->nama_publikasi }}
+                                            </div>
+                                            <div style="margin-top: 15px;"></div>
+                                            Publikasi dengan judul "{{ $item->judul }}" berada dalam Volume
+                                            {{ $item->vol }} dengan jumlah halaman sebanyak {{ $item->halaman }}.
+                                        </td>
+                                    </tr>
+                                </table>
                             @endforeach
-                        </table>
-                        {{-- </ul> --}}
+                        </div>
                     </div>
 
-                    <div class="section">
-                        <h2>Organisasi</h2>
-                        {{-- <ul class="grid-container" id="grid-container"> --}}
-                        <table>
+                    <div class="pindah-halaman">
+                        <div class="section">
+                            <h2 style="font-family: Arial, sans-serif;">Organisasi</h2>
                             @foreach ($organisasi as $item)
-                                <tr>
-                                    <td rowspan="2" class="date year">{{ $item->tahun_menjabat }}</td>
-                                    <td>{{ $item->nama_organisasi }}</td>
-                                </tr>
-                                <tr>
-                                    <td> {{ $item->jabatan }}</td>
-                                </tr>
+                                <table>
+                                    <tr>
+                                        <td rowspan="3" class="margin">
+                                            {{ $item->tahun_menjabat }}
+                                        </td>
+                                        <td class="text-justify">
+                                            <div class="judul">
+                                                {{ $item->nama_organisasi }}
+                                            </div>
+                                            <div style="margin-top: 15px;"></div>
+                                            Menjabat sebagai {{ $item->jabatan }} dengan masa jabatan dari tahun
+                                            {{ $item->tahun_menjabat . ' hingga ' . $item->tahun_berakhir }}
+                                        </td>
+                                    </tr>
+                                </table>
                             @endforeach
-                        </table>
-                        {{-- </ul> --}}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var h2Element = document.querySelector(".section h2");
+            var firstPage = document.querySelector(".page:nth-child(1)");
+            var secondPage = document.querySelector(".page:nth-child(2)");
+
+            // Mengambil posisi relatif h2Element terhadap dokumen
+            var h2OffsetTop = h2Element.offsetTop;
+
+            // Mengambil tinggi halaman pertama
+            var firstPageHeight = firstPage.offsetHeight;
+
+            // Jika h2 berada di bawah kertas pertama, pindahkan ke kertas kedua
+            if (h2OffsetTop >= firstPageHeight) {
+                secondPage.appendChild(h2Element);
+            }
+        });
+    </script>
 
 </body>
 

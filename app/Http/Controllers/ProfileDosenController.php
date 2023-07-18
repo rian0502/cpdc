@@ -231,13 +231,21 @@ class ProfileDosenController extends Controller
         $option->set('defaultPaperSize', 'A4');
         $option->set('marginTop', 0);
 
-        $view =  view('dosen.cv.index', $data);
+        $view = view('dosen.cv.index', $data);
         $domPdf = new Dompdf();
         $domPdf->loadHtml($view->render());
+
+        // Konfigurasi ukuran kertas
+        $domPdf->setPaper('A4', 'portrait');
+
         $domPdf->render();
-        $pdf = PDF::loadView('dosen.cv.index', $data);
-        $pdf->setPaper('A4', 'portrait');
-        $pdf->setOptions([$option]);
-        return $pdf->stream('cv.pdf');
+        $pdf = $domPdf->output();
+
+        $response = response()->make($pdf, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="cv.pdf"'
+        ]);
+
+        return $response;
     }
 }
