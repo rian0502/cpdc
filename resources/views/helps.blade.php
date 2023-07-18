@@ -47,7 +47,8 @@
                                             CPDC. Setelah itu, klik pada opsi <a class="text-primary bold"
                                                 href="/mahasiswa/seminar/kp">Kerja Praktik</a>.
 
-                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang tersedia. Jika Anda telah mengisi
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom
+                                            yang tersedia. Jika Anda telah mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
                                             Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja praktik
@@ -72,7 +73,8 @@
                                             CPDC. Setelah itu, klik pada opsi
                                             <a class="text-primary bold" href="/mahasiswa/seminar/tugas_akhir_1">Tugas Akhir
                                                 1</a>.
-                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang tersedia. Jika Anda telah mengisi
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom
+                                            yang tersedia. Jika Anda telah mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
                                             Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja praktik
@@ -102,7 +104,8 @@
                                             CPDC. Setelah itu, klik pada opsi
                                             <a class="text-primary bold" href="/mahasiswa/seminar/tugas_akhir_2">Tugas
                                                 Akhir 2</a>.
-                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang tersedia. Jika Anda telah mengisi
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom
+                                            yang tersedia. Jika Anda telah mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
                                             Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja praktik
@@ -132,7 +135,8 @@
                                             CPDC. Setelah itu, klik pada opsi
                                             <a class="text-primary bold" href="/mahasiswa/sidang/kompre">Sidang
                                                 Komprehensif</a>.
-                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang tersedia. Jika Anda telah mengisi
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom
+                                            yang tersedia. Jika Anda telah mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
                                             Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja praktik
@@ -179,7 +183,8 @@
                                         itu, klik ikon <strong>pensil</strong> untuk mengganti foto profil Anda.
                                         Selanjutnya, klik tombol
                                         <strong>Choose File</strong> untuk membuka jendela <i>file explorer</i>,
-                                        <span class="text-danger bold">pastikan menggunakan format gambar yang umum digunakan seperti .jpg
+                                        <span class="text-danger bold">pastikan menggunakan format gambar yang umum
+                                            digunakan seperti .jpg
                                             atau .png</span> sebelum memilih gambar yang ingin digunakan sebagai foto
                                         profil. Setelah memilih gambar yang sesuai, klik tombol
                                         <strong>Open</strong>
@@ -222,7 +227,8 @@
                                             <a class="text-primary bold" href="#">Profil</a>. Setelah
                                         @endif
                                         itu, klik ikon <strong>pensil</strong> untuk mengubah biodata profil Anda.
-                                        Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom yang disediakan.
+                                        Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom
+                                        yang disediakan.
                                         Terakhir, klik
                                         <strong>Submit</strong>
                                         untuk menyimpan biodata yang telah diubah sebelumnya.
@@ -273,11 +279,17 @@
                             <div id="lupa" class="collapse" data-parent="#accordion2">
                                 <div class="card-body">
                                     <div class="text-justify">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ullam voluptatem
-                                        officia natus totam esse distinctio voluptate aspernatur quam molestias! Voluptate,
-                                        laborum minus quas recusandae molestiae, dolorum alias libero blanditiis nostrum
-                                        nihil, iste dignissimos explicabo enim mollitia! Optio sunt cum vitae repudiandae,
-                                        culpa, voluptates, cumque accusantium impedit ratione inventore dicta.
+                                        Klik tombol "masuk" pada halaman beranda, kemudian klik "lupa kata sandi?" lalu
+                                        masukan email yang terdaftar pada akun anda dan pastikan email tersebut masih aktif,
+                                        kemudian klik tombol "kirim" dan buka email anda untuk
+                                        mengganti kata sandi akun anda. kemudian klik tombol "reset password" dan masukan
+                                        email dam kata sandi baru. Pastikan kata sandi yang Anda masukkan
+                                        memiliki
+                                        minimal 8 digit dan
+                                        merupakan kombinasi huruf atau angka. Selain itu, kata sandi harus
+                                        mengandung
+                                        setidaknya satu huruf besar, satu huruf kecil, satu angka, dan satu
+                                        simbol. setelah itu klik reset
                                     </div>
                                 </div>
                             </div>
