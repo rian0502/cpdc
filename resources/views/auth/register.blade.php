@@ -21,12 +21,6 @@
     <link rel="stylesheet" type="text/css" href="/Assets/auth/src/plugins/jquery-steps/jquery.steps.css" />
     <link rel="stylesheet" type="text/css" href="/Assets/auth/vendors/styles/style.css" />
 
-    <!-- FontAwesome -->
-    <link href="/Assets/FontAwesome/css/fontawesome.css" rel="stylesheet">
-    <link href="/Assets/FontAwesome/css/brands.css" rel="stylesheet">
-    <link href="/Assets/FontAwesome/css/solid.css" rel="stylesheet">
-    <!-- FontAwesome -->
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
     <script>
@@ -55,6 +49,50 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
     </script>
+    <style>
+        .custom-checkbox {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .custom-checkbox .checkmark {
+            width: 24px;
+            height: 24px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            display: inline-block;
+            position: relative;
+            vertical-align: middle;
+        }
+
+        .custom-checkbox input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .custom-checkbox .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .custom-checkbox input[type="checkbox"]:checked+.checkmark:after {
+            display: block;
+        }
+
+        .custom-checkbox .checkmark:after {
+            left: 8px;
+            top: 4px;
+            width: 8px;
+            height: 16px;
+            border: solid #333;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+    </style>
+
     <!-- End Google Tag Manager -->
 </head>
 
@@ -154,8 +192,7 @@
                                                         <label class="custom-control-label"
                                                             for="mahasiswa">Mahasiswa</label>
                                                     </div>
-                                                    <div
-                                                        class="custom-control custom-radio custom-control-inline pb-0">
+                                                    <div class="custom-control custom-radio custom-control-inline pb-0">
                                                         <input type="radio" id="alumni" name="jenis_akun"
                                                             value="alumni" class="custom-control-input" />
                                                         <label class="custom-control-label"
@@ -171,51 +208,42 @@
 
                                             <div class="form-group">
                                                 <label for="">NPM</label>
-                                                <div class="s"></div>
                                                 <input type="text" name="npm" value="{{ old('npm') }}"
                                                     class="form-control @error('npm') form-control-danger @enderror" />
                                                 @error('npm')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
-
-                                            <label for="">Kata Sandi</label>
-                                            <div class="input-group custom">
-                                                <input name="password" value="{{ old('password') }}" type="password"
-                                                    class="form-control form-control-lg @error('password') form-control-danger @enderror"
-                                                    placeholder="" id="password-input" />
-                                                <div class="input-group-append custom">
-                                                    @error('password')
-                                                    @else
-                                                        <span class="input-group-text"
-                                                            onclick="togglePasswordVisibility('password-input', 'password-icon')">
-                                                            <i class="fas fa-eye-slash" id="password-icon"></i>
-                                                        </span>
-                                                    @enderror
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="password">Kata Sandi</label>
+                                                <input type="password" name="password" value="{{ old('password') }}"
+                                                    id="password"
+                                                    class="form-control @error('password') form-control-danger @enderror" />
                                                 @error('password')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
-                                            <label for="">Konfirmasi Kata Sandi</label>
-                                            <div class="input-group custom">
-                                                <input name="password_confirm" value="{{ old('password_confirm') }}"
-                                                    type="password"
-                                                    class="form-control form-control-lg @error('password_confirm') form-control-danger @enderror"
-                                                    placeholder="" id="confirm-password-input" />
-                                                <div class="input-group-append custom">
-                                                    @error('password_confirm')
-                                                    @else
-                                                        <span class="input-group-text"
-                                                            onclick="togglePasswordVisibility('confirm-password-input', 'confirm-password-icon')">
-                                                            <i class="fas fa-eye-slash" id="confirm-password-icon"></i>
-                                                        </span>
-                                                    @enderror
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="password_confirm">Konfirmasi Kata Sandi</label>
+                                                <input type="password" name="password_confirm"
+                                                    value="{{ old('password_confirm') }}" id="password_confirm"
+                                                    class="form-control @error('password_confirm') form-control-danger @enderror" />
                                                 @error('password_confirm')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
+                                            <div class="form-group" id="form" style="margin-top: -8px">
+                                                <label class="weight-600"></label>
+                                                <div class="custom-control custom-checkbox mb-5">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        name="show_password" id="show_password"
+                                                        onchange="togglePasswordVisibility()" />
+                                                    <label class="custom-control-label" for="show_password">
+                                                        Tampilkan Kata Sandi
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            
                                             <div class="form-group">
                                                 <label for="">Jenis Kelamin</label>
                                                 <div class="">
@@ -281,18 +309,17 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <script>
-        function togglePasswordVisibility(inputId, iconId) {
-            var passwordInput = document.getElementById(inputId);
-            var icon = document.getElementById(iconId);
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("password");
+            var passwordConfirmInput = document.getElementById("password_confirm");
+            var showPasswordCheckbox = document.getElementById("show_password");
 
-            if (passwordInput.type === "password") {
+            if (showPasswordCheckbox.checked) {
                 passwordInput.type = "text";
-                icon.classList.remove("fa-eye-slash");
-                icon.classList.add("fa-eye", "fa-beat");
+                passwordConfirmInput.type = "text";
             } else {
                 passwordInput.type = "password";
-                icon.classList.remove("fa-eye", "fa-beat");
-                icon.classList.add("fa-eye-slash");
+                passwordConfirmInput.type = "password";
             }
         }
     </script>
