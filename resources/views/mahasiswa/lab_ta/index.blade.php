@@ -51,8 +51,6 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-
-
                     <div class="pd-20 card-box mb-30">
                         <div class="clearfix mb-30">
                             <div class="pull-left">
@@ -60,7 +58,6 @@
                                 <div>Anda sudah melakukan pengisian daftar hadir pada hari ini</div>
                             </div>
                         </div>
-
                         <div class="jadwal_seminar">
                             <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
                                 <div class="row border-bottom">
@@ -101,13 +98,9 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
-
-
             </div>
         </div>
         <!-- Input Validation End -->
