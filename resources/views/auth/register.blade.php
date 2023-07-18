@@ -21,6 +21,12 @@
     <link rel="stylesheet" type="text/css" href="/Assets/auth/src/plugins/jquery-steps/jquery.steps.css" />
     <link rel="stylesheet" type="text/css" href="/Assets/auth/vendors/styles/style.css" />
 
+    <!-- FontAwesome -->
+    <link href="/Assets/FontAwesome/css/fontawesome.css" rel="stylesheet">
+    <link href="/Assets/FontAwesome/css/brands.css" rel="stylesheet">
+    <link href="/Assets/FontAwesome/css/solid.css" rel="stylesheet">
+    <!-- FontAwesome -->
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
     <script>
@@ -100,15 +106,15 @@
                                                 <label for="">Alamat Email</label>
                                                 <input type="email"
                                                     class="form-control @error('email') form-control-danger @enderror"
-                                                    value="{{ old('email') }}"
-                                                    name="email" />
+                                                    value="{{ old('email') }}" name="email" />
                                                 @error('email')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Nama Lengkap</label>
-                                                <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}"
+                                                <input type="text" name="nama_lengkap"
+                                                    value="{{ old('nama_lengkap') }}"
                                                     class="form-control @error('nama_lengkap') form-control-danger @enderror" />
                                                 @error('nama_lengkap')
                                                     <small class="text-danger">{{ $message }}</small>
@@ -125,7 +131,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Pembimbing Akademik</label>
-                                                <select class="custom-select2 form-control " value="{{ old('id_dosen') }}" name="id_dosen"
+                                                <select class="custom-select2 form-control "
+                                                    value="{{ old('id_dosen') }}" name="id_dosen"
                                                     style="width: 100%; height: 38px">
                                                     <optgroup label="Dosen Pembimbing Akademik">
                                                         //tidak ada di daftar
@@ -141,8 +148,7 @@
                                             <div class="form-group">
                                                 <label for="">Jenis Akun</label>
                                                 <div class="">
-                                                    <div
-                                                        class="custom-control custom-radio custom-control-inline pb-0">
+                                                    <div class="custom-control custom-radio custom-control-inline pb-0">
                                                         <input type="radio" id="mahasiswa" name="jenis_akun"
                                                             value="mahasiswa" class="custom-control-input" />
                                                         <label class="custom-control-label"
@@ -165,6 +171,7 @@
 
                                             <div class="form-group">
                                                 <label for="">NPM</label>
+                                                <div class="s"></div>
                                                 <input type="text" name="npm" value="{{ old('npm') }}"
                                                     class="form-control @error('npm') form-control-danger @enderror" />
                                                 @error('npm')
@@ -172,18 +179,39 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="">Kata Sandi</label>
-                                                <input type="password" name="password" value="{{ old('password') }}"
-                                                    class="form-control @error('password') form-control-danger @enderror" />
+                                            <label for="">Kata Sandi</label>
+                                            <div class="input-group custom">
+                                                <input name="password" value="{{ old('password') }}" type="password"
+                                                    class="form-control form-control-lg @error('password') form-control-danger @enderror"
+                                                    placeholder="" id="password-input" />
+                                                <div class="input-group-append custom">
+                                                    @error('password')
+                                                    @else
+                                                        <span class="input-group-text"
+                                                            onclick="togglePasswordVisibility('password-input', 'password-icon')">
+                                                            <i class="fas fa-eye-slash" id="password-icon"></i>
+                                                        </span>
+                                                    @enderror
+                                                </div>
                                                 @error('password')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
-                                            <div class="form-group">
-                                                <label for="">Konfirmasi Kata Sandi</label>
-                                                <input type="password" name="password_confirm" value="{{ old('password_confirm') }}"
-                                                    class="form-control @error('password_confirm') form-control-danger @enderror" />
+                                            <label for="">Konfirmasi Kata Sandi</label>
+                                            <div class="input-group custom">
+                                                <input name="password_confirm" value="{{ old('password_confirm') }}"
+                                                    type="password"
+                                                    class="form-control form-control-lg @error('password_confirm') form-control-danger @enderror"
+                                                    placeholder="" id="confirm-password-input" />
+                                                <div class="input-group-append custom">
+                                                    @error('password_confirm')
+                                                    @else
+                                                        <span class="input-group-text"
+                                                            onclick="togglePasswordVisibility('confirm-password-input', 'confirm-password-icon')">
+                                                            <i class="fas fa-eye-slash" id="confirm-password-icon"></i>
+                                                        </span>
+                                                    @enderror
+                                                </div>
                                                 @error('password_confirm')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
@@ -251,6 +279,23 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
             style="display: none; visibility: hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
+    <script>
+        function togglePasswordVisibility(inputId, iconId) {
+            var passwordInput = document.getElementById(inputId);
+            var icon = document.getElementById(iconId);
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye", "fa-beat");
+            } else {
+                passwordInput.type = "password";
+                icon.classList.remove("fa-eye", "fa-beat");
+                icon.classList.add("fa-eye-slash");
+            }
+        }
+    </script>
 </body>
 
 </html>
