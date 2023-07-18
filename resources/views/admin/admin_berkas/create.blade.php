@@ -54,7 +54,7 @@
                             {{-- form untuk sebelah kanan --}}
                             <div class="merek weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Tanggal SK</label>
+                                    <label>Tanggal Surat Keputusan</label>
                                     <input type="text" class="form-control date-picker" placeholder="Select Date" />
                                 </div>
                                 <div class="form-group">

@@ -32,7 +32,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>FILE PERSYARATAN <small> <a id="link-file_persyaratan" href="#"
+                                    <label>File Persyaratan<small> <a id="link-file_persyaratan" href="#"
                                         target="_blank" style="display: none;">Lihat File</a> </small></label>
                                     <div class=" custom-file">
                                         <label class="custom-file-label" for="file_persyaratan" id="label-file_persyaratan">Pilih File</label>

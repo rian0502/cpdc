@@ -48,7 +48,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Ket</label>
+                                    <label>Keterangan</label>
                                     <textarea class="form-control @error('ket') form-control-danger @enderror" name="ket" id="ket" cols="5"
                                         rows="3" placeholder="Keterangan">{{ old('ket') }}</textarea>
                                     @error('ket')

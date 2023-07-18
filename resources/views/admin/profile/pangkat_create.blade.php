@@ -17,7 +17,7 @@
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label for="kepangkatan">PANGKAT</label>
+                                    <label for="kepangkatan">Pangkat</label>
                                     <select name="kepangkatan" style="width: 100%; height: 38px" id="kepangkatan" class="custom-select2 form-control @error('kepangkatan') form-control-danger @enderror">
 
                                         <option value="I A" {{ old('kepangkatan') == 'I A' ? 'selected' : '' }}>I A</option>
@@ -43,7 +43,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>TANGGAL SK PANGKAT</label>
+                                    <label>Tanggal Surat Keputusan Pangkat</label>
                                     <input value="{{old('tanggal_sk')}}" autofocus name="tanggal_sk" id="tanggal_sk"
                                         class="form-control @error('tanggal_sk') form-control-danger @enderror"
                                         type="date" placeholder="TANGGAL SK">
@@ -52,7 +52,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>FILE SK PANGKAT <small> <a id="view-file-link-pangkat" href="#"
+                                    <label>File Surat Keputusan Pangkat<small> <a id="view-file-link-pangkat" href="#"
                                         target="_blank" style="display: none;">Lihat File</a> </small></label>
                             <div class="custom-file">
                                 <label class="custom-file-label" for="file_sk" id="file-label-pangkat">Pilih

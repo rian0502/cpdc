@@ -5,7 +5,7 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Activity Lab</h4>
+                        <h4 class="text-blue h4">Aktivitas Laboratorium</h4>
                         <a href="{{ route('lab.ruang.create') }}">
                             <button class="btn btn-success mt-3">
                                 <i class="icon-copy fi-page-add"></i>

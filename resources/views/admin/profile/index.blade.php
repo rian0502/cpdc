@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-md-3 bold"><b>NIP</b></label>
+                                <label class="col-md-3 bold"><b>Nomor Induk Pegawai</b></label>
                                 <div class="col-md-3">
                                     {{ $profile->nip }}
                                 </div>

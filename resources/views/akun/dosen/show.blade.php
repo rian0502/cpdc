@@ -63,7 +63,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-md-3 bold"><b>NIDN</b></label>
+                                <label class="col-md-3 bold"><b>Nomor Induk Dosen Nasional</b></label>
                                 <div class="col-md-3">
                                     {{ $lecturer->nidn }}
                                 </div>
@@ -96,7 +96,7 @@
                                         -
                                     @endif
                                 </div>
-                                <label class="col-md-3 bold"><b>No Telphone</b></label>
+                                <label class="col-md-3 bold"><b>Nomor Telepon</b></label>
                                 <div class="col-md-3">
                                     {{ $lecturer->no_hp }}
                                 </div>

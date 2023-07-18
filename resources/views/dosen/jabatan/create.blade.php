@@ -17,7 +17,7 @@
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label for="jabatan">JABATAN</label>
+                                    <label for="jabatan">Jabatan</label>
 
                                     <select name="jaban" id="jabatan"
                                         class="selectpicker form-control @error('jabatan') form-control-danger @enderror">
@@ -39,7 +39,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>TANGGAL SK JABATAN</label>
+                                    <label>Tanggal Surat Keputusan Jabatan</label>
                                     <input value="{{ old('tanggal_sk_jabatan') }}" autofocus name="tanggal_sk_jabatan"
                                         id="tanggal_sk_jabatan"
                                         class="form-control @error('tanggal_sk_jabatan') form-control-danger @enderror"
@@ -49,7 +49,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>FILE SK JABATAN <small> <a id="link-file_sk_jabatan" href="#"
+                                    <label>File Surat Keputusan Jabatan <small> <a id="link-file_sk_jabatan" href="#"
                                         target="_blank" style="display: none;">Lihat File</a> </small></label>
                                     <div class=" custom-file">
                                         <label class="custom-file-label" for="file_sk_jabatan" id="label-file_sk_jabatan">Pilih File</label>

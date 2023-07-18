@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-md-3 bold"><b>NIP</b></label>
+                                <label class="col-md-3 bold"><b>Nomor Induk Pegawai</b></label>
                                 <div class="col-md-3">
                                     {{ $admin->nip }}
                                 </div>
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-md-3 bold"><b>No Telphone</b></label>
+                                <label class="col-md-3 bold"><b>Nomor Telepon</b></label>
                                 <div class="col-md-3">
                                     {{ $admin->no_hp }}
                                 </div>

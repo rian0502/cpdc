@@ -30,7 +30,7 @@
                                     <label>Jabatan</label>
                                     <input value="{{ old('jabatan') }}" autofocus name="jabatan" id="jabatan"
                                         class="form-control @error('jabatan') form-control-danger @enderror" type="text"
-                                        placeholder="jabatan">
+                                        placeholder="Jabatan">
                                     @error('Jabatan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror

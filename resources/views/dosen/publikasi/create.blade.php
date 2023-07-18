@@ -36,10 +36,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>VOL</label>
+                                    <label>Volume</label>
                                     <input value="{{ old('vol') }}" autofocus name="vol" id="vol"
                                         class="form-control @error('vol') form-control-danger @enderror" type="number"
-                                        placeholder="vol publikasi">
+                                        placeholder="Edisi publikasi">
                                     @error('vol')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
