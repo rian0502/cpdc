@@ -32,7 +32,7 @@ class UpdateProfileDosenRequest extends FormRequest
             'alamat' => 'required|string|max:255|min:3',
             'tempat_lahir' => 'required|string|max:255|min:3',
             'tanggal_lahir' => 'required|date',
-            'gender' => 'required|in:Lai-laki,Perempuan',
+            'gender' => 'required|in:Laki-laki,Perempuan',
             'foto_profile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }

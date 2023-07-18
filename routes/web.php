@@ -89,9 +89,6 @@ use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/export', [ProfileDosenController::class, 'export']);
-
 // Admin Keseluruhan
 Route::get('admin/profile/create', [ProfileAdminController::class, 'create'])->name('admin.profile.create')->middleware('auth', 'verified', 'role:admin lab|admin berkas');
 Route::post('admin/profile/store', [ProfileAdminController::class, 'store'])->name('admin.profile.store')->middleware('auth', 'verified', 'role:admin lab|admin berkas');

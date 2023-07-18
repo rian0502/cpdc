@@ -203,7 +203,7 @@
             <div id="main">
                 <div class="">
                     <div class="content">
-                        <h1 class="nama">{{ Auth::user()->name }}</h1>
+                        <h1 class="nama">{{ $nama }}</h1>
                         <span style="color:black;text-align: center; margin-top:-20px;font-family: Arial, sans-serif;"
                             id="text">
                             @php
