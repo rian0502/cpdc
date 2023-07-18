@@ -276,7 +276,7 @@ class RolePermision extends Seeder
         ]);
         $mhs3 = User::create([
             'name' => 'Wera Adamska',
-            'email' => 'putupersada@gmail.com',
+            'email' => 'WeraAdamska@mail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
         ]);
