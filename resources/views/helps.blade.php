@@ -35,7 +35,6 @@
                                 </div>
                                 <div id="kp" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
-                                        <div>Daftar Seminar kerja praktik dapat dilakukan dengan cara berikut:</div>
                                         <div class="text-justify">
                                             Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah masuk
                                             pada akun, kemudian pergi ke tab <strong>Seminar</strong> yang terletak pada bagian
@@ -61,7 +60,6 @@
                                 </div>
                                 <div id="ta1" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
-                                        <div>Daftar Seminar Tugas Akhir 1 dapat dilakukan dengan cara berikut:</div>
                                         <div class="text-justify">
                                             Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah masuk
                                             pada akun, kemudian klik pada tab <strong>Seminar</strong> yang terletak pada bagian
@@ -86,7 +84,6 @@
                                 </div>
                                 <div id="ta2" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
-                                        <div>Daftar Seminar Tugas Akhir 2 dapat dilakukan dengan cara berikut:</div>
                                         <div class="text-justify">
                                             Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah masuk
                                             pada akun, pastikan anda sudah menyelesaikan
@@ -117,7 +114,6 @@
                                 </div>
                                 <div id="kompre" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
-                                        <div>Daftar Sidang Komprehensif dapat dilakukan dengan cara berikut:</div>
                                         <div class="text-justify">
                                             Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah masuk
                                             pada akun, pastikan anda sudah menyelesaikan

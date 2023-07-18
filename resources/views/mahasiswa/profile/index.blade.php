@@ -30,7 +30,8 @@
 
                             <h5 class="text-center h5 mb-0">{{ Auth::user()->name }}</h5>
                             <p class="text-center text-muted font-14">
-                                {{ auth()->user()->roles->pluck('name')->implode(', ') }}
+                                {{ ucwords(auth()->user()->roles->pluck('name')->implode(', ')) }}
+
                             </p>
                             {{-- style="max-height:300px; overflow-y: scroll;" --}}
                             <div class="profile-info">
@@ -50,7 +51,7 @@
                                     </li>
                                     <li>
                                         <span>Status:</span>
-                                        {{Auth::user()->mahasiswa->status}}
+                                        {{ Auth::user()->mahasiswa->status }}
                                     </li>
                                     <li>
                                         <span>Angkatan:</span>
@@ -328,8 +329,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group mb-0">
-                                                                <input type="submit" id="deleteBtn" class="btn btn-primary"
-                                                                    value="Update Information" />
+                                                                <input type="submit" id="deleteBtn"
+                                                                    class="btn btn-primary" value="Update Information" />
                                                             </div>
                                                         </li>
                                                         <li class="weight-500 col-md-6">
@@ -387,8 +388,8 @@
                                                                     placeholder="Paste your link here" />
                                                             </div>
                                                             <div class="form-group mb-0">
-                                                                <input type="submit" id="deleteBtn" class="btn btn-primary"
-                                                                    value="Save & Update" />
+                                                                <input type="submit" id="deleteBtn"
+                                                                    class="btn btn-primary" value="Save & Update" />
                                                             </div>
                                                         </li>
                                                     </ul>
