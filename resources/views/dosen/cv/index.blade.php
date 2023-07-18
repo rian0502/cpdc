@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            /* background-color: #f4f4f4; */
             margin: 0;
             padding: 0;
         }
@@ -25,11 +25,11 @@
 
         #header {
             background-color: #333f50;
-            color: #fff;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
+
         }
 
 
@@ -38,10 +38,21 @@
             border-collapse: collapse;
         }
 
-        th,
-        td {
-            padding: 10px;
-            /* Atur padding untuk memberikan jarak pada sel */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: left;
+            padding: 8px;
+        }
+
+        table td {
+            font-size: 16px;
+            padding: 8px;
         }
 
         .back-button:hover,
@@ -53,20 +64,21 @@
             border-radius: 50px;
             max-width: 100%;
             min-width: 100%;
-            background-color: #fff;
-            padding-right: 50x;
-            padding-left: 50x;
+            /* background-color: #fff; */
+            padding-right: 10x;
+            padding-left: 10x;
         }
 
         .header-main {
-
-            padding-right: 50x;
-            padding-left: 50x;
+            margin-top: 60px;
+            padding-bottom: 10px;
+            padding-right: 10px;
+            padding-left: 10px;
         }
 
         .section {
-            padding-right: 50x;
-            padding-left: 50x;
+            padding-right: 10x;
+            padding-left: 10x;
         }
 
         h1 {
@@ -89,29 +101,18 @@
 
         .section ul {
             list-style-type: none;
-            padding: 0;
-            margin: 0;
+            /* padding: 0; */
+            /* margin: 0; */
         }
 
 
         .section ul li .date {
-            color: #777;
+            /* color: #777; */
             font-size: 14px;
-        }
-
-        .biodata-section {
-            color: #fff;
-
         }
 
         .color {
             background-color: #333f50;
-            padding-top: 50px;
-            padding-bottom: 50px;
-            padding-right: 50px;
-            padding-left: 50px;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
         }
 
         .research-item {
@@ -130,6 +131,16 @@
 
         .biodata-section p {
             margin-bottom: 10px;
+        }
+
+        .date {
+            /* color: #777; */
+            font-size: 14px;
+        }
+
+        .biodata-section {
+            color: #fff;
+            padding: 20px;
         }
 
         .grid-container {
@@ -175,73 +186,73 @@
 
                     <div class="section">
                         <h2>Penelitian</h2>
-                        <ul class="grid-container" id="grid-container">
-                            <table>
-                                @foreach ($penelitian as $item)
-                                    <tr>
-                                        <td rowspan="2" class="date year">{{ $item->tahun_penelitian }}</td>
-                                        <td>{{ $item->nama_litabmas }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td> {{ $item->sumber_dana }} - {{ $item->jumlah_dana }} </td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                        </ul>
+                        {{-- <ul class="grid-container" id="grid-container"> --}}
+                        <table>
+                            @foreach ($penelitian as $item)
+                                <tr>
+                                    <td rowspan="2" class="date year">{{ $item->tahun_penelitian }}</td>
+                                    <td>{{ $item->nama_litabmas }}</td>
+                                </tr>
+                                <tr>
+                                    <td> {{ $item->sumber_dana }} - {{ $item->jumlah_dana }} </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                        {{-- </ul> --}}
                     </div>
 
                     <div class="section">
                         <h2>Pengabdian</h2>
-                        <ul class="grid-container" id="grid-container">
-                            <table>
+                        {{-- <ul class="grid-container" id="grid-container"> --}}
+                        <table>
 
-                                @foreach ($pengabdian as $item)
-                                    <tr>
-                                        <td rowspan="2" class="date year">{{ $item->tahun_penelitian }}</td>
-                                        <td>{{ $item->nama_litabmas }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td> {{ $item->sumber_dana }} - {{ $item->jumlah_dana }} </td>
-                                    </tr>
-                                @endforeach
-                            </table>
+                            @foreach ($pengabdian as $item)
+                                <tr>
+                                    <td rowspan="2" class="date year">{{ $item->tahun_penelitian }}</td>
+                                    <td>{{ $item->nama_litabmas }}</td>
+                                </tr>
+                                <tr>
+                                    <td> {{ $item->sumber_dana }} - {{ $item->jumlah_dana }} </td>
+                                </tr>
+                            @endforeach
+                        </table>
 
-                        </ul>
+                        {{-- </ul> --}}
                     </div>
 
                     <div class="section">
                         <h2>Publikasi</h2>
-                        <ul class="grid-container" id="grid-container">
-                            <table>
-                                @foreach ($publikasi as $item)
-                                    <tr>
-                                        <td rowspan="2" class="date year">{{ $item->tahun }}</td>
-                                        <td>{{ $item->nama_publikasi }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td> {{ $item->judul }}, Vol.{{ $item->vol }}, Hal.{{ $item->halaman }}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                        </ul>
+                        {{-- <ul class="grid-container" id="grid-container"> --}}
+                        <table>
+                            @foreach ($publikasi as $item)
+                                <tr>
+                                    <td rowspan="2" class="date year">{{ $item->tahun }}</td>
+                                    <td>{{ $item->nama_publikasi }}</td>
+                                </tr>
+                                <tr>
+                                    <td> {{ $item->judul }}, Vol.{{ $item->vol }}, Hal.{{ $item->halaman }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                        {{-- </ul> --}}
                     </div>
 
                     <div class="section">
                         <h2>Organisasi</h2>
-                        <ul class="grid-container" id="grid-container">
-                            <table>
-                                @foreach ($organisasi as $item)
-                                    <tr>
-                                        <td rowspan="2" class="date year">{{ $item->tahun_menjabat }}</td>
-                                        <td>{{ $item->nama_organisasi }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td> {{ $item->jabatan }}</td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                        </ul>
+                        {{-- <ul class="grid-container" id="grid-container"> --}}
+                        <table>
+                            @foreach ($organisasi as $item)
+                                <tr>
+                                    <td rowspan="2" class="date year">{{ $item->tahun_menjabat }}</td>
+                                    <td>{{ $item->nama_organisasi }}</td>
+                                </tr>
+                                <tr>
+                                    <td> {{ $item->jabatan }}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                        {{-- </ul> --}}
                     </div>
                 </div>
             </div>
