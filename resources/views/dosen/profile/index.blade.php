@@ -366,9 +366,9 @@
                                                                         <td class="text-break max-w-md text-left">
                                                                             {{ $item->judul }}</td>
                                                                         <td>{{ $item->tahun }}</td>
-                                                                        <td>{{ $item->regional }}</td>
+                                                                        <td>{{ $item->scala }}</td>
                                                                         <td>{{ $item->kategori }}</td>
-                                                                        <td>{{ $item->litabmas }}</td>
+                                                                        <td>{{ $item->kategori_litabmas }}</td>
                                                                         <td>
                                                                             <div class="dropdown">
                                                                                 <a class="btn btn-outline-primary dropdown-toggle"
