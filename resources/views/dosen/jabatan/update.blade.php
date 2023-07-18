@@ -31,7 +31,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>TANGGAL SK JABATAN</label>
+                                    <label>Tanggal Surat Keputusan Jabatan</label>
                                     <input value="{{$jabatan->tgl_sk}}" autofocus name="tanggal_sk" id="tanggal_sk"
                                         class="form-control @error('tanggal_sk') form-control-danger @enderror"
                                         type="date" placeholder="TANGGAL SK">
@@ -40,7 +40,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>FILE SK JABATAN <small> <a id="link-file_sk_jabatan" href="#"
+                                    <label>File Surat Keputusan Jabatan <small> <a id="link-file_sk_jabatan" href="#"
                                         target="_blank" style="display: none;">Lihat File</a> </small></label>
                                     <div class=" custom-file">
                                         <label class="custom-file-label" for="file_sk_jabatan" id="label-file_sk_jabatan">Pilih File</label>

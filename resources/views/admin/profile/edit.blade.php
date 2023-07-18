@@ -61,7 +61,7 @@
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>NAMA</label>
+                                    <label>Nama</label>
                                     <input value="{{ old('nama_admin', $admin->nama_administrasi) }}" autofocus
                                         name="nama_admin" id="nama"
                                         class="form-control @error('nama_admin') form-control-danger @enderror"
@@ -71,7 +71,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>NIP</label>
+                                    <label>Nomor Induk Pegawai</label>
                                     <input value="{{ old('nip', $admin->nip) }}" autofocus name="nip" id="nip"
                                         class="form-control @error('nip') form-control-danger @enderror" type="number"
                                         placeholder="NIP">
@@ -80,7 +80,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>NO TELPHONE</label>
+                                    <label>Nomor Telepon</label>
                                     <input value="{{ old('no_hp', $admin->no_hp) }}" autofocus name="no_hp"
                                         id="no_hp" class="form-control @error('no_hp') form-control-danger @enderror"
                                         type="number" placeholder="NO TELPHONE">
@@ -89,7 +89,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>ALAMAT</label>
+                                    <label>Alamat</label>
                                     <input value="{{ old('alamat', $admin->alamat) }}" autofocus name="alamat" id="alamat"
                                         class="form-control @error('alamat') form-control-danger @enderror" type="text"
                                         placeholder="ALAMAT">
@@ -103,7 +103,7 @@
 
 
                                 <div class="form-group">
-                                    <label>TEMPAT LAHIR</label>
+                                    <label>Tempat Lahir</label>
                                     <input value="{{ old('tempat_lahir', $admin->tempat_lahir) }}" autofocus name="tempat_lahir"
                                         id="tempat_lahir"
                                         class="form-control @error('tempat_lahir') form-control-danger @enderror"
@@ -113,7 +113,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>TANGGAL LAHIR</label>
+                                    <label>Tanggal Lahir</label>
                                     <input value="{{ old('tanggal_lahir', $admin->tanggal_lahir) }}" autofocus name="tanggal_lahir"
                                         id="tanggal_lahir"
                                         class="form-control @error('tanggal_lahir') form-control-danger @enderror"

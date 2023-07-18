@@ -17,7 +17,7 @@
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Nama litabmas</label>
+                                    <label>Nama LITABMAS</label>
                                     <input value="{{ old('nama_litabmas') }}" autofocus name="nama_litabmas"
                                         id="nama_litabmas"
                                         class="form-control @error('nama_litabmas') form-control-danger @enderror"
@@ -84,7 +84,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label>Anggota External</label>
+                                    <label>Anggota Eksternal</label>
                                     <textarea value="{{ old('anggota_external') }}" autofocus name="anggota_external"
                                         id="anggota_external"
                                         class="form-control @error('anggota_external') form-control-danger @enderror"

@@ -22,7 +22,7 @@
                             <table class="table data-table-responsive stripe data-table-export nowrap" id="data">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
+                                        <th>No</th>
                                         <th>Nama Dosen</th>
                                         <th>Email</th>
                                         <th>Aktivasi</th>

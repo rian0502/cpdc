@@ -22,7 +22,7 @@
                             <table id="data-akun" class="data-akun table table-hover data-table-responsive stripe wrap ">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                    <th>No</th>
                                     <th>Nama Mahasiswa</th>
                                     <th>Email</th>
                                     <th>aktivasi</th>
