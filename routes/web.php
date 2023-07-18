@@ -77,7 +77,7 @@ use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 use App\Http\Controllers\ResetTA;
 use App\Http\Controllers\LabTAController;
 use App\Http\Controllers\ChartSeminarController;
-
+use PhpOffice\PhpWord\TemplateProcessor;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -372,3 +372,56 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 Route::get('/reset-password', function () {
     return view('auth.reset');
 })->name('reset');
+
+
+
+
+
+Route::get('/export-cv', function () {
+    // Load the template file
+    $templateFile = public_path('cv_template.docx');
+    $outputFile = public_path('exported_cv.docx');
+
+    // Create a new TemplateProcessor instance
+    $templateProcessor = new TemplateProcessor($templateFile);
+
+    // Set placeholders in the template with your own CV data
+    $templateProcessor->setValue('FULL_NAME', 'John Doe');
+    $templateProcessor->setValue('EMAIL', 'john.doe@example.com');
+    $templateProcessor->setValue('PHONE', '+1 234 5678');
+    // Set other CV data placeholders
+
+    // Add the first table
+    $table1Data = [
+        ['job' => 'Job Title 1', 'company' => 'Company 1', 'location' => 'Location 1', 'date' => 'Date 1'],
+        ['job' => 'Job Title 2', 'company' => 'Company 2', 'location' => 'Location 2', 'date' => 'Date 2'],
+        // Add more rows as needed
+    ];
+    $templateProcessor->cloneRow('job', count($table1Data));
+    foreach ($table1Data as $index => $row) {
+        $templateProcessor->setValue("job#{$index}", $row['job']);
+        $templateProcessor->setValue("company#{$index}", $row['company']);
+        $templateProcessor->setValue("location#{$index}", $row['location']);
+        $templateProcessor->setValue("date#{$index}", $row['date']);
+    }
+
+    // Add the second table
+    $table2Data = [
+        ['skill' => 'Skill 1', 'proficiency' => 'Proficiency 1'],
+        ['skill' => 'Skill 2', 'proficiency' => 'Proficiency 2'],
+        // Add more rows as needed
+    ];
+    $templateProcessor->cloneRow('skill', count($table2Data));
+    foreach ($table2Data as $index => $row) {
+        $templateProcessor->setValue("skill#{$index}", $row['skill']);
+        $templateProcessor->setValue("proficiency#{$index}", $row['proficiency']);
+    }
+
+    // Save the modified template as a new file
+    $templateProcessor->saveAs($outputFile);
+
+    // Download the exported file
+    return response()->download($outputFile)->deleteFileAfterSend();
+});
+
+

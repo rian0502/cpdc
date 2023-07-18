@@ -100,15 +100,15 @@
                                                 <label for="">Alamat Email</label>
                                                 <input type="email"
                                                     class="form-control @error('email') form-control-danger @enderror"
-                                                    value="{{ old('email') }}"
-                                                    name="email" />
+                                                    value="{{ old('email') }}" name="email" />
                                                 @error('email')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Nama Lengkap</label>
-                                                <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}"
+                                                <input type="text" name="nama_lengkap"
+                                                    value="{{ old('nama_lengkap') }}"
                                                     class="form-control @error('nama_lengkap') form-control-danger @enderror" />
                                                 @error('nama_lengkap')
                                                     <small class="text-danger">{{ $message }}</small>
@@ -125,37 +125,42 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Pembimbing Akademik</label>
-                                                <select class="custom-select2 form-control " value="{{ old('id_dosen') }}" name="id_dosen"
+                                                <select class="custom-select2 form-control @error('id_dosen') form-control-danger @enderror"
+                                                    value="{{ old('id_dosen') }}" name="id_dosen"
                                                     style="width: 100%; height: 38px">
                                                     <optgroup label="Dosen Pembimbing Akademik">
                                                         //tidak ada di daftar
-                                                        <option value="">Tidak ada di daftar</option>
+                                                        <option value="" {{old('id_dosen')==''? 'selected' : ''}}>Tidak ada di daftar</option>
                                                         @foreach ($dosen as $PA)
-                                                            <option value="{{ $PA->encrypt_id }}">{{ $PA->nama_dosen }}
+                                                            <option value="{{ $PA->encrypt_id }}" {{old('id_dosen')==$PA->encrypt_id ? 'selected' : ''}} >{{ $PA->nama_dosen }}
                                                             </option>
                                                         @endforeach
                                                     </optgroup>
 
                                                 </select>
+                                                @error('id_dosen')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Jenis Akun</label>
-                                                <div class="">
-                                                    <div
-                                                        class="custom-control custom-radio custom-control-inline pb-0">
-                                                        <input type="radio" id="mahasiswa" name="jenis_akun"
+                                                <div class="@error('jenis_akun') form-control-danger @enderror">
+                                                    <div class="custom-control custom-radio custom-control-inline pb-0">
+                                                        <input type="radio" id="mahasiswa" name="jenis_akun" {{ old('jenis_akun') == 'mahasiswa' ? 'checked' : '' }}}
                                                             value="mahasiswa" class="custom-control-input" />
                                                         <label class="custom-control-label"
                                                             for="mahasiswa">Mahasiswa</label>
                                                     </div>
-                                                    <div
-                                                        class="custom-control custom-radio custom-control-inline pb-0">
-                                                        <input type="radio" id="alumni" name="jenis_akun"
+                                                    <div class="custom-control custom-radio custom-control-inline pb-0">
+                                                        <input type="radio" id="alumni" name="jenis_akun" {{ old('jenis_akun') == 'alumni' ? 'checked' : '' }}}
                                                             value="alumni" class="custom-control-input" />
                                                         <label class="custom-control-label"
                                                             for="alumni">Alumni</label>
                                                     </div>
                                                 </div>
+                                                @error('jenis_akun')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -182,7 +187,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Konfirmasi Kata Sandi</label>
-                                                <input type="password" name="password_confirm" value="{{ old('password_confirm') }}"
+                                                <input type="password" name="password_confirm"
+                                                    value="{{ old('password_confirm') }}"
                                                     class="form-control @error('password_confirm') form-control-danger @enderror" />
                                                 @error('password_confirm')
                                                     <small class="text-danger">{{ $message }}</small>
@@ -190,10 +196,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Jenis Kelamin</label>
-                                                <div class="">
+                                                <div class="@error('gender') form-control-danger @enderror">
                                                     <div
                                                         class="custom-control custom-radio custom-control-inline pb-0">
                                                         <input type="radio" id="male" name="gender"
+                                                            {{ old('gender') == 'Laki-laki' ? 'checked' : '' }}
                                                             value="Laki-laki" class="custom-control-input" />
                                                         <label class="custom-control-label"
                                                             for="male">Pria</label>
@@ -201,11 +208,15 @@
                                                     <div
                                                         class="custom-control custom-radio custom-control-inline pb-0">
                                                         <input type="radio" id="female" name="gender"
+                                                            {{ old('gender') == 'Perempuan' ? 'checked' : '' }}
                                                             value="Perempuan" class="custom-control-input" />
                                                         <label class="custom-control-label"
                                                             for="female">Wanita</label>
                                                     </div>
                                                 </div>
+                                                @error('gender')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
 
                                         </div>
