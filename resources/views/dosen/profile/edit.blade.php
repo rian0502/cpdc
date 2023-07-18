@@ -139,13 +139,13 @@
                                             <input type="radio" id="male" name="gender" value="Laki-laki"
                                                 class="custom-control-input"
                                                 {{ old('gender', $dosen->jenis_kelamin) == 'Laki-laki' || $dosen->jenis_kelamin === null ? 'checked' : '' }} />
-                                            <label class="custom-control-label" for="male">Pria</label>
+                                            <label class="custom-control-label" for="male">Laki-laki</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline pb-0">
                                             <input type="radio" id="female" name="gender" value="Perempuan"
                                                 class="custom-control-input"
                                                 {{ old('gender', $dosen->jenis_kelamin) == 'Perempuan' ? 'checked' : '' }} />
-                                            <label class="custom-control-label" for="female">Wanita</label>
+                                            <label class="custom-control-label" for="female">Peerempuan</label>
                                         </div>
                                     </div>
                                     @error('gender')

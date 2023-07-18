@@ -227,10 +227,9 @@ class ProfileDosenController extends Controller
             'organisasi' => Auth::user()->dosen->organisasi,
         ];
         $option = new Options();
-        $option->set('isRemoteEnabled', true); // Jika Anda menggunakan file CSS dari luar, atur ini ke true
+        $option->set('isRemoteEnabled', true);
         $option->set('defaultPaperSize', 'A4');
         $option->set('marginTop', 0);
-
         $view =  view('dosen.cv.index', $data);
         $domPdf = new Dompdf();
         $domPdf->loadHtml($view->render());
