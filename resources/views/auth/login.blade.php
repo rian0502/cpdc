@@ -96,15 +96,16 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                        <form action="{{route('auth.login.post')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('auth.login.post') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="input-group custom">
-                                <input name="email" value="{{ old('email') }}" type="text" class="form-control form-control-lg @error('email') form-control-danger @enderror" placeholder="Email" />
+                                <input name="email" value="{{ old('email') }}" type="text"
+                                    class="form-control form-control-lg @error('email') form-control-danger @enderror"
+                                    placeholder="Email" />
                                 <div class="input-group-append custom">
                                     @error('email')
                                     @else
-                                        <span class="input-group-text"><i class="icon-copy dw dw-email"></i></span>
-
+                                        <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
                                     @enderror
                                 </div>
                             </div>
@@ -112,21 +113,27 @@
                                 <small class="form-control-feedback text-danger">{{ $message }}</small>
                             @enderror
                             <div class="input-group custom mt-2">
-                                <input name="password" value="{{ old('password') }}" type="password" class="form-control form-control-lg @error('password') form-control-danger @enderror" placeholder="Kata Sandi" />
+                                <input name="password" value="{{ old('password') }}" type="password"
+                                    class="form-control form-control-lg @error('password') form-control-danger @enderror"
+                                    placeholder="Kata Sandi" id="password-input" />
                                 <div class="input-group-append custom">
-                                    @error('email')
+                                    @error('password')
                                     @else
-                                        <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+                                        <span class="input-group-text"
+                                            onclick="togglePasswordVisibility('password-input', 'password-icon')">
+                                            <i class="fas fa-eye-slash " id="password-icon"></i>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
                             @error('password')
-                            <small class="form-control-feedback text-danger">{{ $message }}</small>
+                                <small class="form-control-feedback text-danger">{{ $message }}</small>
                             @enderror
+
                             <div class="row pb-30">
                                 <div class="col-12">
                                     <div class="forgot-password">
-                                        <a href="{{route('auth.password.forgot')}}">Lupa Kata Sandi?</a>
+                                        <a href="{{ route('auth.password.forgot') }}">Lupa Kata Sandi?</a>
                                     </div>
                                 </div>
                             </div>
@@ -162,6 +169,24 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
             style="display: none; visibility: hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
+    <script>
+        function togglePasswordVisibility(inputId, iconId) {
+            var passwordInput = document.getElementById(inputId);
+            var icon = document.getElementById(iconId);
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye", "fa-beat");
+            } else {
+                passwordInput.type = "password";
+                icon.classList.remove("fa-eye", "fa-beat");
+                icon.classList.add("fa-eye-slash");
+            }
+        }
+    </script>
+
 </body>
 
 </html>

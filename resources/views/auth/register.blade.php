@@ -49,6 +49,50 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
     </script>
+    <style>
+        .custom-checkbox {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .custom-checkbox .checkmark {
+            width: 24px;
+            height: 24px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            display: inline-block;
+            position: relative;
+            vertical-align: middle;
+        }
+
+        .custom-checkbox input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .custom-checkbox .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .custom-checkbox input[type="checkbox"]:checked+.checkmark:after {
+            display: block;
+        }
+
+        .custom-checkbox .checkmark:after {
+            left: 8px;
+            top: 4px;
+            width: 8px;
+            height: 16px;
+            border: solid #333;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+    </style>
+
     <!-- End Google Tag Manager -->
 </head>
 
@@ -100,15 +144,15 @@
                                                 <label for="">Alamat Email</label>
                                                 <input type="email"
                                                     class="form-control @error('email') form-control-danger @enderror"
-                                                    value="{{ old('email') }}"
-                                                    name="email" />
+                                                    value="{{ old('email') }}" name="email" />
                                                 @error('email')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Nama Lengkap</label>
-                                                <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}"
+                                                <input type="text" name="nama_lengkap"
+                                                    value="{{ old('nama_lengkap') }}"
                                                     class="form-control @error('nama_lengkap') form-control-danger @enderror" />
                                                 @error('nama_lengkap')
                                                     <small class="text-danger">{{ $message }}</small>
@@ -125,7 +169,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Pembimbing Akademik</label>
-                                                <select class="custom-select2 form-control " value="{{ old('id_dosen') }}" name="id_dosen"
+                                                <select class="custom-select2 form-control "
+                                                    value="{{ old('id_dosen') }}" name="id_dosen"
                                                     style="width: 100%; height: 38px">
                                                     <optgroup label="Dosen Pembimbing Akademik">
                                                         //tidak ada di daftar
@@ -141,15 +186,13 @@
                                             <div class="form-group">
                                                 <label for="">Jenis Akun</label>
                                                 <div class="">
-                                                    <div
-                                                        class="custom-control custom-radio custom-control-inline pb-0">
+                                                    <div class="custom-control custom-radio custom-control-inline pb-0">
                                                         <input type="radio" id="mahasiswa" name="jenis_akun"
                                                             value="mahasiswa" class="custom-control-input" />
                                                         <label class="custom-control-label"
                                                             for="mahasiswa">Mahasiswa</label>
                                                     </div>
-                                                    <div
-                                                        class="custom-control custom-radio custom-control-inline pb-0">
+                                                    <div class="custom-control custom-radio custom-control-inline pb-0">
                                                         <input type="radio" id="alumni" name="jenis_akun"
                                                             value="alumni" class="custom-control-input" />
                                                         <label class="custom-control-label"
@@ -171,23 +214,36 @@
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
-
                                             <div class="form-group">
-                                                <label for="">Kata Sandi</label>
+                                                <label for="password">Kata Sandi</label>
                                                 <input type="password" name="password" value="{{ old('password') }}"
+                                                    id="password"
                                                     class="form-control @error('password') form-control-danger @enderror" />
                                                 @error('password')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="">Konfirmasi Kata Sandi</label>
-                                                <input type="password" name="password_confirm" value="{{ old('password_confirm') }}"
+                                                <label for="password_confirm">Konfirmasi Kata Sandi</label>
+                                                <input type="password" name="password_confirm"
+                                                    value="{{ old('password_confirm') }}" id="password_confirm"
                                                     class="form-control @error('password_confirm') form-control-danger @enderror" />
                                                 @error('password_confirm')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
+                                            <div class="form-group" id="form" style="margin-top: -8px">
+                                                <label class="weight-600"></label>
+                                                <div class="custom-control custom-checkbox mb-5">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        name="show_password" id="show_password"
+                                                        onchange="togglePasswordVisibility()" />
+                                                    <label class="custom-control-label" for="show_password">
+                                                        Tampilkan Kata Sandi
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            
                                             <div class="form-group">
                                                 <label for="">Jenis Kelamin</label>
                                                 <div class="">
@@ -251,6 +307,22 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
             style="display: none; visibility: hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("password");
+            var passwordConfirmInput = document.getElementById("password_confirm");
+            var showPasswordCheckbox = document.getElementById("show_password");
+
+            if (showPasswordCheckbox.checked) {
+                passwordInput.type = "text";
+                passwordConfirmInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+                passwordConfirmInput.type = "password";
+            }
+        }
+    </script>
 </body>
 
 </html>
