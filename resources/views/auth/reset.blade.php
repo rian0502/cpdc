@@ -195,10 +195,10 @@
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";
                 icon.classList.remove("fas", "fa-eye-slash");
-                icon.classList.add("fas", "fa-eye");
+                icon.classList.add("fas", "fa-eye", "fa-beat");
             } else {
                 passwordInput.type = "password";
-                icon.classList.remove("fas", "fa-eye");
+                icon.classList.remove("fas", "fa-eye", "fa-beat");
                 icon.classList.add("fas", "fa-eye-slash");
             }
         }
