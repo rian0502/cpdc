@@ -78,8 +78,7 @@ class PenjadwalanKompreController extends Controller
         $update->encrypt_id = Crypt::encrypt($ins_id);
         $update->save();
         $mahasiswa = $seminar->mahasiswa;
-        $path = ('uploads\template_ba_kompre\\');
-        $template = new \PhpOffice\PhpWord\TemplateProcessor($path . 'template_ba_kompre.docx');
+        $template = new \PhpOffice\PhpWord\TemplateProcessor('uploads/template_ba_kompre/' . 'template_ba_kompre.docx');
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
         $template->setValue('judul_ta', $seminar->judul_ta);
@@ -103,9 +102,8 @@ class PenjadwalanKompreController extends Controller
         $template->setValue('jam_mulai', $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
-        $output  = ('uploads\print_ba_kompre\\');
         $namafile = $mahasiswa->npm . '_ba_kompre.docx';
-        $template->saveAs($output . $namafile);
+        $template->saveAs('uploads/print_ba_kompre/' . $namafile);
         $to_name = $mahasiswa->nama_mahasiswa;
         $to_email = $mahasiswa->user->email;
         $data = [
@@ -120,9 +118,9 @@ class PenjadwalanKompreController extends Controller
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Sidang Komprehensif');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach(('uploads\print_ba_kompre\\') . $namafile);
+            $message->attach('uploads/print_ba_kompre/'. $namafile);
         });
-        unlink(('uploads\print_ba_kompre\\' . $namafile));
+        unlink('uploads/print_ba_kompre/'. $namafile);
         return redirect()->route('koor.jadwalKompre.index')->with('success', 'Berhasil Menjadwalkan Sidang Komprehensif');
     }
 
