@@ -210,7 +210,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" id="submitButton" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" id="submitButton" class="submit btn btn-primary">Kirim</button>
                         </div>
                     </form>
                     <a href="{{ route('mahasiswa.seminar.kp.index') }}">

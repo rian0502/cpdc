@@ -34,11 +34,11 @@
                 <h1 class="display-5 mb-5">Pusat Data Jurusan Kimia</h1>
                 <div class="bottomm"></div>
             </div>
-         
+
 
             <div class="body wow fadeInUp filosofinya" data-wow-delay="0.01s">
                 <img id="logo" class="gambar" src="/Assets/images/logo/color.png" alt="Logo">
-                
+
 
                 <div id="filosofi">
                     <div class="filosofi-card kampus">
@@ -78,16 +78,16 @@
                     </div>
                 </div>
             </div>
-        
+
             <div class="bottom"></div>
-            
+
         </div>
     </div>
     <!-- Project End -->
-    
+
     <!-- Testimonial Start -->
     <div class="bawah-testimonial"></div>
-    
+
 
     <script src="/Assets/src/js/tentang.js"></script>
 @endsection

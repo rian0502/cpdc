@@ -37,7 +37,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Bukti Seminar</h4>
+                            <h4 class="text-dark h4">Berita Acara Seminar</h4>
                             <small>
                                 <b>
                                     <p
@@ -129,7 +129,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" id="submitButton" class="submit btn btn-primary">Submit</button>
+                                    <button type="submit" id="submitButton" class="submit btn btn-primary">Kirim</button>
                                 </div>
                             </form>
 

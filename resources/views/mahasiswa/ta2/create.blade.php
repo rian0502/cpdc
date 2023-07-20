@@ -23,7 +23,7 @@
                         <div class="profile-edit-list row">
                             <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Periode Seminar</label>
+                                    <label>Rencana Periode Seminar</label>
                                     <input autofocus class="form-control month-picker" type="text" name="periode_seminar"
                                         value="{{ old('periode_seminar') }}" id="periode_seminar"
                                         placeholder="Periode Seminar">
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary mt-4">Submit</button>
+                            <button type="submit" class="submit btn btn-primary mt-4">Kirim</button>
                         </div>
                     </form>
                 </div>

@@ -210,11 +210,10 @@
                                         @enderror
                                     </div>
                                 </div>
-                                {{-- hanya tampil saat mode mobile --}}
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
                     </form>
                     <a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}">
@@ -223,7 +222,6 @@
                 </div>
             </div>
         </div>
-        <!-- Input Validation End -->
     </div>
 
 

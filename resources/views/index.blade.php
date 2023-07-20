@@ -30,7 +30,6 @@
                         <p class="mb-0">Memudahkan Dalam Pengambilan Keputusan</p>
                     </div>
                 </div>
-              
             </div>
         </div>
     </div>
@@ -53,7 +52,7 @@
                     <div class="bg-white rounded-top p-5 mt-lg-5">
                         <p class="fs-5 fw-medium text-primary">Tentang Kami</p>
                         <h1 class="display-6 mb-4">Pusat Data Jurusan Kimia</h1>
-                        <p class="mb-4" style="text-align: justify;"> Sistem ini dirancang dengan tujuan utama untuk
+                        <p class="mb-4" style="text-align: justify;letter-spacing: 0.5px;"> Sistem ini dirancang dengan tujuan utama untuk
                             meningkatkan efektivitas dan optimasi pengolahan data di Jurusan Kimia. Dengan adanya sistem
                             ini, diharapkan tenaga pengajar dapat dengan mudah mengakses dan menganalisis data yang
                             diperlukan untuk

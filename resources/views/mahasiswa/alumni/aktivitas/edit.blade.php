@@ -9,7 +9,6 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-                <!-- Default Basic Forms Start -->
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
@@ -111,14 +110,11 @@
                                     @error('status')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
-
                                 </div>
-
-
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
                     </form>
                     <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}">
@@ -127,6 +123,5 @@
                 </div>
             </div>
         </div>
-        <!-- Input Validation End -->
     </div>
 @endsection

@@ -19,11 +19,11 @@
                             <table id="data-ta" class="data-ta table table-hover data-table-responsive stripe wrap ">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
+                                        <th>No</th>
                                         <th>Nama Mahasiswa</th>
                                         <th>NPM</th>
                                         <th>Angkatan</th>
-                                        <th>Judul TA</th>
+                                        <th>Judul Tugas Akhir</th>
                                         <th class="table-plus datatable-nosort">Aksi</th>
                                     </tr>
                                 </thead>

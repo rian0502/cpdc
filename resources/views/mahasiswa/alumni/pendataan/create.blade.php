@@ -159,7 +159,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button class=" btn btn-primary mt-4">Submit</button>
+                            <button class=" btn btn-primary mt-4">Kirim</button>
                         </div>
                     </form>
                 </div>

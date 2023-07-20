@@ -41,11 +41,11 @@
                             {{-- form untuk sebelah kanan --}}
                             <div class="merek weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Lantai Tingkat</label>
+                                    <label>Tingkatan Lantai</label>
                                     <input autofocus name="lantai_tingkat" id="lantai_tingkat"
                                         value="{{ $lokasi->lantai_tingkat }}"
                                         class="form-control @error('lantai_tingkat') form-control-danger @enderror"
-                                        min="0" type="number" placeholder="Lantai Tingkat">
+                                        min="0" type="number" placeholder="Tingkatan Lantai Gedung pada Lokasi">
                                     @error('lantai_tingkat')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror

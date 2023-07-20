@@ -40,23 +40,19 @@
                             {{-- form untuk sebelah kanan --}}
                             <div class="merek weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Lantai Tingkat</label>
+                                    <label>Tingkatan Lantai</label>
                                     <input value="{{old('lantai_tingkat')}}" autofocus name="lantai_tingkat" id="lantai_tingkat"
                                         class="form-control @error('lantai_tingkat') form-control-danger @enderror"
-                                        type="number" placeholder="Lantai Tingkat">
+                                        type="number" placeholder="Tingkatan Lantai Gedung pada Lokasi">
                                     @error('lantai_tingkat')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="form-group">
-
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
-
                     </form>
                     <a href="{{route('jurusan.lokasi.index')}}">
 
@@ -65,8 +61,5 @@
                 </div>
             </div>
         </div>
-        <!-- Input Validation End -->
-
-
     </div>
 @endsection
