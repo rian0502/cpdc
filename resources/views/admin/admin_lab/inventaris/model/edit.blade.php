@@ -51,23 +51,15 @@
                                 @enderror
                             </div>
                         </div>
-
-
                         <div class="form-group">
-
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
-
                     </form>
                     <a href="{{route('sudo.model.index')}}">
-
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>
                 </div>
             </div>
         </div>
-        <!-- Input Validation End -->
-
-
     </div>
 @endsection

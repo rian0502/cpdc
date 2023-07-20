@@ -95,7 +95,7 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="${showUrl}"><i class="fal fa-eye"></i> Detail</a>
+                                        <a class="dropdown-item" href="${showUrl}"><i class="fal fa-eye"></i> Lihat</a>
                                         <a class="dropdown-item" href="${editUrl}"><i class="fa fa-pencil"></i> Edit</a>
                                     </div>
                                 </div>`;
