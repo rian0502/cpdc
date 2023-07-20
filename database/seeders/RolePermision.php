@@ -365,7 +365,7 @@ class RolePermision extends Seeder
         $kidas->assignRole('admin lab');
         //end adminlab
         //mahasiswa
-        $mhs->assignRole(['mahasiswa', 'alumni']);
+        $mhs->assignRole(['mahasiswa']);
         $mhs2->assignRole(['mahasiswa', 'alumni']);
         $mhs3->assignRole(['mahasiswa', 'alumni']);
         $mhs4->assignRole(['mahasiswa', 'alumni']);

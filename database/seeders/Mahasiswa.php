@@ -27,7 +27,7 @@ class Mahasiswa extends Seeder
             'jenis_kelamin' => 'Laki-laki',
             'tanggal_masuk' => '2020-08-30',
             'angkatan' => '2020',
-            'status' => 'Alumni',
+            'status' => 'Aktif',
             'id_dosen' => '1',
             'semester' => '6',
             'user_id' => '38',
