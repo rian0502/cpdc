@@ -17,7 +17,7 @@
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label for="kepangkatan">PANGKAT</label>
+                                    <label for="kepangkatan">Pangkat</label>
                                     <select name="kepangkatan" style="width: 100%; height: 38px" id="kepangkatan" class="selectpicker form-control @error('kepangkatan') form-control-danger @enderror">
                                         <option value="III A" {{ old('kepangkatan') == 'III A' ? 'selected' : '' }} >III A</option>
                                         <option value="III B {{ old('kepangkatan') == 'III B' ? 'selected' : '' }} ">III B</option>
@@ -33,7 +33,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>TANGGAL SK PANGKAT</label>
+                                    <label>Tanggal Surat Keterangan Pangkat</label>
                                     <input value="{{old('tanggal_sk')}}" autofocus name="tanggal_sk" id="tanggal_sk"
                                         class="form-control @error('tanggal_sk') form-control-danger @enderror"
                                         type="date" placeholder="TANGGAL SK">
@@ -42,7 +42,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>FILE SK PANGKAT <small> <a id="link-file_sk" href="#"
+                                    <label>File Surat Keterangan Pangkat <small> <a id="link-file_sk" href="#"
                                         target="_blank" style="display: none;">Lihat File</a> </small></label>
                                     <div class=" custom-file">
                                         <label class="custom-file-label" for="file_sk" id="label-file_sk">Pilih File</label>
@@ -59,7 +59,7 @@
 
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
 
                     </form>

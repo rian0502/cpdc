@@ -80,7 +80,7 @@
                                                                 <button type="submit" id="deleteBtn"
                                                                     class="dropdown-item text-danger"><i
                                                                         class="fa fa-trash"></i>
-                                                                    Delete</button>
+                                                                    Hapus</button>
                                                             </form>
                                                         </div>
                                                     </div>

@@ -164,7 +164,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="${detail}">
-                                        <i class="fal fa-eye"></i> Detail
+                                        <i class="fal fa-eye"></i> Lihat
                                     </a>
                                 </div>
                             </div>`;

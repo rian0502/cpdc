@@ -130,11 +130,8 @@
                                     {{ $seminar->judul_kp }}
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
-
                 </div>
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
@@ -143,8 +140,6 @@
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
-
-
                         <form id="formJadwal" action="{{ route('koor.jadwalPKL.store', $seminar->encrypt_id) }}"
                             method="POST">
                             @csrf
@@ -161,7 +156,6 @@
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-
                                     <div class="form-group">
                                         <label>Lokasi</label>
                                         <select class="custom-select2 form-control" style="width: 100%; height: 38px"
@@ -174,7 +168,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-
                                 </div>
                                 {{-- form untuk sebelah kanan --}}
                                 <div class="kanan weight-500 col-md-6">
@@ -197,23 +190,19 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="submit btn btn-primary">Submit</button>
+                                <button type="submit" class="submit btn btn-primary">Kirim</button>
                             </div>
                             <a href="{{ route('koor.jadwalPKL.index') }}">
-
                                 <button class="batal btn btn-secondary">Batal</button>
                             </a>
-
                         </form>
                     </div>
                 </div>
                 <!-- Data Registrasi End -->
-
             </div>
         </div>
         <!-- Input Validation End -->
     </div>
-
     <script>
         // Mendapatkan elemen select
         var select = document.getElementById("tahunAkademik");

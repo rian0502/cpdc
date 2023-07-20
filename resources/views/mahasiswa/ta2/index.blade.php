@@ -137,7 +137,7 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->tahun_akademik }}
                                 </div>
-                                <label class="col-md-3 bold mt-2"> <strong>NIP Dosen External</strong></label>
+                                <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     @if ($seminar->pbl2_nip)
                                         {{ $seminar->pbl2_nip }}
@@ -310,12 +310,12 @@
                         <div class="bukti_seminar">
                             <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
                                 <div class="row border-bottom">
-                                    <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
+                                    <label class="col-md-3 bold"> <strong>Berita Acara Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
                                             href="/uploads/ba_seminar_ta_dua/{{ $seminar->ba_seminar->berkas_ba_seminar_ta_dua }}">Lihat</a>
                                     </div>
-                                    <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
+                                    <label class="col-md-3 bold mt-2"><b>Nomor Berita Acara Seminar</b></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         {{ $seminar->ba_seminar->no_berkas_ba_seminar_ta_dua }}
                                     </div>
@@ -332,7 +332,7 @@
                                     </div>
                                 </div>
                                 <div class="row border-bottom mt-2">
-                                    <label class="col-md-3 bold"> <strong>Power Point</strong></label>
+                                    <label class="col-md-3 bold"> <strong>PowerPoint</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
                                             href="{{ $seminar->ba_seminar->berkas_ppt_seminar_ta_dua }}">Lihat</a>
@@ -348,11 +348,11 @@
                         <div class="bukti_seminar">
                             <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
                                 <div class="row border-bottom">
-                                    <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
+                                    <label class="col-md-3 bold"> <strong>Berita Acara Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         Belum Unggah
                                     </div>
-                                    <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
+                                    <label class="col-md-3 bold mt-2"><b>Nomor Berita Acara Seminar</b></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         Belum Unggah
                                     </div>
@@ -368,7 +368,7 @@
                                     </div>
                                 </div>
                                 <div class="row border-bottom mt-2">
-                                    <label class="col-md-3 bold"> <strong>Power Point</strong></label>
+                                    <label class="col-md-3 bold"> <strong>PowerPoint</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         Belum Unggah
                                     </div>

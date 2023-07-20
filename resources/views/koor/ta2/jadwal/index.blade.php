@@ -88,17 +88,12 @@
                                                                     class="bi bi-calendar-plus-fill"></i>
                                                                 Jadwalkan</a>
                                                         @endif
-
-
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                     @endif
                                 @endforeach
-
-
-
                             </tbody>
                         </table>
                     </div>

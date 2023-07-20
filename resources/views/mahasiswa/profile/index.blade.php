@@ -148,7 +148,7 @@
                                                                                         class="dropdown-item text-danger deleteBtn2"
                                                                                         onclick="showDeleteConfirmation(event)"><i
                                                                                             class="fa fa-trash"></i>
-                                                                                        Delete</button>
+                                                                                        Hapus</button>
                                                                                 </form>
                                                                             </div>
                                                                         </div>
@@ -218,7 +218,7 @@
                                                                                         class="dropdown-item text-danger deleteBtn2"
                                                                                         onclick="showDeleteConfirmation(event)"><i
                                                                                             class="fa fa-trash"></i>
-                                                                                        Delete</button>
+                                                                                        Hapus</button>
                                                                                 </form>
                                                                             </div>
                                                                         </div>
@@ -234,7 +234,7 @@
                                         <!-- Extra Activity Tab End -->
 
                                         <!-- Setting Tab start -->
-                                        <div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
+                                        {{-- <div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
                                             <div class="profile-setting">
                                                 <form id="delete">
                                                     <ul class="profile-edit-list row">
@@ -397,7 +397,7 @@
                                                     </ul>
                                                 </form>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <!-- Setting Tab End -->
                                     </div>
                                 </div>

@@ -71,7 +71,7 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->tahun_akademik }}
                                 </div>
-                                <label class="col-md-3 bold mt-2"> <strong>NIP Dosen External</strong></label>
+                                <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     @if ($seminar->pbl2_nip)
                                         {{ $seminar->pbl2_nip }}
@@ -142,7 +142,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
                         <div class="pull-left">
-                            <h4 class="text-dark h4" style="margin-left: 10px">Jadwalkan Seminar PKL</h4>
+                            <h4 class="text-dark h4" style="margin-left: 10px">Jadwalkan Seminar Tugas Akhir 2</h4>
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
@@ -198,7 +198,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="submit btn btn-primary">Submit</button>
+                                <button type="submit" class="submit btn btn-primary">Kirim</button>
                             </div>
                             <a href="{{ route('koor.jadwalTA2.index') }}">
 

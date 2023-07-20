@@ -18,7 +18,7 @@
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label for="kepangkatan" style="width: 100%; height: 38px" >PANGKAT</label>
+                                    <label for="kepangkatan" style="width: 100%; height: 38px" >Pangkat</label>
                                     <select name="kepangkatan" id="kepangkatan" class="selectpicker form-control @error('kepangkatan') form-control-danger @enderror">
                                         <option value="III A" {{ $pangkat->kepangkatan == 'III A' ? 'selected' : '' }} >III A</option>
                                         <option value="III B {{ $pangkat->kepangkatan == 'III B' ? 'selected' : '' }} ">III B</option>
@@ -34,7 +34,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>TANGGAL SK PANGKAT</label>
+                                    <label>Tanggal Surat Keterangan Pangkat</label>
                                     <input value="{{$pangkat->tgl_sk}}" autofocus name="tgl_sk" id="tgl_sk"
                                         class="form-control @error('tgl_sk') form-control-danger @enderror"
                                         type="date" placeholder="TANGGAL SK">
@@ -43,7 +43,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>FILE SK PANGKAT <small> <a id="link-file_sk" href="#"
+                                    <label>File Surat Keterangan Pangkat<small> <a id="link-file_sk" href="#"
                                         target="_blank" style="display: none;">Lihat File</a> </small></label>
                                     <div class=" custom-file">
                                         <label class="custom-file-label" for="file_sk" id="label-file_sk">Pilih File</label>
@@ -60,7 +60,7 @@
 
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
 
                     </form>

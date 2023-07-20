@@ -393,9 +393,6 @@
                                 <span class="micon bi bi-journal-richtext"></span><span class="mtext">LITABMAS</span>
                             </a>
                         </li>
-
-
-
                         {{-- //data litabmas
                         <li>
                             <a href="{{ route('jurusan.litabmas.index') }}"
