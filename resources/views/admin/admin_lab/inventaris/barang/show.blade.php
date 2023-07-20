@@ -7,7 +7,9 @@
             padding: 10px;
             margin-bottom: 10px;
         }
-
+        .right-button{
+            float: right;
+            margin-top: -25px;
         }
     </style>
     <div class="main-container">
@@ -17,6 +19,9 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Detail Barang</h4>
+                        <a href="{{ route('lab.barang.index') }}">
+                            <button class="btn btn-primary right-button">Kembali</button>
+                        </a>
                     </div>
                     <div class="p-md-4">
 
@@ -63,7 +68,7 @@
                         <table class="table data-table-responsive stripe data-table-export nowrap ">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                    <th>No</th>
                                     <th>Diubah</th>
                                     <th>Jumlah</th>
                                     <th>Keterangan</th>
@@ -74,7 +79,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $carbon::parse($item->updated_at)->format('d F Y') }}</td>
-                                        <td>{{ $item->jumlah_awal}}</td>
+                                        <td>{{ $item->jumlah_awal }}</td>
                                         <td>{{ $item->ket }}</td>
                                     </tr>
                                 @endforeach
@@ -82,7 +87,6 @@
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
-@extends('layouts.blank')
-@section('blank')
+@extends('layouts.admin')
+@section('admin')
     <style>
         .custom-file-label::after {
             content: 'Pilih File';
@@ -31,7 +31,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Edit Profile</h4>
+                            <h4 class="text-dark h4">Edit Profil</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                                     <input value="{{ old('alamat', $dosen->alamat) }}" autofocus name="alamat"
                                         id="alamat" class="form-control @error('alamat') form-control-danger @enderror"
                                         type="text" placeholder="Alamat">
-                                    
+
                                     @error('alamat')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -156,11 +156,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
 
                     </form>
-
+                    <a href="{{ route('dosen.profile.index') }}">
+                        <button class="batal btn btn-secondary">Batal</button>
+                    </a>
                 </div>
             </div>
         </div>
