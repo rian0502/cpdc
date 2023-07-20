@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Dosen;
 use Illuminate\Support\Str;
 use App\Models\LitabmasDosen;
 use Illuminate\Http\Response;
-use PhpOffice\PhpWord\PhpWord;
 use App\Models\OrganisasiDosen;
-use PhpOffice\PhpWord\Settings;
-use PhpOffice\PhpWord\IOFactory;
 use Illuminate\Routing\Controller;
-use PhpOffice\PhpWord\Shared\Html;
 use App\Models\HistoryJabatanDosen;
 use App\Models\HistoryPangkatDosen;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
-use PhpOffice\PhpWord\TemplateProcessor;
 use App\Http\Requests\ProfileDosenRequest;
 use App\Http\Requests\UpdateProfileDosenRequest;
+use App\Models\PublikasiDosen;
+use Dompdf\Options;
+use Dompdf\Dompdf;
+
 
 class ProfileDosenController extends Controller
 {
@@ -217,11 +217,74 @@ class ProfileDosenController extends Controller
         $pengabdian = LitabmasDosen::whereHas('dosen', function ($q) {
             $q->where('dosen.id', Auth::user()->dosen->id);
         })->where('kategori', 'Pengabdian')->get();
-        
+        $publikasi = PublikasiDosen::whereHas('dosen', function ($q) {
+            $q->where('dosen.id', Auth::user()->dosen->id);
+        })->get();
 
-        return view('resume', compact('penelitian', 'pengabdian'));
-  
+        $gelar_pendidikan = [
+            'S.Pd.',          // Sarjana Pendidikan
+            'S.Kom.',         // Sarjana Komputer
+            'S.Si.',          // Sarjana Sains
+            'S.T.',           // Sarjana Teknik
+            'M.Pd.',          // Magister Pendidikan
+            'M.Kom.',         // Magister Komputer
+            'M.Si.',          // Magister Sains
+            'M.T.',           // Magister Teknik
+            'Dr.',            // Doktor
+            'Ph.D.',          // Doctor of Philosophy (Ph.D.)
+            'Prof.',          // Profesor
+            'Ir.',            // Insinyur
+            'Drs.',           // Diploma
+            'Dra.',           // Diploma
+            'ST.',            // Sarjana Teknik
+            'H.',             // Haji (Hajah for female)
+            'B.Sc.',          // Bachelor of Science
+            'M.Sc.',          // Master of Science
+            'B.A.',           // Bachelor of Arts
+            'M.A.',           // Master of Arts
+            'B.Eng.',         // Bachelor of Engineering
+            'M.Eng.',         // Master of Engineering
+            'LLB',            // Bachelor of Laws
+            'LLM',            // Master of Laws
+            'Pharm.D.',       // Doctor of Pharmacy
+            'D.V.M.',         // Doctor of Veterinary Medicine
+            'M.D.',           // Doctor of Medicine
+            'J.D.',           // Juris Doctor
+            'B.B.A.',         // Bachelor of Business Administration
+            'M.B.A.',         // Master of Business Administration
+            'B.Sc.N.',        // Bachelor of Science in Nursing
+            'M.Sc.N.',        // Master of Science in Nursing
+            'B.Pharm.',       // Bachelor of Pharmacy
+            'M.Pharm.',       // Master of Pharmacy
+            'B.H.Sc.',        // Bachelor of Health Sciences
+            'M.H.Sc.',        // Master of Health Sciences
+            'B.F.A.',         // Bachelor of Fine Arts
+            'M.F.A.',           // Master of Fine Arts
+            'Ph.D, S.Si, M.Si',
+            'Eng.',
+        ];
+        $nama = str_replace($gelar_pendidikan, '', Auth::user()->dosen->nama_dosen);
+        $nama = str_replace(',', '', $nama);
 
-        return dd($penelitian, $pengabdian);
+
+        $data = [
+            'penelitian' => $penelitian,
+            'pengabdian' => $pengabdian,
+            'publikasi' => $publikasi,
+            'organisasi' => Auth::user()->dosen->organisasi,
+            'nama' => trim($nama),
+        ];
+        $option = new Options();
+        $option->set('isRemoteEnabled', true);
+        $option->set('defaultPaperSize', 'A4');
+        $option->set('marginTop', 0);
+        $view =  view('dosen.cv.index', $data);
+        $domPdf = new Dompdf();
+        $domPdf->loadHtml($view->render());
+        $domPdf->render();
+        $pdf = PDF::loadView('dosen.cv.index', $data);
+        $pdf->setPaper('A4', 'portrait');
+        $pdf->setOptions([$option]);
+        return $pdf->stream('cv.pdf');
     }
 }

@@ -74,7 +74,7 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->tahun_akademik }}
                                 </div>
-                                <label class="col-md-3 bold mt-2"> <strong>NIP Dosen External</strong></label>
+                                <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     @if ($seminar->pbl2_nip)
                                         {{ $seminar->pbl2_nip }}
@@ -125,7 +125,7 @@
                                     {{ $seminar->toefl }}
                                 </div>
 
-                                <label class="col-md-3 bold"> <strong></strong></label>
+                                <label class="col-md-3 bold"> <strong>Status</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->status_seminar }}
                                 </div>
@@ -165,7 +165,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <button class="submit btn btn-primary" value="submit" id="submitButton">Submit</button>
+                                    <button class="submit btn btn-primary" value="submit" id="submitButton">Kirim</button>
                                 </div>
                             </form>
                             <a href="{{ route('berkas.validasi.seminar.kp.index') }}">

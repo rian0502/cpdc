@@ -18,7 +18,7 @@
                         <table class="table data-table-responsive stripe data-table-export nowrap ">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Jumlah Barang</th>
                                     <th>ID Barang</th>
                                     <th>Keterangan</th>

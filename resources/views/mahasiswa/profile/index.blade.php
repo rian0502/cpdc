@@ -30,7 +30,8 @@
 
                             <h5 class="text-center h5 mb-0">{{ Auth::user()->name }}</h5>
                             <p class="text-center text-muted font-14">
-                                {{ auth()->user()->roles->pluck('name')->implode(', ') }}
+                                {{ ucwords(auth()->user()->roles->pluck('name')->implode(', ')) }}
+
                             </p>
                             {{-- style="max-height:300px; overflow-y: scroll;" --}}
                             <div class="profile-info">

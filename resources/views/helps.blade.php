@@ -1,6 +1,11 @@
 @extends('layouts.admin')
 @section('admin')
-<link rel="stylesheet" href="/Assets/css/helps.css">
+    <style>
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+    <link rel="stylesheet" href="/Assets/css/helps.css">
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
@@ -35,7 +40,6 @@
                                 </div>
                                 <div id="kp" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
-                                        <div>Daftar Seminar kerja praktik dapat dilakukan dengan cara berikut:</div>
                                         <div class="text-justify">
                                             Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah masuk
                                             pada akun, kemudian pergi ke tab <strong>Seminar</strong> yang terletak pada bagian
@@ -43,7 +47,8 @@
                                             CPDC. Setelah itu, klik pada opsi <a class="text-primary bold"
                                                 href="/mahasiswa/seminar/kp">Kerja Praktik</a>.
 
-                                            Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah mengisi
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom
+                                            yang tersedia. Jika Anda telah mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
                                             Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja praktik
@@ -61,7 +66,6 @@
                                 </div>
                                 <div id="ta1" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
-                                        <div>Daftar Seminar Tugas Akhir 1 dapat dilakukan dengan cara berikut:</div>
                                         <div class="text-justify">
                                             Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah masuk
                                             pada akun, kemudian klik pada tab <strong>Seminar</strong> yang terletak pada bagian
@@ -69,7 +73,8 @@
                                             CPDC. Setelah itu, klik pada opsi
                                             <a class="text-primary bold" href="/mahasiswa/seminar/tugas_akhir_1">Tugas Akhir
                                                 1</a>.
-                                            Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah mengisi
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom
+                                            yang tersedia. Jika Anda telah mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
                                             Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja praktik
@@ -86,7 +91,6 @@
                                 </div>
                                 <div id="ta2" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
-                                        <div>Daftar Seminar Tugas Akhir 2 dapat dilakukan dengan cara berikut:</div>
                                         <div class="text-justify">
                                             Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah masuk
                                             pada akun, pastikan anda sudah menyelesaikan
@@ -100,7 +104,8 @@
                                             CPDC. Setelah itu, klik pada opsi
                                             <a class="text-primary bold" href="/mahasiswa/seminar/tugas_akhir_2">Tugas
                                                 Akhir 2</a>.
-                                            Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah mengisi
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom
+                                            yang tersedia. Jika Anda telah mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
                                             Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja praktik
@@ -117,7 +122,6 @@
                                 </div>
                                 <div id="kompre" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
-                                        <div>Daftar Sidang Komprehensif dapat dilakukan dengan cara berikut:</div>
                                         <div class="text-justify">
                                             Mohon untuk terlebih dahulu masuk ke akun Anda sebelum melanjutkan. Setelah masuk
                                             pada akun, pastikan anda sudah menyelesaikan
@@ -131,7 +135,8 @@
                                             CPDC. Setelah itu, klik pada opsi
                                             <a class="text-primary bold" href="/mahasiswa/sidang/kompre">Sidang
                                                 Komprehensif</a>.
-                                            Selanjutnya, isi data dengan benar pada kolom yang tersedia. Jika Anda telah mengisi
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom
+                                            yang tersedia. Jika Anda telah mengisi
                                             data, klik tombol <strong>Submit</strong> untuk melanjutkan.
 
                                             Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja praktik
@@ -153,15 +158,41 @@
                             </div>
                             <div id="foto" class="collapse" data-parent="#accordion1">
                                 <div class="card-body">
-
                                     <div class="text-justify">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus debitis ab
-                                        iusto quidem consequatur nesciunt corporis illo aliquam dignissimos necessitatibus!
-                                        Sed mollitia illum consectetur repellat, magni eaque. Possimus vero tempore ex
-                                        deserunt impedit tenetur eaque dolorum voluptatibus aliquid, quaerat quidem
-                                        deleniti! Inventore et itaque illum maxime sint distinctio maiores. Consectetur?
+                                        Silakan masuk ke akun Anda terlebih dahulu sebelum melanjutkan. Setelah masuk, klik
+                                        nama akun yang berada di pojok kanan atas, kemudian pilih opsi
+                                        @if (auth()->user()->hasRole('admin lab'))
+                                            <a class="text-primary bold"
+                                                href="{{ route('admin.profile.index') }}">Profil</a>. Setelah
+                                        @elseif(auth()->user()->hasRole('admin berkas'))
+                                            <a class="text-primary bold"
+                                                href="{{ route('admin.profile.index') }}">Profil</a>. Setelah
+                                        @elseif(auth()->user()->hasRole('dosen'))
+                                            <a class="text-primary bold"
+                                                href="{{ route('dosen.profile.index') }}">Profil</a>. Setelah
+                                        @elseif(auth()->user()->hasRole('mahasiswa'))
+                                            <a class="text-primary bold"
+                                                href="{{ route('mahasiswa.profile.index') }}">Profil</a>. Setelah
+                                        @elseif(auth()->user()->hasRole('alumni'))
+                                            <a class="text-primary bold" href="#">Profil</a>. Setelah
+                                        @elseif(auth()->user()->hasRole('kalab'))
+                                            <a class="text-primary bold" href="#">Profil</a>. Setelah
+                                        @elseif(auth()->user()->hasRole('jurusan'))
+                                            <a class="text-primary bold" href="#">Profil</a>. Setelah
+                                        @endif
+                                        itu, klik ikon <strong>pensil</strong> untuk mengganti foto profil Anda.
+                                        Selanjutnya, klik tombol
+                                        <strong>Choose File</strong> untuk membuka jendela <i>file explorer</i>,
+                                        <span class="text-danger bold">pastikan menggunakan format gambar yang umum
+                                            digunakan seperti .jpg
+                                            atau .png</span> sebelum memilih gambar yang ingin digunakan sebagai foto
+                                        profil. Setelah memilih gambar yang sesuai, klik tombol
+                                        <strong>Open</strong>
+                                        di <i>file
+                                            explorer</i>. Terakhir, klik <strong>Submit</strong> untuk menyimpan foto profil
+                                        baru
+                                        Anda.
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -174,11 +205,33 @@
                             <div id="bio" class="collapse" data-parent="#accordion1">
                                 <div class="card-body">
                                     <div class="text-justify">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ullam voluptatem
-                                        officia natus totam esse distinctio voluptate aspernatur quam molestias! Voluptate,
-                                        laborum minus quas recusandae molestiae, dolorum alias libero blanditiis nostrum
-                                        nihil, iste dignissimos explicabo enim mollitia! Optio sunt cum vitae repudiandae,
-                                        culpa, voluptates, cumque accusantium impedit ratione inventore dicta.
+                                        Silakan masuk ke akun Anda terlebih dahulu sebelum melanjutkan. Setelah masuk, klik
+                                        nama akun yang berada di pojok kanan atas, kemudian pilih opsi
+                                        @if (auth()->user()->hasRole('admin lab'))
+                                            <a class="text-primary bold"
+                                                href="{{ route('admin.profile.index') }}">Profil</a>. Setelah
+                                        @elseif(auth()->user()->hasRole('admin berkas'))
+                                            <a class="text-primary bold"
+                                                href="{{ route('admin.profile.index') }}">Profil</a>. Setelah
+                                        @elseif(auth()->user()->hasRole('dosen'))
+                                            <a class="text-primary bold"
+                                                href="{{ route('dosen.profile.index') }}">Profil</a>. Setelah
+                                        @elseif(auth()->user()->hasRole('mahasiswa'))
+                                            <a class="text-primary bold"
+                                                href="{{ route('mahasiswa.profile.index') }}">Profil</a>. Setelah
+                                        @elseif(auth()->user()->hasRole('alumni'))
+                                            <a class="text-primary bold" href="#">Profil</a>. Setelah
+                                        @elseif(auth()->user()->hasRole('kalab'))
+                                            <a class="text-primary bold" href="#">Profil</a>. Setelah
+                                        @elseif(auth()->user()->hasRole('jurusan'))
+                                            <a class="text-primary bold" href="#">Profil</a>. Setelah
+                                        @endif
+                                        itu, klik ikon <strong>pensil</strong> untuk mengubah biodata profil Anda.
+                                        Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom
+                                        yang disediakan.
+                                        Terakhir, klik
+                                        <strong>Submit</strong>
+                                        untuk menyimpan biodata yang telah diubah sebelumnya.
                                     </div>
                                 </div>
                             </div>
@@ -197,11 +250,21 @@
                                 <div class="card-body">
 
                                     <div class="text-justify">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus debitis ab
-                                        iusto quidem consequatur nesciunt corporis illo aliquam dignissimos necessitatibus!
-                                        Sed mollitia illum consectetur repellat, magni eaque. Possimus vero tempore ex
-                                        deserunt impedit tenetur eaque dolorum voluptatibus aliquid, quaerat quidem
-                                        deleniti! Inventore et itaque illum maxime sint distinctio maiores. Consectetur?
+                                        Silakan masuk ke akun Anda terlebih dahulu sebelum melanjutkan. Setelah masuk,
+                                        klik nama akun yang terletak di pojok kanan atas, kemudian pilih opsi
+                                        <a class="text-primary bold" href="/settings">Pengaturan</a>. Di halaman
+                                        pengaturan, lengkapi kolom-kolom yang tersedia dengan
+                                        benar.
+                                        <span class="text-danger bold">Pastikan kata sandi yang Anda masukkan
+                                            memiliki
+                                            minimal 8 digit dan
+                                            merupakan kombinasi huruf atau angka. Selain itu, kata sandi harus
+                                            mengandung
+                                            setidaknya satu huruf besar, satu huruf kecil, satu angka, dan satu
+                                            simbol</span>.
+                                        Setelah itu, klik tombol <strong>Simpan</strong> untuk menyimpan perubahan yang
+                                        telah Anda buat
+                                        sebelumnya pada kata sandi.
                                     </div>
 
                                 </div>
@@ -216,11 +279,39 @@
                             <div id="lupa" class="collapse" data-parent="#accordion2">
                                 <div class="card-body">
                                     <div class="text-justify">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ullam voluptatem
-                                        officia natus totam esse distinctio voluptate aspernatur quam molestias! Voluptate,
-                                        laborum minus quas recusandae molestiae, dolorum alias libero blanditiis nostrum
-                                        nihil, iste dignissimos explicabo enim mollitia! Optio sunt cum vitae repudiandae,
-                                        culpa, voluptates, cumque accusantium impedit ratione inventore dicta.
+                                        Klik tombol <a class="text-primary bold" href="/login">Masuk</a> yang
+                                        terletak pada halaman beranda. Setelah itu, cari dan
+                                        klik
+                                        opsi <a class="text-primary bold" href="/forgot-password">Lupa Kata
+                                            Sandi?</a>. Di
+                                        halaman selanjutnya, <strong>masukkan alamat email yang
+                                            terdaftar pada akun Anda</strong>, dan <span class="text-danger bold">pastikan
+                                            bahwa email tersebut masih aktif</span>.
+                                        Setelah
+                                        itu, klik tombol <strong>Kirim</strong>. <strong>Buka kotak masuk email Anda dan
+                                            temukan email yang
+                                            dikirim
+                                            untuk mengganti kata sandi akun Anda</strong>. Klik tautan atau tombol
+                                        <strong>Reset Password</strong>
+                                        yang
+                                        disediakan dalam email tersebut. Di halaman reset password, <strong>masukkan
+                                            email Anda
+                                            dan
+                                            masukkan kata sandi baru yang ingin Anda gunakan</strong>. <span
+                                            class="text-danger bold">Pastikan kata sandi yang Anda
+                                            masukkan memiliki minimal 8 karakter dan merupakan kombinasi huruf atau
+                                            angka.
+                                            Selain itu, kata sandi harus mengandung setidaknya satu huruf besar, satu
+                                            huruf
+                                            kecil, satu angka, dan satu simbol</span>. Setelah memasukkan informasi yang
+                                        diperlukan,
+                                        klik tombol <strong>Reset</strong> untuk mengatur ulang kata sandi Anda. Setelah
+                                        berhasil
+                                        mereset
+                                        kata sandi, Anda dapat <a class="text-primary bold" href="/login">Masuk</a>
+                                        kembali ke akun dengan menggunakan kata sandi baru
+                                        yang
+                                        telah Anda tentukan.
                                     </div>
                                 </div>
                             </div>

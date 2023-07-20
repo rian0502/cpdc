@@ -161,7 +161,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
         /*
          * Package Service Providers...
          */
@@ -177,6 +176,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -191,7 +191,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -234,14 +233,15 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Permission' => Spatie\Permission\Models\Permission::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
     'trusted_proxies' => [
         'headers' => [
-        \Illuminate\Http\Request::HEADER_X_FORWARDED_FOR,
-        \Illuminate\Http\Request::HEADER_X_FORWARDED_HOST,
-        \Illuminate\Http\Request::HEADER_X_FORWARDED_PORT,
-        \Illuminate\Http\Request::HEADER_X_FORWARDED_PROTO,
+            \Illuminate\Http\Request::HEADER_X_FORWARDED_FOR,
+            \Illuminate\Http\Request::HEADER_X_FORWARDED_HOST,
+            \Illuminate\Http\Request::HEADER_X_FORWARDED_PORT,
+            \Illuminate\Http\Request::HEADER_X_FORWARDED_PROTO,
         ],
     ],
 

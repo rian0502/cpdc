@@ -21,7 +21,6 @@ class PublikasiController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -62,7 +61,12 @@ class PublikasiController extends Controller
         $insert = PublikasiDosen::create($data);
         $id = $insert->id;
         $update = PublikasiDosen::find($id)->update(['encrypt_id' => Crypt::encrypt($id)]);
-
+        $data = [
+            'posisi' => 'Ketua',
+            'id_publikasi' => $id,
+            'id_dosen' => Auth::user()->dosen->id,
+        ];
+        AnggotaPublikasiDosen::create($data);
         if ($request->anggota) {
             foreach ($request->anggota as $key => $value) {
                 $data = [
@@ -73,13 +77,6 @@ class PublikasiController extends Controller
                 AnggotaPublikasiDosen::create($data);
             }
         }
-        $data = [
-            'posisi' => 'Ketua',
-            'id_publikasi' => $id,
-            'id_dosen' => Auth::user()->dosen->id,
-        ];
-        AnggotaPublikasiDosen::create($data);
-
         if ($update) {
             return redirect()->route('dosen.profile.index')->with('success', 'Data berhasil ditambahkan');
         }
@@ -111,7 +108,7 @@ class PublikasiController extends Controller
         //
         $anggota = AnggotaPublikasiDosen::where('id_publikasi', Crypt::decrypt($id))->get();
 
-        if ($anggota[0]->id_dosen == Auth::user()->dosen[0]->id) {
+        if ($anggota[0]->id_dosen == Auth::user()->dosen->id) {
             $anggota_id = [];
             foreach ($anggota as $key => $value) {
                 $anggota_id[] = $value->id_dosen;
@@ -139,7 +136,8 @@ class PublikasiController extends Controller
     public function update(StorePublikasiRequest $request, $id)
     {
         $jumlah = AnggotaPublikasiDosen::where('id_publikasi', Crypt::decrypt($id))->get();
-        if ($jumlah[0]->id_dosen == Auth::user()->dosen[0]->id) {
+
+        if ($jumlah[0]->id_dosen == Auth::user()->dosen->id) {
             $publikasi = PublikasiDosen::find(Crypt::decrypt($id));
             $publikasi->nama_publikasi = $request->nama_publikasi;
             $publikasi->judul = $request->judul;
@@ -147,7 +145,7 @@ class PublikasiController extends Controller
             $publikasi->halaman = $request->halaman;
             $publikasi->tahun = $request->tahun;
             $publikasi->url = $request->url;
-            $publikasi->kategori_litabmas = $request->litabmas;
+            $publikasi->kategori_litabmas = $request->kategori_litabmas;
             $publikasi->scala = $request->scala;
             $publikasi->kategori = $request->kategori;
             $publikasi->anggota_external = $request->anggota_external;
@@ -158,13 +156,8 @@ class PublikasiController extends Controller
                 foreach ($request->anggota as $key => $value) {
                     $decrypt[] = Crypt::decrypt($value);
                 }
-                array_shift($decrypt);
-                if (count($jumlah) < count($decrypt)) {
-                    $publikasi->dosen()->sync([Auth::user()->dosen->id], ['posisi' => 'Ketua',  'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
-                    $publikasi->dosen()->attach($decrypt, ['posisi' => 'Anggota',  'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
-                } else {
-                    $publikasi->dosen()->detach($decrypt);
-                }
+                $publikasi->dosen()->sync([Auth::user()->dosen->id], ['posisi' => 'Ketua',  'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+                $publikasi->dosen()->attach($decrypt, ['posisi' => 'Anggota',  'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
             }
         } else {
             return redirect()->route('dosen.profile.index')->with('error', 'Anda tidak memiliki akses');

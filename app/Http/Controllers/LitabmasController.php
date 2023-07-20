@@ -146,6 +146,7 @@ class LitabmasController extends Controller
      */
     public function update(StoreLitabmasDosenRequest $request, $id)
     {
+
         $jumlahAnggota = AnggotaLitabmas::where('litabmas_id', Crypt::decrypt($id))->get();
         if ($jumlahAnggota[0]->dosen_id == Auth::user()->dosen->id) {
             $litabmas = LitabmasDosen::find(Crypt::decrypt($id));
@@ -153,7 +154,7 @@ class LitabmasController extends Controller
             $litabmas->kategori = $request->kategori;
             $litabmas->sumber_dana = $request->sumber_dana;
             $litabmas->jumlah_dana = $request->jumlah_dana;
-            $litabmas->tahun_penelitian = $request->tahun_penelitian;
+            $litabmas->tahun_penelitian = $request->tahun_pelaksanaan;
             $litabmas->anggota_external = $request->anggota_external;
             $litabmas->save();
             if ($request->anggota) {
@@ -161,17 +162,10 @@ class LitabmasController extends Controller
                 foreach ($request->anggota as $key => $value) {
                     $decrypt[] = Crypt::decrypt($value);
                 }
-                array_shift($decrypt);
-                if (count($jumlahAnggota) < count($request->anggota)) {
-                    //aksi penambahan anggota
-                    $litabmas->dosen()->sync([Auth::user()->dosen->id], ['Posisi' => 'Anggota', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
-                    $litabmas->dosen()->attach($decrypt, ['Posisi' => 'Anggota', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
-                } else {
-
-                    $litabmas->dosen()->detach($decrypt);
-                }
+                $litabmas->dosen()->sync([Auth::user()->dosen->id], ['Posisi' => 'Anggota', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+                $litabmas->dosen()->attach($decrypt, ['Posisi' => 'Anggota', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
             }
-        }else{
+        } else {
             return redirect()->route('dosen.profile.index')->with('error', 'Anda tidak memiliki akses');
         }
         return redirect()->route('dosen.profile.index')->with('success', 'Data Litabmas diubah');

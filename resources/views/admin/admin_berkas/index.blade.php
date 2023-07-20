@@ -22,8 +22,8 @@
                                     <th>NIP</th>
                                     <th>Nama</th>
                                     <th>Tempat, Tanggal Lahir</th>
-                                    <th>Tanggal SK</th>
-                                    <th>Berkas SK</th>
+                                    <th>Tanggal Surat Keputusan</th>
+                                    <th>Berkas Surat Keputusan</th>
                                     <th>Alamat</th>
                                     <th>Nomor Telepon</th>
                                     <th>Role Admin</th>

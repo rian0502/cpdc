@@ -11,6 +11,12 @@
     <!-- Font Awesome library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
+    <!-- FontAwesome -->
+    <link href="/Assets/FontAwesome/css/fontawesome.css" rel="stylesheet">
+    <link href="/Assets/FontAwesome/css/brands.css" rel="stylesheet">
+    <link href="/Assets/FontAwesome/css/solid.css" rel="stylesheet">
+    <!-- FontAwesome -->
+
     <!-- Helpers -->
     <script src="/Assets/setting/assets/vendor/js/helpers.js"></script>
 
@@ -63,10 +69,10 @@
                                             id="toggle_new_password">
                                             <i class="fas fa-eye-slash"></i>
                                         </button>
-                                        @error('new_password')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
+                                    @error('new_password')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="confirm_new_password">Konfirmasi Kata Sandi
@@ -103,7 +109,7 @@
         toggleCurrentPasswordBtn.addEventListener('click', function() {
             if (currentPasswordInput.type === 'password') {
                 currentPasswordInput.type = 'text';
-                toggleCurrentPasswordBtn.innerHTML = '<i class="fas fa-eye"></i>';
+                toggleCurrentPasswordBtn.innerHTML = '<i class="fas fa-eye fa-beat"></i>';
             } else {
                 currentPasswordInput.type = 'password';
                 toggleCurrentPasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
@@ -117,7 +123,7 @@
         toggleNewPasswordBtn.addEventListener('click', function() {
             if (newPasswordInput.type === 'password') {
                 newPasswordInput.type = 'text';
-                toggleNewPasswordBtn.innerHTML = '<i class="fas fa-eye"></i>';
+                toggleNewPasswordBtn.innerHTML = '<i class="fas fa-eye fa-beat"></i>';
             } else {
                 newPasswordInput.type = 'password';
                 toggleNewPasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
@@ -131,7 +137,7 @@
         toggleConfirmNewPasswordBtn.addEventListener('click', function() {
             if (confirmNewPasswordInput.type === 'password') {
                 confirmNewPasswordInput.type = 'text';
-                toggleConfirmNewPasswordBtn.innerHTML = '<i class="fas fa-eye"></i>';
+                toggleConfirmNewPasswordBtn.innerHTML = '<i class="fas fa-eye fa-beat"></i>';
             } else {
                 confirmNewPasswordInput.type = 'password';
                 toggleConfirmNewPasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';

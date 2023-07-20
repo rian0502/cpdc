@@ -8,7 +8,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Edit Barang</h4>
+                            <h4 class="text-dark h4">Edit Data Barang</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Ket</label>
+                                    <label>Keterangan</label>
                                     <textarea class="form-control @error('ket') form-control-danger @enderror" name="ket" id="ket" cols="5"
                                         rows="3" placeholder="Keterangan">{{ old('ket') }}</textarea>
                                     @error('ket')
@@ -94,12 +94,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
 
                     </form>
                     <a href="{{ route('lab.barang.index') }}">
-
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>
                 </div>

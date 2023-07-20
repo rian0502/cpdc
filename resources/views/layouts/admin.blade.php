@@ -520,10 +520,12 @@
                         <li>
                             <a href="{{ route('mahasiswa.lab.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/lab*') ? 'active' : '' }}">
-                                <span class="micon fa-solid fa-flask-vial"></span><span class="mtext">laboratorium
+                                <span class="micon fa-solid fa-flask-vial"></span><span class="mtext">Laboratorium
                                     TA</span>
                             </a>
                         </li>
+                    @endrole
+                    @role('alumni')
                         <li>
                             <a href="{{ route('mahasiswa.pendataan_alumni.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni*') ? 'active' : '' }}">
@@ -531,8 +533,6 @@
                                     Alumni</span>
                             </a>
                         </li>
-                    @endrole
-                    @role('alumni')
                         <li>
                             <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni*') ? 'active' : '' }}">

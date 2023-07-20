@@ -20,6 +20,12 @@
     <link rel="stylesheet" type="text/css" href="/Assets/auth/vendors/styles/icon-font.min.css" />
     <link rel="stylesheet" type="text/css" href="/Assets/auth/vendors/styles/style.css" />
 
+    <!-- FontAwesome -->
+    <link href="/Assets/FontAwesome/css/fontawesome.css" rel="stylesheet">
+    <link href="/Assets/FontAwesome/css/brands.css" rel="stylesheet">
+    <link href="/Assets/FontAwesome/css/solid.css" rel="stylesheet">
+    <!-- FontAwesome -->
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
     <script>
@@ -86,66 +92,76 @@
                         </div>
                         <h6 class="mb-20" style="text-align: center">Masukkan kata sandi baru Anda, konfirmasi dan
                             kirim</h6>
-                            {{-- @error('email')
+                        {{-- @error('email')
                             <div class="alert alert-danger">
                                 {{ $message }}
                             </div>
                         @enderror --}}
-                        <form action="{{route('auth.password.update.post')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('auth.password.update.post') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="input-group custom">
-                                <input type="email" name="email" value="{{ old('email') }}" class="form-control form-control-lg @error('email') form-control-danger @enderror"
+                                <input type="email" name="email" value="{{ old('email') }}"
+                                    class="form-control form-control-lg @error('email') form-control-danger @enderror"
                                     placeholder="Email" />
-                                    <div class="input-group-append custom">
+                                <div class="input-group-append custom">
                                     @error('email')
-
                                     @else
-                                    <span class="input-group-text"><i class="dw dw-email"></i></span>
+                                        <span class="input-group-text"><i class="dw dw-email"></i></span>
                                     @enderror
                                 </div>
                             </div>
                             @error('email')
-                                        <small class="form-control-feedback has-danger">{{ $message }}</small>
+                                <small class="form-control-feedback has-danger">{{ $message }}</small>
                             @enderror
                             <div class="input-group custom">
-                                <input type="text" name="token" value="{{ $token }}" class="mt-2 form-control form-control-lg @error('token') form-control-danger @enderror"
+                                <input type="text" name="token" value="{{ $token }}"
+                                    class="mt-2 form-control form-control-lg @error('token') form-control-danger @enderror"
                                     placeholder="Token" />
                                 <div class="input-group-append custom">
                                     @error('token')
-
                                     @else
-                                    <span class="input-group-text"><i class="dw dw-key"></i></span>
+                                        <span class="input-group-text"><i class="dw dw-key"></i></span>
                                     @enderror
                                 </div>
                             </div>
                             @error('token')
-                                        <small class="form-control-feedback has-danger">{{ $message }}</small>
+                                <small class="form-control-feedback has-danger">{{ $message }}</small>
                             @enderror
                             <div class="input-group custom">
-                                <input type="password" value="{{ old('password') }}" class="mt-2 form-control form-control-lg @error('password') form-control-danger @enderror"
-                                    placeholder="Kata Sandi Baru" name="password" />
+                                <input type="password" value="{{ old('password') }}"
+                                    class="mt-2 form-control form-control-lg @error('password') form-control-danger @enderror"
+                                    placeholder="Kata Sandi Baru" name="password" id="password-input" />
                                 <div class="input-group-append custom">
                                     @error('password')
                                     @else
-                                    <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+                                        <span class="input-group-text"
+                                            onclick="togglePasswordVisibility('password-input', 'password-icon')">
+                                            <i class="fas fa-eye-slash" style="margin-top: 8px" id="password-icon"></i>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
                             @error('password')
-                                        <small class="form-control-feedback has-danger">{{ $message }}</small>
+                                <small class="form-control-feedback has-danger">{{ $message }}</small>
                             @enderror
                             <div class="input-group custom">
-                                <input type="password" value="{{ old('password_confirmation') }}" class="mt-2 form-control form-control-lg @error('password_confirmation') form-control-danger @enderror"
-                                    placeholder="Konfirmai Kata Sandi Baru" name="password_confirmation"/>
+                                <input type="password" value="{{ old('password_confirmation') }}"
+                                    class="mt-2 form-control form-control-lg @error('password_confirmation') form-control-danger @enderror"
+                                    placeholder="Konfirmasi Kata Sandi Baru" name="password_confirmation"
+                                    id="confirm-password-input" />
                                 <div class="input-group-append custom">
                                     @error('password_confirmation')
                                     @else
-                                    <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+                                        <span class="input-group-text"
+                                            onclick="togglePasswordVisibility('confirm-password-input', 'confirm-password-icon')">
+                                            <i class="fas fa-eye-slash" style="margin-top: 8px" id="confirm-password-icon"></i>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
                             @error('password_confirmation')
-                                        <small class="form-control-feedback has-danger">{{ $message }}</small>
+                                <small class="form-control-feedback has-danger">{{ $message }}</small>
                             @enderror
                             <div class="row align-items-center">
                                 <div class="col-5">
@@ -154,6 +170,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -170,6 +187,23 @@
         const inputs = document.querySelectorAll('input');
         inputs.forEach(input => input.setAttribute('autocomplete', 'off'));
     </script>
+    <script>
+        function togglePasswordVisibility(inputId, iconId) {
+            var passwordInput = document.getElementById(inputId);
+            var icon = document.getElementById(iconId);
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove("fas", "fa-eye-slash");
+                icon.classList.add("fas", "fa-eye", "fa-beat");
+            } else {
+                passwordInput.type = "password";
+                icon.classList.remove("fas", "fa-eye", "fa-beat");
+                icon.classList.add("fas", "fa-eye-slash");
+            }
+        }
+    </script>
+
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
             style="display: none; visibility: hidden"></iframe></noscript>

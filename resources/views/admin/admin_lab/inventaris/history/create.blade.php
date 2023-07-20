@@ -8,7 +8,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Add History</h4>
+                            <h4 class="text-dark h4">Tambah History</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
 
@@ -72,7 +72,7 @@
 
                         <div class="form-group">
 
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
 
                     </form>

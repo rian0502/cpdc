@@ -17,6 +17,11 @@ class LabTAController extends Controller
     //
     public function index()
     {
+        $mahasiswa = Auth::user()->mahasiswa;
+        if ($mahasiswa->ta_satu->count() < 1) {
+            return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Anda belum mengisi data TA 1');
+        }
+
         $cek = Laboratorium::where('id_lokasi', Auth::user()->lokasi_id)->where('tanggal_kegiatan', date('Y-m-d'))->first();
         if (!$cek) {
             return redirect()->route('mahasiswa.lab.cekin');
@@ -31,6 +36,10 @@ class LabTAController extends Controller
 
     public function cekin()
     {
+        $mahasiswa = Auth::user()->mahasiswa;
+        if ($mahasiswa->ta_satu->count() < 1) {
+            return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Anda belum mengisi data TA 1');
+        }
         $cek = Laboratorium::where('id_lokasi', Auth::user()->lokasi_id)->where('tanggal_kegiatan', date('Y-m-d'))->first();
         if ($cek) {
             return redirect()->route('mahasiswa.lab.index');
@@ -46,7 +55,7 @@ class LabTAController extends Controller
 
     {
         $user = User::find(Auth::user()->id);
-        if($user->lokasi_id == null){
+        if ($user->lokasi_id == null) {
             $user->lokasi_id = Crypt::decrypt($request->id_lokasi);
             $user->save();
         }

@@ -31,7 +31,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Buat Profile</h4>
+                            <h4 class="text-dark h4">Buat Profil</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>NAMA</label>
+                                    <label>Nama</label>
                                     <input value="{{ old('nama_dosen') }}" autofocus name="nama_dosen" id="nama"
                                         class="form-control @error('nama_dosen') form-control-danger @enderror"
                                         type="text" placeholder="NAMA">
@@ -68,7 +68,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>NIP</label>
+                                    <label>Nomor Induk Pegawai</label>
                                     <input value="{{ old('nip') }}" autofocus name="nip" id="nip"
                                         class="form-control @error('nip') form-control-danger @enderror" type="number"
                                         placeholder="NIP">
@@ -77,7 +77,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>NIDN</label>
+                                    <label>Nomor Induk Dosen Nasional</label>
                                     <input value="{{ old('nidn') }}" autofocus name="nidn" id="nidn"
                                         class="form-control @error('nidn') form-control-danger @enderror" type="number"
                                         placeholder="NIDN">
@@ -86,40 +86,40 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>NO TELPHONE</label>
+                                    <label>Nomor Telepon</label>
                                     <input value="{{ old('no_hp') }}" autofocus name="no_hp" id="no_hp"
                                         class="form-control @error('no_hp') form-control-danger @enderror" type="number"
-                                        placeholder="NO TELPHONE">
+                                        placeholder="Nomor Telepon">
                                     @error('no_hp')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>ALAMAT</label>
+                                    <label>Alamat</label>
                                     <input value="{{ old('alamat') }}" autofocus name="alamat" id="alamat"
                                         class="form-control @error('alamat') form-control-danger @enderror" type="text"
-                                        placeholder="ALAMAT">
+                                        placeholder="Alamat">
                                     @error('alamat')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label>TEMPAT LAHIR</label>
+                                    <label>Tempat Lahir</label>
                                     <input value="{{ old('tempat_lahir') }}" autofocus name="tempat_lahir"
                                         id="tempat_lahir"
                                         class="form-control @error('tempat_lahir') form-control-danger @enderror"
-                                        type="text" placeholder="TEMPAT LAHIR">
+                                        type="text" placeholder="Tempat Lahir">
                                     @error('tempat_lahir')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>TANGGAL LAHIR</label>
+                                    <label>Tanggal Lahir</label>
                                     <input value="{{ old('tanggal_lahir') }}" autofocus name="tanggal_lahir"
                                         id="tanggal_lahir"
                                         class="form-control @error('tanggal_lahir') form-control-danger @enderror"
-                                        type="date" placeholder="TANGGAL LAHIR">
+                                        type="date" placeholder="Tanggal Lahir">
                                     @error('tanggal_lahir')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -128,7 +128,7 @@
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label for="jabatan">JABATAN</label>
+                                    <label for="jabatan">Jabatan</label>
 
                                     <select name="jabatan" id="jabatan"
                                         class="selectpicker form-control @error('jabatan') form-control-danger @enderror">
@@ -151,17 +151,17 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>TANGGAL SK JABATAN</label>
+                                    <label>Tanggal Surat Keputusan Jabatan</label>
                                     <input value="{{ old('tanggal_sk_jabatan') }}" autofocus name="tanggal_sk_jabatan"
                                         id="tanggal_sk_jabatan"
                                         class="form-control @error('tanggal_sk_jabatan') form-control-danger @enderror"
-                                        type="date" placeholder="TANGGAL SK">
+                                        type="date" placeholder="Tanggal Surat Keputusan Jabatan">
                                     @error('tanggal_sk_jabatan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>FILE SK JABATAN <small> <a id="link-file_sk_jabatan" href="#"
+                                    <label>File Surat Keputusan Jabatan<small> <a id="link-file_sk_jabatan" href="#"
                                                 target="_blank" style="display: none;">Lihat File</a> </small></label>
                                     <div class=" custom-file">
                                         <label class="custom-file-label" for="file_sk_jabatan"
@@ -179,7 +179,7 @@
                                 </div>
                                 {{ Log::error('message') }}
                                 <div class="form-group">
-                                    <label for="kepangkatan">PANGKAT</label>
+                                    <label for="kepangkatan">Pangkat</label>
                                     <select name="kepangkatan" id="kepangkatan"
                                         class="selectpicker form-control @error('kepangkatan') form-control-danger @enderror">
                                         <option selected="">Pilih Pangkat</option>
@@ -205,18 +205,18 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>TANGGAL SK PANGKAT</label>
+                                    <label>Tanggal Surat Keputusan Pangkat</label>
                                     <input value="{{ old('tanggal_sk_pangkat') }}" autofocus name="tanggal_sk_pangkat"
                                         id="tanggal_sk_pangkat"
                                         class="form-control @error('tanggal_sk_pangkat') form-control-danger @enderror"
-                                        type="date" placeholder="TANGGAL SK">
+                                        type="date" placeholder="Tanggal Surat Keputusan Pangkat">
                                     @error('tanggal_sk_pangkat')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
 
-                                    <label>FILE SK PANGKAT <small> <a id="view-file-link-pangkat" href="#"
+                                    <label>File Surat Keputusan Pangkat <small> <a id="view-file-link-pangkat" href="#"
                                                 target="_blank" style="display: none;">Lihat File</a> </small></label>
                                     <div class="custom-file">
                                         <label class="custom-file-label" for="file_sk_pangkat"

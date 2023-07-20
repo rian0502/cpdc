@@ -13,11 +13,13 @@
             justify-content: center;
             align-items: center;
         }
+
         .foto {
             border-radius: 50%;
             width: 170px;
             /* Sesuaikan dengan lebar yang diinginkan */
-            height: 170px;.
+            height: 170px;
+            .
             /* Sesuaikan dengan tinggi yang diinginkan */
             object-fit: cover;
         }
@@ -30,33 +32,36 @@
                     <div class="pd-20">
                         <h4 class="text-blue h4">Profile Admin</h4>
                     </div>
+
                     <div class="p-md-4">
                         <div class="profile-photo center-div mt-2">
                             {{-- <a href="#" class="edit-avatar" data-toggle="modal" data-target="#modal"> --}}
-                            <a href="{{ route('admin.profile.edit', $profile->encrypt_id) }}"
-                                class="edit-avatar">
+                            <a href="{{ route('admin.profile.edit', $profile->encrypt_id) }}" class="edit-avatar">
                                 <i class="fa fa-pencil"></i>
                             </a>
                             <img src="/uploads/profile/{{ Auth::user()->profile_picture }}"
                                 onerror="this.src='/uploads/profile/default.png';" class="foto" alt="Foto Profil" />
                         </div>
+                        <p class="text-center text-dark font-14" style="font-weight: bold;">
+                            {{ ucwords(auth()->user()->roles->pluck('name')->implode(', ')) }}
+                        </p>
 
                         <div class="p-3 mb-2 bg-light text-dark rounded-div">
                             <div class="row">
                                 <label class="col-md-3 bold"> <strong> Nama Admin</strong></label>
                                 <div class="col-md-3">
-                                    {{ $profile->nama_administrasi}}
+                                    {{ $profile->nama_administrasi }}
                                 </div>
                                 <label class="col-md-3 bold"><b>Tanggal Lahir</b></label>
                                 <div class="col-md-3" id="tanggal-lahir">
-                                    {{ $profile->tanggal_lahir}}
+                                    {{ $profile->tanggal_lahir }}
 
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-md-3 bold"><b>NIP</b></label>
+                                <label class="col-md-3 bold"><b>Nomor Induk Pegawai</b></label>
                                 <div class="col-md-3">
-                                    {{ $profile->nip}}
+                                    {{ $profile->nip }}
                                 </div>
                                 <label class="col-md-3 bold"><strong>Alamat</strong></label>
                                 <div class="col-md-3">
@@ -67,7 +72,7 @@
                             <div class="row">
                                 <label class="col-md-3 bold"> <strong> Status</strong></label>
                                 <div class="col-md-3">
-                                    {{ $profile->status}}
+                                    {{ $profile->status }}
                                 </div>
                                 <label class="col-md-3 bold"><b>Email</b></label>
                                 <div class="col-md-3">
@@ -79,18 +84,18 @@
                             <div class="row">
                                 <label class="col-md-3 bold"><b>No Telphone</b></label>
                                 <div class="col-md-3">
-                                    {{ $profile->no_hp}}
+                                    {{ $profile->no_hp }}
                                 </div>
 
                                 <label class="col-md-3 bold"> <strong> Umur </strong></label>
                                 <div class="col-md-3" id="umur">
-                                    {{ $umur}}
+                                    {{ $umur }}
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-md-3 bold"><b>Jenis Kelamin</b></label>
                                 <div class="col-md-3">
-                                    {{ $profile->jenis_kelamin}}
+                                    {{ $profile->jenis_kelamin }}
                                 </div>
 
                                 <label class="col-md-3 bold"> <strong> </strong></label>
@@ -149,13 +154,16 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('admin.pangkat.edit',$item->encrypt_id) }}">
+                                                            href="{{ route('admin.pangkat.edit', $item->encrypt_id) }}">
                                                             <i class="fa fa-pencil"></i>
                                                             Edit</a>
-                                                        <form id="delete" action="{{ route('admin.pangkat.destroy', $item->encrypt_id) }}" method="POST">
+                                                        <form id="delete"
+                                                            action="{{ route('admin.pangkat.destroy', $item->encrypt_id) }}"
+                                                            method="POST">
                                                             @method('DELETE')
                                                             @csrf
-                                                            <button type="submit" id="deleteBtn" class="dropdown-item text-danger"><i
+                                                            <button type="submit" id="deleteBtn"
+                                                                class="dropdown-item text-danger"><i
                                                                     class="fa fa-trash"></i>
                                                                 Delete</button>
                                                         </form>

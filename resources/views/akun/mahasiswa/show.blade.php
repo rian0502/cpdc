@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-md-3 bold"> <strong> No Telphone </strong></label>
+                                <label class="col-md-3 bold"> <strong> Nomor Telepon </strong></label>
                                 <div class="col-md-3">
                                     {{ $student->no_hp }}
                                 </div>

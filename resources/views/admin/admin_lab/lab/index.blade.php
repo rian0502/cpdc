@@ -5,7 +5,7 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Activity Lab</h4>
+                        <h4 class="text-blue h4">Aktivitas Laboratorium</h4>
                         <a href="{{ route('lab.ruang.create') }}">
                             <button class="btn btn-success mt-3">
                                 <i class="icon-copy fi-page-add"></i>
@@ -95,7 +95,7 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="${showUrl}"><i class="fal fa-eye"></i> Detail</a>
+                                        <a class="dropdown-item" href="${showUrl}"><i class="fal fa-eye"></i> Lihat</a>
                                         <a class="dropdown-item" href="${editUrl}"><i class="fa fa-pencil"></i> Edit</a>
                                     </div>
                                 </div>`;

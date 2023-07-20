@@ -62,10 +62,10 @@
                                     </ol>
                                 </nav>
                                 <div class="text-right">
-                                    <a href="/export">
+                                    <a href="cv" target="_blank">
                                         <button class="btn btn-primary mt-3">
-                                            <i class="bi bi-file-earmark-word-fill"></i>
-                                            Export CV
+                                            <i class="bi bi-file-earmark-pdf-fill"></i>
+                                            Unduh CV
                                         </button>
                                     </a>
                                 </div>
@@ -87,6 +87,7 @@
                             </div>
                             <h5 class="text-center h5 mb-0">{{ Auth::user()->dosen->nama_dosen }}</h5>
                             <p class="text-center text-muted font-14">
+                                {{ ucwords(auth()->user()->roles->pluck('name')->implode(', ')) }} <br>
                                 NIP. {{ Auth::user()->dosen->nip }}
                             </p>
                             <div class="profile-info">
@@ -117,10 +118,6 @@
                                     <li>
                                         <span>Jenis Kelamin:</span>
                                         {{ Auth::user()->dosen->jenis_kelamin }}
-                                    </li>
-                                    <li>
-                                        <span>Alamat:</span>
-                                        {{ Auth::user()->dosen->alamat }}
                                     </li>
                                     <li>
                                         <span>Status:</span>
@@ -227,8 +224,8 @@
                                                                                         @method('DELETE')
                                                                                         @csrf
                                                                                         <button type="button"
-
-                                                                                            class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)"><i
+                                                                                            class="dropdown-item text-danger deleteBtn2"
+                                                                                            onclick="showDeleteConfirmation(event)"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>
                                                                                     </form>
@@ -238,13 +235,8 @@
                                                                     </tr>
                                                                 @endforeach
                                                             </tbody>
-
                                                         </table>
-
-
                                                     </div>
-
-
                                                 </div>
                                             </div>
                                         </div>
@@ -311,7 +303,8 @@
                                                                                             @method('DELETE')
                                                                                             @csrf
                                                                                             <button type="button"
-                                                                                                class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)">
+                                                                                                class="dropdown-item text-danger deleteBtn2"
+                                                                                                onclick="showDeleteConfirmation(event)">
                                                                                                 <i class="fa fa-trash"></i>
                                                                                                 Delete</button>
                                                                                         </form>
@@ -368,9 +361,9 @@
                                                                         <td class="text-break max-w-md text-left">
                                                                             {{ $item->judul }}</td>
                                                                         <td>{{ $item->tahun }}</td>
-                                                                        <td>{{ $item->regional }}</td>
+                                                                        <td>{{ $item->scala }}</td>
                                                                         <td>{{ $item->kategori }}</td>
-                                                                        <td>{{ $item->litabmas }}</td>
+                                                                        <td>{{ $item->kategori_litabmas }}</td>
                                                                         <td>
                                                                             <div class="dropdown">
                                                                                 <a class="btn btn-outline-primary dropdown-toggle"
@@ -396,8 +389,8 @@
                                                                                             @csrf
                                                                                             @method('DELETE')
                                                                                             <button type="button"
-
-                                                                                                class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)"><i
+                                                                                                class="dropdown-item text-danger deleteBtn2"
+                                                                                                onclick="showDeleteConfirmation(event)"><i
                                                                                                     class="fa fa-trash"></i>
                                                                                                 Delete</button>
                                                                                         </form>
@@ -470,8 +463,8 @@
                                                                                         @method('DELETE')
                                                                                         @csrf
                                                                                         <button type="button"
-
-                                                                                            class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)"><i
+                                                                                            class="dropdown-item text-danger deleteBtn2"
+                                                                                            onclick="showDeleteConfirmation(event)"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>
                                                                                     </form>
@@ -545,8 +538,8 @@
                                                                                         @method('DELETE')
                                                                                         @csrf
                                                                                         <button type="button"
-
-                                                                                            class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)"><i
+                                                                                            class="dropdown-item text-danger deleteBtn2"
+                                                                                            onclick="showDeleteConfirmation(event)"><i
                                                                                                 class="fa fa-trash"></i>
                                                                                             Delete</button>
                                                                                     </form>

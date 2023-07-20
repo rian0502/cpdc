@@ -3,11 +3,10 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-                <!-- Default Basic Forms Start -->
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Tambah Barang</h4>
+                            <h4 class="text-dark h4">Tambah Data Barang</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
@@ -35,13 +34,10 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
-
-
                             </div>
+
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
-
                                 <div class="form-group">
                                     <label>Model</label>
                                     <select class="custom-select2 form-control" style="width: 100%; height: 38px"
@@ -54,7 +50,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-
                                 <div class="form-group">
                                     <label>Lokasi</label>
                                     <input 
@@ -62,23 +57,17 @@
                                         value="{{$lokasi->nama_lokasi}}"
                                         type="text" placeholder="Lokasi">
                                 </div>
-
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
-
                     </form>
                     <a href="{{ route('lab.barang.index') }}">
-
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>
                 </div>
             </div>
         </div>
-        <!-- Input Validation End -->
-
-
     </div>
 @endsection

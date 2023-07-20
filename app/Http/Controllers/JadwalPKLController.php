@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Lokasi;
 use App\Models\JadwalSKP;
-use App\Models\ModelJadwalSeminarKompre;
-use App\Models\ModelJadwalSeminarTaDua;
-use App\Models\ModelJadwalSeminarTaSatu;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarKP;
-use Carbon\Carbon;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Crypt;
+use App\Models\ModelJadwalSeminarTaDua;
+use App\Models\ModelJadwalSeminarKompre;
+use App\Models\ModelJadwalSeminarTaSatu;
 use PhpOffice\PhpWord\TemplateProcessor;
 
 class JadwalPKLController extends Controller
@@ -43,7 +43,6 @@ class JadwalPKLController extends Controller
             'locations' => Lokasi::select('encrypt_id', 'nama_lokasi')->get(),
             'seminar' => ModelSeminarKP::find(Crypt::decrypt($id_seminar)),
         ];
-
         return view('koor.pkl.jadwal.create', $data);
     }
 
@@ -89,8 +88,7 @@ class JadwalPKLController extends Controller
         //export word
         $seminar = ModelSeminarKP::find(Crypt::decrypt($id_seminar));
         //lokasi template
-        $path = ('uploads\template_ba_kp\\');
-        $template = new TemplateProcessor($path . 'template_ba_kp.docx');
+        $template = new TemplateProcessor('uploads/template_ba_kp/' . 'template_ba_kp.docx');
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
         $template->setValue('judul_kp', $seminar->judul_kp);
@@ -106,9 +104,8 @@ class JadwalPKLController extends Controller
         $template->setValue('lokasi', $lokasi->nama_lokasi);
         $template->setValue('pembimbing_lapangan', $request->pembimbing_lapangan);
         $template->setValue('nip_pembimbing_lapangan', $request->ni_pemlap);
-        $output = ('uploads\print_ba_kp\\');
         $namafile = $seminar->mahasiswa->npm . '_ba_kp_' . time() . '.docx';
-        $template->saveAs($output . $namafile);
+        $template->saveAs('uploads/print_ba_kp/' . $namafile);
         //send email
         $to_name = $seminar->mahasiswa->nama_mahasiswa;
         $to_email = $seminar->mahasiswa->user->email;
@@ -130,9 +127,9 @@ class JadwalPKLController extends Controller
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach(('uploads\print_ba_kp\\') . $namafile);
+            $message->attach(('uploads/print_ba_kp/') . $namafile);
         });
-        unlink(('uploads\print_ba_kp\\' . $namafile));
+        unlink(('uploads/print_ba_kp/' . $namafile));
 
         return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Ditambahkan');
     }
