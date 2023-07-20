@@ -37,7 +37,7 @@
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item" href="{{ route('dosen.mahasiswa.bimbingan.akademik.show', $item->npm) }}"><i
                                                         class="fa fa-eye"></i>
-                                                    Detail</a>
+                                                    Lihat</a>
 
                                             </div>
                                         </div>

@@ -8,6 +8,11 @@
             margin-bottom: 10px;
         }
 
+        .right-button {
+            float: right;
+            margin-top: -25px;
+        }
+
         a:hover {
             cursor: pointer;
         }
@@ -19,6 +24,9 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Detail Mahasiswa</h4>
+                        <a href="{{ route('dosen.mahasiswa.bimbingan.kompre.index') }}">
+                            <button class="btn btn-primary right-button">Kembali</button>
+                        </a>
                     </div>
                     <div class="mb-3 pb-2">
                         <div class="form-group">
@@ -165,8 +173,7 @@
                                                             style="display:block;word-wrap:break-word;">
                                                             {{ $seminarTa1->tahun_akademik }}
                                                         </div>
-                                                        <label class="col-md-3 bold mt-2"> <strong>NIP Dosen
-                                                                External</strong></label>
+                                                        <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
                                                         <div class="col-md-3 mt-2"
                                                             style="display:block;word-wrap:break-word;">
                                                             @if ($seminarTa1->pbl2_nip)
@@ -397,8 +404,7 @@
                                                             style="display:block;word-wrap:break-word;">
                                                             {{ $seminarTa2->tahun_akademik }}
                                                         </div>
-                                                        <label class="col-md-3 bold mt-2"> <strong>NIP Dosen
-                                                                External</strong></label>
+                                                        <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
                                                         <div class="col-md-3 mt-2"
                                                             style="display:block;word-wrap:break-word;">
                                                             @if ($seminarTa2->pbl2_nip)

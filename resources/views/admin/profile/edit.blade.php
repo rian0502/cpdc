@@ -27,7 +27,6 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-                <!-- Default Basic Forms Start -->
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
@@ -81,18 +80,18 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nomor Telepon</label>
-                                    <input value="{{ old('no_hp', $admin->no_hp) }}" autofocus name="no_hp"
-                                        id="no_hp" class="form-control @error('no_hp') form-control-danger @enderror"
-                                        type="number" placeholder="NO TELPHONE">
+                                    <input value="{{ old('no_hp', $admin->no_hp) }}" autofocus name="no_hp" id="no_hp"
+                                        class="form-control @error('no_hp') form-control-danger @enderror" type="number"
+                                        placeholder="NO TELPHONE">
                                     @error('no_hp')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Alamat</label>
-                                    <input value="{{ old('alamat', $admin->alamat) }}" autofocus name="alamat" id="alamat"
-                                        class="form-control @error('alamat') form-control-danger @enderror" type="text"
-                                        placeholder="ALAMAT">
+                                    <input value="{{ old('alamat', $admin->alamat) }}" autofocus name="alamat"
+                                        id="alamat" class="form-control @error('alamat') form-control-danger @enderror"
+                                        type="text" placeholder="ALAMAT">
                                     @error('alamat')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -100,12 +99,10 @@
                             </div>
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
-
-
                                 <div class="form-group">
                                     <label>Tempat Lahir</label>
-                                    <input value="{{ old('tempat_lahir', $admin->tempat_lahir) }}" autofocus name="tempat_lahir"
-                                        id="tempat_lahir"
+                                    <input value="{{ old('tempat_lahir', $admin->tempat_lahir) }}" autofocus
+                                        name="tempat_lahir" id="tempat_lahir"
                                         class="form-control @error('tempat_lahir') form-control-danger @enderror"
                                         type="text" placeholder="TEMPAT LAHIR">
                                     @error('tempat_lahir')
@@ -114,8 +111,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Lahir</label>
-                                    <input value="{{ old('tanggal_lahir', $admin->tanggal_lahir) }}" autofocus name="tanggal_lahir"
-                                        id="tanggal_lahir"
+                                    <input value="{{ old('tanggal_lahir', $admin->tanggal_lahir) }}" autofocus
+                                        name="tanggal_lahir" id="tanggal_lahir"
                                         class="form-control @error('tanggal_lahir') form-control-danger @enderror"
                                         type="date" placeholder="TANGGAL LAHIR">
                                     @error('tanggal_lahir')
@@ -145,17 +142,15 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
-
                     </form>
-
+                    <a href="{{ route('admin.profile.index') }}">
+                        <button class="batal btn btn-secondary">Batal</button>
+                    </a>
                 </div>
             </div>
         </div>
-        <!-- Input Validation End -->
-
-
     </div>
     <script>
         function previewFile(event) {

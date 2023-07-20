@@ -8,6 +8,9 @@
             margin-bottom: 10px;
         }
 
+        .right-button {
+            float: right;
+            margin-top: -25px;
         }
     </style>
     <div class="main-container">
@@ -17,15 +20,16 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Detail Mahasiswa</h4>
+                        <a href="{{ route('dosen.mahasiswa.bimbingan.kp.index') }}">
+                            <button class="btn btn-primary right-button">Kembali</button>
+                        </a>
                     </div>
                     <div class="mb-3 pb-2">
                         <div class="form-group">
                             <div class="profile-photo">
                                 <img id="preview-image" src="/uploads/profile/{{-- $mahasiswa->profile_picture --}}" alt="Foto Profile"
                                     onerror="this.src='/uploads/profile/default.png'" class="foto">
-
                             </div>
-
                         </div>
                     </div>
                     <div class="p-md-4">

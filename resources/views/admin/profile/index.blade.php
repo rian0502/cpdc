@@ -70,7 +70,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-md-3 bold"> <strong> Status</strong></label>
+                                <label class="col-md-3 bold"> <strong>Status</strong></label>
                                 <div class="col-md-3">
                                     {{ $profile->status }}
                                 </div>
@@ -82,7 +82,7 @@
 
 
                             <div class="row">
-                                <label class="col-md-3 bold"><b>No Telphone</b></label>
+                                <label class="col-md-3 bold"><b>Nomor Telepon</b></label>
                                 <div class="col-md-3">
                                     {{ $profile->no_hp }}
                                 </div>
@@ -165,7 +165,7 @@
                                                             <button type="submit" id="deleteBtn"
                                                                 class="dropdown-item text-danger"><i
                                                                     class="fa fa-trash"></i>
-                                                                Delete</button>
+                                                                Hapus</button>
                                                         </form>
                                                     </div>
                                             </td>

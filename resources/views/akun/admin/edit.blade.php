@@ -29,7 +29,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Password</label>
+                                    <label>Kata Sandi</label>
                                     <input autofocus name="password" id="password"
                                         class="form-control @error('password') form-control-danger @enderror" type="text"
                                         placeholder="Password" value="{{ old('password') }}">
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
 
                     </form>

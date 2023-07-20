@@ -91,7 +91,7 @@
                         <div class="form-group">
                             {{-- <div class="d-flex"> --}}
 
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                             <a href="{{ route('admin.profile.index') }}" class="submit ml-2 btn btn-secondary">Batal</a>
                             {{-- </div> --}}
                         </div>

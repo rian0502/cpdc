@@ -1,6 +1,10 @@
 @extends('layouts.datatable')
 @section('datatable')
     <style>
+        a:hover {
+            cursor: pointer;
+        }
+
         .rounded-div {
             border-radius: 10px;
             border: 1px solid #e5e5e5;
@@ -22,6 +26,11 @@
             /* Sesuaikan dengan tinggi yang diinginkan */
             object-fit: cover;
         }
+
+        .right-button {
+            float: right;
+            margin-top: -25px;
+        }
     </style>
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
@@ -30,6 +39,9 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Detail Dosen</h4>
+                        <a href="{{ route('sudo.akun_dosen.index') }}">
+                            <button class="btn btn-primary right-button">Kembali</button>
+                        </a>
                     </div>
                     <div class="p-md-4">
                         <div class="profile-photo center-div mt-2">
@@ -91,7 +103,7 @@
                                 <div class="col-md-3">
 
                                     @if (count($pangkat) > 0)
-                                        {{ $pangkat->first()->kepangkatan}}
+                                        {{ $pangkat->first()->kepangkatan }}
                                     @else
                                         -
                                     @endif
@@ -108,11 +120,7 @@
                                 </div>
                             </div>
                         </div>
-                        <style type="text/css">
-                            a:hover {
-                                cursor: pointer;
-                            }
-                        </style>
+
                     </div>
                 </div>
                 <div class="card-box mb-30">
