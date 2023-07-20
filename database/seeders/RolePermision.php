@@ -181,6 +181,12 @@ class RolePermision extends Seeder
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
         ]);
+        $pranoto = User::create([
+            'name' => 'Dr. Ir. Adi Pranoto, M.Sc.',
+            'email' => 'neobyu10@gmail.com',
+            'email_verified_at' => now(),
+            'password' =>  bcrypt('kajur'),
+        ]);
         $john = User::create([
             'name' => 'Prof. Drs. John Hendri,, M.S., Ph.D.',
             'email' => 'john.hendri@fmipa.unila.ac.id',
@@ -213,6 +219,7 @@ class RolePermision extends Seeder
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
         ]);
+        
         //endsudo
         //admin berkas
         $adminBerkas = User::create([
@@ -334,6 +341,7 @@ class RolePermision extends Seeder
         $kamisah->assignRole(['dosen', 'kalab']);
         $noviany->assignRole(['dosen', 'kalab']);
         $dian->assignRole(['dosen', 'kalab']);
+        $pranoto->assignRole([ 'jurusan', 'sudo']);
         $hardoko->assignRole('dosen');
         $buhani->assignRole('dosen');
         $suharso->assignRole('dosen');

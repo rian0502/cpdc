@@ -31,7 +31,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Buat Profile</h4>
+                            <h4 class="text-dark h4">Buat Profil</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>ALAMAT</label>
+                                    <label>Alamat</label>
                                     <input value="{{ old('alamat') }}" autofocus name="alamat" id="alamat"
                                         class="form-control @error('alamat') form-control-danger @enderror" type="text"
                                         placeholder="Alamat">

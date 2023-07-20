@@ -148,7 +148,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <button class="submit btn btn-primary" value="submit" id="submitButton">Submit</button>
+                                <button class="submit btn btn-primary" value="submit" id="submitButton">Kirim</button>
                             </div>
                         </form>
                         <a href="{{ route('berkas.validasi.seminar.kp.index') }}">

@@ -37,10 +37,6 @@
                         <div class="pull-left">
                             <h4 class="text-dark h4" style="margin-left: 10px">Data Registrasi</h4>
                         </div>
-                        {{-- <a href="/mahasiswa/seminar/kp/create">
-                            <button class="btn btn-primary right">Edit Data</button>
-                        </a> --}}
-
                     </div>
                     <div class="">
                         <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
@@ -74,7 +70,7 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->tahun_akademik }}
                                 </div>
-                                <label class="col-md-3 bold mt-2"> <strong>NIP Dosen External</strong></label>
+                                <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     @if ($seminar->pbl2_nip)
                                         {{ $seminar->pbl2_nip }}
@@ -125,7 +121,7 @@
                                     {{ $seminar->toefl }}
                                 </div>
 
-                                <label class="col-md-3 bold"> <strong></strong></label>
+                                <label class="col-md-3 bold"> <strong>Status</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->status_seminar }}
                                 </div>
