@@ -30,6 +30,11 @@
         a:hover {
             cursor: pointer;
         }
+
+        .right-button {
+            float: right;
+            margin-top: -25px;
+        }
     </style>
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
@@ -38,6 +43,9 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Detail Mahasiswa</h4>
+                        <a href="{{ route('dosen.mahasiswa.bimbingan.akademik.index') }}">
+                            <button class="btn btn-primary right-button">Kembali</button>
+                        </a>
                     </div>
                     <div class="mb-3 pb-2">
                         <div class="form-group">

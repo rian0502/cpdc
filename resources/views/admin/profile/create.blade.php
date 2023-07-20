@@ -27,7 +27,6 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-                <!-- Default Basic Forms Start -->
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
@@ -42,7 +41,6 @@
                                 <div class="profile-photo">
                                     <img id="preview-image" src="/uploads/profile/{{ Auth::user()->profile_picture }}"
                                         alt="Foto Profile" onerror="this.src='/uploads/profile/default.png'" class="foto">
-
                                 </div>
                                 <div class="center-div">
                                     <input value="{{ Auth::user()->profile_picture }}" accept="image/*" autofocus
@@ -58,7 +56,6 @@
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
-
                                 <div class="form-group">
                                     <label>Nama</label>
                                     <input value="{{ old('nama_administrasi') }}" autofocus name="nama_administrasi"
@@ -97,7 +94,6 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
                                 <div class="form-group">
                                     <label>Tanggal Lahir</label>
                                     <input value="{{ old('tanggal_lahir') }}" autofocus name="tanggal_lahir"
@@ -108,10 +104,6 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
-
-
-
                             </div>
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
@@ -135,7 +127,6 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-
                                     <label>File Surat Keputusan Pangkat <small> <a id="view-file-link-pangkat" href="#"
                                                 target="_blank" style="display: none;">Lihat File</a> </small></label>
                                     <div class="custom-file">
@@ -149,13 +140,11 @@
                                     @error('file_sk')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
-
                                 </div>
                                 <div class="form-group">
                                     <label for="kepangkatan">Pangkat</label>
                                     <select name="kepangkatan" id="kepangkatan" style="width: 100%; height: 38px"
                                         class="custom-select2 form-control @error('kepangkatan') form-control-danger @enderror">
-
                                         <option value="I A" {{ old('kepangkatan') == 'I A' ? 'selected' : '' }}>I A
                                         </option>
                                         <option value="I B" {{ old('kepangkatan') == 'I B' ? 'selected' : '' }}>I B
@@ -215,21 +204,15 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
-
                     </form>
-
                 </div>
             </div>
         </div>
-        <!-- Input Validation End -->
-
-
     </div>
     <script>
         function previewFile(event) {

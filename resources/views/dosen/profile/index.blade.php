@@ -290,7 +290,7 @@
                                                                                     <a href="{{ route('dosen.litabmas.show', $item->encrypt_id) }}"
                                                                                         class="dropdown-item">
                                                                                         <i class="fal fa-eye"></i>
-                                                                                        Detail</a>
+                                                                                        Lihat</a>
 
                                                                                     @if ($item->anggota_litabmas[0]->dosen_id == Auth::user()->dosen->id)
                                                                                         <a class="dropdown-item"
@@ -306,7 +306,7 @@
                                                                                                 class="dropdown-item text-danger deleteBtn2"
                                                                                                 onclick="showDeleteConfirmation(event)">
                                                                                                 <i class="fa fa-trash"></i>
-                                                                                                Delete</button>
+                                                                                                Hapus</button>
                                                                                         </form>
                                                                                     @endif
                                                                                 </div>

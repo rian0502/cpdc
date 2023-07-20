@@ -41,7 +41,7 @@
                         <table class="table data-table-responsive stripe data-table-export nowrap ">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                    <th>No</th>
                                     <th>Nama Admin</th>
                                     <th>NIP</th>
                                     @role('jurusan')
@@ -92,7 +92,7 @@
                                                             href="
                                                     {{ route('sudo.akun_admin.show', $item->id) }}
                                                     "><i
-                                                                class="fal fa-eye"></i> Detail</a>
+                                                                class="fal fa-eye"></i> Lihat</a>
                                                     @endrole
                                                     @role('sudo')
                                                         <a class="dropdown-item"
@@ -109,7 +109,7 @@
                                                             @method('DELETE')
                                                             <button type="submit" id="deleteBtn"
                                                                 class="dropdown-item text-danger"><i class="fa fa-trash"></i>
-                                                                Delete</button>
+                                                                Hapus</button>
                                                         </form>
                                                     @endrole
                                                 </div>

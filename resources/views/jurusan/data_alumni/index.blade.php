@@ -19,7 +19,7 @@
                             <table id="data-akun" class="data-akun table table-hover data-table-responsive stripe wrap ">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
+                                        <th>No</th>
                                         <th>Nama Mahasiswa</th>
                                         <th>NPM</th>
                                         <th>Pekerjaan</th>
@@ -131,7 +131,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="${editUrl}">
-                                        <i class="fa fa-eye"></i> Detail
+                                        <i class="fa fa-eye"></i> Lihat
                                     </a>
 
                                 </div>
