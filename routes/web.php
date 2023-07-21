@@ -98,7 +98,7 @@ Route::prefix('admin/')->name('admin.')->middleware(['auth', 'profile', 'verifie
 // end Admin Keseluruhan
 
 // ADMIN LAB
-Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verified', 'role:admin lab'])->group(function () {
+Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verified', 'role:admin lab|kalab'])->group(function () {
 
     Route::resource('barang', BarangController::class);
     Route::resource('ruang', LabController::class);
@@ -117,7 +117,7 @@ Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verifi
     Route::get('dataAktivitas', [LabController::class, 'dataLaboratorium'])->name('data.ajax');
     //chart line aktivitas lab
 });
-Route::get('chart/aktivitas', [LabController::class, 'chartAktivitasLab'])->name('chart.aktivitas.lab')->middleware('auth', 'verified', 'role:admin lab|jurusan');
+Route::get('chart/aktivitas', [LabController::class, 'chartAktivitasLab'])->name('chart.aktivitas.lab')->middleware('auth', 'verified', 'role:admin lab|jurusan|kalab');
 Route::get('chart/seminar', [ChartSeminarController::class, 'ChartSeminar'])->name('chart.seminar.all')->middleware('auth', 'verified', 'role:jurusan');
 Route::get('chart/usiadosen', [AkunDosenController::class, 'chartUsiaDosen'])->name('chart.usia.dosen')->middleware('auth', 'verified', 'role:jurusan');
 Route::get('chart/jabatandosen', [AkunDosenController::class, 'chartJabatanDosen'])->name('chart.jabatan.dosen')->middleware('auth', 'verified', 'role:jurusan');

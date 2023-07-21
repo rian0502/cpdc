@@ -637,7 +637,7 @@
                     </div>
                 </div>
             @endrole
-            @role('admin lab|jurusan')
+            @role('admin lab|jurusan|kalab')
                 <div class="card-box height-100-p pd-20 min-height-200px mb-20">
                     <div class="row align-items-center justify-content-center mb-3">
                         <h2>Aktivitas Laboratorium</h2>
@@ -1432,14 +1432,14 @@
             aktivitasAlumni();
         </script>
     @endrole
-    @role('admin lab|jurusan')
+    @role('admin lab|jurusan|kalab')
         <script>
             // Data dummy untuk aktivitas penggunaan laboratorium
             function lineChartAktivitasLab(startDate = null, endDate = null, lokasi = null) {
                 // Mengambil nilai tanggal awal dan akhir dari input
                 var startDate = $('#startDate').val();
                 var endDate = $('#endDate').val();
-                @role('admin lab')
+                @role('admin lab|kalab')
                     var lokasi = '{{ Auth::user()->lokasi_id }}';
                 @endrole
                 @role('jurusan')

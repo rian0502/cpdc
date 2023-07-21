@@ -401,7 +401,7 @@
                             </a>
                         </li> --}}
                     @endrole
-                    @role('admin lab')
+                    @role('admin lab|kalab')
                         <li>
                             <a href="{{ route('lab.ruang.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('admin/lab/ruang*') ? 'active' : '' }}">
