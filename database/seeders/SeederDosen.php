@@ -96,7 +96,7 @@ class SeederDosen extends Seeder
             'no_hp' => '081368021035',
             'tanggal_lahir' => '1969-05-30',
             'tempat_lahir' => 'Dummy',
-            'alamat' => 'Taman Cibaduyut Indah Blok A No. 10',
+            'alamat' => 'Dummy',
             'status' => 'Aktif',
             'user_id' => '5',
             'created_at' => '2020-08-30 00:00:00',
