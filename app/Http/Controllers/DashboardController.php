@@ -39,6 +39,7 @@ class DashboardController extends Controller
 
             return view('dashboard');
         } else if (Auth::user()->hasAnyRole(['mahasiswa', 'alumni'])) {
+
             $data = [
                 'jumlah_prestasi' => PrestasiMahasiswa::select('mahasiswa_id')->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
                 'jumlah_aktivitas' => AktivitasMahasiswa::select('mahasiswa_id')->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
