@@ -7,12 +7,14 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Barang</h4>
+                        @role('admin lab')
                         <a href="{{ route('lab.barang.create') }}">
                             <button class="btn btn-success mt-3">
                                 <i class="icon-copy fi-page-add"></i>
                                 Tambah Data
                             </button>
                         </a>
+                        @endrole
                     </div>
                     <div class="pb-20 m-3">
                         <table class="table data-table-responsive stripe data-table-export nowrap ">
@@ -47,18 +49,20 @@
                                                     <a class="dropdown-item"
                                                         href="{{ route('lab.barang.show', $item->encrypt_id) }}"><i
                                                             class="fal fa-eye"></i> Lihat</a>
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('lab.barang.edit', $item->encrypt_id) }}"><i
-                                                            class="fa fa-pencil"></i> Edit</a>
-                                                    <form id="delete"
-                                                        action="{{ route('lab.barang.destroy', $item->encrypt_id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" id="deleteBtn"
-                                                            class="dropdown-item text-danger"><i class="fa fa-trash"></i>
-                                                            Hapus</button>
-                                                    </form>
+                                                    @role('admin lab')
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('lab.barang.edit', $item->encrypt_id) }}"><i
+                                                                class="fa fa-pencil"></i> Edit</a>
+                                                        <form id="delete"
+                                                            action="{{ route('lab.barang.destroy', $item->encrypt_id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" id="deleteBtn"
+                                                                class="dropdown-item text-danger"><i class="fa fa-trash"></i>
+                                                                Hapus</button>
+                                                        </form>
+                                                    @endrole
                                                 </div>
                                             </div>
                                         </td>
