@@ -36,25 +36,6 @@ class SeederDosen extends Seeder
             'updated_at' => '2020-08-30 00:00:00',
         ]);
 
-        HistoryPangkatDosen::create([
-            'encrypted_id' => Crypt::encrypt('1'),
-            'kepangkatan' => 'IV D',
-            'tgl_sk' => '2020-08-30',
-            'file_sk' => 'sk1.pdf',
-            'dosen_id' => '1',
-            'created_at' => '2020-08-30 00:00:00',
-            'updated_at' => '2020-08-30 00:00:00',
-        ]);
-        HistoryJabatanDosen::create([
-            'encrypted_id' => Crypt::encrypt('1'),
-            'jabatan' => 'Lektor Kepala',
-            'tgl_sk' => '2020-08-30',
-            'file_sk' => 'sk1.pdf',
-            'dosen_id' => '1',
-            'created_at' => '2020-08-30 00:00:00',
-            'updated_at' => '2020-08-30 00:00:00',
-        ]);
-
         Dosen::create([
             'encrypt_id' => Crypt::encrypt('2'),
             'nip' => '196102031987031000',
@@ -71,24 +52,6 @@ class SeederDosen extends Seeder
             'updated_at' => '2020-08-30 00:00:00',
         ]);
         
-        HistoryPangkatDosen::create([
-            'encrypted_id' => Crypt::encrypt('2'),
-            'kepangkatan' => 'IV D',
-            'tgl_sk' => '2020-08-30',
-            'file_sk' => 'sk1.pdf',
-            'dosen_id' => '2',
-            'created_at' => '2020-08-30 00:00:00',
-            'updated_at' => '2020-08-30 00:00:00',
-        ]);
-        HistoryJabatanDosen::create([
-            'encrypted_id' => Crypt::encrypt('2'),
-            'jabatan' => 'Lektor Kepala',
-            'tgl_sk' => '2020-08-30',
-            'file_sk' => 'sk1.pdf',
-            'dosen_id' => '2',
-            'created_at' => '2020-08-30 00:00:00',
-            'updated_at' => '2020-08-30 00:00:00',
-        ]);
 
         Dosen::create([
             'encrypt_id' => Crypt::encrypt('3'),
@@ -105,24 +68,7 @@ class SeederDosen extends Seeder
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
-        HistoryPangkatDosen::create([
-            'encrypted_id' => Crypt::encrypt('3'),
-            'kepangkatan' => 'IV E',
-            'tgl_sk' => '2020-08-30',
-            'file_sk' => 'sk1.pdf',
-            'dosen_id' => '3',
-            'created_at' => '2020-08-30 00:00:00',
-            'updated_at' => '2020-08-30 00:00:00',
-        ]);
-        HistoryJabatanDosen::create([
-            'encrypted_id' => Crypt::encrypt('3'),
-            'jabatan' => 'Guru Besar',
-            'tgl_sk' => '2020-08-30',
-            'file_sk' => 'sk1.pdf',
-            'dosen_id' => '3',
-            'created_at' => '2020-08-30 00:00:00',
-            'updated_at' => '2020-08-30 00:00:00',
-        ]);
+       
 
         Dosen::create([
             'encrypt_id' => Crypt::encrypt('4'),
@@ -139,24 +85,7 @@ class SeederDosen extends Seeder
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
-        HistoryPangkatDosen::create([
-            'encrypted_id' => Crypt::encrypt('4'),
-            'kepangkatan' => 'IV A',
-            'tgl_sk' => '2020-08-30',
-            'file_sk' => 'sk1.pdf',
-            'dosen_id' => '4',
-            'created_at' => '2020-08-30 00:00:00',
-            'updated_at' => '2020-08-30 00:00:00',
-        ]);
-        HistoryJabatanDosen::create([
-            'encrypted_id' => Crypt::encrypt('4'),
-            'jabatan' => 'Asisten Ahli',
-            'tgl_sk' => '2020-08-30',
-            'file_sk' => 'sk1.pdf',
-            'dosen_id' => '4',
-            'created_at' => '2020-08-30 00:00:00',
-            'updated_at' => '2020-08-30 00:00:00',
-        ]);
+  
 
         Dosen::create([
             'encrypt_id' => Crypt::encrypt('5'),
@@ -173,24 +102,7 @@ class SeederDosen extends Seeder
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
-        HistoryPangkatDosen::create([
-            'encrypted_id' => Crypt::encrypt('5'),
-            'kepangkatan' => 'IV A',
-            'tgl_sk' => '2020-08-30',
-            'file_sk' => 'sk1.pdf',
-            'dosen_id' => '5',
-            'created_at' => '2020-08-30 00:00:00',
-            'updated_at' => '2020-08-30 00:00:00',
-        ]);
-        HistoryJabatanDosen::create([
-            'encrypted_id' => Crypt::encrypt('5'),
-            'jabatan' => 'Asisten Ahli',
-            'tgl_sk' => '2020-08-30',
-            'file_sk' => 'sk1.pdf',
-            'dosen_id' => '5',
-            'created_at' => '2020-08-30 00:00:00',
-            'updated_at' => '2020-08-30 00:00:00',
-        ]);
+       
 
         Dosen::create([
             'encrypt_id' => Crypt::encrypt('6'),
@@ -207,24 +119,6 @@ class SeederDosen extends Seeder
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
-        HistoryPangkatDosen::create([
-            'encrypted_id' => Crypt::encrypt('6'),
-            'kepangkatan' => 'IV A',
-            'tgl_sk' => '2020-08-30',
-            'file_sk' => 'sk1.pdf',
-            'dosen_id' => '6',
-            'created_at' => '2020-08-30 00:00:00',
-            'updated_at' => '2020-08-30 00:00:00',
-        ]);
-        HistoryJabatanDosen::create([
-            'encrypted_id' => Crypt::encrypt('6'),
-            'jabatan' => 'Asisten Ahli',
-            'tgl_sk' => '2020-08-30',
-            'file_sk' => 'sk1.pdf',
-            'dosen_id' => '6',
-            'created_at' => '2020-08-30 00:00:00',
-            'updated_at' => '2020-08-30 00:00:00',
-        ]);
 
         Dosen::create([
             'encrypt_id' => Crypt::encrypt('7'),
@@ -238,24 +132,6 @@ class SeederDosen extends Seeder
             'alamat' => 'Dummy',
             'status' => 'Aktif',
             'user_id' => '7',
-            'created_at' => '2020-08-30 00:00:00',
-            'updated_at' => '2020-08-30 00:00:00',
-        ]);
-        HistoryPangkatDosen::create([
-            'encrypted_id' => Crypt::encrypt('7'),
-            'kepangkatan' => 'IV E',
-            'tgl_sk' => '2020-08-30',
-            'file_sk' => 'sk1.pdf',
-            'dosen_id' => '7',
-            'created_at' => '2020-08-30 00:00:00',
-            'updated_at' => '2020-08-30 00:00:00',
-        ]);
-        HistoryJabatanDosen::create([
-            'encrypted_id' => Crypt::encrypt('7'),
-            'jabatan' => 'Guru Besar',
-            'tgl_sk' => '2020-08-30',
-            'file_sk' => 'sk1.pdf',
-            'dosen_id' => '7',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
@@ -549,12 +425,12 @@ class SeederDosen extends Seeder
         ]);
         Dosen::create([
             'encrypt_id' => Crypt::encrypt('27'),
-            'nip' => '195810211987031001',
-            'nidn' => '0021105809',
-            'nama_dosen' => 'Prof. Drs. John Hendri,, M.S., Ph.D.',
+            'nip' => '197104151995121001',
+            'nidn' => '30056902',
+            'nama_dosen' => 'Prof. Dr. Sutopo Hadi, S.Si, M.Sc.',
             'jenis_kelamin' => 'Laki-laki',
             'no_hp' => '0812345678900',
-            'tanggal_lahir' => '1958-10-21',
+            'tanggal_lahir' => '1971-04-15',
             'tempat_lahir' => 'Dummy',
             'alamat' => 'Dummy',
             'status' => 'Aktif',
@@ -564,12 +440,12 @@ class SeederDosen extends Seeder
         ]);
         Dosen::create([
             'encrypt_id' => Crypt::encrypt('28'),
-            'nip' => '195809221988111001',
-            'nidn' => '0022095803',
-            'nama_dosen' => 'Prof. Andi Setiawan, M.Sc., Ph.D',
+            'nip' => '195810211987031001',
+            'nidn' => '0021105809',
+            'nama_dosen' => 'Prof. Drs. John Hendri,, M.S., Ph.D.',
             'jenis_kelamin' => 'Laki-laki',
             'no_hp' => '0812345678900',
-            'tanggal_lahir' => '1958-09-22',
+            'tanggal_lahir' => '1958-10-21',
             'tempat_lahir' => 'Dummy',
             'alamat' => 'Dummy',
             'status' => 'Aktif',
@@ -579,12 +455,12 @@ class SeederDosen extends Seeder
         ]);
         Dosen::create([
             'encrypt_id' => Crypt::encrypt('29'),
-            'nip' => '196009091988112001',
-            'nidn' => '0009096006',
-            'nama_dosen' => 'Dra. Aspita Laila, M.S.',
-            'jenis_kelamin' => 'Perempuan',
+            'nip' => '195809221988111001',
+            'nidn' => '0022095803',
+            'nama_dosen' => 'Prof. Andi Setiawan, M.Sc., Ph.D',
+            'jenis_kelamin' => 'Laki-laki',
             'no_hp' => '0812345678900',
-            'tanggal_lahir' => '1960-09-09',
+            'tanggal_lahir' => '1958-09-22',
             'tempat_lahir' => 'Dummy',
             'alamat' => 'Dummy',
             'status' => 'Aktif',
@@ -594,6 +470,21 @@ class SeederDosen extends Seeder
         ]);
         Dosen::create([
             'encrypt_id' => Crypt::encrypt('30'),
+            'nip' => '196009091988112001',
+            'nidn' => '0009096006',
+            'nama_dosen' => 'Dra. Aspita Laila, M.S.',
+            'jenis_kelamin' => 'Perempuan',
+            'no_hp' => '0812345678900',
+            'tanggal_lahir' => '1960-09-09',
+            'tempat_lahir' => 'Dummy',
+            'alamat' => 'Dummy',
+            'status' => 'Aktif',
+            'user_id' => '30',
+            'created_at' => '2020-08-30 00:00:00',
+            'updated_at' => '2020-08-30 00:00:00',
+        ]);
+        Dosen::create([
+            'encrypt_id' => Crypt::encrypt('31'),
             'nip' => '195901061986102001',
             'nidn' => '0006015902',
             'nama_dosen' => 'Dr. Zipora Sembiring, M.Si, Dra.',
@@ -603,7 +494,7 @@ class SeederDosen extends Seeder
             'tempat_lahir' => 'Dummy',
             'alamat' => 'Dummy',
             'status' => 'Aktif',
-            'user_id' => '30',
+            'user_id' => '31',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);

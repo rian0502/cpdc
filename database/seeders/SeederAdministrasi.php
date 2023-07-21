@@ -28,7 +28,7 @@ class SeederAdministrasi extends Seeder
             'alamat' => 'Jl. Panglima Polim Kavl.9 No. 1',
             'jenis_kelamin' => 'Laki-laki',
             'status' => 'Aktif',
-            'user_id' => '32',
+            'user_id' => '33',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
@@ -43,7 +43,7 @@ class SeederAdministrasi extends Seeder
             'alamat' => 'Jl. Untung Suropati No. 1 ',
             'jenis_kelamin' => 'Laki-laki',
             'status' => 'Aktif',
-            'user_id' => '33',
+            'user_id' => '34',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
@@ -57,7 +57,7 @@ class SeederAdministrasi extends Seeder
             'alamat' => 'Jl. Panglima Polim Kavl.9 No. 2',
             'jenis_kelamin' => 'Perempuan',
             'status' => 'Aktif',
-            'user_id' => '34',
+            'user_id' => '35',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
@@ -71,7 +71,7 @@ class SeederAdministrasi extends Seeder
             'alamat' => 'Jl. Panglima Polim Kavl.9 No. 2',
             'jenis_kelamin' => 'Perempuan',
             'status' => 'Aktif',
-            'user_id' => '35',
+            'user_id' => '36',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
@@ -85,7 +85,7 @@ class SeederAdministrasi extends Seeder
             'alamat' => 'Jl. Panglima Polim Kavl.9 No. 2',
             'jenis_kelamin' => 'Perempuan',
             'status' => 'Aktif',
-            'user_id' => '36',
+            'user_id' => '37',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);
@@ -99,7 +99,7 @@ class SeederAdministrasi extends Seeder
             'alamat' => 'Jl. Panglima Polim Kavl.9 No. 2',
             'jenis_kelamin' => 'Perempuan',
             'status' => 'Aktif',
-            'user_id' => '37',
+            'user_id' => '38',
             'created_at' => '2020-08-30 00:00:00',
             'updated_at' => '2020-08-30 00:00:00',
         ]);

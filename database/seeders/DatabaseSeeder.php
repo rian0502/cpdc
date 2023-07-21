@@ -32,7 +32,5 @@ class DatabaseSeeder extends Seeder
         $this->call(SeederAdministrasi::class);
         $this->call(BerkasKelengkapanSeeder::class);
         $this->call(Mahasiswa::class);
-        $this->call(TugasAkhirSatuSeeder::class);
-
     }
 }
