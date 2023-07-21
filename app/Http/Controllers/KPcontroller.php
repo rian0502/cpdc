@@ -103,8 +103,8 @@ class KPcontroller extends Controller
         $faker = \Faker\Factory::create('id_ID');
         $jadwal = JadwalSKP::create([
             'tanggal_skp' => date('Y-m-d'),
-            'jam_mulai_skp' => date('H:i:s'),
-            'jam_selesai_skp' => date('H:i:s'),
+            'jam_mulai_skp' => date('H:i'),
+            'jam_selesai_skp' => date('H:i'),
             'id_lokasi' => $faker->numberBetween(1, 5),
             'id_skp' => $insert_id,
         ]);

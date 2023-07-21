@@ -52,7 +52,6 @@ class LabTAController extends Controller
         return view('mahasiswa.lab_ta.cekin', $data);
     }
     public function cekinStore(StoreCheckInLabRequest $request)
-
     {
         $user = User::find(Auth::user()->id);
         if ($user->lokasi_id == null) {
@@ -60,13 +59,13 @@ class LabTAController extends Controller
             $user->save();
         }
         $mahasiswa = Auth::user()->mahasiswa;
-        if ($mahasiswa->ta_satu) {
+        if ($mahasiswa->ta_satu->first()) {
             $judul_kegiatan = $mahasiswa->ta_satu->first()->judul_ta;
         }
-        if ($mahasiswa->ta_dua) {
+        if ($mahasiswa->ta_dua->first()) {
             $judul_kegiatan = $mahasiswa->ta_dua->first()->judul_ta;
         }
-        if ($mahasiswa->komprehensif) {
+        if ($mahasiswa->komprehensif->first()) {
             $judul_kegiatan = $mahasiswa->komprehensif->first()->judul_ta;
         }
         $lab = Laboratorium::create([

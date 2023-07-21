@@ -45,6 +45,9 @@ class MahasiswaBaKompre extends Controller
             return redirect()->back();
         } else {
             $seminar = Auth::user()->mahasiswa->komprehensif->last();
+            $kompre = ModelSeminarKompre::where('id_mahasiswa', Auth::user()->mahasiswa->id)->latest()->first();
+            $kompre->status_koor = 'Selesai';
+            $kompre->save();
             $ba = $request->file('ba_seminar_komprehensif');
             $file_ba = $ba->hashName();
             $nilai = $request->file('berkas_nilai_kompre');
