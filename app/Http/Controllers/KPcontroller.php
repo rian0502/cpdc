@@ -13,6 +13,7 @@ use App\Http\Requests\UpdateSeminarKpRequest;
 use App\Models\BaSKP;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\BerkasPersyaratanSeminar;
+use App\Models\JadwalSKP;
 
 class KPcontroller extends Controller
 {
@@ -89,6 +90,7 @@ class KPcontroller extends Controller
             'ket' => '',
             'id_dospemkp' => Crypt::decrypt($request->id_dospemkp),
             'id_mahasiswa' => $mahasiswa->id,
+            'proses_admin' => 'Valid',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
@@ -97,6 +99,19 @@ class KPcontroller extends Controller
         $update = ModelSeminarKP::find($insert_id);
         $update->encrypt_id = Crypt::encrypt($insert_id);
         $update->save();
+        //buatkan jadwal seminar untuk mahasiswa 19
+        $faker = \Faker\Factory::create('id_ID');
+        $jadwal = JadwalSKP::create([
+            'tanggal_skp' => date('Y-m-d'),
+            'jam_mulai_skp' => date('H:i:s'),
+            'jam_selesai_skp' => date('H:i:s'),
+            'id_lokasi' => $faker->numberBetween(1, 5),
+            'id_skp' => $insert_id,
+        ]);
+        $jadwal_id = $jadwal->id;
+        $jadwal_update = JadwalSKP::find($jadwal_id);
+        $jadwal_update->encrypt_id = Crypt::encrypt($jadwal_id);
+        $jadwal_update->save();
         return redirect()->route('mahasiswa.seminar.kp.index')->with('success', 'Data Seminar KP Berhasil Ditambahkan');
     }
 
