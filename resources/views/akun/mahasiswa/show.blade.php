@@ -8,6 +8,13 @@
             margin-bottom: 10px;
         }
 
+        .right-button {
+            float: right;
+            margin-top: -25px;
+        }
+
+        a:hover {
+            cursor: pointer;
         }
     </style>
     <div class="main-container">
@@ -17,9 +24,11 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Detail Mahasiswa</h4>
+                        <a href="{{ route('sudo.akun_mahasiswa.index') }}">
+                            <button class="btn btn-primary right-button">Kembali</button>
+                        </a>
                     </div>
                     <div class="p-md-4">
-
                         <div class="p-3 mb-2 bg-light text-dark rounded-div">
                             <div class="row">
                                 <label class="col-md-3 bold"> <strong> Nama Mahasiswa</strong></label>
@@ -34,7 +43,7 @@
                             <div class="row">
                                 <label class="col-md-3 bold"><b>Tanggal Lahir</b></label>
                                 <div class="col-md-3">
-                                    {{ $carbon::createFromFormat('Y-m-d',$student->tanggal_lahir)->format('d M Y') }}
+                                    {{ $carbon::createFromFormat('Y-m-d', $student->tanggal_lahir)->format('d M Y') }}
                                 </div>
                                 <label class="col-md-3 bold"> <strong> Jenis Kelamin</strong></label>
                                 <div class="col-md-3">
@@ -49,7 +58,7 @@
                                 </div>
                                 <label class="col-md-3 bold"> <strong> Tanggal Masuk</strong></label>
                                 <div class="col-md-3">
-                                    {{ $carbon::createFromFormat('Y-m-d',$student->tanggal_masuk)->format('d M Y') }}
+                                    {{ $carbon::createFromFormat('Y-m-d', $student->tanggal_masuk)->format('d M Y') }}
                                 </div>
                             </div>
                             <div class="row">
@@ -83,11 +92,7 @@
                                 </div>
                             </div>
                         </div>
-                        <style type="text/css">
-                            a:hover {
-                                cursor: pointer;
-                            }
-                        </style>
+
                     </div>
                 </div>
                 <div class="card-box mb-30">
@@ -98,7 +103,7 @@
                         <table class="table data-table-responsive stripe data-table-export nowrap ">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                    <th>No</th>
                                     <th>Judul Kegiatan</th>
                                     <th>Peran</th>
                                     <th>Tanggal</th>
@@ -115,7 +120,7 @@
                                             {{ $item->nama_aktivitas }}
                                         </td>
                                         <td>
-                                            {{ $item->peran}}
+                                            {{ $item->peran }}
                                         </td>
                                         <td>
                                             {{ $carbon::parse($item->tanggal)->format('d-m-Y') }}
@@ -137,7 +142,7 @@
                         <table class="table data-table-responsive stripe data-table-export nowrap ">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                    <th>No</th>
                                     <th>Nama Prestasi</th>
                                     <th>Capaian</th>
                                     <th>Skala</th>
@@ -154,7 +159,7 @@
                                             {{ $item->nama_prestasi }}
                                         </td>
                                         <td>
-                                            {{ $item->scala}}
+                                            {{ $item->scala }}
                                         </td>
                                         <td>
                                             {{ $item->capaian }}
@@ -162,7 +167,7 @@
                                         <td>
                                             {{ $item->file_prestasi }}
                                             //link href ke file prestasi di folder uploads
-                                            
+
                                         </td>
                                     </tr>
                                 @endforeach

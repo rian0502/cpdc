@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary mt-4">Submit</button>
+                            <button type="submit" class="submit btn btn-primary mt-4">Kirim</button>
                         </div>
                     </form>
                 </div>

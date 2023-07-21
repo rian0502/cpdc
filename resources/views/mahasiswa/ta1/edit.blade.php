@@ -144,7 +144,7 @@
                                 {{-- fungsi jika tidak ada tersedia nama pembimbing dan pembahas di data diatas --}}
 
                                 <div class="form-group">
-                                    <label>Periode Seminar</label>
+                                    <label>Rencana Periode Seminar</label>
                                     <input autofocus class="form-control month-picker" type="text" name="periode_seminar"
                                         value="{{ old('periode_seminar', $seminar->periode_seminar) }}"
                                         id="periode_seminar" placeholder="Periode Seminar">
@@ -210,11 +210,10 @@
                                         @enderror
                                     </div>
                                 </div>
-                                {{-- hanya tampil saat mode mobile --}}
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
                     </form>
                     <a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}">

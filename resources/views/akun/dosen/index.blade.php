@@ -26,7 +26,7 @@
                                         <th>Nama Dosen</th>
                                         <th>Email</th>
                                         <th>Aktivasi</th>
-                                        <th>Profile</th>
+                                        <th>Profil</th>
                                         <th class="table-plus datatable-nosort">Aksi</th>
                                     </tr>
                                 </thead>
@@ -48,11 +48,11 @@
                                                 @if ($item->email_verified_at == null)
                                                     <span class="badge badge-danger">Belum Aktivasi</span>
                                                 @else
-                                                    {{$carbon::parse($item->email_verified_at)->locale('id_ID')->isoFormat('D MMMM YYYY')}}
+                                                    {{ $carbon::parse($item->email_verified_at)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
                                                 @endif
                                             </td>
                                             <td>
-                                                @if($item->dosen)
+                                                @if ($item->dosen)
                                                     <span class="badge badge-success">Sudah</span>
                                                 @else
                                                     <span class="badge badge-danger">Belum</span>
@@ -71,17 +71,16 @@
                                                 {{ route('sudo.akun_dosen.edit', $item->id) }}
                                                 "><i
                                                                     class="fa fa-pencil"></i> Edit</a>
-                                                            <form
-                                                            id="delete"
+                                                            <form id="delete"
                                                                 action="
                                                 {{ route('sudo.akun_dosen.destroy', $item->id) }}
                                                 "
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" id="deleteBtn" class="dropdown-item text-danger"><i
-                                                                        class="fa fa-trash"></i>
-                                                                    Delete</button>
+                                                                <button type="submit" id="deleteBtn"
+                                                                    class="dropdown-item text-danger"><i class="fa fa-trash"></i>
+                                                                    Hapus</button>
                                                             </form>
                                                         @endrole
 
@@ -200,28 +199,27 @@
         });
     </script>
     <script>
-       $(document).ready(function() {
-    $('.umur').each(function() {
-        var umur = parseInt($(this).text());
-        var color = '';
+        $(document).ready(function() {
+            $('.umur').each(function() {
+                var umur = parseInt($(this).text());
+                var color = '';
 
-        if (umur >= 20 && umur < 35) {
-            color = '#539165'; // Hijau muda
-        } else if (umur >= 35 && umur < 45) {
-            color = 'green'; // Hijau tua
-        } else if (umur >= 45 && umur < 55) {
-            color = '#E8630A'; // Kuning tua
-        } else if (umur >= 55 && umur < 65) {
-            color = '#D864A9'; // Merah muda
-        } else if (umur >= 65) {
-            color = 'red'; // Merah tua
-        }
+                if (umur >= 20 && umur < 35) {
+                    color = '#539165'; // Hijau muda
+                } else if (umur >= 35 && umur < 45) {
+                    color = 'green'; // Hijau tua
+                } else if (umur >= 45 && umur < 55) {
+                    color = '#E8630A'; // Kuning tua
+                } else if (umur >= 55 && umur < 65) {
+                    color = '#D864A9'; // Merah muda
+                } else if (umur >= 65) {
+                    color = 'red'; // Merah tua
+                }
 
-        // Atur warna latar belakang dan teks
-        $(this).css('background-color', color);
-        $(this).css('color', 'white');
-    });
-});
-
+                // Atur warna latar belakang dan teks
+                $(this).css('background-color', color);
+                $(this).css('color', 'white');
+            });
+        });
     </script>
 @endsection

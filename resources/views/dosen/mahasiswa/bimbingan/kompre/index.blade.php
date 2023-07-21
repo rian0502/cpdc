@@ -40,7 +40,7 @@
                                                     <a class="dropdown-item"
                                                         href="{{route('dosen.mahasiswa.bimbingan.kompre.show', $item->mahasiswa->npm)}}"><i
                                                             class="fa fa-eye"></i>
-                                                        Detail</a>
+                                                        Lihat</a>
 
                                                 </div>
                                             </div>

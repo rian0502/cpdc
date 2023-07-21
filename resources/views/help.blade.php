@@ -48,7 +48,7 @@
                                                 Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
                                                 kolom yang tersedia. Jika Anda telah
                                                 mengisi
-                                                data, klik tombol <strong>Submit</strong> untuk melanjutkan.
+                                                data, klik tombol <strong>Kirim</strong> untuk melanjutkan.
 
                                                 Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
                                                 praktik
@@ -79,7 +79,7 @@
                                                 Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
                                                 kolom yang tersedia. Jika Anda telah
                                                 mengisi
-                                                data, klik tombol <strong>Submit</strong> untuk melanjutkan.
+                                                data, klik tombol <strong>Kirim</strong> untuk melanjutkan.
 
                                                 Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
                                                 praktik
@@ -116,7 +116,7 @@
                                                 Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
                                                 kolom yang tersedia. Jika Anda telah
                                                 mengisi
-                                                data, klik tombol <strong>Submit</strong> untuk melanjutkan.
+                                                data, klik tombol <strong>Kirim</strong> untuk melanjutkan.
 
                                                 Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
                                                 praktik
@@ -152,7 +152,7 @@
                                                 Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
                                                 kolom yang tersedia. Jika Anda telah
                                                 mengisi
-                                                data, klik tombol <strong>Submit</strong> untuk melanjutkan.
+                                                data, klik tombol <strong>Kirim</strong> untuk melanjutkan.
 
                                                 Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
                                                 praktik
@@ -204,7 +204,7 @@
                                             profil. Setelah memilih gambar yang sesuai, klik tombol
                                             <strong>Open</strong>
                                             di <i>file
-                                                explorer</i>. Terakhir, klik <strong>Submit</strong> untuk menyimpan foto
+                                                explorer</i>. Terakhir, klik <strong>Kirim</strong> untuk menyimpan foto
                                             profil
                                             baru
                                             Anda.
@@ -247,7 +247,7 @@
                                             Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
                                             kolom yang disediakan.
                                             Terakhir, klik
-                                            <strong>Submit</strong>
+                                            <strong>Kirim</strong>
                                             untuk menyimpan biodata yang telah diubah sebelumnya.
                                         </div>
                                     </div>
@@ -358,7 +358,7 @@
                                             Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
                                             kolom yang tersedia. Jika Anda telah
                                             mengisi
-                                            data, klik tombol <strong>Submit</strong> untuk melanjutkan.
+                                            data, klik tombol <strong>Kirim</strong> untuk melanjutkan.
                                             Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
                                             praktik
                                             dengan mudah.
@@ -387,7 +387,7 @@
                                             Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
                                             kolom yang tersedia. Jika Anda telah
                                             mengisi
-                                            data, klik tombol <strong>Submit</strong> untuk melanjutkan.
+                                            data, klik tombol <strong>Kirim</strong> untuk melanjutkan.
 
                                             Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
                                             praktik
@@ -422,7 +422,7 @@
                                             Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
                                             kolom yang tersedia. Jika Anda telah
                                             mengisi
-                                            data, klik tombol <strong>Submit</strong> untuk melanjutkan.
+                                            data, klik tombol <strong>Kirim</strong> untuk melanjutkan.
 
                                             Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
                                             praktik
@@ -458,7 +458,7 @@
                                             Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
                                             kolom yang tersedia. Jika Anda telah
                                             mengisi
-                                            data, klik tombol <strong>Submit</strong> untuk melanjutkan.
+                                            data, klik tombol <strong>Kirim</strong> untuk melanjutkan.
 
                                             Dengan mengikuti langkah-langkah di atas, Anda dapat mendaftar seminar kerja
                                             praktik
@@ -492,7 +492,7 @@
                                             profil. Setelah memilih gambar yang sesuai, klik tombol
                                             <strong>Open</strong>
                                             di <i>file
-                                                explorer</i>. Terakhir, klik <strong>Submit</strong> untuk menyimpan foto
+                                                explorer</i>. Terakhir, klik <strong>Kirim</strong> untuk menyimpan foto
                                             profil
                                             baru
                                             Anda.
@@ -516,7 +516,7 @@
                                             <strong>pensil</strong> untuk mengubah biodata profil Anda.
                                             Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada
                                             kolom yang disediakan.
-                                            Terakhir, klik <strong>Submit</strong>
+                                            Terakhir, klik <strong>Kirim</strong>
                                             untuk menyimpan biodata yang telah diubah sebelumnya.
                                         </div>
                                     </div>

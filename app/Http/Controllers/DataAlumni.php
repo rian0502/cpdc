@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Routing\Controller;
@@ -22,7 +23,10 @@ class DataAlumni extends Controller
                 return $data->mahasiswa->npm;
             })->toJson();
         }
-        return view('jurusan.data_alumni.index');
+        $data = [
+            'mahasiswa' => Mahasiswa::all(),
+        ];
+        return view('jurusan.data_alumni.index',$data);
     }
 
     /**

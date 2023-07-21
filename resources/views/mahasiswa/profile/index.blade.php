@@ -139,15 +139,16 @@
                                                                                 <a class="dropdown-item"
                                                                                     href="{{ route('mahasiswa.prestasi.edit', $item->encrypt_id) }}"><i
                                                                                         class="fa fa-pencil"></i> Edit</a>
-                                                                                <form id="delete"
+                                                                                <form class="deleteForm2"
                                                                                     action="{{ route('mahasiswa.prestasi.destroy', $item->encrypt_id) }}"
                                                                                     method="POST">
                                                                                     @csrf
                                                                                     @method('DELETE')
-                                                                                    <button type="submit" id="deleteBtn"
-                                                                                        class="dropdown-item text-danger"><i
+                                                                                    <button type="button"
+                                                                                        class="dropdown-item text-danger deleteBtn2"
+                                                                                        onclick="showDeleteConfirmation(event)"><i
                                                                                             class="fa fa-trash"></i>
-                                                                                        Delete</button>
+                                                                                        Hapus</button>
                                                                                 </form>
                                                                             </div>
                                                                         </div>
@@ -208,15 +209,16 @@
                                                                                 <a class="dropdown-item"
                                                                                     href="{{ route('mahasiswa.kegiatan.edit', $item->encrypt_id) }}"><i
                                                                                         class="fa fa-pencil"></i> Edit</a>
-                                                                                <form id="delete"
+                                                                                <form class="deleteForm2"
                                                                                     action="{{ route('mahasiswa.kegiatan.destroy', $item->encrypt_id) }}"
                                                                                     method="POST">
                                                                                     @csrf
                                                                                     @method('DELETE')
-                                                                                    <button type="submit" id="deleteBtn"
-                                                                                        class="dropdown-item text-danger"><i
+                                                                                    <button type="button"
+                                                                                        class="dropdown-item text-danger deleteBtn2"
+                                                                                        onclick="showDeleteConfirmation(event)"><i
                                                                                             class="fa fa-trash"></i>
-                                                                                        Delete</button>
+                                                                                        Hapus</button>
                                                                                 </form>
                                                                             </div>
                                                                         </div>
@@ -232,7 +234,7 @@
                                         <!-- Extra Activity Tab End -->
 
                                         <!-- Setting Tab start -->
-                                        <div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
+                                        {{-- <div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
                                             <div class="profile-setting">
                                                 <form id="delete">
                                                     <ul class="profile-edit-list row">
@@ -395,7 +397,7 @@
                                                     </ul>
                                                 </form>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <!-- Setting Tab End -->
                                     </div>
                                 </div>

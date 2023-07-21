@@ -88,7 +88,7 @@
                 <div class="ms-auto d-flex align-items-center">
                     {{-- <small class="ms-4"><i class="fa fa-map-marker-alt me-3"></i>Jl. Prof. Dr. Ir.
                         Soemantri Brodjonegoro, Gedong Meneng, Rajabasa, Bandar Lampung</small> --}}
-                    <small class="ms-4"><i class="fa fa-envelope me-3"></i>chemistry@fmipa.unila.ac.id</small>
+                    <small class="ms-4"><i class="fa fa-envelope me-3"></i>Chemistryprogramdatacenter@gmail.com</small>
                     <small class="ms-4"><i class="fa fa-phone-alt me-3"></i>0721-704625</small>
                     <small class="ms-4">
                         <i class="fa-solid fa-calendar-days me-3"></i>

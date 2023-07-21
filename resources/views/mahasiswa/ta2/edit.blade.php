@@ -13,7 +13,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Daftar Seminar Tugas Akhir 1</h4>
+                            <h4 class="text-dark h4">Daftar Seminar Tugas Akhir 2</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
@@ -86,10 +86,11 @@
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
                                             @if (old('id_pembimbing_dua') == 'new' || $errors->has('pbl2_nama'))
-                                                <option value="new" selected>Tidak Ada diDaftar Ini</option>
+                                                <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
-                                                <option value="new">Tidak Ada diDaftar Ini</option>
-                                            @endif/optgroup>
+                                                <option value="new">Tidak Ada di Daftar Ini</option>
+                                            @endif
+                                        </optgroup>
                                     </select>
                                 </div>
                                 <div id="pbl2_nama"
@@ -110,7 +111,8 @@
                                     <div class="form-group">
                                         <label>NIP Pembimbing 2</label>
                                         <input autofocus name="pbl2_nip" class="form-control" type="text"
-                                            value="{{ old('pbl2_nip') }}" placeholder="Masukkan Nomor Karyawan Pembimbing 2">
+                                            value="{{ old('pbl2_nip') }}"
+                                            placeholder="Masukkan Nomor Karyawan Pembimbing 2">
                                         @error('pbl2_nip')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
@@ -140,7 +142,7 @@
                                 {{-- fungsi jika tidak ada tersedia nama pembimbing dan pembahas di data diatas --}}
 
                                 <div class="form-group">
-                                    <label>Periode Seminar</label>
+                                    <label>Rencana Periode Seminar</label>
                                     <input autofocus class="form-control month-picker" type="text" name="periode_seminar"
                                         value="{{ old('periode_seminar') }}" id="periode_seminar"
                                         placeholder="Periode Seminar">
@@ -207,7 +209,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
                     </form>
                     <a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}">

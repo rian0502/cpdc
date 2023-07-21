@@ -1,6 +1,9 @@
 @extends('layouts.datatable')
 @section('datatable')
     <style>
+        a:hover {
+            cursor: pointer;
+        }
 
         .rounded-div {
             border-radius: 10px;
@@ -14,6 +17,7 @@
             justify-content: center;
             align-items: center;
         }
+
         .foto {
             border-radius: 50%;
             width: 170px;
@@ -23,6 +27,10 @@
             object-fit: cover;
         }
 
+        .right-button {
+            float: right;
+            margin-top: -25px;
+        }
     </style>
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
@@ -31,14 +39,17 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Detail Admin</h4>
+                        <a href="{{ route('sudo.akun_admin.index') }}">
+                            <button class="btn btn-primary right-button">Kembali</button>
+                        </a>
                     </div>
                     <div class="p-md-4">
                         <div class="profile-photo center-div mt-2">
                             {{-- <a href="#" class="edit-avatar" data-toggle="modal" data-target="#modal"> --}}
-                            <a href="/uploads/profile/{{ $admin->user->profile_picture}}">
+                            <a href="/uploads/profile/{{ $admin->user->profile_picture }}">
 
-                                <img src="/uploads/profile/{{ $admin->user->profile_picture}}"
-                                onerror="this.src='/uploads/profile/default.png';" class="foto" alt="Foto Profil" />
+                                <img src="/uploads/profile/{{ $admin->user->profile_picture }}"
+                                    onerror="this.src='/uploads/profile/default.png';" class="foto" alt="Foto Profil" />
                             </a>
                         </div>
                         <div class="p-3 mb-2 bg-light text-dark rounded-div">
@@ -91,11 +102,7 @@
                                 </div>
                             </div>
                         </div>
-                        <style type="text/css">
-                            a:hover {
-                                cursor: pointer;
-                            }
-                        </style>
+
                     </div>
                 </div>
                 <div class="card-box mb-30">

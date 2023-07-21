@@ -114,7 +114,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Power Point Bahasa Inggris</label>
+                                    <label>PowerPoint Bahasa Inggris</label>
                                     <input autofocus name="berkas_ppt_seminar_ta_dua" id="berkas_ppt_seminar_ta_dua"
                                         class="form-control" type="text" value="{{ old('berkas_ppt_seminar_ta_dua') }}"
                                         placeholder="Link Gdrive / Penyimpanan Cloud Power Point">
@@ -125,7 +125,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="submit btn btn-primary">Submit</button>
+                            <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
                     </form>
                     <a href="{{ route('mahasiswa.seminar.tugas_akhir_2.index') }}">

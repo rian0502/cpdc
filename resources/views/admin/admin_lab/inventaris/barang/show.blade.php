@@ -7,7 +7,8 @@
             padding: 10px;
             margin-bottom: 10px;
         }
-        .right-button{
+
+        .right-button {
             float: right;
             margin-top: -25px;
         }

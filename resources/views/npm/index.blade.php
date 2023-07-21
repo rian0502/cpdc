@@ -65,10 +65,10 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                Close
+                                                Tutup
                                             </button>
                                             <button type="submit" class="btn btn-success">
-                                                Submit
+                                                Kirim
                                             </button>
                                             </form>
 
@@ -106,10 +106,10 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                Close
+                                                Tutup
                                             </button>
                                             <button type="submit" class="btn btn-success">
-                                                Submit
+                                                Kirim
                                             </button>
                                             </form>
 
@@ -123,7 +123,7 @@
                         <table id="data-npm" class="data-npm table table-striped table-hover nowrap ">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                    <th>No</th>
                                     <th>NPM</th>
                                     <th>Status</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>

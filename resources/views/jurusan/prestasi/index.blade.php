@@ -66,7 +66,7 @@
                         <table id="data-npm" class="data-npm table table-hover data-table-responsive stripe wrap ">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                    <th>No</th>
                                     <th>Nama Mahasiswa</th>
                                     <th>NPM</th>
                                     <th>Prestasi</th>

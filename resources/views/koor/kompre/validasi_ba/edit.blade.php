@@ -119,7 +119,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" id="submitButton" class="submit btn btn-primary">Submit</button>
+                                    <button type="submit" id="submitButton" class="submit btn btn-primary">Kirim</button>
                                 </div>
                             </form>
                             <a href="{{ route('koor.validasiBaKompre.index') }}">
@@ -127,15 +127,11 @@
                             </a>
                         </div>
                     </div>
-
                 </div>
-
                 <!-- Data Registrasi End -->
-
             </div>
         </div>
         <!-- Input Validation End -->
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.js"></script>
 @endsection

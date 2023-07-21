@@ -276,7 +276,7 @@
                         <div class="pd-20 card-box mb-30">
                             <div class="clearfix">
                                 <div class="pull-left">
-                                    <h4 class="text-dark h4">Bukti Seminar</h4>
+                                    <h4 class="text-dark h4">Berita Acara Seminar</h4>
                                     <small>
                                         <b>
                                             <p
@@ -307,12 +307,12 @@
                                 <div class="bukti_seminar">
                                     <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
                                         <div class="row border-bottom">
-                                            <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
+                                            <label class="col-md-3 bold"> <strong>Berita Acara Seminar</strong></label>
                                             <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                 <a target="_blank"
                                                     href="/uploads/berita_acara_seminar_kp/{{ $berita_acara->berkas_ba_seminar_kp }}">Lihat</a>
                                             </div>
-                                            <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
+                                            <label class="col-md-3 bold mt-2"><b>Nomor Berita Acara Seminar</b></label>
                                             <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                 {{ $berita_acara->no_ba_seminar_kp }}
                                             </div>
@@ -358,7 +358,7 @@
                                             <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                 -
                                             </div>
-                                            <label class="col-md-3 bold mt-2"><b>No. Bukti Seminar</b></label>
+                                            <label class="col-md-3 bold mt-2"><b>Nomor Berita Acara Seminar</b></label>
                                             <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                 -
                                             </div>

@@ -25,8 +25,8 @@
                                     <th>No</th>
                                     <th>Nama Mahasiswa</th>
                                     <th>Email</th>
-                                    <th>aktivasi</th>
-                                    <th>profile</th>
+                                    <th>Aktivasi</th>
+                                    <th>Profil</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
                                 </tr>
                             </thead>
@@ -175,7 +175,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" id="deleteBtn" class="dropdown-item text-danger">
-                                            <i class="fa fa-trash"></i> Delete
+                                            <i class="fa fa-trash"></i> Hapus
                                         </button>
                                     </form>
                                 </div>

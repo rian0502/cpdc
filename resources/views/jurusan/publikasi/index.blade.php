@@ -71,7 +71,7 @@
                         <table id="data-publikasi" class="data-publikasi table table-hover data-table-responsive stripe wrap ">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                    <th>No</th>
                                     <th>Nama Publikasi</th>
                                     <th>Judul</th>
                                     <th>Volume</th>
@@ -185,7 +185,7 @@
                                         <i class="fas fa-link"></i> Link Publikasi
                                     </a>
                                     <a class="dropdown-item" href="${detail}">
-                                        <i class="fal fa-eye"></i> Detail
+                                        <i class="fal fa-eye"></i> Lihat
                                     </a>
                                 </div>
                             </div>`;
