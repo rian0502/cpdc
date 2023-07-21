@@ -48,6 +48,9 @@ class MahasiswaBaTaSatu extends Controller
             return redirect()->back();
         }else{
             $seminar = Auth::user()->mahasiswa->ta_satu->last();
+            $ta1 = ModelSeminarTaSatu::where('id_mahasiswa', Auth::user()->mahasiswa->id)->latest()->first();
+            $ta1->status_koor = 'Selesai';
+            $ta1->save();
             $ba = $request->file('berkas_ba_seminar_ta_satu');
             $file_ba = $ba->hashName();
             $nilai = $request->file('berkas_nilai_seminar_ta_satu');
