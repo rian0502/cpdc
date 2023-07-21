@@ -35,7 +35,6 @@ class RolePermision extends Seeder
             'email' => 'ilim_ds@yahoo.com.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-            'profile_picture' => 'dwi.jpg'
         ]);//3
         $buhani = User::create([
             'name' => 'Prof . Dr. Buhani, M.Si.',
