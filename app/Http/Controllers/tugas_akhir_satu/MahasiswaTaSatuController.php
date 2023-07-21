@@ -29,7 +29,9 @@ class MahasiswaTaSatuController extends Controller
     public function create()
     {
         $data = [
-            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')->get(),
+            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
+                ->where('status', 'Aktif')
+                ->get(),
             'syarat' => BerkasPersyaratanSeminar::find(2),
         ];
         return view('mahasiswa.ta1.create', $data);
@@ -39,7 +41,9 @@ class MahasiswaTaSatuController extends Controller
     public function edit($id)
     {
         $data = [
-            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')->get(),
+            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
+                ->where('status', 'Aktif')
+                ->get(),
             'seminar' => ModelSeminarTaSatu::find(Crypt::decrypt($id)),
         ];
         return view('mahasiswa.ta1.edit', $data);

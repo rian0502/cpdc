@@ -53,7 +53,8 @@ class KPcontroller extends Controller
             return redirect()->route('mahasiswa.seminar.kp.index');
         }
         $data = [
-            'dosens' => Dosen::select('encrypt_id', 'nama_dosen')->get(),
+            'dosens' => Dosen::select('encrypt_id', 'nama_dosen')->where('status', 'Aktif')
+                ->get(),
             'syarat' => $syarat,
         ];
         return view('mahasiswa.kp.create', $data);
@@ -137,7 +138,7 @@ class KPcontroller extends Controller
         }
         $data = [
             'seminar' => ModelSeminarKP::find(Crypt::decrypt($id)),
-            'dosens' => Dosen::select('encrypt_id', 'nama_dosen')->get(),
+            'dosens' => Dosen::select('encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get(),
             'syarat' => $syarat,
         ];
 
