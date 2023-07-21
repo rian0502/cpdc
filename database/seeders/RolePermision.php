@@ -50,7 +50,7 @@ class RolePermision extends Seeder
             'password' =>  bcrypt('kajur'),
         ]);
         $agung = User::create([
-            'name' => 'Dr Agung Abadi Kiswandono, S.Si., M.Sc.',
+            'name' => 'Dr. Agung Abadi Kiswandono, S.Si., M.Sc.',
             'email' => 'agungkiswandono@gmail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
@@ -260,7 +260,7 @@ class RolePermision extends Seeder
         ]); //36
         $kidas = User::create([
             'name' => 'Tri Kismwantari, A.Md.',
-            'email' => 'trikiswantari@gmail.comg',
+            'email' => 'trikiswantari@gmail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
             'lokasi_id' => 5
