@@ -5,6 +5,7 @@ namespace App\Http\Controllers\tugas_akhir_dua;
 use Illuminate\Http\Request;
 use App\Models\ModelBaSeminarTaDua;
 use App\Http\Controllers\Controller;
+use App\Models\ModelSeminarTaDua;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
@@ -47,6 +48,9 @@ class MahasiswaBaTaDua extends Controller
             return redirect()->back();
         } else {
             $seminar = Auth::user()->mahasiswa->ta_dua->last();
+            $ta2 = ModelSeminarTaDua::where('id_mahasiswa', Auth::user()->mahasiswa->id)->latest()->first();
+            $ta2->status_koor = 'Selesai';
+            $ta2->save();
             $ba = $request->file('berkas_ba_seminar_ta_dua');
             $file_ba = $ba->hashName();
             $nilai = $request->file('berkas_nilai_seminar_ta_dua');

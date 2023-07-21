@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\BerkasPersyaratanSeminar;
-
+use App\Models\ModelJadwalSeminarTaDua;
 
 class MahasiswaTaDuaController extends Controller
 {
@@ -91,6 +91,7 @@ class MahasiswaTaDuaController extends Controller
             'id_pembimbing_satu' => $seminar->id_pembimbing_satu,
             'id_pembahas' => $seminar->id_pembahas,
             'id_mahasiswa' => $seminar->id_mahasiswa,
+            'status_admin' => 'Valid',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
@@ -105,6 +106,19 @@ class MahasiswaTaDuaController extends Controller
         $update = ModelSeminarTaDua::find($id);
         $update->encrypt_id = Crypt::encrypt($id);
         $update->save();
+        //khusus mahasiswa 19 
+        $faker = \Faker\Factory::create('id_ID');
+        $jadwal = ModelJadwalSeminarTaDua::create([
+            'tanggal_seminar_ta_dua' => date('Y-m-d'),
+            'jam_mulai_seminar_ta_dua' => date('H:i'),
+            'jam_selesai_seminar_ta_dua' => date('H:i'),
+            'id_lokasi' => $faker->numberBetween(1, 5),
+            'id_seminar' => $id,
+        ]);
+        $jadwal_id = $jadwal->id;
+        $update_jadwal = ModelJadwalSeminarTaDua::find($jadwal_id);
+        $update_jadwal->encrypt_id = Crypt::encrypt($jadwal_id);
+        $update_jadwal->save();
         return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('success', 'Berhasil mengajukan seminar tugas akhir 2');
     }
 
