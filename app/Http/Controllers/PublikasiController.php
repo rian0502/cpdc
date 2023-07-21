@@ -32,7 +32,9 @@ class PublikasiController extends Controller
     {
         //
         $data = [
-            'dosens' => Dosen::whereNotIn('id', [Auth::user()->dosen->id])->get(),
+            'dosens' => Dosen::whereNotIn('id', [Auth::user()->dosen->id])
+                ->where('status', 'Aktif')
+                ->get(),
         ];
         return view('dosen.publikasi.create', $data);
     }
@@ -115,7 +117,8 @@ class PublikasiController extends Controller
             }
             $data = [
                 'publikasi' => PublikasiDosen::find(Crypt::decrypt($id)),
-                'dosens' => Dosen::whereNotIn('id', [Auth::user()->dosen->id])->get(),
+                'dosens' => Dosen::whereNotIn('id', [Auth::user()->dosen->id])
+                    ->where('status', 'Aktif')->get(),
                 'anggota' => $anggota_id,
             ];
         } else {
