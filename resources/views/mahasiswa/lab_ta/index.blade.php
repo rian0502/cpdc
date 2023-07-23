@@ -71,10 +71,16 @@
                                     </div>
                                 </div>
                                 <div class="row border-bottom mt-2">
-                                    <label class="col-md-3 bold"> <strong>Lokasi Penelitian</strong></label>
+                                    <label class="col-md-3 bold"> <strong>Lokasi Penelitian Utama</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <div>
                                             {{ $lab->lokasi->nama_lokasi }}
+                                        </div>
+                                    </div>
+                                    <label class="col-md-3 bold"> <strong>Lokasi Penelitian Alternatif</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        <div>
+                                            {{-- FOREACH LOKASI ALTERNATIF --}}
                                         </div>
                                     </div>
                                     <label class="col-md-3 bold mt-1"><strong>Jam Selesai</strong></label>
