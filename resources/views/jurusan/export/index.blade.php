@@ -30,16 +30,19 @@
                     <div class="pd-20">
                         <div class="h5 mb-0">LITABMAS</div>
                     </div>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.penelitian') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Penelitian</label>
-                                    <select class="custom-select2 form-control" name="tahun-penelitian"
-                                        id="tahun-penelitian" style="width: 100%; height: 38px">
+                                    <select class="custom-select2 form-control" name="tahun_penelitian"
+                                        id="tahun_penelitian" style="width: 100%; height: 38px">
                                         <optgroup label="Tahun">
-                                            <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                            @foreach ($penelitian as $item)
+                                                <option value="{{ $item->tahun_penelitian }}">{{ $item->tahun_penelitian }}
+                                                </option>
+                                            @endforeach
                                         </optgroup>
                                     </select>
                                     @error('tahun-publikasi')
@@ -56,16 +59,19 @@
                             </div>
                         </div>
                     </form>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.pengabdian') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Pengabdian</label>
-                                    <select class="custom-select2 form-control" name="tahun-pengabdian"
-                                        id="tahun-pengabdian" style="width: 100%; height: 38px">
+                                    <select class="custom-select2 form-control" name="tahun_pengabdian"
+                                        id="tahun_pengabdian" style="width: 100%; height: 38px">
                                         <optgroup label="Tahun">
-                                            <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                            @foreach ($pengabdian as $item)
+                                                <option value="{{ $item->tahun_penelitian }}">{{ $item->tahun_penelitian }}
+                                                </option>
+                                            @endforeach
                                         </optgroup>
                                     </select>
                                     @error('tahun-publikasi')
@@ -199,8 +205,8 @@
                 localStorage.setItem(selectId, selectElement.value);
             });
         }
-        populateSelect("tahun-penelitian");
-        populateSelect("tahun-pengabdian");
+        populateSelect("tahun_penelitian");
+        populateSelect("tahun_pengabdian");
         populateSelect("tahun-publikasi");
         populateSelect("tahun-prestasi");
         populateSelect("tahun-aktivitas");
