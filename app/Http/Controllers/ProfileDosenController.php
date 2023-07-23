@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\ProfileDosenRequest;
 use App\Http\Requests\UpdateProfileDosenRequest;
 use App\Models\PublikasiDosen;
+use App\Models\ModelGelar;
 use Dompdf\Options;
 use Dompdf\Dompdf;
 
@@ -38,6 +39,7 @@ class ProfileDosenController extends Controller
             $umur = $tgl_lahir->diffInYears($now);
             $data = [
                 'organisasi' => OrganisasiDosen::select('encrypt_id', 'nama_organisasi', 'tahun_menjabat', 'tahun_berakhir', 'jabatan')->where('dosen_id', Auth::user()->dosen->id)->get(),
+                'gelar' => ModelGelar::select('encrypt_id', 'instansi_pendidikan', 'jurusan', 'tahun_lulus', 'nama_gelar', 'singkatan_gelar')->where('dosen_id', Auth::user()->dosen->id)->get(),
                 'kepangkatan' => HistoryPangkatDosen::where('dosen_id', Auth::user()->dosen->id)->orderBy('id', 'desc')->get(),
                 'jabatan' => HistoryJabatanDosen::where('dosen_id', Auth::user()->dosen->id)->get(),
                 'umur' => $umur,
