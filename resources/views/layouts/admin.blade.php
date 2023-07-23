@@ -393,13 +393,12 @@
                                 <span class="micon bi bi-journal-richtext"></span><span class="mtext">LITABMAS</span>
                             </a>
                         </li>
-                        {{-- //data litabmas
+
                         <li>
-                            <a href="{{ route('jurusan.litabmas.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/litabmas*') ? 'active' : '' }}">
-                                <span class="micon bi bi-award"></span><span class="mtext">Litabmas</span>
+                            <a href="{{ route('jurusan.unduh.index') }}" class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*')?'active':'' }}">
+                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
                             </a>
-                        </li> --}}
+                        </li>
                     @endrole
                     @role('admin lab|kalab')
                         <li>

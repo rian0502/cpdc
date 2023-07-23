@@ -58,6 +58,7 @@ use App\Http\Controllers\PenempatanDosenLabController;
 use App\Http\Controllers\Kajur\AktivitasDataController;
 use App\Http\Controllers\Kajur\PublikasiDataController;
 use App\Http\Controllers\BeritaAcaraSeminarKerjaPraktik;
+use App\Http\Controllers\ExportData;
 use App\Http\Controllers\komprehensif\MahasiswaBaKompre;
 use App\Http\Controllers\MahasiswaBimbinganKPController;
 use App\Http\Controllers\MahasiswaBimbinganTA1Controller;
@@ -185,6 +186,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::resource('litabmas', LitabmasDataController::class);
     Route::resource('mahasiswa', DataMahasiswaAllController::class);
     Route::resource('alumni', DataAlumni::class);
+    Route::resource('unduh', ExportData::class);
 
     Route::get('chartCapaianPrestasi', [PrestasiDataController::class, 'pieChartCapaian'])->name('prestasi.chartCapaian');
     Route::get('chartScalaPrestasi', [PrestasiDataController::class, 'pieChartScala'])->name('prestasi.chartScala');
