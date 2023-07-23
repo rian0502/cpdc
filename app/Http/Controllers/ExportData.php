@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\LitabmasDosen;
+use App\Http\Controllers\Controller;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class ExportData extends Controller
 {
@@ -13,72 +16,66 @@ class ExportData extends Controller
      */
     public function index()
     {
-        return view('jurusan.export.index');
+        $data = [
+            'pengabdian' => LitabmasDosen::select('tahun_penelitian')->distinct()
+            ->where('kategori', 'Pengabdian')
+            ->get(),
+            'penelitian' => LitabmasDosen::select('tahun_penelitian')->distinct()
+            ->where('kategori', 'Penelitian')
+            ->get(),
+        ];
+        return view('jurusan.export.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function penelitian(Request $request)
     {
-        //
-    }
+        $penelitian = LitabmasDosen::with('anggota_litabmas')->
+        where('tahun_penelitian', $request->tahun_penelitian)->
+        where('kategori', 'Penelitian')->get();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $spdsheet = new Spreadsheet();
+        $sheet = $spdsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Nama Penelitian');
+        $sheet->setCellValue('C1', 'Sumber Dana');
+        $sheet->setCellValue('D1', 'Jumlah Dana');
+        $sheet->setCellValue('E1', 'Tahun Penelitian');
+        $sheet->setCellValue('F1', 'Anggota');
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        foreach ($penelitian as $key => $value) {
+            $sheet->setCellValue('A'.($key+2), $key+1);
+            $sheet->setCellValue('B'.($key+2), $value->nama_litabmas);
+            $sheet->setCellValue('C'.($key+2), $value->sumber_dana);
+            $sheet->setCellValue('D'.($key+2), $value->jumlah_dana);
+            $sheet->setCellValue('E'.($key+2), $value->tahun_penelitian);
+            $sheet->setCellValue('F'.($key+2), $value->dosen->pluck('nama_dosen')->implode(', '));
+        }
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('penelitian.xlsx');
+        return response()->download('penelitian.xlsx')->deleteFileAfterSend(true);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function pengabdian(Request $request){
+        $penelitian = LitabmasDosen::with('anggota_litabmas')->
+        where('tahun_penelitian', $request->tahun_pengabdian)->
+        where('kategori', 'Pengabdian')->get();
+        $spdsheet = new Spreadsheet();
+        $sheet = $spdsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Nama Penelitian');
+        $sheet->setCellValue('C1', 'Sumber Dana');
+        $sheet->setCellValue('D1', 'Jumlah Dana');
+        $sheet->setCellValue('E1', 'Tahun Penelitian');
+        $sheet->setCellValue('F1', 'Anggota');
+        foreach ($penelitian as $key => $value) {
+            $sheet->setCellValue('A'.($key+2), $key+1);
+            $sheet->setCellValue('B'.($key+2), $value->nama_litabmas);
+            $sheet->setCellValue('C'.($key+2), $value->sumber_dana);
+            $sheet->setCellValue('D'.($key+2), $value->jumlah_dana);
+            $sheet->setCellValue('E'.($key+2), $value->tahun_penelitian);
+            $sheet->setCellValue('F'.($key+2), $value->dosen->pluck('nama_dosen')->implode(', '));
+        }
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('pengabdian.xlsx');
+        return response()->download('pengabdian.xlsx')->deleteFileAfterSend(true);
     }
 }

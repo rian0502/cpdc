@@ -186,7 +186,11 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::resource('litabmas', LitabmasDataController::class);
     Route::resource('mahasiswa', DataMahasiswaAllController::class);
     Route::resource('alumni', DataAlumni::class);
-    Route::resource('unduh', ExportData::class);
+    Route::get('unduh', [ExportData::class, 'index'])->name('unduh.index');
+    Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
+    Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
+    Route::post('unduh/publikasi', [ExportData::class, 'prestasi'])->name('unduh.prestasi');
+    Route::post('unduh/aktivitas', [ExportData::class, 'aktivitas'])->name('unduh.aktivitas');
 
     Route::get('chartCapaianPrestasi', [PrestasiDataController::class, 'pieChartCapaian'])->name('prestasi.chartCapaian');
     Route::get('chartScalaPrestasi', [PrestasiDataController::class, 'pieChartScala'])->name('prestasi.chartScala');
@@ -315,7 +319,6 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::resource('kategori', KategoriController::class);
     Route::resource('kalab', PenempatanDosenLabController::class);
     Route::resource('admin_jurusan', PenempatanAdminLabController::class);
-
     Route::get('resetSeminar', [ResetTA::class, 'index'])->name('reset.seminar.index');
     Route::delete('delete/{id}', [ResetTA::class, 'destroy'])->name('reset.seminar.destroy');
 });
