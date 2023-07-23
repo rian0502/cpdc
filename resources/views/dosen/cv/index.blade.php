@@ -252,6 +252,33 @@
                             </table>
                         @endforeach
                     </div>
+                    <div class="section">
+                        <h2 style="font-family: Arial, sans-serif;">Pendidikan</h2>
+                        <p style="font-family: Arial, sans-serif;">
+                        <p>
+                    </div>
+
+                    <div class="section">
+                        <h2 style="font-family: Arial, sans-serif;">Penelitian</h2>
+                        @foreach ($penelitian as $item)
+                            <table>
+                                <tr>
+                                    <td rowspan="3" class="margin">
+                                        {{ $item->tahun_penelitian }}
+                                    </td>
+                                    <td class="text-justify">
+                                        <div class="judul">
+                                            {{ $item->nama_litabmas }}
+                                        </div>
+                                        {{-- <br> --}}
+                                        <div style="margin-top: 15px;"></div>
+                                        Sumber dana dari {{ $item->sumber_dana }}, dengan anggaran
+                                        Rp{{ number_format($item->jumlah_dana, 0, ',', '.') }}
+                                    </td>
+                                </tr>
+                            </table>
+                        @endforeach
+                    </div>
 
 
                     <div class="pindah-halaman">
