@@ -41,7 +41,7 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Tahun Menjabat</label>
-                                    <input value="{{ old('tahun_menjabat') }}" autofocus name="tahun_menjabat"
+                                    <input value="{{ old('tahun_menjabat', $organisasi->tahun_menjabat) }}" autofocus name="tahun_menjabat"
                                         id="tahun_menjabat"
                                         class="form-control @error('tahun_menjabat') form-control-danger @enderror"
                                         type="year" placeholder="Tahun Menjabat">
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tahun Berakhir</label>
-                                    <input value="{{ old('tahun_berakhir') }}" autofocus name="tahun_berakhir"
+                                    <input value="{{ old('tahun_berakhir', $organisasi->tahun_berakhir) }}" autofocus name="tahun_berakhir"
                                         id="tahun_berakhir"
                                         class="form-control @error('tahun_berakhir') form-control-danger @enderror"
                                         type="year" placeholder="Tahun Berakhir">

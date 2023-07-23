@@ -166,6 +166,10 @@
                                                 <a class="nav-link" data-toggle="tab" href="#pangkat"
                                                     role="tab">PANGKAT</a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#gelar"
+                                                    role="tab">GELAR</a>
+                                            </li>
                                         </ul>
                                     </div>
 
@@ -187,7 +191,7 @@
                                                     </div>
                                                     <div class="profile-task-list pb-30 table-responsive">
                                                         <table
-                                                            class="table data-table-responsive stripe data-table-export nowrap ">
+                                                            class="table data-table-responsive stripe data-table-export">
                                                             <thead>
                                                                 <tr>
                                                                     <td>No</td>
@@ -425,7 +429,7 @@
                                                     </div>
                                                     <div class="profile-task-list pb-30 table-responsive">
                                                         <table
-                                                            class="table data-table-responsive stripe data-table-export nowrap ">
+                                                            class="table data-table-responsive stripe data-table-export">
                                                             <thead>
                                                                 <tr>
                                                                     <td>No</td>
@@ -499,7 +503,7 @@
                                                     </div>
                                                     <div class="profile-task-list pb-30 table-responsive">
                                                         <table
-                                                            class="table data-table-responsive stripe data-table-export nowrap ">
+                                                            class="table data-table-responsive stripe data-table-export">
                                                             <thead>
                                                                 <tr>
                                                                     <td>No</td>
@@ -534,6 +538,82 @@
                                                                                         Edit</a>
                                                                                     <form class="deleteForm2"
                                                                                         action="{{ route('dosen.pangkat.destroy', $item->encrypted_id) }}"
+                                                                                        method="POST">
+                                                                                        @method('DELETE')
+                                                                                        @csrf
+                                                                                        <button type="button"
+                                                                                            class="dropdown-item text-danger deleteBtn2"
+                                                                                            onclick="showDeleteConfirmation(event)"><i
+                                                                                                class="fa fa-trash"></i>
+                                                                                            Delete</button>
+                                                                                    </form>
+                                                                                </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            </tbody>
+
+                                                        </table>
+
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="gelar" role="tabpanel">
+                                            <div class="pd-20 profile-task-wrap">
+                                                <div class="container pd-0">
+                                                    <!-- Open Task start -->
+                                                    <div class="task-title row align-items-center">
+                                                        <div class="col-md-8 col-sm-12">
+                                                            <h5>Data Gelar</h5>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-12 text-right">
+                                                            <a href="{{ route('dosen.gelar.create') }}"
+                                                                class="bg-light-blue btn text-blue weight-500"><i
+                                                                    class="ion-plus-round"></i> Tambah</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="profile-task-list pb-30">
+                                                        <table
+                                                            class="table stripe data-table-export ">
+                                                            <thead>
+                                                                <tr>
+                                                                    <td>No</td>
+                                                                    <td>Instansi Pendidikan</td>
+                                                                    <td>Jurusan</td>
+                                                                    <td>Tahun Lulus</td>
+                                                                    <td>Nama Gelar</td>
+                                                                    <td>Singkatan Gelar</td>
+                                                                    <th class="table-plus datatable-nosort">Aksi</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($gelar as $item)
+                                                                    <tr>
+                                                                        <td>{{ $loop->iteration }}</td>
+                                                                        <td>{{ $item->instansi_pendidikan}}</td>
+                                                                        <td>{{ $item->jurusan }}</td>
+                                                                        <td>{{ $item->tahun_lulus }}</td>
+                                                                        <td>{{ $item->nama_gelar }}</td>
+                                                                        <td>{{ $item->singkatan_gelar }}</td>
+                                                                        <td>
+                                                                            <div class="dropdown">
+                                                                                <a class="btn btn-outline-primary dropdown-toggle"
+                                                                                    href="#" role="button"
+                                                                                    data-toggle="dropdown">
+                                                                                    <i class="fa fa-ellipsis-h"></i>
+                                                                                </a>
+                                                                                <div
+                                                                                    class="dropdown-menu dropdown-menu-right">
+                                                                                    <a class="dropdown-item"
+                                                                                        href="{{ route('dosen.gelar.edit', $item->encrypt_id) }}">
+                                                                                        <i class="fa fa-pencil"></i>
+                                                                                        Edit</a>
+                                                                                    <form class="deleteForm2"
+                                                                                        action="{{ route('dosen.gelar.destroy', $item->encrypt_id) }}"
                                                                                         method="POST">
                                                                                         @method('DELETE')
                                                                                         @csrf
