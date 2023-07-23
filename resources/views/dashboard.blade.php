@@ -662,7 +662,7 @@
                                 <div class="form-group">
                                     <label for="lokasi">Lokasi</label>
                                     <select name="lokasi" id="lokasi" data-size="7" class="selectpicker form-control"
-                                    data-style="btn-outline-primary">
+                                        data-style="btn-outline-primary">
                                         <option value="all">Semua</option>
                                         <option value="1">Lab. Kimia Analitik & Instrumentasi</option>
                                         <option value="2">Lab. Kimia Anorganik-Fisik</option>
@@ -701,8 +701,8 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="angkatan">Angkatan</label>
-                                <select class="selectpicker form-control"
-                                data-style="btn-outline-primary" data-size="5"  id="angkatan" name="angkatan">
+                                <select class="selectpicker form-control" data-style="btn-outline-primary" data-size="5"
+                                    id="angkatan" name="angkatan">
                                     <option value="all" selected>Semua</option>
 
                                 </select>
@@ -1658,26 +1658,25 @@
             });
         </script>
         <script>
-          var selectElement = document.getElementById("angkatan");
+            var selectElement = document.getElementById("angkatan");
 
-// Mendapatkan tahun saat ini
-var currentYear = new Date().getFullYear();
+            // Mendapatkan tahun saat ini
+            var currentYear = new Date().getFullYear();
 
-// Membuat array opsi tahun dari tahun terbaru ke tahun 1950
-var options = [];
-for (var year = 1950; year <= currentYear; year++) {
-  options.push(year);
-}
-options.reverse(); // Membalik urutan elemen array
+            // Membuat array opsi tahun dari tahun terbaru ke tahun 1950
+            var options = [];
+            for (var year = 1950; year <= currentYear; year++) {
+                options.push(year);
+            }
+            options.reverse(); // Membalik urutan elemen array
 
-// Menambahkan opsi tahun ke elemen select
-for (var i = 0; i < options.length; i++) {
-  var optionElement = document.createElement("option");
-  optionElement.value = options[i];
-  optionElement.text = options[i];
-  selectElement.appendChild(optionElement);
-}
-
+            // Menambahkan opsi tahun ke elemen select
+            for (var i = 0; i < options.length; i++) {
+                var optionElement = document.createElement("option");
+                optionElement.value = options[i];
+                optionElement.text = options[i];
+                selectElement.appendChild(optionElement);
+            }
         </script>
     @endrole
 @endsection
