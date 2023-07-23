@@ -184,6 +184,68 @@
                 </div>
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
+                        <div class="h5 mb-0">Mahasiswa</div>
+                    </div>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
+                            <div class="weight-500 col-md-9" style="margin-left: 5px">
+                                <div class="form-group">
+                                    <label>Data Mahasiswa</label>
+                                    <select class="custom-select2 form-control" name="data-mhs" id="data-mhs"
+                                        style="width: 100%; height: 38px">
+                                        <optgroup label="Angkatan">
+                                            <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                        </optgroup>
+                                    </select>
+                                    @error('tahun-aktivitas')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="weight-500 col-md-3">
+                                <div class="form-group">
+                                    <div class="cta  d-flex align-items-center justify-content-end mt-4">
+                                        <button class="btn btn-sm btn-outline-primary">Unduh</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-box" style="height:256px;">
+                    <div class="pd-20">
+                        <div class="h5 mb-0">Alumni</div>
+                    </div>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
+                            <div class="weight-500 col-md-9" style="margin-left: 5px">
+                                <div class="form-group">
+                                    <label>Data Mahasiswa</label>
+                                    <select class="custom-select2 form-control" name="data-alumni" id="data-alumni"
+                                        style="width: 100%; height: 38px">
+                                        <optgroup label="Angkatan">
+                                            <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                        </optgroup>
+                                    </select>
+                                    @error('tahun-aktivitas')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="weight-500 col-md-3">
+                                <div class="form-group">
+                                    <div class="cta  d-flex align-items-center justify-content-end mt-4">
+                                        <button class="btn btn-sm btn-outline-primary">Unduh</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-box" style="height:256px;">
+                    <div class="pd-20">
                         <div class="h5 mb-0">Seminar PKL / KP</div>
                     </div>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -338,5 +400,7 @@
         populateSelect("akt-ta1");
         populateSelect("akt-ta2");
         populateSelect("akt-kompre");
+        populateSelect("data-mhs");
+        populateSelect("data-alumni");
     </script>
 @endsection
