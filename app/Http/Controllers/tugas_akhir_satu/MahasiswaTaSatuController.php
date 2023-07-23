@@ -4,15 +4,15 @@ namespace App\Http\Controllers\tugas_akhir_satu;
 
 use App\Models\Dosen;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTugasAkhirSatuRequest;
 use App\Http\Requests\UpdateSeminarTaSatuRequest;
 use App\Models\BerkasPersyaratanSeminar;
+use App\Models\ModelJadwalSeminarTaSatu;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ModelSeminarTaSatu;
-use Illuminate\Http\File;
 use Illuminate\Support\Facades\Crypt;
+
 
 class MahasiswaTaSatuController extends Controller
 {
@@ -29,7 +29,9 @@ class MahasiswaTaSatuController extends Controller
     public function create()
     {
         $data = [
-            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')->get(),
+            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
+                ->where('status', 'Aktif')
+                ->get(),
             'syarat' => BerkasPersyaratanSeminar::find(2),
         ];
         return view('mahasiswa.ta1.create', $data);
@@ -39,7 +41,9 @@ class MahasiswaTaSatuController extends Controller
     public function edit($id)
     {
         $data = [
-            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')->get(),
+            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
+                ->where('status', 'Aktif')
+                ->get(),
             'seminar' => ModelSeminarTaSatu::find(Crypt::decrypt($id)),
         ];
         return view('mahasiswa.ta1.edit', $data);
@@ -65,6 +69,7 @@ class MahasiswaTaSatuController extends Controller
             'id_pembimbing_satu' => Crypt::decrypt($request->id_pembimbing_satu),
             'id_pembahas' => Crypt::decrypt($request->pembahas),
             'id_mahasiswa' => Auth::user()->mahasiswa->id,
+            'status_admin' => 'Valid',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
 
@@ -100,6 +105,19 @@ class MahasiswaTaSatuController extends Controller
         $update = ModelSeminarTaSatu::find($store_id);
         $update->encrypt_id = Crypt::encrypt($store_id);
         $update->save();
+        //untuk mahasiswa 19
+        $faker = \Faker\Factory::create('id_ID');
+        $jadwal = ModelJadwalSeminarTaSatu::create([
+            'tanggal_seminar_ta_satu' => date('Y-m-d'),
+            'jam_mulai_seminar_ta_satu' => date('H:i'),
+            'jam_selesai_seminar_ta_satu' => date('H:i'),
+            'id_lokasi' => $faker->numberBetween(1, 5),
+            'id_seminar' => $store_id,
+        ]);
+        $jadwal_id = $jadwal->id;
+        $update_jadwal = ModelJadwalSeminarTaSatu::find($jadwal_id);
+        $update_jadwal->encrypt_id = Crypt::encrypt($jadwal_id);
+        $update_jadwal->save();
         return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('success', 'Berhasil Mendaftar Seminar Tugas Akhir 1');
     }
 

@@ -32,7 +32,9 @@ class LitabmasController extends Controller
     public function create()
     {
         $data = [
-            'dosens' => Dosen::whereNotIn('id', [Auth::user()->dosen->id])->get(),
+            'dosens' => Dosen::whereNotIn('id', [Auth::user()->dosen->id])
+            ->where('status', 'Aktif')
+            ->get(),
         ];
         return view('dosen.litabmas.create', $data);
     }
@@ -124,7 +126,9 @@ class LitabmasController extends Controller
             }
             $data = [
                 'litabmas' => LitabmasDosen::find(Crypt::decrypt($id)),
-                'dosen' => Dosen::whereNotIn('id', [Auth::user()->dosen->id])->get(),
+                'dosen' => Dosen::whereNotIn('id', [Auth::user()->dosen->id])
+                ->where('status', 'Aktif')
+                ->get(),
                 'anggota' => $anggotaLitabmas,
             ];
         } else {

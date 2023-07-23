@@ -29,164 +29,163 @@ class RolePermision extends Seeder
             'email' => 'hardoko.insan@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//2
         $ilim = User::create([
             'name' => 'Dr. Dra. Ilim, M.S.',
             'email' => 'ilim_ds@yahoo.com.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-            'profile_picture' => 'dwi.jpg'
-        ]);
+        ]);//3
         $buhani = User::create([
             'name' => 'Prof . Dr. Buhani, M.Si.',
             'email' => 'buhani_s@yahoo.co.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//4
         $suharso = User::create([
             'name' => 'Prof. Ir. Suharso, S.Si., Ph.D.',
             'email' => 'suharso@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//5
         $agung = User::create([
-            'name' => 'Dr Agung Abadi Kiswandono, S.Si., M.Sc.',
+            'name' => 'Dr. Agung Abadi Kiswandono, S.Si., M.Sc.',
             'email' => 'agungkiswandono@gmail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//6
         $rinawati = User::create([
             'name' => 'Dr. Rinawati, Ph.D, S.Si, M.Si',
             'email' => 'rinawati@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
             'lokasi_id' => 1
-        ]);
+        ]);//7
         $dian = User::create([
             'name' => 'Dr. Dian Herasari, M.Si.',
             'email' => 'dehayan@yahoo.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
             'lokasi_id' => 5
-        ]);
+        ]);//8
         $heri = User::create([
             'name' => 'Dr. Eng. Heri Satria, S.Si., M.Si.',
             'email' => 'heri.satria@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//9
         $sonny = User::create([
             'name' => 'Dr. Sonny Widiarto, S.Si., M.Sc.',
             'email' => 'sonnywidiarto@gmail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//10
         $mita = User::create([
             'name' => 'Dr. Mita Rilyanti, S.Si., M.Si.',
             'email' => 'mitarilyanti@gmail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//11
         $kamisah = User::create([
             'name' => 'Prof. Dr. Kamisah Delilawati Pandiangan, S.Si., M.Si.',
             'email' => 'kamisah.delilawati@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
             'lokasi_id' => 2
-        ]);
+        ]);//12
         $syaiful = User::create([
             'name' => 'Syaiful Bahri, S.Si, M.Si',
             'email' => 'muzaki2002@yahoo.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//13
         $noviany = User::create([
             'name' => 'Prof. Noviany, S.Si., M.Si, Ph.D',
             'email' => 'noviany@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
             'lokasi_id' => 3
-        ]);
+        ]);//14
         $diky = User::create([
             'name' => 'Diky Hidayat, S.Si., M.Sc.',
             'email' => 'dikyhidayat93@gmail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//15
         $suripto = User::create([
             'name' => 'Dr. Eng. Suripto Dwi Yuwono, S.Si., M.T.',
             'email' => 'suripto.dwi@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//16
         $yuli = User::create([
             'name' => 'Dr. Yuli Ambarwati, S.Si, M.Si.',
             'email' => 'yuliambar74@yahoo.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//17
         $nurhasanah = User::create([
             'name' => 'Dr. Nurhasanah, S.Si, M.Si',
             'email' => 'nur.hasanah@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//18
         $gede = User::create([
             'name' => 'Dr. Ni Luh Gede Ratna Juliasih, S.Si., M.Si.',
             'email' => 'ratnagede.juliasih@gmail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
             'lokasi_id' => 4
-        ]);
+        ]);//19
         $pratama = User::create([
             'name' => 'Dian Septiani Pratama, S.Si., M.Si.',
             'email' => 'pratama.dian@gmail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//20
         $devi = User::create([
             'name' => 'Devi Nur Anisa, S.Pd., M.Sc',
             'email' => 'devinur@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//21
         $hapin = User::create([
             'name' => 'Hapin Afriyani, S.Si., M.Si.',
             'email' => 'hapin.afriyani@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//22
 
         $yandri = User::create([
             'name' => 'Prof. Dr., Ir. Yandri A.S., M.S.',
             'email' => 'yandri.as@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//23
         $tati = User::create([
             'name' => 'Prof. Dr. Tati Suhartati, M.S.',
             'email' => 'tati.suhartati@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//24
         $wasinton = User::create([
             'name' => 'Prof. Wasinton Simanjuntak, M.Sc., Ph.D.',
             'email' => 'wasinton.simanjuntak@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//25
         $mangapul = User::create([
             'name' => 'Prof. Rudy T. Mangapul Situmeang, M.Sc., Ph.D.',
             'email' => 'rudy.tahan@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
-        $pranoto = User::create([
-            'name' => 'Dr. Ir. Adi Pranoto, M.Sc.',
-            'email' => 'neobyu10@gmail.com',
+        ]);//26
+        $sutopo = User::create([
+            'name' => 'Prof. Dr. Sutopo Hadi, S.Si, M.Sc.',
+            'email' => 'sutopo.hadi@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
-        ]);
+        ]);//27
         $john = User::create([
             'name' => 'Prof. Drs. John Hendri,, M.S., Ph.D.',
             'email' => 'john.hendri@fmipa.unila.ac.id',
@@ -260,7 +259,7 @@ class RolePermision extends Seeder
         ]); //36
         $kidas = User::create([
             'name' => 'Tri Kismwantari, A.Md.',
-            'email' => 'trikiswantari@gmail.comg',
+            'email' => 'trikiswantari@gmail.com',
             'email_verified_at' => now(),
             'password' =>  bcrypt('kajur'),
             'lokasi_id' => 5
@@ -341,7 +340,7 @@ class RolePermision extends Seeder
         $kamisah->assignRole(['dosen', 'kalab']);
         $noviany->assignRole(['dosen', 'kalab']);
         $dian->assignRole(['dosen', 'kalab']);
-        $pranoto->assignRole([ 'jurusan', 'sudo']);
+        $sutopo->assignRole('dosen');
         $hardoko->assignRole('dosen');
         $buhani->assignRole('dosen');
         $suharso->assignRole('dosen');

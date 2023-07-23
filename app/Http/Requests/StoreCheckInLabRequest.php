@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCheckInLabRequest extends FormRequest
 {
@@ -28,7 +29,7 @@ class StoreCheckInLabRequest extends FormRequest
         if(Auth::user()->lokasi_id == null){
             return [
 
-                'id_lokasi' => 'required|exists:lokasi,id',
+                'id_lokasi' => 'required|exists:lokasi,encrypt_id',
                 'jam_selesai' => ['required','after:'.$jam_mulai],
                 'ket' => 'required|min:20|max:255',
             ];

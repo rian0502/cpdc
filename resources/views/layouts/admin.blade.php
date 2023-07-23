@@ -401,7 +401,7 @@
                             </a>
                         </li> --}}
                     @endrole
-                    @role('admin lab')
+                    @role('admin lab|kalab')
                         <li>
                             <a href="{{ route('lab.ruang.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('admin/lab/ruang*') ? 'active' : '' }}">
@@ -521,15 +521,17 @@
                                     TA</span>
                             </a>
                         </li>
+                        @if (Auth::user()->mahasiswa->komprehensif->first())
+                            <li>
+                                <a href="{{ route('mahasiswa.pendataan_alumni.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni*') ? 'active' : '' }}">
+                                    <span class="micon fa fa-user-graduate"></span><span class="mtext">Pendataan
+                                        Alumni</span>
+                                </a>
+                            </li>
+                        @endif
                     @endrole
                     @role('alumni')
-                        <li>
-                            <a href="{{ route('mahasiswa.pendataan_alumni.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni*') ? 'active' : '' }}">
-                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Pendataan
-                                    Alumni</span>
-                            </a>
-                        </li>
                         <li>
                             <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni*') ? 'active' : '' }}">

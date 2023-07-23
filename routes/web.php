@@ -98,7 +98,7 @@ Route::prefix('admin/')->name('admin.')->middleware(['auth', 'profile', 'verifie
 // end Admin Keseluruhan
 
 // ADMIN LAB
-Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verified', 'role:admin lab'])->group(function () {
+Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verified', 'role:admin lab|kalab'])->group(function () {
 
     Route::resource('barang', BarangController::class);
     Route::resource('ruang', LabController::class);
@@ -117,7 +117,7 @@ Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verifi
     Route::get('dataAktivitas', [LabController::class, 'dataLaboratorium'])->name('data.ajax');
     //chart line aktivitas lab
 });
-Route::get('chart/aktivitas', [LabController::class, 'chartAktivitasLab'])->name('chart.aktivitas.lab')->middleware('auth', 'verified', 'role:admin lab|jurusan');
+Route::get('chart/aktivitas', [LabController::class, 'chartAktivitasLab'])->name('chart.aktivitas.lab')->middleware('auth', 'verified', 'role:admin lab|jurusan|kalab');
 Route::get('chart/seminar', [ChartSeminarController::class, 'ChartSeminar'])->name('chart.seminar.all')->middleware('auth', 'verified', 'role:jurusan');
 Route::get('chart/usiadosen', [AkunDosenController::class, 'chartUsiaDosen'])->name('chart.usia.dosen')->middleware('auth', 'verified', 'role:jurusan');
 Route::get('chart/jabatandosen', [AkunDosenController::class, 'chartJabatanDosen'])->name('chart.jabatan.dosen')->middleware('auth', 'verified', 'role:jurusan');
@@ -373,51 +373,5 @@ Route::get('/reset-password', function () {
 
 
 
-Route::get('/export-cv', function () {
-    // Load the template file
-    $templateFile = public_path('cv_template.docx');
-    $outputFile = public_path('exported_cv.docx');
-
-    // Create a new TemplateProcessor instance
-    $templateProcessor = new TemplateProcessor($templateFile);
-
-    // Set placeholders in the template with your own CV data
-    $templateProcessor->setValue('FULL_NAME', 'John Doe');
-    $templateProcessor->setValue('EMAIL', 'john.doe@example.com');
-    $templateProcessor->setValue('PHONE', '+1 234 5678');
-    // Set other CV data placeholders
-
-    // Add the first table
-    $table1Data = [
-        ['job' => 'Job Title 1', 'company' => 'Company 1', 'location' => 'Location 1', 'date' => 'Date 1'],
-        ['job' => 'Job Title 2', 'company' => 'Company 2', 'location' => 'Location 2', 'date' => 'Date 2'],
-        // Add more rows as needed
-    ];
-    $templateProcessor->cloneRow('job', count($table1Data));
-    foreach ($table1Data as $index => $row) {
-        $templateProcessor->setValue("job#{$index}", $row['job']);
-        $templateProcessor->setValue("company#{$index}", $row['company']);
-        $templateProcessor->setValue("location#{$index}", $row['location']);
-        $templateProcessor->setValue("date#{$index}", $row['date']);
-    }
-
-    // Add the second table
-    $table2Data = [
-        ['skill' => 'Skill 1', 'proficiency' => 'Proficiency 1'],
-        ['skill' => 'Skill 2', 'proficiency' => 'Proficiency 2'],
-        // Add more rows as needed
-    ];
-    $templateProcessor->cloneRow('skill', count($table2Data));
-    foreach ($table2Data as $index => $row) {
-        $templateProcessor->setValue("skill#{$index}", $row['skill']);
-        $templateProcessor->setValue("proficiency#{$index}", $row['proficiency']);
-    }
-
-    // Save the modified template as a new file
-    $templateProcessor->saveAs($outputFile);
-
-    // Download the exported file
-    return response()->download($outputFile)->deleteFileAfterSend();
-});
 
 

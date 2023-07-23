@@ -43,12 +43,14 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Detail Alumni</h4>
+
                         <button class="btn btn-primary right-button" onclick="goBack()">Kembali</button>
                         <script>
                             function goBack() {
                                 window.history.back();
                             }
                         </script>
+
                     </div>
                     <div class="mb-3 pb-2">
                         <div class="form-group">

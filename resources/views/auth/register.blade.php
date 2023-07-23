@@ -169,13 +169,18 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Pembimbing Akademik</label>
-                                                <select class="custom-select2 form-control " value="{{ old('id_dosen') }}" name="id_dosen"
+                                                <select class="custom-select2 form-control "
+                                                    value="{{ old('id_dosen') }}" name="id_dosen"
                                                     style="width: 100%; height: 38px">
                                                     <optgroup label="Dosen Pembimbing Akademik">
                                                         //tidak ada di daftar
-                                                        <option value="" {{old('id_dosen')==''? 'selected' : ''}}>Tidak ada di daftar</option>
+                                                        <option value=""
+                                                            {{ old('id_dosen') == '' ? 'selected' : '' }}>Tidak ada di
+                                                            daftar</option>
                                                         @foreach ($dosen as $PA)
-                                                            <option value="{{ $PA->encrypt_id }}" {{old('id_dosen')==$PA->encrypt_id ? 'selected' : ''}} >{{ $PA->nama_dosen }}
+                                                            <option value="{{ $PA->encrypt_id }}"
+                                                                {{ old('id_dosen') == $PA->encrypt_id ? 'selected' : '' }}>
+                                                                {{ $PA->nama_dosen }}
                                                             </option>
                                                         @endforeach
                                                     </optgroup>
@@ -188,17 +193,18 @@
                                             <div class="form-group">
                                                 <label for="">Jenis Akun</label>
                                                 <div class="@error('jenis_akun') form-control-danger @enderror">
-                                                    <div
-                                                        class="custom-control custom-radio custom-control-inline pb-0">
+                                                    <div class="custom-control custom-radio custom-control-inline pb-0">
                                                         <input type="radio" id="mahasiswa" name="jenis_akun"
-                                                            value="mahasiswa" class="custom-control-input" {{old('jenis_akun')=='mahasiswa' ? 'checked' : ''}}/>
+                                                            value="mahasiswa" class="custom-control-input"
+                                                            {{ old('jenis_akun') == 'mahasiswa' ? 'checked' : '' }} />
                                                         <label class="custom-control-label"
                                                             for="mahasiswa">Mahasiswa</label>
                                                     </div>
                                                     <div
                                                         class="custom-control custom-radio custom-control-inline pb-0">
                                                         <input type="radio" id="alumni" name="jenis_akun"
-                                                            value="alumni" class="custom-control-input" {{old('jenis_akun')!='mahasiswa' ? 'checked' : ''}}/>
+                                                            value="alumni" class="custom-control-input"
+                                                            {{ old('jenis_akun') == 'alumni' ? 'checked' : '' }} />
                                                         <label class="custom-control-label"
                                                             for="alumni">Alumni</label>
                                                     </div>
@@ -232,7 +238,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Konfirmasi Kata Sandi</label>
-                                                <input type="password" name="password_confirm" value="{{ old('password_confirm') }}"
+                                                <input type="password" name="password_confirm"
+                                                    value="{{ old('password_confirm') }}"
                                                     class="form-control @error('password_confirm') form-control-danger @enderror" />
                                                 @error('password_confirm')
                                                     <small class="text-danger">{{ $message }}</small>

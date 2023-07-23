@@ -34,6 +34,7 @@ class RegisterRequest extends FormRequest
                 'id_dosen' => 'required|exists:dosen,encrypt_id',
                 'password' => 'required|string|min:8|max:255|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/',
                 'password_confirm' => 'required|same:password',
+                'jenis_akun' => 'required|in:mahasiswa',
             ];
         }
         return [
@@ -45,6 +46,7 @@ class RegisterRequest extends FormRequest
             'id_dosen' => 'nullable|exists:dosen,encrypt_id',
             'password' => 'required|string|min:8|max:255|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/',
             'password_confirm' => 'required|same:password',
+            'jenis_akun' => 'required|in:alumni',
         ];
     }
     public function messages()
@@ -77,6 +79,8 @@ class RegisterRequest extends FormRequest
                 'password_confirm.same' => 'Konfirmasi Password Tidak Sama',
                 'id_dosen.required' => 'Dosen Pembimbing Akademik Harus diisi',
                 'id_dosen.exists' => 'Dosen Pembimbing Akademik Tidak Terdaftar',
+                'jenis_akun.required' => 'Jenis Akun Harus dipilih',
+                'jenis_akun.in' => 'Jenis Akun Tidak Valid',
             ];
         }
         return [
@@ -105,6 +109,8 @@ class RegisterRequest extends FormRequest
             'password_confirm.required' => 'Konfirmasi Password Harus diisi',
             'password_confirm.same' => 'Konfirmasi Password Tidak Sama',
             'id_dosen.exists' => 'Dosen Pembimbing Akademik Tidak Terdaftar',
+            'jenis_akun.required' => 'Jenis Akun Harus dipilih',
+            'jenis_akun.in' => 'Jenis Akun Tidak Valid',
         ];
     }
 

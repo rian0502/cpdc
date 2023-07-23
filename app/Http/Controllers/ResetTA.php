@@ -3,17 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreBaTaSatuRequest;
-use App\Http\Requests\UpdateBaTaSatuRequest;
-use App\Models\ModelBaSeminarTaSatu;
 use App\Models\ModelSeminarTaSatu;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
-use App\Models\AktivitasAlumni;
-use App\Models\ModelSeminarTaDua;
-use App\Models\ModelSeminarKompre;
 use Yajra\DataTables\Facades\DataTables;
 class ResetTA extends Controller
 {
@@ -40,7 +32,7 @@ class ResetTA extends Controller
             $ta_dua->delete();
         }
         if ($mahasiswa->komprehensif()->exists()) {
-            $seminar_kompre = $mahasiswa->seminar_kompre()->first();
+            $seminar_kompre = $mahasiswa->komprehensif()->first();
             $seminar_kompre->delete();
         }
         return redirect()->route('sudo.reset.seminar.index')->with('success', 'Data berhasil dihapus');
