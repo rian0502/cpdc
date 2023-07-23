@@ -222,7 +222,7 @@
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
-                                    <label>Data Mahasiswa</label>
+                                    <label>Data Alumni</label>
                                     <select class="custom-select2 form-control" name="data-alumni" id="data-alumni"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Angkatan">
