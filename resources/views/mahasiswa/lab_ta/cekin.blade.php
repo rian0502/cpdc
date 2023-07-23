@@ -21,11 +21,13 @@
                                 {{-- KONDISIIN INI MUNCUL KLK DIA BARU PERTAMA KALI CEKIN BAKAL MUNCUL FIELD PILIH LOKASI
                                     TRUS KLK MISAL HARI SEBELUMNYA UDAH PERNAH CEKIN MAKA PILIH LOKASINYA GA TAMPIL DAN BAKAL
                                     PAKE DATA LOKASI DI HARI SEBELUMNYA UNTUK SETERUSNYA ATAU KEK GIMANE TERSERAH LU DA --}}
-                                @if (!$user->lokasi_id)
+
                                     <div class="form-group">
-                                        <label>Lokasi</label>
+                                        <label>Lokasi Utama</label>
                                         <select class="custom-select2 form-control" style="width: 100%; height: 38px"
-                                            name="id_lokasi" required>
+                                            name="id_lokasi" required @if ($user->lokasi_id)
+                                                disabled
+                                            @endif>
                                             @foreach ($lokasi as $item)
                                                 <option value="{{ $item->encrypt_id }}"
                                                     {{ old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
@@ -34,7 +36,21 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                @endif
+                                    <div class="form-group">
+                                        <label>Lokasi Alternatif</label>
+                                        <select class="custom-select2 form-control" style="width: 100%; height: 38px"
+                                            name="id_lokasi2" required>
+                                            @foreach ($lokasi as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ old('id_lokasi2') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $item->nama_lokasi }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+
+
                                 <div class="form-group">
                                     <label>Keterangan</label>
                                     <textarea class="form-control textarea @error('ket') form-control-danger @enderror" name="ket">{{ old('ket') }}</textarea>
