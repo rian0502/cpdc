@@ -111,7 +111,7 @@
                             <div class="row">
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
                 <div class="card-box mb-30">
@@ -159,14 +159,15 @@
                                                         <a class="dropdown-item"
                                                             href="{{ route('admin.pangkat.edit', $item->encrypt_id) }}"><i
                                                                 class="dw dw-edit2"></i> Edit</a>
-                                                        <form id="delete"
+                                                        <form class="deleteForm2"
                                                             action="{{ route('admin.pangkat.destroy', $item->encrypt_id) }}"
                                                             method="POST">
                                                             @method('DELETE')
                                                             @csrf
-                                                            <button type="submit" id="deleteBtn"
-                                                                class="dropdown-item text-danger"><i
-                                                                    class="dw dw-delete-3"></i>
+                                                            <button type="button"
+                                                                class="dropdown-item text-danger deleteBtn2"
+                                                                onclick="showDeleteConfirmation(event)"><i
+                                                                    class="dw dw-trash"></i>
                                                                 Hapus</button>
                                                         </form>
                                                     </div>
