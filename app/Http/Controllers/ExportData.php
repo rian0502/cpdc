@@ -316,7 +316,7 @@ class ExportData extends Controller
             $sheet->setCellValue('K' . ($key + 2), $value->semester);
             $sheet->setCellValue('L' . ($key + 2), $value->status);
             $sheet->setCellValue('M' . ($key + 2), $value->dosen->nama_dosen);
-            $sheet->setCellValue('N' . ($key + 2), $value->seminar_kp->count() > 0 ? $value->seminar_kp->status_seminar : '0');
+            $sheet->setCellValue('N' . ($key + 2), $value->seminar_kp ? $value->seminar_kp->status_seminar : '0');
             $sheet->setCellValue('O' . ($key + 2), $value->ta_satu->count() > 0 ? $value->ta_satu->status_koor : '0');
             $sheet->setCellValue('P' . ($key + 2), $value->ta_dua->count() > 0 ? $value->ta_dua->status_koor : '0');
             $sheet->setCellValue('Q' . ($key + 2), $value->komprehensif->count() > 0 ? $value->komprehensif->status_koor : '0');

@@ -319,8 +319,6 @@ class RolePermision extends Seeder
             'password' =>  bcrypt('cpdc'),
         ]);
 
-
-
         $roles = ['admin lab', 'admin berkas', 'mahasiswa', 'dosen', 'pkl', 'kompre', 'ta1', 'ta2', 'jurusan', 'alumni', 'kalab', 'sudo'];
         foreach ($roles as $role) {
             $role = Role::create([
@@ -373,9 +371,9 @@ class RolePermision extends Seeder
         //end adminlab
         //mahasiswa
         $mhs->assignRole(['mahasiswa']);
-        $mhs2->assignRole(['mahasiswa', 'alumni']);
-        $mhs3->assignRole(['mahasiswa', 'alumni']);
-        $mhs4->assignRole(['mahasiswa', 'alumni']);
+        $mhs2->assignRole(['mahasiswa']);
+        $mhs3->assignRole(['mahasiswa']);
+        $mhs4->assignRole(['mahasiswa']);
         $mhs5->assignRole('mahasiswa');
         $mhs6->assignRole('mahasiswa');
         $mhs7->assignRole('mahasiswa');
