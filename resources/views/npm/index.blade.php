@@ -210,66 +210,66 @@
         });
     </script>
 
-<script>
-    var dataNpm = null; // Menyimpan referensi ke objek DataTable
+    <script>
+        var dataNpm = null; // Menyimpan referensi ke objek DataTable
 
-    $(function() {
-        dataNpm = $('.data-npm').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{{ route('sudo.base_npm.ajax') }}',
-            columns: [
-                {
-                    data: null,
-                    name: 'npm',
-                    render: function(data, type, row, meta) {
-                        // Menghasilkan nomor urutan perdata
-                        var index = meta.row + meta.settings._iDisplayStart + 1;
-                        return index;
-                    }
-                },
-                {
-                    data: 'npm',
-                    name: 'npm'
-                },
-                {
-                    data: 'status',
-                    name: 'status'
-                },
-                {
-                    data: null,
-                    name: 'null',
-                    orderable: false,
-                    searchable: false,
-                    exportable: false,
-                    render: function(data, type, row) {
-                        var editUrl = "{{ route('sudo.base_npm.edit', ':id') }}".replace(':id', row.id);
-                        var deleteUrl = "{{ route('sudo.base_npm.destroy', ':id') }}".replace(':id', row.id);
+        $(function() {
+            dataNpm = $('.data-npm').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('sudo.base_npm.ajax') }}',
+                columns: [{
+                        data: null,
+                        name: 'npm',
+                        render: function(data, type, row, meta) {
+                            // Menghasilkan nomor urutan perdata
+                            var index = meta.row + meta.settings._iDisplayStart + 1;
+                            return index;
+                        }
+                    },
+                    {
+                        data: 'npm',
+                        name: 'npm'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
+                    },
+                    {
+                        data: null,
+                        name: 'null',
+                        orderable: false,
+                        searchable: false,
+                        exportable: false,
+                        render: function(data, type, row) {
+                            var editUrl = "{{ route('sudo.base_npm.edit', ':id') }}".replace(':id',
+                                row.id);
+                            var deleteUrl = "{{ route('sudo.base_npm.destroy', ':id') }}".replace(
+                                ':id', row.id);
 
-                        return `
+                            return `
                         <div class="dropdown">
-                            <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                <i class="fa fa-ellipsis-h"></i>
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" data-color="#1b3133" href="#"
+                                role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="${editUrl}">
-                                    <i class="fa fa-pencil"></i> Edit
-                                </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" href="${editUrl}"><i class="dw dw-edit2"></i> Edit</a>
                                 <form id="delete" action="${deleteUrl}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" id="delete" class="dropdown-item text-danger">
-                                        <i class="fa fa-trash"></i> Delete
+                                        <i class="dw dw-delete-3"></i> Hapus
                                     </button>
                                 </form>
                             </div>
                         </div>`;
+                        }
                     }
-                }
-            ]
+                ]
+            });
         });
-    });
-</script>
+    </script>
 
 
 

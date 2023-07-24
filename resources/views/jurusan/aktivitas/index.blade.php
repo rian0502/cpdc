@@ -163,13 +163,12 @@
                                     .file_aktivitas;
                                 return `
                             <div class="dropdown">
-                                <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                    <i class="fa fa-ellipsis-h"></i>
+                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" data-color="#1b3133" href="#"
+                                    role="button" data-toggle="dropdown">
+                                    <i class="dw dw-more"></i>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="${downloadUrl}">
-                                        <i class="fa-solid fa-file-arrow-down"></i> Dokumen
-                                    </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                    <a class="dropdown-item" href="${downloadUrl}"><i class="dw dw-download"></i> Dokumen</a>
                                 </div>
                             </div>`;
                             }
