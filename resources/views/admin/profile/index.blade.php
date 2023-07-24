@@ -23,6 +23,10 @@
             /* Sesuaikan dengan tinggi yang diinginkan */
             object-fit: cover;
         }
+
+        a:hover {
+            cursor: pointer;
+        }
     </style>
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
@@ -107,22 +111,19 @@
                             <div class="row">
                             </div>
                         </div>
-                        <style type="text/css">
-                            a:hover {
-                                cursor: pointer;
-                            }
-                        </style>
+                       
                     </div>
                 </div>
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">KEPANGKATAN</h4>
+                        <h4 class="text-blue h4">Kepangkatan</h4>
                         <div class="d-flex">
                             <div class="ml-5">
 
                             </div>
                             <div class="ml-auto mb-3">
-                                <a href="{{ route('admin.pangkat.create') }}" class="btn btn-success btn-lg"><i class="fa fa-plus"></i> Tambah
+                                <a href="{{ route('admin.pangkat.create') }}" class="btn btn-success btn-lg"><i
+                                        class="fa fa-plus"></i> Tambah
                                     Data</a>
                             </div>
                         </div>
