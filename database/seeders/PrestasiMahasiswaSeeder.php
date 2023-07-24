@@ -17,7 +17,7 @@ class PrestasiMahasiswaSeeder extends Seeder
     public function run()
     {
         //
-        PrestasiMahasiswa::factory()->count(30)->create();
+        PrestasiMahasiswa::factory()->count(100)->create();
         
     }
 }

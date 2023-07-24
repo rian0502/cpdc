@@ -16,6 +16,6 @@ class AktivitasMahasiswaSeeder extends Seeder
     public function run()
     {
         //
-        AktivitasMahasiswa::factory()->count(30)->create();
+        AktivitasMahasiswa::factory()->count(100)->create();
     }
 }

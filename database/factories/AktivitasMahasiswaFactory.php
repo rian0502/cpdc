@@ -18,6 +18,7 @@ class AktivitasMahasiswaFactory extends Factory
     public function definition()
     {
         return [
+            'encrypt_id' => Crypt::encrypt($this->faker->unique()->numberBetween(1, 999999999)) ,
             'nama_aktivitas' => $this->faker->sentence(3),
             'peran' => $this->faker->randomElement(['Ketua', 'Anggota', 'Peserta']),
             'sks_konversi' => $this->faker->numberBetween(0, 24),

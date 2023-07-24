@@ -19,6 +19,7 @@ class PrestasiMahasiswaFactory extends Factory
     {
 
         return [
+            'encrypt_id' => Crypt::encrypt($this->faker->unique()->numberBetween(1, 999999999)),
             'nama_prestasi' => $this->faker->sentence(3),
             'scala' => $this->faker->randomElement(['Nasional', 'Internasional', 'Provinsi', 'Kabupaten/Kota', 'Universitas']),
             'tanggal' => $this->faker->date(),
