@@ -230,7 +230,7 @@
                                                                                             class="dropdown-item text-danger deleteBtn2"
                                                                                             onclick="showDeleteConfirmation(event)"><i
                                                                                                 class="dw dw-delete-3"></i>
-                                                                                            Delete</button>
+                                                                                            Hapus</button>
                                                                                     </form>
                                                                                 </div>
                                                                             </div>
@@ -282,28 +282,6 @@
                                                                         <td>{{ $item->tahun_penelitian }}</td>
                                                                         </td>
                                                                         <td>
-                                                                            <div class="dropdown">
-                                                                                <a class="btn btn-outline-primary dropdown-toggle"
-                                                                                    href="#" role="button"
-                                                                                    data-toggle="dropdown">
-                                                                                    <i class="fa fa-ellipsis-h"></i>
-                                                                                </a>
-                                                                                <div
-                                                                                    class="dropdown-menu dropdown-menu-right">
-                                                                                    <a href=""
-                                                                                        class="dropdown-item">
-                                                                                        <i class="fal fa-eye"></i>
-                                                                                        Lihat</a>
-
-
-                                                                                    <a class="dropdown-item"
-                                                                                        href="">
-                                                                                        <i class="fa fa-pencil"></i>
-                                                                                        Edit</a>
-
-
-                                                                                </div>
-                                                                            </div>
                                                                             <div class="dropdown">
                                                                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
                                                                                     data-color="#1b3133" href="#"
@@ -415,7 +393,7 @@
                                                                                                 class="dropdown-item text-danger deleteBtn2"
                                                                                                 onclick="showDeleteConfirmation(event)"><i
                                                                                                     class="dw dw-delete-3"></i>
-                                                                                                Delete</button>
+                                                                                                Hapus</button>
                                                                                         </form>
                                                                                     @endif
                                                                                 </div>
@@ -540,21 +518,6 @@
                                                                                 Lihat</a>
                                                                         </td>
                                                                         <td>
-                                                                            <div class="dropdown">
-                                                                                <a class="btn btn-outline-primary dropdown-toggle"
-                                                                                    href="#" role="button"
-                                                                                    data-toggle="dropdown">
-                                                                                    <i class="fa fa-ellipsis-h"></i>
-                                                                                </a>
-                                                                                <div
-                                                                                    class="dropdown-menu dropdown-menu-right">
-                                                                                    <a class="dropdown-item"
-                                                                                        href="">
-                                                                                        <i class="fa fa-pencil"></i>
-                                                                                        Edit</a>
-
-                                                                                </div>
-                                                                            </div>
                                                                             <div class="dropdown">
                                                                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
                                                                                     data-color="#1b3133" href="#"
