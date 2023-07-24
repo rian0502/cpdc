@@ -6,7 +6,7 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Mahasiswa Bimbingan Akademik</h4>
-                        
+
                     </div>
                     <div class="pb-20 m-3">
 
@@ -23,25 +23,26 @@
                             <tbody>
                                 @foreach ($mahasiswa as $item)
                                     <tr>
-                                    <td>{{ $loop->iteration}}</td>
-                                    <td>{{ $item->nama_mahasiswa}}</td>
-                                    <td>{{ $item->npm}}</td>
-                                    <td>{{ $item->angkatan}}</td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button"
-                                                data-toggle="dropdown">
-                                                <i class="fa fa-ellipsis-h"></i>
-                                            </a>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->nama_mahasiswa }}</td>
+                                        <td>{{ $item->npm }}</td>
+                                        <td>{{ $item->angkatan }}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
+                                                    role="button" data-toggle="dropdown">
+                                                    <i class="fa fa-ellipsis-h"></i>
+                                                </a>
 
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="{{ route('dosen.mahasiswa.bimbingan.akademik.show', $item->npm) }}"><i
-                                                        class="fa fa-eye"></i>
-                                                    Lihat</a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('dosen.mahasiswa.bimbingan.akademik.show', $item->npm) }}"><i
+                                                            class="fa fa-eye"></i>
+                                                        Lihat</a>
 
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

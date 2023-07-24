@@ -18,7 +18,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="pb-20 m-3">
+                        <div class="pb-20">
                             <table class="table data-table-responsive stripe data-table-noexport nowrap" id="data">
                                 <thead>
                                     <tr>
@@ -95,7 +95,7 @@
 
 
                     @role('jurusan')
-                        <div class="pb-20 m-3">
+                        <div class="pb-20">
                             <table class="table data-table-responsive stripe data-table-noexport" id="data">
                                 <thead>
                                     <tr>
