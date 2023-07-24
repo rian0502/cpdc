@@ -141,6 +141,10 @@ class ExportData extends Controller
         $sheet->setCellValue('H1', 'Pembahas');
         $sheet->setCellValue('I1', 'Status Admin');
         $sheet->setCellValue('J1', 'Status Koordinator');
+        $sheet->setCellValue('K1', 'Huruf Mutu');
+        $sheet->setCellValue('L1', 'Nilai');
+        $sheet->setCellValue('M1', 'No BA');
+        $sheet->setCellValue('N1', 'URL');
         foreach ($mahasiswa as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->npm);
@@ -172,27 +176,46 @@ class ExportData extends Controller
         $sheet->setCellValue('B1', 'NPM');
         $sheet->setCellValue('C1', 'Nama Mahasiswa');
         $sheet->setCellValue('D1', 'Status');
-        $sheet->setCellValue('E1', 'Judul Kerja Praktik');
-        $sheet->setCellValue('F1', 'Mitra');
-        $sheet->setCellValue('G1', 'Region');
-        $sheet->setCellValue('H1', 'Dosen Pembimbing');
-        $sheet->setCellValue('I1', 'Pembimbing Lapangan');
-        $sheet->setCellValue('J1', 'NIP Pembimbing Lapangan');
-        $sheet->setCellValue('K1', 'Status Admin');
-        $sheet->setCellValue('L1', 'Status Koordinator');
+        $sheet->setCellValue('E1', 'Tahun Akademik');
+        $sheet->setCellValue('F1', 'Semester');
+        $sheet->setCellValue('G1', 'Tema KP/PKL');
+        $sheet->setCellValue('H1', 'Mitra');
+        $sheet->setCellValue('I1', 'Region');
+        $sheet->setCellValue('J1', 'Dosen Pembimbing');
+        $sheet->setCellValue('K1', 'NP/NI/NIP Pembimbing Lapangan');
+        $sheet->setCellValue('L1', 'Pembimbing Lapangan');
+        $sheet->setCellValue('M1', 'Status Admin');
+        $sheet->setCellValue('N1', 'Status Koordinator');
+        $sheet->setCellValue('O1', 'Huruf Mutu');
+        $sheet->setCellValue('P1', 'Nilai Angka');
+        $sheet->setCellValue('Q1', 'No BA');
+        $sheet->setCellValue('R1', 'URL');
         foreach ($mahasiswa as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->npm);
             $sheet->setCellValue('C' . ($key + 2), $value->nama_mahasiswa);
             $sheet->setCellValue('D' . ($key + 2), $value->status);
-            $sheet->setCellValue('E' . ($key + 2), $value->seminar_kp->judul_kp);
-            $sheet->setCellValue('F' . ($key + 2), $value->seminar_kp->mitra);
-            $sheet->setCellValue('G' . ($key + 2), $value->seminar_kp->region);
-            $sheet->setCellValue('H' . ($key + 2), $value->dosen->nama_dosen);
-            $sheet->setCellValue('I' . ($key + 2), $value->seminar_kp->pembimbing_lapangan);
-            $sheet->setCellValue('J' . ($key + 2), $value->seminar_kp->ni_pemlap);
-            $sheet->setCellValue('K' . ($key + 2), $value->seminar_kp->proses_admin);
-            $sheet->setCellValue('L' . ($key + 2), $value->seminar_kp->status_seminar);
+            $sheet->setCellValue('E' . ($key + 2), $value->seminar_kp->tahun_akademik);
+            $sheet->setCellValue('F' . ($key + 2), $value->seminar_kp->semester);
+            $sheet->setCellValue('G' . ($key + 2), $value->seminar_kp->judul_kp);
+            $sheet->setCellValue('H' . ($key + 2), $value->seminar_kp->mitra);
+            $sheet->setCellValue('I' . ($key + 2), $value->seminar_kp->region);
+            $sheet->setCellValue('J' . ($key + 2), $value->seminar_kp->dosen->nama_dosen);
+            $sheet->setCellValue('K' . ($key + 2), $value->seminar_kp->ni_pemlap);
+            $sheet->setCellValue('L' . ($key + 2), $value->seminar_kp->pembimbing_lapangan);
+            $sheet->setCellValue('M' . ($key + 2), $value->seminar_kp->proses_admin);
+            $sheet->setCellValue('N' . ($key + 2), $value->seminar_kp->status_seminar);
+            if ($value->seminar_kp->berita_acara) {
+                $sheet->setCellValue('O' . ($key + 2), $value->seminar_kp->berita_acara->nilai_mutu);
+                $sheet->setCellValue('P' . ($key + 2), $value->seminar_kp->berita_acara->nilai_akhir);
+                $sheet->setCellValue('Q' . ($key + 2), $value->seminar_kp->berita_acara->no_ba_seminar_kp);
+                $sheet->setCellValue('R' . ($key + 2), url('/uploads/berita_acara_seminar_kp/' . $value->seminar_kp->berita_acara->berkas_ba_seminar_kp));
+            } else {
+                $sheet->setCellValue('O' . ($key + 2), '-');
+                $sheet->setCellValue('P' . ($key + 2), '-');
+                $sheet->setCellValue('Q' . ($key + 2), '-');
+                $sheet->setCellValue('R' . ($key + 2), '-');
+            }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('kerja_praktik' . $request->akt_kp . '.xlsx');
