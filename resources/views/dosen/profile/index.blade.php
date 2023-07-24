@@ -148,7 +148,7 @@
                                         <ul class="nav nav-tabs customtab" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active" data-toggle="tab" href="#organisasi"
-                                                    role="tab">ORGANISASI</a>
+                                                    role="tab">Organisasi</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#litabmas"
@@ -156,19 +156,19 @@
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#publikasi"
-                                                    role="tab">PUBLIKASI</a>
+                                                    role="tab">Publikasi</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#jabatan"
-                                                    role="tab">JABATAN</a>
+                                                    role="tab">Jabatan</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#pangkat"
-                                                    role="tab">PANGKAT</a>
+                                                    role="tab">Pangkat</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#gelar"
-                                                    role="tab">GELAR</a>
+                                                    role="tab">Gelar</a>
                                             </li>
                                         </ul>
                                     </div>
