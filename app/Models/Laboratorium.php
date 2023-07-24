@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+
 class Laboratorium extends Model
 {
     use HasFactory;
@@ -21,6 +22,7 @@ class Laboratorium extends Model
         'keperluan',
         'keterangan',
         'jumlah_mahasiswa',
+        'user_id',
         'created_at',
         'updated_at',
     ];
@@ -28,5 +30,9 @@ class Laboratorium extends Model
     public function lokasi()
     {
         return $this->belongsTo(Lokasi::class, 'id_lokasi', 'id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

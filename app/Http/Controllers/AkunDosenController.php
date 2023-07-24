@@ -13,6 +13,8 @@ use App\Models\HistoryPangkatDosen;
 use App\Http\Controllers\Controller;
 use App\Models\AnggotaPublikasiDosen;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\ModelGelar;
+
 
 class AkunDosenController extends Controller
 {
@@ -86,6 +88,7 @@ class AkunDosenController extends Controller
             'pangkat' => HistoryPangkatDosen::where('dosen_id', Crypt::decrypt($id))->orderBy('tgl_sk', 'desc')->get(),
             'litabmas' => AnggotaLitabmas::where('dosen_id', Crypt::decrypt($id))->get(),
             'publikasi' => AnggotaPublikasiDosen::where('id_dosen', Crypt::decrypt($id))->get(),
+            'gelar' => ModelGelar::where('dosen_id', Crypt::decrypt($id))->get(),
         ];
         return view('akun.dosen.show', $data);
     }

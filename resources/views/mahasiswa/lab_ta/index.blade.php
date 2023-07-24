@@ -74,13 +74,13 @@
                                     <label class="col-md-3 bold"> <strong>Lokasi Penelitian Utama</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <div>
-                                            {{ $lab->lokasi->nama_lokasi }}
+                                            {{ $lab_utama->lokasi->nama_lokasi }}
                                         </div>
                                     </div>
-                                    <label class="col-md-3 bold"> <strong>Lokasi Penelitian Alternatif</strong></label>
+                                    <label class="col-md-3 bold"> <strong>Lokasi Penelitian Hari Ini</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <div>
-                                            {{-- FOREACH LOKASI ALTERNATIF --}}
+                                            {{ $lab->lokasi->nama_lokasi }}
                                         </div>
                                     </div>
                                     <label class="col-md-3 bold mt-1"><strong>Jam Selesai</strong></label>

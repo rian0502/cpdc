@@ -22,12 +22,14 @@ class LabTAController extends Controller
             return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Anda belum mengisi data TA 1');
         }
 
-        $cek = Laboratorium::where('id_lokasi', Auth::user()->lokasi_id)->where('tanggal_kegiatan', date('Y-m-d'))->first();
+        $cek = Laboratorium::where('user_id', Auth::user()->id)->where('tanggal_kegiatan', date('Y-m-d'))->first();
         if (!$cek) {
             return redirect()->route('mahasiswa.lab.cekin');
         }
+        $cek2 = Laboratorium::where('id_lokasi', Auth::user()->lokasi_id)->first();
         $data = [
             'lab' => $cek,
+            'lab_utama' => $cek2,
             'user' => Auth::user(),
             'mahasiswa' => Auth::user()->mahasiswa,
         ];
@@ -54,6 +56,7 @@ class LabTAController extends Controller
     public function cekinStore(StoreCheckInLabRequest $request)
     {
         $user = User::find(Auth::user()->id);
+        $id_user = $user->id;
         if ($user->lokasi_id == null) {
             $user->lokasi_id = Crypt::decrypt($request->id_lokasi);
             $user->save();
@@ -70,13 +73,14 @@ class LabTAController extends Controller
         }
         $lab = Laboratorium::create([
             'nama_kegiatan' => $judul_kegiatan,
-            'id_lokasi' => $user->lokasi_id,
+            'id_lokasi' => Crypt::decrypt($request->id_lokasi),
             'keperluan' => 'Penelitian',
             'tanggal_kegiatan' => date('Y-m-d'),
             'jam_mulai' => date('H:i:s'),
             'jam_selesai' => date('H:i:s', strtotime($request->jam_selesai)),
             'keterangan' => $request->ket,
             'jumlah_mahasiswa' => 1,
+            'user_id' => Auth::user()->id,
         ]);
         $update = Laboratorium::find($lab->id);
         $update->encrypted_id = Crypt::encrypt($lab->id);
