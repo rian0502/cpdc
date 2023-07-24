@@ -154,6 +154,8 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::resource('mahasiswa/bimbingan/akademik', MahasiswaBimbinganAkademikController::class)->names('mahasiswa.bimbingan.akademik');
     Route::resource('mahasiswa/bimbingan/kp', MahasiswaBimbinganKPController::class)->names('mahasiswa.bimbingan.kp');
     Route::post('mahasiswa/bimbingan/kp/export', [MahasiswaBimbinganKPController::class, 'export'])->name('mahasiswa.bimbingan.kp.export');
+    Route::post('mahasiswa/bimbingan/ta/export', [MahasiswaBimbinganKompreController::class, 'export'])->name('mahasiswa.bimbingan.ta.export');
+
     Route::resource('mahasiswa/bimbingan/ta1', MahasiswaBimbinganTA1Controller::class)->names('mahasiswa.bimbingan.ta1');
     Route::resource('mahasiswa/bimbingan/ta2', MahasiswaBimbinganTA2Controller::class)->names('mahasiswa.bimbingan.ta2');
     Route::resource('mahasiswa/bimbingan/kompre', MahasiswaBimbinganKompreController::class)->names('mahasiswa.bimbingan.kompre');
