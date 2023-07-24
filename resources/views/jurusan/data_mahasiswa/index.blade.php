@@ -15,11 +15,11 @@
                                 </button>
                             </div>
                         @endif
-                        <div class="pd-20 m-1 table-responsive">
-                            <table id="data-akun" class="data-akun table table-hover data-table-responsive stripe wrap ">
+                        <div class="pd-20 table-responsive">
+                            <table id="data-akun" class="data-akun table table-hover data-table-responsive stripe wrap">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
+                                        <th>No</th>
                                         <th>Nama Mahasiswa</th>
                                         <th>NPM</th>
                                         <th>Angkatan</th>

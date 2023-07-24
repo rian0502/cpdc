@@ -18,8 +18,8 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="pb-20 m-3">
-                            <table class="table data-table-responsive stripe data-table-export nowrap" id="data">
+                        <div class="pb-20">
+                            <table class="table data-table-responsive stripe data-table-noexport nowrap" id="data">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -95,11 +95,11 @@
 
 
                     @role('jurusan')
-                        <div class="pb-20 m-3">
-                            <table class="table data-table-responsive stripe data-table-export nowrap" id="data">
+                        <div class="pb-20">
+                            <table class="table data-table-responsive stripe data-table-noexport" id="data">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
+                                        <th>No</th>
                                         <th>Nama Dosen</th>
                                         <th>NIP</th>
                                         <th>NIDN</th>
@@ -139,16 +139,15 @@
                                             </td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <a class="btn btn-outline-primary dropdown-toggle" href="#"
-                                                        role="button" data-toggle="dropdown">
-                                                        <i class="fa fa-ellipsis-h"></i>
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                        data-color="#1b3133" href="#" role="button"
+                                                        data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
                                                     </a>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                         @role('jurusan')
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('sudo.akun_dosen.show', $item->encrypt_id) }}"><i
-                                                                    class="fal fa-eye"></i> Detail</a>
+                                                            <a class="dropdown-item" href="{{ route('sudo.akun_dosen.show', $item->encrypt_id) }}"><i class="dw dw-eye"></i>
+                                                                Lihat</a>
                                                         @endrole
                                                     </div>
                                                 </div>
