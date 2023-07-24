@@ -23,21 +23,21 @@
                             <tbody>
                                 @foreach ($kalab as $item)
                                     <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{$item->dosen->nip}}</td>
-                                        <td>{{$item->dosen->nama_dosen}}</td>
-                                        <td>{{$item->email}}</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->dosen->nip }}</td>
+                                        <td>{{ $item->dosen->nama_dosen }}</td>
+                                        <td>{{ $item->email }}</td>
                                         <td>{{ $item->lokasi_id ? $item->lokasi->nama_lokasi : 'Belum Terlokasi' }}</td>
                                         <td>
                                             <div class="dropdown">
-                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
-                                                    role="button" data-toggle="dropdown">
-                                                    <i class="fa fa-ellipsis-h"></i>
+                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                    data-color="#1b3133" href="#" role="button"
+                                                    data-toggle="dropdown">
+                                                    <i class="dw dw-more"></i>
                                                 </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('sudo.kalab.edit', $item->id) }}"><i
-                                                            class="fa fa-pencil"></i> Edit</a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                    <a class="dropdown-item" href="{{ route('sudo.kalab.edit', $item->id) }}"><i class="dw dw-edit2"></i>
+                                                        Edit</a>
                                                 </div>
                                             </div>
                                         </td>

@@ -190,8 +190,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="profile-task-list pb-30 table-responsive">
-                                                        <table
-                                                            class="table data-table-responsive stripe data-table-export">
+                                                        <table class="table data-table-responsive stripe data-table-export">
                                                             <thead>
                                                                 <tr>
                                                                     <td>No</td>
@@ -211,16 +210,16 @@
                                                                         <td>{{ $item->jabatan }}</td>
                                                                         <td>
                                                                             <div class="dropdown">
-                                                                                <a class="btn btn-outline-primary dropdown-toggle"
-                                                                                    href="#" role="button"
-                                                                                    data-toggle="dropdown">
-                                                                                    <i class="fa fa-ellipsis-h"></i>
+                                                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                                                    data-color="#1b3133" href="#"
+                                                                                    role="button" data-toggle="dropdown">
+                                                                                    <i class="dw dw-more"></i>
                                                                                 </a>
                                                                                 <div
-                                                                                    class="dropdown-menu dropdown-menu-right">
+                                                                                    class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                                                     <a class="dropdown-item"
-                                                                                        href="{{ route('dosen.organisasi.edit', $item->encrypt_id) }}">
-                                                                                        <i class="fa fa-pencil"></i>
+                                                                                        href="{{ route('dosen.organisasi.edit', $item->encrypt_id) }}"><i
+                                                                                            class="dw dw-edit2"></i>
                                                                                         Edit</a>
                                                                                     <form class="deleteForm2"
                                                                                         action="{{ route('dosen.organisasi.destroy', $item->encrypt_id) }}"
@@ -230,8 +229,8 @@
                                                                                         <button type="button"
                                                                                             class="dropdown-item text-danger deleteBtn2"
                                                                                             onclick="showDeleteConfirmation(event)"><i
-                                                                                                class="fa fa-trash"></i>
-                                                                                            Delete</button>
+                                                                                                class="dw dw-delete-3"></i>
+                                                                                            Hapus</button>
                                                                                     </form>
                                                                                 </div>
                                                                             </div>
@@ -284,22 +283,21 @@
                                                                         </td>
                                                                         <td>
                                                                             <div class="dropdown">
-                                                                                <a class="btn btn-outline-primary dropdown-toggle"
-                                                                                    href="#" role="button"
-                                                                                    data-toggle="dropdown">
-                                                                                    <i class="fa fa-ellipsis-h"></i>
+                                                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                                                    data-color="#1b3133" href="#"
+                                                                                    role="button" data-toggle="dropdown">
+                                                                                    <i class="dw dw-more"></i>
                                                                                 </a>
                                                                                 <div
-                                                                                    class="dropdown-menu dropdown-menu-right">
-                                                                                    <a href="{{ route('dosen.litabmas.show', $item->encrypt_id) }}"
-                                                                                        class="dropdown-item">
-                                                                                        <i class="fal fa-eye"></i>
+                                                                                    class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                                                    <a class="dropdown-item"
+                                                                                        href="{{ route('dosen.litabmas.show', $item->encrypt_id) }}"><i
+                                                                                            class="dw dw-eye"></i>
                                                                                         Lihat</a>
-
                                                                                     @if ($item->anggota_litabmas[0]->dosen_id == Auth::user()->dosen->id)
                                                                                         <a class="dropdown-item"
-                                                                                            href="{{ route('dosen.litabmas.edit', $item->encrypt_id) }}">
-                                                                                            <i class="fa fa-pencil"></i>
+                                                                                            href="{{ route('dosen.litabmas.edit', $item->encrypt_id) }}"><i
+                                                                                                class="dw dw-edit2"></i>
                                                                                             Edit</a>
                                                                                         <form class="deleteForm2"
                                                                                             action="{{ route('dosen.litabmas.destroy', $item->encrypt_id) }}"
@@ -309,13 +307,13 @@
                                                                                             <button type="button"
                                                                                                 class="dropdown-item text-danger deleteBtn2"
                                                                                                 onclick="showDeleteConfirmation(event)">
-                                                                                                <i class="fa fa-trash"></i>
+                                                                                                <i
+                                                                                                    class="dw dw-delete-3"></i>
                                                                                                 Hapus</button>
                                                                                         </form>
                                                                                     @endif
                                                                                 </div>
                                                                             </div>
-
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
@@ -370,22 +368,21 @@
                                                                         <td>{{ $item->kategori_litabmas }}</td>
                                                                         <td>
                                                                             <div class="dropdown">
-                                                                                <a class="btn btn-outline-primary dropdown-toggle"
-                                                                                    href="#" role="button"
-                                                                                    data-toggle="dropdown">
-                                                                                    <i class="fa fa-ellipsis-h"></i>
+                                                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                                                    data-color="#1b3133" href="#"
+                                                                                    role="button" data-toggle="dropdown">
+                                                                                    <i class="dw dw-more"></i>
                                                                                 </a>
                                                                                 <div
-                                                                                    class="dropdown-menu dropdown-menu-right">
-                                                                                    <a href="{{ route('dosen.publikasi.show', $item->encrypt_id) }}"
-                                                                                        class="dropdown-item">
-                                                                                        <i class="fal fa-eye"></i>
-                                                                                        Detail</a>
-
+                                                                                    class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                                                    <a class="dropdown-item"
+                                                                                        href="{{ route('dosen.publikasi.show', $item->encrypt_id) }}"><i
+                                                                                            class="dw dw-eye"></i>
+                                                                                        Lihat</a>
                                                                                     @if ($item->anggotaPublikasi[0]->id_dosen == Auth::user()->dosen->id)
                                                                                         <a class="dropdown-item"
-                                                                                            href="{{ route('dosen.publikasi.edit', $item->encrypt_id) }}">
-                                                                                            <i class="fa fa-pencil"></i>
+                                                                                            href="{{ route('dosen.publikasi.edit', $item->encrypt_id) }}"><i
+                                                                                                class="dw dw-edit2"></i>
                                                                                             Edit</a>
                                                                                         <form class="deleteForm2"
                                                                                             action="{{ route('dosen.publikasi.destroy', $item->encrypt_id) }}"
@@ -395,8 +392,8 @@
                                                                                             <button type="button"
                                                                                                 class="dropdown-item text-danger deleteBtn2"
                                                                                                 onclick="showDeleteConfirmation(event)"><i
-                                                                                                    class="fa fa-trash"></i>
-                                                                                                Delete</button>
+                                                                                                    class="dw dw-delete-3"></i>
+                                                                                                Hapus</button>
                                                                                         </form>
                                                                                     @endif
                                                                                 </div>
@@ -450,16 +447,16 @@
                                                                         </td>
                                                                         <td>
                                                                             <div class="dropdown">
-                                                                                <a class="btn btn-outline-primary dropdown-toggle"
-                                                                                    href="#" role="button"
-                                                                                    data-toggle="dropdown">
-                                                                                    <i class="fa fa-ellipsis-h"></i>
+                                                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                                                    data-color="#1b3133" href="#"
+                                                                                    role="button" data-toggle="dropdown">
+                                                                                    <i class="dw dw-more"></i>
                                                                                 </a>
                                                                                 <div
-                                                                                    class="dropdown-menu dropdown-menu-right">
+                                                                                    class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                                                     <a class="dropdown-item"
-                                                                                        href="{{ route('dosen.jabatan.edit', $item->encrypted_id) }}">
-                                                                                        <i class="fa fa-pencil"></i>
+                                                                                        href="{{ route('dosen.jabatan.edit', $item->encrypted_id) }}"><i
+                                                                                            class="dw dw-edit2"></i>
                                                                                         Edit</a>
                                                                                     <form class="deleteForm2"
                                                                                         action="{{ route('dosen.jabatan.destroy', $item->encrypted_id) }}"
@@ -469,21 +466,17 @@
                                                                                         <button type="button"
                                                                                             class="dropdown-item text-danger deleteBtn2"
                                                                                             onclick="showDeleteConfirmation(event)"><i
-                                                                                                class="fa fa-trash"></i>
-                                                                                            Delete</button>
+                                                                                                class="dw dw-delete-3"></i>
+                                                                                            Hapus</button>
                                                                                     </form>
                                                                                 </div>
+                                                                            </div>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
                                                             </tbody>
-
                                                         </table>
-
-
                                                     </div>
-
-
                                                 </div>
                                             </div>
                                         </div>
@@ -519,22 +512,23 @@
                                                                         <td>{{ $loop->iteration }}</td>
                                                                         <td>{{ $item->kepangkatan }}</td>
                                                                         <td>{{ $item->tgl_sk }}</td>
-                                                                        <td><a
+                                                                        <td>
+                                                                            <a
                                                                                 href="/uploads/sk_pangkat_dosen/{{ $item->file_sk }}">
                                                                                 Lihat</a>
                                                                         </td>
                                                                         <td>
                                                                             <div class="dropdown">
-                                                                                <a class="btn btn-outline-primary dropdown-toggle"
-                                                                                    href="#" role="button"
-                                                                                    data-toggle="dropdown">
-                                                                                    <i class="fa fa-ellipsis-h"></i>
+                                                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                                                    data-color="#1b3133" href="#"
+                                                                                    role="button" data-toggle="dropdown">
+                                                                                    <i class="dw dw-more"></i>
                                                                                 </a>
                                                                                 <div
-                                                                                    class="dropdown-menu dropdown-menu-right">
+                                                                                    class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                                                     <a class="dropdown-item"
-                                                                                        href="{{ route('dosen.pangkat.edit', $item->encrypted_id) }}">
-                                                                                        <i class="fa fa-pencil"></i>
+                                                                                        href="{{ route('dosen.pangkat.edit', $item->encrypted_id) }}"><i
+                                                                                            class="dw dw-edit2"></i>
                                                                                         Edit</a>
                                                                                     <form class="deleteForm2"
                                                                                         action="{{ route('dosen.pangkat.destroy', $item->encrypted_id) }}"
@@ -544,21 +538,17 @@
                                                                                         <button type="button"
                                                                                             class="dropdown-item text-danger deleteBtn2"
                                                                                             onclick="showDeleteConfirmation(event)"><i
-                                                                                                class="fa fa-trash"></i>
-                                                                                            Delete</button>
+                                                                                                class="dw dw-delete-3"></i>
+                                                                                            Hapus</button>
                                                                                     </form>
                                                                                 </div>
+                                                                            </div>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
                                                             </tbody>
-
                                                         </table>
-
-
                                                     </div>
-
-
                                                 </div>
                                             </div>
                                         </div>
@@ -577,8 +567,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="profile-task-list pb-30">
-                                                        <table
-                                                            class="table stripe data-table-export ">
+                                                        <table class="table stripe data-table-export ">
                                                             <thead>
                                                                 <tr>
                                                                     <td>No</td>
@@ -594,23 +583,23 @@
                                                                 @foreach ($gelar as $item)
                                                                     <tr>
                                                                         <td>{{ $loop->iteration }}</td>
-                                                                        <td>{{ $item->instansi_pendidikan}}</td>
+                                                                        <td>{{ $item->instansi_pendidikan }}</td>
                                                                         <td>{{ $item->jurusan }}</td>
                                                                         <td>{{ $item->tahun_lulus }}</td>
                                                                         <td>{{ $item->nama_gelar }}</td>
                                                                         <td>{{ $item->singkatan_gelar }}</td>
                                                                         <td>
                                                                             <div class="dropdown">
-                                                                                <a class="btn btn-outline-primary dropdown-toggle"
-                                                                                    href="#" role="button"
-                                                                                    data-toggle="dropdown">
-                                                                                    <i class="fa fa-ellipsis-h"></i>
+                                                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                                                    data-color="#1b3133" href="#"
+                                                                                    role="button" data-toggle="dropdown">
+                                                                                    <i class="dw dw-more"></i>
                                                                                 </a>
                                                                                 <div
-                                                                                    class="dropdown-menu dropdown-menu-right">
+                                                                                    class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                                                     <a class="dropdown-item"
-                                                                                        href="{{ route('dosen.gelar.edit', $item->encrypt_id) }}">
-                                                                                        <i class="fa fa-pencil"></i>
+                                                                                        href="{{ route('dosen.gelar.edit', $item->encrypt_id) }}"><i
+                                                                                            class="dw dw-edit2"></i>
                                                                                         Edit</a>
                                                                                     <form class="deleteForm2"
                                                                                         action="{{ route('dosen.gelar.destroy', $item->encrypt_id) }}"
@@ -620,21 +609,17 @@
                                                                                         <button type="button"
                                                                                             class="dropdown-item text-danger deleteBtn2"
                                                                                             onclick="showDeleteConfirmation(event)"><i
-                                                                                                class="fa fa-trash"></i>
-                                                                                            Delete</button>
+                                                                                                class="dw dw-delete-3"></i>
+                                                                                            Hapus</button>
                                                                                     </form>
                                                                                 </div>
+                                                                            </div>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
                                                             </tbody>
-
                                                         </table>
-
-
                                                     </div>
-
-
                                                 </div>
                                             </div>
                                         </div>

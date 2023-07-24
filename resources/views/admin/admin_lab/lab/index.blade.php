@@ -7,12 +7,12 @@
                     <div class="pd-20">
                         <h4 class="text-blue h4">Aktivitas Laboratorium</h4>
                         @role('admin lab')
-                        <a href="{{ route('lab.ruang.create') }}">
-                            <button class="btn btn-success mt-3">
-                                <i class="icon-copy fi-page-add"></i>
-                                Tambah Data
-                            </button>
-                        </a>
+                            <a href="{{ route('lab.ruang.create') }}">
+                                <button class="btn btn-success mt-3">
+                                    <i class="icon-copy fi-page-add"></i>
+                                    Tambah Data
+                                </button>
+                            </a>
                         @endrole
                     </div>
                     <div class="pb-20 m-3">
@@ -93,15 +93,15 @@
 
                             return `
                                 <div class="dropdown">
-                                    <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                        <i class="fa fa-ellipsis-h"></i>
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="${showUrl}"><i class="fal fa-eye"></i> Lihat</a>
-                                        @role('admin lab')
-                                        <a class="dropdown-item" href="${editUrl}"><i class="fa fa-pencil"></i> Edit</a>
-                                        @endrole
+                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" data-color="#1b3133" href="#"
+                                    role="button" data-toggle="dropdown">
+                                    <i class="dw dw-more"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                    <a class="dropdown-item" href="${showUrl}"><i class="dw dw-eye"></i> View</a>
+                                    @role('admin lab')
+                                    <a class="dropdown-item" href="${editUrl}"><i class="dw dw-edit2"></i> Edit</a>
+                                    @endrole
                                     </div>
                                 </div>`;
                         }

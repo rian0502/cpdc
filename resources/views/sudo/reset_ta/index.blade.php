@@ -47,8 +47,7 @@
                     autoWidth: false,
                     ajax: '{{ route('sudo.reset.seminar.index') }}',
 
-                    columns: [
-                        {
+                    columns: [{
                             data: null,
                             name: 'mahasiswa.nama_mahasiswa',
                             render: function(data, type, row, meta) {
@@ -81,7 +80,8 @@
                             searchable: false,
                             exportable: false,
                             render: function(data, type, row) {
-                                var hapus = "{{ route('sudo.reset.seminar.destroy', ':id') }}".replace(':id', row.mahasiswa.npm);
+                                var hapus = "{{ route('sudo.reset.seminar.destroy', ':id') }}".replace(
+                                    ':id', row.mahasiswa.npm);
                                 return `
                                     <form  class="deleteForm2" action="${hapus}" method="POST">
                                         @csrf

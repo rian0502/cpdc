@@ -33,14 +33,15 @@
                                         <td>{{ $item->ket }}</td>
                                         <td>
                                             <div class="dropdown">
-                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
-                                                    role="button" data-toggle="dropdown">
-                                                    <i class="fa fa-ellipsis-h"></i>
+                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                    data-color="#1b3133" href="#" role="button"
+                                                    data-toggle="dropdown">
+                                                    <i class="dw dw-more"></i>
                                                 </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('sudo.kategori.edit', $item->encrypt_id) }}">
-                                                        <i class="fa fa-pencil"></i>
+                                                        href="{{ route('sudo.kategori.edit', $item->encrypt_id) }}"><i
+                                                            class="dw dw-edit2"></i>
                                                         Edit</a>
                                                     @if ($item->barangs->count() < 1)
                                                         <form id="delete"
@@ -48,8 +49,9 @@
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" id="deleteBtn" class="dropdown-item text-danger">
-                                                                <i class="fa fa-trash"></i>
+                                                            <button type="submit" id="deleteBtn"
+                                                                class="dropdown-item text-danger">
+                                                                <i class="dw dw-delete-3"></i>
                                                                 Hapus
                                                             </button>
                                                         </form>
