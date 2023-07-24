@@ -76,7 +76,7 @@
     <!-- End Google Tag Manager -->
 </head>
 
-<body>
+<body class="sidebar-light">
     <div class="pre-loader">
         <div class="pre-loader-box">
             <div class="loader-logo">
@@ -138,6 +138,7 @@
             </div>
         </div>
     </div>
+
 
     <div class="left-side-bar">
         <div class="brand-logo">

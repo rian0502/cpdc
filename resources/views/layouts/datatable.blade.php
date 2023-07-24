@@ -88,7 +88,7 @@
     <!-- End Google Tag Manager -->
 </head>
 
-<body>
+<body class="sidebar-light">
     <div class="pre-loader">
         <div class="pre-loader-box">
             <div class="loader-logo">
@@ -106,7 +106,6 @@
     <div class="header">
         <div class="header-left">
             <div class="menu-icon bi bi-list"></div>
-
         </div>
         <div class="header-right">
             <div class="user-info-dropdown">
@@ -152,6 +151,7 @@
 
         </div>
     </div>
+
 
     <div class="left-side-bar">
         <div class="brand-logo">
