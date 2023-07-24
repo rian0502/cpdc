@@ -177,7 +177,7 @@
                                         <!-- Timeline Tab start -->
                                         <div class="tab-pane fade show active" id="organisasi" role="tabpanel">
                                             <div class="pd-20 profile-task-wrap">
-                                                <div class="container pd-0">
+                                                <div class="">
                                                     <!-- Open Task start -->
                                                     <div class="task-title row align-items-center">
                                                         <div class="col-md-8 col-sm-12">
@@ -189,7 +189,7 @@
                                                                     class="ion-plus-round"></i> Tambah</a>
                                                         </div>
                                                     </div>
-                                                    <div class="profile-task-list pb-30 table-responsive">
+                                                    <div class="profile-task-list  table-responsive">
                                                         <table class="table data-table-responsive stripe data-table-export">
                                                             <thead>
                                                                 <tr>

@@ -95,101 +95,110 @@
                                         <!-- Prestasi Tab start -->
                                         <div class="tab-pane fade show active" id="prestasi" role="tabpanel">
                                             <div class="pd-20">
-                                                {{-- style="max-height:468px; overflow-y: scroll;" --}}
-                                                <div class="profile-timeline" style="margin-top: -30px">
-                                                    <a href="{{ route('mahasiswa.prestasi.create') }}"
-                                                        style="margin-left:15px;">
-                                                        <button class="btn btn-success ">
-                                                            <i class="icon-copy fi-page-add"></i>
-                                                            Tambah Data
-                                                        </button>
-                                                    </a>
-                                                    <table
-                                                        class="table data-table-responsive stripe data-table-noexport wrap ">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>No</th>
-                                                                <th>Nama Prestasi</th>
-                                                                <th>Tingkat</th>
-                                                                <th>Tanggal</th>
-                                                                <th>Capaian</th>
-                                                                <th class="table-plus datatable-nosort">Aksi</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach ($prestasi as $item)
+                                                <div class="">
+                                                    <!-- Open Task start -->
+                                                    <div class="task-title row align-items-center">
+                                                        <div class="col-md-8 col-sm-12">
+                                                            <h5>Data Prestasi</h5>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-12 text-right">
+                                                            <a href="{{ route('mahasiswa.prestasi.create') }}"
+                                                                class="bg-light-blue btn text-blue weight-500"><i
+                                                                    class="ion-plus-round"></i> Tambah</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="profile-task-list  table-responsive">
+                                                        <table
+                                                            class="table data-table-responsive stripe data-table-noexport">
+                                                            <thead>
                                                                 <tr>
-                                                                    <td>{{ $loop->iteration }}</td>
-                                                                    <td>{{ $item->nama_prestasi }}</td>
-                                                                    <td>{{ $item->scala }}</td>
-                                                                    <td>{{ $item->capaian }}</td>
-                                                                    <td>{{ $item->tanggal }}</td>
-                                                                    <td>
-                                                                        <div class="dropdown">
-                                                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                                                                data-color="#1b3133" href="#"
-                                                                                role="button" data-toggle="dropdown">
-                                                                                <i class="dw dw-more"></i>
-                                                                            </a>
-                                                                            <div
-                                                                                class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                                                <a class="dropdown-item" target="_blank"
-                                                                                    href="/uploads/file_prestasi/{{ $item->file_prestasi }}"><i
-                                                                                        class="dw dw-file"></i> Lihat
-                                                                                    File</a>
-                                                                                <a class="dropdown-item"
-                                                                                    href="{{ route('mahasiswa.prestasi.edit', $item->encrypt_id) }}"><i
-                                                                                        class="dw dw-edit2"></i>
-                                                                                    Edit</a>
-                                                                                <form class="deleteForm2"
-                                                                                    action="{{ route('mahasiswa.prestasi.destroy', $item->encrypt_id) }}"
-                                                                                    method="POST">
-                                                                                    @csrf
-                                                                                    @method('DELETE')
-                                                                                    <button type="button"
-                                                                                        class="dropdown-item text-danger deleteBtn2"
-                                                                                        onclick="showDeleteConfirmation(event)"><i
-                                                                                            class="dw dw-trash"></i>
-                                                                                        Hapus</button>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
+                                                                    <th>No</th>
+                                                                    <th>Nama Prestasi</th>
+                                                                    <th>Tingkat</th>
+                                                                    <th>Tanggal</th>
+                                                                    <th>Capaian</th>
+                                                                    <th class="table-plus datatable-nosort">Aksi</th>
                                                                 </tr>
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($prestasi as $item)
+                                                                    <tr>
+                                                                        <td>{{ $loop->iteration }}</td>
+                                                                        <td>{{ $item->nama_prestasi }}</td>
+                                                                        <td>{{ $item->scala }}</td>
+                                                                        <td>{{ $item->capaian }}</td>
+                                                                        <td>{{ $item->tanggal }}</td>
+                                                                        <td>
+                                                                            <div class="dropdown">
+                                                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                                                    data-color="#1b3133" href="#"
+                                                                                    role="button" data-toggle="dropdown">
+                                                                                    <i class="dw dw-more"></i>
+                                                                                </a>
+                                                                                <div
+                                                                                    class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                                                    <a class="dropdown-item" target="_blank"
+                                                                                        href="/uploads/file_prestasi/{{ $item->file_prestasi }}"><i
+                                                                                            class="dw dw-file"></i> Lihat
+                                                                                        File</a>
+                                                                                    <a class="dropdown-item"
+                                                                                        href="{{ route('mahasiswa.prestasi.edit', $item->encrypt_id) }}"><i
+                                                                                            class="dw dw-edit2"></i>
+                                                                                        Edit</a>
+                                                                                    <form class="deleteForm2"
+                                                                                        action="{{ route('mahasiswa.prestasi.destroy', $item->encrypt_id) }}"
+                                                                                        method="POST">
+                                                                                        @csrf
+                                                                                        @method('DELETE')
+                                                                                        <button type="button"
+                                                                                            class="dropdown-item text-danger deleteBtn2"
+                                                                                            onclick="showDeleteConfirmation(event)"><i
+                                                                                                class="dw dw-trash"></i>
+                                                                                            Hapus</button>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- Prestas Tab End -->
 
                                         <!-- Extra Activity Tab start -->
-                                        <div class="tab-pane fade" id="extra" role="tabpanel">
-                                            <div class="pd-20 profile-task-wrap">
-
-                                                <!-- Extra Activity start -->
-                                                <div class="profile-timeline" style="margin-top: -30px">
-                                                    <a href="/mahasiswa/kegiatan/create" style="margin-left:15px;">
-                                                        <button class="btn btn-success ">
-                                                            <i class="icon-copy fi-page-add"></i>
-                                                            Tambah Data
-                                                        </button>
-                                                    </a>
-                                                    <table
-                                                        class="table data-table-responsive stripe data-table-noexport wrap ">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>No</th>
-                                                                <th>Judul Kegiatan</th>
-                                                                <th>Peran</th>
-                                                                <th>Tanggal</th>
-                                                                <th>SKS Konversi</th>
-                                                                <th class="table-plus datatable-nosort">Aksi</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach ($aktivitas as $item)
+                                        <div class="tab-pane fade show" id="extra" role="tabpanel">
+                                            <div class="pd-20">
+                                                <div class="">
+                                                    <!-- Open Task start -->
+                                                    <div class="task-title row align-items-center">
+                                                        <div class="col-md-8 col-sm-12">
+                                                            <h5>Data Kegiatan Lainnya</h5>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-12 text-right">
+                                                            <a href="/mahasiswa/kegiatan/create"
+                                                                class="bg-light-blue btn text-blue weight-500"><i
+                                                                    class="ion-plus-round"></i> Tambah</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="profile-task-list  table-responsive">
+                                                        <table
+                                                            class="table data-table-responsive stripe data-table-noexport">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>No</th>
+                                                                    <th>Judul Kegiatan</th>
+                                                                    <th>Peran</th>
+                                                                    <th>Tanggal</th>
+                                                                    <th>SKS Konversi</th>
+                                                                    <th class="table-plus datatable-nosort">Aksi</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($aktivitas as $item)
                                                                 <tr>
                                                                     <td>{{ $loop->iteration }}</td>
                                                                     <td>{{ $item->nama_aktivitas }}</td>
@@ -197,7 +206,7 @@
                                                                     <td>{{ $item->tanggal }}</td>
                                                                     <td>{{ $item->sks_konversi }} SKS</td>
                                                                     <td>
-                                                                        
+
                                                                         <div class="dropdown">
                                                                             <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
                                                                                 data-color="#1b3133" href="#"
@@ -208,7 +217,8 @@
                                                                                 class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                                                 <a class="dropdown-item" target="_blank"
                                                                                     href="/uploads/file_act_mhs/{{ $item->file_aktivitas }}"><i
-                                                                                        class="dw dw-file"></i> Lihat File</a>
+                                                                                        class="dw dw-file"></i> Lihat
+                                                                                    File</a>
                                                                                 <a class="dropdown-item"
                                                                                     href="{{ route('mahasiswa.kegiatan.edit', $item->encrypt_id) }}"><i
                                                                                         class="dw dw-edit2"></i> Edit</a>
@@ -228,180 +238,13 @@
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
-                                                        </tbody>
-                                                    </table>
-                                                    <!-- Extra activity End -->
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- Extra Activity Tab End -->
-
-                                        <!-- Setting Tab start -->
-                                        {{-- <div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
-                                            <div class="profile-setting">
-                                                <form id="delete">
-                                                    <ul class="profile-edit-list row">
-                                                        <li class="weight-500 col-md-6">
-                                                            <h4 class="text-blue h5 mb-20">
-                                                                Edit Your Personal Setting
-                                                            </h4>
-                                                            <div class="form-group">
-                                                                <label>Full Name</label>
-                                                                <input class="form-control form-control-lg"
-                                                                    type="text" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Title</label>
-                                                                <input class="form-control form-control-lg"
-                                                                    type="text" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Email</label>
-                                                                <input class="form-control form-control-lg"
-                                                                    type="email" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Date of birth</label>
-                                                                <input class="form-control form-control-lg date-picker"
-                                                                    type="text" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Gender</label>
-                                                                <div class="d-flex">
-                                                                    <div class="custom-control custom-radio mb-5 mr-20">
-                                                                        <input type="radio" id="customRadio4"
-                                                                            name="customRadio"
-                                                                            class="custom-control-input" />
-                                                                        <label class="custom-control-label weight-400"
-                                                                            for="customRadio4">Male</label>
-                                                                    </div>
-                                                                    <div class="custom-control custom-radio mb-5">
-                                                                        <input type="radio" id="customRadio5"
-                                                                            name="customRadio"
-                                                                            class="custom-control-input" />
-                                                                        <label class="custom-control-label weight-400"
-                                                                            for="customRadio5">Female</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Country</label>
-                                                                <select class="selectpicker form-control form-control-lg"
-                                                                    data-style="btn-outline-secondary btn-lg"
-                                                                    title="Not Chosen">
-                                                                    <option>United States</option>
-                                                                    <option>India</option>
-                                                                    <option>United Kingdom</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>State/Province/Region</label>
-                                                                <input class="form-control form-control-lg"
-                                                                    type="text" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Postal Code</label>
-                                                                <input class="form-control form-control-lg"
-                                                                    type="text" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Phone Number</label>
-                                                                <input class="form-control form-control-lg"
-                                                                    type="text" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Address</label>
-                                                                <textarea class="form-control"></textarea>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Visa Card Number</label>
-                                                                <input class="form-control form-control-lg"
-                                                                    type="text" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Paypal ID</label>
-                                                                <input class="form-control form-control-lg"
-                                                                    type="text" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <div class="custom-control custom-checkbox mb-5">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                        id="customCheck1-1" />
-                                                                    <label class="custom-control-label weight-400"
-                                                                        for="customCheck1-1">I agree to receive
-                                                                        notification
-                                                                        emails</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group mb-0">
-                                                                <input type="submit" id="deleteBtn"
-                                                                    class="btn btn-primary" value="Update Information" />
-                                                            </div>
-                                                        </li>
-                                                        <li class="weight-500 col-md-6">
-                                                            <h4 class="text-blue h5 mb-20">
-                                                                Edit Social Media links
-                                                            </h4>
-                                                            <div class="form-group">
-                                                                <label>Facebook URL:</label>
-                                                                <input class="form-control form-control-lg" type="text"
-                                                                    placeholder="Paste your link here" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Twitter URL:</label>
-                                                                <input class="form-control form-control-lg" type="text"
-                                                                    placeholder="Paste your link here" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Linkedin URL:</label>
-                                                                <input class="form-control form-control-lg" type="text"
-                                                                    placeholder="Paste your link here" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Instagram URL:</label>
-                                                                <input class="form-control form-control-lg" type="text"
-                                                                    placeholder="Paste your link here" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Dribbble URL:</label>
-                                                                <input class="form-control form-control-lg" type="text"
-                                                                    placeholder="Paste your link here" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Dropbox URL:</label>
-                                                                <input class="form-control form-control-lg" type="text"
-                                                                    placeholder="Paste your link here" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Google-plus URL:</label>
-                                                                <input class="form-control form-control-lg" type="text"
-                                                                    placeholder="Paste your link here" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Pinterest URL:</label>
-                                                                <input class="form-control form-control-lg" type="text"
-                                                                    placeholder="Paste your link here" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Skype URL:</label>
-                                                                <input class="form-control form-control-lg" type="text"
-                                                                    placeholder="Paste your link here" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Vine URL:</label>
-                                                                <input class="form-control form-control-lg" type="text"
-                                                                    placeholder="Paste your link here" />
-                                                            </div>
-                                                            <div class="form-group mb-0">
-                                                                <input type="submit" id="deleteBtn"
-                                                                    class="btn btn-primary" value="Save & Update" />
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </form>
-                                            </div>
-                                        </div> --}}
-                                        <!-- Setting Tab End -->
                                     </div>
                                 </div>
                             </div>
