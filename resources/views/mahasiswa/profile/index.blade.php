@@ -126,19 +126,21 @@
                                                                     <td>{{ $item->tanggal }}</td>
                                                                     <td>
                                                                         <div class="dropdown">
-                                                                            <a class="btn btn-outline-primary dropdown-toggle"
-                                                                                href="#" role="button"
-                                                                                data-toggle="dropdown">
-                                                                                <i class="fa fa-ellipsis-h"></i>
+                                                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                                                data-color="#1b3133" href="#"
+                                                                                role="button" data-toggle="dropdown">
+                                                                                <i class="dw dw-more"></i>
                                                                             </a>
-                                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                                            <div
+                                                                                class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                                                 <a class="dropdown-item" target="_blank"
                                                                                     href="/uploads/file_prestasi/{{ $item->file_prestasi }}"><i
-                                                                                        class="fal fa-file"></i> Lihat
+                                                                                        class="dw dw-file"></i> Lihat
                                                                                     File</a>
                                                                                 <a class="dropdown-item"
                                                                                     href="{{ route('mahasiswa.prestasi.edit', $item->encrypt_id) }}"><i
-                                                                                        class="fa fa-pencil"></i> Edit</a>
+                                                                                        class="dw dw-edit2"></i>
+                                                                                    Edit</a>
                                                                                 <form class="deleteForm2"
                                                                                     action="{{ route('mahasiswa.prestasi.destroy', $item->encrypt_id) }}"
                                                                                     method="POST">
@@ -147,7 +149,7 @@
                                                                                     <button type="button"
                                                                                         class="dropdown-item text-danger deleteBtn2"
                                                                                         onclick="showDeleteConfirmation(event)"><i
-                                                                                            class="fa fa-trash"></i>
+                                                                                            class="dw dw-trash"></i>
                                                                                         Hapus</button>
                                                                                 </form>
                                                                             </div>
@@ -195,20 +197,21 @@
                                                                     <td>{{ $item->tanggal }}</td>
                                                                     <td>{{ $item->sks_konversi }} SKS</td>
                                                                     <td>
+                                                                        
                                                                         <div class="dropdown">
-                                                                            <a class="btn btn-outline-primary dropdown-toggle"
-                                                                                href="#" role="button"
-                                                                                data-toggle="dropdown">
-                                                                                <i class="fa fa-ellipsis-h"></i>
+                                                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                                                data-color="#1b3133" href="#"
+                                                                                role="button" data-toggle="dropdown">
+                                                                                <i class="dw dw-more"></i>
                                                                             </a>
-                                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                                <a class="dropdown-item"
+                                                                            <div
+                                                                                class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                                                <a class="dropdown-item" target="_blank"
                                                                                     href="/uploads/file_act_mhs/{{ $item->file_aktivitas }}"><i
-                                                                                        class="fal fa-file"
-                                                                                        target="_blank"></i> Lihat File</a>
+                                                                                        class="dw dw-file"></i> Lihat File</a>
                                                                                 <a class="dropdown-item"
                                                                                     href="{{ route('mahasiswa.kegiatan.edit', $item->encrypt_id) }}"><i
-                                                                                        class="fa fa-pencil"></i> Edit</a>
+                                                                                        class="dw dw-edit2"></i> Edit</a>
                                                                                 <form class="deleteForm2"
                                                                                     action="{{ route('mahasiswa.kegiatan.destroy', $item->encrypt_id) }}"
                                                                                     method="POST">
@@ -217,7 +220,7 @@
                                                                                     <button type="button"
                                                                                         class="dropdown-item text-danger deleteBtn2"
                                                                                         onclick="showDeleteConfirmation(event)"><i
-                                                                                            class="fa fa-trash"></i>
+                                                                                            class="dw dw-trash"></i>
                                                                                         Hapus</button>
                                                                                 </form>
                                                                             </div>
