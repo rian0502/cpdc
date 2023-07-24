@@ -22,193 +22,193 @@ class RolePermision extends Seeder
             'name' => 'Mulyono, S.Si., M.Si., Ph.D.',
             'email' => 'mulyono@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' => bcrypt('kajur'),
+            'password' => bcrypt('cpdc'),
         ]); //1
         $hardoko = User::create([
             'name' => 'Dr. Hardoko Insan Qudus, M.S.',
             'email' => 'hardoko.insan@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//2
         $ilim = User::create([
             'name' => 'Dr. Dra. Ilim, M.S.',
             'email' => 'ilim_ds@yahoo.com.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//3
         $buhani = User::create([
             'name' => 'Prof . Dr. Buhani, M.Si.',
             'email' => 'buhani_s@yahoo.co.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//4
         $suharso = User::create([
             'name' => 'Prof. Ir. Suharso, S.Si., Ph.D.',
             'email' => 'suharso@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//5
         $agung = User::create([
             'name' => 'Dr. Agung Abadi Kiswandono, S.Si., M.Sc.',
             'email' => 'agungkiswandono@gmail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//6
         $rinawati = User::create([
             'name' => 'Dr. Rinawati, Ph.D, S.Si, M.Si',
             'email' => 'rinawati@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
             'lokasi_id' => 1
         ]);//7
         $dian = User::create([
             'name' => 'Dr. Dian Herasari, M.Si.',
             'email' => 'dehayan@yahoo.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
             'lokasi_id' => 5
         ]);//8
         $heri = User::create([
             'name' => 'Dr. Eng. Heri Satria, S.Si., M.Si.',
             'email' => 'heri.satria@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//9
         $sonny = User::create([
             'name' => 'Dr. Sonny Widiarto, S.Si., M.Sc.',
             'email' => 'sonnywidiarto@gmail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//10
         $mita = User::create([
             'name' => 'Dr. Mita Rilyanti, S.Si., M.Si.',
             'email' => 'mitarilyanti@gmail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//11
         $kamisah = User::create([
             'name' => 'Prof. Dr. Kamisah Delilawati Pandiangan, S.Si., M.Si.',
             'email' => 'kamisah.delilawati@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
             'lokasi_id' => 2
         ]);//12
         $syaiful = User::create([
             'name' => 'Syaiful Bahri, S.Si, M.Si',
             'email' => 'muzaki2002@yahoo.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//13
         $noviany = User::create([
             'name' => 'Prof. Noviany, S.Si., M.Si, Ph.D',
             'email' => 'noviany@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
             'lokasi_id' => 3
         ]);//14
         $diky = User::create([
             'name' => 'Diky Hidayat, S.Si., M.Sc.',
             'email' => 'dikyhidayat93@gmail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//15
         $suripto = User::create([
             'name' => 'Dr. Eng. Suripto Dwi Yuwono, S.Si., M.T.',
             'email' => 'suripto.dwi@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//16
         $yuli = User::create([
             'name' => 'Dr. Yuli Ambarwati, S.Si, M.Si.',
             'email' => 'yuliambar74@yahoo.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//17
         $nurhasanah = User::create([
             'name' => 'Dr. Nurhasanah, S.Si, M.Si',
             'email' => 'nur.hasanah@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//18
         $gede = User::create([
             'name' => 'Dr. Ni Luh Gede Ratna Juliasih, S.Si., M.Si.',
             'email' => 'ratnagede.juliasih@gmail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
             'lokasi_id' => 4
         ]);//19
         $pratama = User::create([
             'name' => 'Dian Septiani Pratama, S.Si., M.Si.',
             'email' => 'pratama.dian@gmail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//20
         $devi = User::create([
             'name' => 'Devi Nur Anisa, S.Pd., M.Sc',
             'email' => 'devinur@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//21
         $hapin = User::create([
             'name' => 'Hapin Afriyani, S.Si., M.Si.',
             'email' => 'hapin.afriyani@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//22
 
         $yandri = User::create([
             'name' => 'Prof. Dr., Ir. Yandri A.S., M.S.',
             'email' => 'yandri.as@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//23
         $tati = User::create([
             'name' => 'Prof. Dr. Tati Suhartati, M.S.',
             'email' => 'tati.suhartati@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//24
         $wasinton = User::create([
             'name' => 'Prof. Wasinton Simanjuntak, M.Sc., Ph.D.',
             'email' => 'wasinton.simanjuntak@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//25
         $mangapul = User::create([
             'name' => 'Prof. Rudy T. Mangapul Situmeang, M.Sc., Ph.D.',
             'email' => 'rudy.tahan@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//26
         $sutopo = User::create([
             'name' => 'Prof. Dr. Sutopo Hadi, S.Si, M.Sc.',
             'email' => 'sutopo.hadi@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);//27
         $john = User::create([
             'name' => 'Prof. Drs. John Hendri,, M.S., Ph.D.',
             'email' => 'john.hendri@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);
         $andi = User::create([
             'name' => 'Prof. Andi Setiawan, M.Sc., Ph.D',
             'email' => 'andi.setiawan@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);
         $aspita = User::create([
             'name' => 'Dra. Aspita Laila, M.S.',
             'email' => 'aspita.laila@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);
         $zipora = User::create([
             'name' => 'Dr. Zipora Sembiring, M.Si, Dra.',
             'email' => 'zipora.sembiring@fmipa.unila.ac.id',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);
         //end dosen
         //sudo
@@ -216,7 +216,7 @@ class RolePermision extends Seeder
             'name' => 'SUPER USER ADMIN DO',
             'email' => 'sudo@sudo.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);
         
         //endsudo
@@ -225,7 +225,7 @@ class RolePermision extends Seeder
             'name' => 'Rudi Santoso',
             'email' => 'rd.santoso181@gmail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]); //32
         //end admin berkas
         //admin lab
@@ -233,35 +233,35 @@ class RolePermision extends Seeder
             'name' => 'Fakhruddin, S.T',
             'email' => 'fakhruddin1006@gmail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
             'lokasi_id' => 1
         ]); //33
         $anorganik = User::create([
             'name' => 'Liza Apriliya Sukartiningsih, S.Si.',
             'email' => 'lizaapriliya15@gmail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
             'lokasi_id' => 2
         ]); //34
         $organik = User::create([
             'name' => 'Wiwit Kasmawati',
             'email' => 'wiwitkasmawati02@gmail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
             'lokasi_id' => 3
         ]); //35
         $biokimia = User::create([
             'name' => 'Della Rahmadhani Putri',
             'email' => 'dellarahmadhaniputri@gmail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
             'lokasi_id' => 4
         ]); //36
         $kidas = User::create([
             'name' => 'Tri Kismwantari, A.Md.',
             'email' => 'trikiswantari@gmail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
             'lokasi_id' => 5
         ]); //37
         //endadminlab
@@ -270,27 +270,27 @@ class RolePermision extends Seeder
             'name' => 'Egon Otmar',
             'email' => 'omar.students@mail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
             'profile_picture' => 'man.jpg'
         ]);
         $mhs2 = User::create([
             'name' => 'Melati Aminah',
             'email' => 'melatiaminah.students@mail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
             'profile_picture' => 'woman.jpg'
         ]);
         $mhs3 = User::create([
             'name' => 'Wera Adamska',
             'email' => 'WeraAdamska@mail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);
         $mhs4 = User::create([
             'name' => 'Gianni Ricci',
             'email' => 'GianniRicci@mail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);
 
 
@@ -298,28 +298,26 @@ class RolePermision extends Seeder
             'name' => 'Elvina Pratiwi',
             'email' => 'vera.hastutigmail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);
         $mhs6 = User::create([
             'name' => 'Enteng Waluyo',
             'email' => 'entengwaluyo10@mail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);
         $mhs7 = User::create([
             'name' => 'Nilam Palastri',
             'email' => 'nilampalastri1010@mail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);
         $mhs8 = User::create([
             'name' => 'Cakrajiya Anggriawan',
             'email' => 'cakrajiya@mail.com',
             'email_verified_at' => now(),
-            'password' =>  bcrypt('kajur'),
+            'password' =>  bcrypt('cpdc'),
         ]);
-
-
 
         $roles = ['admin lab', 'admin berkas', 'mahasiswa', 'dosen', 'pkl', 'kompre', 'ta1', 'ta2', 'jurusan', 'alumni', 'kalab', 'sudo'];
         foreach ($roles as $role) {
@@ -373,9 +371,9 @@ class RolePermision extends Seeder
         //end adminlab
         //mahasiswa
         $mhs->assignRole(['mahasiswa']);
-        $mhs2->assignRole(['mahasiswa', 'alumni']);
-        $mhs3->assignRole(['mahasiswa', 'alumni']);
-        $mhs4->assignRole(['mahasiswa', 'alumni']);
+        $mhs2->assignRole(['mahasiswa']);
+        $mhs3->assignRole(['mahasiswa']);
+        $mhs4->assignRole(['mahasiswa']);
         $mhs5->assignRole('mahasiswa');
         $mhs6->assignRole('mahasiswa');
         $mhs7->assignRole('mahasiswa');

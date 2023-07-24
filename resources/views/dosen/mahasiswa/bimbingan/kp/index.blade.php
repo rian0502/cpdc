@@ -46,7 +46,8 @@
                         <h4 class="text-blue h4">Mahasiswa Bimbingan PKL/KP</h4>
                         <div class="containerr">
                             <div class="move">
-                                <form action="" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('dosen.mahasiswa.bimbingan.kp.export') }}" method="POST"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                                         <div class="weight-500 col-md-9" style="margin-left: 5px">
@@ -55,7 +56,10 @@
                                                 <select class="custom-select2 form-control" name="kp_unduh" id="kp_unduh"
                                                     style="width: 100%; height: 38px">
                                                     <optgroup label="Angkatan">
-                                                        <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                                        @foreach ($mahasiswa as $item)
+                                                            <option value="{{ $item->angkatan }}">{{ $item->angkatan }}
+                                                            </option>
+                                                        @endforeach
                                                     </optgroup>
                                                 </select>
                                                 @error('kp_unduh')
@@ -127,26 +131,4 @@
             </div>
         </div>
     </div>
-    <script>
-        const currentYear = new Date().getFullYear();
-
-        function populateSelect(selectId) {
-            const selectElement = document.getElementById(selectId);
-            for (let year = currentYear; year >= currentYear - 100; year--) {
-                const option = document.createElement("option");
-                option.text = year;
-                option.value = year;
-                selectElement.appendChild(option);
-            }
-            const selectedYear = localStorage.getItem(selectId);
-            if (selectedYear) {
-                selectElement.value = selectedYear;
-            }
-
-            selectElement.addEventListener("change", function() {
-                localStorage.setItem(selectId, selectElement.value);
-            });
-        }
-        populateSelect("kp_unduh");
-    </script>
 @endsection

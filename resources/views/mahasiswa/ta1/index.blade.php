@@ -241,9 +241,13 @@
                                     </div>
                                 </div>
                                 <div class="row border-bottom mt-2">
-                                    <label class="col-md-3 bold"> <strong>Berkas Seminar</strong></label>
+                                    <label class="col-md-3 bold"> <strong>Lokasi Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        <a target="_blank" href="/uploads/syarat_seminar_ta1/{{ $seminar->berkas_ta_satu }}">Unduh Berkas</a>
+                                        @if ($seminar->jadwal)
+                                            {{ $seminar->jadwal->lokasi->nama_lokasi }}
+                                        @else
+                                            <div>Belum terjadwal</div>
+                                        @endif
                                     </div>
                                     <label class="col-md-3 bold mt-1"><strong>Jam Selesai</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">

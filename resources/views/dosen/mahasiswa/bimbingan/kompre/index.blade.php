@@ -47,16 +47,20 @@
                         <h4 class="text-blue h4">Mahasiswa Bimbingan Tugas Akhir</h4>
                         <div class="containerr">
                             <div class="move">
-                                <form action="" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('dosen.mahasiswa.bimbingan.ta.export') }}" method="POST"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                                         <div class="weight-500 col-md-9" style="margin-left: 5px">
                                             <div class="form-group">
                                                 <label>Pilih Angkatan</label>
-                                                <select class="custom-select2 form-control" name="ta_unduh"
-                                                    id="ta_unduh" style="width: 100%; height: 38px">
+                                                <select class="custom-select2 form-control" name="ta_unduh" id="ta_unduh"
+                                                    style="width: 100%; height: 38px">
                                                     <optgroup label="Angkatan">
-                                                        <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                                        @foreach ($mahasiswa as $item)
+                                                            <option value="{{ $item->angkatan }}">{{ $item->angkatan }}
+                                                            </option>
+                                                        @endforeach
                                                     </optgroup>
                                                 </select>
                                                 @error('ta_unduh')
@@ -126,26 +130,4 @@
             </div>
         </div>
     </div>
-    <script>
-        const currentYear = new Date().getFullYear();
-
-        function populateSelect(selectId) {
-            const selectElement = document.getElementById(selectId);
-            for (let year = currentYear; year >= currentYear - 100; year--) {
-                const option = document.createElement("option");
-                option.text = year;
-                option.value = year;
-                selectElement.appendChild(option);
-            }
-            const selectedYear = localStorage.getItem(selectId);
-            if (selectedYear) {
-                selectElement.value = selectedYear;
-            }
-
-            selectElement.addEventListener("change", function() {
-                localStorage.setItem(selectId, selectElement.value);
-            });
-        }
-        populateSelect("ta_unduh");
-    </script>
 @endsection

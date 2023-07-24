@@ -30,4 +30,8 @@ class PrestasiMahasiswa extends Model
     {
         return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id');
     }
+    public function getTahunAttribute()
+    {
+        return date('Y', strtotime($this->tanggal));
+    }
 }

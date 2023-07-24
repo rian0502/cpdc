@@ -93,19 +93,22 @@
                     <div class="pd-20">
                         <div class="h5 mb-0">Publikasi</div>
                     </div>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.publikasi') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Data Publikasi</label>
-                                    <select class="custom-select2 form-control" name="tahun-publikasi" id="tahun-publikasi"
+                                    <select class="custom-select2 form-control" name="tahun_publikasi" id="tahun_publikasi"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Tahun">
-                                            <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                            @foreach ($publikasi as $item)
+                                                <option value="{{ $item->tahun }}">{{ $item->tahun }}
+                                                </option>
+                                            @endforeach
                                         </optgroup>
                                     </select>
-                                    @error('tahun-publikasi')
+                                    @error('tahun_publikasi')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -120,20 +123,24 @@
                         </div>
                     </form>
                 </div>
+
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
                         <div class="h5 mb-0">Prestasi</div>
                     </div>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.prestasi') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Data Prestasi</label>
-                                    <select class="custom-select2 form-control" name="tahun-prestasi" id="tahun-prestasi"
+                                    <select class="custom-select2 form-control" name="tahun_prestasi" id="tahun_prestasi"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Tahun">
-                                            <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                            @foreach ($prestasi as $item)
+                                                <option value="{{ $item->year }}">{{ $item->year }}
+                                                </option>
+                                            @endforeach
                                         </optgroup>
                                     </select>
                                     @error('tahun-presatasi')
@@ -155,19 +162,22 @@
                     <div class="pd-20">
                         <div class="h5 mb-0">Aktivitas</div>
                     </div>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.aktivitas') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Data Aktivitas</label>
-                                    <select class="custom-select2 form-control" name="tahun-aktivitas" id="tahun-aktivitas"
-                                        style="width: 100%; height: 38px">
+                                    <select class="custom-select2 form-control" name="tahun_aktivitas"
+                                        id="tahun_aktivitas" style="width: 100%; height: 38px">
                                         <optgroup label="Tahun">
-                                            <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                            @foreach ($aktivitas as $item)
+                                                <option value="{{ $item->year }}">{{ $item->year }}
+                                                </option>
+                                            @endforeach
                                         </optgroup>
                                     </select>
-                                    @error('tahun-aktivitas')
+                                    @error('tahun_aktivitas')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -186,19 +196,22 @@
                     <div class="pd-20">
                         <div class="h5 mb-0">Mahasiswa</div>
                     </div>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.mahasiswa') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Data Mahasiswa</label>
-                                    <select class="custom-select2 form-control" name="data-mhs" id="data-mhs"
-                                        style="width: 100%; height: 38px">
+                                    <select class="custom-select2 form-control" name="tahun_mahasiswa"
+                                        id="tahun_mahasiswa" style="width: 100%; height: 38px">
                                         <optgroup label="Angkatan">
-                                            <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                            @foreach ($mahasiswa as $item)
+                                                <option value="{{ $item->angkatan }}">{{ $item->angkatan }}
+                                                </option>
+                                            @endforeach
                                         </optgroup>
                                     </select>
-                                    @error('tahun-aktivitas')
+                                    @error('tahun_mahasiswa')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -217,19 +230,22 @@
                     <div class="pd-20">
                         <div class="h5 mb-0">Alumni</div>
                     </div>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.alumni') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Data Alumni</label>
-                                    <select class="custom-select2 form-control" name="data-alumni" id="data-alumni"
+                                    <select class="custom-select2 form-control" name="tahun_alumni" id="tahun_alumni"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Angkatan">
-                                            <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                            @foreach ($mahasiswa as $item)
+                                                <option value="{{ $item->angkatan }}">{{ $item->angkatan }}
+                                                </option>
+                                            @endforeach
                                         </optgroup>
                                     </select>
-                                    @error('tahun-aktivitas')
+                                    @error('tahun_alumni')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -248,19 +264,22 @@
                     <div class="pd-20">
                         <div class="h5 mb-0">Seminar PKL / KP</div>
                     </div>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.kp') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Data Mahasiswa</label>
-                                    <select class="custom-select2 form-control" name="akt-kp" id="akt-kp"
+                                    <select class="custom-select2 form-control" name="akt_kp" id="akt_kp"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Angkatan">
-                                            <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                            @foreach ($kp as $item)
+                                                <option value="{{ $item->angkatan }}">{{ $item->angkatan }}
+                                                </option>
+                                            @endforeach
                                         </optgroup>
                                     </select>
-                                    @error('tahun-aktivitas')
+                                    @error('akt_kp')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -279,19 +298,22 @@
                     <div class="pd-20">
                         <div class="h5 mb-0">Seminar Tugas Akhir 1</div>
                     </div>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.ta1') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Data Mahasiswa</label>
-                                    <select class="custom-select2 form-control" name="akt-ta1" id="akt-ta1"
+                                    <select class="custom-select2 form-control" name="akt_ta1" id="akt_ta1"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Angkatan">
-                                            <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                            @foreach ($ta1 as $item)
+                                                <option value="{{ $item->angkatan }}">{{ $item->angkatan }}
+                                                </option>
+                                            @endforeach
                                         </optgroup>
                                     </select>
-                                    @error('tahun-aktivitas')
+                                    @error('akt_ta1')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -310,19 +332,22 @@
                     <div class="pd-20">
                         <div class="h5 mb-0">Seminar Tugas Akhir 2</div>
                     </div>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.ta2') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Data Mahasiswa</label>
-                                    <select class="custom-select2 form-control" name="akt-ta2" id="akt-ta2"
+                                    <select class="custom-select2 form-control" name="akt_ta2" id="akt_ta2"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="angkatan">
-                                            <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                            @foreach ($ta2 as $item)
+                                                <option value="{{ $item->angkatan }}">{{ $item->angkatan }}
+                                                </option>
+                                            @endforeach
                                         </optgroup>
                                     </select>
-                                    @error('tahun-aktivitas')
+                                    @error('akt_ta2')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -341,19 +366,22 @@
                     <div class="pd-20">
                         <div class="h5 mb-0">Sidang Komprehensif</div>
                     </div>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.kompre') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Data Mahasiswa</label>
-                                    <select class="custom-select2 form-control" name="akt-kompre" id="akt-kompre"
+                                    <select class="custom-select2 form-control" name="akt_kompre" id="akt_kompre"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Angkatan">
-                                            <!-- menampilkan beberapa tahun kebelakang sesuai JS -->
+                                            @foreach ($kompre as $item)
+                                                <option value="{{ $item->angkatan }}">{{ $item->angkatan }}
+                                                </option>
+                                            @endforeach
                                         </optgroup>
                                     </select>
-                                    @error('tahun-aktivitas')
+                                    @error('akt_kompre')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -394,13 +422,13 @@
         populateSelect("tahun_penelitian");
         populateSelect("tahun_pengabdian");
         populateSelect("tahun-publikasi");
-        populateSelect("tahun-prestasi");
+        populateSelect("tahun_prestasi");
         populateSelect("tahun-aktivitas");
         populateSelect("akt-kp");
         populateSelect("akt-ta1");
         populateSelect("akt-ta2");
         populateSelect("akt-kompre");
-        populateSelect("data-mhs");
+        populateSelect("tahun_mahasiswa");
         populateSelect("data-alumni");
     </script>
 @endsection

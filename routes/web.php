@@ -153,6 +153,9 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::resource('pangkat', PangkatDosenController::class);
     Route::resource('mahasiswa/bimbingan/akademik', MahasiswaBimbinganAkademikController::class)->names('mahasiswa.bimbingan.akademik');
     Route::resource('mahasiswa/bimbingan/kp', MahasiswaBimbinganKPController::class)->names('mahasiswa.bimbingan.kp');
+    Route::post('mahasiswa/bimbingan/kp/export', [MahasiswaBimbinganKPController::class, 'export'])->name('mahasiswa.bimbingan.kp.export');
+    Route::post('mahasiswa/bimbingan/ta/export', [MahasiswaBimbinganKompreController::class, 'export'])->name('mahasiswa.bimbingan.ta.export');
+
     Route::resource('mahasiswa/bimbingan/ta1', MahasiswaBimbinganTA1Controller::class)->names('mahasiswa.bimbingan.ta1');
     Route::resource('mahasiswa/bimbingan/ta2', MahasiswaBimbinganTA2Controller::class)->names('mahasiswa.bimbingan.ta2');
     Route::resource('mahasiswa/bimbingan/kompre', MahasiswaBimbinganKompreController::class)->names('mahasiswa.bimbingan.kompre');
@@ -191,8 +194,15 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::get('unduh', [ExportData::class, 'index'])->name('unduh.index');
     Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
     Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
-    Route::post('unduh/publikasi', [ExportData::class, 'prestasi'])->name('unduh.prestasi');
+    Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
+    Route::post('unduh/prestasi', [ExportData::class, 'prestasi'])->name('unduh.prestasi');
     Route::post('unduh/aktivitas', [ExportData::class, 'aktivitas'])->name('unduh.aktivitas');
+    Route::post('unduh/mahasiswa', [ExportData::class, 'mahasiswa'])->name('unduh.mahasiswa');
+    Route::post('unduh/alumni', [ExportData::class, 'alumni'])->name('unduh.alumni');
+    Route::post('unduh/kp', [ExportData::class, 'kp'])->name('unduh.kp');
+    Route::post('unduh/ta1', [ExportData::class, 'ta1'])->name('unduh.ta1');
+    Route::post('unduh/ta2', [ExportData::class, 'ta2'])->name('unduh.ta2');
+    Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
 
     Route::get('chartCapaianPrestasi', [PrestasiDataController::class, 'pieChartCapaian'])->name('prestasi.chartCapaian');
     Route::get('chartScalaPrestasi', [PrestasiDataController::class, 'pieChartScala'])->name('prestasi.chartScala');
@@ -375,10 +385,3 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 Route::get('/reset-password', function () {
     return view('auth.reset');
 })->name('reset');
-
-
-
-
-
-
-
