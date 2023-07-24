@@ -176,7 +176,7 @@
                                     <div class="tab-content">
                                         <!-- Timeline Tab start -->
                                         <div class="tab-pane fade show active" id="organisasi" role="tabpanel">
-                                            <div class="pd-20 profile-task-wrap">
+                                            <div class="pd-20">
                                                 <div class="">
                                                     <!-- Open Task start -->
                                                     <div class="task-title row align-items-center">
@@ -246,8 +246,8 @@
                                         <!-- Timeline Tab End -->
                                         <!-- Tasks Tab start -->
                                         <div class="tab-pane fade" id="litabmas" role="tabpanel">
-                                            <div class="pd-20 profile-task-wrap">
-                                                <div class="container pd-0">
+                                            <div class="pd-20">
+                                                <div class="">
                                                     <!-- Open Task start -->
                                                     <div class="task-title row align-items-center">
                                                         <div class="col-md-8 col-sm-12">
@@ -328,8 +328,8 @@
                                         <!-- Tasks Tab End -->
                                         <!-- Setting Tab start -->
                                         <div class="tab-pane fade" id="publikasi" role="tabpanel">
-                                            <div class="pd-20 profile-task-wrap">
-                                                <div class="container pd-0">
+                                            <div class="pd-20">
+                                                <div class="">
                                                     <!-- Open Task start -->
                                                     <div class="task-title row align-items-center">
                                                         <div class="col-md-8 col-sm-12">
@@ -411,8 +411,8 @@
                                         </div>
 
                                         <div class="tab-pane fade" id="jabatan" role="tabpanel">
-                                            <div class="pd-20 profile-task-wrap">
-                                                <div class="container pd-0">
+                                            <div class="pd-20">
+                                                <div class="">
                                                     <!-- Open Task start -->
                                                     <div class="task-title row align-items-center">
                                                         <div class="col-md-8 col-sm-12">
@@ -481,8 +481,8 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="pangkat" role="tabpanel">
-                                            <div class="pd-20 profile-task-wrap">
-                                                <div class="container pd-0">
+                                            <div class="pd-20">
+                                                <div class="">
                                                     <!-- Open Task start -->
                                                     <div class="task-title row align-items-center">
                                                         <div class="col-md-8 col-sm-12">
@@ -553,8 +553,8 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="gelar" role="tabpanel">
-                                            <div class="pd-20 profile-task-wrap">
-                                                <div class="container pd-0">
+                                            <div class="pd-20">
+                                                <div class="">
                                                     <!-- Open Task start -->
                                                     <div class="task-title row align-items-center">
                                                         <div class="col-md-8 col-sm-12">
