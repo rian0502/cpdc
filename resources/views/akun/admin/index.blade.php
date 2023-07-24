@@ -87,30 +87,50 @@
                                                     <i class="fa fa-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
+
+                                                    <a class="dropdown-item"
+                                                        href="
+                                                    
+                                                    "><i
+                                                            class="fal fa-eye"></i> Lihat</a>
+
+
+                                                    <a class="dropdown-item"
+                                                        href="
+                                                    
+                                                    "><i
+                                                            class="fa fa-pencil"></i> Edit</a>
+                                                    
+
+                                                </div>
+                                            </div>
+                                            <div class="dropdown">
+                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                    data-color="#1b3133" href="#" role="button"
+                                                    data-toggle="dropdown">
+                                                    <i class="dw dw-more"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                     @role('jurusan')
                                                         <a class="dropdown-item"
-                                                            href="
-                                                    {{ route('sudo.akun_admin.show', $item->id) }}
-                                                    "><i
-                                                                class="fal fa-eye"></i> Lihat</a>
+                                                            href="{{ route('sudo.akun_admin.show', $item->id) }}"><i
+                                                                class="dw dw-eye"></i>
+                                                            Lihat</a>
                                                     @endrole
                                                     @role('sudo')
-                                                        <a class="dropdown-item"
-                                                            href="
-                                                    {{ route('sudo.akun_admin.edit', $item->id) }}
-                                                    "><i
-                                                                class="fa fa-pencil"></i> Edit</a>
+                                                        <a class="dropdown-item" href="{{ route('sudo.akun_admin.edit', $item->id) }}"><i class="dw dw-edit2"></i>
+                                                            Edit</a>
                                                         <form id="delete"
-                                                            action="
+                                                        action="
                                                     {{ route('sudo.akun_admin.destroy', $item->id) }}
                                                     "
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" id="deleteBtn"
-                                                                class="dropdown-item text-danger"><i class="fa fa-trash"></i>
-                                                                Hapus</button>
-                                                        </form>
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" id="deleteBtn"
+                                                            class="dropdown-item text-danger"><i class="dw dw-delete-3"></i>
+                                                            Hapus</button>
+                                                    </form>
                                                     @endrole
                                                 </div>
                                             </div>

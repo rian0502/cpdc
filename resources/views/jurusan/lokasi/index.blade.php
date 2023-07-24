@@ -40,17 +40,31 @@
                                                 </a>
 
                                                 <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href=""><i class="fa fa-pencil"></i>
+                                                        Edit</a>
+
+                                                </div>
+                                            </div>
+                                            <div class="dropdown">
+                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                    data-color="#1b3133" href="#" role="button"
+                                                    data-toggle="dropdown">
+                                                    <i class="dw dw-more"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                     <a class="dropdown-item"
                                                         href="{{ route('jurusan.lokasi.edit', $item->encrypt_id) }}"><i
-                                                            class="fa fa-pencil"></i> Edit</a>
-                                                    @if($item->barangs->count() < 1)
-                                                        <form id="delete" action="{{ route('jurusan.lokasi.destroy', $item->encrypt_id) }}"
+                                                            class="dw dw-edit2"></i>
+                                                        Edit</a>
+                                                    @if ($item->barangs->count() < 1)
+                                                        <form id="delete"
+                                                            action="{{ route('jurusan.lokasi.destroy', $item->encrypt_id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="dropdown-item"
                                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus lokasi ini?')">
-                                                                <i class="fa fa-trash"></i>
+                                                                <i class="dw dw-delete-3"></i>
                                                                 Hapus
                                                             </button>
                                                         </form>

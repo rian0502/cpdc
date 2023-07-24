@@ -9,12 +9,12 @@
                     <div class="pd-20">
                         <h4 class="text-blue h4">SOP</h4>
                         @role('admin lab')
-                        <a href="{{ route('lab.sop.create') }}">
-                            <button class="btn btn-success mt-3">
-                                <i class="icon-copy fi-page-add"></i>
-                                Tambah SOP
-                            </button>
-                        </a>
+                            <a href="{{ route('lab.sop.create') }}">
+                                <button class="btn btn-success mt-3">
+                                    <i class="icon-copy fi-page-add"></i>
+                                    Tambah SOP
+                                </button>
+                            </a>
                         @endrole
                     </div>
                     <div class="pb-20 m-3">
@@ -35,21 +35,21 @@
                                         <td>{{ $item->nama_sop }}</td>
                                         <td>{{ $item->lokasi->nama_lokasi }}</td>
                                         <td>
-
                                             <div class="dropdown">
-                                                <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button"
+                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                    data-color="#1b3133" href="#" role="button"
                                                     data-toggle="dropdown">
-                                                    <i class="fa fa-ellipsis-h"></i>
+                                                    <i class="dw dw-more"></i>
                                                 </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                     <a class="dropdown-item"
-                                                        href="{{ url('/uploads/sop/' . $item->file_sop) }}" target="_blank"><i
-                                                            class="fal fa-eye"></i> Lihat</a>
-                                                            @role('admin lab')
-                                                    <a class="dropdown-item"
-                                                        href="{{route('lab.sop.edit', $item->encrypt_id ) }}"><i
-                                                            class="fa fa-pencil"></i> Edit</a>
-                                                            @endrole
+                                                        href="{{ url('/uploads/sop/' . $item->file_sop) }}"
+                                                        target="_blank"><i class="dw dw-eye"></i>
+                                                        Lihat</a>
+                                                    @role('admin lab')
+                                                        <a class="dropdown-item" href="{{ route('lab.sop.edit', $item->encrypt_id) }}"><i class="dw dw-edit2"></i>
+                                                            Edit</a>
+                                                    @endrole
                                                 </div>
                                             </div>
                                         </td>

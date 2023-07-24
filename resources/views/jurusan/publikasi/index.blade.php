@@ -9,7 +9,8 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="tanggal-awal">Tahun Awal</label>
-                                    <input type="text" class="form-control year-picker" placeholder="Tahun Awal" id="tanggal-awal">
+                                    <input type="text" class="form-control year-picker" placeholder="Tahun Awal"
+                                        id="tanggal-awal">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -68,7 +69,8 @@
                     </div>
 
                     <div class="pd-20 m-1 table-responsive">
-                        <table id="data-publikasi" class="data-publikasi table table-hover data-table-responsive stripe wrap ">
+                        <table id="data-publikasi"
+                            class="data-publikasi table table-hover data-table-responsive stripe wrap ">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -93,6 +95,7 @@
             </div>
         </div>
     </div>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -112,7 +115,7 @@
 
             // Fungsi untuk memuat data menggunakan filter
             function loadData(startDate = null, endDate = null) {
-                if(dataNpm) {
+                if (dataNpm) {
                     dataNpm.destroy();
                 }
                 dataNpm = $('#data-publikasi').DataTable({
@@ -173,21 +176,19 @@
                             render: function(data, type, row) {
                                 // var downloadUrl = "{{ asset('uploads/file_') }}" + '/' + row
                                 //     .file_Publikasi;
-                                var detail = "{{ route('dosen.publikasi.show', ':id') }}".replace(':id', row.encrypt_id);
+                                var detail = "{{ route('dosen.publikasi.show', ':id') }}".replace(
+                                    ':id', row.encrypt_id);
                                 var linkPublikasi = row.url;
                                 return `
                             <div class="dropdown">
-                                <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                    <i class="fa fa-ellipsis-h"></i>
+                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" data-color="#1b3133" href="#"
+                                    role="button" data-toggle="dropdown">
+                                    <i class="dw dw-more"></i>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="${linkPublikasi}">
-                                        <i class="fas fa-link"></i> Link Publikasi
-                                    </a>
-                                    <a class="dropdown-item" href="${detail}">
-                                        <i class="fal fa-eye"></i> Lihat
-                                    </a>
-                                </div>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                    <a class="dropdown-item" href="${linkPublikasi}"><i class="dw dw-link-3"></i> Link Publikasi</a>
+                                    <a class="dropdown-item" href="${detail}"><i class="dw dw-eye"></i> Lihat</a>
+                                    </div>
                             </div>`;
                             }
                         }
