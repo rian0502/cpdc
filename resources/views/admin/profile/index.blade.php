@@ -122,8 +122,8 @@
 
                             </div>
                             <div class="ml-auto mb-3">
-                                <a href="{{ route('admin.pangkat.create') }}" class="btn btn-success btn-lg">Tambah
-                                    Kepangkatan</a>
+                                <a href="{{ route('admin.pangkat.create') }}" class="btn btn-success btn-lg"><i class="fa fa-plus"></i> Tambah
+                                    Data</a>
                             </div>
                         </div>
                         <div class="pb-20 m-3">
