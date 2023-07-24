@@ -65,6 +65,10 @@ class ExportData extends Controller
         $sheet->setCellValue('H1', 'Pembahas');
         $sheet->setCellValue('I1', 'Status Admin');
         $sheet->setCellValue('J1', 'Status Koordinator');
+        $sheet->setCellValue('K1', 'Huruf Mutu');
+        $sheet->setCellValue('L1', 'Nilai');
+        $sheet->setCellValue('M1', 'No BA');
+        $sheet->setCellValue('N1', 'URL');
         foreach ($mahasiswa as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->npm);
@@ -80,6 +84,12 @@ class ExportData extends Controller
             $sheet->setCellValue('H' . ($key + 2), $value->komprehensif->first()->pembahas->nama_dosen);
             $sheet->setCellValue('I' . ($key + 2), $value->komprehensif->first()->status_admin);
             $sheet->setCellValue('J' . ($key + 2), $value->komprehensif->first()->status_koor);
+            if ($value->komprehensif->beritaAcara) {
+                $sheet->setCellValue('K' . ($key + 2), $value->komprehensif->first()->beritaAcara->huruf_mutu);
+                $sheet->setCellValue('L' . ($key + 2), $value->komprehensif->first()->beritaAcara->nilai);
+                $sheet->setCellValue('M' . ($key + 2), $value->komprehensif->first()->beritaAcara->no_ba_berkas);
+                $sheet->setCellValue('N' . ($key + 2), url('/uploads/ba_sidang_kompre/' . $value->komprehensif->first()->beritaAcara->ba_seminar_komprehensif));
+            }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('seminar_komprehensif' . $request->akt_kompre . '.xlsx');
@@ -102,6 +112,10 @@ class ExportData extends Controller
         $sheet->setCellValue('H1', 'Pembahas');
         $sheet->setCellValue('I1', 'Status Admin');
         $sheet->setCellValue('J1', 'Status Koordinator');
+        $sheet->setCellValue('K1', 'Huruf Mutu');
+        $sheet->setCellValue('L1', 'Nilai');
+        $sheet->setCellValue('M1', 'No BA');
+        $sheet->setCellValue('N1', 'URL');
         foreach ($mahasiswa as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->npm);
@@ -117,6 +131,17 @@ class ExportData extends Controller
             $sheet->setCellValue('H' . ($key + 2), $value->ta_dua->first()->pembahas->nama_dosen);
             $sheet->setCellValue('I' . ($key + 2), $value->ta_dua->first()->status_admin);
             $sheet->setCellValue('J' . ($key + 2), $value->ta_dua->first()->status_koor);
+            if ($value->ta_dua->first()->ba_seminar) {
+                $sheet->setCellValue('K' . ($key + 2), $value->ta_dua->first()->ba_seminar->huruf_mutu);
+                $sheet->setCellValue('L' . ($key + 2), $value->ta_dua->first()->ba_seminar->nilai);
+                $sheet->setCellValue('M' . ($key + 2), $value->ta_dua->first()->ba_seminar->no_berkas_ba_seminar_ta_dua);
+                $sheet->setCellValue('N' . ($key + 2), url('/uploads/ba_seminar_ta_dua/' . $value->ta_dua->first()->ba_seminar->berkas_ba_seminar_ta_dua));
+            } else {
+                $sheet->setCellValue('K' . ($key + 2), '-');
+                $sheet->setCellValue('L' . ($key + 2), '-');
+                $sheet->setCellValue('M' . ($key + 2), '-');
+                $sheet->setCellValue('N' . ($key + 2), '-');
+            }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('seminar_ta_2' . $request->akt_ta2 . '.xlsx');
@@ -160,6 +185,17 @@ class ExportData extends Controller
             $sheet->setCellValue('H' . ($key + 2), $value->ta_satu->first()->pembahas->nama_dosen);
             $sheet->setCellValue('I' . ($key + 2), $value->ta_satu->first()->status_admin);
             $sheet->setCellValue('J' . ($key + 2), $value->ta_satu->first()->status_koor);
+            if ($value->ta_satu->ba_seminar) {
+                $sheet->setCellValue('K' . ($key + 2), $value->ta_satu->first()->ba_seminar->huruf_mutu);
+                $sheet->setCellValue('L' . ($key + 2), $value->ta_satu->first()->ba_seminar->nilai);
+                $sheet->setCellValue('M' . ($key + 2), $value->ta_satu->first()->ba_seminar->no_berkas_ba_seminar_ta_satu);
+                $sheet->setCellValue('N' . ($key + 2), url('/uploads/ba_seminar_ta_satu/' . $value->ta_satu->first()->ba_seminar->berkas_ba_seminar_ta_satu));
+            } else {
+                $sheet->setCellValue('K' . ($key + 2), '-');
+                $sheet->setCellValue('L' . ($key + 2), '-');
+                $sheet->setCellValue('M' . ($key + 2), '-');
+                $sheet->setCellValue('N' . ($key + 2), '-');
+            }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('seminar_ta_1' . $request->akt_kp . '.xlsx');
