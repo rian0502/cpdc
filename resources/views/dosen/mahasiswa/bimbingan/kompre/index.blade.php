@@ -10,7 +10,7 @@
                     </div>
                     <div class="pb-20 m-3">
 
-                        <table class="table data-table-responsive stripe data-table-noexport">
+                        <table class="table data-table-responsive stripe data-table-export-excel">
                             <thead>
                                 <tr>
                                     <th>No</th>
