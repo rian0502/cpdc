@@ -51,9 +51,49 @@ $("document").ready(function () {
         buttons: [
             "copy",
             "csv",
-            { extend: "excelHtml5", title: "Example Datatable" },
+            {
+                extend: "excelHtml5",
+                title: "Example Datatable",
+                exportOptions: {
+                    columns: ":not(.datatable-nosort)",
+                },
+            },
+
             "pdf",
             "print",
+        ],
+    });
+    $(".data-table-export-excel").DataTable({
+        scrollCollapse: true,
+        autoWidth: false,
+        responsive: true,
+        columnDefs: [
+            {
+                targets: "datatable-nosort",
+                orderable: false,
+            },
+        ],
+        lengthMenu: [
+            [10, 25, 50, -1],
+            [10, 25, 50, "Semua"],
+        ],
+        language: {
+            info: "Menampilkan _START_ - _END_ dari _TOTAL_ data",
+            searchPlaceholder: "Pencarian",
+            paginate: {
+                next: '<i class="ion-chevron-right"></i>',
+                previous: '<i class="ion-chevron-left"></i>',
+            },
+        },
+        dom: "Blfrtip",
+        buttons: [
+            {
+                extend: "excelHtml5",
+                title: "Example Datatable",
+                exportOptions: {
+                    columns: ":not(.datatable-nosort)",
+                },
+            },
         ],
     });
 
@@ -79,7 +119,6 @@ $("document").ready(function () {
                 previous: '<i class="ion-chevron-left"></i>',
             },
         },
-
     });
 
     var table = $(".select-row").DataTable();
