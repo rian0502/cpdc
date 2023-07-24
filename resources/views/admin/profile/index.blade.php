@@ -116,7 +116,7 @@
                 </div>
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">KEPANGKATAN</h4>
+                        <h4 class="text-blue h4">Kepangkatan</h4>
                         <div class="d-flex">
                             <div class="ml-5">
 
