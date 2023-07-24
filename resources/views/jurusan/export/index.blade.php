@@ -45,7 +45,7 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
-                                    @error('tahun-publikasi')
+                                    @error('tahun_penelitian')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -74,7 +74,7 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
-                                    @error('tahun-publikasi')
+                                    @error('tahun_pengabdian')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
