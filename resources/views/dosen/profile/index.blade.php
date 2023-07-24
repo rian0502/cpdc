@@ -148,7 +148,7 @@
                                         <ul class="nav nav-tabs customtab" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active" data-toggle="tab" href="#organisasi"
-                                                    role="tab">ORGANISASI</a>
+                                                    role="tab">Organisasi</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#litabmas"
@@ -156,19 +156,19 @@
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#publikasi"
-                                                    role="tab">PUBLIKASI</a>
+                                                    role="tab">Publikasi</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#jabatan"
-                                                    role="tab">JABATAN</a>
+                                                    role="tab">Jabatan</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#pangkat"
-                                                    role="tab">PANGKAT</a>
+                                                    role="tab">Pangkat</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#gelar"
-                                                    role="tab">GELAR</a>
+                                                    role="tab">Gelar</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -176,8 +176,8 @@
                                     <div class="tab-content">
                                         <!-- Timeline Tab start -->
                                         <div class="tab-pane fade show active" id="organisasi" role="tabpanel">
-                                            <div class="pd-20 profile-task-wrap">
-                                                <div class="container pd-0">
+                                            <div class="pd-20">
+                                                <div class="">
                                                     <!-- Open Task start -->
                                                     <div class="task-title row align-items-center">
                                                         <div class="col-md-8 col-sm-12">
@@ -189,7 +189,7 @@
                                                                     class="ion-plus-round"></i> Tambah</a>
                                                         </div>
                                                     </div>
-                                                    <div class="profile-task-list pb-30 table-responsive">
+                                                    <div class="profile-task-list  table-responsive">
                                                         <table class="table data-table-responsive stripe data-table-export">
                                                             <thead>
                                                                 <tr>
@@ -246,8 +246,8 @@
                                         <!-- Timeline Tab End -->
                                         <!-- Tasks Tab start -->
                                         <div class="tab-pane fade" id="litabmas" role="tabpanel">
-                                            <div class="pd-20 profile-task-wrap">
-                                                <div class="container pd-0">
+                                            <div class="pd-20">
+                                                <div class="">
                                                     <!-- Open Task start -->
                                                     <div class="task-title row align-items-center">
                                                         <div class="col-md-8 col-sm-12">
@@ -328,8 +328,8 @@
                                         <!-- Tasks Tab End -->
                                         <!-- Setting Tab start -->
                                         <div class="tab-pane fade" id="publikasi" role="tabpanel">
-                                            <div class="pd-20 profile-task-wrap">
-                                                <div class="container pd-0">
+                                            <div class="pd-20">
+                                                <div class="">
                                                     <!-- Open Task start -->
                                                     <div class="task-title row align-items-center">
                                                         <div class="col-md-8 col-sm-12">
@@ -411,8 +411,8 @@
                                         </div>
 
                                         <div class="tab-pane fade" id="jabatan" role="tabpanel">
-                                            <div class="pd-20 profile-task-wrap">
-                                                <div class="container pd-0">
+                                            <div class="pd-20">
+                                                <div class="">
                                                     <!-- Open Task start -->
                                                     <div class="task-title row align-items-center">
                                                         <div class="col-md-8 col-sm-12">
@@ -481,8 +481,8 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="pangkat" role="tabpanel">
-                                            <div class="pd-20 profile-task-wrap">
-                                                <div class="container pd-0">
+                                            <div class="pd-20">
+                                                <div class="">
                                                     <!-- Open Task start -->
                                                     <div class="task-title row align-items-center">
                                                         <div class="col-md-8 col-sm-12">
@@ -553,8 +553,8 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="gelar" role="tabpanel">
-                                            <div class="pd-20 profile-task-wrap">
-                                                <div class="container pd-0">
+                                            <div class="pd-20">
+                                                <div class="">
                                                     <!-- Open Task start -->
                                                     <div class="task-title row align-items-center">
                                                         <div class="col-md-8 col-sm-12">

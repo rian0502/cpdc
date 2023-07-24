@@ -47,7 +47,7 @@ return view('dosen.gelar.create');
             'tahun_lulus' => $request->tahun_lulus,
             'nama_gelar' => $request->nama_gelar,
             'singkatan_gelar' => $request->singkatan_gelar,
-            'dosen_id' => Auth::user()->dosen->first()->id,
+            'dosen_id' => Auth::user()->dosen->id,
         ];
         $gelar = ModelGelar::create($data);
         $id = $gelar->id;
@@ -104,7 +104,7 @@ return view('dosen.gelar.create');
             'updated_at' => date('Y-m-d H:i:s'),
         ];
         $gelar = ModelGelar::find(Crypt::decrypt($id));
-        if (Auth::user()->dosen->first()->id == $gelar['dosen_id']) {
+        if (Auth::user()->dosen->id == $gelar['dosen_id']) {
             $update = ModelGelar::where('id', Crypt::decrypt($id))->update($data);
             if ($update) {
                 return redirect()->route('dosen.profile.index')->with('success', 'Data berhasil diubah');

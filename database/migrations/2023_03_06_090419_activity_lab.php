@@ -25,6 +25,13 @@ return new class extends Migration
             $table->time('jam_selesai');
             $table->string('keterangan');
             $table->integer('jumlah_mahasiswa');
+            $table->foreignId('user_id')
+                ->index()
+                ->unsigned()
+                ->nullable()
+                ->constrained('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

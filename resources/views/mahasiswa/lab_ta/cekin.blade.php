@@ -23,26 +23,16 @@
                                     PAKE DATA LOKASI DI HARI SEBELUMNYA UNTUK SETERUSNYA ATAU KEK GIMANE TERSERAH LU DA --}}
 
                                     <div class="form-group">
-                                        <label>Lokasi Utama</label>
+                                        <label>@if ($user->lokasi_id)
+                                            Lokasi Lab Penelitian Hari Ini
+                                        @else
+                                            Lokasi Lab Penelitian Utama
+                                        @endif</label>
                                         <select class="custom-select2 form-control" style="width: 100%; height: 38px"
-                                            name="id_lokasi" required @if ($user->lokasi_id)
-                                                disabled
-                                            @endif>
+                                            name="id_lokasi" required>
                                             @foreach ($lokasi as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
-                                                    {{ $item->nama_lokasi }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Lokasi Alternatif</label>
-                                        <select class="custom-select2 form-control" style="width: 100%; height: 38px"
-                                            name="id_lokasi2" required>
-                                            @foreach ($lokasi as $item)
-                                                <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_lokasi2') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $user->lokasi_id == $item->id || old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_lokasi }}
                                                 </option>
                                             @endforeach
