@@ -44,15 +44,16 @@
                                         <td>{{ $item->role_admin }}</td>
                                         <td>
                                             <div class="dropdown">
-                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
-                                                    role="button" data-toggle="dropdown">
-                                                    <i class="fa fa-ellipsis-h"></i>
+                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                    data-color="#1b3133" href="#" role="button"
+                                                    data-toggle="dropdown">
+                                                    <i class="dw dw-more"></i>
                                                 </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right">
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                     <a class="dropdown-item"
                                                         href="{{ route('jurusan.lokasi.edit', $item->encrypt_id) }}"><i
-                                                            class="fa fa-pencil"></i> Edit</a>
+                                                            class="dw dw-edit2"></i>
+                                                        Edit</a>
                                                     @if ($item->barangs->count() < 1)
                                                         <form
                                                             action="{{ route('jurusan.lokasi.destroy', $item->encrypt_id) }}"
@@ -61,7 +62,7 @@
                                                             @method('DELETE')
                                                             <button type="submit" class="dropdown-item"
                                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus lokasi ini?')">
-                                                                <i class="fa fa-trash"></i>
+                                                                <i class="dw dw-delete-3"></i>
                                                                 Hapus
                                                             </button>
                                                         </form>
