@@ -170,19 +170,15 @@
                                                         </form>
                                                     </div>
                                                 </div>
-
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <script>
             // Ambil elemen tanggal lahir dan umur dari HTML
