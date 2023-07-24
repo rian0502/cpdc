@@ -14,7 +14,7 @@
         @media screen and (max-width: 767px) {
             .containerr {
                 grid-template-columns: 1fr;
-                /* Mengubah ke satu kolom saja */
+                
             }
         }
     </style>

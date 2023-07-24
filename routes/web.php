@@ -79,6 +79,7 @@ use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
 use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
+use App\Http\Controllers\GelarController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -145,6 +146,7 @@ Route::post('dosen/profile/store', [ProfileDosenController::class, 'store'])->na
 route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verified', 'role:dosen'])->group(function () {
     Route::resource('litabmas', LitabmasController::class);
     Route::resource('organisasi', OrganisasiController::class);
+    Route::resource('gelar', GelarController::class);
     Route::resource('publikasi', PublikasiController::class);
     Route::resource('profile', ProfileDosenController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
     Route::resource('jabatan', JabatanController::class);
