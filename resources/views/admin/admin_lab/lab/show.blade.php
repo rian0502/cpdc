@@ -10,6 +10,10 @@
         a:hover {
             cursor: pointer;
         }
+        .right-button {
+            float: right;
+            margin-top: -25px;
+        }
     </style>
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
@@ -17,6 +21,12 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Detail Kegiatan</h4>
+                        <button class="btn btn-primary right-button" onclick="goBack()">Kembali</button>
+                        <script>
+                            function goBack() {
+                                window.history.back();
+                            }
+                        </script>
                     </div>
                     <div class="p-md-4">
                         <div class="pl-3 pr-3 pt-2 pb-0 mb-2 bg-light text-dark rounded-div">
