@@ -24,6 +24,7 @@
                                     <label>Nilai Fungsionalitas</label>
                                     <input required type="number" placeholder="range nilai 1 - 10" min="1"
                                         max="10"
+                                        value="{{old('fungsionalitas')}}"
                                         class="form-control @error('fungsionalitas') form-control-danger @enderror"
                                         name="fungsionalitas">
                                     @error('fungsionalitas')
@@ -34,6 +35,7 @@
                                     <label>Nilai Kemudahan</label>
                                     <input required type="number" placeholder="range nilai 1 - 10" min="1"
                                         max="10"
+                                        value="{{old('kemudahan')}}"
                                         class="form-control @error('kemudahan') form-control-danger @enderror"
                                         name="kemudahan">
                                     @error('kemudahan')
@@ -43,7 +45,8 @@
                                 <div class="form-group">
                                     <label>Nilai Tampilan</label>
                                     <input required type="number" placeholder="range nilai 1 - 10" min="1"
-                                        max="10" class="form-control @error('tampilan') form-control-danger @enderror"
+                                        max="10"
+                                        value="{{old('tampilan')}}" class="form-control @error('tampilan') form-control-danger @enderror"
                                         name="tampilan">
                                     @error('tampilan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -56,6 +59,7 @@
                                     <label>Kritik</label>
                                     <input required type="textarea"
                                         class="form-control textarea @error('kritik') form-control-danger @enderror"
+                                        value="{{old('kritik')}}"
                                         name="kritik">
                                     @error('kritik')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -65,6 +69,7 @@
                                     <label>Saran</label>
                                     <input required type="textarea"
                                         class="form-control textarea @error('saran') form-control-danger @enderror"
+                                        value="{{old('saran')}}"
                                         name="saran">
                                     @error('saran')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
