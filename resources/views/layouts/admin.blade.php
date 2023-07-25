@@ -233,13 +233,6 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('mahasiswa.survey.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
-                                <span class="micon bi bi-newspaper"></span><span class="mtext">Survei
-                                </span>
-                            </a>
-                        </li>
-                        <li>
                             <a href="{{ route('lab.sop.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('admin/lab/sop*') ? 'active' : '' }}">
                                 <span class="micon bi bi-file-earmark-ruled"></span><span class="mtext">SOP</span>
@@ -252,7 +245,14 @@
                             </a>
                         </li>
                     @endrole
-
+                    
+                    <li>
+                        <a href="{{ route('mahasiswa.survey.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
+                            <span class="micon bi bi-newspaper"></span><span class="mtext">Survei
+                            </span>
+                        </a>
+                    </li>
                     @role('sudo')
                         <li
                             class="dropdown {{ Request::is('sudo/akun_mahasiswa*') || Request::is('sudo/akun_dosen*') || Request::is('sudo/akun_admin*') ? 'show' : '' }}">
