@@ -133,7 +133,12 @@
                             <div class="row">
                                 <label class="col-md-3 bold"><b>Pembimbing Akademik</b></label>
                                 <div class="col-md-3">
+                                    @if ($mahasiswa->dosen != null)
                                     {{ $mahasiswa->dosen->nama_dosen }}
+                                    @else
+
+                                    <div>Belum ada pembimbing akademik</div>
+                                    @endif
 
                                 </div>
 

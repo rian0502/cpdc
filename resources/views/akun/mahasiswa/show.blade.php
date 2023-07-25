@@ -74,7 +74,11 @@
                             <div class="row">
                                 <label class="col-md-3 bold"> <strong> Pembimbing Akademik </strong></label>
                                 <div class="col-md-3">
-                                    {{ $student->dosen->nama_dosen }}
+                                    @if ($student->dosen == null)
+                                        <span class="badge badge-danger">Belum Ada</span>
+                                    @else
+                                        {{ $student->dosen->nama_dosen }}
+                                    @endif
                                 </div>
                                 <label class="col-md-3 bold"><b>Status</b></label>
                                 <div class="col-md-3">
