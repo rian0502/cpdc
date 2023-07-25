@@ -54,7 +54,7 @@
                                     <div class=" custom-file">
                                         <label class="custom-file-label" for="file_sk_jabatan" id="label-file_sk_jabatan">Pilih File</label>
 
-                                        <input value="{{old('file_sk_jabatan')}}" autofocus name="file_sk_jabatan" id="file_sk_jabatan"
+                                        <input accept=".pdf" value="{{old('file_sk_jabatan')}}" autofocus name="file_sk_jabatan" id="file_sk_jabatan"
                                             class="custom-file-input form-control @error('file_sk_jabatan') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK" onchange="updateFileNameAndLink('file_sk_jabatan','label-file_sk_jabatan','link-file_sk_jabatan')">
                                     </div>
