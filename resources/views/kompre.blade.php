@@ -43,9 +43,9 @@
                                 <td class="center-align">{{ $item->jam_mulai_komprehensif }} - {{$item->jam_selesai_komprehensif }} WIB</td>
                                 <td class="center-align">{{ $item->lokasi->nama_lokasi }}</td>
                                 <td class="center-align">{{ $item->seminar->judul_ta }}</td>
-                                <td class="center-align">{{ $item->seminar->pembimbing_satu->nama_dosen }}</td>
+                                <td class="center-align">{{ $item->seminar->pembimbingSatu->nama_dosen }}</td>
                                 @if ($item->seminar->pembimbing_dua)
-                                    <td class="center-align"> : {{ $item->seminar->pembimbing_dua->nama_dosen }}</td>
+                                    <td class="center-align"> : {{ $item->seminar->pembimbingDua->nama_dosen }}</td>
                                 @else
                                     <td class="center-align"> : {{ $item->seminar->pbl2_nama }}</td>
                                 @endif
