@@ -354,6 +354,7 @@
                                     TA</span>
                             </a>
                         </li>
+
                         @if (Auth::user()->mahasiswa->komprehensif->first())
                             <li>
                                 <a href="{{ route('mahasiswa.pendataan_alumni.index') }}"
@@ -374,6 +375,13 @@
                         </li>
                     @endrole
 
+                    <li>
+                        <a href="{{ route('mahasiswa.survey.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
+                            <span class="micon bi bi-newspaper"></span><span class="mtext">Survei
+                            </span>
+                        </a>
+                    </li>
                     @role('admin berkas')
                         <li>
                             <a href="{{ route('berkas.berkas_persyaratan.index') }}"
