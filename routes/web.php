@@ -80,6 +80,8 @@ use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 use App\Http\Controllers\GelarController;
+use App\Http\Controllers\SuggestionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -232,6 +234,7 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
     Route::resource('bata1', MahasiswaBaTaSatu::class)->names('bata1');
     Route::resource('bata2', MahasiswaBaTaDua::class)->names('bata2');
     Route::resource('bakompre', MahasiswaBaKompre::class)->names('bakompre');
+    Route::resource('survey', SuggestionController::class)->names('survey');
 
     Route::group(['prefix' => 'seminar', 'as' => 'seminar.'], function () {
         Route::resource('kp', KPcontroller::class)->names('kp');
