@@ -13,7 +13,7 @@
                         </div>
 
                     </div>
-                    <form action="{{ route('mahasiswa.survei.store') }}" method="POST">
+                    <form action="{{ route('mahasiswa.survey.store') }}" method="POST">
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
