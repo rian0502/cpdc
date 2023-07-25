@@ -239,7 +239,7 @@
                                             <div class="form-group">
                                                 <label for="">Konfirmasi Kata Sandi</label>
                                                 <input type="password" name="password_confirm"
-                                                    value="{{ old('password_confirm') }}" id="password"
+                                                    value="{{ old('password_confirm') }}" id="password_confirm"
                                                     class="form-control @error('password_confirm') form-control-danger @enderror" />
                                                 @error('password_confirm')
                                                     <small class="text-danger">{{ $message }}</small>
