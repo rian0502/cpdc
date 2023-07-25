@@ -14,9 +14,6 @@
                     <div class="clearfix">
                         <div class="pull-left">
                             <h4 class="text-dark h4 mb-2">Detail Publikasi Dosen</h4>
-                            <a href="{{ route('dosen.publikasi.index') }}">
-                                <button class="btn btn-primary right-button">Kembali</button>
-                            </a>
                         </div>
                     </div>
                     <div class="table-responsive mb-2">
@@ -74,7 +71,7 @@
                         <textarea name="form-control" disabled readonly>{{ $publikasi->anggota_external }}</textarea>
                     </div>
                     <a href="{{ route('dosen.profile.index') }}">
-                        <button class="btn btn-secondary">Batal</button>
+                        <button class="btn btn-secondary">Kembali</button>
                     </a>
                 </div>
             </div>

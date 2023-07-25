@@ -53,12 +53,16 @@
 
                             </tbody>
                         </table>
+                        <h4 class="text-dark h4 mb-2">
+                            Anggota External
+                        </h4>
+                        <textarea name="form-control" disabled readonly>{{ $litabmas->anggota_external }}</textarea>
                     </div>
                     <a class="" href="{{ route('dosen.profile.index') }}">
                         <button class="btn btn-secondary">Kembali</button>
                     </a>
                 </div>
-                
+
             </div>
         </div>
     </div>

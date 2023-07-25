@@ -101,7 +101,7 @@ class OrganisasiController extends Controller
             'updated_at' => date('Y-m-d H:i:s'),
         ];
         $organisasi = OrganisasiDosen::find(Crypt::decrypt($id));
-        if (Auth::user()->dosen[0]->id == $organisasi['dosen_id']) {
+        if (Auth::user()->dosen->id == $organisasi['dosen_id']) {
             $update = OrganisasiDosen::where('id', Crypt::decrypt($id))->update($data);
             if ($update) {
                 return redirect()->route('dosen.profile.index')->with('success', 'Data berhasil diubah');
