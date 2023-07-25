@@ -31,9 +31,10 @@ class MahasiswaBimbinganKPController extends Controller
 
     public function export(Request $request)
     {
-        $mahasiswa =  Mahasiswa::with('seminar_kp')->where('angkatan', $request->kp_unduh)->whereHas('seminar_kp', function ($query) {
-            $query->where('id_dospemkp', auth()->user()->dosen->id);
-        })->get();
+        $mahasiswa =  Mahasiswa::with(['seminar_kp.dosen', 'seminar_kp.jadwal', 'seminar_kp.berita_acara'])
+            ->where('angkatan', $request->kp_unduh)->whereHas('seminar_kp', function ($query) {
+                $query->where('id_dospemkp', auth()->user()->dosen->id);
+            })->get();
         $spredsheet = new Spreadsheet();
         $sheet = $spredsheet->getActiveSheet();
         $sheet->setTitle('Seminar Kerja Praktik');
@@ -67,9 +68,9 @@ class MahasiswaBimbinganKPController extends Controller
                 $sheet->setCellValue('I' . ($key + 2), '-');
             }
             if ($value->seminar_kp->berita_acara) {
-                $sheet->setCellValue('J' . ($key + 2), $value->seminar_kp->nilai_akhir);
-                $sheet->setCellValue('K' . ($key + 2), $value->seminar_kp->nilai_mutu);
-                $sheet->setCellValue('L' . ($key + 2), $value->seminar_kp->no_ba_seminar_kp);
+                $sheet->setCellValue('J' . ($key + 2), $value->seminar_kp->berita_acara->nilai_akhir);
+                $sheet->setCellValue('K' . ($key + 2), $value->seminar_kp->berita_acara->nilai_mutu);
+                $sheet->setCellValue('L' . ($key + 2), $value->seminar_kp->berita_acara->no_ba_seminar_kp);
                 $sheet->setCellValue('M' . ($key + 2), url('uploads/berita_acara_seminar_kp/' . $value->seminar_kp->berita_acara->berkas_ba_seminar_kp));
             } else {
                 $sheet->setCellValue('J' . ($key + 2), '-');

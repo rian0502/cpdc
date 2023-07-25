@@ -38,11 +38,24 @@ class MahasiswaBimbinganKompreController extends Controller
     }
     public function export(Request $request)
     {
-        $ta1 = Mahasiswa::where('angkatan', $request->ta_unduh)->whereHas('ta_satu', function ($query) {
-            $query->where('id_pembimbing_satu', Auth::user()->dosen->id)
-                ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id)
-                ->orWhere('id_pembahas', Auth::user()->dosen->id);
-        })->get();
+        $ta1 = Mahasiswa::with(['ta_satu.pembimbing_satu', 'ta_satu.pembimbing_dua', 'ta_satu.pembahas', 'ta_satu.jadwal', 'ta_satu.ba_seminar'])
+            ->where('angkatan', $request->ta_unduh)->whereHas('ta_satu', function ($query) {
+                $query->where('id_pembimbing_satu', Auth::user()->dosen->id)
+                    ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id)
+                    ->orWhere('id_pembahas', Auth::user()->dosen->id);
+            })->get();
+        $ta2 = Mahasiswa::with(['ta_dua.pembimbing_satu', 'ta_dua.pembimbing_dua', 'ta_dua.pembahas', 'ta_dua.jadwal', 'ta_dua.ba_seminar'])
+            ->where('angkatan', $request->ta_unduh)->whereHas('ta_dua', function ($query) {
+                $query->where('id_pembimbing_satu', Auth::user()->dosen->id)
+                    ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id)
+                    ->orWhere('id_pembahas', Auth::user()->dosen->id);
+            })->get();
+        $kompre = Mahasiswa::with(['komprehensif.pembimbingSatu', 'komprehensif.pembimbingDua', 'komprehensif.pembahas', 'komprehensif.jadwal', 'komprehensif.beritaAcara'])
+            ->where('angkatan', $request->ta_unduh)->whereHas('komprehensif', function ($query) {
+                $query->where('id_pembimbing_satu', Auth::user()->dosen->id)
+                    ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id)
+                    ->orWhere('id_pembahas', Auth::user()->dosen->id);
+            })->get();
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setTitle('Bimbingan TA 1');
@@ -89,7 +102,7 @@ class MahasiswaBimbinganKompreController extends Controller
                 $sheet->setCellValue('N' . ($key + 2), '-');
             }
             $sheet->setCellValue('O' . ($key + 2), $value->ta_satu->first()->status_admin);
-            $sheet->setCellValue('P' . ($key + 2), $value->ta_satu->first()->status_koordinator);
+            $sheet->setCellValue('P' . ($key + 2), $value->ta_satu->first()->status_koor);
         }
         $sheet2 = $spreadsheet->createSheet();
         $sheet2->setTitle('Bimbingan TA 2');
@@ -109,36 +122,34 @@ class MahasiswaBimbinganKompreController extends Controller
         $sheet2->setCellValue('N1', 'Berita Acara');
         $sheet2->setCellValue('O1', 'Status Admin');
         $sheet2->setCellValue('P1', 'Status Koordinator');
-        foreach ($ta1 as $key => $value) {
-            if ($value->ta_dua->count() > 0) {
-                $sheet2->setCellValue('A' . ($key + 2), $key + 1);
-                $sheet2->setCellValue('B' . ($key + 2), $value->npm);
-                $sheet2->setCellValue('C' . ($key + 2), $value->nama_mahasiswa);
-                $sheet2->setCellValue('D' . ($key + 2), $value->ta_dua->first()->semester);
-                $sheet2->setCellValue('E' . ($key + 2), $value->ta_dua->first()->tahun_akademik);
-                $sheet2->setCellValue('F' . ($key + 2), $value->ta_dua->first()->judul_ta);
-                $sheet2->setCellValue('G' . ($key + 2), $value->ta_dua->first()->pembimbing_satu->nama_dosen);
-                if ($value->ta_dua->first()->id_pembimbing_dua != null) {
-                    $sheet2->setCellValue('H' . ($key + 2), $value->ta_dua->first()->pembimbing_dua->nama_dosen);
-                } else {
-                    $sheet2->setCellValue('H' . ($key + 2), $value->ta_dua->first()->pbl2_nama);
-                }
-                $sheet2->setCellValue('I' . ($key + 2), $value->ta_dua->first()->pembahas->nama_dosen);
-                $sheet2->setCellValue('J' . ($key + 2), ($value->ta_dua->first()->jadwal != null) ? $value->ta_dua->first()->jadwal->tanggal_seminar_ta_dua : '-');
-                if ($value->ta_dua->first()->ba_seminar) {
-                    $sheet2->setCellValue('K' . ($key + 2), $value->ta_dua->first()->ba_seminar->nilai);
-                    $sheet2->setCellValue('L' . ($key + 2), $value->ta_dua->first()->ba_seminar->huruf_mutu);
-                    $sheet2->setCellValue('M' . ($key + 2), $value->ta_dua->first()->ba_seminar->no_berkas_ba_seminar_ta_dua);
-                    $sheet2->setCellValue('N' . ($key + 2), url('uploads/ba_seminar_ta_dua/' . $value->ta_dua->first()->ba_seminar->berkas_ba_seminar_ta_dua));
-                } else {
-                    $sheet2->setCellValue('K' . ($key + 2), '-');
-                    $sheet2->setCellValue('L' . ($key + 2), '-');
-                    $sheet2->setCellValue('M' . ($key + 2), '-');
-                    $sheet2->setCellValue('N' . ($key + 2), '-');
-                }
-                $sheet2->setCellValue('O' . ($key + 2), $value->ta_dua->first()->status_admin);
-                $sheet2->setCellValue('P' . ($key + 2), $value->ta_dua->first()->status_koordinator);
+        foreach ($ta2 as $key => $value) {
+            $sheet2->setCellValue('A' . ($key + 2), $key + 1);
+            $sheet2->setCellValue('B' . ($key + 2), $value->npm);
+            $sheet2->setCellValue('C' . ($key + 2), $value->nama_mahasiswa);
+            $sheet2->setCellValue('D' . ($key + 2), $value->ta_dua->first()->semester);
+            $sheet2->setCellValue('E' . ($key + 2), $value->ta_dua->first()->tahun_akademik);
+            $sheet2->setCellValue('F' . ($key + 2), $value->ta_dua->first()->judul_ta);
+            $sheet2->setCellValue('G' . ($key + 2), $value->ta_dua->first()->pembimbing_satu->nama_dosen);
+            if ($value->ta_dua->first()->id_pembimbing_dua != null) {
+                $sheet2->setCellValue('H' . ($key + 2), $value->ta_dua->first()->pembimbing_dua->nama_dosen);
+            } else {
+                $sheet2->setCellValue('H' . ($key + 2), $value->ta_dua->first()->pbl2_nama);
             }
+            $sheet2->setCellValue('I' . ($key + 2), $value->ta_dua->first()->pembahas->nama_dosen);
+            $sheet2->setCellValue('J' . ($key + 2), ($value->ta_dua->first()->jadwal != null) ? $value->ta_dua->first()->jadwal->tanggal_seminar_ta_dua : '-');
+            if ($value->ta_dua->first()->ba_seminar) {
+                $sheet2->setCellValue('K' . ($key + 2), $value->ta_dua->first()->ba_seminar->nilai);
+                $sheet2->setCellValue('L' . ($key + 2), $value->ta_dua->first()->ba_seminar->huruf_mutu);
+                $sheet2->setCellValue('M' . ($key + 2), $value->ta_dua->first()->ba_seminar->no_berkas_ba_seminar_ta_dua);
+                $sheet2->setCellValue('N' . ($key + 2), url('uploads/ba_seminar_ta_dua/' . $value->ta_dua->first()->ba_seminar->berkas_ba_seminar_ta_dua));
+            } else {
+                $sheet2->setCellValue('K' . ($key + 2), '-');
+                $sheet2->setCellValue('L' . ($key + 2), '-');
+                $sheet2->setCellValue('M' . ($key + 2), '-');
+                $sheet2->setCellValue('N' . ($key + 2), '-');
+            }
+            $sheet2->setCellValue('O' . ($key + 2), $value->ta_dua->first()->status_admin);
+            $sheet2->setCellValue('P' . ($key + 2), $value->ta_dua->first()->status_koor);
         }
         $sheet3 = $spreadsheet->createSheet();
         $sheet3->setTitle('Bimbingan Komprehensif');
@@ -158,36 +169,35 @@ class MahasiswaBimbinganKompreController extends Controller
         $sheet3->setCellValue('N1', 'Berita Acara');
         $sheet3->setCellValue('O1', 'Status Admin');
         $sheet3->setCellValue('P1', 'Status Koordinator');
-        foreach ($ta1 as $key => $value) {
-            if ($value->komprehensif->count() > 0) {
-                $sheet3->setCellValue('A' . ($key + 2), $key + 1);
-                $sheet3->setCellValue('B' . ($key + 2), $value->npm);
-                $sheet3->setCellValue('C' . ($key + 2), $value->nama_mahasiswa);
-                $sheet3->setCellValue('D' . ($key + 2), $value->komprehensif->first()->semester);
-                $sheet3->setCellValue('E' . ($key + 2), $value->komprehensif->first()->tahun_akademik);
-                $sheet3->setCellValue('F' . ($key + 2), $value->komprehensif->first()->judul_ta);
-                $sheet3->setCellValue('G' . ($key + 2), $value->komprehensif->first()->pembimbing_satu->nama_dosen);
-                if ($value->komprehensif->first()->id_pembimbing_dua != null) {
-                    $sheet3->setCellValue('H' . ($key + 2), $value->komprehensif->first()->pembimbing_dua->nama_dosen);
-                } else {
-                    $sheet3->setCellValue('H' . ($key + 2), $value->komprehensif->first()->pbl2_nama);
-                }
-                $sheet3->setCellValue('I' . ($key + 2), $value->komprehensif->first()->pembahas->nama_dosen);
-                $sheet3->setCellValue('J' . ($key + 2), ($value->komprehensif->first()->jadwal != null) ? $value->komprehensif->first()->jadwal->tanggal_komprehensif : '-');
-                if ($value->komprehensif->first()->beritaAcara) {
-                    $sheet3->setCellValue('K' . ($key + 2), $value->komprehensif->first()->beritaAcara->nilai);
-                    $sheet3->setCellValue('L' . ($key + 2), $value->komprehensif->first()->beritaAcara->huruf_mutu);
-                    $sheet3->setCellValue('M' . ($key + 2), $value->komprehensif->first()->beritaAcara->no_ba_berkas);
-                    $sheet3->setCellValue('N' . ($key + 2), url('uploads/ba_sidang_kompre/' . $value->komprehensif->first()->beritaAcara->ba_seminar_komprehensif));
-                } else {
-                    $sheet3->setCellValue('K' . ($key + 2), '-');
-                    $sheet3->setCellValue('L' . ($key + 2), '-');
-                    $sheet3->setCellValue('M' . ($key + 2), '-');
-                    $sheet3->setCellValue('N' . ($key + 2), '-');
-                }
-                $sheet3->setCellValue('O' . ($key + 2), $value->komprehensif->first()->status_admin);
-                $sheet3->setCellValue('P' . ($key + 2), $value->komprehensif->first()->status_koordinator);
+        foreach ($kompre as $key => $value) {
+
+            $sheet3->setCellValue('A' . ($key + 2), $key + 1);
+            $sheet3->setCellValue('B' . ($key + 2), $value->npm);
+            $sheet3->setCellValue('C' . ($key + 2), $value->nama_mahasiswa);
+            $sheet3->setCellValue('D' . ($key + 2), $value->komprehensif->first()->semester);
+            $sheet3->setCellValue('E' . ($key + 2), $value->komprehensif->first()->tahun_akademik);
+            $sheet3->setCellValue('F' . ($key + 2), $value->komprehensif->first()->judul_ta);
+            $sheet3->setCellValue('G' . ($key + 2), $value->komprehensif->first()->pembimbingSatu->nama_dosen);
+            if ($value->komprehensif->first()->id_pembimbing_dua != null) {
+                $sheet3->setCellValue('H' . ($key + 2), $value->komprehensif->first()->pembimbingDua->nama_dosen);
+            } else {
+                $sheet3->setCellValue('H' . ($key + 2), $value->komprehensif->first()->pbl2_nama);
             }
+            $sheet3->setCellValue('I' . ($key + 2), $value->komprehensif->first()->pembahas->nama_dosen);
+            $sheet3->setCellValue('J' . ($key + 2), ($value->komprehensif->first()->jadwal != null) ? $value->komprehensif->first()->jadwal->tanggal_komprehensif : '-');
+            if ($value->komprehensif->first()->beritaAcara) {
+                $sheet3->setCellValue('K' . ($key + 2), $value->komprehensif->first()->beritaAcara->nilai);
+                $sheet3->setCellValue('L' . ($key + 2), $value->komprehensif->first()->beritaAcara->huruf_mutu);
+                $sheet3->setCellValue('M' . ($key + 2), $value->komprehensif->first()->beritaAcara->no_ba_berkas);
+                $sheet3->setCellValue('N' . ($key + 2), url('uploads/ba_sidang_kompre/' . $value->komprehensif->first()->beritaAcara->ba_seminar_komprehensif));
+            } else {
+                $sheet3->setCellValue('K' . ($key + 2), '-');
+                $sheet3->setCellValue('L' . ($key + 2), '-');
+                $sheet3->setCellValue('M' . ($key + 2), '-');
+                $sheet3->setCellValue('N' . ($key + 2), '-');
+            }
+            $sheet3->setCellValue('O' . ($key + 2), $value->komprehensif->first()->status_admin);
+            $sheet3->setCellValue('P' . ($key + 2), $value->komprehensif->first()->status_koor);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
         $writer->save("Bimbingan Tugas Akhir Angkatan{$request->ta_unduh}.xlsx");
