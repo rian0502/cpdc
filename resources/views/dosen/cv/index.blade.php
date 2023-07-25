@@ -226,8 +226,8 @@
                         <h2 style="font-family: Arial, sans-serif;">Biodata</h2>
                         <p style="font-family: Arial, sans-serif;">{{ Auth::user()->name }}, dengan Nomor Induk Pegawai
                             {{ Auth::user()->dosen->nip }},
-                            berpangkat {{ Auth::user()->dosen->pangkatTerakhir->kepangkatan }}
-                            dan menjabat sebagai {{ Auth::user()->dosen->jabatanTerakhir->jabatan }} di Jurusan Kimia,
+                            berpangkat {{ Auth::user()->dosen->pangkatTerakhir->kepangkatan ?? '-' }}
+                            dan menjabat sebagai {{ Auth::user()->dosen->jabatanTerakhir->jabatan ?? '-' }} di Jurusan Kimia,
                             Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Lampung.</p>
                     </div>
 

@@ -185,7 +185,7 @@ class ExportData extends Controller
             $sheet->setCellValue('H' . ($key + 2), $value->ta_satu->first()->pembahas->nama_dosen);
             $sheet->setCellValue('I' . ($key + 2), $value->ta_satu->first()->status_admin);
             $sheet->setCellValue('J' . ($key + 2), $value->ta_satu->first()->status_koor);
-            if ($value->ta_satu->ba_seminar) {
+            if ($value->ta_satu->first()->ba_seminar) {
                 $sheet->setCellValue('K' . ($key + 2), $value->ta_satu->first()->ba_seminar->huruf_mutu);
                 $sheet->setCellValue('L' . ($key + 2), $value->ta_satu->first()->ba_seminar->nilai);
                 $sheet->setCellValue('M' . ($key + 2), $value->ta_satu->first()->ba_seminar->no_berkas_ba_seminar_ta_satu);

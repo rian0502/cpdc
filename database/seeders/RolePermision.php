@@ -38,7 +38,7 @@ class RolePermision extends Seeder
         ]);//3
         $buhani = User::create([
             'name' => 'Prof . Dr. Buhani, M.Si.',
-            'email' => 'buhani_s@yahoo.co.id',
+            'email' => 'buhani@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('cpdc'),
         ]);//4
@@ -50,7 +50,7 @@ class RolePermision extends Seeder
         ]);//5
         $agung = User::create([
             'name' => 'Dr. Agung Abadi Kiswandono, S.Si., M.Sc.',
-            'email' => 'agungkiswandono@gmail.com',
+            'email' => 'agung.abadi@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('cpdc'),
         ]);//6
@@ -76,7 +76,7 @@ class RolePermision extends Seeder
         ]);//9
         $sonny = User::create([
             'name' => 'Dr. Sonny Widiarto, S.Si., M.Sc.',
-            'email' => 'sonnywidiarto@gmail.com',
+            'email' => 'sonny@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('cpdc'),
         ]);//10
@@ -120,7 +120,7 @@ class RolePermision extends Seeder
         ]);//16
         $yuli = User::create([
             'name' => 'Dr. Yuli Ambarwati, S.Si, M.Si.',
-            'email' => 'yuliambar74@yahoo.com',
+            'email' => 'yuli.ambarwati@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('cpdc'),
         ]);//17
