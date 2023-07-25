@@ -220,7 +220,8 @@
                         </li>
 
                         <li>
-                            <a href="{{ route('jurusan.unduh.index') }}" class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*')?'active':'' }}">
+                            <a href="{{ route('jurusan.unduh.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
                                 <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
                             </a>
                         </li>
@@ -245,14 +246,15 @@
                             </a>
                         </li>
                     @endrole
-                    
-                    <li>
-                        <a href="{{ route('mahasiswa.survey.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
-                            <span class="micon bi bi-newspaper"></span><span class="mtext">Survei
-                            </span>
-                        </a>
-                    </li>
+                    @if (!Auth::user()->suggestion)
+                        <li>
+                            <a href="{{ route('mahasiswa.survey.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
+                                <span class="micon bi bi-newspaper"></span><span class="mtext">Survei
+                                </span>
+                            </a>
+                        </li>
+                    @endif
                     @role('sudo')
                         <li
                             class="dropdown {{ Request::is('sudo/akun_mahasiswa*') || Request::is('sudo/akun_dosen*') || Request::is('sudo/akun_admin*') ? 'show' : '' }}">

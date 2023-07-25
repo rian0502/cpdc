@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Suggestion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SuggestionController extends Controller
 {
@@ -14,6 +16,7 @@ class SuggestionController extends Controller
     public function index()
     {
         //
+        return view('mahasiswa.survey.create');
     }
 
     /**
@@ -35,6 +38,41 @@ class SuggestionController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate( [
+            'fungsionalitas' => 'required|min:1|max:10',
+            'kemudahan' => 'required|min:1|max:10',
+            'tampilan' => 'required|min:1|max:10',
+            'saran' => 'required|min:1|max:255|string',
+            'kritik' => 'required|min:1|max:255|string',
+        ],[
+            'fungsionalitas.required' => 'Fungsionalitas harus diisi!',
+            'fungsionalitas.min' => 'Fungsionalitas minimal 1!',
+            'fungsionalitas.max' => 'Fungsionalitas maksimal 10!',
+            'kemudahan.required' => 'Kemudahan harus diisi!',
+            'kemudahan.min' => 'Kemudahan minimal 1!',
+            'kemudahan.max' => 'Kemudahan maksimal 10!',
+            'tampilan.required' => 'Tampilan harus diisi!',
+            'tampilan.min' => 'Tampilan minimal 1!',
+            'tampilan.max' => 'Tampilan maksimal 10!',
+            'saran.required' => 'Saran harus diisi!',
+            'saran.min' => 'Saran minimal 1!',
+            'saran.max' => 'Saran maksimal 255!',
+            'kritik.required' => 'Kritik harus diisi!',
+            'kritik.min' => 'Kritik minimal 1!',
+            'kritik.max' => 'Kritik maksimal 255!',
+        ]);
+        $data = [
+            'fungsionalitas' => $request->fungsionalitas,
+            'kemudahan' => $request->kemudahan,
+            'tampilan' => $request->tampilan,
+            'saran' => $request->saran,
+            'kritik' => $request->kritik,
+            'user_id' => Auth::user()->id,
+        ];
+        Suggestion::create($data);
+        return redirect()->route('dashboard')->with('success', 'Terima kasih atas saran dan kritiknya! Kami akan terus berusaha untuk memperbaiki aplikasi ini.');
+
+
     }
 
     /**

@@ -226,6 +226,7 @@ Route::post('mahasiswa/profile/store', [ProfileMahasiswaController::class, 'stor
 
 
 
+Route::resource('survey', SuggestionController::class)->names('mahasiswa.survey');
 Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswa|alumni')->group(function () {
     Route::resource('profile', ProfileMahasiswaController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
     Route::resource('prestasi', PrestasiMahasiswaController::class)->names('prestasi');
@@ -234,7 +235,6 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
     Route::resource('bata1', MahasiswaBaTaSatu::class)->names('bata1');
     Route::resource('bata2', MahasiswaBaTaDua::class)->names('bata2');
     Route::resource('bakompre', MahasiswaBaKompre::class)->names('bakompre');
-    Route::resource('survey', SuggestionController::class)->names('survey');
 
     Route::group(['prefix' => 'seminar', 'as' => 'seminar.'], function () {
         Route::resource('kp', KPcontroller::class)->names('kp');
