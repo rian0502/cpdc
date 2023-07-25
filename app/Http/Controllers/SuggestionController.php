@@ -16,6 +16,9 @@ class SuggestionController extends Controller
     public function index()
     {
         //
+        if(Auth::user()->suggestion){
+            return redirect()->route('dashboard')->with('success', 'Anda sudah mengisi survey!');
+        }
         return view('mahasiswa.survey.create');
     }
 
