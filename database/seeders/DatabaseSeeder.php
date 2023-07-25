@@ -25,12 +25,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(BaseNPMSeeder::class);
         $this->call(Locations::class);
         $this->call(RolePermision::class);
         $this->call(SeederDosen::class);
         $this->call(SeederAdministrasi::class);
         $this->call(BerkasKelengkapanSeeder::class);
-        $this->call(Mahasiswa::class);
     }
 }
