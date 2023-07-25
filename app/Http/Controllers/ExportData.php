@@ -75,16 +75,16 @@ class ExportData extends Controller
             $sheet->setCellValue('C' . ($key + 2), $value->nama_mahasiswa);
             $sheet->setCellValue('D' . ($key + 2), $value->status);
             $sheet->setCellValue('E' . ($key + 2), $value->komprehensif->first()->judul_ta);
-            $sheet->setCellValue('F' . ($key + 2), $value->komprehensif->first()->pembimbing_satu->nama_dosen);
-            if ($value->komprehensif->first()->id_pembimbing_satu != null) {
-                $sheet->setCellValue('G' . ($key + 2), $value->komprehensif->first()->pembimbing_dua->nama_dosen);
+            $sheet->setCellValue('F' . ($key + 2), $value->komprehensif->first()->pembimbingSatu->nama_dosen);
+            if ($value->komprehensif->first()->id_pembimbing_dua != null) {
+                $sheet->setCellValue('G' . ($key + 2), $value->komprehensif->first()->pembimbingDua->nama_dosen);
             } else {
                 $sheet->setCellValue('G' . ($key + 2), $value->komprehensif->first()->pbl2_nama);
             }
             $sheet->setCellValue('H' . ($key + 2), $value->komprehensif->first()->pembahas->nama_dosen);
             $sheet->setCellValue('I' . ($key + 2), $value->komprehensif->first()->status_admin);
             $sheet->setCellValue('J' . ($key + 2), $value->komprehensif->first()->status_koor);
-            if ($value->komprehensif->beritaAcara) {
+            if ($value->komprehensif->first()->beritaAcara) {
                 $sheet->setCellValue('K' . ($key + 2), $value->komprehensif->first()->beritaAcara->huruf_mutu);
                 $sheet->setCellValue('L' . ($key + 2), $value->komprehensif->first()->beritaAcara->nilai);
                 $sheet->setCellValue('M' . ($key + 2), $value->komprehensif->first()->beritaAcara->no_ba_berkas);
@@ -123,7 +123,7 @@ class ExportData extends Controller
             $sheet->setCellValue('D' . ($key + 2), $value->status);
             $sheet->setCellValue('E' . ($key + 2), $value->ta_dua->first()->judul_ta);
             $sheet->setCellValue('F' . ($key + 2), $value->ta_dua->first()->pembimbing_satu->nama_dosen);
-            if ($value->ta_dua->first()->id_pembimbing_satu != null) {
+            if ($value->ta_dua->first()->id_pembimbing_dua != null) {
                 $sheet->setCellValue('G' . ($key + 2), $value->ta_dua->first()->pembimbing_dua->nama_dosen);
             } else {
                 $sheet->setCellValue('G' . ($key + 2), $value->ta_dua->first()->pbl2_nama);
@@ -177,7 +177,7 @@ class ExportData extends Controller
             $sheet->setCellValue('D' . ($key + 2), $value->status);
             $sheet->setCellValue('E' . ($key + 2), $value->ta_satu->first()->judul_ta);
             $sheet->setCellValue('F' . ($key + 2), $value->ta_satu->first()->pembimbing_satu->nama_dosen);
-            if ($value->ta_satu->first()->id_pembimbing_satu != null) {
+            if ($value->ta_satu->first()->id_pembimbing_dua != null) {
                 $sheet->setCellValue('G' . ($key + 2), $value->ta_satu->first()->pembimbing_dua->nama_dosen);
             } else {
                 $sheet->setCellValue('G' . ($key + 2), $value->ta_satu->first()->pbl2_nama);
@@ -304,22 +304,22 @@ class ExportData extends Controller
         $sheet->setCellValue('Q1', 'Seminar Komprehensif');
         foreach ($mahasiswa as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
-            $sheet->setCellValue('B' . ($key + 2), $value->npm);
-            $sheet->setCellValue('C' . ($key + 2), $value->nama_mahasiswa);
-            $sheet->setCellValue('D' . ($key + 2), $value->tanggal_lahir);
-            $sheet->setCellValue('E' . ($key + 2), $value->tempat_lahir);
-            $sheet->setCellValue('F' . ($key + 2), $value->no_hp);
-            $sheet->setCellValue('G' . ($key + 2), $value->alamat);
-            $sheet->setCellValue('H' . ($key + 2), $value->jenis_kelamin);
-            $sheet->setCellValue('I' . ($key + 2), $value->tanggal_masuk);
-            $sheet->setCellValue('J' . ($key + 2), $value->angkatan);
-            $sheet->setCellValue('K' . ($key + 2), $value->semester);
-            $sheet->setCellValue('L' . ($key + 2), $value->status);
-            $sheet->setCellValue('M' . ($key + 2), $value->dosen->nama_dosen);
+            $sheet->setCellValue('B' . ($key + 2), $value->npm ?? '-');
+            $sheet->setCellValue('C' . ($key + 2), $value->nama_mahasiswa ?? '-');
+            $sheet->setCellValue('D' . ($key + 2), $value->tanggal_lahir ?? '-');
+            $sheet->setCellValue('E' . ($key + 2), $value->tempat_lahir ?? '-');
+            $sheet->setCellValue('F' . ($key + 2), $value->no_hp ?? '-');
+            $sheet->setCellValue('G' . ($key + 2), $value->alamat ?? '-');
+            $sheet->setCellValue('H' . ($key + 2), $value->jenis_kelamin ?? '-');
+            $sheet->setCellValue('I' . ($key + 2), $value->tanggal_masuk ?? '-');
+            $sheet->setCellValue('J' . ($key + 2), $value->angkatan ?? '-');
+            $sheet->setCellValue('K' . ($key + 2), $value->semester ?? '-');
+            $sheet->setCellValue('L' . ($key + 2), $value->status ?? '-');
+            $sheet->setCellValue('M' . ($key + 2), $value->dosen->nama_dosen ?? '-');
             $sheet->setCellValue('N' . ($key + 2), $value->seminar_kp ? $value->seminar_kp->status_seminar : '0');
-            $sheet->setCellValue('O' . ($key + 2), $value->ta_satu->count() > 0 ? $value->ta_satu->status_koor : '0');
-            $sheet->setCellValue('P' . ($key + 2), $value->ta_dua->count() > 0 ? $value->ta_dua->status_koor : '0');
-            $sheet->setCellValue('Q' . ($key + 2), $value->komprehensif->count() > 0 ? $value->komprehensif->status_koor : '0');
+            $sheet->setCellValue('O' . ($key + 2), $value->ta_satu->count() > 0 ? $value->ta_satu->first()->status_koor : '0');
+            $sheet->setCellValue('P' . ($key + 2), $value->ta_dua->count() > 0 ? $value->ta_dua->first()->status_koor : '0');
+            $sheet->setCellValue('Q' . ($key + 2), $value->komprehensif->count() > 0 ? $value->komprehensif->first()->status_koor : '0');
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('mahasiswa' . $request->tahun_mahasiswa . '.xlsx');

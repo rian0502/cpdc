@@ -266,59 +266,6 @@ class RolePermision extends Seeder
         ]); //37
         //endadminlab
 
-        $mhs = User::create([
-            'name' => 'Egon Otmar',
-            'email' => 'omar.students@mail.com',
-            'email_verified_at' => now(),
-            'password' =>  bcrypt('cpdc'),
-            'profile_picture' => 'man.jpg'
-        ]);
-        $mhs2 = User::create([
-            'name' => 'Melati Aminah',
-            'email' => 'melatiaminah.students@mail.com',
-            'email_verified_at' => now(),
-            'password' =>  bcrypt('cpdc'),
-            'profile_picture' => 'woman.jpg'
-        ]);
-        $mhs3 = User::create([
-            'name' => 'Wera Adamska',
-            'email' => 'WeraAdamska@mail.com',
-            'email_verified_at' => now(),
-            'password' =>  bcrypt('cpdc'),
-        ]);
-        $mhs4 = User::create([
-            'name' => 'Gianni Ricci',
-            'email' => 'GianniRicci@mail.com',
-            'email_verified_at' => now(),
-            'password' =>  bcrypt('cpdc'),
-        ]);
-
-
-        $mhs5 = User::create([
-            'name' => 'Elvina Pratiwi',
-            'email' => 'vera.hastutigmail.com',
-            'email_verified_at' => now(),
-            'password' =>  bcrypt('cpdc'),
-        ]);
-        $mhs6 = User::create([
-            'name' => 'Enteng Waluyo',
-            'email' => 'entengwaluyo10@mail.com',
-            'email_verified_at' => now(),
-            'password' =>  bcrypt('cpdc'),
-        ]);
-        $mhs7 = User::create([
-            'name' => 'Nilam Palastri',
-            'email' => 'nilampalastri1010@mail.com',
-            'email_verified_at' => now(),
-            'password' =>  bcrypt('cpdc'),
-        ]);
-        $mhs8 = User::create([
-            'name' => 'Cakrajiya Anggriawan',
-            'email' => 'cakrajiya@mail.com',
-            'email_verified_at' => now(),
-            'password' =>  bcrypt('cpdc'),
-        ]);
-
         $roles = ['admin lab', 'admin berkas', 'mahasiswa', 'dosen', 'pkl', 'kompre', 'ta1', 'ta2', 'jurusan', 'alumni', 'kalab', 'sudo'];
         foreach ($roles as $role) {
             $role = Role::create([
@@ -369,15 +316,5 @@ class RolePermision extends Seeder
         $biokimia->assignRole('admin lab');
         $kidas->assignRole('admin lab');
         //end adminlab
-        //mahasiswa
-        $mhs->assignRole(['mahasiswa']);
-        $mhs2->assignRole(['mahasiswa']);
-        $mhs3->assignRole(['mahasiswa']);
-        $mhs4->assignRole(['mahasiswa']);
-        $mhs5->assignRole('mahasiswa');
-        $mhs6->assignRole('mahasiswa');
-        $mhs7->assignRole('mahasiswa');
-        $mhs8->assignRole('mahasiswa');
-        //end mahasiswa
     }
 }

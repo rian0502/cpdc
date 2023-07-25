@@ -63,7 +63,6 @@ class DataMahasiswaAllController extends Controller
         $seminarTa1 = ModelSeminarTaSatu::where('id_mahasiswa', $mahasiswa->id)->first();
         $seminarTa2 = ModelSeminarTaDua::where('id_mahasiswa', $mahasiswa->id)->first();
         $sidangKompre = ModelSeminarKompre::where('id_mahasiswa', $mahasiswa->id)->first();
-
         $data = [
             'mahasiswa' => $mahasiswa,
             'kp' => $mahasiswa->seminar_kp,

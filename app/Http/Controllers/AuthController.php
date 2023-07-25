@@ -114,7 +114,7 @@ class AuthController extends Controller
             'user_id' => $user->id,
         ];
         if ($request->id_dosen != null) {
-            $mhs['dosen_id'] = Crypt::decrypt($request->id_dosen);
+            $mhs['id_dosen'] = Crypt::decrypt($request->id_dosen);
         }
         if ($request->jenis_akun == 'mahasiswa') {
             $user->assignRole('mahasiswa');
