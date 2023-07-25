@@ -69,7 +69,6 @@ class SuggestionController extends Controller
             'kritik' => $request->kritik,
             'user_id' => Auth::user()->id,
         ];
-        return dd($data);
         Suggestion::create($data);
         return redirect()->route('dashboard')->with('success', 'Terima kasih atas saran dan kritiknya! Kami akan terus berusaha untuk memperbaiki aplikasi ini.');
 

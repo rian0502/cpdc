@@ -375,6 +375,7 @@
                         </li>
                     @endrole
 
+                    @if (!Auth::user()->suggestion)
                     <li>
                         <a href="{{ route('mahasiswa.survey.index') }}"
                             class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
@@ -382,6 +383,7 @@
                             </span>
                         </a>
                     </li>
+                @endif
                     @role('admin berkas')
                         <li>
                             <a href="{{ route('berkas.berkas_persyaratan.index') }}"
