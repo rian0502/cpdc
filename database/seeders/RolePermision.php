@@ -76,7 +76,7 @@ class RolePermision extends Seeder
         ]);//9
         $sonny = User::create([
             'name' => 'Dr. Sonny Widiarto, S.Si., M.Sc.',
-            'email' => 'sonnywidiarto@gmail.com',
+            'email' => 'sonny@fmipa.unila.ac.id',
             'email_verified_at' => now(),
             'password' =>  bcrypt('cpdc'),
         ]);//10
