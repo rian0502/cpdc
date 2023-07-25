@@ -65,4 +65,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Lokasi::class, 'lokasi_id');
     }
+    public function suggestion(){
+        return $this->hasOne(Suggestion::class, 'user_id');
+    }
 }

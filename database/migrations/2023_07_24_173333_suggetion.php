@@ -21,7 +21,9 @@ class Suggetion extends Migration
             $table->integer('tampilan');
             $table->text('saran');
             $table->string('kritik');
-            $table->foreignId('id_mahasiswa')->constrained('mahasiswa');
+            $table->foreignId('user_id')->constrained('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
