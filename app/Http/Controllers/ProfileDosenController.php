@@ -21,7 +21,7 @@ use App\Models\PublikasiDosen;
 use App\Models\ModelGelar;
 use Dompdf\Options;
 use Dompdf\Dompdf;
-
+use Illuminate\Database\Eloquent\Model;
 
 class ProfileDosenController extends Controller
 {
@@ -222,7 +222,7 @@ class ProfileDosenController extends Controller
         $publikasi = PublikasiDosen::whereHas('dosen', function ($q) {
             $q->where('dosen.id', Auth::user()->dosen->id);
         })->get();
-
+        $gelar = ModelGelar::where('dosen_id', Auth::user()->dosen->id)->get();
         $gelar_pendidikan = [
             'S.Pd.',          // Sarjana Pendidikan
             'S.Kom.',         // Sarjana Komputer
@@ -275,6 +275,7 @@ class ProfileDosenController extends Controller
             'publikasi' => $publikasi,
             'organisasi' => Auth::user()->dosen->organisasi,
             'nama' => trim($nama),
+            'gelar' => $gelar,
         ];
         $option = new Options();
         $option->set('isRemoteEnabled', true);

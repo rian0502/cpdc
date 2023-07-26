@@ -174,21 +174,19 @@
                                         </td>
                                         <td class="text-break max-w-md text-left">
 
-                                            {{ $item->nama_litabmas }}
+                                            {{ $item->litabmas->nama_litabmas }}
                                         </td>
                                         <td>
-                                            {{ $item->kategori }}
+                                            {{ $item->litabmas->kategori }}
                                         </td>
                                         <td>
-                                            {{ $item->tahun_penelitian }}
+                                            {{ $item->litabmas->tahun_penelitian }}
                                         </td>
                                         </td>
                                         <td>
                                             <div>
-                                                <a class="btn btn-warning" href="{{ route('dosen.litabmas.show', 1) }}"
+                                                <a class="btn btn-warning" href="{{ route('dosen.litabmas.show', $item->litabmas->encrypt_id) }}"
                                                     role="button">
-
-
                                                     <i class="fal fa-eye"></i>
                                                     Detail</a>
                                                 </a>
