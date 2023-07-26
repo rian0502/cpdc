@@ -230,8 +230,11 @@
                                 <span class="micon bi bi-journal-richtext"></span><span class="mtext">LITABMAS</span>
                             </a>
                         </li>
+                    @endrole
+                    @role('jurusan|tpmps')
                         <li>
-                            <a href="{{ route('jurusan.unduh.index') }}" class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*')?'active':'' }}">
+                            <a href="{{ route('jurusan.unduh.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
                                 <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
                             </a>
                         </li>
@@ -376,14 +379,14 @@
                     @endrole
 
                     @if (!Auth::user()->suggestion)
-                    <li>
-                        <a href="{{ route('mahasiswa.survey.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
-                            <span class="micon bi bi-newspaper"></span><span class="mtext">Survei
-                            </span>
-                        </a>
-                    </li>
-                @endif
+                        <li>
+                            <a href="{{ route('mahasiswa.survey.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
+                                <span class="micon bi bi-newspaper"></span><span class="mtext">Survei
+                                </span>
+                            </a>
+                        </li>
+                    @endif
                     @role('admin berkas')
                         <li>
                             <a href="{{ route('berkas.berkas_persyaratan.index') }}"

@@ -193,18 +193,18 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::resource('litabmas', LitabmasDataController::class);
     Route::resource('mahasiswa', DataMahasiswaAllController::class);
     Route::resource('alumni', DataAlumni::class);
-    Route::get('unduh', [ExportData::class, 'index'])->name('unduh.index');
-    Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
-    Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
-    Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
-    Route::post('unduh/prestasi', [ExportData::class, 'prestasi'])->name('unduh.prestasi');
-    Route::post('unduh/aktivitas', [ExportData::class, 'aktivitas'])->name('unduh.aktivitas');
-    Route::post('unduh/mahasiswa', [ExportData::class, 'mahasiswa'])->name('unduh.mahasiswa');
-    Route::post('unduh/alumni', [ExportData::class, 'alumni'])->name('unduh.alumni');
-    Route::post('unduh/kp', [ExportData::class, 'kp'])->name('unduh.kp');
-    Route::post('unduh/ta1', [ExportData::class, 'ta1'])->name('unduh.ta1');
-    Route::post('unduh/ta2', [ExportData::class, 'ta2'])->name('unduh.ta2');
-    Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
+    // Route::get('unduh', [ExportData::class, 'index'])->name('unduh.index');
+    // Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
+    // Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
+    // Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
+    // Route::post('unduh/prestasi', [ExportData::class, 'prestasi'])->name('unduh.prestasi');
+    // Route::post('unduh/aktivitas', [ExportData::class, 'aktivitas'])->name('unduh.aktivitas');
+    // Route::post('unduh/mahasiswa', [ExportData::class, 'mahasiswa'])->name('unduh.mahasiswa');
+    // Route::post('unduh/alumni', [ExportData::class, 'alumni'])->name('unduh.alumni');
+    // Route::post('unduh/kp', [ExportData::class, 'kp'])->name('unduh.kp');
+    // Route::post('unduh/ta1', [ExportData::class, 'ta1'])->name('unduh.ta1');
+    // Route::post('unduh/ta2', [ExportData::class, 'ta2'])->name('unduh.ta2');
+    // Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
 
     Route::get('chartCapaianPrestasi', [PrestasiDataController::class, 'pieChartCapaian'])->name('prestasi.chartCapaian');
     Route::get('chartScalaPrestasi', [PrestasiDataController::class, 'pieChartScala'])->name('prestasi.chartScala');
@@ -218,6 +218,22 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::get('barChartTahunLitabmas', [LitabmasDataController::class, 'barChartTahun'])->name('litabmas.barChartTahun');
     Route::get('pieChartKategoriLitabmas', [LitabmasDataController::class, 'pieChartKategoriLitabmas'])->name('litabmas.pieChartKategoriLitabmas');
 });
+
+Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|tpmps')->group(function () {
+    Route::get('unduh', [ExportData::class, 'index'])->name('unduh.index');
+    Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
+    Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
+    Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
+    Route::post('unduh/prestasi', [ExportData::class, 'prestasi'])->name('unduh.prestasi');
+    Route::post('unduh/aktivitas', [ExportData::class, 'aktivitas'])->name('unduh.aktivitas');
+    Route::post('unduh/mahasiswa', [ExportData::class, 'mahasiswa'])->name('unduh.mahasiswa');
+    Route::post('unduh/alumni', [ExportData::class, 'alumni'])->name('unduh.alumni');
+    Route::post('unduh/kp', [ExportData::class, 'kp'])->name('unduh.kp');
+    Route::post('unduh/ta1', [ExportData::class, 'ta1'])->name('unduh.ta1');
+    Route::post('unduh/ta2', [ExportData::class, 'ta2'])->name('unduh.ta2');
+    Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
+});
+
 //end jurusan
 Route::get('mahasiswa/profile/create', [ProfileMahasiswaController::class, 'create'])->name('mahasiswa.profile.create')->middleware('auth', 'verified', 'role:mahasiswa');
 Route::post('mahasiswa/profile/store', [ProfileMahasiswaController::class, 'store'])->name('mahasiswa.profile.store')->middleware('auth', 'verified', 'role:mahasiswa');

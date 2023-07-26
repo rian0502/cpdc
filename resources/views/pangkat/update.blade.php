@@ -23,6 +23,7 @@
                                         <option value="III A" {{ $pangkat->kepangkatan == 'III A' ? 'selected' : '' }} >III A</option>
                                         <option value="III B {{ $pangkat->kepangkatan == 'III B' ? 'selected' : '' }} ">III B</option>
                                         <option value="III C {{ $pangkat->kepangkatan == 'III C' ? 'selected' : '' }} ">III C</option>
+                                        <option value="III D {{ $pangkat->kepangkatan == 'III D' ? 'selected' : '' }} ">III D</option>
                                         <option value="IV A {{ $pangkat->kepangkatan == 'IV A' ? 'selected' : '' }} ">IV A</option>
                                         <option value="IV B {{ $pangkat->kepangkatan == 'IV B' ? 'selected' : '' }} ">IV B</option>
                                         <option value="IV C {{ $pangkat->kepangkatan == 'IV C' ? 'selected' : '' }} ">IV C</option>
