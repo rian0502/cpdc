@@ -46,7 +46,7 @@ class OrganisasiController extends Controller
             'tahun_menjabat' => $request->tahun_menjabat,
             'tahun_berakhir' => $request->tahun_berakhir,
             'jabatan' => $request->jabatan,
-            'dosen_id' => Auth::user()->dosen->first()->id,
+            'dosen_id' => Auth::user()->dosen->id,
         ];
         $organisasi = OrganisasiDosen::create($data);
         $id = $organisasi->id;

@@ -222,21 +222,19 @@
                                         <td>
                                             {{ $loop->iteration }}</td>
                                         <td class="text-break max-w-md text-left">
-                                            {{ $item->judul }}</td>
+                                            {{ $item->publikasi->judul }}</td>
                                         <td>
-                                            {{ $item->tahun }}</td>
+                                            {{ $item->publikasi->tahun }}</td>
                                         <td>
-                                            {{ $item->regional }}</td>
+                                            {{ $item->publikasi->scala }}</td>
                                         <td>
-                                            {{ $item->kategori }}</td>
+                                            {{ $item->publikasi->kategori }}</td>
                                         <td>
-                                            {{ $item->litabmas }}</td>
+                                            {{ $item->publikasi->kategori_litabmas }}</td>
                                         <td>
                                             <div>
-                                                <a class="btn btn-warning" href="{{ route('dosen.publikasi.show', 1) }}"
+                                                <a class="btn btn-warning" href="{{ route('dosen.publikasi.show', $item->publikasi->encrypt_id) }}"
                                                     role="button">
-
-
                                                     <i class="fal fa-eye"></i>
                                                     Detail</a>
                                                 </a>
