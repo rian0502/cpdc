@@ -128,7 +128,7 @@
                                             Jurnal Nasional Terakreditasi Dikt</option>
                                         <option value="Jurnal Nasional"
                                             {{ $publikasi->kategori == 'Jurnal Nasional' ? 'selected' : '' }}>
-                                            Jurnal Nasiona</option>
+                                            Jurnal Nasional</option>
                                         <option value="Jurnal Ilmiah"
                                             {{ $publikasi->kategori == 'Jurnal Ilmiah' ? 'selected' : '' }}>
                                             Jurnal Ilmiah</option>

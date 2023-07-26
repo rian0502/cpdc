@@ -218,7 +218,8 @@
                                 <span class="micon bi bi-journal-richtext"></span><span class="mtext">LITABMAS</span>
                             </a>
                         </li>
-
+                    @endrole
+                    @role('jurusan|tpmps')
                         <li>
                             <a href="{{ route('jurusan.unduh.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
