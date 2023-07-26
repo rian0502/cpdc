@@ -399,36 +399,4 @@
             </div>
         </div>
     </div>
-    <script>
-        const currentYear = new Date().getFullYear();
-
-        function populateSelect(selectId) {
-            const selectElement = document.getElementById(selectId);
-            for (let year = currentYear; year >= currentYear - 100; year--) {
-                const option = document.createElement("option");
-                option.text = year;
-                option.value = year;
-                selectElement.appendChild(option);
-            }
-            const selectedYear = localStorage.getItem(selectId);
-            if (selectedYear) {
-                selectElement.value = selectedYear;
-            }
-
-            selectElement.addEventListener("change", function() {
-                localStorage.setItem(selectId, selectElement.value);
-            });
-        }
-        populateSelect("tahun_penelitian");
-        populateSelect("tahun_pengabdian");
-        populateSelect("tahun-publikasi");
-        populateSelect("tahun_prestasi");
-        populateSelect("tahun-aktivitas");
-        populateSelect("akt-kp");
-        populateSelect("akt-ta1");
-        populateSelect("akt-ta2");
-        populateSelect("akt-kompre");
-        populateSelect("tahun_mahasiswa");
-        populateSelect("data-alumni");
-    </script>
 @endsection

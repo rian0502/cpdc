@@ -1090,20 +1090,22 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Judul Kegiatan</th>
-                                                    <th>Peran</th>
+                                                    <th>Nama Prestasi</th>
+                                                    <th>Scala</th>
                                                     <th>Tanggal</th>
-                                                    <th>SKS Konversi</th>
+                                                    <th>Capaian</th>
+                        
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($aktivitas as $item)
+                                                @foreach ($prestasi as $item)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $item->nama_aktivitas }}</td>
-                                                        <td>{{ $item->peran }}</td>
+                                                        <td>{{ $item->nama_prestasi }}</td>
+                                                        <td>{{ $item->scala }}</td>
                                                         <td>{{ $item->tanggal }}</td>
-                                                        <td>{{ $item->sks_konversi }} SKS</td>
+                                                        <td>{{ $item->capaian }}</td>
+                                
                                                     </tr>
                                                 @endforeach
                                             </tbody>

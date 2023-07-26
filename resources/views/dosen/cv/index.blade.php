@@ -227,35 +227,30 @@
                         <p style="font-family: Arial, sans-serif;">{{ Auth::user()->name }}, dengan Nomor Induk Pegawai
                             {{ Auth::user()->dosen->nip }},
                             berpangkat {{ Auth::user()->dosen->pangkatTerakhir->kepangkatan ?? '-' }}
-                            dan menjabat sebagai {{ Auth::user()->dosen->jabatanTerakhir->jabatan ?? '-' }} di Jurusan Kimia,
+                            dan menjabat sebagai {{ Auth::user()->dosen->jabatanTerakhir->jabatan ?? 'Dosen' }} di Jurusan
+                            Kimia,
                             Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Lampung.</p>
                     </div>
 
                     <div class="section">
-                        <h2 style="font-family: Arial, sans-serif;">Penelitian</h2>
-                        @foreach ($penelitian as $item)
+                        <h2 style="font-family: Arial, sans-serif;">Pendidikan</h2>
+                        @foreach ($gelar as $item)
                             <table>
                                 <tr>
                                     <td rowspan="3" class="margin">
-                                        {{ $item->tahun_penelitian }}
+                                        {{ $item->tahun_lulus }}
                                     </td>
                                     <td class="text-justify">
                                         <div class="judul">
-                                            {{ $item->nama_litabmas }}
+                                            {{ $item->instansi_pendidikan }}
                                         </div>
                                         {{-- <br> --}}
                                         <div style="margin-top: 15px;"></div>
-                                        Sumber dana dari {{ $item->sumber_dana }}, dengan anggaran
-                                        Rp{{ number_format($item->jumlah_dana, 0, ',', '.') }}
+                                        Jurusan {{ $item->jurusan }},Program Studi {{ $item->nama_gelar }}
                                     </td>
                                 </tr>
                             </table>
                         @endforeach
-                    </div>
-                    <div class="section">
-                        <h2 style="font-family: Arial, sans-serif;">Pendidikan</h2>
-                        <p style="font-family: Arial, sans-serif;">
-                        <p>
                     </div>
 
                     <div class="section">
