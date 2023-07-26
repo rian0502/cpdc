@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Dosen;
+use App\Models\PublikasiDosen;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -24,6 +25,6 @@ class AnggotaPublikasiDosen extends Model
     }
     public function publikasi()
     {
-        return $this->belongsTo(Publikasi::class, 'id_publikasi', 'id');
+        return $this->belongsTo(PublikasiDosen::class, 'id_publikasi', 'id');
     }
 }
