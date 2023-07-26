@@ -70,6 +70,15 @@
                             </div>
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
+                                <div class="form-group">
+                                    <label>Link Dokumen</label>
+                                    <input value="{{ old('url') }}" autofocus name="url" id="url"
+                                        class="form-control @error('url') form-control-danger @enderror" type="text"
+                                        placeholder="Link publikasi">
+                                    @error('url')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
                                 <div class="form-group">
                                     <label>Anggota</label>
