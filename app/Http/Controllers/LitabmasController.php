@@ -54,6 +54,7 @@ class LitabmasController extends Controller
             'jumlah_dana' => $request->jumlah_dana,
             'tahun_penelitian' => $request->tahun_pelaksanaan,
             'anggota_external' => $request->anggota_external,
+            'url' => $request->url,
         ];
         $inLitabmas = LitabmasDosen::create($litabmas);
         $id_litabmas = $inLitabmas->id;
@@ -160,6 +161,7 @@ class LitabmasController extends Controller
             $litabmas->jumlah_dana = $request->jumlah_dana;
             $litabmas->tahun_penelitian = $request->tahun_pelaksanaan;
             $litabmas->anggota_external = $request->anggota_external;
+            $litabmas->url = $request->url;
             $litabmas->save();
             if ($request->anggota) {
                 $decrypt = array();
