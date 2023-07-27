@@ -113,17 +113,21 @@ class ProfileMahasiswaController extends Controller
     public function update(UpdateProfileMahasiswaRequest $request, $id)
     {
         $mahasiswa = Mahasiswa::where('npm', $id)->first();
+        $user = User::find($mahasiswa->user_id);
         if(Auth::user()->id != $mahasiswa->user_id){
             return redirect()->back();
         }
         if($request->file('foto_profile') != null){
             $foto_profile = $request->file('foto_profile');
             $nama_foto = $foto_profile->hashName();
+            if($user->profile_picture != 'default.png'){
+                unlink('uploads/profile/'.$user->profile_picture);
+            }
             $foto_profile->move('uploads/profile', $nama_foto);
-            $user = User::find($mahasiswa->user_id);
             $user->profile_picture = $nama_foto;
-            $user->save();
         }
+        $user->name = $request->nama_mahasiswa;
+        $user->save();
         $mahasiswa->nama_mahasiswa = $request->nama_mahasiswa;
         $mahasiswa->tanggal_lahir = $request->tanggal_lahir;
         $mahasiswa->tempat_lahir = $request->tempat_lahir;

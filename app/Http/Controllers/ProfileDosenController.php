@@ -174,14 +174,19 @@ class ProfileDosenController extends Controller
             return redirect()->back();
         }
         $dosen = Dosen::where('nip', $id)->first();
+        $user = User::find(Auth::user()->id);
+
         if ($request->file('foto_profile') != null) {
             $foto = $request->file('foto_profile');
             $nama_foto = $foto->hashName();
+            if($user->profile_picture != 'default.png'){
+                unlink('uploads/profile/'.$user->profile_picture);
+            }
             $foto->move('uploads/profile', $nama_foto);
-            $user = User::find(Auth::user()->id);
             $user->profile_picture = $nama_foto;
-            $user->save();
         }
+        $user->name = $request->nama_dosen;
+        $user->save();
         $dosen->nip = $request->nip;
         $dosen->nidn = $request->nidn;
         $dosen->nama_dosen = $request->nama_dosen;
@@ -192,10 +197,6 @@ class ProfileDosenController extends Controller
         $dosen->jenis_kelamin = $request->gender;
         $dosen->updated_at = date('Y-m-d H:i:s');
         $dosen->save();
-        $user = User::find(Auth::user()->id);
-        $user->name = $request->nama_dosen;
-        $user->save();
-
         return redirect()->route('dosen.profile.index')->with('success', 'Profile Berhasil Diperbarui');
     }
 

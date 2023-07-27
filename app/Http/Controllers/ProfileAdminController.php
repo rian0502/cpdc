@@ -121,9 +121,14 @@ class ProfileAdminController extends Controller
             return redirect()->route('admin.profile.index')->with('error', 'Anda tidak memiliki akses');
         }
         $administrasi = Administrasi::find(Crypt::decrypt($id));
+        $user = User::find(Auth::user()->id);
+
         if ($request->file('foto_profile') != null) {
             $profile = $request->file('foto_profile');
             $nama_file = $profile->hashName();
+            if ($user->profile_picture != 'default.png') {
+                unlink('uploads/profile/' . $user->profile_picture);
+            }
             $administrasi->nama_administrasi = $request->nama_admin;
             $administrasi->nip = $request->nip;
             $administrasi->no_hp = $request->no_hp;
@@ -133,21 +138,22 @@ class ProfileAdminController extends Controller
             $administrasi->jenis_kelamin = $request->gender;
             $administrasi->updated_at = date("Y-m-d H:i:s");
             $administrasi->save();
-            $user = User::find(Auth::user()->id);
             $user->profile_picture = $nama_file;
-            $user->save();
             $profile->move('uploads/profile', $nama_file);
-        } else {
-            $administrasi->nama_administrasi = $request->nama_admin;
-            $administrasi->nip = $request->nip;
-            $administrasi->no_hp = $request->no_hp;
-            $administrasi->tanggal_lahir = $request->tanggal_lahir;
-            $administrasi->tempat_lahir = $request->tempat_lahir;
-            $administrasi->alamat = $request->alamat;
-            $administrasi->jenis_kelamin = $request->gender;
-            $administrasi->updated_at = date("Y-m-d H:i:s");
-            $administrasi->save();
         }
+
+        $user->name = $request->nama_admin;
+        $user->save();
+        $administrasi->nama_administrasi = $request->nama_admin;
+        $administrasi->nip = $request->nip;
+        $administrasi->no_hp = $request->no_hp;
+        $administrasi->tanggal_lahir = $request->tanggal_lahir;
+        $administrasi->tempat_lahir = $request->tempat_lahir;
+        $administrasi->alamat = $request->alamat;
+        $administrasi->jenis_kelamin = $request->gender;
+        $administrasi->updated_at = date("Y-m-d H:i:s");
+        $administrasi->save();
+
         return redirect()->route('admin.profile.index')->with('success', 'Data berhasil diubah');
     }
 }

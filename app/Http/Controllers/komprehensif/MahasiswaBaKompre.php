@@ -4,6 +4,8 @@ namespace App\Http\Controllers\komprehensif;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBaKompre;
+use App\Http\Requests\UpdateBaKompre;
 use App\Models\ModelBaSeminarKompre;
 use App\Models\ModelSeminarKompre;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +41,7 @@ class MahasiswaBaKompre extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBaKompre $request)
     {
         if ($request->_token != csrf_token()) {
             return redirect()->back();
@@ -106,7 +108,7 @@ class MahasiswaBaKompre extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBaKompre $request, $id)
     {
         if ($request->_token != csrf_token()) {
             return redirect()->back();
