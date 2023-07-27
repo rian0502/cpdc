@@ -46,7 +46,7 @@ class OrganisasiController extends Controller
             'tahun_menjabat' => $request->tahun_menjabat,
             'tahun_berakhir' => $request->tahun_berakhir,
             'jabatan' => $request->jabatan,
-            'dosen_id' => Auth::user()->dosen->first()->id,
+            'dosen_id' => Auth::user()->dosen->id,
         ];
         $organisasi = OrganisasiDosen::create($data);
         $id = $organisasi->id;
@@ -101,7 +101,7 @@ class OrganisasiController extends Controller
             'updated_at' => date('Y-m-d H:i:s'),
         ];
         $organisasi = OrganisasiDosen::find(Crypt::decrypt($id));
-        if (Auth::user()->dosen[0]->id == $organisasi['dosen_id']) {
+        if (Auth::user()->dosen->id == $organisasi['dosen_id']) {
             $update = OrganisasiDosen::where('id', Crypt::decrypt($id))->update($data);
             if ($update) {
                 return redirect()->route('dosen.profile.index')->with('success', 'Data berhasil diubah');

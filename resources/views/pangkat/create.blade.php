@@ -22,6 +22,7 @@
                                         <option value="III A" {{ old('kepangkatan') == 'III A' ? 'selected' : '' }} >III A</option>
                                         <option value="III B {{ old('kepangkatan') == 'III B' ? 'selected' : '' }} ">III B</option>
                                         <option value="III C {{ old('kepangkatan') == 'III C' ? 'selected' : '' }} ">III C</option>
+                                        <option value="III D {{ old('kepangkatan') == 'III D' ? 'selected' : '' }} ">III D</option>
                                         <option value="IV A {{ old('kepangkatan') == 'IV A' ? 'selected' : '' }} ">IV A</option>
                                         <option value="IV B {{ old('kepangkatan') == 'IV B' ? 'selected' : '' }} ">IV B</option>
                                         <option value="IV C {{ old('kepangkatan') == 'IV C' ? 'selected' : '' }} ">IV C</option>
