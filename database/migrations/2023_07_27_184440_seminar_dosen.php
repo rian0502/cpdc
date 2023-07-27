@@ -19,6 +19,7 @@ class SeminarDosen extends Migration
             $table->string('encrypt_id')->nullable();
             $table->string('nama');
             $table->string('tahun');
+            $table->enum('scala', ['Nasional', 'Internasional', 'Provinsi', 'Kabupaten/Kota', 'Universitas']);
             $table->string('urain');
             $table->string('url');
             $table->foreignId('dosen_id')->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
