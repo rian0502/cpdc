@@ -56,13 +56,14 @@
                                                             href="{{ route('lab.barang.edit', $item->encrypt_id) }}"><i
                                                                 class="dw dw-edit2"></i>
                                                             Edit</a>
-                                                        <form id="delete"
+                                                        <form id="deleteForm2"
                                                             action="{{ route('lab.barang.destroy', $item->encrypt_id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" id="deleteBtn"
-                                                                class="dropdown-item text-danger"><i class="dw dw-delete-3"></i>
+                                                            <button type="button" class="dropdown-item text-danger deleteBtn2"
+                                                                onclick="showDeleteConfirmation(event)"><i
+                                                                    class="dw dw-delete-3"></i>
                                                                 Hapus</button>
                                                         </form>
                                                     @endrole

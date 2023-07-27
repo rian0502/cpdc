@@ -95,7 +95,7 @@ class BarangController extends Controller
     {
         $data = [
             'barang' => Barang::where('id', Crypt::decrypt($id))->first(),
-            'lokasi' => Auth::user()->administrasi->lokasi,
+            'lokasi' => Auth::user()->lokasi,
             'models' => ModelBarang::all(),
             'categories' => Kategori::all(),
         ];

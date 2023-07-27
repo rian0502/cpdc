@@ -28,7 +28,6 @@ class UpdateBarangRequest extends FormRequest
             return [
                 'nama_barang' => 'required|max:255',
                 'jumlah_akhir' => 'required|numeric|min:0',
-                'id_lokasi' => 'required|exists:lokasi,encrypt_id',
                 'id_model' => 'required|exists:model_barang,encrypt_id',
                 'ket' => 'required|max:255|string',
                 'jumlah_akhir' => 'required|numeric|min:0',
@@ -49,7 +48,6 @@ class UpdateBarangRequest extends FormRequest
                 'nama_barang.max' => 'Nama Barang maksimal 255 karakter',
                 'id_model.required' => 'Model Barang harus diisi',
                 'id_model.exists' => 'Model Barang tidak ditemukan',
-                'id_lokasi.required' => 'Lokasi Barang harus diisi',
                 'id_lokasi.exists' => 'Lokasi Barang tidak ditemukan',
                 'ket.required' => 'Keterangan harus diisi',
                 'ket.max' => 'Keterangan maksimal 255 karakter',
@@ -63,7 +61,6 @@ class UpdateBarangRequest extends FormRequest
                 'nama_barang.max' => 'Nama Barang maksimal 255 karakter',
                 'id_model.required' => 'Model Barang harus diisi',
                 'id_model.exists' => 'Model Barang tidak ditemukan',
-                'id_lokasi.required' => 'Lokasi Barang harus diisi',
                 'id_lokasi.exists' => 'Lokasi Barang tidak ditemukan',
             ];
         }
