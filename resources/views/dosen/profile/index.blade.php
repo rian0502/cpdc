@@ -78,6 +78,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
                         <div class="pd-20 card-box height-100-p">
                             <div class="profile-photo mt-2">
+                                
                                 {{-- <a href="#" class="edit-avatar" data-toggle="modal" data-target="#modal"> --}}
                                 <a href="{{ route('dosen.profile.edit', Auth::user()->dosen->nip) }}" class="edit-avatar">
                                     <i class="fa fa-pencil"></i>
@@ -259,9 +260,8 @@
                                                                     class="ion-plus-round"></i> Tambah</a>
                                                         </div>
                                                     </div>
-                                                    <div class="profile-task-list pb-30 table-responsive">
-                                                        <table
-                                                            class="table data-table-responsive stripe data-table-export">
+                                                    <div class="profile-task-list table-responsive">
+                                                        <table class="table data-table-responsive stripe data-table-export">
                                                             <thead>
                                                                 <tr>
                                                                     <td>No</td>
@@ -272,7 +272,6 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-
                                                                 @foreach (Auth::user()->dosen->litabmas as $item)
                                                                     <tr>
                                                                         <td>{{ $loop->iteration }}</td>
@@ -320,8 +319,6 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
-
-                                                    <!-- Open Task End -->
                                                 </div>
                                             </div>
                                         </div>

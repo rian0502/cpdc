@@ -1,5 +1,6 @@
 @extends('layouts.blank')
 @section('blank')
+    <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.css">
     <style>
         .custom-file-label::after {
             content: 'Pilih File';
@@ -43,19 +44,40 @@
                                 <div class="profile-photo">
                                     <img id="preview-image" src="/uploads/profile/{{ Auth::user()->profile_picture }}"
                                         alt="Foto Profile" onerror="this.src='/uploads/profile/default.png'" class="foto">
-
                                 </div>
+
                                 <div class="center-div">
-                                    <input value="{{ old('foto_profile') }}" accept="image/*" autofocus name="foto_profile"
-                                        id="foto_profile"
+                                    <input value="{{ Auth::user()->profile_picture }}" accept="image/*" autofocus
+                                        name="foto_profile" id="foto_profile"
                                         class="mt-2 file-foto form-control @error('foto_profile') form-control-danger @enderror"
                                         type="file" placeholder="FOTO PROFILE" onchange="previewFile(event)">
-
-                                </div>
-                                <div class="center-div">
                                     @error('foto_profile')
-                                    <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
-                                @enderror
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal for image cropping -->
+                        <div id="imageCropModal" class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Sesuaikan Gambar</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div>
+                                            <img id="cropperImage" src="" alt="Crop Preview"
+                                                style="max-width: 100%;">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                        <button type="button" class="btn btn-primary" id="cropImageBtn"
+                                            onclick="cropImage()">Potong</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -65,16 +87,16 @@
                                 <div class="form-group">
                                     <label for="">Tanggal Lahir</label>
                                     <input name="tanggal_lahir"
-                                        class="form-control @error('tanggal_lahir') form-control-danger @enderror" value="{{ old('tanggal_lahir') }}"
-                                        type="date">
+                                        class="form-control @error('tanggal_lahir') form-control-danger @enderror"
+                                        value="{{ old('tanggal_lahir') }}" type="date">
                                     @error('tanggal_lahir')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Nomor Telepon</label>
-                                    <input autofocus name="hp" id="hp" class="form-control" type="number" value="{{ old('hp') }}"
-                                        placeholder="Nomor Telepon">
+                                    <input autofocus name="hp" id="hp" class="form-control" type="number"
+                                        value="{{ old('hp') }}" placeholder="Nomor Telepon">
                                 </div>
                                 <div class="form-group">
                                     <label>Alamat</label>
@@ -86,8 +108,8 @@
                                 <div class="form-group">
                                     <label for="">Tanggal Masuk</label>
                                     <input name="tanggal_masuk"
-                                        class="form-control @error('tanggal_masuk') form-control-danger @enderror" value="{{ old('tanggal_masuk') }}"
-                                        type="date">
+                                        class="form-control @error('tanggal_masuk') form-control-danger @enderror"
+                                        value="{{ old('tanggal_masuk') }}" type="date">
                                     @error('tanggal_masuk')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -96,8 +118,8 @@
                                 <div class="form-group">
                                     <label>Tempat Lahir</label>
                                     <input autofocus name="tempat_lahir" id="tempat_lahir"
-                                        class="form-control @error('tempat_lahir') form-control-danger @enderror" value="{{ old('tempat_lahir') }}"
-                                        type="text" placeholder="Tempat Lahir">
+                                        class="form-control @error('tempat_lahir') form-control-danger @enderror"
+                                        value="{{ old('tempat_lahir') }}" type="text" placeholder="Tempat Lahir">
                                     @error('tempat_lahir')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -106,8 +128,8 @@
                                 <div class="form-group">
                                     <label>Semester</label>
                                     <input autofocus name="semester" id="semester"
-                                        class="form-control @error('semester') form-control-danger @enderror" type="number" value="{{ old('semester') }}"
-                                        placeholder="Semester">
+                                        class="form-control @error('semester') form-control-danger @enderror" type="number"
+                                        value="{{ old('semester') }}" placeholder="Semester">
                                     @error('semester')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -118,7 +140,7 @@
                             <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
                     </form>
-                    
+
                 </div>
             </div>
         </div>
@@ -137,4 +159,9 @@
             reader.readAsDataURL(input.files[0]);
         }
     </script>
+    <script src="/Assets/admin/src/scripts/croppingImageProfile.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://unpkg.com/cropperjs"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 @endsection
