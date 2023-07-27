@@ -50,6 +50,8 @@
                                         name="foto_profile" id="foto_profile"
                                         class="mt-2 file-foto form-control @error('foto_profile') form-control-danger @enderror"
                                         type="file" placeholder="FOTO PROFILE" onchange="previewFile(event)">
+                                </div>
+                                <div class="center-div">
                                     @error('foto_profile')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
