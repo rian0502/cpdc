@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('admin')
+    <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.css">
     <style>
         .custom-file-label::after {
             content: 'Pilih File';
@@ -27,7 +28,6 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-                <!-- Default Basic Forms Start -->
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
@@ -44,8 +44,8 @@
                                 <div class="profile-photo">
                                     <img id="preview-image" src="/uploads/profile/{{ Auth::user()->profile_picture }}"
                                         alt="Foto Profile" onerror="this.src='/uploads/profile/default.png'" class="foto">
-
                                 </div>
+
                                 <div class="center-div">
                                     <input value="{{ Auth::user()->profile_picture }}" accept="image/*" autofocus
                                         name="foto_profile" id="foto_profile"
@@ -54,6 +54,30 @@
                                     @error('foto_profile')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal for image cropping -->
+                        <div id="imageCropModal" class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Sesuaikan Gambar</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div>
+                                            <img id="cropperImage" src="" alt="Crop Preview"
+                                                style="max-width: 100%;">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                        <button type="button" class="btn btn-primary" id="cropImageBtn"
+                                            onclick="cropImage()">Potong</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -166,9 +190,6 @@
                 </div>
             </div>
         </div>
-        <!-- Input Validation End -->
-
-
     </div>
     <script>
         function previewFile(event) {
@@ -183,4 +204,9 @@
             reader.readAsDataURL(input.files[0]);
         }
     </script>
+    <script src="/Assets/admin/src/scripts/croppingImageProfile.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://unpkg.com/cropperjs"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 @endsection
