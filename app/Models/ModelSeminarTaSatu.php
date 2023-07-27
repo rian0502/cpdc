@@ -16,6 +16,7 @@ class ModelSeminarTaSatu extends Model
         'semester',
         'periode_seminar',
         'judul_ta',
+        'sumber_penelitian',
         'sks',
         'ipk',
         'toefl',

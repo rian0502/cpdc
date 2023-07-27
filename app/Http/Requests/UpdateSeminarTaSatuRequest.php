@@ -23,10 +23,11 @@ class UpdateSeminarTaSatuRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {   
+    {
         $data = ['Ganjil', 'Genap'];
+        $sumber = ['Dosen', 'Mahasiswa'];
         return [
-            'semester' => 'required|in:'.implode(',', $data),
+            'semester' => 'required|in:' . implode(',', $data),
             'sks' => 'required|numeric',
             'ipk' => 'required|numeric|min:0|max:4',
             'id_pembimbing_satu' => 'required|exists:dosen,encrypt_id',
@@ -35,7 +36,8 @@ class UpdateSeminarTaSatuRequest extends FormRequest
             'toefl' => 'required|numeric|min:0|max:677',
             'judul_ta' => 'required|string|max:255|min:5',
             'agreement' => 'required',
-            'berkas_seminar_ta_satu' => 'nullable|mimes:pdf|max:2048'
+            'berkas_seminar_ta_satu' => 'nullable|mimes:pdf|max:1048',
+            'sumber_penelitian' => 'required|in:' . implode(',', $sumber),
         ];
     }
 
@@ -67,7 +69,9 @@ class UpdateSeminarTaSatuRequest extends FormRequest
             'agreement.required' => 'Agreement Harus diisi',
             'berkas_seminar_ta_satu.required' => 'Berkas Seminar Harus diisi',
             'berkas_seminar_ta_satu.mimes' => 'Berkas Seminar harus berupa pdf',
-            'berkas_seminar_ta_satu.max' => 'Berkas Seminar maksimal 1MB'
+            'berkas_seminar_ta_satu.max' => 'Berkas Seminar maksimal 1MB',
+            'sumber_penelitian.required' => 'Sumber Penelitian Harus dipilih',
+            'sumber_penelitian.in' => 'Sumber Penelitian harus sesuai pilihan',
         ];
     }
 }
