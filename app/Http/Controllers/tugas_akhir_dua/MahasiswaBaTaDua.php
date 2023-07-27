@@ -5,6 +5,8 @@ namespace App\Http\Controllers\tugas_akhir_dua;
 use Illuminate\Http\Request;
 use App\Models\ModelBaSeminarTaDua;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBaTaDuaRequest;
+use App\Http\Requests\UpdateBaTaDuaRequest;
 use App\Models\ModelSeminarTaDua;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -39,7 +41,7 @@ class MahasiswaBaTaDua extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBaTaDuaRequest $request)
     {
         //
 
@@ -110,7 +112,7 @@ class MahasiswaBaTaDua extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBaTaDuaRequest $request, $id)
     {
         if ($request->_token != csrf_token()) {
             return redirect()->back();
