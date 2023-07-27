@@ -170,8 +170,8 @@ function clearImage() {
     document.getElementById("foto_profile").value = "";
 
     // Tampilkan gambar default jika profil tidak memiliki gambar
-    document.getElementById("preview-image").src =
-        "/uploads/profile/default.png";
+    // document.getElementById("preview-image").src =
+    //     "/uploads/profile/default.png";
 }
 
 // Fungsi untuk menyimpan gambar yang sudah dipotong (base64 data) ke server
