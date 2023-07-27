@@ -22,7 +22,7 @@ class SopController extends Controller
     {
         //
         $data = [
-            'sop' => SopLab::all(),
+            'sop' => SopLab::where('id_lokasi', Auth::user()->lokasi_id)->get()
         ];
         return view('admin.admin_lab.sop.index', $data);
     }
