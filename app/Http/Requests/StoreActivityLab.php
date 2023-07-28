@@ -24,7 +24,7 @@ class StoreActivityLab extends FormRequest
      */
     public function rules()
     {
-        $keperluan = ['Praktikum', 'Penelitian', 'Lainnya'];
+        $keperluan = ['Praktikum', 'Penelitian', 'Lainnya', 'Ujian', 'PKL', 'PKM', 'Asistensi', 'MBKM'];
         return [
             'tanggal_kegiatan' => 'required|date',
             'keperluan' => 'required|in:' . implode(',', $keperluan),
