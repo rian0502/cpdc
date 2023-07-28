@@ -1,96 +1,91 @@
+// Variabel global untuk menyimpan status cropping
+var cropper;
+var originalImageSrc;
+var croppingInProgress = false;
+var croppedImageData; // Variabel untuk menyimpan data gambar yang sudah di-crop
 
-  // Variabel global untuk menyimpan status cropping
-  var cropper;
-  var originalImageSrc;
-  var croppingInProgress = false;
-  var croppedImageData; // Variabel untuk menyimpan data gambar yang sudah di-crop
-
-  // Fungsi untuk menampilkan modal cropping
-  function showImageCropModal() {
+// Fungsi untuk menampilkan modal cropping
+function showImageCropModal() {
     $("#imageCropModal").modal("show");
-  }
+}
 
-  // Fungsi untuk menyembunyikan modal cropping
-  function hideImageCropModal() {
+// Fungsi untuk menyembunyikan modal cropping
+function hideImageCropModal() {
     $("#imageCropModal").modal("hide");
-  }
+}
 
-  // Fungsi untuk memuat gambar sebelum dilakukan cropping
-  function previewFile(event) {
+// Fungsi untuk memuat gambar sebelum dilakukan cropping
+function previewFile(event) {
     var input = event.target;
     var reader = new FileReader();
 
-    reader.onload = function() {
-      var dataURL = reader.result;
+    reader.onload = function () {
+        var dataURL = reader.result;
 
-      // Simpan sumber gambar asli untuk jika reseleksi gambar
-      originalImageSrc = dataURL;
+        // Simpan sumber gambar asli untuk jika reseleksi gambar
+        originalImageSrc = dataURL;
 
-      // Tampilkan gambar di modal cropping
-      var image = document.getElementById("cropperImage");
-      image.src = dataURL;
+        // Tampilkan gambar di modal cropping
+        var image = document.getElementById("cropperImage");
+        image.src = dataURL;
 
-      // Tampilkan modal cropping setelah gambar dipilih
-      showImageCropModal();
+        // Tampilkan modal cropping setelah gambar dipilih
+        showImageCropModal();
 
-      // Inisialisasi Cropper.js setelah gambar dimuat
-      if (cropper) {
-        cropper.destroy(); // Hapus instansi Cropper sebelumnya jika ada
-      }
-      cropper = new Cropper(image, {
-        aspectRatio: 1, // Anda dapat menyesuaikan aspek rasio sesuai kebutuhan
-        viewMode: 1,
-        responsive: true,
-        cropBoxResizable: true,
-      });
+        // Inisialisasi Cropper.js setelah gambar dimuat
+        if (cropper) {
+            cropper.destroy(); // Hapus instansi Cropper sebelumnya jika ada
+        }
+        cropper = new Cropper(image, {
+            aspectRatio: 1, // Anda dapat menyesuaikan aspek rasio sesuai kebutuhan
+            viewMode: 1,
+            responsive: true,
+            cropBoxResizable: true,
+        });
 
-      // Tampilkan tombol "Crop" dan sembunyikan tombol "Crop Again"
-      document.getElementById("cropButton").style.display = "block";
-      document.getElementById("cropAgainButton").style.display = "none";
+        // Tampilkan tombol "Crop" dan sembunyikan tombol "Crop Again"
+        document.getElementById("cropButton").style.display = "block";
+        document.getElementById("cropAgainButton").style.display = "none";
     };
 
     reader.readAsDataURL(input.files[0]);
-  }
+}
 
-  // Fungsi untuk melakukan cropping gambar
-  // Fungsi untuk melakukan cropping gambar
 // Fungsi untuk melakukan cropping gambar
 function cropImage() {
     if (cropper) {
-      var canvas = cropper.getCroppedCanvas();
-      croppedImageData = canvas.toDataURL(); // Data gambar yang sudah di-crop dalam format base64
+        var canvas = cropper.getCroppedCanvas();
+        croppedImageData = canvas.toDataURL(); // Data gambar yang sudah di-crop dalam format base64
 
-      // Perbarui tampilan gambar dengan gambar hasil cropping
-      var previewImage = document.getElementById("preview-image");
-      previewImage.src = croppedImageData;
+        // Perbarui tampilan gambar dengan gambar hasil cropping
+        var previewImage = document.getElementById("preview-image");
+        previewImage.src = croppedImageData;
 
-      // Simpan hasil cropping ke file gambar baru dalam bentuk Blob
-      var croppedFile = dataURLtoFile(croppedImageData, "cropped_image.png"); // 'cropped_image.png' is the desired filename
+        // Simpan hasil cropping ke file gambar baru dalam bentuk Blob
+        var croppedFile = dataURLtoFile(croppedImageData, "cropped_image.png"); // 'cropped_image.png' is the desired filename
 
-      // Create a new FileList containing the croppedFile
-      var newFileList = new DataTransfer();
-      newFileList.items.add(croppedFile);
+        // Create a new FileList containing the croppedFile
+        var newFileList = new DataTransfer();
+        newFileList.items.add(croppedFile);
 
-      // Set the new FileList as the value of the file input
-      var input = document.getElementById("foto_profile");
-      input.files = newFileList.files;
+        // Set the new FileList as the value of the file input
+        var input = document.getElementById("foto_profile");
+        input.files = newFileList.files;
 
-      // Sembunyikan modal setelah cropping
-      hideImageCropModal();
+        // Sembunyikan modal setelah cropping
+        hideImageCropModal();
 
-      // Tampilkan tombol "Crop Again" dan sembunyikan tombol "Crop"
-      document.getElementById("cropButton").style.display = "none";
-      document.getElementById("cropAgainButton").style.display = "block";
+        // Tampilkan tombol "Crop Again" dan sembunyikan tombol "Crop"
+        document.getElementById("cropButton").style.display = "none";
+        document.getElementById("cropAgainButton").style.display = "block";
 
-      // Set status cropping menjadi false
-      croppingInProgress = false;
+        // Set status cropping menjadi false
+        croppingInProgress = false;
     }
-  }
+}
 
-
-
-  // Fungsi untuk mereset gambar menjadi gambar asli untuk cropping ulang
-  function cropAgain() {
+// Fungsi untuk mereset gambar menjadi gambar asli untuk cropping ulang
+function cropAgain() {
     // Tampilkan modal cropping setelah reseleksi
     showImageCropModal();
 
@@ -99,10 +94,10 @@ function cropImage() {
     image.src = originalImageSrc;
 
     cropper = new Cropper(image, {
-      aspectRatio: 1,
-      viewMode: 1,
-      responsive: true,
-      cropBoxResizable: true,
+        aspectRatio: 1,
+        viewMode: 1,
+        responsive: true,
+        cropBoxResizable: true,
     });
 
     // Tampilkan tombol "Crop" dan sembunyikan tombol "Crop Again"
@@ -111,26 +106,88 @@ function cropImage() {
 
     // Set status cropping menjadi true
     croppingInProgress = true;
-  }
+}
 
-  // Fungsi untuk mengkonversi data URL menjadi File
-  function dataURLtoFile(dataURL, fileName) {
+// Fungsi untuk mengkonversi data URL menjadi File
+function dataURLtoFile(dataURL, fileName) {
     var arr = dataURL.split(",");
     var mime = arr[0].match(/:(.*?);/)[1];
     var bstr = atob(arr[1]);
     var n = bstr.length;
     var u8arr = new Uint8Array(n);
     while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
+        u8arr[n] = bstr.charCodeAt(n);
     }
     return new File([u8arr], fileName, { type: mime });
-  }
+}
 
-  // Tambahkan event handler untuk menyembunyikan modal cropping ketika modal ditutup
-  $("#imageCropModal").on("hidden.bs.modal", function() {
+// Tambahkan event handler untuk tombol "Batal"
+document.getElementById("cancelButton").addEventListener("click", function () {
+    clearImage();
+
+    // Sembunyikan modal cropping
+    hideImageCropModal();
+
+    // Tampilkan tombol "Crop Again" dan sembunyikan tombol "Crop"
+    document.getElementById("cropButton").style.display = "none";
+    document.getElementById("cropAgainButton").style.display = "block";
+
+    // Set status cropping menjadi false
+    croppingInProgress = false;
+});
+
+// Tambahkan event handler untuk tombol "Potong" (Crop)
+document.getElementById("cropButton").addEventListener("click", function () {
+    cropImage();
+
+    // Set status cropping menjadi true
+    croppingInProgress = true;
+});
+
+// Tambahkan event handler untuk tombol "Close" pada modal
+document
+    .getElementById("closeModalButton")
+    .addEventListener("click", function () {
+        clearImage();
+
+        // Sembunyikan modal cropping
+        hideImageCropModal();
+
+        // Tampilkan tombol "Crop Again" dan sembunyikan tombol "Crop"
+        document.getElementById("cropButton").style.display = "none";
+        document.getElementById("cropAgainButton").style.display = "block";
+
+        // Set status cropping menjadi false
+        croppingInProgress = false;
+    });
+
+// Fungsi untuk menghapus gambar yang sudah dipilih
+function clearImage() {
+    // Hapus data gambar yang sudah di-crop
+    croppedImageData = null;
+
+    // Reset input file dengan mengganti nilainya menjadi empty string
+    document.getElementById("foto_profile").value = "";
+
+    // Tampilkan gambar default jika profil tidak memiliki gambar
+    // document.getElementById("preview-image").src =
+    //     "/uploads/profile/default.png";
+}
+
+// Fungsi untuk menyimpan gambar yang sudah dipotong (base64 data) ke server
+function saveCroppedImage(data) {
+    // Di sini, Anda perlu mengirimkan data gambar yang sudah dipotong ke server.
+    // Anda dapat menggunakan AJAX atau metode lain untuk mengirim data ke backend,
+    // lalu menyimpannya di server atau database sesuai kebutuhan.
+    console.log("Cropped Image Data:", data);
+
+    // TODO: Add your code here to send/save the cropped image data to the server
+}
+
+// Tambahkan event handler untuk menyembunyikan modal cropping ketika modal ditutup
+$("#imageCropModal").on("hidden.bs.modal", function () {
     if (croppingInProgress) {
-      hideImageCropModal();
-      croppingInProgress = false;
+        hideImageCropModal();
+        croppingInProgress = false;
     }
-  });
-
+});
