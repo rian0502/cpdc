@@ -75,12 +75,13 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Publikasi</th>
-                                    <th>Judul</th>
+                                    <th>Tahun</th>
                                     <th>Volume</th>
                                     <th>Halaman</th>
                                     <th>Skala</th>
                                     <th>Media</th>
                                     <th>Kategori</th>
+                                    <th>Judul</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
                                 </tr>
                             </thead>
@@ -144,8 +145,8 @@
                             orderable: true
                         },
                         {
-                            data: 'judul',
-                            name: 'judul',
+                            data: 'tahun',
+                            name: 'tahun',
                             orderable: true
                         },
                         {
@@ -167,6 +168,11 @@
                         {
                             data: 'kategori_litabmas',
                             name: 'kategori_litabmas'
+                        },
+                        {
+                            data: 'judul',
+                            name: 'judul',
+                            orderable: true
                         },
                         {
                             data: null,

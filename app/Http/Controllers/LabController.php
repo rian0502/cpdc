@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\StoreActivityLab;
+use App\Models\Mahasiswa;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +40,7 @@ class LabController extends Controller
     {
         //
         $data = [
-            'locations' => Lokasi::all()
+            'mahasiswa' => Mahasiswa::select('id', 'npm', 'nama_mahasiswa')->where('status', 'Aktif')->get(),
         ];
         return view('admin.admin_lab.lab.create', $data);
     }
@@ -52,9 +53,6 @@ class LabController extends Controller
      */
     public function store(StoreActivityLab $request)
     {
-
-        //
-
         $data = [
             'nama_kegiatan' => $request->nama_kegiatan,
             'tanggal_kegiatan' => $request->tanggal_kegiatan,
@@ -84,7 +82,6 @@ class LabController extends Controller
      */
     public function show($id)
     {
-        //
         $data = [
             'lab' => Laboratorium::where('id', Crypt::decrypt($id))->first(),
         ];
@@ -99,10 +96,7 @@ class LabController extends Controller
      */
     public function edit($id)
     {
-        //
-
         $lab = Laboratorium::find(Crypt::decrypt($id));
-
         $locations = Lokasi::where('jenis_ruangan', 'Lab')->get();
         $data = [
             'lab' => $lab,
@@ -448,7 +442,6 @@ class LabController extends Controller
                     return date(date('H:i', strtotime($model->jam_mulai)) . ' - ' . date('H:i', strtotime($model->jam_selesai)));
                 })
                 ->toJson();
-
         }
     }
 }

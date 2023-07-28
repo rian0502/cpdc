@@ -255,10 +255,10 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                 <a class="dropdown-item" href="${editUrl}"><i class="dw dw-edit2"></i> Edit</a>
-                                <form id="delete" action="${deleteUrl}" method="POST">
+                                <form class="deleteForm2" action="${deleteUrl}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" id="delete" class="dropdown-item text-danger">
+                                    <button type="button" class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)>
                                         <i class="dw dw-delete-3"></i> Hapus
                                     </button>
                                 </form>

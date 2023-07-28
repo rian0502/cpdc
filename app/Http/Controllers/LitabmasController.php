@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Dosen;
-use Illuminate\Http\Request;
 use App\Models\LitabmasDosen;
 use App\Models\AnggotaLitabmas;
 use App\Http\Controllers\Controller;
@@ -33,8 +32,8 @@ class LitabmasController extends Controller
     {
         $data = [
             'dosens' => Dosen::whereNotIn('id', [Auth::user()->dosen->id])
-            ->where('status', 'Aktif')
-            ->get(),
+                ->where('status', 'Aktif')
+                ->get(),
         ];
         return view('dosen.litabmas.create', $data);
     }
@@ -54,6 +53,7 @@ class LitabmasController extends Controller
             'jumlah_dana' => $request->jumlah_dana,
             'tahun_penelitian' => $request->tahun_pelaksanaan,
             'anggota_external' => $request->anggota_external,
+            'anggota_mahasiswa' => $request->anggota_mahasiswa,
             'url' => $request->url,
         ];
         $inLitabmas = LitabmasDosen::create($litabmas);
@@ -128,8 +128,8 @@ class LitabmasController extends Controller
             $data = [
                 'litabmas' => LitabmasDosen::find(Crypt::decrypt($id)),
                 'dosen' => Dosen::whereNotIn('id', [Auth::user()->dosen->id])
-                ->where('status', 'Aktif')
-                ->get(),
+                    ->where('status', 'Aktif')
+                    ->get(),
                 'anggota' => $anggotaLitabmas,
             ];
         } else {
@@ -162,6 +162,7 @@ class LitabmasController extends Controller
             $litabmas->tahun_penelitian = $request->tahun_pelaksanaan;
             $litabmas->anggota_external = $request->anggota_external;
             $litabmas->url = $request->url;
+            $litabmas->anggota_mahasiswa = $request->anggota_mahasiswa;
             $litabmas->save();
             if ($request->anggota) {
                 $decrypt = array();

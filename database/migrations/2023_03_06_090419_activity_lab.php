@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('encrypted_id')->unique()->nullable();
             $table->string('nama_kegiatan');
             $table->foreignId('id_lokasi')->constrained('lokasi')->onDelete('cascade')->onUpdate('cascade');
-            $table->enum('keperluan', ['Praktikum', 'Seminar', 'Ujian', 'Penelitian', 'Lainnya']);
+            $table->enum('keperluan', ['Praktikum', 'Seminar', 'Ujian', 'Penelitian', 'PKL', 'PKM', 'MBKM', 'Asistensi','Lainnya']);
             $table->date('tanggal_kegiatan');
             $table->time('jam_mulai');
             $table->time('jam_selesai');

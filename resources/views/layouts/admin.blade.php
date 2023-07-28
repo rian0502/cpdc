@@ -610,7 +610,6 @@
             showConfirmationForm();
         });
     </script>
-    c
     <script>
         function toggleInput(selectElement, targetId, targetId2) {
             var selectedValue = selectElement.value;
@@ -626,6 +625,19 @@
                 targetElement2.style.display = "none";
                 targetElement.hidden = true;
                 targetElement2.hidden = true;
+            }
+        }
+    </script>
+    <script>
+        function toggleDropdown(selectElement, targetId) {
+            var selectedValue = selectElement.value;
+            var targetElement = document.getElementById(targetId);
+            if (selectedValue === "Praktikum") {
+                targetElement.style.display = "block";
+                targetElement.hidden = false;
+            } else {
+                targetElement.style.display = "none";
+                targetElement.hidden = true;
             }
         }
     </script>

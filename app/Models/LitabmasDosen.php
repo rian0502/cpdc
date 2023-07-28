@@ -21,6 +21,7 @@ class LitabmasDosen extends Model
         'jumlah_dana',
         'tahun_penelitian',
         'anggota_external',
+        'anggota_mahasiswa',
         'url',
         'created_at',
         'updated_at',

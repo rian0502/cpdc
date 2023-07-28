@@ -25,9 +25,10 @@ class StoreTugasAkhirSatuRequest extends FormRequest
     public function rules()
     {
         $data = ['Ganjil', 'Genap'];
-        
+        $sumber = ['Dosen', 'Mahasiswa'];
+
         return [
-            'semester' => 'required|in:'.implode(',', $data),
+            'semester' => 'required|in:' . implode(',', $data),
             'sks' => 'required|numeric',
             'ipk' => 'required|numeric|min:0|max:4',
             'id_pembimbing_satu' => 'required|exists:dosen,encrypt_id',
@@ -36,7 +37,8 @@ class StoreTugasAkhirSatuRequest extends FormRequest
             'toefl' => 'required|numeric|min:0|max:677',
             'judul_ta' => 'required|string|max:255|min:5',
             'agreement' => 'required',
-            'berkas_seminar_ta_satu' => 'required|mimes:pdf|max:2048'
+            'berkas_seminar_ta_satu' => 'required|mimes:pdf|max:1048',
+            'sumber_penelitian' => 'required|in:' . implode(',', $sumber),
         ];
     }
     public function messages()
@@ -68,8 +70,9 @@ class StoreTugasAkhirSatuRequest extends FormRequest
             'sks.numeric' => 'SKS harus berupa angka',
             'semester.required' => 'Semester Harus diisi',
             'semester.in' => 'Semester harus berupa Ganjil atau Genap',
+            'sumber_penelitian.required' => 'Sumber Penelitian Harus diisi',
+            'sumber_penelitian.in' => 'Sumber Penelitian harus berupa Dosen atau Mahasiswa',
 
         ];
     }
-    
 }

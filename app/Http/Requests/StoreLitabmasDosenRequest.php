@@ -34,8 +34,9 @@ class StoreLitabmasDosenRequest extends FormRequest
             'jumlah_dana' => 'required|numeric',
             'tahun_pelaksanaan' => 'required|numeric|digits:4',
             'angota.*' => ['nullable', 'string', 'max:255', 'min:3', 'exists:dosen,encrypt_id', 'distinct'],
-            'anggota_external' => ['nullable', 'string'],
+            'anggota_external' => ['nullable', 'string', 'max:255', 'min:30'],
             'url' => 'nullable|string|url',
+            'anggota_mahasiswa' => ['nullable', 'string', 'max:255'],
         ];
     }
     public function messages()
@@ -65,9 +66,11 @@ class StoreLitabmasDosenRequest extends FormRequest
             'anggota.*.distinct' => 'Anggota tidak boleh sama',
             'anggota_external.string' => 'Anggota External harus berupa huruf',
             'anggota_external.max' => 'Anggota External maksimal 255 karakter',
-            'anggota_external.min' => 'Anggota External minimal 3 karakter',
             'url.string' => 'URL harus berupa huruf',
             'url.url' => 'URL harus berupa URL',
+            'anggota_mahasiswa.string' => 'Anggota Mahasiswa harus berupa huruf',
+            'anggota_mahasiswa.max' => 'Anggota Mahasiswa maksimal 255 karakter',
+            'anggota_mahasiswa.min' => 'Anggota Mahasiswa minimal 3 karakter'
         ];
     }
 }

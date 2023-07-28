@@ -26,13 +26,22 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Keperluan</label>
-                                    <select class="custom-select form-control" style="width: 100%; height: 38px"
-                                        name="keperluan">
-                                        <option value="Praktikum"{{ old('keperluan') == 'Praktikum' ? 'selected' : '' }}>
-                                            Praktikum</option>
+                                    <select class="custom-select2 form-control" style="width: 100%; height: 38px"
+                                        name="keperluan" onchange="toggleInput(this, 'anggota_asistensi')">
                                         <option value="Penelitian" {{ old('keperluan') == 'Penelitian' ? 'selected' : '' }}>
                                             Penelitian</option>
-                                        <option value="Lainnya" {{ old('keperluan') == 'Lainnya' ? 'selected' : '' }}>Lainnya
+                                        <option value="Praktikum"{{ old('keperluan') == 'Praktikum' ? 'selected' : '' }}>
+                                            Praktikum</option>
+                                        <option value="Ujian" {{ old('keperluan') == 'Ujian' ? 'selected' : '' }}>
+                                            Ujian</option>
+                                        <option value="PKL" {{ old('keperluan') == 'PKL' ? 'selected' : '' }}>
+                                            PKL</option>
+                                        <option value="PKM" {{ old('keperluan') == 'PKM' ? 'selected' : '' }}>
+                                            PKM</option>
+                                        <option value="MBKM" {{ old('keperluan') == 'MBKM' ? 'selected' : '' }}>
+                                            MBKM</option>
+                                        <option value="Lainnya" {{ old('keperluan') == 'Lainnya' ? 'selected' : '' }}>
+                                            Lainnya
                                         </option>
                                     </select>
                                 </div>
@@ -73,18 +82,34 @@
                                         value="{{ old('jam_selesai') }}" />
                                 </div>
                                 @error('jam_selesai')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
+                                    <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="form-group">
                                     <label>Jumlah Peserta</label>
-                                    <input
-                                        class="form-control @error('jumlah_mahasiswa') form-control-danger @enderror"
-                                        placeholder="Jumlah Mahasiswa" type="number" name="jumlah_mahasiswa" min="1"
+                                    <input class="form-control @error('jumlah_mahasiswa') form-control-danger @enderror"
+                                        placeholder="Jumlah Peserta" type="number" name="jumlah_mahasiswa" min="1"
                                         value="{{ old('jumlah_mahasiswa') }}" />
                                 </div>
                                 @error('jumlah_mahasiswa')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
+                                    <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                @enderror
+                                <div class="form-group" id="anggota_asistensi"
+                                    style="display: {{ old('keperluan') == 'Praktikum' ? 'block' : 'none' }}" {{ old('keperluan') == 'Praktikum'? '' : 'hidden' }}>
+                                    <label>Anggota Asistensi</label>
+                                    <select class="custom-select2 form-control @error('anggota_asistensi') form-control-danger @enderror" multiple="multiple" style="width: 100%"
+                                        name="anggota_asistensi[]">
+                                        <optgroup label="Nama Mahasiswa">
+                                            {{-- @foreach ($mahasiswa as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ collect(old('anggota'))->contains($item->encrypt_id) ? 'selected' : '' }}>
+                                                    {{ $item->nama_mahasiswa }} - {{ $item->npm }} </option>
+                                            @endforeach --}}
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                @error('anggota_asistensi')
+                                    <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">

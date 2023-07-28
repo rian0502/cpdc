@@ -27,13 +27,29 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Keperluan</label>
-                                    <select class="custom-select form-control" style="width: 100%; height: 38px"
-                                        name="keperluan">
-                                        <option value="Praktikum"{{ $lab->keperluan == 'Praktikum' ? 'selected' : '' }}>
+                                    <select class="custom-select2 form-control" style="width: 100%; height: 38px"
+                                        name="keperluan" onchange="toggleInput(this, 'anggota_asistensi')" onload="toggleInput(this, 'anggota_asistensi')">
+                                        <option value="Penelitian"
+                                        {{ old('keperluan', $lab->keperluan) == 'Penelitian' ? 'selected' : '' }}>
+                                        Penelitian</option>
+                                        <option
+                                            value="Praktikum"{{ old('keperluan', $lab->keperluan) == 'Praktikum' ? 'selected' : '' }}>
                                             Praktikum</option>
-                                        <option value="Penelitian" {{ $lab->keperluan == 'Penelitian' ? 'selected' : '' }}>
-                                            Penelitian</option>
-                                        <option value="Lainnya" {{ $lab->keperluan == 'Lainnya' ? 'selected' : '' }}>Lainnya
+                                        <option value="Ujian"
+                                            {{ old('keperluan', $lab->keperluan) == 'Ujian' ? 'selected' : '' }}>
+                                            Ujian</option>
+                                        <option value="PKL"
+                                            {{ old('keperluan', $lab->keperluan) == 'PKL' ? 'selected' : '' }}>
+                                            PKL</option>
+                                        <option value="PKM"
+                                            {{ old('keperluan', $lab->keperluan) == 'PKM' ? 'selected' : '' }}>
+                                            PKM</option>
+                                        <option value="MBKM"
+                                            {{ old('keperluan', $lab->keperluan) == 'MBKM' ? 'selected' : '' }}>
+                                            MBKM</option>
+                                        <option value="Lainnya"
+                                            {{ old('keperluan', $lab->keperluan) == 'Lainnya' ? 'selected' : '' }}>
+                                            Lainnya
                                         </option>
                                     </select>
                                 </div>
@@ -76,14 +92,30 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jumlah Peserta</label>
-                                    <input
-                                        class="form-control @error('jumlah_mahasiswa') form-control-danger @enderror"
+                                    <input class="form-control @error('jumlah_mahasiswa') form-control-danger @enderror"
                                         placeholder="Jumlah Mahasiswa" type="number" name="jumlah_mahasiswa" min="1"
                                         value="{{ $lab->jumlah_mahasiswa }}" />
                                 </div>
                                 @error('jumlah_mahasiswa')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
+                                    <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                @enderror
+                                <div class="form-group" id="anggota_asistensi"
+                                    style="display: {{ old('keperluan', $lab->keperluan) == 'Praktikum' ? 'block' : 'none' }}"  {{ old('keperluan', $lab->keperluan) == 'Praktikum' ? '' : 'hidden' }}>
+                                    <label>Anggota Asistensi</label>
+                                    <select class="custom-select2 form-control @error('anggota_asistensi') form-control-danger @enderror" multiple="multiple" style="width: 100%"
+                                        name="anggota_asistensi[]">
+                                        <optgroup label="Nama Mahasiswa">
+                                            {{-- @foreach ($mahasiswa as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                     {{ in_array($item->id, $anggota) ? 'selected' : '' }}>
+                                                    {{ $item->nama_mahasiswa }} - {{ $item->npm }} </option>
+                                            @endforeach --}}
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                @error('anggota_asistensi')
+                                    <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
