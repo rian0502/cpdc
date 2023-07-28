@@ -49,6 +49,14 @@
                                                     @role('admin lab')
                                                         <a class="dropdown-item" href="{{ route('lab.sop.edit', $item->encrypt_id) }}"><i class="dw dw-edit2"></i>
                                                             Edit</a>
+                                                        <form class="deleteForm2" action="{{ route('lab.sop.destroy', $item->encrypt_id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="dropdown-item text-danger deleteBtn2" type="button"><i
+                                                                    class="dw dw-delete-3"></i>
+                                                                Hapus</button>
+                                                        </form>`
                                                     @endrole
                                                 </div>
                                             </div>

@@ -90,6 +90,8 @@
                                 .encrypted_id);
                             var editUrl = "{{ route('lab.ruang.edit', ':id') }}".replace(':id', row
                                 .encrypted_id);
+                            var deletUrl = "{{ route('lab.ruang.destroy', ':id') }}".replace(':id', row
+                                .encrypted_id);
 
                             return `
                                 <div class="dropdown">
@@ -101,6 +103,12 @@
                                     <a class="dropdown-item" href="${showUrl}"><i class="dw dw-eye"></i> View</a>
                                     @role('admin lab')
                                     <a class="dropdown-item" href="${editUrl}"><i class="dw dw-edit2"></i> Edit</a>
+                                    <form class=" deleteForm2" action="${deletUrl}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="dropdown-item text-danger deleteBtn2 " type="button"><i class="dw dw-delete-3"></i> Hapus</button>
+                                                        </form>
                                     @endrole
                                     </div>
                                 </div>`;

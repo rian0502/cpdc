@@ -23,11 +23,11 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">{{$litabmas->nama_litabmas}}</th>
-                                    <th scope="row">{{$litabmas->kategori}}</th>
-                                    <th scope="row">{{$litabmas->sumber_dana}}</th>
-                                    <th scope="row">Rp. {{number_format($litabmas->jumlah_dana,0,',','.')}}</th>
-                                    <th scope="row">{{$litabmas->tahun_penelitian}}</th>
+                                    <th scope="row">{{ $litabmas->nama_litabmas }}</th>
+                                    <th scope="row">{{ $litabmas->kategori }}</th>
+                                    <th scope="row">{{ $litabmas->sumber_dana }}</th>
+                                    <th scope="row">Rp. {{ number_format($litabmas->jumlah_dana, 0, ',', '.') }}</th>
+                                    <th scope="row">{{ $litabmas->tahun_penelitian }}</th>
                                 </tr>
                             </tbody>
                         </table>
@@ -45,18 +45,27 @@
                             <tbody>
                                 @foreach ($dosen as $item)
                                     <tr>
-                                        <th scope="row">{{$loop->iteration}}</th>
-                                        <th scope="row">{{$item->dosen->nama_dosen}}</th>
-                                        <th scope="row">{{$item->Posisi}}</th>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <th scope="row">{{ $item->dosen->nama_dosen }}</th>
+                                        <th scope="row">{{ $item->Posisi }}</th>
                                     </tr>
                                 @endforeach
 
                             </tbody>
                         </table>
-                        <h4 class="text-dark h4 mb-2">
-                            Anggota External
-                        </h4>
-                        <textarea name="form-control" disabled readonly>{{ $litabmas->anggota_external }}</textarea>
+                        {{-- @if ($litabmas->anggota_dosen != null) --}}
+                            <h4 class="text-dark h4 mb-2">
+                                Anggota Dosen Lainnya Yang Berkolaborasi
+                            </h4>
+                            <textarea name="form-control" disabled readonly rows="10" cols="50" style="height: 200px; width: 500px;">{{ $litabmas->anggota_dosen }}</textarea>
+
+                        {{-- @endif --}}
+                        {{-- @if ($litabmas->anggota_mahasiswa != null) --}}
+                            <h4 class="text-dark h4 mb-2">
+                                Anggota Mahasiswa Lainnya Yang Berkolaborasi
+                            </h4>
+                            <textarea name="form-control" disabled readonly rows="10" cols="50" style="height: 200px; width: 500px;">{{ $litabmas->anggota_mahasiswa }}</textarea>
+                        {{-- @endif --}}
                     </div>
                     <a class="" href="{{ route('dosen.profile.index') }}">
                         <button class="btn btn-secondary">Kembali</button>

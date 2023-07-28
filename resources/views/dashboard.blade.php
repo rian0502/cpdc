@@ -678,6 +678,28 @@
                     <div id="chart_lab"></div>
                 </div>
             @endrole
+
+            @role('admin lab')
+            <div class="card-box pb-10" style="margin-bottom: 30px">
+                <div class="h5 pd-20 mb-0">Data Asistensi</div>
+
+                <table class="table data-table-responsive warp stripe data-table-noexport p-2">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>NPM</th>
+                            <th>Kehadiran</th>
+                            <th>Total Jam</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+            @endrole
             @role('jurusan')
                 <div class="card-box height-100-p pd-20 min-height-200px mb-20">
                     <div class="row align-items-center justify-content-center mb-3">
