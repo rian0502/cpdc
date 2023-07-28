@@ -40,8 +40,6 @@
                                             PKM</option>
                                         <option value="MBKM" {{ old('keperluan') == 'MBKM' ? 'selected' : '' }}>
                                             MBKM</option>
-                                        <option value="Asistensi" {{ old('keperluan') == 'Asistensi' ? 'selected' : '' }}>
-                                            Asistensi</option>
                                         <option value="Lainnya" {{ old('keperluan') == 'Lainnya' ? 'selected' : '' }}>
                                             Lainnya
                                         </option>
