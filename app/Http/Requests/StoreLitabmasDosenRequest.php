@@ -34,9 +34,9 @@ class StoreLitabmasDosenRequest extends FormRequest
             'jumlah_dana' => 'required|numeric',
             'tahun_pelaksanaan' => 'required|numeric|digits:4',
             'angota.*' => ['nullable', 'string', 'max:255', 'min:3', 'exists:dosen,encrypt_id', 'distinct'],
-            'anggota_external' => ['nullable', 'string', 'max:255', 'min:30'],
+            'anggota_external' => ['nullable', 'string', 'max:1255'],
             'url' => 'nullable|string|url',
-            'anggota_mahasiswa' => ['nullable', 'string', 'max:255'],
+            'anggota_mahasiswa' => ['nullable', 'string', 'max:1255'],
         ];
     }
     public function messages()
