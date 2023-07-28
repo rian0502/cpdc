@@ -710,6 +710,19 @@
             }
         }
     </script>
+    <script>
+        function toggleDropdown(selectElement, targetId) {
+            var selectedValue = selectElement.value;
+            var targetElement = document.getElementById(targetId);
+            if (selectedValue === "Praktikum") {
+                targetElement.style.display = "block";
+                targetElement.hidden = false;
+            } else {
+                targetElement.style.display = "none";
+                targetElement.hidden = true;
+            }
+        }
+    </script>
     @role('kompre|ta2|ta1|pkl')
         <script>
             $(document).ready(function() {
