@@ -18,7 +18,7 @@ class PenghargaanDosen extends Migration
             $table->id();
             $table->string('encrypt_id')->nullable();
             $table->string('nama');
-            $table->string('tahun');
+            $table->date('tahun');
             $table->enum('scala', ['Nasional', 'Internasional', 'Provinsi', 'Kabupaten/Kota', 'Universitas']);
             $table->string('uraian');
             $table->string('url');

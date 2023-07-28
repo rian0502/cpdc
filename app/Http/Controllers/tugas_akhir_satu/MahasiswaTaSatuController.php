@@ -58,6 +58,7 @@ class MahasiswaTaSatuController extends Controller
 
         $data = [
             'tahun_akademik' => $request->tahun_akademik,
+            'sumber_penelitian' => $request->sumber_penelitian,
             'semester' => $request->semester,
             'periode_seminar' => $request->periode_seminar,
             'judul_ta' => Str::title($request->judul_ta),

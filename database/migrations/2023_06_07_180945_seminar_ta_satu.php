@@ -18,7 +18,8 @@ class SeminarTaSatu extends Migration
             $table->id();
             $table->string('encrypt_id')->nullable();
             $table->string('tahun_akademik');
-            $table->enum('semester',['Ganjil', 'Genap']);
+            $table->enum('semester', ['Ganjil', 'Genap']);
+            $table->enum('sumber_penelitian', ['Dosen', 'Mahasiswa']);
             $table->string('periode_seminar');
             $table->string('judul_ta');
             $table->string('sks');

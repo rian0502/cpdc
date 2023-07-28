@@ -36,6 +36,7 @@ class StoreLitabmasDosenRequest extends FormRequest
             'angota.*' => ['nullable', 'string', 'max:255', 'min:3', 'exists:dosen,encrypt_id', 'distinct'],
             'anggota_external' => ['nullable', 'string'],
             'url' => 'nullable|string|url',
+            'anggota_mahasiswa' => ['nullable', 'string', 'max:255', 'min:3'],
         ];
     }
     public function messages()
@@ -68,6 +69,9 @@ class StoreLitabmasDosenRequest extends FormRequest
             'anggota_external.min' => 'Anggota External minimal 3 karakter',
             'url.string' => 'URL harus berupa huruf',
             'url.url' => 'URL harus berupa URL',
+            'anggota_mahasiswa.string' => 'Anggota Mahasiswa harus berupa huruf',
+            'anggota_mahasiswa.max' => 'Anggota Mahasiswa maksimal 255 karakter',
+            'anggota_mahasiswa.min' => 'Anggota Mahasiswa minimal 3 karakter'
         ];
     }
 }
