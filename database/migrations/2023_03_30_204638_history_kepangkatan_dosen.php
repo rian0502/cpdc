@@ -21,6 +21,7 @@ return new class extends Migration
                 'III A',
                 'III B',
                 'III C',
+                'III D',
                 'IV A',
                 'IV B',
                 'IV C',

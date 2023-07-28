@@ -39,7 +39,7 @@ return new class extends Migration
             ]);
             $table->enum('kategori_litabmas', ['Penelitian', 'Pengabdian']);
             $table->string('url')->nullable();
-            $table->string('anggota_external')->nullable();
+            $table->text('anggota_external')->nullable();
             $table->timestamps();
         });
     }

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('tanggal_kegiatan');
             $table->time('jam_mulai');
             $table->time('jam_selesai');
-            $table->string('keterangan');
+            $table->text('keterangan');
             $table->integer('jumlah_mahasiswa');
             $table->foreignId('user_id')
                 ->index()
