@@ -35,4 +35,8 @@ class Laboratorium extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+    public function asisten()
+    {
+        return $this->hasMany(AsistenLab::class, 'id_actity_lab', 'id');
+    }
 }
