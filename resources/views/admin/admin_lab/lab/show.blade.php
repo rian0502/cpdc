@@ -71,7 +71,32 @@
                                 </div>
                             </div>
                         </div>
+                        <h4 class="mt-5">
+                            Anggota Asistensi
+                        </h4>
+                        <table class="table table-striped mt-2">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">NPM</th>
+                                    <th scope="col">No Telphone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{-- @foreach ($asisten as $item)
+                                    <tr>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <th scope="row">{{ $item->nama }}</th>
+                                        <th scope="row">{{ $item->npm }}</th>
+                                        <th scope="row">{{ $item->no_telphone }}</th>
+                                    </tr>
+                                @endforeach --}}
+
+                            </tbody>
+                        </table>
                     </div>
+
                 </div>
             </div>
         </div>

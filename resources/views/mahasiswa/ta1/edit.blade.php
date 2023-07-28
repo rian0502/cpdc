@@ -186,6 +186,16 @@
                                 </div>
                                 {{-- hanya tampil saat mode mobile --}}
                                 <div class="form-group" id="form-mobile">
+                                    <label>Ide Judul</label>
+                                    <select name="sumber_penelitian" class="selectpicker form-control @error('sumber_penelitian') form-control-danger @enderror">
+                                    <option value="Dosen" {{old('sumber_penelitian',$seminar->sumber_penelitian)=='Dosen' ? 'selected' : ''}}>Dari Dosen</option>
+                                    <option value="Mahasiswa" {{old('sumber_penelitian', $seminar->sumber_penelitian)=='Mahasiswa' ? 'selected' : ''}}>Dari Mahasiswa</option>
+                                    </select>
+                                    @error('sumber_penelitian')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group" id="form-mobile">
                                     <label>Judul atau Topik Tugas Akhir</label>
                                     <textarea name="judul_ta" id="judul_ta" rows="" class="form-control">{{ old('judul_ta', $seminar->judul_ta) }}</textarea>
                                     @error('judul_ta')

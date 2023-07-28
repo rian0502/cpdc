@@ -93,9 +93,10 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label>Anggota Eksternal</label>
+                                    <label>Dosen Peneliti Lainnya <small>Yang tidak tercantum pada isian anggota</small></label>
                                     <textarea value="{{ old('anggota_external') }}" autofocus name="anggota_external"
                                         id="anggota_external"
+                                        placeholder='contoh: &#10;Dr. John Doe, &#10;Prof. Jane Smith, &#10;Dr. Michael Johnson,'
                                         class="form-control @error('anggota_external') form-control-danger @enderror"
                                         type="text"></textarea>
                                     @error('anggota_external')
@@ -103,8 +104,18 @@
                                     @enderror
                                 </div>
 
+                                <div class="form-group">
+                                    <label>Mahasiswa Peneliti Lainnya <small>Diisikan Mahasiswa S1 atau S2 yang berkolaborasi</small></label>
+                                    <textarea value="{{ old('anggota_mahasiswa') }}" autofocus name="anggota_mahasiswa"
+                                        id="anggota_mahasiswa"
+                                        placeholder='Format:&#10;Npm - Nama - Jenjang Studi, &#10;Contoh: &#10;2017051062 - Doe Joe - S1, &#10;2017051033 - Kamal Ramadhan - S2, &#10;2017051033 - Urip Surhajo - S2,'
+                                        class="form-control @error('anggota_mahasiswa') form-control-danger @enderror"
+                                        type="text"></textarea>
+                                    @error('anggota_mahasiswa')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
-
                         </div>
                         <div class="form-group">
                             <button type="submit" class="submit btn btn-primary">Kirim</button>

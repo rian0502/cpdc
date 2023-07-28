@@ -629,15 +629,15 @@
         }
     </script>
     <script>
-        function toggleInput(selectElement, targetId) {
+        function toggleDropdown(selectElement, targetId) {
             var selectedValue = selectElement.value;
             var targetElement = document.getElementById(targetId);
             if (selectedValue === "Praktikum") {
                 targetElement.style.display = "block";
-                targetElement.removeAttribute('hidden');
+                targetElement.hidden = false;
             } else {
                 targetElement.style.display = "none";
-                targetElement.setAttribute('hidden', 'true');
+                targetElement.hidden = true;
             }
         }
     </script>
