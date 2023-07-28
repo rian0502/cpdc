@@ -68,9 +68,9 @@
                         <h4 class="text-dark h4 mb-2">
                             Anggota External
                         </h4>
-                        <textarea name="form-control" disabled readonly>{{ $publikasi->anggota_external }}</textarea>
+                        <textarea name="form-control" disabled readonly rows="10" cols="50" style="height: 200px; width: 500px;">{{ $publikasi->anggota_external }}</textarea>
                     </div>
-                    <a href="{{ route('dosen.profile.index') }}">
+                    <a href="{{ route('dosen.publikasi.index') }}">
                         <button class="btn btn-secondary">Kembali</button>
                     </a>
                 </div>

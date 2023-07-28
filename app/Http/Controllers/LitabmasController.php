@@ -21,6 +21,7 @@ class LitabmasController extends Controller
     public function index()
     {
         //
+        return view('dosen.litabmas.index');
     }
 
     /**
@@ -75,7 +76,7 @@ class LitabmasController extends Controller
                 $inAnggota = AnggotaLitabmas::create($anggota);
             }
             if ($inKetua && $update_litabmas && $inLitabmas) {
-                return redirect()->route('dosen.profile.index')->with('success', 'Data berhasil ditambahkan');
+                return redirect()->route('dosen.litabmas.index')->with('success', 'Data berhasil ditambahkan');
             } else {
                 return redirect()->route('dosen.litabmas.create')->with('error', 'Data gagal ditambahkan');
             }
@@ -87,7 +88,7 @@ class LitabmasController extends Controller
             ];
             $inAnggota = AnggotaLitabmas::create($anggota);
             if ($inAnggota && $update_litabmas && $inLitabmas) {
-                return redirect()->route('dosen.profile.index')->with('success', 'Data berhasil ditambahkan');
+                return redirect()->route('dosen.litabmas.index')->with('success', 'Data berhasil ditambahkan');
             } else {
                 return redirect()->route('dosen.litabmas.create')->with('error', 'Data gagal ditambahkan');
             }
@@ -133,7 +134,7 @@ class LitabmasController extends Controller
                 'anggota' => $anggotaLitabmas,
             ];
         } else {
-            return redirect()->route('dosen.profile.index')->with('error', 'Anda tidak memiliki akses');
+            return redirect()->route('dosen.litabmas.index')->with('error', 'Anda tidak memiliki akses');
         }
 
 
@@ -173,9 +174,9 @@ class LitabmasController extends Controller
                 $litabmas->dosen()->attach($decrypt, ['Posisi' => 'Anggota', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
             }
         } else {
-            return redirect()->route('dosen.profile.index')->with('error', 'Anda tidak memiliki akses');
+            return redirect()->route('dosen.litabmas.index')->with('error', 'Anda tidak memiliki akses');
         }
-        return redirect()->route('dosen.profile.index')->with('success', 'Data Litabmas diubah');
+        return redirect()->route('dosen.litabmas.index')->with('success', 'Data Litabmas diubah');
     }
 
     /**
@@ -189,6 +190,6 @@ class LitabmasController extends Controller
         //
         $litabmas = LitabmasDosen::find(Crypt::decrypt($id))->delete();
         $anggota = AnggotaLitabmas::where('litabmas_id', Crypt::decrypt($id))->delete();
-        return redirect()->route('dosen.profile.index')->with('success', 'Data Litabmas dihapus');
+        return redirect()->route('dosen.litabmas.index')->with('success', 'Data Litabmas dihapus');
     }
 }

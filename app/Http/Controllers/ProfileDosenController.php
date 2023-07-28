@@ -38,7 +38,7 @@ class ProfileDosenController extends Controller
             $now = Carbon::now();
             $umur = $tgl_lahir->diffInYears($now);
             $data = [
-                'organisasi' => OrganisasiDosen::select('encrypt_id', 'nama_organisasi', 'tahun_menjabat', 'tahun_berakhir', 'jabatan')->where('dosen_id', Auth::user()->dosen->id)->get(),
+                
                 'gelar' => ModelGelar::select('encrypt_id', 'instansi_pendidikan', 'jurusan', 'tahun_lulus', 'nama_gelar', 'singkatan_gelar')->where('dosen_id', Auth::user()->dosen->id)->get(),
                 'kepangkatan' => HistoryPangkatDosen::where('dosen_id', Auth::user()->dosen->id)->orderBy('id', 'desc')->get(),
                 'jabatan' => HistoryJabatanDosen::where('dosen_id', Auth::user()->dosen->id)->get(),

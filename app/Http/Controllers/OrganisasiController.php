@@ -19,6 +19,10 @@ class OrganisasiController extends Controller
     public function index()
     {
         //
+        $data = [
+            'organisasi' => OrganisasiDosen::select('encrypt_id', 'nama_organisasi', 'tahun_menjabat', 'tahun_berakhir', 'jabatan')->where('dosen_id', Auth::user()->dosen->id)->get(),
+        ];
+        return view('dosen.organisasi.index', $data);
     }
 
     /**
@@ -52,7 +56,7 @@ class OrganisasiController extends Controller
         $id = $organisasi->id;
         $update = OrganisasiDosen::where('id', $id)->update(['encrypt_id' => Crypt::encrypt($id)]);
         if ($update) {
-            return redirect()->route('dosen.profile.index')->with('success', 'Data berhasil disimpan');
+            return redirect()->route('dosen.organisasi.index')->with('success', 'Data berhasil disimpan');
         } else {
             return redirect()->route('dosen.organisasi.create')->with('error', 'Data gagal disimpan');
         }
@@ -104,12 +108,12 @@ class OrganisasiController extends Controller
         if (Auth::user()->dosen->id == $organisasi['dosen_id']) {
             $update = OrganisasiDosen::where('id', Crypt::decrypt($id))->update($data);
             if ($update) {
-                return redirect()->route('dosen.profile.index')->with('success', 'Data berhasil diubah');
+                return redirect()->route('dosen.organisasi.index')->with('success', 'Data berhasil diubah');
             } else {
                 return redirect()->route('dosen.organisasi.edit', $id)->with('error', 'Data gagal diubah');
             }
         } else {
-            return redirect()->route('dosen.profile.index')->with('error', 'Data gagal diubah');
+            return redirect()->route('dosen.organisasi.index')->with('error', 'Data gagal diubah');
         }
     }
 
@@ -124,10 +128,10 @@ class OrganisasiController extends Controller
         $organisasi = OrganisasiDosen::find(Crypt::decrypt($id));
         if($organisasi->dosen_id == Auth::user()->dosen->id){
             $organisasi->delete();
-            return redirect()->route('dosen.profile.index')->with('success', 'Data berhasil dihapus');
+            return redirect()->route('dosen.organisasi.index')->with('success', 'Data berhasil dihapus');
         }
         else{
-            return redirect()->route('dosen.profile.index')->with('error', 'Data gagal dihapus');
+            return redirect()->route('dosen.organisasi.index')->with('error', 'Data gagal dihapus');
         }
 
     }
