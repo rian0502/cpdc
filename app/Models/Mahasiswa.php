@@ -48,38 +48,58 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(AktivitasMahasiswa::class);
     }
-    public function prestasi(){
+    public function prestasi()
+    {
         return $this->hasMany(PrestasiMahasiswa::class);
     }
-    public function seminar_kp(){
+    public function seminar_kp()
+    {
         return $this->hasOne(ModelSeminarKP::class, 'id_mahasiswa');
     }
-    public function ta_satu(){
+    public function ta_satu()
+    {
         return $this->hasMany(ModelSeminarTaSatu::class, 'id_mahasiswa');
     }
-    public function ta_dua(){
+    public function ta_dua()
+    {
         return $this->hasMany(ModelSeminarTaDua::class, 'id_mahasiswa');
     }
-    public function komprehensif(){
+    public function komprehensif()
+    {
         return $this->hasMany(ModelSeminarKompre::class, 'id_mahasiswa');
     }
-    public function aktivitasAlumni(){
+    public function aktivitasAlumni()
+    {
         return $this->hasMany(AktivitasAlumni::class, 'mahasiswa_id');
     }
-    public function kegiatanTerakhir(){
+    public function kegiatanTerakhir()
+    {
         return $this->hasOne(AktivitasAlumni::class, 'mahasiswa_id')->latest('tahun_masuk')
-        ->withDefault([
-            'id' => '-',
-            'tempat' => '-',
-            'alamat' => '-',
-            'jabatan' => '-',
-            'tahun_masuk' => date('Y:m:d'),
-            'hubungan' => '-',
-            'gaji' => '-',
-            'status' => '-'
-        ]);
+            ->withDefault([
+                'id' => '-',
+                'tempat' => '-',
+                'alamat' => '-',
+                'jabatan' => '-',
+                'tahun_masuk' => date('Y:m:d'),
+                'hubungan' => '-',
+                'gaji' => '-',
+                'status' => '-'
+            ]);
     }
-    public function pendataanAlumni(){
+    public function pendataanAlumni()
+    {
         return $this->hasOne(ModelPendataanAlumni::class, 'mahasiswa_id');
+    }
+
+    public function asisten_lab()
+    {
+        return $this->hasManyThrough(
+            Laboratorium::class,
+            AsistenLab::class,
+            'id_mahasiswa',
+            'id',
+            'id',
+            'id_actity_lab'
+        );
     }
 }

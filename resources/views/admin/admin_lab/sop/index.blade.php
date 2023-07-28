@@ -53,10 +53,10 @@
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button class="dropdown-item text-danger deleteBtn2" type="button"><i
+                                                            <button onclick="showDeleteConfirmation(event)" class="dropdown-item text-danger deleteBtn2" type="button"><i
                                                                     class="dw dw-delete-3"></i>
                                                                 Hapus</button>
-                                                        </form>`
+                                                        </form>
                                                     @endrole
                                                 </div>
                                             </div>

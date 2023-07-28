@@ -27,7 +27,7 @@
                                 <div class="form-group">
                                     <label>Keperluan</label>
                                     <select class="custom-select2 form-control" style="width: 100%; height: 38px"
-                                        name="keperluan" onchange="toggleInput(this, 'anggota_asistensi')">
+                                        name="keperluan" onchange="toggleDropdown(this, 'anggota_asistensi')">
                                         <option value="Penelitian" {{ old('keperluan') == 'Penelitian' ? 'selected' : '' }}>
                                             Penelitian</option>
                                         <option value="Praktikum"{{ old('keperluan') == 'Praktikum' ? 'selected' : '' }}>
@@ -94,16 +94,18 @@
                                     <div class="form-control-feedback has-danger">{{ $message }}</div>
                                 @enderror
                                 <div class="form-group" id="anggota_asistensi"
-                                    style="display: {{ old('keperluan') == 'Praktikum' ? 'block' : 'none' }}" {{ old('keperluan') == 'Praktikum'? '' : 'hidden' }}>
+                                    style="display: {{ old('keperluan') == 'Praktikum' ? 'block' : 'none' }}"
+                                    {{ old('keperluan') == 'Praktikum' ? '' : 'hidden' }}>
                                     <label>Anggota Asistensi</label>
-                                    <select class="custom-select2 form-control @error('anggota_asistensi') form-control-danger @enderror" multiple="multiple" style="width: 100%"
-                                        name="anggota_asistensi[]">
+                                    <select
+                                        class="custom-select2 form-control @error('anggota_asistensi') form-control-danger @enderror"
+                                        multiple="multiple" style="width: 100%" name="anggota_asistensi[]">
                                         <optgroup label="Nama Mahasiswa">
-                                            {{-- @foreach ($mahasiswa as $item)
-                                                <option value="{{ $item->encrypt_id }}"
-                                                    {{ collect(old('anggota'))->contains($item->encrypt_id) ? 'selected' : '' }}>
-                                                    {{ $item->nama_mahasiswa }} - {{ $item->npm }} </option>
-                                            @endforeach --}}
+                                            @foreach ($mahasiswa as $item)
+                                                <option value="{{ $item->id }}">{{ $item->npm }} -
+                                                    {{ $item->nama_mahasiswa }}
+                                                </option>
+                                            @endforeach
                                         </optgroup>
                                     </select>
                                 </div>
