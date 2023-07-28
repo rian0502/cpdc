@@ -131,10 +131,10 @@ class LabController extends Controller
     {
 
         $lab = Laboratorium::find(Crypt::decrypt($id));
-        if($lab->keperluan == 'Praktikum' && $request->keperluan != 'Praktikum'){
+        if ($lab->keperluan == 'Praktikum' && $request->keperluan != 'Praktikum') {
             $lab->mahasiswa()->detach();
         }
-        if($request->keperluan == 'Praktikum'){
+        if ($request->keperluan == 'Praktikum') {
             $lab->mahasiswa()->sync($request->anggota_asistensi);
         }
         $lab->nama_kegiatan = $request->nama_kegiatan;
