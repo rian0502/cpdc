@@ -22,8 +22,9 @@ return new class extends Migration
             $table->string('sumber_dana');
             $table->string('jumlah_dana');
             $table->integer('tahun_penelitian');
-            $table->string('anggota_external')->nullable();
-            $table->string('anggota_mahasiswa')->nullable();
+            $table->text('anggota_external')->nullable();
+            $table->text('anggota_mahasiswa')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }
