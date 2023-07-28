@@ -147,11 +147,6 @@
                                 <div class="tab height-100-p">
                                     <div class="scrollable">
                                         <ul class="nav nav-tabs customtab" role="tablist">
-
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#publikasi"
-                                                    role="tab">Publikasi</a>
-                                            </li>
                                             <li class="nav-item">
                                                 <a class="nav-link active" data-toggle="tab" href="#jabatan"
                                                     role="tab">Jabatan</a>
@@ -168,92 +163,9 @@
                                     </div>
 
                                     <div class="tab-content">
-                                       
+
                                         <!-- Tasks Tab End -->
                                         <!-- Setting Tab start -->
-                                        <div class="tab-pane fade" id="publikasi" role="tabpanel">
-                                            <div class="pd-20">
-                                                <div class="">
-                                                    <!-- Open Task start -->
-                                                    <div class="task-title row align-items-center">
-                                                        <div class="col-md-8 col-sm-12">
-                                                            <h5>Data Publikasi</h5>
-                                                        </div>
-                                                        <div class="col-md-4 col-sm-12 text-right">
-                                                            <a href="{{ route('dosen.publikasi.create') }}"
-                                                                class="bg-light-blue btn text-blue weight-500"><i
-                                                                    class="ion-plus-round"></i> Tambah</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="profile-task-list pb-30 table-responsive">
-                                                        <table
-                                                            class="table data-table-responsive stripe data-table-export">
-                                                            <thead>
-                                                                <tr>
-                                                                    <td>No</td>
-                                                                    <td class="max-w-md">Judul</td>
-                                                                    <td>Tahun</td>
-                                                                    <td>Scala</td>
-                                                                    <td>Kategori</td>
-                                                                    <td>Litabmas</td>
-                                                                    <th class="table-plus datatable-nosort">Aksi</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-
-                                                                @foreach (Auth::user()->dosen->publikasi as $item)
-                                                                    <tr>
-                                                                        <td>{{ $loop->iteration }}</td>
-                                                                        <td class="text-break max-w-md text-left">
-                                                                            {{ $item->judul }}</td>
-                                                                        <td>{{ $item->tahun }}</td>
-                                                                        <td>{{ $item->scala }}</td>
-                                                                        <td>{{ $item->kategori }}</td>
-                                                                        <td>{{ $item->kategori_litabmas }}</td>
-                                                                        <td>
-                                                                            <div class="dropdown">
-                                                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                                                                    data-color="#1b3133" href="#"
-                                                                                    role="button" data-toggle="dropdown">
-                                                                                    <i class="dw dw-more"></i>
-                                                                                </a>
-                                                                                <div
-                                                                                    class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                                                    <a class="dropdown-item"
-                                                                                        href="{{ route('dosen.publikasi.show', $item->encrypt_id) }}"><i
-                                                                                            class="dw dw-eye"></i>
-                                                                                        Lihat</a>
-                                                                                    @if ($item->anggotaPublikasi[0]->id_dosen == Auth::user()->dosen->id)
-                                                                                        <a class="dropdown-item"
-                                                                                            href="{{ route('dosen.publikasi.edit', $item->encrypt_id) }}"><i
-                                                                                                class="dw dw-edit2"></i>
-                                                                                            Edit</a>
-                                                                                        <form class="deleteForm2"
-                                                                                            action="{{ route('dosen.publikasi.destroy', $item->encrypt_id) }}"
-                                                                                            method="POST">
-                                                                                            @csrf
-                                                                                            @method('DELETE')
-                                                                                            <button type="button"
-                                                                                                class="dropdown-item text-danger deleteBtn2"
-                                                                                                onclick="showDeleteConfirmation(event)"><i
-                                                                                                    class="dw dw-delete-3"></i>
-                                                                                                Hapus</button>
-                                                                                        </form>
-                                                                                    @endif
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                @endforeach
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <!-- Open Task End -->
-                                                </div>
-                                            </div>
-                                        </div>
-
                                         <div class="tab-pane fade show active" id="jabatan" role="tabpanel">
                                             <div class="pd-20">
                                                 <div class="">
@@ -269,8 +181,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="profile-task-list pb-30 table-responsive">
-                                                        <table
-                                                            class="table data-table-responsive stripe data-table-export">
+                                                        <table class="table data-table-responsive stripe data-table-export">
                                                             <thead>
                                                                 <tr>
                                                                     <td>No</td>
