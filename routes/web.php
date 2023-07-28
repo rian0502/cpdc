@@ -81,6 +81,8 @@ use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 use App\Http\Controllers\GelarController;
 use App\Http\Controllers\SuggestionController;
+use App\Http\Controllers\PenghargaanDosenController;
+use App\Http\Controllers\SeminarDosenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -150,6 +152,8 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::resource('organisasi', OrganisasiController::class);
     Route::resource('gelar', GelarController::class);
     Route::resource('publikasi', PublikasiController::class);
+    Route::resource('penghargaan', PenghargaanDosenController::class);
+    Route::resource('seminar', SeminarDosenController::class);
     Route::resource('profile', ProfileDosenController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
     Route::resource('jabatan', JabatanController::class);
     Route::resource('pangkat', PangkatDosenController::class);

@@ -162,7 +162,8 @@
                                 <div class="form-group">
                                     <label>Anggota External</label>
                                     <textarea autofocus name="anggota_external" id="anggota_external"
-                                        class="form-control @error('anggota_external') form-control-danger @enderror" type="text">{{ $publikasi->anggota_external }}</textarea>
+                                    placeholder='contoh: &#10;Dr. John Doe, &#10;Prof. Jane Smith, &#10;Dr. Michael Johnson,'
+                                    class="form-control @error('anggota_external') form-control-danger @enderror" type="text">{{ $publikasi->anggota_external }}</textarea>
                                     @error('anggota_external')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -174,7 +175,7 @@
                             <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
                     </form>
-                    <a href="{{ route('dosen.profile.index') }}">
+                    <a href="{{ route('dosen.publikasi.index') }}">
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>
                 </div>

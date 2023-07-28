@@ -111,7 +111,7 @@
                                     <label>Mahasiswa Peneliti Lainnya <small>Diisikan Mahasiswa S1 atau S2 yang berkolaborasi</small></label>
                                     <textarea autofocus name="anggota_external"
                                         id="anggota_external"
-                                        placeholder='Format:&#10;Npm - Nama - Jenjang Studi, &#10;Contoh: &#10;2017051062 - Doe Joe - S1, &#10;2017051033 - Kamal Ramadhan - S2, &#10;2017051033 - Urip Surhajo - S2,'
+                                        placeholder='Format:&#10;Npm - Nama - Jenjang Studi, &#10;Contoh: &#10;2017051062 - Doe Joe - S1, &#10;2017051033 - Kamal Ramadhan - S2, &#10;2017051024 - Urip Surhajo - S2,'
                                         class="form-control @error('anggota_external') form-control-danger @enderror"
                                         type="text">{{$litabmas->anggota_mahasiswa}}</textarea>
                                     @error('anggota_external')
@@ -125,7 +125,7 @@
                         </div>
 
                     </form>
-                    <a href="{{ route('dosen.profile.index') }}">
+                    <a href="{{ route('dosen.litabmas.index') }}">
 
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>

@@ -22,13 +22,16 @@
                                     <label>Nama Prestasi</label>
                                     <input autofocus name="nama_prestasi" id="nama_prestasi"
                                         value="{{ old('nama_prestasi', $prestasi->nama_prestasi) }}"
-                                        class="form-control
+                                        class="form-control @error('nama_prestasi') form-control-danger @enderror"
                                         type="text"
                                         placeholder="Nama Prestasi">
+                                        @error('nama_prestasi')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Tingkatan</label>
-                                    <select class="selectpicker form-control" data-size="5" name="scala">
+                                    <select class="selectpicker form-control @error('scala') form-control-danger @enderror" data-size="5" name="scala">
                                         <option value="Universitas"
                                             {{ old('scala', $prestasi->scala) == 'Universitas' ? 'selected' : '' }}>
                                             Universitas</option>
@@ -45,18 +48,24 @@
                                             {{ old('scala', $prestasi->scala) == 'Internasional' ? 'selected' : '' }}>
                                             Internasional</option>
                                     </select>
+                                    @error('scala')
+                                    <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Capai</label>
                                     <input autofocus name="tanggal" value="{{ old('tanggal', $prestasi->tanggal) }}"
-                                        id="tanggal" class="form-control" type="date">
+                                        id="tanggal" class="form-control @error('tanggal') form-control-danger @enderror" type="date">
+                                        @error('tanggal')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Capaian</label>
-                                    <select class="selectpicker form-control" data-size="5" name="capaian">
+                                    <select class="selectpicker form-control @error('capaian') form-control-danger @enderror" data-size="5" name="capaian">
                                         <option value="Juara 1"
                                             {{ old('capaian', $prestasi->capaian) == 'Juara 1' ? 'selected' : '' }}>Juara 1
                                         </option>
@@ -77,6 +86,9 @@
                                             Juara Harapan 3</option>
                                         <option value="Peserta">Peserta</option>
                                     </select>
+                                    @error('capaian')
+                                    <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                @enderror
                                 </div>
 
                                 <div class="form-group">
