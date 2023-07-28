@@ -24,20 +24,24 @@ class StoreActivityLab extends FormRequest
      */
     public function rules()
     {
-        $keperluan = ['Praktikum', 'Penelitian', 'Lainnya', 'Ujian', 'PKL', 'PKM', 'Asistensi', 'MBKM'];
-        return [
+        $perluan = ['Praktikum', 'Penelitian', 'Lainnya', 'Ujian', 'PKL', 'PKM', 'MBKM'];
+        $validasi = [
             'tanggal_kegiatan' => 'required|date',
-            'keperluan' => 'required|in:' . implode(',', $keperluan),
+            'keperluan' => 'required|in:' . implode(',', $perluan),
             'nama_kegiatan' => 'required|string|max:255',
             'jam_mulai' => 'required|date_format:H:i:s',
             'jam_selesai' => 'required|date_format:H:i:s|after:jam_mulai',
             'ket' => 'required|string|max:255',
             'jumlah_mahasiswa' => 'required|integer|min:1',
         ];
+        if ($this->keperluan == 'Praktikum') {
+            $validasi['anggota_asistensi'] = 'required|min:1|exists:mahasiswa,id';
+        }
+        return $validasi;
     }
     public function messages()
     {
-        return [
+        $message = [
             'tanggal_kegiatan.required' => 'Tanggal Kegiatan harus diisi',
             'tanggal_kegiatan.date' => 'Tanggal Kegiatan harus berupa tanggal',
             'keperluan.required' => 'Keperluan harus diisi',
@@ -53,15 +57,22 @@ class StoreActivityLab extends FormRequest
             'ket.required' => 'Keterangan harus diisi',
             'ket.string' => 'Keterangan harus berupa Kata',
             'ket.max' => 'Keterangan maksimal 255 karakter',
-            'jumlah_mahasiswa.required' => 'Jumlah Mahasiswa harus diisi',
-            'jumlah_mahasiswa.integer' => 'Jumlah Mahasiswa harus berupa angka',
-            'jumlah_mahasiswa.min' => 'Jumlah Mahasiswa minimal 1',
-            
+            'jumlah_mahasiswa.required' => 'Jumlah Peserta harus diisi',
+            'jumlah_mahasiswa.integer' => 'Jumlah Peserta harus berupa angka',
+            'jumlah_mahasiswa.min' => 'Jumlah Peserta minimal 1',
+
         ];
+        if ($this->keperluan == 'Praktikum') {
+            $message['anggota_asistensi.required'] = 'Anggota Asistensi harus diisi';
+            $message['anggota_asistensi.min'] = 'Anggota Asistensi minimal 1';
+            $message['anggota_asistensi.exists'] = 'Anggota Asistensi tidak valid';
+        }
+        return $message;
     }
 
     protected function prepareForValidation()
     {
+
         $this->request->set('jam_mulai', date('H:i:s', strtotime($this->request->get('jam_mulai'))));
         $this->request->set('jam_selesai', date('H:i:s', strtotime($this->request->get('jam_selesai'))));
         $input = $this->all();

@@ -7,9 +7,11 @@
             padding: 10px;
             margin-bottom: 10px;
         }
+
         a:hover {
             cursor: pointer;
         }
+
         .right-button {
             float: right;
             margin-top: -25px;
@@ -71,30 +73,32 @@
                                 </div>
                             </div>
                         </div>
-                        <h4 class="mt-5">
-                            Anggota Asistensi
-                        </h4>
-                        <table class="table table-striped mt-2">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">NPM</th>
-                                    <th scope="col">No Telphone</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{-- @foreach ($asisten as $item)
+                        @if ($anggota)
+                            <h4 class="mt-5">
+                                Anggota Asistensi
+                            </h4>
+                            <table class="table table-striped mt-2">
+                                <thead>
                                     <tr>
-                                        <th scope="row">{{ $loop->iteration }}</th>
-                                        <th scope="row">{{ $item->nama }}</th>
-                                        <th scope="row">{{ $item->npm }}</th>
-                                        <th scope="row">{{ $item->no_telphone }}</th>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">NPM</th>
+                                        <th scope="col">No Telphone</th>
                                     </tr>
-                                @endforeach --}}
+                                </thead>
+                                <tbody>
+                                    @foreach ($anggota as $item)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <th scope="row">{{ $item->mahasiswa->nama_mahasiswa }}</th>
+                                            <th scope="row">{{ $item->mahasiswa->npm }}</th>
+                                            <th scope="row">{{ $item->mahasiswa->no_hp }}</th>
+                                        </tr>
+                                    @endforeach
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        @endif
                     </div>
 
                 </div>
