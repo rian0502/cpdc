@@ -81,8 +81,6 @@ class ControllerPenghargaanDosen extends Controller
     {
         //
         try {
-
-
             $penghargaan = ModelPenghargaanDosen::findOrFail(Crypt::decrypt($id));
             if ($penghargaan->dosen_id != auth()->user()->dosen->id) {
                 return redirect()->route('dosen.penghargaan.index')->with('error', 'Penghargaan tidak ditemukan');
