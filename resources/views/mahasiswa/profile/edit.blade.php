@@ -39,7 +39,7 @@
                         enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
-                       <div class="form-group mb-3 pb-2">
+                        <div class="form-group mb-3 pb-2">
                             <div class="form-group">
                                 <div class="profile-photo">
                                     <img id="preview-image" src="/uploads/profile/{{ Auth::user()->profile_picture }}"
@@ -60,12 +60,14 @@
                             </div>
                         </div>
                         <!-- Modal for image cropping -->
-                        <div id="imageCropModal" class="modal" tabindex="-1" role="dialog">
+                        <div id="imageCropModal" class="modal" tabindex="-1" role="dialog" data-backdrop="static"
+                            data-keyboard="false">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Sesuaikan Gambar</h5>
-                                        <button type="button" class="close" data-dismiss="modal" id="closeModalButton" aria-label="Close">
+                                        <button type="button" class="close" data-dismiss="modal" id="closeModalButton"
+                                            aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
@@ -76,13 +78,15 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" id="cancelButton" data-dismiss="modal">Batal</button>
+                                        <button type="button" class="btn btn-secondary" id="cancelButton"
+                                            data-dismiss="modal">Batal</button>
                                         <button type="button" class="btn btn-primary" id="cropImageBtn"
                                             onclick="cropImage()">Potong</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="profile-edit-list row mt-3">
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">

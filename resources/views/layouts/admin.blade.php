@@ -220,6 +220,19 @@
                         </li>
                     @endrole
                     @role('jurusan|tpmps')
+                        
+                        <li>
+                            <a href="{{ route('jurusan.penghargaan.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/penghargaan*') ? 'active' : '' }}">
+                                <span class="micon bi bi-trophy"></span><span class="mtext">Penghargaan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jurusan.seminar.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/seminar*') ? 'active' : '' }}">
+                                <span class="micon bi bi-mic"></span><span class="mtext">Seminar</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="{{ route('jurusan.unduh.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
@@ -247,7 +260,7 @@
                             </a>
                         </li>
                     @endrole
-                    @if (!Auth::user()->suggestion)
+                    {{-- @if (!Auth::user()->suggestion)
                         <li>
                             <a href="{{ route('mahasiswa.survey.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
@@ -255,7 +268,7 @@
                                 </span>
                             </a>
                         </li>
-                    @endif
+                    @endif --}}
                     @role('sudo')
                         <li
                             class="dropdown {{ Request::is('sudo/akun_mahasiswa*') || Request::is('sudo/akun_dosen*') || Request::is('sudo/akun_admin*') ? 'show' : '' }}">

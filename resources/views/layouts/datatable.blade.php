@@ -232,6 +232,19 @@
                         </li>
                     @endrole
                     @role('jurusan|tpmps')
+                        
+                        <li>
+                            <a href="{{ route('jurusan.penghargaan.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/penghargaan*') ? 'active' : '' }}">
+                                <span class="micon bi bi-trophy"></span><span class="mtext">Penghargaan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jurusan.seminar.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/seminar*') ? 'active' : '' }}">
+                                <span class="micon bi bi-mic"></span><span class="mtext">Seminar</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="{{ route('jurusan.unduh.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
@@ -378,7 +391,7 @@
                         </li>
                     @endrole
 
-                    @if (!Auth::user()->suggestion)
+                    {{-- @if (!Auth::user()->suggestion)
                         <li>
                             <a href="{{ route('mahasiswa.survey.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
@@ -386,7 +399,7 @@
                                 </span>
                             </a>
                         </li>
-                    @endif
+                    @endif --}}
                     @role('admin berkas')
                         <li>
                             <a href="{{ route('berkas.berkas_persyaratan.index') }}"
@@ -444,9 +457,11 @@
                                         Tugas Akhir</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown {{  Request::is('dosen/litabmas*') || Request::is('dosen/publikasi*') || Request::is('dosen/organisasi*') || Request::is('dosen/penghargaan*') || Request::is('dosen/seminar*')  ? 'show' : '' }}">
+                        <li
+                            class="dropdown {{ Request::is('dosen/litabmas*') || Request::is('dosen/publikasi*') || Request::is('dosen/organisasi*') || Request::is('dosen/penghargaan*') || Request::is('dosen/seminar*') ? 'show' : '' }}">
                             <a href="javascript:;" class="dropdown-toggle">
-                                <span class="micon far fa-file-certificate"></span><span class="mtext">Aktivitas Dosen</span>
+                                <span class="micon far fa-file-certificate"></span><span class="mtext">Aktivitas
+                                    Dosen</span>
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('dosen.litabmas.index') }}"
@@ -454,9 +469,11 @@
                                 <li><a href="{{ route('dosen.publikasi.index') }}"
                                         class="{{ Request::is('dosen/publikasi*') ? 'active' : '' }}">Publikasi</a></li>
                                 <li><a href="{{ route('dosen.organisasi.index') }}"
-                                        class="{{ Request::is('dosen/organisasi*') ? 'active' : '' }}">Organisasi</a></li>
+                                        class="{{ Request::is('dosen/organisasi*') ? 'active' : '' }}">Organisasi</a>
+                                </li>
                                 <li><a href="{{ route('dosen.penghargaan.index') }}"
-                                        class="{{ Request::is('dosen/penghargaan*') ? 'active' : '' }}">Penghargaan</a></li>
+                                        class="{{ Request::is('dosen/penghargaan*') ? 'active' : '' }}">Penghargaan</a>
+                                </li>
                                 <li><a href="{{ route('dosen.seminar.index') }}"
                                         class="{{ Request::is('dosen/seminar*') ? 'active' : '' }}">Seminar</a></li>
                             </ul>

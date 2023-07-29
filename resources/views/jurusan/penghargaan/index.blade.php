@@ -44,7 +44,7 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30 ">
                     <div class="pd-20">
-                        <h4 class="text-blue h4 text-center">LITABMAS DOSEN</h4>
+                        <h4 class="text-blue h4 text-center">PENGHARGAAN</h4>
                         @if (session('error'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 {{ session('error') }}
@@ -222,13 +222,13 @@
                         renderTo: 'pieChart'
                     },
                     title: {
-                        text: 'KATEGORI LITABMAS'
+                        text: 'KATEGORI PENGHARGAAN'
                     },
                     tooltip: {
                         pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b> ({point.percentage:.1f}%)'
                     },
                     series: [{
-                        name: 'LITABMAS',
+                        name: 'PENGHARGAAN',
                         colorByPoint: true,
                         data: seriesData,
                         showInLegend: true,
@@ -259,10 +259,10 @@
                         type: 'column'
                     },
                     title: {
-                        text: 'LITABMAS DOSEN'
+                        text: 'PENGHARGAAN'
                     },
                     subtitle: {
-                        text: 'LITABMAS DOSEN'
+                        text: 'PENGHARGAAN'
                     },
                     xAxis: {
                         type: 'category',

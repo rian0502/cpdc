@@ -60,12 +60,14 @@
                             </div>
                         </div>
                         <!-- Modal for image cropping -->
-                        <div id="imageCropModal" class="modal" tabindex="-1" role="dialog">
+                        <div id="imageCropModal" class="modal" tabindex="-1" role="dialog" data-backdrop="static"
+                            data-keyboard="false">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Sesuaikan Gambar</h5>
-                                        <button type="button" class="close" data-dismiss="modal" id="closeModalButton" aria-label="Close">
+                                        <button type="button" class="close" data-dismiss="modal" id="closeModalButton"
+                                            aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
@@ -76,13 +78,15 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" id="cancelButton" data-dismiss="modal">Batal</button>
+                                        <button type="button" class="btn btn-secondary" id="cancelButton"
+                                            data-dismiss="modal">Batal</button>
                                         <button type="button" class="btn btn-primary" id="cropImageBtn"
                                             onclick="cropImage()">Potong</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
@@ -130,8 +134,8 @@
                                 <div class="form-group">
                                     <label>Semester</label>
                                     <input autofocus name="semester" id="semester"
-                                        class="form-control @error('semester') form-control-danger @enderror" type="number"
-                                        value="{{ old('semester') }}" placeholder="Semester">
+                                        class="form-control @error('semester') form-control-danger @enderror"
+                                        type="number" value="{{ old('semester') }}" placeholder="Semester">
                                     @error('semester')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
