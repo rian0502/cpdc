@@ -111,6 +111,6 @@ class Mahasiswa extends Model
             'id',
             'id',
             'id_actity_lab'
-        )->whereBetween('tanggal', [$start, $end]);
+        )->whereBetween('tanggal_kegiatan', [$start, $end])->get();
     }
 }
