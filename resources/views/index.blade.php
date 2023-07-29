@@ -52,7 +52,8 @@
                     <div class="bg-white rounded-top p-5 mt-lg-5">
                         <p class="fs-5 fw-medium text-primary">Tentang Kami</p>
                         <h1 class="display-6 mb-4">Pusat Data Jurusan Kimia</h1>
-                        <p class="mb-4" style="text-align: justify;letter-spacing: 0.5px;"> Sistem ini dirancang dengan tujuan utama untuk
+                        <p class="mb-4" style="text-align: justify;letter-spacing: 0.5px;"> Sistem ini dirancang dengan
+                            tujuan utama untuk
                             meningkatkan efektivitas dan optimasi pengolahan data di Jurusan Kimia. Dengan adanya sistem
                             ini, diharapkan tenaga pengajar dapat dengan mudah mengakses dan menganalisis data yang
                             diperlukan untuk
@@ -64,7 +65,7 @@
                             meningkatkan kualitas pengambilan keputusan tenaga pengajar dengan memberikan informasi yang
                             lebih akurat.
                         </p>
-                       
+
                         <a class="btn btn-primary rounded-pill py-3 px-5" href="https://kimia.fmipa.unila.ac.id/"
                             target="_blank">Jelajahi Lebih Lanjut</a>
                     </div>
@@ -96,7 +97,7 @@
     </div>
     <!-- Video Modal End -->
 
-    
+
 
     <!-- Project Start -->
     <div class="container-xxl pt-5">
@@ -113,8 +114,10 @@
                         <div class="project-overlay">
                             <a class="btn btn-lg-square btn-light rounded-circle m-1" href="Assets/src/img/biokimia.png"
                                 data-lightbox="project"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
-                                    class="fa fa-link"></i></a>
+                             @role('mahasiswa')
+                                <a class="btn btn-lg-square btn-light rounded-circle m-1" href="/mahasiswa/lab/cekin"><i
+                                        class="fa fa-link"></i></a>
+                            @endrole
                         </div>
                     </div>
                     <div class="p-4">
@@ -132,8 +135,10 @@
                             <a class="btn btn-lg-square btn-light rounded-circle m-1"
                                 href="Assets/src/img/analitik dan instrumental.png" data-lightbox="project"><i
                                     class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
-                                    class="fa fa-link"></i></a>
+                            @role('mahasiswa')
+                                <a class="btn btn-lg-square btn-light rounded-circle m-1" href="/mahasiswa/lab/cekin"><i
+                                        class="fa fa-link"></i></a>
+                            @endrole
                         </div>
                     </div>
                     <div class="p-4">
@@ -150,8 +155,10 @@
                             <a class="btn btn-lg-square btn-light rounded-circle m-1"
                                 href="Assets/src/img/kimia anorganik-fisik.png" data-lightbox="project"><i
                                     class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
-                                    class="fa fa-link"></i></a>
+                            @role('mahasiswa')
+                                <a class="btn btn-lg-square btn-light rounded-circle m-1" href="/mahasiswa/lab/cekin"><i
+                                        class="fa fa-link"></i></a>
+                            @endrole
                         </div>
                     </div>
                     <div class="p-4">
@@ -168,8 +175,10 @@
                             <a class="btn btn-lg-square btn-light rounded-circle m-1"
                                 href="Assets/src/img/kimia organik.png" data-lightbox="project"><i
                                     class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-light rounded-circle m-1" href=""><i
-                                    class="fa fa-link"></i></a>
+                            @role('mahasiswa')
+                                <a class="btn btn-lg-square btn-light rounded-circle m-1" href="/mahasiswa/lab/cekin"><i
+                                        class="fa fa-link"></i></a>
+                            @endrole
                         </div>
                     </div>
                     <div class="p-4">
