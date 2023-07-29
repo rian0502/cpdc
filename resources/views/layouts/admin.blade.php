@@ -201,6 +201,18 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ route('jurusan.penghargaan.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/penghargaan*') ? 'active' : '' }}">
+                                <span class="micon bi bi-trophy"></span><span class="mtext">Penghargaan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jurusan.seminar.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/seminar*') ? 'active' : '' }}">
+                                <span class="micon bi bi-mic"></span><span class="mtext">Seminar</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ route('jurusan.aktivitas.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/aktivitas*') ? 'active' : '' }}">
                                 <span class="micon bi bi-clock-history"></span><span class="mtext">Extra Aktivity</span>
