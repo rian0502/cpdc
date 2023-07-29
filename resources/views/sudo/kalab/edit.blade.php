@@ -50,7 +50,7 @@
                                     {{ $user->dosen->nidn }}
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Email</b></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;" >
                                     {{ $user->email }}
                                 </div>
                             </div>

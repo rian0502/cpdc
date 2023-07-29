@@ -16,7 +16,7 @@
                         </a>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap ">
+                        <table class="table data-table-responsive stripe data-table-export">
                             <thead>
                                 <tr>
                                     <th>No</th>
