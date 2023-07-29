@@ -18,7 +18,7 @@
 
 
 
-                        <div class="pd-20 m-1 table-responsive">
+                        <div class="pd-20 table-responsive">
                             <table id="data-akun" class="data-akun table table-hover data-table-responsive stripe wrap ">
                                 <thead>
                                     <tr>

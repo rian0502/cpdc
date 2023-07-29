@@ -18,7 +18,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="pb-20">
+                        <div class="pb-20 m-4">
                             <table class="table data-table-responsive stripe data-table-noexport nowrap" id="data">
                                 <thead>
                                     <tr>
@@ -146,7 +146,9 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                         @role('jurusan')
-                                                            <a class="dropdown-item" href="{{ route('sudo.akun_dosen.show', $item->encrypt_id) }}"><i class="dw dw-eye"></i>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('sudo.akun_dosen.show', $item->encrypt_id) }}"><i
+                                                                    class="dw dw-eye"></i>
                                                                 Lihat</a>
                                                         @endrole
                                                     </div>
