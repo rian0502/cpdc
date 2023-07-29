@@ -4,12 +4,14 @@
         /* Gaya tombol normal (berada di kanan) */
         .tambah-data {
             text-align: right;
+            margin-bottom: -80px;
         }
 
         /* Gaya tombol saat mode seluler (berada di tengah) */
         @media only screen and (max-width: 767px) {
             .tambah-data {
                 text-align: center;
+                margin-bottom: 0px;
             }
         }
     </style>
