@@ -25,76 +25,69 @@
                             <tbody>
                                 @foreach ($seminar as $item)
                                     {{-- LOKASI TANGGAL JAM MULAI SELESAI MISAL BLM TERJADWAL MAKA OUTPUTIN KONDISIIN TULUSANNYA BLM TERJADWAL --}}
-                                    @if ($item->berita_acara == null)
-                                        <tr>
+                                    <tr>
+                                        <td>
+                                            {{ $loop->iteration }}
+                                        </td>
+                                        <td>
+                                            {{ $item->mahasiswa->npm }}
+                                        </td>
+                                        <td>
+                                            {{ \Illuminate\Support\Str::limit($item->judul_kp, $limit = 40, $end = '...') }}
+                                        </td>
+                                        <td>
+                                            {{ $item->rencana_seminar }}
+                                        </td>
+                                        @if ($item->jadwal)
                                             <td>
-                                                {{ $loop->iteration }}
+                                                {{ $item->jadwal->lokasi->nama_lokasi }}
                                             </td>
                                             <td>
-                                                {{ $item->mahasiswa->npm }}
+                                                {{ $carbon::parse($item->jadwal->tanggal_skp)->format('d F Y') }}
                                             </td>
                                             <td>
-                                                {{ \Illuminate\Support\Str::limit($item->judul_kp, $limit = 40, $end = '...') }}
+                                                {{ $item->jadwal->jam_mulai_skp . ' - ' . $item->jadwal->jam_selesai_skp }}
+                                            </td>
+                                        @else
+                                            <td>
+                                                <span class="badge bg-warning">Belum Terjadwal</span>
                                             </td>
                                             <td>
-                                                {{ $item->rencana_seminar }}
+                                                <span class="badge bg-warning">Belum Terjadwal</span>
                                             </td>
-                                            @if ($item->jadwal)
-                                                <td>
-                                                    {{ $item->jadwal->lokasi->nama_lokasi }}
-                                                </td>
-                                                <td>
-                                                    {{ $carbon::parse($item->jadwal->tanggal_skp)->format('d F Y') }}
-                                                </td>
-                                                <td>
-                                                    {{ $item->jadwal->jam_mulai_skp . ' - ' . $item->jadwal->jam_selesai_skp }}
-                                                </td>
-                                            @else
-                                                <td>
-                                                    <span class="badge bg-warning">Belum Terjadwal</span>
-                                                </td>
-                                                <td>
-                                                    <span class="badge bg-warning">Belum Terjadwal</span>
-                                                </td>
-                                                <td>
-                                                    <span class="badge bg-warning">Belum Terjadwal</span>
-                                                </td>
-                                            @endif
-
                                             <td>
-                                                <div class="dropdown">
-                                                    <a class="btn btn-outline-primary dropdown-toggle" href="#"
-                                                        role="button" data-toggle="dropdown">
-                                                        <i class="fa fa-ellipsis-h"></i>
-                                                    </a>
+                                                <span class="badge bg-warning">Belum Terjadwal</span>
+                                            </td>
+                                        @endif
 
-                                                    {{-- DI KASIH KONDISI KLK UDAH TERJADWAL BAKAL MUNCUL EDIT JADWALKANNYA ILANG BEGITU JG SEBALIKNYA --}}
+                                        <td>
+                                            <div class="dropdown">
+                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
+                                                    role="button" data-toggle="dropdown">
+                                                    <i class="fa fa-ellipsis-h"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    @if ($item->jadwal)
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('koor.jadwalPKL.edit', $item->encrypt_id) }}"><i
+                                                                class="fa fa-pencil"></i>
+                                                            Ubah Jadwal</a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('koor.jadwalPKL.resend', $item->encrypt_id) }}"><i
+                                                                class="fa fa-share"></i>
+                                                            Kirim Kembali</a>
+                                                    @else
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('koor.jadwalPKL.create', $item->encrypt_id) }}"><i
+                                                                class="bi bi-calendar-plus-fill"></i>
+                                                            Jadwalkan</a>
+                                                    @endif
 
 
-                                                    {{-- NANTI FITUR EDIT KLK MAU EDIT BERARTI DOKUMEN YANG TERGENERATE AKAN TERPEBAHARUI JUGA --}}
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        @if ($item->jadwal)
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalPKL.edit', $item->encrypt_id) }}"><i
-                                                                    class="fa fa-pencil"></i>
-                                                                Ubah Jadwal</a>
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalPKL.resend', $item->encrypt_id) }}"><i
-                                                                    class="fa fa-share"></i>
-                                                                Kirim Kembali</a>
-                                                        @else
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalPKL.create', $item->encrypt_id) }}"><i
-                                                                    class="bi bi-calendar-plus-fill"></i>
-                                                                Jadwalkan</a>
-                                                        @endif
-
-
-                                                    </div>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    @endif
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach
 
 

@@ -22,7 +22,18 @@ class PenjadwalanTaDua extends Controller
      */
     public function index()
     {
-        $seminar = ModelSeminarTaDua::where('status_admin', 'Valid')->orderBy('updated_at', 'desc')->get();
+        $now = date('Y-m-d');
+        $seminar = ModelSeminarTaDua::select('id', 'encrypt_id', 'judul_ta', 'periode_seminar', 'id_mahasiswa')
+            ->whereDoesntHave('ba_seminar')
+            ->where('status_admin', 'Valid')
+            ->where(function ($query) use ($now) {
+                $query->whereDoesntHave('jadwal')
+                    ->orWhereHas('jadwal', function ($query) use ($now) {
+                        $query->whereDate('tanggal_seminar_ta_dua', '>=', $now);
+                    });
+            })
+            ->orderBy('updated_at', 'desc')
+            ->get();
 
         return view('koor.ta2.jadwal.index', compact('seminar'));
     }

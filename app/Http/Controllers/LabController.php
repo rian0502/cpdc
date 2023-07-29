@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\StoreActivityLab;
 use App\Models\AsistenLab as ModelsAsistenLab;
 use App\Models\Mahasiswa;
+use Carbon\Carbon;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Contracts\DataTable;
 
 use function PHPUnit\Framework\at;
 
@@ -162,6 +164,53 @@ class LabController extends Controller
         $lab->delete();
         return redirect()->route('lab.ruang.index')->with('success', 'Data berhasil dihapus');
     }
+
+    public function tableAktivitasLab(Request $request)
+    {
+        if ($request->ajax()) {
+            $startDate = $request->input('startDate', null);
+            $endDate = $request->input('endDate', null);
+            $id = Auth::user()->lokasi_id;
+            $asisten = Mahasiswa::whereHas('asisten_lab', function ($query) use ($id, $startDate, $endDate) {
+                $query->whereHas('lokasi', function ($query) use ($id, $startDate, $endDate) {
+                    if ($startDate != null && $endDate != null) {
+                        $query->whereBetween('tanggal_kegiatan', [$startDate, $endDate]);
+                    }
+                    $query->where('id_lokasi', '=', $id);
+                });
+            })->get();
+            $asisten->transform(function ($mahasiswa) use ($startDate, $endDate) {
+                $totalDurasi = 0;
+                if ($startDate != null && $endDate != null) {
+                    foreach ($mahasiswa->assistenLabDateBeetwen($startDate, $endDate) as $asisten_lab) {
+                        $durasi = $this->hitungSelisihWaktu($asisten_lab->jam_mulai, $asisten_lab->jam_selesai);
+                        $totalDurasi += $durasi;
+                    }
+                    $mahasiswa->kehadiran = count($mahasiswa->assistenLabDateBeetwen($startDate, $endDate));
+                } else {
+                    foreach ($mahasiswa->asisten_lab as $asisten_lab) {
+                        $durasi = $this->hitungSelisihWaktu($asisten_lab->jam_mulai, $asisten_lab->jam_selesai);
+                        $totalDurasi += $durasi;
+                    }
+                    $mahasiswa->kehadiran = count($mahasiswa->asisten_lab);
+                }
+                $totalDurasi = gmdate("H:i:s", $totalDurasi);
+                $mahasiswa->total_durasi = $totalDurasi;
+                return $mahasiswa;
+            });
+            return DataTables::of($asisten)->toJson();
+        }
+    }
+    function hitungSelisihWaktu($jamMulai, $jamSelesai)
+    {
+        $mulai = Carbon::parse($jamMulai);
+        $selesai = Carbon::parse($jamSelesai);
+        $selisih = $selesai->diffInSeconds($mulai);
+        return $selisih;
+    }
+
+
+
     public function chartAktivitasLab(Request $request)
     {
         if ($request->ajax()) {

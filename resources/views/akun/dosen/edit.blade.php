@@ -36,14 +36,19 @@
                                                 Dosen</option>
                                             <option value="pkl" {{ $account->hasRole('pkl') ? 'selected' : '' }}>
                                                 Koordinator PKL</option>
-                                            <option value="ta" {{ $account->hasRole('kompre') ? 'selected' : '' }}>
-                                                Koordinator TA</option>
-                                            <option value="kompre" {{ $account->hasRole('ta') ? 'selected' : '' }}>KOMPRE
+                                            <option value="ta1" {{ $account->hasRole('ta1') ? 'selected' : '' }}>
+                                                Koordinator TA 1</option>
+                                            <option value="ta2" {{ $account->hasRole('ta2') ? 'selected' : '' }}>
+                                                Koordinator TA 2</option>
+                                            <option value="kompre" {{ $account->hasRole('kompre') ? 'selected' : '' }}>
+                                                KOMPRE
                                             </option>
                                             <option value="jurusan" {{ $account->hasRole('jurusan') ? 'selected' : '' }}>
                                                 Ketua Jurusan</option>
                                             <option value="kalab" {{ $account->hasRole('kalab') ? 'selected' : '' }}>
                                                 Kepala Lab</option>
+                                            <option value="tpmps" {{ $account->hasRole('tpmps') ? 'selected' : '' }}>
+                                                TPMPS</option>
                                         </optgroup>
                                     </select>
                                 </div>
