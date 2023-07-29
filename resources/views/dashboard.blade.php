@@ -1330,7 +1330,24 @@
                                 {
                                     name: 'Jumlah Kegiatan Lainnya',
                                     data: data.jumlah_kegiatan_lainnya
-                                }
+                                },
+                                {
+                                    name: 'Jumlah PKL',
+                                    data: data.jumlah_PKL
+                                },
+                                {
+                                    name: 'Jumlah MBKM',
+                                    data: data.jumlah_MBKM
+                                },
+                                {
+                                    name: 'Jumlah PKM',
+                                    data: data.jumlah_PKM
+                                },
+                                {
+                                    name: 'Jumlah Asistensi',
+                                    data: data.jumlah_Asistensi
+                                },
+
                             ]
                         };
 
