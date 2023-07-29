@@ -67,8 +67,8 @@
                                 <div class="form-group">
                                     <label>Jam Mulai</label>
                                     <input
-                                        class="form-control time-picker-default @error('jam_mulai') form-control-danger @enderror"
-                                        placeholder="time" type="text" name="jam_mulai"
+                                        class="form-control @error('jam_mulai') form-control-danger @enderror"
+                                        placeholder="jam" type="time" name="jam_mulai"
                                         value="{{ old('jam_mulai') }}" />
                                     @error('jam_mulai')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -77,8 +77,8 @@
                                 <div class="form-group">
                                     <label>Jam Selesai</label>
                                     <input
-                                        class="form-control time-picker-default @error('jam_selesai') form-control-danger @enderror"
-                                        placeholder="time" type="text" name="jam_selesai"
+                                        class="form-control @error('jam_selesai') form-control-danger @enderror"
+                                        placeholder="jam" type="time" name="jam_selesai"
                                         value="{{ old('jam_selesai') }}" />
                                 </div>
                                 @error('jam_selesai')
