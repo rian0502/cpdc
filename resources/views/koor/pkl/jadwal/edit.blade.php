@@ -81,7 +81,7 @@
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold mt-2"> <strong>Semester</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->mahasiswa->semester}}
+                                    {{ $seminar->mahasiswa->semester }}
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Pembimbing Lapangan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -119,7 +119,8 @@
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a href="/uploads/syarat_seminar_kp/{{ $seminar->berkas_seminar_pkl}}" target="_blank">Unduh Berkas</a>
+                                    <a href="/uploads/syarat_seminar_kp/{{ $seminar->berkas_seminar_pkl }}"
+                                        target="_blank">Unduh Berkas</a>
                                 </div>
                             </div>
 
@@ -140,60 +141,66 @@
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
-                    <form id="formJadwalUpdate" action="{{ route('koor.jadwalPKL.update',$jadwal->encrypt_id) }}" method="POST">
-                        @method('PUT')
-                        @csrf
-                        <div class="profile-edit-list row">
-                            {{-- form untuk sebelah kiri --}}
-                            <div class="weight-500 col-md-6">
-                                <div class="form-group">
-                                    <label>Tanggal Seminar</label>
-                                    <input value="{{$jadwal->tanggal_skp}}" autofocus name="tanggal_skp" id="tanggal_skp"
-                                        class="form-control @error('tanggal_skp') form-control-danger @enderror"
-                                        type="date" placeholder="Nama Barang">
-                                    @error('tanggal_skp')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Lokasi</label>
-                                    <select class="custom-select2 form-control" style="width: 100%; height: 38px" name="id_lokasi" required>
-                                        @foreach ($locations as $item)
-                                            <option value="{{ $item->encrypt_id }}" {{ ($jadwal->id_lokasi == $item->id) ? 'selected' : '' }}>{{ $item->nama_lokasi. ', LT-'. $item->lantai_tingkat }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            {{-- form untuk sebelah kanan --}}
-                            <div class="kanan weight-500 col-md-6">
-
-                                <div class="form-group">
-                                    <label>Jam Mulai</label>
-                                    <input type="time" value="{{$jadwal->jam_mulai_skp}}" name="jam_mulai_skp" class="form-control @error('jam_mulai_skp') form-control-danger @enderror">
-                                    @error('jam_mulai_skp')
+                        <form id="formJadwalUpdate" action="{{ route('koor.jadwalPKL.update', $jadwal->encrypt_id) }}"
+                            method="POST">
+                            @method('PUT')
+                            @csrf
+                            <div class="profile-edit-list row">
+                                {{-- form untuk sebelah kiri --}}
+                                <div class="weight-500 col-md-6">
+                                    <div class="form-group">
+                                        <label>Tanggal Seminar</label>
+                                        <input value="{{ $jadwal->tanggal_skp }}" autofocus name="tanggal_skp"
+                                            id="tanggal_skp"
+                                            class="form-control @error('tanggal_skp') form-control-danger @enderror"
+                                            type="date" placeholder="Nama Barang">
+                                        @error('tanggal_skp')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Lokasi</label>
+                                        <select class="custom-select2 form-control" style="width: 100%; height: 38px"
+                                            name="id_lokasi" required>
+                                            @foreach ($locations as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ $jadwal->id_lokasi == $item->id ? 'selected' : '' }}>
+                                                    {{ $item->nama_lokasi . ', LT-' . $item->lantai_tingkat }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Jam Selesai</label>
-                                    <input type="time" name="jam_selesai_skp" value="{{$jadwal->jam_selesai_skp}}" class="form-control @error('jam_selesai_skp') form-control-danger @enderror">
-                                    @error('jam_selesai_skp')
+                                {{-- form untuk sebelah kanan --}}
+                                <div class="kanan weight-500 col-md-6">
+
+                                    <div class="form-group">
+                                        <label>Jam Mulai</label>
+                                        <input type="time" value="{{ $jadwal->jam_mulai_skp }}" name="jam_mulai_skp"
+                                            class="form-control @error('jam_mulai_skp') form-control-danger @enderror">
+                                        @error('jam_mulai_skp')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Jam Selesai</label>
+                                        <input type="time" name="jam_selesai_skp"
+                                            value="{{ $jadwal->jam_selesai_skp }}"
+                                            class="form-control @error('jam_selesai_skp') form-control-danger @enderror">
+                                        @error('jam_selesai_skp')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <button id="submitButton" type="submit" class="submit btn btn-primary">Kirim</button>
-                        </div>
-                        <a href="{{route('koor.jadwalPKL.index')}}">
-
+                            <div class="form-group">
+                                <button id="submitButton" type="submit" class="submit btn btn-primary">Kirim</button>
+                            </div>
+                        </form>
+                        <a href="{{ route('koor.jadwalPKL.index') }}">
                             <button class="batal btn btn-secondary">Batal</button>
                         </a>
-
-                    </form>
-                </div>
+                    </div>
                 </div>
                 <!-- Data Registrasi End -->
 
