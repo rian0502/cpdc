@@ -36,6 +36,7 @@ class StorePenghargaanDosenRequest extends FormRequest
     {
         return [
             'nama.required' => 'Nama penghargaan harus diisi',
+            'nama.string' => 'Nama penghargaan harus berupa Huruf',
             'nama.min' => 'Nama penghargaan minimal 3 karakter',
             'nama.max' => 'Nama penghargaan maksimal 255 karakter',
             'tahun.required' => 'Tahun penghargaan harus diisi',

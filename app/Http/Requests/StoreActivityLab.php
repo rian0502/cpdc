@@ -72,7 +72,6 @@ class StoreActivityLab extends FormRequest
 
     protected function prepareForValidation()
     {
-
         $this->request->set('jam_mulai', date('H:i:s', strtotime($this->request->get('jam_mulai'))));
         $this->request->set('jam_selesai', date('H:i:s', strtotime($this->request->get('jam_selesai'))));
         $input = $this->all();

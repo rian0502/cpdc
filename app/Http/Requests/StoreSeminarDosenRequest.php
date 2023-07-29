@@ -37,6 +37,7 @@ class StoreSeminarDosenRequest extends FormRequest
         return [
             'nama.required' => 'Nama seminar harus diisi',
             'nama.min' => 'Nama seminar minimal 3 karakter',
+            'nama.string' => 'Nama penghargaan harus berupa Huruf',
             'nama.max' => 'Nama seminar maksimal 255 karakter',
             'tahun.required' => 'Tahun seminar harus diisi',
             'tahun.date' => 'Tahun seminar harus berupa tanggal',
