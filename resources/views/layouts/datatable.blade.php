@@ -88,7 +88,7 @@
     <!-- End Google Tag Manager -->
 </head>
 
-<body onmousedown='return false' oncontexmenu='return false' onselectstart='return false' class="sidebar-light">
+<body  class="sidebar-light">
     <div class="pre-loader">
         <div class="pre-loader-box">
             <div class="loader-logo">

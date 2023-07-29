@@ -10,6 +10,18 @@
     /* background-color: #f3f3f3; */
 }
 
+.logoprint {
+    display: block;
+}
+
+/* akan hilang saat di print */
+@media print {
+    #logo {
+        /* Hide the whole page */
+        display: none;
+    }
+}
+
 #logo {
     width: 250px;
     height: 250px;

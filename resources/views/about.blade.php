@@ -39,8 +39,8 @@
 
 
             <div class="body wow fadeInUp filosofinya" data-wow-delay="0.01s">
-                <img id="logo" class="gambar" src="/Assets/images/logo/color.png" alt="Logo">
-
+                <img id="logo" class="gambar" src="/Assets/images/logo/color.png" alt="Logo"
+                    oncontextmenu="return false;">
 
                 <div id="filosofi">
                     <div class="filosofi-card kampus">
@@ -85,26 +85,12 @@
 
         </div>
     </div>
-    <script type='text/javascript'>
-        //<![CDATA[
-        $(function() {
-            $(".post-body img:nth-child(1)").after(
-                "<img src=\"http:\/\/2.bp.blogspot.com\/-lQW7QlMoz10\/T8yL_5IPF6I\/AAAAAAAAAQU\/5R8ngq17xzw\/s1600\/transparent.png\" alt=\"NetOopsblog protected image\" style=\"margin-left: -212px; opacity: 0; position: relative; top: 0;\" \/>"
-                );
-        });
-        //]]>
-    </script>
-    <script type='text/javascript'>
-        //<![CDATA[
-        $(function() {
-            $(".post-body img").after(
-                "<img src=\"http:\/\/2.bp.blogspot.com\/-lQW7QlMoz10\/T8yL_5IPF6I\/AAAAAAAAAQU\/5R8ngq17xzw\/s1600\/transparent.png\" alt=\"NetOopsblog protected image\" style=\"margin-left: -212px; opacity: 0; position: relative; top: 0;\" \/>"
-                );
-        });
-        //]]>
-    </script>
+
+
+
     <div class="bawah-testimonial"></div>
 
 
     <script src="/Assets/src/js/tentang.js"></script>
+    <script type="text/javascript" src="/Assets/admin/src/scripts/noprint.js"></script>
 @endsection
