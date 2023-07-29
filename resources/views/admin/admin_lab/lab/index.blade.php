@@ -17,7 +17,7 @@
                     </div>
                     <div class="pb-20 m-3">
 
-                        <table id="data-laboratorium" class="data-laboratorium table table-striped table-hover nowrap ">
+                        <table id="data-laboratorium" class="data-laboratorium table table-striped table-hover ">
                             <thead>
                                 <tr>
                                     <th>No</th>
