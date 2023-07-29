@@ -7,6 +7,8 @@ use App\Models\LitabmasDosen;
 use App\Http\Controllers\Controller;
 use App\Models\AktivitasMahasiswa;
 use App\Models\Mahasiswa;
+use App\Models\ModelPenghargaanDosen;
+use App\Models\ModelSeminarDosen;
 use App\Models\PrestasiMahasiswa;
 use App\Models\PublikasiDosen;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -44,6 +46,10 @@ class ExportData extends Controller
             'ta2' => Mahasiswa::select('angkatan')->distinct()->whereHas('ta_dua')->orderBy('angkatan', 'desc')
                 ->get(),
             'kompre' => Mahasiswa::select('angkatan')->distinct()->whereHas('komprehensif')->orderBy('angkatan', 'desc')
+                ->get(),
+            'seminar_dosen' => ModelSeminarDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->orderBy('tahun', 'desc')
+                ->get(),
+            'penghargaan_dosen' => ModelPenghargaanDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->orderBy('tahun', 'desc')
                 ->get(),
         ];
         return view('jurusan.export.index', $data);
