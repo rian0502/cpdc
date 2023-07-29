@@ -122,6 +122,7 @@ Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verifi
             'destroy' => 'barang.history.destroy',
         ]
     );
+    Route::get('asistensi', [LabController::class, 'tableAktivitasLab'])->name('asistensi.ajax');
     Route::get('dataAktivitas', [LabController::class, 'dataLaboratorium'])->name('data.ajax');
     //chart line aktivitas lab
 });

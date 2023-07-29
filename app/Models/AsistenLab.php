@@ -14,7 +14,7 @@ class AsistenLab extends Model
         'id_mahasiswa'
     ];
     public function aktivitas(){
-        return $this->belongsTo(ActivityLab::class, 'id_actity_lab', 'id');
+        return $this->belongsTo(Laboratorium::class, 'id_actity_lab', 'id');
     }
     public function mahasiswa(){
         return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');

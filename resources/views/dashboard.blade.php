@@ -680,25 +680,24 @@
             @endrole
 
             @role('admin lab')
-            <div class="card-box pb-10" style="margin-bottom: 30px">
-                <div class="h5 pd-20 mb-0">Data Asistensi</div>
+                <div class="card-box pb-10" style="margin-bottom: 30px">
+                    <div class="h5 pd-20 mb-0">Data Asistensi</div>
+                    <table id="data-asisten" class="table warp stripe p-2">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>NPM</th>
+                                <th>Kehadiran</th>
+                                <th>Total Jam</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                <table class="table data-table-responsive warp stripe data-table-noexport p-2">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>NPM</th>
-                            <th>Kehadiran</th>
-                            <th>Total Jam</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                    </tbody>
-                </table>
-            </div>
+                        </tbody>
+                    </table>
+                </div>
             @endrole
             @role('jurusan')
                 <div class="card-box height-100-p pd-20 min-height-200px mb-20">
@@ -1119,230 +1118,7 @@
         </script>
 
 
-        <script>
-            // Data dummy
-            function createPerangkatanDropdown() {
 
-
-                var data = [{
-                        name: 'SEMINAR',
-                        kp: 10,
-                        ta1: 8,
-                        ta2: 9,
-                        kompre: 7,
-                        belum_seminar: 5,
-                        perangkatan: '2023'
-                    },
-                    {
-                        name: 'SEMINAR',
-                        kp: 7,
-                        ta1: 6,
-                        ta2: 8,
-                        kompre: 7,
-                        belum_seminar: 4,
-                        perangkatan: '2022'
-                    },
-                    {
-                        name: 'SEMINAR',
-                        kp: 9,
-                        ta1: 8,
-                        ta2: 7,
-                        kompre: 6,
-                        belum_seminar: 6,
-                        perangkatan: '2023'
-                    },
-                    {
-                        name: 'SEMINAR',
-                        kp: 8,
-                        ta1: 7,
-                        ta2: 9,
-                        kompre: 8,
-                        belum_seminar: 3,
-                        perangkatan: '2021'
-                    },
-                    {
-                        name: 'SEMINAR',
-                        kp: 6,
-                        ta1: 9,
-                        ta2: 7,
-                        kompre: 6,
-                        belum_seminar: 7,
-                        perangkatan: '2022'
-                    },
-                    {
-                        name: 'SEMINAR',
-                        kp: 8,
-                        ta1: 7,
-                        ta2: 6,
-                        kompre: 7,
-                        belum_seminar: 4,
-                        perangkatan: '2020'
-                    },
-                    {
-                        name: 'SEMINAR',
-                        kp: 8,
-                        ta1: 7,
-                        ta2: 6,
-                        kompre: 7,
-                        belum_seminar: 2,
-                        perangkatan: '2020'
-                    },
-                    {
-                        name: 'SEMINAR',
-                        kp: 7,
-                        ta1: 8,
-                        ta2: 9,
-                        kompre: 8,
-                        belum_seminar: 5,
-                        perangkatan: '2023'
-                    },
-                    {
-                        name: 'SEMINAR',
-                        kp: 9,
-                        ta1: 6,
-                        ta2: 7,
-                        kompre: 9,
-                        belum_seminar: 3,
-                        perangkatan: '2021'
-                    },
-                    {
-                        name: 'SEMINAR',
-                        kp: 6,
-                        ta1: 7,
-                        ta2: 6,
-                        kompre: 8,
-                        belum_seminar: 6,
-                        perangkatan: '2022'
-                    },
-                    {
-                        name: 'SEMINAR',
-                        kp: 8,
-                        ta1: 8,
-                        ta2: 7,
-                        kompre: 7,
-                        belum_seminar: 4,
-                        perangkatan: '2023'
-                    }
-                ];
-
-                // Filter perangkatan
-                var perangkatanOptions = ['2020', '2021', '2022', '2023'];
-                var selectedPerangkatan = perangkatanOptions[0];
-
-
-
-
-                // Membuat series data berdasarkan filter perangkatan
-                function updateChart() {
-                    var filteredData = data.filter(function(item) {
-                        return item.perangkatan === selectedPerangkatan;
-                    });
-
-                    var kpData = filteredData.reduce(function(total, item) {
-                        return total + item.kp;
-                    }, 0);
-
-                    var ta1Data = filteredData.reduce(function(total, item) {
-                        return total + item.ta1;
-                    }, 0);
-
-                    var ta2Data = filteredData.reduce(function(total, item) {
-                        return total + item.ta2;
-                    }, 0);
-
-                    var kompreData = filteredData.reduce(function(total, item) {
-                        return total + item.kompre;
-                    }, 0);
-
-                    var belumSeminarData = filteredData.reduce(function(total, item) {
-                        return total + item.belum_seminar;
-                    }, 0);
-
-                    // Membuat chart Highcharts
-                    Highcharts.chart('chart_seminar', {
-                        chart: {
-                            type: 'pie'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        plotOptions: {
-                            pie: {
-                                cursor: 'pointer',
-                                allowPointSelect: true,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                                    style: {
-                                        textOutline: 'none'
-                                    }
-                                }
-                            }
-                        },
-                        tooltip: {
-                            pointFormat: '<b>Jumlah: {point.y}</b>'
-                        },
-                        legend: {
-                            labelFormatter: function() {
-                                const pointIndex = this.index;
-                                const pointName = chartData[pointIndex].usia_group;
-                                return `${pointName}`;
-                            }
-                        },
-                        series: [{
-                            name: 'Jumlah',
-                            data: [{
-                                    name: 'KP',
-                                    y: kpData
-                                },
-                                {
-                                    name: 'TA 1',
-                                    y: ta1Data
-                                },
-                                {
-                                    name: 'TA 2',
-                                    y: ta2Data
-                                },
-                                {
-                                    name: 'Kompre',
-                                    y: kompreData
-                                },
-                                {
-                                    name: 'Belum Seminar',
-                                    y: belumSeminarData
-                                }
-                            ]
-                        }]
-                    });
-
-                }
-                var dropdown = document.createElement('select');
-                dropdown.setAttribute('class', 'form-control form-control-sm selectpicker text-center');
-                dropdown.setAttribute('style', 'text-align: center');
-
-                perangkatanOptions.forEach(function(perangkatan) {
-                    var option = document.createElement('option');
-                    option.text = perangkatan;
-                    dropdown.add(option);
-                });
-
-                var chart_seminar = document.getElementById('chart_seminar');
-                chart_seminar.parentNode.insertBefore(dropdown, chart_seminar);
-
-                $(dropdown).selectpicker();
-
-                dropdown.addEventListener('change', function() {
-                    selectedPerangkatan = dropdown.value;
-                    updateChart();
-                });
-
-                updateChart();
-            }
-
-            document.addEventListener('DOMContentLoaded', function() {
-                createPerangkatanDropdown();
-            });
-        </script>
         <script>
             function jabatanDosen() {
                 // Data dummy
@@ -1582,7 +1358,93 @@
 
             //dengan filter berdasarkan
         </script>
+        <script>
+            var dataAsisten;
 
+
+            $(document).ready(function() {
+                tableAsistenSeminar();
+
+                function tableAsistenSeminar(startDate = null, endDate = null) {
+                    if (dataAsisten) {
+                        dataAsisten.destroy();
+                    }
+
+                    dataAsisten = $('#data-asisten').DataTable({
+                        processing: true,
+                        serverSide: true,
+                        ajax: {
+                            url: '{{ route('lab.asistensi.ajax') }}',
+                            dataType: 'json',
+                            data: function(d) {
+                                d.startDate = startDate;
+                                d.endDate = endDate;
+                            }
+                        },
+
+                        columns: [{
+                                data: 'npm',
+                                name: 'npm',
+                                render: function(data, type, row, meta) {
+                                    // Menghasilkan nomor urutan perdata
+                                    var index = meta.row + meta.settings._iDisplayStart + 1;
+                                    return index;
+                                }
+                            },
+                            {
+                                data: 'nama_mahasiswa',
+                                name: 'nama_mahasiswa'
+                            },
+                            {
+                                data: 'npm',
+                                name: 'npm'
+                            },
+                            {
+                                data: 'kehadiran',
+                                name: 'kehadiran'
+                            },
+                            {
+                                data: 'total_durasi',
+                                name: 'total_durasi'
+                            },
+                            {
+                                data: null,
+                                name: 'aksi',
+                                orderable: false,
+                                searchable: false,
+                                render: function(data, type, row) {
+                                    // var downloadUrl = "{{ asset('uploads/file_') }}" + '/' + row
+                                    //     .file_litabmas;
+                                    var detail =
+                                        "{{ route('dosen.litabmas.show', ':id') }}"
+                                        .replace(
+                                            ':id', row.npm);
+
+                                    return `
+                            <div class="dropdown">
+                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" data-color="#1b3133" href="#"
+                                    role="button" data-toggle="dropdown">
+                                    <i class="dw dw-more"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                    <a class="dropdown-item" href="${detail}"><i class="dw dw-eye"></i> Lihat</a>
+                                </div>
+                            </div>
+                            `;
+                                }
+                            }
+
+                        ]
+                    });
+
+                }
+                $('#startDate, #endDate').change(function() {
+                    var startDate = $('#startDate').val();
+                    var endDate = $('#endDate').val();
+                    tableAsistenSeminar(startDate, endDate);
+                });
+            });
+        </script>
 
 
         <script>
