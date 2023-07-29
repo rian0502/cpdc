@@ -19,6 +19,7 @@ class ControllerSeminarDosen extends Controller
     public function index()
     {
         //
+        return view('dosen.seminar.index');
     }
 
     /**
@@ -29,6 +30,7 @@ class ControllerSeminarDosen extends Controller
     public function create()
     {
         //
+        return view('dosen.seminar.create');
     }
 
     /**

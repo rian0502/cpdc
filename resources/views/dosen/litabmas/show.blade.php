@@ -19,6 +19,7 @@
                                     <th scope="col">Sumber Dana</th>
                                     <th scope="col">Jumlah Dana</th>
                                     <th scope="col">Tahun Kegiatan</th>
+                                    <th scope="col">Url Dokumentasi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -28,6 +29,7 @@
                                     <th scope="row">{{ $litabmas->sumber_dana }}</th>
                                     <th scope="row">Rp. {{ number_format($litabmas->jumlah_dana, 0, ',', '.') }}</th>
                                     <th scope="row">{{ $litabmas->tahun_penelitian }}</th>
+                                    <th scope="col"><a href="{{ $litabmas->url }}" class="text-primary">Klik</a></th>
                                 </tr>
                             </tbody>
                         </table>

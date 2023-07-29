@@ -46,10 +46,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Tahun Capaian </label>
+                                    <label>Tanggal Capaian </label>
                                     <input autofocus name="tahun" value="{{old('tahun')}}" id="tahun"
-                                    class="form-control year-picker @error('tahun') form-control-danger @enderror"
-                                    type="year" >
+                                    class="form-control  @error('tahun') form-control-danger @enderror"
+                                    type="date" >
                                     @error('tahun')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -80,7 +80,7 @@
                         </div>
 
                     </form>
-                    <a href="{{ route('dosen.penghargaaan.index') }}">
+                    <a href="{{ route('dosen.seminar.index') }}">
 
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>
