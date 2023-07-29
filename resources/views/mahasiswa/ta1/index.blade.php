@@ -188,9 +188,9 @@
                                     {{ $seminar->toefl }}
                                 </div>
 
-                                <label class="col-md-3 bold"> <strong></strong></label>
+                                <label class="col-md-3 bold"> <strong>Ide Judul</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->status_seminar }}
+                                    Dari {{ $seminar->sumber_penelitian}}
                                 </div>
                             </div>
 
@@ -288,7 +288,7 @@
                             <small>
                                 <b>
                                     <p
-                                        class="mb-30 text-center 
+                                        class="mb-30 text-center
                                 @if ($seminar->status_koor == 'Selesai') {{ 'Valid' }}
                                             @elseif($seminar->status_koor == 'Belum Selesai') {{ 'Proses' }}
                                             @elseif($seminar->status_koor == 'Perbaikan') {{ 'Invalid' }}
