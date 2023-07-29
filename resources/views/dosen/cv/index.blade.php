@@ -252,6 +252,26 @@
                             </table>
                         @endforeach
                     </div>
+                    <div class="section">
+                        <h2 style="font-family: Arial, sans-serif;">Gelar</h2>
+                        @foreach ($gelar as $item)
+                            <table>
+                                <tr>
+                                    <td rowspan="3" class="margin">
+                                        {{ $item->tahun_lulus }}
+                                    </td>
+                                    <td class="text-justify">
+                                        <div class="judul">
+                                            {{ $item->instansi_pendidikan }}
+                                        </div>
+                                        {{-- <br> --}}
+                                        <div style="margin-top: 15px;"></div>
+                                        Jurusan {{ $item->jurusan }},Program Studi {{ $item->nama_gelar }}
+                                    </td>
+                                </tr>
+                            </table>
+                        @endforeach
+                    </div>
 
                     <div class="section">
                         <h2 style="font-family: Arial, sans-serif;">Penelitian</h2>
@@ -325,6 +345,50 @@
                     <div class="pindah-halaman" id="pindah-halaman">
                         <div class="section">
                             <h2 style="font-family: Arial, sans-serif;">Organisasi</h2>
+                            @foreach ($organisasi as $item)
+                                <table>
+                                    <tr>
+                                        <td rowspan="3" class="margin">
+                                            {{ $item->tahun_menjabat }}
+                                        </td>
+                                        <td class="text-justify">
+                                            <div class="judul">
+                                                {{ $item->nama_organisasi }}
+                                            </div>
+                                            <div style="margin-top: 15px;"></div>
+                                            Menjabat sebagai {{ $item->jabatan }} dengan masa jabatan dari tahun
+                                            {{ $item->tahun_menjabat . ' hingga ' . $item->tahun_berakhir }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="pindah-halaman" id="pindah-halaman">
+                        <div class="section">
+                            <h2 style="font-family: Arial, sans-serif;">Penghargaan</h2>
+                            @foreach ($organisasi as $item)
+                                <table>
+                                    <tr>
+                                        <td rowspan="3" class="margin">
+                                            {{ $item->tahun_menjabat }}
+                                        </td>
+                                        <td class="text-justify">
+                                            <div class="judul">
+                                                {{ $item->nama_organisasi }}
+                                            </div>
+                                            <div style="margin-top: 15px;"></div>
+                                            Menjabat sebagai {{ $item->jabatan }} dengan masa jabatan dari tahun
+                                            {{ $item->tahun_menjabat . ' hingga ' . $item->tahun_berakhir }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="pindah-halaman" id="pindah-halaman">
+                        <div class="section">
+                            <h2 style="font-family: Arial, sans-serif;">Seminar</h2>
                             @foreach ($organisasi as $item)
                                 <table>
                                     <tr>
