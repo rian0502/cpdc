@@ -193,17 +193,19 @@ Route::prefix('koor')->name('koor.')->group(function () {
 
 
 //jurusan
-Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan')->group(function () {
-    Route::resource('lokasi', LokasiController::class);
+Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|tpmps')->group(function () {
+
     //prestasi
     Route::resource('prestasi', PrestasiDataController::class);
     Route::resource('aktivitas', AktivitasDataController::class);
     Route::resource('publikasi', PublikasiDataController::class);
     Route::resource('litabmas', LitabmasDataController::class);
-    Route::resource('mahasiswa', DataMahasiswaAllController::class);
-    Route::resource('alumni', DataAlumni::class);
+
+
+
     Route::resource('penghargaan', Penghargaan::class);
     Route::resource('seminar', Seminar::class);
+
     Route::get('unduh', [ExportData::class, 'index'])->name('unduh.index');
     Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
     Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
@@ -232,19 +234,10 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::get('pieChartKategoriLitabmas', [LitabmasDataController::class, 'pieChartKategoriLitabmas'])->name('litabmas.pieChartKategoriLitabmas');
 });
 
-Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|tpmps')->group(function () {
-    Route::get('unduh', [ExportData::class, 'index'])->name('unduh.index');
-    Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
-    Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
-    Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
-    Route::post('unduh/prestasi', [ExportData::class, 'prestasi'])->name('unduh.prestasi');
-    Route::post('unduh/aktivitas', [ExportData::class, 'aktivitas'])->name('unduh.aktivitas');
-    Route::post('unduh/mahasiswa', [ExportData::class, 'mahasiswa'])->name('unduh.mahasiswa');
-    Route::post('unduh/alumni', [ExportData::class, 'alumni'])->name('unduh.alumni');
-    Route::post('unduh/kp', [ExportData::class, 'kp'])->name('unduh.kp');
-    Route::post('unduh/ta1', [ExportData::class, 'ta1'])->name('unduh.ta1');
-    Route::post('unduh/ta2', [ExportData::class, 'ta2'])->name('unduh.ta2');
-    Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
+Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan')->group(function () {
+    Route::resource('lokasi', LokasiController::class);
+    Route::resource('mahasiswa', DataMahasiswaAllController::class);
+    Route::resource('alumni', DataAlumni::class);
 });
 
 //end jurusan
