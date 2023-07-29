@@ -9,6 +9,7 @@ use App\Models\AktivitasMahasiswa;
 use App\Models\BaseNPM;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
+use App\Models\ModelBaSeminarKompre;
 use App\Models\ModelBaSeminarTaDua;
 use App\Models\ModelBaSeminarTaSatu;
 use App\Models\ModelSeminarKompre;
@@ -74,10 +75,10 @@ class DashboardController extends Controller
                 $data['jumlah_ta2'] = ModelSeminarTaDua::count();
             }
             if (Auth::user()->hasRole('kompre')) {
-                $data['invalid_berkas'] = (new ModelSeminarTaDua())->getInvalidJumlahBerkas();
-                $data['invalid_jadwal'] = (new ModelSeminarTaDua())->getJumlahJadwal();
-                $data['total_berkas']  = ModelBaSeminarTaDua::count();
-                $data['jumlah_kompre'] = ModelSeminarTaDua::count();
+                $data['invalid_berkas'] = (new ModelSeminarKompre())->getInvalidJumlahBerkas();
+                $data['invalid_jadwal'] = (new ModelSeminarKompre())->getJumlahJadwal();
+                $data['total_berkas']  = ModelBaSeminarKompre::count();
+                $data['jumlah_kompre'] = ModelSeminarKompre::count();
             }
             return view('dashboard', $data);
         } else {

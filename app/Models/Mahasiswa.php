@@ -102,4 +102,15 @@ class Mahasiswa extends Model
             'id_actity_lab'
         );
     }
+    public function assistenLabDateBeetwen($start, $end)
+    {
+        return $this->hasManyThrough(
+            Laboratorium::class,
+            AsistenLab::class,
+            'id_mahasiswa',
+            'id',
+            'id',
+            'id_actity_lab'
+        )->whereBetween('tanggal_kegiatan', [$start, $end])->get();
+    }
 }
