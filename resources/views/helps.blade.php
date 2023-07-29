@@ -148,95 +148,106 @@
                         </div>
                     @endrole
 
-                    <h4 class="mb-30 h4 text-blue padding-top-30">Mengubah Data Profil Akun</h4>
-                    <div id="accordion1">
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#foto">
-                                    Mengganti Foto Profil
-                                </button>
+                    @if (Auth::check() && Auth::user()->hasRole('sudo'))
+                        <!-- tidak muncul di role "sudo" -->
+                    @else
+                        <!-- muncul jika role bukan "sudo" -->
+                        <h4 class="mb-30 h4 text-blue padding-top-30">Mengubah Data Profil Akun</h4>
+                        <div id="accordion1">
+                            <div class="card">
+                                <div class="card-header">
+                                    <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#foto">
+                                        Mengganti Foto Profil
+                                    </button>
+                                </div>
+                                <div id="foto" class="collapse" data-parent="#accordion1">
+                                    <div class="card-body">
+                                        <div class="text-justify">
+                                            Silakan masuk ke akun Anda terlebih dahulu sebelum melanjutkan. Setelah
+                                            masuk,
+                                            klik
+                                            nama akun yang berada di pojok kanan atas, kemudian pilih opsi
+                                            @if (auth()->user()->hasRole('admin lab'))
+                                                <a class="text-primary bold"
+                                                    href="{{ route('admin.profile.index') }}">Profil</a>. Setelah
+                                            @elseif(auth()->user()->hasRole('admin berkas'))
+                                                <a class="text-primary bold"
+                                                    href="{{ route('admin.profile.index') }}">Profil</a>. Setelah
+                                            @elseif(auth()->user()->hasRole('dosen'))
+                                                <a class="text-primary bold"
+                                                    href="{{ route('dosen.profile.index') }}">Profil</a>. Setelah
+                                            @elseif(auth()->user()->hasRole('mahasiswa'))
+                                                <a class="text-primary bold"
+                                                    href="{{ route('mahasiswa.profile.index') }}">Profil</a>. Setelah
+                                            @elseif(auth()->user()->hasRole('alumni'))
+                                                <a class="text-primary bold" href="#">Profil</a>. Setelah
+                                            @elseif(auth()->user()->hasRole('kalab'))
+                                                <a class="text-primary bold" href="#">Profil</a>. Setelah
+                                            @elseif(auth()->user()->hasRole('jurusan'))
+                                                <a class="text-primary bold" href="#">Profil</a>. Setelah
+                                            @endif
+                                            itu, klik ikon <strong>pensil</strong> untuk mengganti foto profil Anda.
+                                            Selanjutnya, klik tombol
+                                            <strong>Choose File</strong> untuk membuka jendela <i>file explorer</i>,
+                                            <strong>pastikan menggunakan format gambar yang umum digunakan seperti .jpg
+                                                atau .png</strong> sebelum memilih gambar yang ingin digunakan sebagai
+                                            foto
+                                            profil. Setelah memilih gambar yang sesuai, klik tombol
+                                            <strong>Open</strong>
+                                            di <i>file
+                                                explorer</i>. Terakhir, klik <strong>Kirim</strong> untuk menyimpan foto
+                                            profil
+                                            baru
+                                            Anda.
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="foto" class="collapse" data-parent="#accordion1">
-                                <div class="card-body">
-                                    <div class="text-justify">
-                                        Silakan masuk ke akun Anda terlebih dahulu sebelum melanjutkan. Setelah masuk, klik
-                                        nama akun yang berada di pojok kanan atas, kemudian pilih opsi
-                                        @if (auth()->user()->hasRole('admin lab'))
-                                            <a class="text-primary bold"
-                                                href="{{ route('admin.profile.index') }}">Profil</a>. Setelah
-                                        @elseif(auth()->user()->hasRole('admin berkas'))
-                                            <a class="text-primary bold"
-                                                href="{{ route('admin.profile.index') }}">Profil</a>. Setelah
-                                        @elseif(auth()->user()->hasRole('dosen'))
-                                            <a class="text-primary bold"
-                                                href="{{ route('dosen.profile.index') }}">Profil</a>. Setelah
-                                        @elseif(auth()->user()->hasRole('mahasiswa'))
-                                            <a class="text-primary bold"
-                                                href="{{ route('mahasiswa.profile.index') }}">Profil</a>. Setelah
-                                        @elseif(auth()->user()->hasRole('alumni'))
-                                            <a class="text-primary bold" href="#">Profil</a>. Setelah
-                                        @elseif(auth()->user()->hasRole('kalab'))
-                                            <a class="text-primary bold" href="#">Profil</a>. Setelah
-                                        @elseif(auth()->user()->hasRole('jurusan'))
-                                            <a class="text-primary bold" href="#">Profil</a>. Setelah
-                                        @endif
-                                        itu, klik ikon <strong>pensil</strong> untuk mengganti foto profil Anda.
-                                        Selanjutnya, klik tombol
-                                        <strong>Choose File</strong> untuk membuka jendela <i>file explorer</i>,
-                                        <span class="text-danger bold">pastikan menggunakan format gambar yang umum
-                                            digunakan seperti .jpg
-                                            atau .png</span> sebelum memilih gambar yang ingin digunakan sebagai foto
-                                        profil. Setelah memilih gambar yang sesuai, klik tombol
-                                        <strong>Open</strong>
-                                        di <i>file
-                                            explorer</i>. Terakhir, klik <strong>Kirim</strong> untuk menyimpan foto profil
-                                        baru
-                                        Anda.
+                            <div class="card">
+                                <div class="card-header">
+                                    <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#bio">
+                                        Mengubah Biodata
+                                    </button>
+                                </div>
+                                <div id="bio" class="collapse" data-parent="#accordion1">
+                                    <div class="card-body">
+                                        <div class="text-justify">
+                                            Silakan masuk ke akun Anda terlebih dahulu sebelum melanjutkan. Setelah
+                                            masuk,
+                                            klik
+                                            nama akun yang berada di pojok kanan atas, kemudian pilih opsi
+                                            @if (auth()->user()->hasRole('admin lab'))
+                                                <a class="text-primary bold"
+                                                    href="{{ route('admin.profile.index') }}">Profil</a>. Setelah
+                                            @elseif(auth()->user()->hasRole('admin berkas'))
+                                                <a class="text-primary bold"
+                                                    href="{{ route('admin.profile.index') }}">Profil</a>. Setelah
+                                            @elseif(auth()->user()->hasRole('dosen'))
+                                                <a class="text-primary bold"
+                                                    href="{{ route('dosen.profile.index') }}">Profil</a>. Setelah
+                                            @elseif(auth()->user()->hasRole('mahasiswa'))
+                                                <a class="text-primary bold"
+                                                    href="{{ route('mahasiswa.profile.index') }}">Profil</a>. Setelah
+                                            @elseif(auth()->user()->hasRole('alumni'))
+                                                <a class="text-primary bold" href="#">Profil</a>. Setelah
+                                            @elseif(auth()->user()->hasRole('kalab'))
+                                                <a class="text-primary bold" href="#">Profil</a>. Setelah
+                                            @elseif(auth()->user()->hasRole('jurusan'))
+                                                <a class="text-primary bold" href="#">Profil</a>. Setelah
+                                            @endif
+                                            itu, klik ikon <strong>pensil</strong> untuk mengubah biodata profil Anda.
+                                            Selanjutnya, <span class="text-danger bold">isi data dengan benar</span>
+                                            pada
+                                            kolom yang disediakan.
+                                            Terakhir, klik
+                                            <strong>Kirim</strong>
+                                            untuk menyimpan biodata yang telah diubah sebelumnya.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#bio">
-                                    Mengubah Biodata
-                                </button>
-                            </div>
-                            <div id="bio" class="collapse" data-parent="#accordion1">
-                                <div class="card-body">
-                                    <div class="text-justify">
-                                        Silakan masuk ke akun Anda terlebih dahulu sebelum melanjutkan. Setelah masuk, klik
-                                        nama akun yang berada di pojok kanan atas, kemudian pilih opsi
-                                        @if (auth()->user()->hasRole('admin lab'))
-                                            <a class="text-primary bold"
-                                                href="{{ route('admin.profile.index') }}">Profil</a>. Setelah
-                                        @elseif(auth()->user()->hasRole('admin berkas'))
-                                            <a class="text-primary bold"
-                                                href="{{ route('admin.profile.index') }}">Profil</a>. Setelah
-                                        @elseif(auth()->user()->hasRole('dosen'))
-                                            <a class="text-primary bold"
-                                                href="{{ route('dosen.profile.index') }}">Profil</a>. Setelah
-                                        @elseif(auth()->user()->hasRole('mahasiswa'))
-                                            <a class="text-primary bold"
-                                                href="{{ route('mahasiswa.profile.index') }}">Profil</a>. Setelah
-                                        @elseif(auth()->user()->hasRole('alumni'))
-                                            <a class="text-primary bold" href="#">Profil</a>. Setelah
-                                        @elseif(auth()->user()->hasRole('kalab'))
-                                            <a class="text-primary bold" href="#">Profil</a>. Setelah
-                                        @elseif(auth()->user()->hasRole('jurusan'))
-                                            <a class="text-primary bold" href="#">Profil</a>. Setelah
-                                        @endif
-                                        itu, klik ikon <strong>pensil</strong> untuk mengubah biodata profil Anda.
-                                        Selanjutnya, <span class="text-danger bold">isi data dengan benar</span> pada kolom
-                                        yang disediakan.
-                                        Terakhir, klik
-                                        <strong>Kirim</strong>
-                                        untuk menyimpan biodata yang telah diubah sebelumnya.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endif
 
                     <h4 class="mb-30 h4 text-blue padding-top-30">Kata Sandi</h4>
                     <div id="accordion2">
