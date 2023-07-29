@@ -41,7 +41,7 @@
                                                 {{ $item->name }}
                                             </td>
 
-                                            <td>
+                                            <td style="word-wrap: break-word;">
                                                 {{ $item->email }}
                                             </td>
                                             <td>
