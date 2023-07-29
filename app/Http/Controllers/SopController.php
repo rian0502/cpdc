@@ -143,5 +143,9 @@ class SopController extends Controller
     public function destroy($id)
     {
         //
+        $sop = SopLab::findOrfail(Crypt::decrypt($id));
+        unlink('uploads/sop/' . $sop->file_sop);
+        $sop->delete();
+        return redirect()->route('lab.sop.index')->with('success', 'Data berhasil dihapus');
     }
 }

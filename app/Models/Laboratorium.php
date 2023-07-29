@@ -35,8 +35,22 @@ class Laboratorium extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    public function asisten()
+
+    public function mahasiswas()
     {
-        return $this->hasMany(AsistenLab::class, 'id_actity_lab', 'id');
+        return $this->hasManyThrough(
+            Mahasiswa::class,
+            AsistenLab::class,
+            'id_actity_lab',
+            'id_mahasiswa'
+        );
+    }
+    public function mahasiswa()
+    {
+        return $this->belongsToMany(Mahasiswa::class, 'asisten_lab', 'id_actity_lab', 'id_mahasiswa');
+    }
+    public function asisten_lab()
+    {
+        return $this->hasMany(AsistenLab::class, 'id_actity_lab');
     }
 }

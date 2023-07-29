@@ -21,6 +21,7 @@ class PublikasiController extends Controller
      */
     public function index()
     {
+        return view('dosen.publikasi.index');
     }
 
     /**
@@ -80,7 +81,7 @@ class PublikasiController extends Controller
             }
         }
         if ($update) {
-            return redirect()->route('dosen.profile.index')->with('success', 'Data berhasil ditambahkan');
+            return redirect()->route('dosen.publikasi.index')->with('success', 'Data berhasil ditambahkan');
         }
     }
 
@@ -122,7 +123,7 @@ class PublikasiController extends Controller
                 'anggota' => $anggota_id,
             ];
         } else {
-            return redirect()->route('dosen.profile.index')->with('error', 'Anda tidak memiliki akses');
+            return redirect()->route('dosen.publikasi.index')->with('error', 'Anda tidak memiliki akses');
         }
 
 
@@ -163,10 +164,10 @@ class PublikasiController extends Controller
                 $publikasi->dosen()->attach($decrypt, ['posisi' => 'Anggota',  'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
             }
         } else {
-            return redirect()->route('dosen.profile.index')->with('error', 'Anda tidak memiliki akses');
+            return redirect()->route('dosen.publikasi.index')->with('error', 'Anda tidak memiliki akses');
         }
 
-        return redirect()->route('dosen.profile.index')->with('success', 'Data Publikasi diubah');
+        return redirect()->route('dosen.publikasi.index')->with('success', 'Data Publikasi diubah');
     }
 
     /**
@@ -180,6 +181,6 @@ class PublikasiController extends Controller
         //
         PublikasiDosen::find(Crypt::decrypt($id))->delete();
         AnggotaPublikasiDosen::where('id_publikasi', Crypt::decrypt($id))->delete();
-        return redirect()->route('dosen.profile.index')->with('success', 'Data Publikasi dihapus');
+        return redirect()->route('dosen.publikasi.index')->with('success', 'Data Publikasi dihapus');
     }
 }

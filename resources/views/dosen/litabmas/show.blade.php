@@ -67,7 +67,7 @@
                             <textarea name="form-control" disabled readonly rows="10" cols="50" style="height: 200px; width: 500px;">{{ $litabmas->anggota_mahasiswa }}</textarea>
                         {{-- @endif --}}
                     </div>
-                    <a class="" href="{{ route('dosen.profile.index') }}">
+                    <a class="" href="{{ route('dosen.litabmas.index') }}">
                         <button class="btn btn-secondary">Kembali</button>
                     </a>
                 </div>

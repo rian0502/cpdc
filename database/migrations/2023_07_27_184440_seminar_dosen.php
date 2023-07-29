@@ -20,7 +20,7 @@ class SeminarDosen extends Migration
             $table->string('nama');
             $table->date('tahun');
             $table->enum('scala', ['Nasional', 'Internasional', 'Provinsi', 'Kabupaten/Kota', 'Universitas']);
-            $table->string('uraian');
+            $table->text('uraian');
             $table->string('url');
             $table->foreignId('dosen_id')->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

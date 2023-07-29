@@ -433,6 +433,25 @@
                                         Tugas Akhir</a></li>
                             </ul>
                         </li>
+                        <li class="dropdown {{  Request::is('dosen/litabmas*') || Request::is('dosen/publikasi*') || Request::is('dosen/organisasi*') || Request::is('dosen/penghargaan*') || Request::is('dosen/seminar*')  ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle">
+                                <span class="micon far fa-file-certificate"></span><span class="mtext">Aktivitas Dosen</span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('dosen.litabmas.index') }}"
+                                        class="{{ Request::is('dosen/litabmas*') ? 'active' : '' }}">LITABMAS</a></li>
+                                <li><a href="{{ route('dosen.publikasi.index') }}"
+                                        class="{{ Request::is('dosen/publikasi*') ? 'active' : '' }}">Publikasi</a></li>
+                                <li><a href="{{ route('dosen.organisasi.index') }}"
+                                        class="{{ Request::is('dosen/organisasi*') ? 'active' : '' }}">Organisasi</a></li>
+                                <li><a href="{{ route('dosen.penghargaan.index') }}"
+                                        class="{{ Request::is('dosen/penghargaan*') ? 'active' : '' }}">Penghargaan</a></li>
+                                <li><a href="{{ route('dosen.seminar.index') }}"
+                                        class="{{ Request::is('dosen/seminar*') ? 'active' : '' }}">Seminar</a></li>
+                            </ul>
+
+
+                        </li>
                     @endrole
                     @role('pkl')
                         <li>

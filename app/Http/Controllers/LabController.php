@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\StoreActivityLab;
+use App\Models\AsistenLab as ModelsAsistenLab;
 use App\Models\Mahasiswa;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
@@ -63,10 +64,19 @@ class LabController extends Controller
             'keterangan' => $request->ket,
             'jumlah_mahasiswa' => $request->jumlah_mahasiswa,
         ];
-
         $insert = Laboratorium::create($data);
+        $activity = $insert->id;
         $id = Crypt::encrypt($insert->id);
         $update = Laboratorium::where('id', $insert->id)->update(['encrypted_id' => $id]);
+        if ($request->keperluan == "Praktikum") {
+            for ($i = 0; $i < count($request->anggota_asistensi); $i++) {
+                $data = [
+                    'id_actity_lab' => $activity,
+                    'id_mahasiswa' => $request->anggota_asistensi[$i],
+                ];
+                $insert = ModelsAsistenLab::create($data);
+            }
+        }
         if ($update) {
             return redirect()->route('lab.ruang.index')->with('success', 'Data berhasil ditambahkan');
         } else {
@@ -82,8 +92,10 @@ class LabController extends Controller
      */
     public function show($id)
     {
+        $lab = Laboratorium::where('id', Crypt::decrypt($id))->first();
         $data = [
-            'lab' => Laboratorium::where('id', Crypt::decrypt($id))->first(),
+            'lab' => $lab,
+            'anggota' => $lab->keperluan == "Praktikum" ? ModelsAsistenLab::where('id_actity_lab', $lab->id)->get() : null,
         ];
         return view('admin.admin_lab.lab.show', $data);
     }
@@ -101,7 +113,10 @@ class LabController extends Controller
         $data = [
             'lab' => $lab,
             'locations' => $locations,
+            'mahasiswa' => Mahasiswa::select('id', 'npm', 'nama_mahasiswa')->where('status', 'Aktif')->get(),
+            'anggota' =>  $lab->keperluan == "Praktikum" ? $lab->asisten->pluck('id_mahasiswa')->toArray() : [],
         ];
+
         return view('admin.admin_lab.lab.edit', $data);
     }
 
@@ -116,6 +131,12 @@ class LabController extends Controller
     {
 
         $lab = Laboratorium::find(Crypt::decrypt($id));
+        if ($lab->keperluan == 'Praktikum' && $request->keperluan != 'Praktikum') {
+            $lab->mahasiswa()->detach();
+        }
+        if ($request->keperluan == 'Praktikum') {
+            $lab->mahasiswa()->sync($request->anggota_asistensi);
+        }
         $lab->nama_kegiatan = $request->nama_kegiatan;
         $lab->keperluan = $request->keperluan;
         $lab->keterangan = $request->ket;
@@ -137,6 +158,9 @@ class LabController extends Controller
     public function destroy($id)
     {
         //
+        $lab = Laboratorium::find(Crypt::decrypt($id));
+        $lab->delete();
+        return redirect()->route('lab.ruang.index')->with('success', 'Data berhasil dihapus');
     }
     public function chartAktivitasLab(Request $request)
     {

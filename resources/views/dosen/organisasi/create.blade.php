@@ -44,7 +44,7 @@
                                     <label>Tahun Menjabat</label>
                                     <input value="{{ old('tahun_menjabat') }}" autofocus name="tahun_menjabat"
                                         id="tahun_menjabat"
-                                        class="form-control @error('tahun_menjabat') form-control-danger @enderror"
+                                        class="form-control year-picker @error('tahun_menjabat') form-control-danger @enderror"
                                         type="year" placeholder="Tahun Menjabat">
                                     @error('tahun_menjabat')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -54,7 +54,7 @@
                                     <label>Tahun Berakhir</label>
                                     <input value="{{ old('tahun_berakhir') }}" autofocus name="tahun_berakhir"
                                         id="tahun_berakhir"
-                                        class="form-control @error('tahun_berakhir') form-control-danger @enderror"
+                                        class="form-control year-picker @error('tahun_berakhir') form-control-danger @enderror"
                                         type="year" placeholder="Tahun Berakhir">
                                     @error('tahun_berakhir')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -67,7 +67,7 @@
                         </div>
 
                     </form>
-                    <a href="{{ route('dosen.profile.index') }}">
+                    <a href="{{ route('dosen.organisasi.index') }}">
 
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>
