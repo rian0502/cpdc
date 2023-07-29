@@ -177,270 +177,6 @@
                             </a>
                         </li>
                     @endauth
-                    @role('jurusan')
-                        <li>
-                            <a href="{{ route('jurusan.lokasi.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/lokasi*') ? 'active' : '' }}">
-                                <span class="micon bi bi-pin-map"></span><span class="mtext">Lokasi</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('sudo.akun_dosen.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_dosen*') ? 'active' : '' }}">
-                                <span class="micon bi bi-person-rolodex"></span><span class="mtext">Data Dosen</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('sudo.akun_admin.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">
-                                <span class="micon bi bi-person-workspace"></span><span class="mtext">Data Admin</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('jurusan.mahasiswa.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/mahasiswa*') ? 'active' : '' }}">
-                                <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('jurusan.alumni.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/alumni*') ? 'active' : '' }}">
-                                <span class="micon fa-solid fa-users"></span><span class="mtext">Data Alumni</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('jurusan.prestasi.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/prestasi*') ? 'active' : '' }}">
-                                <span class="micon bi bi-award"></span><span class="mtext">Prestasi</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('jurusan.aktivitas.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/aktivitas*') ? 'active' : '' }}">
-                                <span class="micon bi bi-clock-history"></span><span class="mtext">Extra Aktivity</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('jurusan.publikasi.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/publikasi*') ? 'active' : '' }}">
-                                <span class="micon bi bi-journal-text"></span><span class="mtext">PUBLIKASI</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('jurusan.litabmas.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/litabmas*') ? 'active' : '' }}">
-                                <span class="micon bi bi-journal-richtext"></span><span class="mtext">LITABMAS</span>
-                            </a>
-                        </li>
-                    @endrole
-                    @role('jurusan|tpmps')
-                        <li>
-                            <a href="{{ route('jurusan.penghargaan.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/penghargaan*') ? 'active' : '' }}">
-                                <span class="micon bi bi-trophy"></span><span class="mtext">Penghargaan</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('jurusan.seminar.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/seminar*') ? 'active' : '' }}">
-                                <span class="micon bi bi-mic"></span><span class="mtext">Seminar</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('jurusan.unduh.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
-                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
-                            </a>
-                        </li>
-                    @endrole
-                    @role('admin lab|kalab')
-                        <li>
-                            <a href="{{ route('lab.ruang.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('admin/lab/ruang*') ? 'active' : '' }}">
-                                <span class="micon bi bi-radioactive"></span><span class="mtext">Laboratorium</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('lab.sop.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('admin/lab/sop*') ? 'active' : '' }}">
-                                <span class="micon bi bi-file-earmark-ruled"></span><span class="mtext">SOP</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('lab.barang.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('admin/lab/barang*') ? 'active' : '' }}">
-                                <span class="micon bi bi-box"></span><span class="mtext">Inventaris</span>
-                            </a>
-                        </li>
-                    @endrole
-                    @role('sudo')
-                        <li
-                            class="dropdown {{ Request::is('sudo/akun_mahasiswa*') || Request::is('sudo/akun_dosen*') || Request::is('sudo/akun_admin*') ? 'show' : '' }}">
-                            <a href="javascript:;" class="dropdown-toggle"
-                                data-option="{{ Request::is('sudo/akun_mahasiswa*') || Request::is('sudo/akun_dosen*') || Request::is('sudo/akun_admin*') ? 'on' : '' }}">
-
-                                <span class="micon bi bi-person-rolodex"></span><span class="mtext">Akun</span>
-                            </a>
-                            <ul class="submenu">
-                                <li><a href="{{ route('sudo.akun_mahasiswa.index') }}"
-                                        class="{{ Request::is('sudo/akun_mahasiswa*') ? 'active' : '' }}">Mahasiswa</a>
-                                </li>
-                                <li><a href="{{ route('sudo.akun_dosen.index') }}"
-                                        class="{{ Request::is('sudo/akun_dosen*') ? 'active' : '' }}">Dosen</a>
-                                </li>
-                                <li><a href="{{ route('sudo.akun_admin.index') }}"
-                                        class="{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">Admin</a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li
-                            class="dropdown {{ Request::is('sudo/kategori*') || Request::is('sudo/model*') ? 'show' : '' }}">
-                            <a href="javascript:;" class="dropdown-toggle"
-                                data-option="{{ Request::is('sudo/kategori*') || Request::is('sudo/model*') ? 'on' : '' }}">
-
-                                <span class="micon bi bi-box"></span><span class="mtext">Inventaris</span>
-                            </a>
-                            <ul class="submenu">
-                                <li><a href="{{ route('sudo.kategori.index') }}"
-                                        class="{{ Request::is('sudo/kategori*') ? 'active' : '' }}">Kategori</a>
-                                </li>
-                                <li><a href="{{ route('sudo.model.index') }}"
-                                        class="{{ Request::is('sudo/model*') ? 'active' : '' }}">Model</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="{{ route('sudo.reset.seminar.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/resetSeminar*') ? 'active' : '' }}">
-                                <span class="micon bi bi-arrow-counterclockwise"></span><span class="mtext">Reset
-                                    TA</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('sudo.base_npm.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/base_npm*') ? 'active' : '' }}">
-                                <span class="micon bi bi bi-person-lines-fill"></span><span class="mtext">Data NPM</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('sudo.kalab.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/kalab*') ? 'active' : '' }}">
-                                <span class="micon bi bi bi-person-fill"></span><span class="mtext">Kepala
-                                    Laboratorium</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('sudo.admin_jurusan.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/admin_jurusan*') ? 'active' : '' }}">
-                                <span class="micon bi bi bi-person-fill"></span><span class="mtext">Admin Jurusan</span>
-                            </a>
-                        </li>
-                    @endrole
-
-                    @role('mahasiswa')
-                        <li
-                            class="dropdown {{ Request::is('mahasiswa/seminar/kp*') || Request::is('mahasiswa/seminar/skripsi*') || Request::is('mahasiswa/seminar/usul*') || Request::is('mahasiswa/seminar/semhas*') || Request::is('mahasiswa/seminar/kompre*') ? 'show' : '' }}">
-                            <a href="javascript:;" class="dropdown-toggle"
-                                data-option="{{ Request::is('mahasiswa/seminar/kp*') || Request::is('mahasiswa/seminar/skripsi*') || Request::is('mahasiswa/seminar/usul*') || Request::is('mahasiswa/seminar/semhas*') || Request::is('mahasiswa/seminar/kompre*') ? 'show' : '' }}">
-                                <span class="micon fa-regular fa-graduation-cap"></span><span
-                                    class="mtext">Seminar</span>
-                            </a>
-                            <ul class="submenu">
-                                <li><a href="{{ route('mahasiswa.seminar.kp.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/kp*') ? 'active' : '' }}">Kerja
-                                        Praktik</a></li>
-                                <li><a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_1*') ? 'active' : '' }}">Tugas
-                                        Akhir
-                                        1</a></li>
-                                <li><a href="{{ route('mahasiswa.seminar.tugas_akhir_2.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_2*') ? 'active' : '' }}">Tugas
-                                        Akhir
-                                        2</a></li>
-                                <li><a href="{{ route('mahasiswa.sidang.kompre.index') }}"
-                                        class="{{ Request::is('mahasiswa/sidang/kompre*') ? 'active' : '' }}">Sidang
-                                        Komprehensif</a></li>
-                            </ul>
-
-                        </li>
-                        <li>
-                            <a href="{{ route('mahasiswa.lab.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/lab*') ? 'active' : '' }}">
-                                <span class="micon fa-solid fa-flask-vial"></span><span class="mtext">Laboratorium
-                                    TA</span>
-                            </a>
-                        </li>
-
-                        @if (Auth::user()->mahasiswa->komprehensif->first())
-                            <li>
-                                <a href="{{ route('mahasiswa.pendataan_alumni.index') }}"
-                                    class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni*') ? 'active' : '' }}">
-                                    <span class="micon fa fa-user-graduate"></span><span class="mtext">Pendataan
-                                        Alumni</span>
-                                </a>
-                            </li>
-                        @endif
-                    @endrole
-                    @role('alumni')
-                        <li>
-                            <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni*') ? 'active' : '' }}">
-                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Aktivitas
-                                    Alumni</span>
-                            </a>
-                        </li>
-                    @endrole
-
-                    {{-- @if (!Auth::user()->suggestion)
-                        <li>
-                            <a href="{{ route('mahasiswa.survey.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
-                                <span class="micon bi bi-newspaper"></span><span class="mtext">Survei
-                                </span>
-                            </a>
-                        </li>
-                    @endif --}}
-                    @role('admin berkas')
-                        <li>
-                            <a href="{{ route('berkas.berkas_persyaratan.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('admin/berkas/berkas_persyaratan*') ? 'active' : '' }}">
-                                <span class="micon fa-solid fa-file"></span><span class="mtext">Syarat Seminar</span>
-                            </a>
-                        </li>
-                        <li class="dropdown {{ Request::is('admin/berkas/validasi/seminar*') ? 'show' : '' }}">
-                            <a href="javascript:;" class="dropdown-toggle"
-                                data-option="{{ Request::is('admin/berkas/validasi/seminar*') ? 'on' : '' }}">
-
-                                <span class="micon bi bi-person-rolodex"></span><span class="mtext">Validasi
-                                    Seminar</span>
-                            </a>
-                            <ul class="submenu">
-                                <li><a href="{{ route('berkas.validasi.seminar.kp.index') }}"
-                                        class="{{ Request::is('admin/berkas/validasi/seminar/kp*') ? 'active' : '' }}">PKL/KP</a>
-                                </li>
-                                <li><a href="{{ route('berkas.validasi.seminar.ta1.index') }}"
-                                        class="{{ Request::is('admin/berkas/validasi/seminar/ta1*') ? 'active' : '' }}">Tugas
-                                        Akhir 1</a>
-                                </li>
-                                <li><a href="{{ route('berkas.validasi.seminar.ta2.index') }}"
-                                        class="{{ Request::is('admin/berkas/validasi/seminar/ta2*') ? 'active' : '' }}">Tugas
-                                        Akhir 2</a>
-                                </li>
-                                <li><a href="{{ route('berkas.validasi.sidang.kompre.index') }}"
-                                        class="{{ Request::is('admin/berkas/validasi/sidang/kompre*') ? 'active' : '' }}">Komprehensif</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="{{ route('berkas.validasi.pendataan_alumni.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('admin/berkas/validasi/pendataan_alumni*') ? 'active' : '' }}">
-                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Validasi
-                                    Alumni</span>
-                            </a>
-                        </li>
-                    @endrole
-
                     @role('dosen')
                         <li class="dropdown {{ Request::is('dosen/mahasiswa/bimbingan*') ? 'show' : '' }}">
                             <a href="javascript:;" class="dropdown-toggle">
@@ -482,6 +218,275 @@
 
                         </li>
                     @endrole
+                    @role('jurusan')
+                    <li>
+                        <a href="{{ route('jurusan.lokasi.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/lokasi*') ? 'active' : '' }}">
+                            <span class="micon bi bi-pin-map"></span><span class="mtext">Lokasi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('sudo.akun_mahasiswa.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/mahasiswa*') ? 'active' : '' }}">
+                            <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('jurusan.alumni.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/alumni*') ? 'active' : '' }}">
+                            <span class="micon fa-solid fa-users"></span><span class="mtext">Data Alumni</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('sudo.akun_dosen.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_dosen*') ? 'active' : '' }}">
+                            <span class="micon bi bi-person-rolodex"></span><span class="mtext">Data Dosen</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('sudo.akun_admin.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">
+                            <span class="micon bi bi-person-workspace"></span><span class="mtext">Data Admin</span>
+                        </a>
+                    </li>
+
+
+
+                    @endrole
+                    @role('jurusan|tpmps')
+                    <li>
+                        <a href="{{ route('jurusan.prestasi.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/prestasi*') ? 'active' : '' }}">
+                            <span class="micon bi bi-award"></span><span class="mtext">Prestasi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('jurusan.aktivitas.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/aktivitas*') ? 'active' : '' }}">
+                            <span class="micon bi bi-clock-history"></span><span class="mtext">Extra Aktivity</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('jurusan.publikasi.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/publikasi*') ? 'active' : '' }}">
+                            <span class="micon bi bi-journal-text"></span><span class="mtext">PUBLIKASI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('jurusan.litabmas.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/litabmas*') ? 'active' : '' }}">
+                            <span class="micon bi bi-journal-richtext"></span><span class="mtext">LITABMAS</span>
+                        </a>
+                    </li>
+                        <li>
+                            <a href="{{ route('jurusan.penghargaan.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/penghargaan*') ? 'active' : '' }}">
+                                <span class="micon bi bi-trophy"></span><span class="mtext">Penghargaan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jurusan.seminar.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/seminar*') ? 'active' : '' }}">
+                                <span class="micon bi bi-mic"></span><span class="mtext">Seminar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jurusan.unduh.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
+                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
+                            </a>
+                        </li>
+                    @endrole
+                    @role('admin lab|kalab')
+                        <li>
+                            <a href="{{ route('lab.ruang.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('admin/lab/ruang*') ? 'active' : '' }}">
+                                <span class="micon bi bi-radioactive"></span><span class="mtext">Laboratorium</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('lab.sop.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('admin/lab/sop*') ? 'active' : '' }}">
+                                <span class="micon bi bi-file-earmark-ruled"></span><span class="mtext">SOP</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('lab.barang.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('admin/lab/barang*') ? 'active' : '' }}">
+                                <span class="micon bi bi-box"></span><span class="mtext">Inventaris</span>
+                            </a>
+                        </li>
+                    @endrole
+                    {{-- @if (!Auth::user()->suggestion)
+                        <li>
+                            <a href="{{ route('mahasiswa.survey.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
+                                <span class="micon bi bi-newspaper"></span><span class="mtext">Survei
+                                </span>
+                            </a>
+                        </li>
+                    @endif --}}
+                    @role('sudo')
+                        <li
+                            class="dropdown {{ Request::is('sudo/akun_mahasiswa*') || Request::is('sudo/akun_dosen*') || Request::is('sudo/akun_admin*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle"
+                                data-option="{{ Request::is('sudo/akun_mahasiswa*') || Request::is('sudo/akun_dosen*') || Request::is('sudo/akun_admin*') ? 'on' : '' }}">
+
+                                <span class="micon bi bi-person-rolodex"></span><span class="mtext">Akun</span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('sudo.akun_mahasiswa.index') }}"
+                                        class="{{ Request::is('sudo/akun_mahasiswa*') ? 'active' : '' }}">Mahasiswa</a>
+                                </li>
+                                <li><a href="{{ route('sudo.akun_dosen.index') }}"
+                                        class="{{ Request::is('sudo/akun_dosen*') ? 'active' : '' }}">Dosen</a>
+                                </li>
+                                <li><a href="{{ route('sudo.akun_admin.index') }}"
+                                        class="{{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">Admin</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li
+                            class="dropdown {{ Request::is('sudo/kategori*') || Request::is('sudo/model*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle"
+                                data-option="{{ Request::is('sudo/kategori*') || Request::is('sudo/model*') ? 'on' : '' }}">
+
+                                <span class="micon bi bi-box"></span><span class="mtext">Inventaris</span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('sudo.kategori.index') }}"
+                                        class="{{ Request::is('sudo/kategori*') ? 'active' : '' }}">Kategori</a>
+                                </li>
+                                <li><a href="{{ route('sudo.model.index') }}"
+                                        class="{{ Request::is('sudo/model*') ? 'active' : '' }}">Model</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{{ route('sudo.reset.seminar.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/resetSeminar*') ? 'active' : '' }}">
+                                <span class="micon bi bi-arrow-counterclockwise"></span><span class="mtext">Reset
+                                    TA</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('sudo.base_npm.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/base_npm*') ? 'active' : '' }}">
+                                <span class="micon bi bi-person-lines-fill"></span><span class="mtext">Data NPM</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('sudo.kalab.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/kalab*') ? 'active' : '' }}">
+                                <span class="micon bi bi bi-person-fill"></span><span class="mtext">Kepala
+                                    Laboratorium</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('sudo.admin_jurusan.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/admin_jurusan*') ? 'active' : '' }}">
+                                <span class="micon bi bi bi-person-fill"></span><span class="mtext">Admin Jurusan</span>
+                            </a>
+                        </li>
+                    @endrole
+
+                    @role('mahasiswa')
+                        <li
+                            class="dropdown {{ Request::is('mahasiswa/seminar/kp*') || Request::is('mahasiswa/seminar/skripsi*') || Request::is('mahasiswa/seminar/usul*') || Request::is('mahasiswa/seminar/semhas*') || Request::is('mahasiswa/seminar/kompre*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle"
+                                data-option="{{ Request::is('mahasiswa/seminar/kp*') || Request::is('mahasiswa/seminar/skripsi*') || Request::is('mahasiswa/seminar/usul*') || Request::is('mahasiswa/seminar/semhas*') || Request::is('mahasiswa/seminar/kompre*') ? 'show' : '' }}">
+                                <span class="micon fa-regular fa-graduation-cap"></span><span
+                                    class="mtext">Seminar</span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('mahasiswa.seminar.kp.index') }}"
+                                        class="{{ Request::is('mahasiswa/seminar/kp*') ? 'active' : '' }}">Kerja
+                                        Praktik</a></li>
+                                <li><a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}"
+                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_1*') ? 'active' : '' }}">Tugas
+                                        Akhir
+                                        1</a></li>
+                                <li><a href="{{ route('mahasiswa.seminar.tugas_akhir_2.index') }}"
+                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_2*') ? 'active' : '' }}">Tugas
+                                        Akhir
+                                        2</a></li>
+                                <li><a href="{{ route('mahasiswa.sidang.kompre.index') }}"
+                                        class="{{ Request::is('mahasiswa/sidang/kompre*') ? 'active' : '' }}">Sidang
+                                        Komprehensif</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{{ route('mahasiswa.lab.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/lab*') ? 'active' : '' }}">
+                                <span class="micon fa-solid fa-flask-vial"></span><span class="mtext">Laboratorium
+                                    TA</span>
+                            </a>
+                        </li>
+                        @if (Auth::user()->mahasiswa->komprehensif->first())
+                            <li>
+                                <a href="{{ route('mahasiswa.pendataan_alumni.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni*') ? 'active' : '' }}">
+                                    <span class="micon fa fa-user-graduate"></span><span class="mtext">Pendataan
+                                        Alumni</span>
+                                </a>
+                            </li>
+                        @endif
+                    @endrole
+                    @role('alumni')
+                        <li>
+                            <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni*') ? 'active' : '' }}">
+                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Aktivitas
+                                    Alumni</span>
+                            </a>
+                        </li>
+                    @endrole
+
+                    @role('admin berkas')
+                        <li>
+                            <a href="{{ route('berkas.berkas_persyaratan.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('admin/berkas/berkas_persyaratan*') ? 'active' : '' }}">
+                                <span class="micon fa-solid fa-file"></span><span class="mtext">Syarat Seminar</span>
+                            </a>
+                        </li>
+                        <li class="dropdown {{ Request::is('admin/berkas/validasi/seminar*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle"
+                                data-option="{{ Request::is('admin/berkas/validasi/seminar*') ? 'on' : '' }}">
+
+                                <span class="micon bi bi-person-rolodex"></span><span class="mtext">Validasi
+                                    Seminar</span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('berkas.validasi.seminar.kp.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/seminar/kp*') ? 'active' : '' }}">Kerja
+                                        Praktik</a>
+                                </li>
+                                <li><a href="{{ route('berkas.validasi.seminar.ta1.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/seminar/ta1*') ? 'active' : '' }}">Tugas
+                                        Akhir 1</a>
+                                </li>
+                                <li><a href="{{ route('berkas.validasi.seminar.ta2.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/seminar/ta2*') ? 'active' : '' }}">Tugas
+                                        Akhir 2</a>
+                                </li>
+                                <li><a href="{{ route('berkas.validasi.sidang.kompre.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/sidang/kompre*') ? 'active' : '' }}">Komprehensif</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{{ route('berkas.validasi.pendataan_alumni.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('admin/berkas/validasi/pendataan_alumni*') ? 'active' : '' }}">
+                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Validasi
+                                    Alumni</span>
+                            </a>
+                        </li>
+                    @endrole
+
+
                     @role('pkl')
                         <li>
                             <a href="{{ route('koor.jadwalPKL.index') }}"
