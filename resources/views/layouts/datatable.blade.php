@@ -143,7 +143,13 @@
                             <a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profil</a>
                         @endif
                         <a class="dropdown-item" href="/settings"><i class="dw dw-settings2"></i> Pengaturan</a>
-                        <a class="dropdown-item" href="/helps"><i class="dw dw-help"></i> Bantuan</a>
+                        @if (Auth::check() && Auth::user()->hasRole('sudo'))
+                            <!-- tidak muncul di role "sudo" -->
+                        @else
+                            <!-- muncul jika role bukan "sudo" -->
+                            <a class="dropdown-item" href="/helps"><i class="dw dw-help"></i> Bantuan</a>
+                        @endif
+
                         <a class="dropdown-item" href="/logout"><i class="dw dw-logout"></i> Keluar</a>
                     </div>
                 </div>
@@ -232,7 +238,6 @@
                         </li>
                     @endrole
                     @role('jurusan|tpmps')
-                        
                         <li>
                             <a href="{{ route('jurusan.penghargaan.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/penghargaan*') ? 'active' : '' }}">
