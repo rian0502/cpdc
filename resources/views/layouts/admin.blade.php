@@ -215,7 +215,7 @@
                     </li>
                     <li>
                         <a href="{{ route('sudo.akun_mahasiswa.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/mahasiswa*') ? 'active' : '' }}">
+                            class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_mahasiswa*') ? 'active' : '' }}">
                             <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa</span>
                         </a>
                     </li>
