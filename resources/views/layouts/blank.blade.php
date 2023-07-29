@@ -72,7 +72,7 @@
     <!-- End Google Tag Manager -->
 </head>
 
-<body onmousedown='return false' oncontexmenu='return false' onselectstart='return false' class="header-white sidebar-light sidebar-shrink">
+<body class="header-white sidebar-light sidebar-shrink">
     <div class="pre-loader">
         <div class="pre-loader-box">
             <div class="loader-logo">
