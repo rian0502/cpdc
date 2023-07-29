@@ -131,7 +131,13 @@
                             <a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profil</a>
                         @endif
                         <a class="dropdown-item" href="/settings"><i class="dw dw-settings2"></i> Pengaturan</a>
-                        <a class="dropdown-item" href="/helps"><i class="dw dw-help"></i> Bantuan</a>
+                        @if (Auth::check() && Auth::user()->hasRole('sudo'))
+                            <!-- tidak muncul di role "sudo" -->
+                        @else
+                            <!-- muncul jika role bukan "sudo" -->
+                            <a class="dropdown-item" href="/helps"><i class="dw dw-help"></i> Bantuan</a>
+                        @endif
+
                         <a class="dropdown-item" href="/logout"><i class="dw dw-logout"></i> Keluar</a>
                     </div>
                 </div>
@@ -220,7 +226,6 @@
                         </li>
                     @endrole
                     @role('jurusan|tpmps')
-                        
                         <li>
                             <a href="{{ route('jurusan.penghargaan.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/penghargaan*') ? 'active' : '' }}">
@@ -446,9 +451,11 @@
                                         Tugas Akhir</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown {{  Request::is('dosen/litabmas*') || Request::is('dosen/publikasi*') || Request::is('dosen/organisasi*') || Request::is('dosen/penghargaan*') || Request::is('dosen/seminar*')  ? 'show' : '' }}">
+                        <li
+                            class="dropdown {{ Request::is('dosen/litabmas*') || Request::is('dosen/publikasi*') || Request::is('dosen/organisasi*') || Request::is('dosen/penghargaan*') || Request::is('dosen/seminar*') ? 'show' : '' }}">
                             <a href="javascript:;" class="dropdown-toggle">
-                                <span class="micon far fa-file-certificate"></span><span class="mtext">Aktivitas Dosen</span>
+                                <span class="micon far fa-file-certificate"></span><span class="mtext">Aktivitas
+                                    Dosen</span>
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('dosen.litabmas.index') }}"
@@ -456,9 +463,11 @@
                                 <li><a href="{{ route('dosen.publikasi.index') }}"
                                         class="{{ Request::is('dosen/publikasi*') ? 'active' : '' }}">Publikasi</a></li>
                                 <li><a href="{{ route('dosen.organisasi.index') }}"
-                                        class="{{ Request::is('dosen/organisasi*') ? 'active' : '' }}">Organisasi</a></li>
+                                        class="{{ Request::is('dosen/organisasi*') ? 'active' : '' }}">Organisasi</a>
+                                </li>
                                 <li><a href="{{ route('dosen.penghargaan.index') }}"
-                                        class="{{ Request::is('dosen/penghargaan*') ? 'active' : '' }}">Penghargaan</a></li>
+                                        class="{{ Request::is('dosen/penghargaan*') ? 'active' : '' }}">Penghargaan</a>
+                                </li>
                                 <li><a href="{{ route('dosen.seminar.index') }}"
                                         class="{{ Request::is('dosen/seminar*') ? 'active' : '' }}">Seminar</a></li>
                             </ul>
