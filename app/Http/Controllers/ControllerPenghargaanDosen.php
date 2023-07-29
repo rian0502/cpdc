@@ -17,6 +17,7 @@ class ControllerPenghargaanDosen extends Controller
     public function index()
     {
         //
+        return view('dosen.penghargaan.index');
     }
 
     /**
@@ -27,6 +28,7 @@ class ControllerPenghargaanDosen extends Controller
     public function create()
     {
         //
+        return view('dosen.penghargaan.create');
     }
 
     /**
@@ -88,7 +90,7 @@ class ControllerPenghargaanDosen extends Controller
             $data = [
                 'penghargaan' => $penghargaan,
             ];
-            return view('dosen.penghargaan.show', $data);
+            return view('dosen.penghargaan.edit', $data);
         } catch (\Exception $e) {
             return redirect()->route('dosen.penghargaan.index')->with('error', 'Penghargaan tidak ditemukan');
         }
