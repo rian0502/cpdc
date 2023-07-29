@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use SeminarDosen;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarDosen;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -140,5 +142,51 @@ class ControllerSeminarDosen extends Controller
         } catch (\Exception $e) {
             return redirect()->route('dosen.seminar.index')->with('error', 'Data seminar tidak ditemukan');
         }
+    }
+
+    public function chartSeminarDosen(Request $request)
+    {
+        $starDate = $request->input('startDate', null);
+        $endDate = $request->input('endDate', null);
+        if ($starDate && $endDate) {
+            $seminar = ModelSeminarDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->whereBetween('tahun', [$starDate, $endDate])->groupBy('scala')->get();
+        } else {
+            $seminar = ModelSeminarDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->groupBy('scala')->get();
+        }
+
+        return response()->json($seminar);
+    }
+
+    public function chartTahunSeminarDosen(Request $request)
+    {
+        $starDate = $request->input('startDate', null);
+        $endDate = $request->input('endDate', null);
+        if ($starDate && $endDate) {
+            $tahun = ModelSeminarDosen::select(DB::raw('YEAR(tahun) as year'), DB::raw('COUNT(*) as total'))
+                ->whereBetween(DB::raw('YEAR(tahun)'), [$starDate, $endDate])
+                ->groupBy(DB::raw('YEAR(tahun)'))
+                ->get()
+                ->map(function ($item) {
+                    return [
+                        'tahun' => $item->year,
+                        'total' => $item->total
+                    ];
+                })
+                ->values()
+                ->toArray();
+        } else {
+            $tahun = ModelSeminarDosen::select(DB::raw('YEAR(tahun) as year'), DB::raw('COUNT(*) as total'))
+                ->groupBy(DB::raw('YEAR(tahun)'))
+                ->get()
+                ->map(function ($item) {
+                    return [
+                        'tahun' => $item->year,
+                        'total' => $item->total
+                    ];
+                })
+                ->values()
+                ->toArray();
+        }
+        return response()->json($tahun);
     }
 }

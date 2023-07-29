@@ -7,6 +7,8 @@ use App\Models\LitabmasDosen;
 use App\Http\Controllers\Controller;
 use App\Models\AktivitasMahasiswa;
 use App\Models\Mahasiswa;
+use App\Models\ModelPenghargaanDosen;
+use App\Models\ModelSeminarDosen;
 use App\Models\PrestasiMahasiswa;
 use App\Models\PublikasiDosen;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -45,8 +47,64 @@ class ExportData extends Controller
                 ->get(),
             'kompre' => Mahasiswa::select('angkatan')->distinct()->whereHas('komprehensif')->orderBy('angkatan', 'desc')
                 ->get(),
+            'seminar_dosen' => ModelSeminarDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->orderBy('tahun', 'desc')
+                ->get(),
+            'penghargaan_dosen' => ModelPenghargaanDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->orderBy('tahun', 'desc')
+                ->get(),
         ];
         return view('jurusan.export.index', $data);
+    }
+    public function seminar(Request $request)
+    {
+        $seminar = ModelSeminarDosen::with('dosen')->whereYear('tahun', $request->tahun_seminar)->get();
+        $spdsheet = new Spreadsheet();
+        $sheet = $spdsheet->getActiveSheet();
+        $sheet->setTitle('Seminar Dosen');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Nama Dosen');
+        $sheet->setCellValue('C1', 'Judul');
+        $sheet->setCellValue('D1', 'Tanggal');
+        $sheet->setCellValue('E1', 'Scala');
+        $sheet->setCellValue('F1', 'Uraian');
+        $sheet->setCellValue('G1', 'URL');
+        foreach ($seminar as $key => $value) {
+            $sheet->setCellValue('A' . ($key + 2), $key + 1);
+            $sheet->setCellValue('B' . ($key + 2), $value->dosen->nama_dosen);
+            $sheet->setCellValue('C' . ($key + 2), $value->nama);
+            $sheet->setCellValue('D' . ($key + 2), $value->tahun);
+            $sheet->setCellValue('E' . ($key + 2), $value->scala);
+            $sheet->setCellValue('F' . ($key + 2), $value->uraian);
+            $sheet->setCellValue('G' . ($key + 2), $value->url);
+        }
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('seminar_dosen-' . $request->tahun_seminar . '.xlsx');
+        return response()->download('seminar_dosen-' . $request->tahun_seminar . '.xlsx')->deleteFileAfterSend(true);
+    }
+
+    public function penghargaan(Request $request){
+        $penghargaan = ModelPenghargaanDosen::with('dosen')->whereYear('tahun', $request->tahun_penghargaan)->get();
+        $spdsheet = new Spreadsheet();
+        $sheet = $spdsheet->getActiveSheet();
+        $sheet->setTitle('Penghargaan Dosen');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Nama Dosen');
+        $sheet->setCellValue('C1', 'Nama Penghargaan');
+        $sheet->setCellValue('D1', 'Tanggal');
+        $sheet->setCellValue('E1', 'Scala');
+        $sheet->setCellValue('F1', 'Uraian');
+        $sheet->setCellValue('G1', 'URL');
+        foreach ($penghargaan as $key => $value) {
+            $sheet->setCellValue('A' . ($key + 2), $key + 1);
+            $sheet->setCellValue('B' . ($key + 2), $value->dosen->nama_dosen);
+            $sheet->setCellValue('C' . ($key + 2), $value->nama);
+            $sheet->setCellValue('D' . ($key + 2), $value->tahun);
+            $sheet->setCellValue('E' . ($key + 2), $value->scala);
+            $sheet->setCellValue('F' . ($key + 2), $value->uraian);
+            $sheet->setCellValue('G' . ($key + 2), $value->url);
+        }
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('penghargaan_dosen-' . $request->tahun_penghargaan . '.xlsx');
+        return response()->download('penghargaan_dosen-' . $request->tahun_penghargaan . '.xlsx')->deleteFileAfterSend(true);
     }
 
     public function kompre(Request $request)

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Dosen;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ModelSeminarDosen extends Model
 {
@@ -21,6 +22,6 @@ class ModelSeminarDosen extends Model
     ];
     public function dosen()
     {
-        return $this->belongsTo(ModelDosen::class);
+        return $this->belongsTo(Dosen::class);
     }
 }

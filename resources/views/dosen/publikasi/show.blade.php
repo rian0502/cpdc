@@ -65,10 +65,25 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="d-flex justify-content-around">
+                        {{-- @if ($publikasi->anggota_dosen != null) --}}
+                       <div class="pr-5">
                         <h4 class="text-dark h4 mb-2">
-                            Anggota External
+                            Anggota Dosen Lainnya Yang Berkolaborasi
                         </h4>
-                        <textarea name="form-control" disabled readonly rows="10" cols="50" style="height: 200px; width: 500px;">{{ $publikasi->anggota_external }}</textarea>
+                        <textarea name="form-control" disabled readonly rows="10" cols="50">{{ $publikasi->anggota_dosen }}</textarea>
+                       </div>
+
+                        {{-- @endif --}}
+                        {{-- @if ($publikasi->anggota_mahasiswa != null) --}}
+                        <div class="">
+                            <h4 class="text-dark h4 mb-2">
+                                Anggota Mahasiswa Lainnya Yang Berkolaborasi
+                            </h4>
+                            <textarea name="form-control" disabled readonly rows="10" cols="50">{{ $publikasi->anggota_mahasiswa }}</textarea>
+                        </div>
+                        {{-- @endif --}}
                     </div>
                     <a href="{{ route('dosen.publikasi.index') }}">
                         <button class="btn btn-secondary">Kembali</button>

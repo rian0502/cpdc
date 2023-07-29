@@ -74,12 +74,11 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Jam Mulai
-                                        {{ $carbon::createFromFormat('H:i:s', $lab->jam_mulai)->format('g:i a') }}</label>
+                                    <label>Jam Mulai</label>
                                     <input
-                                        value="{{ $carbon::createFromFormat('H:i:s', $lab->jam_mulai)->format('g:i a') }}"
-                                        class="form-control time-picker-default @error('jam_mulai') form-control-danger @enderror"
-                                        placeholder="time" type="text" name="jam_mulai" />
+                                        value="{{ $lab->jam_mulai }}"
+                                        class="form-control @error('jam_mulai') form-control-danger @enderror"
+                                        placeholder="jam" type="time" name="jam_mulai" />
                                     @error('jam_mulai')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -87,8 +86,8 @@
                                 <div class="form-group">
                                     <label>Jam Selesai</label>
                                     <input value="{{ $lab->jam_selesai }}"
-                                        class="form-control time-picker-default @error('jam_selesai') form-control-danger @enderror"
-                                        placeholder="time" type="text" name="jam_selesai" />
+                                        class="form-control @error('jam_selesai') form-control-danger @enderror"
+                                        placeholder="jam" type="time" name="jam_selesai" />
                                     @error('jam_selesai')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror

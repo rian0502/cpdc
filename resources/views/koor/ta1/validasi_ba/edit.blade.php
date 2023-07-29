@@ -123,7 +123,7 @@
                                     <button type="submit" id="submitButton" class="submit btn btn-primary">Kirim</button>
                                 </div>
                             </form>
-                            <a href="{{ route('koor.validasiBaPKL.index') }}">
+                            <a href="{{ route('koor.validasiBaTA1.index') }}">
                                 <button class="batal btn btn-secondary">Batal</button>
                             </a>
                         </div>

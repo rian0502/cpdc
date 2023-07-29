@@ -19,9 +19,17 @@ class PenjadwalanTaSatu extends Controller
 
     public function index()
     {
+        $now = date('Y-m-d');
         $data = [
             'seminar' => ModelSeminarTaSatu::select('id', 'encrypt_id', 'judul_ta', 'periode_seminar', 'id_mahasiswa')
+                ->whereDoesntHave('ba_seminar')
                 ->where('status_admin', 'Valid')
+                ->where(function ($query) use ($now) {
+                    $query->whereDoesntHave('jadwal')
+                        ->orWhereHas('jadwal', function ($query) use ($now) {
+                            $query->whereDate('tanggal_seminar_ta_satu', '>=', $now);
+                        });
+                })
                 ->orderBy('updated_at', 'desc')
                 ->get(),
         ];

@@ -17,23 +17,23 @@ class LabTAController extends Controller
     //
     public function index()
     {
-        $mahasiswa = Auth::user()->mahasiswa;
-        if ($mahasiswa->ta_satu->count() < 1) {
-            return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Anda belum mengisi data TA 1');
-        }
+        // $mahasiswa = Auth::user()->mahasiswa;
+        // if ($mahasiswa->ta_satu->count() < 1) {
+        //     return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Anda belum mengisi data TA 1');
+        // }
 
-        $cek = Laboratorium::where('user_id', Auth::user()->id)->where('tanggal_kegiatan', date('Y-m-d'))->first();
-        if (!$cek) {
-            return redirect()->route('mahasiswa.lab.cekin');
-        }
-        $cek2 = Laboratorium::where('id_lokasi', Auth::user()->lokasi_id)->first();
-        $data = [
-            'lab' => $cek,
-            'lab_utama' => $cek2,
-            'user' => Auth::user(),
-            'mahasiswa' => Auth::user()->mahasiswa,
-        ];
-        return view('mahasiswa.lab_ta.index', $data);
+        // $cek = Laboratorium::where('user_id', Auth::user()->id)->where('tanggal_kegiatan', date('Y-m-d'))->first();
+        // if (!$cek) {
+        //     return redirect()->route('mahasiswa.lab.cekin');
+        // }
+        // $cek2 = Laboratorium::where('id_lokasi', Auth::user()->lokasi_id)->first();
+        // $data = [
+        //     'lab' => $cek,
+        //     'lab_utama' => $cek2,
+        //     'user' => Auth::user(),
+        //     'mahasiswa' => Auth::user()->mahasiswa,
+        // ];
+        return view('mahasiswa.lab_ta.index');
     }
 
     public function cekin()

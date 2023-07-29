@@ -122,6 +122,7 @@ Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verifi
             'destroy' => 'barang.history.destroy',
         ]
     );
+    Route::get('asistensi', [LabController::class, 'tableAktivitasLab'])->name('asistensi.ajax');
     Route::get('dataAktivitas', [LabController::class, 'dataLaboratorium'])->name('data.ajax');
     //chart line aktivitas lab
 });
@@ -130,6 +131,8 @@ Route::get('chart/seminar', [ChartSeminarController::class, 'ChartSeminar'])->na
 Route::get('chart/usiadosen', [AkunDosenController::class, 'chartUsiaDosen'])->name('chart.usia.dosen')->middleware('auth', 'verified', 'role:jurusan');
 Route::get('chart/jabatandosen', [AkunDosenController::class, 'chartJabatanDosen'])->name('chart.jabatan.dosen')->middleware('auth', 'verified', 'role:jurusan');
 Route::get('chart/aktivitasalumni', [AktivitasAlumniController::class, 'chartAktivitasAlumni'])->name('chart.aktivitas.alumni')->middleware('auth', 'verified', 'role:jurusan');
+Route::get('chart/seminardosen', [ControllerSeminarDosen::class, 'chartSeminarDosen'])->name('chart.seminar.dosen')->middleware('auth', 'verified', 'role:jurusan');
+Route::get('chart/tahunseminardosen', [ControllerSeminarDosen::class, 'chartTahunSeminarDosen'])->name('chart.tahunseminar.dosen')->middleware('auth', 'verified', 'role:jurusan');
 // end ADMIN LAB
 
 //admin berkas
@@ -190,29 +193,33 @@ Route::prefix('koor')->name('koor.')->group(function () {
 
 
 //jurusan
-Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan')->group(function () {
-    Route::resource('lokasi', LokasiController::class);
+Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|tpmps')->group(function () {
+
     //prestasi
     Route::resource('prestasi', PrestasiDataController::class);
     Route::resource('aktivitas', AktivitasDataController::class);
     Route::resource('publikasi', PublikasiDataController::class);
     Route::resource('litabmas', LitabmasDataController::class);
-    Route::resource('mahasiswa', DataMahasiswaAllController::class);
-    Route::resource('alumni', DataAlumni::class);
+
+
+
     Route::resource('penghargaan', Penghargaan::class);
     Route::resource('seminar', Seminar::class);
-    // Route::get('unduh', [ExportData::class, 'index'])->name('unduh.index');
-    // Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
-    // Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
-    // Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
-    // Route::post('unduh/prestasi', [ExportData::class, 'prestasi'])->name('unduh.prestasi');
-    // Route::post('unduh/aktivitas', [ExportData::class, 'aktivitas'])->name('unduh.aktivitas');
-    // Route::post('unduh/mahasiswa', [ExportData::class, 'mahasiswa'])->name('unduh.mahasiswa');
-    // Route::post('unduh/alumni', [ExportData::class, 'alumni'])->name('unduh.alumni');
-    // Route::post('unduh/kp', [ExportData::class, 'kp'])->name('unduh.kp');
-    // Route::post('unduh/ta1', [ExportData::class, 'ta1'])->name('unduh.ta1');
-    // Route::post('unduh/ta2', [ExportData::class, 'ta2'])->name('unduh.ta2');
-    // Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
+
+    Route::get('unduh', [ExportData::class, 'index'])->name('unduh.index');
+    Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
+    Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
+    Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
+    Route::post('unduh/prestasi', [ExportData::class, 'prestasi'])->name('unduh.prestasi');
+    Route::post('unduh/aktivitas', [ExportData::class, 'aktivitas'])->name('unduh.aktivitas');
+    Route::post('unduh/mahasiswa', [ExportData::class, 'mahasiswa'])->name('unduh.mahasiswa');
+    Route::post('unduh/alumni', [ExportData::class, 'alumni'])->name('unduh.alumni');
+    Route::post('unduh/kp', [ExportData::class, 'kp'])->name('unduh.kp');
+    Route::post('unduh/ta1', [ExportData::class, 'ta1'])->name('unduh.ta1');
+    Route::post('unduh/ta2', [ExportData::class, 'ta2'])->name('unduh.ta2');
+    Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
+    Route::post('unduh/seminar', [ExportData::class, 'seminar'])->name('unduh.seminar');
+    Route::post('unduh/penghargaan', [ExportData::class, 'penghargaan'])->name('unduh.penghargaan');
 
     Route::get('chartCapaianPrestasi', [PrestasiDataController::class, 'pieChartCapaian'])->name('prestasi.chartCapaian');
     Route::get('chartScalaPrestasi', [PrestasiDataController::class, 'pieChartScala'])->name('prestasi.chartScala');
@@ -227,19 +234,10 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::get('pieChartKategoriLitabmas', [LitabmasDataController::class, 'pieChartKategoriLitabmas'])->name('litabmas.pieChartKategoriLitabmas');
 });
 
-Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|tpmps')->group(function () {
-    Route::get('unduh', [ExportData::class, 'index'])->name('unduh.index');
-    Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
-    Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
-    Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
-    Route::post('unduh/prestasi', [ExportData::class, 'prestasi'])->name('unduh.prestasi');
-    Route::post('unduh/aktivitas', [ExportData::class, 'aktivitas'])->name('unduh.aktivitas');
-    Route::post('unduh/mahasiswa', [ExportData::class, 'mahasiswa'])->name('unduh.mahasiswa');
-    Route::post('unduh/alumni', [ExportData::class, 'alumni'])->name('unduh.alumni');
-    Route::post('unduh/kp', [ExportData::class, 'kp'])->name('unduh.kp');
-    Route::post('unduh/ta1', [ExportData::class, 'ta1'])->name('unduh.ta1');
-    Route::post('unduh/ta2', [ExportData::class, 'ta2'])->name('unduh.ta2');
-    Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
+Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan')->group(function () {
+    Route::resource('lokasi', LokasiController::class);
+    Route::resource('mahasiswa', DataMahasiswaAllController::class);
+    Route::resource('alumni', DataAlumni::class);
 });
 
 //end jurusan
@@ -362,17 +360,6 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::delete('delete/{id}', [ResetTA::class, 'destroy'])->name('reset.seminar.destroy');
 });
 
-// route FE
-
-// CONTOH
-// Route::prefix('fe')->name('fe')->group(function () {
-//     Route::get('kategori/create', function () {
-//         return view('admin.inventaris.kategori.create');
-//     })->name('admin.kategori.create');
-//     Route::view('dosen/profile', 'dosen.profile.index');
-// });
-
-
 Route::get('/', function () {
     return view('index');
 });
@@ -380,19 +367,19 @@ Route::get('/team', function () {
     return view('team');
 });
 Route::get('/kp', function () {
-    $jadwal_kp = JadwalSKP::where('tanggal_skp', '>=', date('Y-m-d'))->get();
+    $jadwal_kp = JadwalSKP::orderBy('tanggal_skp', 'desc')->get();
     return view('kp', compact('jadwal_kp'));
 });
 Route::get('/ta1', function () {
-    $jadwal_ta1 = ModelJadwalSeminarTaSatu::where('tanggal_seminar_ta_satu', '>=', date('Y-m-d'))->get();
+    $jadwal_ta1 = ModelJadwalSeminarTaSatu::orderBy('tanggal_seminar_ta_satu', 'desc')->get();
     return view('ta1', compact('jadwal_ta1'));
 });
 Route::get('/ta2', function () {
-    $ta2 = ModelJadwalSeminarTaDua::where('tanggal_seminar_ta_dua', '>=', date('Y-m-d'))->get();
+    $ta2 = ModelJadwalSeminarTaDua::orderBy('tanggal_seminar_ta_dua', 'desc')->get();
     return view('ta2', compact('ta2'));
 });
 Route::get('/kompre', function () {
-    $kompre = ModelJadwalSeminarKompre::where('tanggal_komprehensif', '>=', date('Y-m-d'))->get();
+    $kompre = ModelJadwalSeminarKompre::orderBy('tanggal_seminar_kompre', 'desc')->get();
     return view('kompre', compact('kompre'));
 });
 Route::get('/about', function () {

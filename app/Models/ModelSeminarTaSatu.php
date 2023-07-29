@@ -63,13 +63,15 @@ class ModelSeminarTaSatu extends Model
     public function getJadwalDosenDate($id_dosen)
     {
         return $this->join('jadwal_seminar_ta_satu', 'seminar_ta_satu.id', '=', 'jadwal_seminar_ta_satu.id_seminar')
-            ->where('seminar_ta_satu.id_pembimbing_satu', $id_dosen)
-            ->orWhere('seminar_ta_satu.id_pembimbing_dua', $id_dosen)
-            ->orWhere('seminar_ta_satu.id_pembahas', $id_dosen)
-            ->where('jadwal_seminar_ta_satu.tanggal_seminar_ta_satu', '>=', date('Y-m-d'))
-            ->select('seminar_ta_satu.id', 'seminar_ta_satu.judul_ta', 'seminar_ta_satu.id_mahasiswa')
-            ->orderBy('jadwal_seminar_ta_satu.tanggal_seminar_ta_satu', 'asc')
-            ->get();
+        ->where(function ($query) use ($id_dosen) {
+            $query->where('seminar_ta_satu.id_pembimbing_satu', $id_dosen)
+                  ->orWhere('seminar_ta_satu.id_pembimbing_dua', $id_dosen)
+                  ->orWhere('seminar_ta_satu.id_pembahas', $id_dosen);
+        })
+        ->where('jadwal_seminar_ta_satu.tanggal_seminar_ta_satu', '>=', date('Y-m-d'))
+        ->select('seminar_ta_satu.id', 'seminar_ta_satu.judul_ta', 'seminar_ta_satu.id_mahasiswa')
+        ->orderBy('jadwal_seminar_ta_satu.tanggal_seminar_ta_satu', 'asc')
+        ->get();
     }
 
     public function getInvalidJumlahBerkas()

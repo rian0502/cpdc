@@ -488,7 +488,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="row mt-2">
+                                                    <div class="row border-bottom mt-2">
                                                         <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             {{ $seminarTa1->toefl }}
@@ -500,6 +500,16 @@
                                                             {{ $seminarTa1->status_admin }}
                                                         </div>
                                                     </div>
+                                                    @if ($seminarTa1->sumber_penelitian!=null)
+                                                    <div class="row mt-2">
+                                                        <label class="col-md-3 bold mt-2"> <strong>Sumber Penelitiaan</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $seminarTa1->sumber_penelitian }}
+                                                        </div>
+                                                    </div>
+
+                                                    @endif
+
 
 
                                                 </div>
@@ -718,7 +728,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="row mt-2">
+                                                    <div class="row border-bottom mt-2">
                                                         <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             {{ $seminarTa2->toefl }}
@@ -730,6 +740,15 @@
                                                             {{ $seminarTa2->status_admin }}
                                                         </div>
                                                     </div>
+                                                    @if ($seminarTa1->sumber_penelitian!=null)
+                                                    <div class="row mt-2">
+                                                        <label class="col-md-3 bold mt-2"> <strong>Sumber Penelitiaan</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $seminarTa1->sumber_penelitian }}
+                                                        </div>
+                                                    </div>
+
+                                                    @endif
                                                 </div>
                                             @else
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
@@ -944,7 +963,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="row mt-2">
+                                                    <div class="row border-bottom mt-2">
                                                         <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             {{ $sidangKompre->toefl }}
@@ -956,6 +975,15 @@
                                                             {{ $sidangKompre->status_admin }}
                                                         </div>
                                                     </div>
+                                                    @if ($seminarTa1->sumber_penelitian!=null)
+                                                    <div class="row mt-2">
+                                                        <label class="col-md-3 bold mt-2"> <strong>Sumber Penelitiaan</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $seminarTa1->sumber_penelitian }}
+                                                        </div>
+                                                    </div>
+
+                                                    @endif
                                                 </div>
                                             @else
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
