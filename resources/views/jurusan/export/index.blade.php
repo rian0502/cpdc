@@ -211,7 +211,7 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
-                                    @error('tahun_aktivitas')
+                                    @error('tahun_seminar')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -245,7 +245,7 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
-                                    @error('tahun_aktivitas')
+                                    @error('tahun_penghargaan')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
