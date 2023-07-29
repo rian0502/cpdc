@@ -34,18 +34,6 @@
                                         <td>{{ $item->nama_gedung }}</td>
                                         <td>
                                             <div class="dropdown">
-                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
-                                                    role="button" data-toggle="dropdown">
-                                                    <i class="fa fa-ellipsis-h"></i>
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href=""><i class="fa fa-pencil"></i>
-                                                        Edit</a>
-
-                                                </div>
-                                            </div>
-                                            <div class="dropdown">
                                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
                                                     data-color="#1b3133" href="#" role="button"
                                                     data-toggle="dropdown">
