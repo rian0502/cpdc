@@ -152,6 +152,7 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::resource('organisasi', OrganisasiController::class);
     Route::resource('gelar', GelarController::class);
     Route::resource('publikasi', PublikasiController::class);
+    Route::post('import', [PublikasiController::class, 'import'])->name('publikasi.import');
     Route::resource('penghargaan', PenghargaanDosenController::class);
     Route::resource('seminar', SeminarDosenController::class);
     Route::resource('profile', ProfileDosenController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
@@ -161,7 +162,6 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::resource('mahasiswa/bimbingan/kp', MahasiswaBimbinganKPController::class)->names('mahasiswa.bimbingan.kp');
     Route::post('mahasiswa/bimbingan/kp/export', [MahasiswaBimbinganKPController::class, 'export'])->name('mahasiswa.bimbingan.kp.export');
     Route::post('mahasiswa/bimbingan/ta/export', [MahasiswaBimbinganKompreController::class, 'export'])->name('mahasiswa.bimbingan.ta.export');
-
     Route::resource('mahasiswa/bimbingan/ta1', MahasiswaBimbinganTA1Controller::class)->names('mahasiswa.bimbingan.ta1');
     Route::resource('mahasiswa/bimbingan/ta2', MahasiswaBimbinganTA2Controller::class)->names('mahasiswa.bimbingan.ta2');
     Route::resource('mahasiswa/bimbingan/kompre', MahasiswaBimbinganKompreController::class)->names('mahasiswa.bimbingan.kompre');
