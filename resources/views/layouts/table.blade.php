@@ -68,7 +68,7 @@
     </style>
 </head>
 
-<body>
+<body style="user-select: none;">
     
     <!-- Spinner Start -->
     <div id="spinner"
