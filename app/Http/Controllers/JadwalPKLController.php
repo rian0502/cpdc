@@ -25,8 +25,20 @@ class JadwalPKLController extends Controller
     public function index()
     {
         //
+        $now = date('Y-m-d');
         $data = [
-            'seminar' => ModelSeminarKP::select('id', 'encrypt_id', 'judul_kp', 'mitra', 'rencana_seminar', 'id_mahasiswa')->where('proses_admin', '=', 'Valid')->get()
+            'seminar' => ModelSeminarKP::select('id', 'encrypt_id', 'judul_kp', 'mitra', 'rencana_seminar', 'id_mahasiswa')
+                ->whereDoesntHave('berita_acara')
+                ->where('proses_admin', '=', 'Valid')
+                ->where(function ($query) use ($now) {
+                    $query->whereDoesntHave('jadwal')
+                        ->orWhereHas('jadwal', function ($query) use ($now) {
+                            $query->whereDate('tanggal_skp', '>', $now);
+                        });
+                })
+                ->orderBy('updated_at', 'desc')
+                ->get()
+
         ];
         return view('koor.pkl.jadwal.index', $data);
     }
