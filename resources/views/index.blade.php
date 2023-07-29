@@ -5,6 +5,13 @@
             text-align: justify;
             text-justify: inter-word;
         }
+
+        @media print {
+            img {
+                /* Hide the whole page */
+                display: none;
+            }
+        }
     </style>
     <!-- Features Start -->
     <div class="container-xxl py-5">
@@ -100,7 +107,7 @@
 
 
     <!-- Project Start -->
-    <div class="container-xxl pt-5">
+    <div class="container-xxl pt-5" onmousedown='return false' oncontexmenu='return false' onselectstart='return false'>
         <div class="container">
             <div class="text-center text-md-start pb-5 pb-md-0 wow fadeInUp" data-wow-delay="0.1s"
                 style="max-width: 500px;">
@@ -113,8 +120,8 @@
                         <img class="img-fluid" src="Assets/src/img/biokimia.png" alt="">
                         <div class="project-overlay">
                             <a class="btn btn-lg-square btn-light rounded-circle m-1" href="Assets/src/img/biokimia.png"
-                                data-lightbox="project"><i class="fa fa-eye"></i></a>
-                             @role('mahasiswa')
+                                data-lightbox="project" oncontextmenu="return false;"><i class="fa fa-eye"></i></a>
+                            @role('mahasiswa')
                                 <a class="btn btn-lg-square btn-light rounded-circle m-1" href="/mahasiswa/lab/cekin"><i
                                         class="fa fa-link"></i></a>
                             @endrole
@@ -130,7 +137,8 @@
                 </div>
                 <div class="project-item mb-5">
                     <div class="position-relative">
-                        <img class="img-fluid" src="Assets/src/img/analitik dan instrumental.png" alt="">
+                        <img class="img-fluid" src="Assets/src/img/analitik dan instrumental.png" alt=""
+                            oncontextmenu="return false;">
                         <div class="project-overlay">
                             <a class="btn btn-lg-square btn-light rounded-circle m-1"
                                 href="Assets/src/img/analitik dan instrumental.png" data-lightbox="project"><i
@@ -150,7 +158,8 @@
                 </div>
                 <div class="project-item mb-5">
                     <div class="position-relative">
-                        <img class="img-fluid" src="Assets/src/img/kimia anorganik-fisik.png" alt="">
+                        <img class="img-fluid" src="Assets/src/img/kimia anorganik-fisik.png" alt=""
+                            oncontextmenu="return false;">
                         <div class="project-overlay">
                             <a class="btn btn-lg-square btn-light rounded-circle m-1"
                                 href="Assets/src/img/kimia anorganik-fisik.png" data-lightbox="project"><i
@@ -170,7 +179,8 @@
                 </div>
                 <div class="project-item mb-5">
                     <div class="position-relative">
-                        <img class="img-fluid" src="Assets/src/img/kimia organik.png" alt="">
+                        <img class="img-fluid" src="Assets/src/img/kimia organik.png" alt=""
+                            oncontextmenu="return false;">
                         <div class="project-overlay">
                             <a class="btn btn-lg-square btn-light rounded-circle m-1"
                                 href="Assets/src/img/kimia organik.png" data-lightbox="project"><i

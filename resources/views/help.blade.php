@@ -347,6 +347,7 @@
                             </div>
                         </div>
                     @else
+                        <h4 class="mb-20 h4 text-blue mb-3">Daftar Seminar</h4>
                         <div id="accordion">
                             <div class="card">
                                 <div class="card-header">
