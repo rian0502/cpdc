@@ -183,4 +183,54 @@ class PublikasiController extends Controller
         AnggotaPublikasiDosen::where('id_publikasi', Crypt::decrypt($id))->delete();
         return redirect()->route('dosen.publikasi.index')->with('success', 'Data Publikasi dihapus');
     }
+
+
+    public function import(Request $request)
+    {
+        if (!$request->validate(
+            [
+                'publikasi' => 'required|mimes:xls,xlsx|max:2048'
+            ],
+            [
+                'publikasi.required' => 'File tidak boleh kosong',
+                'publikasi.mimes' => 'File harus berupa excel',
+                'publikasi.max' => 'File maksimal 2MB'
+            ]
+        )) {
+            return dd($request->validate());
+            return redirect()->back()->with('error', $request->validate());
+        }
+        $file = $request->file('publikasi');
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        $spreadsheet = $reader->load($file);
+        $sheet = $spreadsheet->getActiveSheet()->toArray();
+
+        foreach ($sheet as $key => $value) {
+            if ($key == 0) {
+                continue;
+            }
+            $data = [
+                'nama_publikasi' => $value[0],
+                'judul' => $value[1],
+                'tahun' => $value[2],
+                'vol' => $value[3],
+                'halaman' => $value[4],
+                'scala' => $value[5],
+                'kategori' => $value[6],
+                'kategori_litabmas' => $value[7],
+                'url' => $value[8],
+                'anggota_external' => $value[9],
+            ];
+            $insert = PublikasiDosen::create($data);
+            $id = $insert->id;
+            $update = PublikasiDosen::find($id)->update(['encrypt_id' => Crypt::encrypt($id)]);
+            $data = [
+                'posisi' => 'Ketua',
+                'id_publikasi' => $id,
+                'id_dosen' => Auth::user()->dosen->id,
+            ];
+            AnggotaPublikasiDosen::create($data);
+        }
+        return redirect()->route('dosen.publikasi.index')->with('success', 'Data Berhasil Diupload');
+    }
 }

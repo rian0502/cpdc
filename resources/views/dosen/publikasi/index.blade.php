@@ -18,14 +18,15 @@
                         <div class="d-flex mt-4">
 
 
-                            <a href="{{ route('dosen.publikasi.create') }}" class="bg-light-blue btn text-blue weight-500"><i
-                                    class="ion-plus-round"></i> Tambah</a>
-                            <a href="#" class="bg-success btn text-white ml-4 weight-500"><i class="far fa-file-download"></i>
+                            <a href="{{ route('dosen.publikasi.create') }}"
+                                class="bg-light-blue btn text-blue weight-500"><i class="ion-plus-round"></i> Tambah</a>
+                            <a href="{{ url('uploads/Template Publikasi.xlsx') }}"
+                                class="bg-success btn text-white ml-4 weight-500"><i class="far fa-file-download"></i>
                                 Download Template Import Data</a>
-                            <a href="#" class="bg-secondary btn text-white ml-4 weight-500" data-toggle="modal" data-target="#via-excel" type="button">
-
-                                    <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                                    Import Publikasi via Excel (xlsx)
+                            <a href="#" class="bg-secondary btn text-white ml-4 weight-500" data-toggle="modal"
+                                data-target="#via-excel" type="button">
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                Upload Publikasi via Excel (xlsx)
                             </a>
 
                         </div>
@@ -43,14 +44,14 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ route('sudo.base_npm.store.excel') }}" method="post"
+                                            <form action="{{ route('dosen.publikasi.import') }}" method="post"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 <div id="input_fields">
                                                     <div class="input-group mb-3">
                                                         <input
                                                             accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                                                            type="file" name="npm" id="npm"
+                                                            type="file" name="publikasi" id="publikasi"
                                                             class="form-control-file">
                                                     </div>
                                                 </div>
