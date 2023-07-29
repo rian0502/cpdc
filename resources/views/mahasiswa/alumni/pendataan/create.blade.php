@@ -101,7 +101,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Rencana Periode Wisuda</label>
+                                    <label>Periode Wisuda</label>
                                     <input class="form-control month-picker" type="text" name="periode_wisuda"
                                         value="{{ old('periode_wisuda') }}" value="{{ old('periode_wisuda') }}"
                                         id="periode_wisuda" placeholder="Periode Wisuda">
