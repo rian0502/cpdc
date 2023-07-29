@@ -88,7 +88,7 @@
     <!-- End Google Tag Manager -->
 </head>
 
-<body  class="sidebar-light">
+<body class="sidebar-light" style="user-select: none;">
     <div class="pre-loader">
         <div class="pre-loader-box">
             <div class="loader-logo">
