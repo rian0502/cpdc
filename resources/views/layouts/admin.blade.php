@@ -260,7 +260,7 @@
                             </a>
                         </li>
                     @endrole
-                    @if (!Auth::user()->suggestion)
+                    {{-- @if (!Auth::user()->suggestion)
                         <li>
                             <a href="{{ route('mahasiswa.survey.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
@@ -268,7 +268,7 @@
                                 </span>
                             </a>
                         </li>
-                    @endif
+                    @endif --}}
                     @role('sudo')
                         <li
                             class="dropdown {{ Request::is('sudo/akun_mahasiswa*') || Request::is('sudo/akun_dosen*') || Request::is('sudo/akun_admin*') ? 'show' : '' }}">
