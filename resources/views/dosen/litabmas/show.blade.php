@@ -55,18 +55,24 @@
 
                             </tbody>
                         </table>
+                    </div>
+                    <div class="d-flex justify-content-around">
                         {{-- @if ($litabmas->anggota_dosen != null) --}}
-                            <h4 class="text-dark h4 mb-2">
-                                Anggota Dosen Lainnya Yang Berkolaborasi
-                            </h4>
-                            <textarea name="form-control" disabled readonly rows="10" cols="50" style="height: 200px; width: 500px;">{{ $litabmas->anggota_dosen }}</textarea>
+                       <div class="pr-5">
+                        <h4 class="text-dark h4 mb-2">
+                            Anggota Dosen Lainnya Yang Berkolaborasi
+                        </h4>
+                        <textarea name="form-control" disabled readonly rows="10" cols="50">{{ $litabmas->anggota_dosen }}</textarea>
+                       </div>
 
                         {{-- @endif --}}
                         {{-- @if ($litabmas->anggota_mahasiswa != null) --}}
+                        <div class="">
                             <h4 class="text-dark h4 mb-2">
                                 Anggota Mahasiswa Lainnya Yang Berkolaborasi
                             </h4>
-                            <textarea name="form-control" disabled readonly rows="10" cols="50" style="height: 200px; width: 500px;">{{ $litabmas->anggota_mahasiswa }}</textarea>
+                            <textarea name="form-control" disabled readonly rows="10" cols="50">{{ $litabmas->anggota_mahasiswa }}</textarea>
+                        </div>
                         {{-- @endif --}}
                     </div>
                     <a class="" href="{{ route('dosen.litabmas.index') }}">

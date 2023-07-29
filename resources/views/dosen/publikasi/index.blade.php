@@ -6,15 +6,16 @@
 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Data Organisasi</h4>
-                        @if (session('error'))
+                        <h4 class="text-blue h4">Data Publikasi Dosen</h4>
+                        @error('publikasi')
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                {{ session('error') }}
+                                {{ $message }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        @endif
+                        @enderror
+
                         <div class="d-flex mt-4">
 
 
