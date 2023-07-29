@@ -365,17 +365,6 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::delete('delete/{id}', [ResetTA::class, 'destroy'])->name('reset.seminar.destroy');
 });
 
-// route FE
-
-// CONTOH
-// Route::prefix('fe')->name('fe')->group(function () {
-//     Route::get('kategori/create', function () {
-//         return view('admin.inventaris.kategori.create');
-//     })->name('admin.kategori.create');
-//     Route::view('dosen/profile', 'dosen.profile.index');
-// });
-
-
 Route::get('/', function () {
     return view('index');
 });
@@ -383,19 +372,19 @@ Route::get('/team', function () {
     return view('team');
 });
 Route::get('/kp', function () {
-    $jadwal_kp = JadwalSKP::where('tanggal_skp', '>=', date('Y-m-d'))->get();
+    $jadwal_kp = JadwalSKP::orderBy('tanggal_skp', 'desc')->get();
     return view('kp', compact('jadwal_kp'));
 });
 Route::get('/ta1', function () {
-    $jadwal_ta1 = ModelJadwalSeminarTaSatu::where('tanggal_seminar_ta_satu', '>=', date('Y-m-d'))->get();
+    $jadwal_ta1 = ModelJadwalSeminarTaSatu::orderBy('tanggal_seminar_ta_satu', 'desc')->get();
     return view('ta1', compact('jadwal_ta1'));
 });
 Route::get('/ta2', function () {
-    $ta2 = ModelJadwalSeminarTaDua::where('tanggal_seminar_ta_dua', '>=', date('Y-m-d'))->get();
+    $ta2 = ModelJadwalSeminarTaDua::orderBy('tanggal_seminar_ta_dua', 'desc')->get();
     return view('ta2', compact('ta2'));
 });
 Route::get('/kompre', function () {
-    $kompre = ModelJadwalSeminarKompre::where('tanggal_komprehensif', '>=', date('Y-m-d'))->get();
+    $kompre = ModelJadwalSeminarKompre::orderBy('tanggal_seminar_kompre', 'desc')->get();
     return view('kompre', compact('kompre'));
 });
 Route::get('/about', function () {
