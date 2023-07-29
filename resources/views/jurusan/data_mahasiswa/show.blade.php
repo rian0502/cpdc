@@ -112,11 +112,11 @@
                                     {{ $mahasiswa->no_hp }}
                                 </div>
 
-                                <label class="col-md-3 bold"> <strong> Email </strong></label>
-                                <div class="col-md-3">
+                                <label class="col-md-3 bold"><strong>Email</strong></label>
+                                <div class="col-md-3" style="word-wrap: break-word;">
                                     {{ $mahasiswa->user->email }}
-
                                 </div>
+
                             </div>
                             <div class="row">
                                 <label class="col-md-3 bold"><b>Semester</b></label>
@@ -134,10 +134,9 @@
                                 <label class="col-md-3 bold"><b>Pembimbing Akademik</b></label>
                                 <div class="col-md-3">
                                     @if ($mahasiswa->dosen != null)
-                                    {{ $mahasiswa->dosen->nama_dosen }}
+                                        {{ $mahasiswa->dosen->nama_dosen }}
                                     @else
-
-                                    <div>Belum ada pembimbing akademik</div>
+                                        <div>Belum ada pembimbing akademik</div>
                                     @endif
 
                                 </div>
@@ -1094,7 +1093,7 @@
                                                     <th>Scala</th>
                                                     <th>Tanggal</th>
                                                     <th>Capaian</th>
-                        
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1105,7 +1104,7 @@
                                                         <td>{{ $item->scala }}</td>
                                                         <td>{{ $item->tanggal }}</td>
                                                         <td>{{ $item->capaian }}</td>
-                                
+
                                                     </tr>
                                                 @endforeach
                                             </tbody>

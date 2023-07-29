@@ -71,7 +71,7 @@
                                                     \Carbon\Carbon::parse($item->tanggal_lahir)->age }}
                                             </td>
                                         @endrole
-                                        <td>
+                                        <td style="word-wrap: break-word;">
                                             {{ $item->user->email }}
                                         </td>
                                         <td>

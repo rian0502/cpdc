@@ -88,9 +88,28 @@
                             </div>
                             <h5 class="text-center h5 mb-0">{{ Auth::user()->dosen->nama_dosen }}</h5>
                             <p class="text-center text-muted font-14">
-                                {{ ucwords(auth()->user()->roles->pluck('name')->implode(', ')) }} <br>
+                                @if (auth()->user()->hasRole('tpmps'))
+                                    {{ ucwords(auth()->user()->roles->pluck('name')->first()) }}, {{ strtoupper('TPMPS') }} <br>
+                                @else
+                                    
+                                    {{ ucwords(auth()->user()->roles->pluck('name')->implode(', ')) }} <br>
+                                @endif
                                 NIP. {{ Auth::user()->dosen->nip }}
                             </p>
+
+
+                            {{-- <p class="text-center text-muted font-14">
+                                @if (auth()->user()->hasRole('TPMPS'))
+                                    {{ strtoupper('TPMPS') }} <br>
+                                @else
+                                    {{ ucwords(strtolower(auth()->user()->roles->pluck('name')->reject(function ($role) {return $role === 'TPMPS';})->implode(', '))) }}
+                                    {{ ucwords(auth()->user()->roles->pluck('name')->implode(', ')) }}
+                                    {{ ucwords(strtolower(auth()->user()->roles->pluck('name')->implode(', '))) }}
+                                    <br>
+                                @endif
+
+                                NIP. {{ Auth::user()->dosen->nip }}
+                            </p> --}}
                             <div class="profile-info">
                                 <h5 class="mb-20 h5 text-blue">Biodata</h5>
                                 <ul>
