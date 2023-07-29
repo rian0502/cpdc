@@ -1,5 +1,7 @@
 @extends('layouts.umum')
 @section('umum')
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js' type='text/javascript'></script>
+
     <link rel="stylesheet" href="Assets/src/css/about.css">
 
     <!-- Contact Start -->
@@ -83,9 +85,24 @@
 
         </div>
     </div>
-    <!-- Project End -->
-
-    <!-- Testimonial Start -->
+    <script type='text/javascript'>
+        //<![CDATA[
+        $(function() {
+            $(".post-body img:nth-child(1)").after(
+                "<img src=\"http:\/\/2.bp.blogspot.com\/-lQW7QlMoz10\/T8yL_5IPF6I\/AAAAAAAAAQU\/5R8ngq17xzw\/s1600\/transparent.png\" alt=\"NetOopsblog protected image\" style=\"margin-left: -212px; opacity: 0; position: relative; top: 0;\" \/>"
+                );
+        });
+        //]]>
+    </script>
+    <script type='text/javascript'>
+        //<![CDATA[
+        $(function() {
+            $(".post-body img").after(
+                "<img src=\"http:\/\/2.bp.blogspot.com\/-lQW7QlMoz10\/T8yL_5IPF6I\/AAAAAAAAAQU\/5R8ngq17xzw\/s1600\/transparent.png\" alt=\"NetOopsblog protected image\" style=\"margin-left: -212px; opacity: 0; position: relative; top: 0;\" \/>"
+                );
+        });
+        //]]>
+    </script>
     <div class="bawah-testimonial"></div>
 
 
