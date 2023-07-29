@@ -28,9 +28,7 @@ class JadwalPKLController extends Controller
         $now = date('Y-m-d');
         $data = [
             'seminar' => ModelSeminarKP::select('id', 'encrypt_id', 'judul_kp', 'mitra', 'rencana_seminar', 'id_mahasiswa')
-                ->whereDoesntHave('berita_acara', function ($query) {
-                    $query->whereColumn('ba_seminar_kp.id_seminar', '=', 'seminar_kp.id');
-                })
+                ->whereDoesntHave('berita_acara')
                 ->where('proses_admin', '=', 'Valid')
                 ->where(function ($query) use ($now) {
                     $query->whereDoesntHave('jadwal')
