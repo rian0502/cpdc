@@ -46,7 +46,7 @@ class StoreCheckInBelumTaAlterLabRequest extends FormRequest
             'jam_mulai2.date_format' => 'Jam Mulai harus berformat jam:menit:detik',
             'jam_selesai2.required' => 'Jam Selesai harus diisi',
             'jam_selesai2.date_format' => 'Jam Selesai harus berformat jam:menit:detik',
-            'jam_selesai2.after' => 'Jam Selesai harus setelah Jam Mulai'
+            'jam_selesai2.after' => 'Jam Selesai harus lebih besar dari Jam Mulai'
         ];
     }
     public function prepareForValidation()
