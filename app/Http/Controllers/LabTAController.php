@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\Models\Lokasi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCheckInAlternativLabRequest;
+use App\Http\Requests\StoreCheckInBelumTaAlterLabRequest;
 use App\Http\Requests\StoreCheckInBelumTaLabRequest;
 use App\Http\Requests\StoreCheckInLabRequest;
 use App\Models\Laboratorium;
@@ -30,22 +32,22 @@ class LabTAController extends Controller
         return view('mahasiswa.lab_ta.index', $data);
     }
     
-    public function belumTaAlternativ(StoreCheckInBelumTaLabRequest $request)
+    public function belumTaAlternativ(StoreCheckInBelumTaAlterLabRequest $request)
     {
         $request->validate([
-            'id_lokasi' => 'required|exists:lokasi,encrypt_id',
+            'id_lokasi2' => 'required|exists:lokasi,encrypt_id',
         ], [
-            'id_lokasi.required' => 'Lokasi harus diisi',
-            'id_lokasi.exists' => 'Lokasi tidak ditemukan',
+            'id_lokasi2.required' => 'Lokasi harus diisi',
+            'id_lokasi2.exists' => 'Lokasi tidak ditemukan',
         ]);
         $data = [
-            'nama_kegiatan' => $request->nama_kegiatan,
-            'id_lokasi' => Crypt::decrypt($request->id_lokasi),
+            'nama_kegiatan' => $request->nama_kegiatan2,
+            'id_lokasi' => Crypt::decrypt($request->id_lokasi2),
             'keperluan' => 'Penelitian',
             'tanggal_kegiatan' => date('Y-m-d'),
-            'jam_mulai' => $request->jam_mulai,
-            'jam_selesai' => $request->jam_selesai,
-            'keterangan' => $request->ket,
+            'jam_mulai' => $request->jam_mulai2,
+            'jam_selesai' => $request->jam_selesai2,
+            'keterangan' => $request->ket2,
             'jumlah_mahasiswa' => 1,
             'user_id' => Auth::user()->id,
         ];
@@ -123,13 +125,13 @@ class LabTAController extends Controller
         $update->save();
         return redirect()->route('mahasiswa.lab.index')->with('success', 'Berhasil Check In');
     }
-    public function alternatif(StoreCheckInLabRequest $request)
+    public function alternatif(StoreCheckInAlternativLabRequest $request)
     {
         $request->validate([
-            'id_lokasi' => 'required|exists:lokasi,encrypt_id',
+            'id_lokasi2' => 'required|exists:lokasi,encrypt_id',
         ], [
-            'id_lokasi.required' => 'Lokasi harus diisi',
-            'id_lokasi.exists' => 'Lokasi tidak ditemukan',
+            'id_lokasi2.required' => 'Lokasi harus diisi',
+            'id_lokasi2.exists' => 'Lokasi tidak ditemukan',
         ]);
         $user = User::find(Auth::user()->id);
         $id_user = $user->id;
@@ -145,12 +147,12 @@ class LabTAController extends Controller
         }
         $lab = Laboratorium::create([
             'nama_kegiatan' => $judul_kegiatan,
-            'id_lokasi' => Crypt::decrypt($request->id_lokasi),
+            'id_lokasi' => Crypt::decrypt($request->id_lokasi2),
             'keperluan' => 'Penelitian',
             'tanggal_kegiatan' => date('Y-m-d'),
-            'jam_mulai' => $request->jam_mulai,
-            'jam_selesai' => $request->jam_selesai,
-            'keterangan' => $request->ket,
+            'jam_mulai' => $request->jam_mulai2,
+            'jam_selesai' => $request->jam_selesai2,
+            'keterangan' => $request->ket2,
             'jumlah_mahasiswa' => 1,
             'user_id' => Auth::user()->id,
         ]);
