@@ -174,6 +174,10 @@
                                     <a class="nav-link text-blue" data-toggle="tab" href="#extra_activity" role="tab"
                                         aria-selected="false">Kegiatan Lainnya</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-blue" data-toggle="tab" href="#presentsi" role="tab"
+                                        aria-selected="false">Presentsi Penelitian</a>
+                                </li>
                                 {{-- Kondisiin --}}
                                 @if ($mahasiswa->user->hasRole('alumni'))
                                     <li class="nav-item">
@@ -181,6 +185,7 @@
                                             role="tab" aria-selected="false">Aktivitas Alumni</a>
                                     </li>
                                 @endif
+
                             </ul>
                             <div class="tab-content">
 
@@ -500,14 +505,15 @@
                                                             {{ $seminarTa1->status_admin }}
                                                         </div>
                                                     </div>
-                                                    @if ($seminarTa1->sumber_penelitian!=null)
-                                                    <div class="row mt-2">
-                                                        <label class="col-md-3 bold mt-2"> <strong>Sumber Penelitiaan</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa1->sumber_penelitian }}
+                                                    @if ($seminarTa1->sumber_penelitian != null)
+                                                        <div class="row mt-2">
+                                                            <label class="col-md-3 bold mt-2"> <strong>Sumber
+                                                                    Penelitiaan</strong></label>
+                                                            <div class="col-md-3"
+                                                                style="display:block;word-wrap:break-word;">
+                                                                {{ $seminarTa1->sumber_penelitian }}
+                                                            </div>
                                                         </div>
-                                                    </div>
-
                                                     @endif
 
 
@@ -740,14 +746,15 @@
                                                             {{ $seminarTa2->status_admin }}
                                                         </div>
                                                     </div>
-                                                    @if ($seminarTa1->sumber_penelitian!=null)
-                                                    <div class="row mt-2">
-                                                        <label class="col-md-3 bold mt-2"> <strong>Sumber Penelitiaan</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa1->sumber_penelitian }}
+                                                    @if ($seminarTa1->sumber_penelitian != null)
+                                                        <div class="row mt-2">
+                                                            <label class="col-md-3 bold mt-2"> <strong>Sumber
+                                                                    Penelitiaan</strong></label>
+                                                            <div class="col-md-3"
+                                                                style="display:block;word-wrap:break-word;">
+                                                                {{ $seminarTa1->sumber_penelitian }}
+                                                            </div>
                                                         </div>
-                                                    </div>
-
                                                     @endif
                                                 </div>
                                             @else
@@ -975,14 +982,15 @@
                                                             {{ $sidangKompre->status_admin }}
                                                         </div>
                                                     </div>
-                                                    @if ($seminarTa1->sumber_penelitian!=null)
-                                                    <div class="row mt-2">
-                                                        <label class="col-md-3 bold mt-2"> <strong>Sumber Penelitiaan</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa1->sumber_penelitian }}
+                                                    @if ($seminarTa1->sumber_penelitian != null)
+                                                        <div class="row mt-2">
+                                                            <label class="col-md-3 bold mt-2"> <strong>Sumber
+                                                                    Penelitiaan</strong></label>
+                                                            <div class="col-md-3"
+                                                                style="display:block;word-wrap:break-word;">
+                                                                {{ $seminarTa1->sumber_penelitian }}
+                                                            </div>
                                                         </div>
-                                                    </div>
-
                                                     @endif
                                                 </div>
                                             @else
@@ -1179,6 +1187,35 @@
                                         </table>
                                     </div>
                                     {{-- kegiatan lainnya end --}}
+                                </div>
+                                <div class="tab-pane fade" id="presentsi" role="tabpanel">
+                                    <div class="pd-20">
+                                        <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Judul</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Jam</th>
+                                                    <th>Lokasi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($presentsi as $item)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $item->nama_kegiatan }}</td>
+                                                        <td>{{ $carbon::parse($item->tanggal_kegiatan)->format('d M Y') }}
+                                                        </td>
+                                                        <td>{{ $carbon::parse($item->jam_mulai)->format('H:i') }} -
+                                                            {{ $carbon::parse($item->jam_selesai)->format('H:i') }} WIB</td>
+                                                        <td>{{ $item->lokasi->nama_lokasi }}</td>
+
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                                 {{-- aktivitas alumni kondisiin --}}
                                 @if ($mahasiswa->user->hasRole('alumni'))

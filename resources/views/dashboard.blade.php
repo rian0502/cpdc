@@ -1480,11 +1480,11 @@
                         var nonseminarData = data.nonseminar;
 
                         var seriesData = [{
-                            name: 'Non-Seminar',
+                            name: 'False',
                             data: nonseminarData
 
                         }, {
-                            name: 'Seminar',
+                            name: 'True',
                             data: seminarData
                         }];
 

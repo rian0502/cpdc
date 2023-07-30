@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
 use App\Models\Lokasi;
+use Illuminate\Support\Str;
+use App\Models\Laboratorium;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCheckInAlternativLabRequest;
-use App\Http\Requests\StoreCheckInBelumTaAlterLabRequest;
-use App\Http\Requests\StoreCheckInBelumTaLabRequest;
-use App\Http\Requests\StoreCheckInLabRequest;
-use App\Models\Laboratorium;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use App\Http\Requests\StoreCheckInLabRequest;
+use App\Http\Requests\StoreCheckInBelumTaLabRequest;
+use App\Http\Requests\StoreCheckInAlternativLabRequest;
+use App\Http\Requests\StoreCheckInBelumTaAlterLabRequest;
 
 class LabTAController extends Controller
 {
@@ -41,7 +42,7 @@ class LabTAController extends Controller
             'id_lokasi_bta.exists' => 'Lokasi tidak ditemukan',
         ]);
         $data = [
-            'nama_kegiatan' => $request->nama_kegiatan_bta,
+            'nama_kegiatan' => Str::title($request->nama_kegiatan_bta),
             'id_lokasi' => Crypt::decrypt($request->id_lokasi_bta),
             'keperluan' => 'Penelitian',
             'tanggal_kegiatan' => date('Y-m-d'),
@@ -63,7 +64,7 @@ class LabTAController extends Controller
     {
 
         $data = [
-            'nama_kegiatan' => $request->nama_kegiatan_bt,
+            'nama_kegiatan' => Str::title($request->nama_kegiatan_bt),
             'id_lokasi' => Auth::user()->lokasi_id,
             'keperluan' => 'Penelitian',
             'tanggal_kegiatan' => date('Y-m-d'),

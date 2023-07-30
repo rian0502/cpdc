@@ -231,8 +231,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('sudo.akun_mahasiswa.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_mahasiswa*') ? 'active' : '' }}">
+                        <a href="{{ route('jurusan.mahasiswa.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/mahasiswa*') ? 'active' : '' }}">
                             <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa</span>
                         </a>
                     </li>
@@ -393,7 +393,7 @@
                         <li>
                             <a href="{{ route('sudo.admin_jurusan.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('sudo/admin_jurusan*') ? 'active' : '' }}">
-                                <span class="micon bi bi bi-person-fill"></span><span class="mtext">Admin Jurusan</span>
+                                <span class="micon fas fa-user-shield"></span><span class="mtext">Admin Jurusan</span>
                             </a>
                         </li>
                     @endrole
@@ -444,7 +444,7 @@
                         <li>
                             <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni*') ? 'active' : '' }}">
-                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Aktivitas
+                                <span class="micon fas fa-user-clock"></span><span class="mtext">Aktivitas
                                     Alumni</span>
                             </a>
                         </li>

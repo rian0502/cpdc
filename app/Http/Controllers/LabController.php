@@ -103,8 +103,13 @@ class LabController extends Controller
     }
 
     public function showAsistensi($npm){
+        $mahasiswa = Mahasiswa::where('npm', $npm)->first();
+        $data = [
+            'mahasiswa' => $mahasiswa,
+            'asistensi' => $mahasiswa->asisten_lab->where('id_lokasi', Auth::user()->lokasi_id),
+        ];
 
-        return view('admin.admin_lab.lab.detail_asistensi');
+        return view('admin.admin_lab.lab.detail_asistensi', $data);
     }
 
     /**
@@ -187,19 +192,19 @@ class LabController extends Controller
             $asisten->transform(function ($mahasiswa) use ($startDate, $endDate) {
                 $totalDurasi = 0;
                 if ($startDate != null && $endDate != null) {
-                    foreach ($mahasiswa->assistenLabDateBeetwen($startDate, $endDate) as $asisten_lab) {
+                    foreach ($mahasiswa->assistenLabDateBeetwen($startDate, $endDate)->where('id_lokasi', Auth::user()->lokasi_id) as $asisten_lab) {
                         $durasi = $this->hitungSelisihWaktu($asisten_lab->jam_mulai, $asisten_lab->jam_selesai);
                         $totalDurasi += $durasi;
                     }
-                    $mahasiswa->kehadiran = count($mahasiswa->assistenLabDateBeetwen($startDate, $endDate));
+                    $mahasiswa->kehadiran = count($mahasiswa->assistenLabDateBeetwen($startDate, $endDate)->where('id_lokasi', Auth::user()->lokasi_id));
                 } else {
-                    foreach ($mahasiswa->asisten_lab as $asisten_lab) {
+                    foreach ($mahasiswa->asisten_lab->where('id_lokasi', Auth::user()->lokasi_id) as $asisten_lab) {
                         $durasi = $this->hitungSelisihWaktu($asisten_lab->jam_mulai, $asisten_lab->jam_selesai);
                         $totalDurasi += $durasi;
                     }
-                    $mahasiswa->kehadiran = count($mahasiswa->asisten_lab);
+                    $mahasiswa->kehadiran = count($mahasiswa->asisten_lab->where('id_lokasi', Auth::user()->lokasi_id));
                 }
-                $totalDurasi = gmdate("H:i:s", $totalDurasi);
+                $totalDurasi = gmdate("H:i", $totalDurasi);
                 $mahasiswa->total_durasi = $totalDurasi;
                 return $mahasiswa;
             });
