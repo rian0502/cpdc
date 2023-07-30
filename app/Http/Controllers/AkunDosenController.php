@@ -14,6 +14,8 @@ use App\Http\Controllers\Controller;
 use App\Models\AnggotaPublikasiDosen;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelGelar;
+use App\Models\ModelSeminarDosen;
+use App\Models\ModelPenghargaanDosen;
 
 
 class AkunDosenController extends Controller
@@ -89,6 +91,8 @@ class AkunDosenController extends Controller
             'litabmas' => AnggotaLitabmas::where('dosen_id', Crypt::decrypt($id))->get(),
             'publikasi' => AnggotaPublikasiDosen::where('id_dosen', Crypt::decrypt($id))->get(),
             'gelar' => ModelGelar::where('dosen_id', Crypt::decrypt($id))->get(),
+            'seminar' => ModelSeminarDosen::where('dosen_id', Crypt::decrypt($id))->get(),
+            'penghargaan' => ModelPenghargaanDosen::where('dosen_id', Crypt::decrypt($id))->get(),
         ];
         return view('akun.dosen.show', $data);
     }

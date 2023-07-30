@@ -6,7 +6,8 @@ use App\Http\Requests\StorePenghargaanDosenRequest;
 use App\Models\ModelPenghargaanDosen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
-
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\DB;
 class ControllerPenghargaanDosen extends Controller
 {
     /**
@@ -14,9 +15,19 @@ class ControllerPenghargaanDosen extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $startDate = $request->input('startDate', null);
+        $endDate = $request->input('endDate', null);
+        if ($startDate && $endDate) {
+            $data = ModelPenghargaanDosen::whereBetween('tahun', [$startDate, $endDate])->orderBy('tahun', 'desc');
+            return DataTables::of($data)->toJson();
+        } else if ($request->ajax() && $startDate == null && $endDate == null) {
+            $data = ModelPenghargaanDosen::orderBy('tahun', 'desc');
+            return DataTables::of($data)->toJson();
+        }
+
         return view('dosen.penghargaan.index');
     }
 
@@ -140,5 +151,50 @@ class ControllerPenghargaanDosen extends Controller
         } catch (\Exception $e) {
             return redirect()->route('dosen.penghargaan.index')->with('error', 'Penghargaan tidak ditemukan');
         }
+    }
+    public function chartPenghargaanDosen(Request $request)
+    {
+        $starDate = $request->input('startDate', null);
+        $endDate = $request->input('endDate', null);
+        if ($starDate && $endDate) {
+            $Penghargaan = ModelPenghargaanDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->whereBetween('tahun', [$starDate, $endDate])->groupBy('scala')->get();
+        } else {
+            $Penghargaan = ModelPenghargaanDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->groupBy('scala')->get();
+        }
+
+        return response()->json($Penghargaan);
+    }
+
+    public function chartTahunPenghargaanDosen(Request $request)
+    {
+        $starDate = $request->input('startDate', null);
+        $endDate = $request->input('endDate', null);
+        if ($starDate && $endDate) {
+            $tahun = ModelPenghargaanDosen::select(DB::raw('YEAR(tahun) as year'), DB::raw('COUNT(*) as total'))
+                ->whereBetween(DB::raw('YEAR(tahun)'), [$starDate, $endDate])
+                ->groupBy(DB::raw('YEAR(tahun)'))
+                ->get()
+                ->map(function ($item) {
+                    return [
+                        'tahun' => $item->year,
+                        'total' => $item->total
+                    ];
+                })
+                ->values()
+                ->toArray();
+        } else {
+            $tahun = ModelPenghargaanDosen::select(DB::raw('YEAR(tahun) as year'), DB::raw('COUNT(*) as total'))
+                ->groupBy(DB::raw('YEAR(tahun)'))
+                ->get()
+                ->map(function ($item) {
+                    return [
+                        'tahun' => $item->year,
+                        'total' => $item->total
+                    ];
+                })
+                ->values()
+                ->toArray();
+        }
+        return response()->json($tahun);
     }
 }
