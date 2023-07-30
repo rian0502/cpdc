@@ -34,98 +34,109 @@
 
                 <!-- Data Registrasi Start -->
                 <div class="pd-20 card-box mb-30">
-                    <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
+                    <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4" style="margin-left: 10px">Data Registrasi</h4>
+                            <h4 class="text-dark h4">Data Registrasi</h4>
                         </div>
                     </div>
-                    <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                        <div class="row border-bottom">
-                            <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $mahasiswa->npm }} --}}
+                    <div class="">
+                        <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+                            <div class="row border-bottom">
+                                <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    {{ $mahasiswa->npm }}
+                                </div>
+                                <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    {{ $seminar->pembimbing_satu->nama_dosen }}
+                                </div>
                             </div>
-                            <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->dosen->nama_dosen }} --}}
-                            </div>
-                        </div>
-                        <div class="row border-bottom mt-2">
-                            <label class="col-md-3 bold"><b>Nama Mahasiswa</b></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $mahasiswa->nama_mahasiswa }} --}}
-                            </div>
-                            <label class="col-md-3 bold mt-1"><strong>Pembimbing 2</strong></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->region }} --}}
-                            </div>
-                        </div>
-
-                        <div class="row border-bottom">
-                            <label class="col-md-3 bold mt-2"> <strong>Tahun Akademik</strong></label>
-                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->tahun_akademik }} --}}
-                            </div>
-                            <label class="col-md-3 bold mt-2"> <strong>Nomor Karyawan / NIP Pembimbing
-                                    2</strong></label>
-                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->mitra }} --}}
-                            </div>
-                        </div>
-
-                        <div class="row border-bottom mt-2">
-                            <label class="col-md-3 bold mt-1"> <strong>Semester</strong></label>
-                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $mahasiswa->semester }} --}}
-                            </div>
-                            <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->pembimbing_lapangan }} --}}
-                            </div>
-                        </div>
-
-                        <div class="row border-bottom mt-2">
-                            <label class="col-md-3 bold mt-2"> <strong>SKS</strong></label>
-                            <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->sks }} --}}
-                            </div>
-                            <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->ni_pemlap }} --}}
-                            </div>
-                        </div>
-
-                        <div class="row border-bottom mt-2">
-                            <label class="col-md-3 bold mt-2"> <strong>IPK</strong></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->ipk }} --}}
-                            </div>
-                            <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                <a target="_blank" href="/uploads/syarat_seminar_ta1/">Unduh
-                                    Berkas</a>
-                            </div>
-                        </div>
-
-                        <div class="row border-bottom mt-2">
-                            <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->toefl }} --}}
+                            <div class="row border-bottom mt-2">
+                                <label class="col-md-3 bold"><b>Nama Mahasiswa</b></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    {{ $mahasiswa->nama_mahasiswa }}
+                                </div>
+                                <label class="col-md-3 bold mt-1"><strong>Pembimbing 2</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    @if ($seminar->pembimbing_dua)
+                                        {{ $seminar->pembimbing_dua->nama_dosen }}
+                                    @else
+                                        {{ $seminar->pbl2_nama }}
+                                    @endif
+                                </div>
                             </div>
 
-                            <label class="col-md-3 bold"> <strong></strong></label>
-                            <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                {{-- Kosongkan --}}
+                            <div class="row border-bottom">
+                                <label class="col-md-3 bold mt-2"> <strong>Tahun Akademik</strong></label>
+                                <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                    {{ $seminar->tahun_akademik }}
+                                </div>
+                                <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
+                                <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                    @if ($seminar->pbl2_nip)
+                                        {{ $seminar->pbl2_nip }}
+                                    @else
+                                        -
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row border-bottom mt-3">
-                            <label class="col-md-12 bold"><b>Judul atau Topik Tugas Akhir</b></label>
-                            <div class="col-md-12 mb-3" style="display:block;word-wrap:break-word;">
-                                {{-- {{ $seminar->judul_kp }} --}}
+                            <div class="row border-bottom mt-2">
+                                <label class="col-md-3 bold mt-1"> <strong>Semester</strong></label>
+                                <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                    {{ $mahasiswa->semester }}
+                                </div>
+                                <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    {{ $seminar->pembahas->nama_dosen }}
+                                </div>
                             </div>
-                        </div>
 
+                            <div class="row border-bottom mt-2">
+                                <label class="col-md-3 bold mt-2"> <strong>SKS</strong></label>
+                                <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                    {{ $seminar->sks }}
+                                </div>
+                                <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    {{ $seminar->periode_seminar }}
+                                </div>
+                            </div>
+
+                            <div class="row border-bottom mt-2">
+                                <label class="col-md-3 bold mt-2"> <strong>IPK</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    {{ $seminar->ipk }}
+                                </div>
+                                <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    <a target="_blank"
+                                        href="/uploads/syarat_seminar_ta1/{{ $seminar->berkas_ta_satu }}">Lihat
+                                        Berkas</a>
+                                </div>
+                            </div>
+
+                            <div class="row border-bottom mt-2">
+                                <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    {{ $seminar->toefl }}
+                                </div>
+
+                                <label class="col-md-3 bold"> <strong></strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    {{ $seminar->status_seminar }}
+                                </div>
+                            </div>
+
+                            <div class="row border-bottom mt-3">
+                                <label class="col-md-12 bold"><b>Judul atau Topik Tugas Akhir</b></label>
+                                <div class="col-md-12 mb-3" style="display:block;word-wrap:break-word;">
+                                    {{ $seminar->judul_ta }}
+                                </div>
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
                 <div class="pd-20 card-box mb-30">

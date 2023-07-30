@@ -25,46 +25,17 @@ class StoreCheckInLabRequest extends FormRequest
      */
     public function rules()
     {
-        $jam_mulai = date('H:i:s');
-        if(Auth::user()->lokasi_id == null){
-            return [
+        return [
+            'ket' => 'required|min:20|max:255',
+            'jam_mulai' => 'required|date_format:H:i:s',
+            'jam_selesai' => 'required|date_format:H:i:s|after:jam_mulai',
+        ];
+    }
 
-                'id_lokasi' => 'required|exists:lokasi,encrypt_id',
-                'jam_selesai' => ['required','after:'.$jam_mulai],
-                'ket' => 'required|min:20|max:255',
-            ];
-        }else{
-            return [
-                'jam_selesai' => ['required', 'date_format:H:i:s', 'after:'.$jam_mulai],
-                'ket' => 'required|min:20|max:255',
-            ];
-        }
-    }
-    public function messages()
-    {
-        if(Auth::user()->lokasi_id == null){
-            return [
-                'id_lokasi.required' => 'Lokasi harus diisi',
-                'id_lokasi.exists' => 'Lokasi tidak valid',
-                'jam_selesai.required' => 'Jam Selesai harus diisi',
-                'jam_selesai.after' => 'Jam Selesai harus lebih besar dari Jam Mulai',
-                'ket.required' => 'Keterangan harus diisi',
-                'ket.min' => 'Keterangan minimal 20 karakter',
-                'ket.max' => 'Keterangan maksimal 255 karakter',
-            ];
-        }else{
-            return [
-                'jam_selesai.required' => 'Jam Selesai harus diisi',
-                'jam_selesai.after' => 'Jam Selesai harus lebih besar dari Jam Mulai',
-                'ket.required' => 'Keterangan harus diisi',
-                'ket.min' => 'Keterangan minimal 20 karakter',
-                'ket.max' => 'Keterangan maksimal 255 karakter'
-            ];
-        }
-    }
     protected function prepareForValidation()
     {
         $this->request->set('jam_selesai', date('H:i:s', strtotime($this->request->get('jam_selesai'))));
+        $this->request->set('jam_mulai', date('H:i:s', strtotime($this->request->get('jam_mulai'))));
         $input = $this->all();
         foreach ($input as $key => $value) {
             if (is_string($value)) {

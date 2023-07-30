@@ -274,7 +274,9 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
 
     Route::get('lab', [LabTAController::class, 'index'])->name('lab.index');
     Route::get('lab/cekin', [LabTAController::class, 'cekin'])->name('lab.cekin');
+    Route::post('lab/pergroup', [LabTAController::class, 'perGroup'])->name('lab.per.group');
     Route::post('lab/cekin', [LabTAController::class, 'cekinStore'])->name('lab.cekin.store');
+    Route::post('lab/cekin/alternatif', [LabTAController::class, 'alternatif'])->name('lab.cekin.alternatif.store');
 });
 
 
