@@ -51,7 +51,7 @@
                                         <td>{{ $item->scala }}</td>
                                         <td>{{ $item->tahun }}</td>
                                         <td><a href="{{ $item->url }}" class="text-primary">Klik</a></td>
-                                        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{ $item->Uraian }}</td>
+                                        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{ $item->uraian }}</td>
                                         </td>
                                         <td>
                                             <div class="dropdown">

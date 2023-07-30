@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\StoreSeminarDosenRequest;
+use Yajra\DataTables\Facades\DataTables;
 
 class ControllerSeminarDosen extends Controller
 {
@@ -18,9 +19,20 @@ class ControllerSeminarDosen extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $startDate = $request->input('startDate', null);
+          $endDate = $request->input('endDate', null);
+          if ($startDate && $endDate) {
+              $data = ModelSeminarDosen::whereBetween('tahun', [$startDate, $endDate])->orderBy('tahun', 'desc');
+              return DataTables::of($data)->toJson();
+          } else if ($request->ajax()&& $startDate == null && $endDate == null) {
+              $data = ModelSeminarDosen::orderBy('tahun', 'desc');
+              return DataTables::of($data)->toJson();
+          }
+
+
         return view('dosen.seminar.index');
     }
 

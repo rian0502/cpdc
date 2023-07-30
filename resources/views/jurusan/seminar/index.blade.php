@@ -9,14 +9,14 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="tanggal-awal">Tahun Awal</label>
-                                    <input type="text" class="form-control year-picker" placeholder="Tahun Awal"
+                                    <input type="date" class="form-control" placeholder="Tahun Awal"
                                         id="tanggal-awal">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="tanggal-akhir">Tahun Akhir</label>
-                                    <input type="text" class="form-control year-picker" placeholder="Tahun Akhir"
+                                    <input type="date" class="form-control" placeholder="Tahun Akhir"
                                         id="tanggal-akhir">
                                 </div>
                             </div>
@@ -60,12 +60,11 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Judul</th>
-                                    <th>Kategori</th>
-                                    <th>Sumber Dana</th>
-                                    <th>Jumlah Danaa</th>
-                                    <th>Tahun</th>
-                                    <th class="table-plus datatable-nosort">Aksi</th>
+                                    <th>Nama</th>
+                                    <th>Tanggal</th>
+                                    <th>Scala</th>
+                                    <th>Uraian</th>
+                                    <th>Dokumentasi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -89,7 +88,7 @@
         var PieChart1;
         var PieChart2;
         var BarChart;
-        var dataNpm;
+        var dataSeminar;
 
         $(document).ready(function() {
             // Function untuk memanggil data awal
@@ -97,16 +96,16 @@
 
             // Fungsi untuk memuat data menggunakan filter
             function loadData(startDate = null, endDate = null) {
-                if (dataNpm) {
-                    dataNpm.destroy();
+                if (dataSeminar) {
+                    dataSeminar.destroy();
                 }
-                dataNpm = $('#data-npm').DataTable({
+                dataSeminar = $('#data-npm').DataTable({
                     processing: true,
                     serverSide: true,
                     responsive: true,
                     autoWidth: false,
                     ajax: {
-                        url: '{{ route('jurusan.litabmas.index') }}',
+                        url: '{{ route('dosen.seminar.index') }}',
                         type: 'GET',
                         dataType: 'json',
                         data: function(d) {
@@ -116,62 +115,42 @@
                     },
                     columns: [{
                             data: null,
-                            name: 'nama_litabmas',
+                            name: 'nama',
                             render: function(data, type, row, meta) {
                                 var index = meta.row + meta.settings._iDisplayStart + 1;
                                 return index;
                             }
                         },
                         {
-                            data: 'nama_litabmas',
-                            name: 'nama_litabmas',
+                            data: 'nama',
+                            name: 'nama',
                             orderable: true
                         },
                         {
-                            data: 'kategori',
-                            name: 'kategori',
+                            data: 'tahun',
+                            name: 'tahun',
                             orderable: true
                         },
                         {
-                            data: 'sumber_dana',
-                            name: 'sumber_dana'
+                            data: 'scala',
+                            name: 'scala'
                         },
                         {
-                            data: 'jumlah_dana',
-                            name: 'jumlah_dana'
+                            data: 'uraian',
+                            name: 'uraian'
                         },
                         {
-                            data: 'tahun_penelitian',
-                            name: 'tahun_penelitian'
-                        },
-                        {
-                            data: null,
-                            name: 'aksi',
-                            orderable: false,
-                            searchable: false,
+                            data: 'null',
+                            name: 'url',
                             render: function(data, type, row) {
-                                // var downloadUrl = "{{ asset('uploads/file_') }}" + '/' + row
-                                //     .file_litabmas;
-                                var detail = "{{ route('dosen.litabmas.show', ':id') }}".replace(
-                                    ':id', row.encrypt_id);
-
-                                return `
-                            <div class="dropdown">
-                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" data-color="#1b3133" href="#"
-                                    role="button" data-toggle="dropdown">
-                                    <i class="dw dw-more"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <a class="dropdown-item" href="${detail}"><i class="dw dw-eye"></i> Lihat</a>
-                                </div>
-                            </div>
-                            `;
+                                var link = row.url;
+                                return `<a href="${link}" class="btn btn-primary btn-sm">Klik</a>`;
                             }
-                        }
+                        },
                     ]
                 });
                 $.ajax({
-                    url: '{{ route('jurusan.litabmas.pieChartKategoriLitabmas') }}',
+                    url: '{{ route('chart.seminar.dosen') }}',
                     type: 'GET',
                     dataType: 'json',
                     data: {
@@ -187,7 +166,7 @@
                     }
                 });
                 $.ajax({
-                    url: '{{ route('jurusan.litabmas.barChartTahun') }}',
+                    url: '{{ route('chart.tahunseminar.dosen') }}',
                     type: 'GET',
                     dataType: 'json',
                     data: {
@@ -209,9 +188,9 @@
                 // Mengonversi data JSON ke format yang digunakan oleh Highcharts dengan persentase dan jumlah
                 var seriesData = chartData.map(function(item) {
                     return {
-                        name: item.kategori,
-                        y: item.total,
-                        total: item.total
+                        name: item.scala,
+                        y: item.scala_count,
+                        scala_count: item.scala_count
                     };
                 });
 
@@ -228,7 +207,7 @@
                         pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b> ({point.percentage:.1f}%)'
                     },
                     series: [{
-                        name: 'LITABMAS',
+                        name: 'SEMINAR',
                         colorByPoint: true,
                         data: seriesData,
                         showInLegend: true,
@@ -243,11 +222,11 @@
                 // Mengonversi data JSON ke format yang digunakan oleh Highcharts dengan persentase dan jumlah
                 var seriesData = chartData
                     .sort(function(a, b) {
-                        return a.year - b.year; // Mengurutkan tahun dari yang terkecil ke terbesar
+                        return a.tahun - b.tahun; // Mengurutkan tahun dari yang terkecil ke terbesar
                     })
                     .map(function(item) {
                         return {
-                            name: item.year,
+                            name: item.tahun,
                             y: item.total
                         };
                     });
@@ -259,9 +238,6 @@
                         type: 'column'
                     },
                     title: {
-                        text: 'SEMINAR'
-                    },
-                    subtitle: {
                         text: 'SEMINAR'
                     },
                     xAxis: {
@@ -277,7 +253,7 @@
                     yAxis: {
                         min: 0,
                         title: {
-                            text: 'Jumlah Aktivitas'
+                            text: 'Jumlah Seminar'
                         }
                     },
                     legend: {
@@ -287,7 +263,7 @@
                         pointFormat: 'Jumlah Mahasiswa: <b>{point.y} orang</b>'
                     },
                     series: [{
-                        name: 'Aktivitas Ekstra',
+                        name: 'Seminar Dosen',
                         data: seriesData,
                         dataLabels: {
                             enabled: true,

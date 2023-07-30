@@ -337,6 +337,68 @@
                         </table>
                     </div>
                 </div>
+                <div class="card-box mb-30">
+                    <div class="pd-20">
+                        <h4 class="text-blue h4">Seminar Dosen</h4>
+                    </div>
+                    <div class="pb-20 m-3">
+                        <table class="table data-table-responsive stripe data-table-export nowrap">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Tanggal</th>
+                                    <th>Scala</th>
+                                    <th>Dokumentasi</th>
+                                    <th>Uraian</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($seminar as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->nama }}</td>
+                                        <td>{{ $item->tahun }}</td>
+                                        <td>{{ $item->scala }}</td>
+                                        <td><a href="{{$item->url}}" class="text-primary">Klik</a></td>
+                                        <td>{{ $item->uraian }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-box mb-30">
+                    <div class="pd-20">
+                        <h4 class="text-blue h4">Penghargaan Dosen</h4>
+                    </div>
+                    <div class="pb-20 m-3">
+                        <table class="table data-table-responsive stripe data-table-export nowrap">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Tanggal</th>
+                                    <th>Scala</th>
+                                    <th>Dokumentasi</th>
+                                    <th>Uraian</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($penghargaan as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->nama }}</td>
+                                        <td>{{ $item->tahun }}</td>
+                                        <td>{{ $item->scala }}</td>
+                                        <td><a href="{{$item->url}}" class="text-primary">Klik</a></td>
+                                        <td>{{ $item->uraian }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
             </div>
         </div>

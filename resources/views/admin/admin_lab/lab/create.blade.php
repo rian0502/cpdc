@@ -28,8 +28,7 @@
                                     <label>Keperluan</label>
                                     <select class="custom-select2 form-control" style="width: 100%; height: 38px"
                                         name="keperluan" onchange="toggleDropdown(this, 'anggota_asistensi')">
-                                        <option value="Penelitian" {{ old('keperluan') == 'Penelitian' ? 'selected' : '' }}>
-                                            Penelitian</option>
+                                        
                                         <option value="Praktikum"{{ old('keperluan') == 'Praktikum' ? 'selected' : '' }}>
                                             Praktikum</option>
                                         <option value="Ujian" {{ old('keperluan') == 'Ujian' ? 'selected' : '' }}>
