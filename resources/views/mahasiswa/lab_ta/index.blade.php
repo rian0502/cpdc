@@ -340,18 +340,18 @@
                                     <div class="weight-500 col-md-6">
                                         <div class="form-group">
                                             <label>Judul Penelitian</label>
-                                            <input type="text" value="{{ old('nama_kegiatan') }}"
-                                                class="form-control @error('nama_kegiatan') form-control-danger @enderror"
+                                            <input type="text" value="{{ old('nama_kegiatan_bt') }}"
+                                                class="form-control @error('nama_kegiatan_bt') form-control-danger @enderror"
                                                 name="nama_kegiatan" placeholder="Masukkan judul penelitian kamu" />
-                                            @error('nama_kegiatan')
+                                            @error('nama_kegiatan_bt')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label>Keterangan</label>
                                             <textarea placeholder="Jelaskan apa yang mau kamu lakukan hari ini"
-                                                class="form-control textarea @error('ket') form-control-danger @enderror" name="ket">{{ old('ket') }}</textarea>
-                                            @error('ket')
+                                                class="form-control textarea @error('ket_bt') form-control-danger @enderror" name="ket">{{ old('ket_bt') }}</textarea>
+                                            @error('ket_bt')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -361,21 +361,21 @@
 
                                         <div class="form-group">
                                             <label>Jam Mulai</label>
-                                            <input class="form-control @error('jam_mulai') form-control-danger @enderror"
+                                            <input class="form-control @error('jam_mulai_bt') form-control-danger @enderror"
                                                 placeholder="jam" type="time" name="jam_mulai"
-                                                value="{{ old('jam_mulai') }}" />
+                                                value="{{ old('jam_mulai_bt') }}" />
                                         </div>
-                                        @error('jam_mulai')
+                                        @error('jam_mulai_bt')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                         <div class="form-group">
                                             <label>Jam Selesai</label>
                                             <input
-                                                class="form-control @error('jam_selesai') form-control-danger @enderror"
+                                                class="form-control @error('jam_selesai_bt') form-control-danger @enderror"
                                                 placeholder="jam" type="time" name="jam_selesai"
-                                                value="{{ old('jam_selesai') }}" />
+                                                value="{{ old('jam_selesai_bt') }}" />
                                         </div>
-                                        @error('jam_selesai')
+                                        @error('jam_selesai_bt')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
 
@@ -403,17 +403,17 @@
                                     <div class="weight-500 col-md-6">
                                         <div class="form-group">
                                             <label>Judul Penelitian</label>
-                                            <input type="text" value="{{ old('nama_kegiatan2') }}"
-                                                class="form-control @error('nama_kegiatan2') form-control-danger @enderror"
+                                            <input type="text" value="{{ old('nama_kegiatan_bta') }}"
+                                                class="form-control @error('nama_kegiatan_bta') form-control-danger @enderror"
                                                 name="nama_kegiatan2" placeholder="Nama Kegiatan" />
-                                            @error('nama_kegiatan2')
+                                            @error('nama_kegiatan_bta')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label>Keterangan</label>
-                                            <textarea class="form-control textarea @error('ket2') form-control-danger @enderror" name="ket2">{{ old('ket2') }}</textarea>
-                                            @error('ket2')
+                                            <textarea class="form-control textarea @error('ket_bta') form-control-danger @enderror" name="ket2">{{ old('ket_bta') }}</textarea>
+                                            @error('ket_bta')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -424,36 +424,36 @@
                                         <div class="form-group">
                                             <label>Lokasi </label>
                                             <select
-                                                class="custom-select2 form-control @error('id_lokasi2') form-control-danger @enderror"
+                                                class="custom-select2 form-control @error('id_lokasi_bta') form-control-danger @enderror"
                                                 name="id_lokasi2" style="width: 100%; height: 38px">
                                                 @foreach ($alternatif as $item)
                                                     <option value="{{ $item->encrypt_id }}"
-                                                        {{ $user->lokasi_id == $item->id || old('id_lokasi2') == $item->encrypt_id ? 'selected' : '' }}>
+                                                        {{ $user->lokasi_id == $item->id || old('id_lokasi_bta') == $item->encrypt_id ? 'selected' : '' }}>
                                                         {{ $item->nama_lokasi }}
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @error('id_lokasi2')
+                                            @error('id_lokasi_bta')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label>Jam Mulai</label>
-                                            <input class="form-control @error('jam_mulai2') form-control-danger @enderror"
+                                            <input class="form-control @error('jam_mulai_bta') form-control-danger @enderror"
                                                 placeholder="jam" type="time" name="jam_mulai2"
-                                                value="{{ old('jam_mulai2') }}" />
+                                                value="{{ old('jam_mulai_bta') }}" />
                                         </div>
-                                        @error('jam_mulai2')
+                                        @error('jam_mulai_bta')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                         <div class="form-group">
                                             <label>Jam Selesai</label>
                                             <input
-                                                class="form-control @error('jam_selesai2') form-control-danger @enderror"
+                                                class="form-control @error('jam_selesai_bta') form-control-danger @enderror"
                                                 placeholder="jam" type="time" name="jam_selesai2"
-                                                value="{{ old('jam_selesai2') }}" />
+                                                value="{{ old('jam_selesai_bta') }}" />
                                         </div>
-                                        @error('jam_selesai2')
+                                        @error('jam_selesai_bta')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
 
