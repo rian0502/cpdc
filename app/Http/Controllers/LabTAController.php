@@ -98,7 +98,6 @@ class LabTAController extends Controller
     public function cekinStore(StoreCheckInLabRequest $request)
     {
         $user = User::find(Auth::user()->id);
-        $id_user = $user->id;
         $mahasiswa = Auth::user()->mahasiswa;
         if ($mahasiswa->ta_satu->first()) {
             $judul_kegiatan = $mahasiswa->ta_satu->first()->judul_ta;
@@ -134,7 +133,6 @@ class LabTAController extends Controller
             'id_lokasi2.exists' => 'Lokasi tidak ditemukan',
         ]);
         $user = User::find(Auth::user()->id);
-        $id_user = $user->id;
         $mahasiswa = Auth::user()->mahasiswa;
         if ($mahasiswa->ta_satu->first()) {
             $judul_kegiatan = $mahasiswa->ta_satu->first()->judul_ta;
