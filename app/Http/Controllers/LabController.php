@@ -104,7 +104,7 @@ class LabController extends Controller
 
     public function showAsistensi($npm){
 
-        return view('admin.admin_lab.lab.detail_asistensi', $data);
+        return view('admin.admin_lab.lab.detail_asistensi');
     }
 
     /**

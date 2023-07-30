@@ -25,34 +25,33 @@ class StoreCheckInBelumTaAlterLabRequest extends FormRequest
     public function rules()
     {
         return [
-            'ket2' => 'required|min:20|max:255|string',
-            'nama_kegiatan2' => 'required|min:5|max:255|string',
-            'jam_mulai2' => 'required|date_format:H:i:s',
-            'jam_selesai2' => 'required|date_format:H:i:s|after:jam_mulai',
+            'ket_bta' => 'required|min:20|max:255|string',
+            'nama_kegiatan_bta' => 'required|min:5|max:255|string',
+            'jam_mulai_bta' => 'required|date_format:H:i',
+            'jam_selesai_bta' => 'required|date_format:H:i|after:jam_mulai_bta',
         ];
     }
     public function messages()
     {
         return [
-            'nama_kegiatan2.required' => 'Judul Penelitian harus diisi',
-            'nama_kegiatan2.min' => 'Judul Penelitian minimal 5 karakter',
-            'nama_kegiatan2.max' => 'Judul Penelitian maksimal 255 karakter',
-            'nama_kegiatan2.string' => 'Judul Penelitian harus berupa Kata',
-            'ket2.required' => 'Keterangan harus diisi',
-            'ket2.min' => 'Keterangan minimal 20 karakter',
-            'ket2.max' => 'Keterangan maksimal 255 karakter',
-            'ket2.string' => 'Keterangan harus berupa Kata',
-            'jam_mulai2.required' => 'Jam Mulai harus diisi',
-            'jam_mulai2.date_format' => 'Jam Mulai harus berformat jam:menit:detik',
-            'jam_selesai2.required' => 'Jam Selesai harus diisi',
-            'jam_selesai2.date_format' => 'Jam Selesai harus berformat jam:menit:detik',
-            'jam_selesai2.after' => 'Jam Selesai harus lebih besar dari Jam Mulai'
+            'nama_kegiatan_bta.required' => 'Judul Penelitian harus diisi',
+            'nama_kegiatan_bta.min' => 'Judul Penelitian minimal 5 karakter',
+            'nama_kegiatan_bta.max' => 'Judul Penelitian maksimal 255 karakter',
+            'nama_kegiatan_bta.string' => 'Judul Penelitian harus berupa Kata',
+            'ket_bta.required' => 'Keterangan harus diisi',
+            'ket_bta.min' => 'Keterangan minimal 20 karakter',
+            'ket_bta.max' => 'Keterangan maksimal 255 karakter',
+            'ket_bta.string' => 'Keterangan harus berupa Kata',
+            'jam_mulai_bta.required' => 'Jam Mulai harus diisi',
+            'jam_mulai_bta.date_format' => 'Jam Mulai harus berformat jam:menit',
+            'jam_selesai_bta.required' => 'Jam Selesai harus diisi',
+            'jam_selesai_bta.date_format' => 'Jam Selesai harus berformat jam:menit',
+            'jam_selesai_bta.after' => 'Jam Selesai harus lebih besar dari Jam Mulai'
         ];
     }
     public function prepareForValidation()
     {
-        $this->request->set('jam_selesai2', date('H:i:s', strtotime($this->request->get('jam_selesai2'))));
-        $this->request->set('jam_mulai2', date('H:i:s', strtotime($this->request->get('jam_mulai2'))));
+
         $input = $this->all();
         foreach ($input as $key => $value) {
             if (is_string($value)) {
