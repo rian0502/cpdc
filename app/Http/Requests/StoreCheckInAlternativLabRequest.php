@@ -40,7 +40,7 @@ class StoreCheckInAlternativLabRequest extends FormRequest
             'jam_mulai2.date_format' => 'Jam mulai tidak valid',
             'jam_selesai2.required' => 'Jam selesai harus diisi',
             'jam_selesai2.date_format' => 'Jam selesai tidak valid',
-            'jam_selesai2.after' => 'Jam selesai harus setelah jam mulai',
+            'jam_selesai2.after' => 'Jam selesai harus lebih besar jam mulai',
         ];
     }
     public function prepareForValidation()
