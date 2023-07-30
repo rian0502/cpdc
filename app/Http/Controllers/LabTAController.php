@@ -35,19 +35,19 @@ class LabTAController extends Controller
     public function belumTaAlternativ(StoreCheckInBelumTaAlterLabRequest $request)
     {
         $request->validate([
-            'id_lokasi2' => 'required|exists:lokasi,encrypt_id',
+            'id_lokasi_bta' => 'required|exists:lokasi,encrypt_id',
         ], [
-            'id_lokasi2.required' => 'Lokasi harus diisi',
-            'id_lokasi2.exists' => 'Lokasi tidak ditemukan',
+            'id_lokasi_bta.required' => 'Lokasi harus diisi',
+            'id_lokasi_bta.exists' => 'Lokasi tidak ditemukan',
         ]);
         $data = [
-            'nama_kegiatan' => $request->nama_kegiatan2,
-            'id_lokasi' => Crypt::decrypt($request->id_lokasi2),
+            'nama_kegiatan' => $request->nama_kegiatan_bta,
+            'id_lokasi' => Crypt::decrypt($request->id_lokasi_bta),
             'keperluan' => 'Penelitian',
             'tanggal_kegiatan' => date('Y-m-d'),
-            'jam_mulai' => $request->jam_mulai2,
-            'jam_selesai' => $request->jam_selesai2,
-            'keterangan' => $request->ket2,
+            'jam_mulai' => date('H:i:s', strtotime($$request->jam_mulai_bta)),
+            'jam_selesai' => date('H:i:s', strtotime($$request->jam_selesai_bta)),
+            'keterangan' => $request->ket_bta,
             'jumlah_mahasiswa' => 1,
             'user_id' => Auth::user()->id,
         ];
@@ -63,13 +63,13 @@ class LabTAController extends Controller
     {
 
         $data = [
-            'nama_kegiatan' => $request->nama_kegiatan,
+            'nama_kegiatan' => $request->nama_kegiatan_bt,
             'id_lokasi' => Auth::user()->lokasi_id,
             'keperluan' => 'Penelitian',
             'tanggal_kegiatan' => date('Y-m-d'),
-            'jam_mulai' => $request->jam_mulai,
-            'jam_selesai' => $request->jam_selesai,
-            'keterangan' => $request->ket,
+            'jam_mulai' => date('H:i:s', strtotime($request->jam_mulai_bt)),
+            'jam_selesai' => date('H:i:s', strtotime($request->jam_selesai_bt)),
+            'keterangan' => $request->ket_bt,
             'jumlah_mahasiswa' => 1,
             'user_id' => Auth::user()->id,
         ];
