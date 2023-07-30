@@ -21,7 +21,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Kegiatan</th>
+                                    <th style="word-wrap: break-word;min-width: 160px;max-width: 160px;">Kegiatan</th>
                                     <th>Tanggal Pakai</th>
                                     <th>Waktu</th>
                                     <th>Keperluan</th>
@@ -57,7 +57,7 @@
                     {
                         data: 'nama_kegiatan',
                         name: 'nama_kegiatan',
-                        orderable: true
+                        orderable: true,
                     },
                     {
                         data: 'tanggal_kegiatan',

@@ -102,6 +102,11 @@ class LabController extends Controller
         return view('admin.admin_lab.lab.show', $data);
     }
 
+    public function showAsistensi($npm){
+
+        return view('admin.admin_lab.lab.detail_asistensi', $data);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
