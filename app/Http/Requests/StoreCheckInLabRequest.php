@@ -31,6 +31,17 @@ class StoreCheckInLabRequest extends FormRequest
             'jam_selesai' => 'required|date_format:H:i:s|after:jam_mulai',
         ];
     }
+    public function messages()
+    {
+        return [
+            'ket.required' => 'Keterangan harus diisi',
+            'ket.min' => 'Keterangan minimal 20 karakter',
+            'ket.max' => 'Keterangan maksimal 255 karakter',
+            'jam_mulai.required' => 'Jam Mulai harus diisi',
+            'jam_mulai.date_format' => 'Jam Mulai harus berformat jam:menit:detik',
+            'jam_selesai.required' => 'Jam Selesai harus diisi',
+        ];
+    }
 
     protected function prepareForValidation()
     {
