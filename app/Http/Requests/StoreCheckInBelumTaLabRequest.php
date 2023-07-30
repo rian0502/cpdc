@@ -46,7 +46,7 @@ class StoreCheckInBelumTaLabRequest extends FormRequest
             'jam_mulai.date_format' => 'Jam Mulai harus berformat jam:menit:detik',
             'jam_selesai.required' => 'Jam Selesai harus diisi',
             'jam_selesai.date_format' => 'Jam Selesai harus berformat jam:menit:detik',
-            'jam_selesai.after' => 'Jam Selesai harus setelah Jam Mulai'
+            'jam_selesai.after' => 'Jam Selesai harus lebih besar dari Jam Mulai'
         ];
     }
     public function prepareForValidation()

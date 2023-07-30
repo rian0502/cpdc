@@ -208,7 +208,7 @@
                                     <p class="mb-30">Isi data dengan benar</p>
                                 </div>
                             </div>
-                            <form action="{{ route('mahasiswa.lab.cekin.store') }}" method="POST">
+                            <form id="formabsen" action="{{ route('mahasiswa.lab.cekin.store') }}" method="POST">
                                 @csrf
                                 <div class="profile-edit-list row">
                                     {{-- form untuk sebelah kiri --}}
@@ -217,31 +217,32 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Keterangan</label>
-                                            <textarea class="form-control textarea @error('ket') form-control-danger @enderror" name="ket">{{ old('ket') }}</textarea>
-                                            @error('ket')
+                                            <textarea class="form-control textarea @error('ket_per_ta') form-control-danger @enderror" name="ket_per_ta">{{ old('ket_per_ta') }}</textarea>
+                                            @error('ket_per_ta')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     {{-- form untuk sebelah kanan --}}
                                     <div class="merek weight-500 col-md-6">
-
                                         <div class="form-group">
                                             <label>Jam Mulai</label>
-                                            <input class="form-control @error('jam_mulai') form-control-danger @enderror"
-                                                placeholder="jam" type="time" name="jam_mulai"
-                                                value="{{ old('jam_mulai') }}" />
-                                            </div>
-                                            @error('jam_mulai')
-                                                <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                            @enderror
+                                            <input
+                                                class="form-control @error('jam_mulai_per_ta') form-control-danger @enderror"
+                                                placeholder="jam" type="time" name="jam_mulai_per_ta"
+                                                value="{{ old('jam_mulai_per_ta') ?? null }}" />
+                                        </div>
+                                        @error('jam_mulai_per_ta')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
                                         <div class="form-group">
                                             <label>Jam Selesai</label>
-                                            <input class="form-control @error('jam_selesai') form-control-danger @enderror"
-                                                placeholder="jam" type="time" name="jam_selesai"
-                                                value="{{ old('jam_selesai') }}" />
+                                            <input
+                                                class="form-control @error('jam_selesai_per_ta') form-control-danger @enderror"
+                                                placeholder="jam" type="time" name="jam_selesai_per_ta"
+                                                value="{{ old('jam_selesai_per_ta') }}" />
                                         </div>
-                                        @error('jam_selesai')
+                                        @error('jam_selesai_per_ta')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
 
@@ -261,15 +262,16 @@
                                     <p class="mb-30">Isi data dengan benar</p>
                                 </div>
                             </div>
-                            <form action="{{ route('mahasiswa.lab.cekin.alternatif.store') }}" method="POST">
+                            <form id="formabsenAlaternatif" action="{{ route('mahasiswa.lab.cekin.alternatif.store') }}"
+                                method="POST">
                                 @csrf
                                 <div class="profile-edit-list row">
                                     {{-- form untuk sebelah kiri --}}
                                     <div class="weight-500 col-md-6">
                                         <div class="form-group">
                                             <label>Keterangan</label>
-                                            <textarea class="form-control textarea @error('ket2') form-control-danger @enderror" name="ket2">{{ old('ket2') }}</textarea>
-                                            @error('ket2')
+                                            <textarea class="form-control textarea @error('ket_alternatif') form-control-danger @enderror" name="ket_alternatif">{{ old('ket_alternatif') }}</textarea>
+                                            @error('ket_alternatif')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -280,8 +282,8 @@
                                         <div class="form-group">
                                             <label>Lokasi </label>
                                             <select
-                                                class="custom-select2 form-control @error('id_lokasi2') form-control-danger @enderror"
-                                                name="id_lokasi2" style="width: 100%; height: 38px">
+                                                class="custom-select2 form-control @error('id_lokasi_alternatif') form-control-danger @enderror"
+                                                name="id_lokasi_alternatif" style="width: 100%; height: 38px">
                                                 @foreach ($alternatif as $item)
                                                     <option value="{{ $item->encrypt_id }}"
                                                         {{ $user->lokasi_id == $item->id || old('id_lokasi2') == $item->encrypt_id ? 'selected' : '' }}>
@@ -289,26 +291,28 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @error('id_lokasi2')
+                                            @error('id_lokasi_alternatif')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label>Jam Mulai</label>
-                                            <input class="form-control @error('jam_mulai2') form-control-danger @enderror"
-                                                placeholder="jam" type="time" name="jam_mulai2"
-                                                value="{{ old('jam_mulai2') }}" />
-                                            </div>
-                                            @error('jam_mulai2')
-                                                <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                            @enderror
+                                            <input
+                                                class="form-control @error('jam_mulai_alternatif') form-control-danger @enderror"
+                                                placeholder="jam" type="time" name="jam_mulai_alternatif"
+                                                value="{{ old('jam_mulai_alternatif') }}" />
+                                        </div>
+                                        @error('jam_mulai_alternatif')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
                                         <div class="form-group">
                                             <label>Jam Selesai</label>
-                                            <input class="form-control @error('jam_selesai2') form-control-danger @enderror"
-                                                placeholder="jam" type="time" name="jam_selesai2"
-                                                value="{{ old('jam_selesai2') }}" />
+                                            <input
+                                                class="form-control @error('jam_selesai_alternatif') form-control-danger @enderror"
+                                                placeholder="jam" type="time" name="jam_selesai_alternatif"
+                                                value="{{ old('jam_selesai_alternatif') }}" />
                                         </div>
-                                        @error('jam_selesai2')
+                                        @error('jam_selesai_alternatif')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
 
@@ -360,10 +364,10 @@
                                             <input class="form-control @error('jam_mulai') form-control-danger @enderror"
                                                 placeholder="jam" type="time" name="jam_mulai"
                                                 value="{{ old('jam_mulai') }}" />
-                                            </div>
-                                            @error('jam_mulai')
-                                                <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                            @enderror
+                                        </div>
+                                        @error('jam_mulai')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
                                         <div class="form-group">
                                             <label>Jam Selesai</label>
                                             <input
@@ -438,10 +442,10 @@
                                             <input class="form-control @error('jam_mulai2') form-control-danger @enderror"
                                                 placeholder="jam" type="time" name="jam_mulai2"
                                                 value="{{ old('jam_mulai2') }}" />
-                                            </div>
-                                            @error('jam_mulai2')
-                                                <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                            @enderror
+                                        </div>
+                                        @error('jam_mulai2')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
                                         <div class="form-group">
                                             <label>Jam Selesai</label>
                                             <input
