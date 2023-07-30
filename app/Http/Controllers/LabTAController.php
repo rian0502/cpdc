@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Lokasi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCheckInBelumTaLabRequest;
 use App\Http\Requests\StoreCheckInLabRequest;
 use App\Models\Laboratorium;
 use App\Models\User;
@@ -27,6 +28,54 @@ class LabTAController extends Controller
                 ->where('tanggal_kegiatan', date('Y-m-d'))->first(),
         ];
         return view('mahasiswa.lab_ta.index', $data);
+    }
+    
+    public function belumTaAlternativ(StoreCheckInBelumTaLabRequest $request)
+    {
+        $request->validate([
+            'id_lokasi' => 'required|exists:lokasi,encrypt_id',
+        ], [
+            'id_lokasi.required' => 'Lokasi harus diisi',
+            'id_lokasi.exists' => 'Lokasi tidak ditemukan',
+        ]);
+        $data = [
+            'nama_kegiatan' => $request->nama_kegiatan,
+            'id_lokasi' => Crypt::decrypt($request->id_lokasi),
+            'keperluan' => 'Penelitian',
+            'tanggal_kegiatan' => date('Y-m-d'),
+            'jam_mulai' => $request->jam_mulai,
+            'jam_selesai' => $request->jam_selesai,
+            'keterangan' => $request->ket,
+            'jumlah_mahasiswa' => 1,
+            'user_id' => Auth::user()->id,
+        ];
+        $insert = Laboratorium::create($data);
+        $update = Laboratorium::find($insert->id);
+        $update->encrypted_id = Crypt::encrypt($insert->id);
+        $update->save();
+        return redirect()->route('mahasiswa.lab.index')->with('success', 'Berhasil Check In Alternatif');
+    }
+
+
+    public function belumTA(StoreCheckInBelumTaLabRequest $request)
+    {
+
+        $data = [
+            'nama_kegiatan' => $request->nama_kegiatan,
+            'id_lokasi' => Auth::user()->lokasi_id,
+            'keperluan' => 'Penelitian',
+            'tanggal_kegiatan' => date('Y-m-d'),
+            'jam_mulai' => $request->jam_mulai,
+            'jam_selesai' => $request->jam_selesai,
+            'keterangan' => $request->ket,
+            'jumlah_mahasiswa' => 1,
+            'user_id' => Auth::user()->id,
+        ];
+        $insert = Laboratorium::create($data);
+        $update = Laboratorium::find($insert->id);
+        $update->encrypted_id = Crypt::encrypt($insert->id);
+        $update->save();
+        return redirect()->route('mahasiswa.lab.index')->with('success', 'Berhasil Check In');
     }
 
     public function perGroup(Request $request)

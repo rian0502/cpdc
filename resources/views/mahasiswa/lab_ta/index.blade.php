@@ -196,7 +196,8 @@
                             </div>
                         </form>
                     </div>
-                @elseif(Auth::user()->mahasiswa->ta_satu)
+                @elseif(Auth::user()->mahasiswa->ta_satu->first())
+                    {{ dd(Auth::user()->mahasiswa->ta_satu) }}
                     @if (!$absen)
                         <div class="pd-20 card-box mb-30">
                             <div class="clearfix">
@@ -318,139 +319,147 @@
                         </div>
                     @endif
                 @else
-                    <div class="pd-20 card-box mb-30">
-                        <div class="clearfix">
-                            <div class="pull-left">
-                                <h4 class="text-dark h4">Presensi Aktivitas Laboratorium Utama (Peer Group)</h4>
-                                <p class="mb-30">Isi data dengan benar</p>
+                    @if (!$absen)
+                        <div class="pd-20 card-box mb-30">
+                            <div class="clearfix">
+                                <div class="pull-left">
+                                    <h4 class="text-dark h4">Presensi Aktivitas Laboratorium Utama (Peer Group)</h4>
+                                    <p class="mb-30">Isi data dengan benar</p>
+                                </div>
                             </div>
+                            <form action="{{ route('mahasiswa.lab.cekin.belum.ta') }}" method="POST">
+                                @csrf
+                                <div class="profile-edit-list row">
+                                    {{-- form untuk sebelah kiri --}}
+                                    <div class="weight-500 col-md-6">
+                                        <div class="form-group">
+                                            <label>Judul Penelitian</label>
+                                            <input type="text" value="{{ old('nama_kegiatan') }}"
+                                                class="form-control @error('nama_kegiatan') form-control-danger @enderror"
+                                                name="nama_kegiatan" placeholder="Masukkan judul penelitian kamu" />
+                                            @error('nama_kegiatan')
+                                                <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Keterangan</label>
+                                            <textarea placeholder="Jelaskan apa yang mau kamu lakukan hari ini"
+                                                class="form-control textarea @error('ket') form-control-danger @enderror" name="ket">{{ old('ket') }}</textarea>
+                                            @error('ket')
+                                                <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    {{-- form untuk sebelah kanan --}}
+                                    <div class="merek weight-500 col-md-6">
+
+                                        <div class="form-group">
+                                            <label>Jam Mulai</label>
+                                            <input class="form-control @error('jam_mulai') form-control-danger @enderror"
+                                                placeholder="jam" type="time" name="jam_mulai"
+                                                value="{{ old('jam_mulai') }}" />
+                                            @error('jam_mulai')
+                                                <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Jam Selesai</label>
+                                            <input
+                                                class="form-control @error('jam_selesai') form-control-danger @enderror"
+                                                placeholder="jam" type="time" name="jam_selesai"
+                                                value="{{ old('jam_selesai') }}" />
+                                        </div>
+                                        @error('jam_selesai')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="submit btn btn-primary">Kirim</button>
+                                </div>
+                            </form>
                         </div>
-                        <form action="{{-- route('lab.ruang.store') --}}" method="POST">
-                            @csrf
-                            <div class="profile-edit-list row">
-                                {{-- form untuk sebelah kiri --}}
-                                <div class="weight-500 col-md-6">
-                                    <div class="form-group">
-                                        <label>Judul Penelitian</label>
-                                        <input type="text" value="{{ old('nama_kegiatan') }}"
-                                            class="form-control @error('nama_kegiatan') form-control-danger @enderror"
-                                            name="nama_kegiatan" placeholder="Nama Kegiatan" />
-                                        @error('nama_kegiatan')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Keterangan</label>
-                                        <textarea class="form-control textarea @error('ket') form-control-danger @enderror" name="ket">{{ old('ket') }}</textarea>
-                                        @error('ket')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                {{-- form untuk sebelah kanan --}}
-                                <div class="merek weight-500 col-md-6">
+                    @endif
 
-                                    <div class="form-group">
-                                        <label>Jam Mulai</label>
-                                        <input class="form-control @error('jam_mulai') form-control-danger @enderror"
-                                            placeholder="jam" type="time" name="jam_mulai"
-                                            value="{{ old('jam_mulai') }}" />
-                                        @error('jam_mulai')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Jam Selesai</label>
-                                        <input class="form-control @error('jam_selesai') form-control-danger @enderror"
-                                            placeholder="jam" type="time" name="jam_selesai"
-                                            value="{{ old('jam_selesai') }}" />
-                                    </div>
-                                    @error('jam_selesai')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-
+                    @if (!$absen_second)
+                        <div class="pd-20 card-box mb-30">
+                            <div class="clearfix">
+                                <div class="pull-left">
+                                    <h4 class="text-dark h4">Presensi Aktivitas Laboratorium Alternatif</h4>
+                                    <p class="mb-30">Isi data dengan benar</p>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="submit btn btn-primary">Kirim</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="pd-20 card-box mb-30">
-                        <div class="clearfix">
-                            <div class="pull-left">
-                                <h4 class="text-dark h4">Presensi Aktivitas Laboratorium Alternatif</h4>
-                                <p class="mb-30">Isi data dengan benar</p>
-                            </div>
+                            <form action="{{ route('mahasiswa.lab.cekin.belum.ta.alternatif') }}" method="POST">
+                                @csrf
+                                <div class="profile-edit-list row">
+                                    {{-- form untuk sebelah kiri --}}
+                                    <div class="weight-500 col-md-6">
+                                        <div class="form-group">
+                                            <label>Judul Penelitian</label>
+                                            <input type="text" value="{{ old('nama_kegiatan') }}"
+                                                class="form-control @error('nama_kegiatan') form-control-danger @enderror"
+                                                name="nama_kegiatan" placeholder="Nama Kegiatan" />
+                                            @error('nama_kegiatan')
+                                                <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Keterangan</label>
+                                            <textarea class="form-control textarea @error('ket') form-control-danger @enderror" name="ket">{{ old('ket') }}</textarea>
+                                            @error('ket')
+                                                <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                    </div>
+                                    {{-- form untuk sebelah kanan --}}
+                                    <div class="merek weight-500 col-md-6">
+                                        <div class="form-group">
+                                            <label>Lokasi </label>
+                                            <select
+                                                class="custom-select2 form-control @error('id_lokasi') form-control-danger @enderror"
+                                                name="id_lokasi" style="width: 100%; height: 38px">
+                                                name="id_lokasi" required>
+                                                @foreach ($alternatif as $item)
+                                                    <option value="{{ $item->encrypt_id }}"
+                                                        {{ $user->lokasi_id == $item->id || old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
+                                                        {{ $item->nama_lokasi }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('id_lokasi')
+                                                <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Jam Mulai</label>
+                                            <input class="form-control @error('jam_mulai') form-control-danger @enderror"
+                                                placeholder="jam" type="time" name="jam_mulai"
+                                                value="{{ old('jam_mulai') }}" />
+                                            @error('jam_mulai')
+                                                <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Jam Selesai</label>
+                                            <input
+                                                class="form-control @error('jam_selesai') form-control-danger @enderror"
+                                                placeholder="jam" type="time" name="jam_selesai"
+                                                value="{{ old('jam_selesai') }}" />
+                                        </div>
+                                        @error('jam_selesai')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="submit btn btn-primary">Kirim</button>
+                                </div>
+                            </form>
                         </div>
-                        <form action="{{-- route('lab.ruang.store') --}}" method="POST">
-                            @csrf
-                            <div class="profile-edit-list row">
-                                {{-- form untuk sebelah kiri --}}
-                                <div class="weight-500 col-md-6">
-                                    <div class="form-group">
-                                        <label>Judul Penelitian</label>
-                                        <input type="text" value="{{ old('nama_kegiatan') }}"
-                                            class="form-control @error('nama_kegiatan') form-control-danger @enderror"
-                                            name="nama_kegiatan" placeholder="Nama Kegiatan" />
-                                        @error('nama_kegiatan')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Keterangan</label>
-                                        <textarea class="form-control textarea @error('ket') form-control-danger @enderror" name="ket">{{ old('ket') }}</textarea>
-                                        @error('ket')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                </div>
-                                {{-- form untuk sebelah kanan --}}
-                                <div class="merek weight-500 col-md-6">
-                                    <div class="form-group">
-                                        <label>Lokasi </label>
-                                        <select
-                                            class="custom-select2 form-control @error('id_lokasi') form-control-danger @enderror"
-                                            name="id_lokasi" style="width: 100%; height: 38px">
-                                            name="id_lokasi" required>
-                                            @foreach ($alternatif as $item)
-                                                <option value="{{ $item->encrypt_id }}"
-                                                    {{ $user->lokasi_id == $item->id || old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
-                                                    {{ $item->nama_lokasi }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('id_lokasi')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Jam Mulai</label>
-                                        <input class="form-control @error('jam_mulai') form-control-danger @enderror"
-                                            placeholder="jam" type="time" name="jam_mulai"
-                                            value="{{ old('jam_mulai') }}" />
-                                        @error('jam_mulai')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Jam Selesai</label>
-                                        <input class="form-control @error('jam_selesai') form-control-danger @enderror"
-                                            placeholder="jam" type="time" name="jam_selesai"
-                                            value="{{ old('jam_selesai') }}" />
-                                    </div>
-                                    @error('jam_selesai')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="submit btn btn-primary">Kirim</button>
-                            </div>
-                        </form>
-                    </div>
+                    @endif
                 @endif
 
 
