@@ -31,7 +31,7 @@ class LabTAController extends Controller
         ];
         return view('mahasiswa.lab_ta.index', $data);
     }
-    
+
     public function belumTaAlternativ(StoreCheckInBelumTaAlterLabRequest $request)
     {
         $request->validate([
@@ -113,9 +113,9 @@ class LabTAController extends Controller
             'id_lokasi' => $user->lokasi_id,
             'keperluan' => 'Penelitian',
             'tanggal_kegiatan' => date('Y-m-d'),
-            'jam_mulai' => $request->jam_mulai,
-            'jam_selesai' => $request->jam_selesai,
-            'keterangan' => $request->ket,
+            'jam_mulai' => date('H:i:s', strtotime($request->jam_mulai_per_ta)),
+            'jam_selesai' => date('H:i:s', strtotime($request->jam_selesai_per_ta)),
+            'keterangan' => $request->ket_per_ta,
             'jumlah_mahasiswa' => 1,
             'user_id' => Auth::user()->id,
         ]);
@@ -127,12 +127,11 @@ class LabTAController extends Controller
     public function alternatif(StoreCheckInAlternativLabRequest $request)
     {
         $request->validate([
-            'id_lokasi2' => 'required|exists:lokasi,encrypt_id',
+            'id_lokasi_alternatif' => 'required|exists:lokasi,encrypt_id',
         ], [
-            'id_lokasi2.required' => 'Lokasi harus diisi',
-            'id_lokasi2.exists' => 'Lokasi tidak ditemukan',
+            'id_lokasi_alternatif.required' => 'Lokasi harus diisi',
+            'id_lokasi_alternatif.exists' => 'Lokasi tidak ditemukan',
         ]);
-        $user = User::find(Auth::user()->id);
         $mahasiswa = Auth::user()->mahasiswa;
         if ($mahasiswa->ta_satu->first()) {
             $judul_kegiatan = $mahasiswa->ta_satu->first()->judul_ta;
@@ -145,12 +144,12 @@ class LabTAController extends Controller
         }
         $lab = Laboratorium::create([
             'nama_kegiatan' => $judul_kegiatan,
-            'id_lokasi' => Crypt::decrypt($request->id_lokasi2),
+            'id_lokasi' => Crypt::decrypt($request->id_lokasi_alternatif),
             'keperluan' => 'Penelitian',
             'tanggal_kegiatan' => date('Y-m-d'),
-            'jam_mulai' => $request->jam_mulai2,
-            'jam_selesai' => $request->jam_selesai2,
-            'keterangan' => $request->ket2,
+            'jam_mulai' => date('H:i:s', strtotime($request->jam_mulai_alternatif)),
+            'jam_selesai' => date('H:i:s', strtotime($request->jam_selesai_alternatif)),
+            'keterangan' => $request->ket_alternatif,
             'jumlah_mahasiswa' => 1,
             'user_id' => Auth::user()->id,
         ]);
