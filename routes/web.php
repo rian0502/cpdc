@@ -123,6 +123,7 @@ Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verifi
         ]
     );
     Route::get('asistensi', [LabController::class, 'tableAktivitasLab'])->name('asistensi.ajax');
+    Route::get('detail_asistensi/{npm}', [LabController::class, 'showAsistensi'])->name('asistensi.show');
     Route::get('dataAktivitas', [LabController::class, 'dataLaboratorium'])->name('data.ajax');
     //chart line aktivitas lab
 });

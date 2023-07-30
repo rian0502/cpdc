@@ -1343,10 +1343,7 @@
                                     name: 'Jumlah PKM',
                                     data: data.jumlah_PKM
                                 },
-                                {
-                                    name: 'Jumlah Asistensi',
-                                    data: data.jumlah_Asistensi
-                                },
+
 
                             ]
                         };
@@ -1433,7 +1430,7 @@
                                     // var downloadUrl = "{{ asset('uploads/file_') }}" + '/' + row
                                     //     .file_litabmas;
                                     var detail =
-                                        "{{ route('dosen.litabmas.show', ':id') }}"
+                                        "{{ route('lab.asistensi.show', ':id') }}"
                                         .replace(
                                             ':id', row.npm);
 

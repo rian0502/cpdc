@@ -84,6 +84,11 @@
             border-radius: 50%;
             object-fit: cover;
         }
+        table td {
+        min-width: 80px;
+        max-width: 150px;
+        word-wrap: break-word;
+      }
     </style>
     <!-- End Google Tag Manager -->
 </head>
