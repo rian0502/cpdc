@@ -227,7 +227,8 @@
                         <p style="font-family: Arial, sans-serif;">{{ Auth::user()->name }}, dengan Nomor Induk Pegawai
                             {{ Auth::user()->dosen->nip }},
                             berpangkat {{ Auth::user()->dosen->pangkatTerakhir->kepangkatan ?? '-' }}
-                            dan menjabat sebagai {{ Auth::user()->dosen->jabatanTerakhir->jabatan ?? 'Dosen' }} di Jurusan
+                            dan menjabat sebagai {{ Auth::user()->dosen->jabatanTerakhir->jabatan ?? 'Dosen' }} di
+                            Jurusan
                             Kimia,
                             Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Lampung.</p>
                     </div>
@@ -367,19 +368,18 @@
                     <div class="pindah-halaman" id="pindah-halaman">
                         <div class="section">
                             <h2 style="font-family: Arial, sans-serif;">Penghargaan</h2>
-                            @foreach ($organisasi as $item)
+                            @foreach ($penghargaan as $item)
                                 <table>
                                     <tr>
                                         <td rowspan="3" class="margin">
-                                            {{ $item->tahun_menjabat }}
+                                            {{ $carbon::parse($item->tahun)->format('Y') }}
                                         </td>
                                         <td class="text-justify">
                                             <div class="judul">
-                                                {{ $item->nama_organisasi }}
+                                                {{ $item->nama }}
                                             </div>
                                             <div style="margin-top: 15px;"></div>
-                                            Menjabat sebagai {{ $item->jabatan }} dengan masa jabatan dari tahun
-                                            {{ $item->tahun_menjabat . ' hingga ' . $item->tahun_berakhir }}
+                                            {{ $item->uraian }}
                                         </td>
                                     </tr>
                                 </table>
@@ -389,19 +389,18 @@
                     <div class="pindah-halaman" id="pindah-halaman">
                         <div class="section">
                             <h2 style="font-family: Arial, sans-serif;">Seminar</h2>
-                            @foreach ($organisasi as $item)
+                            @foreach ($seminar as $item)
                                 <table>
                                     <tr>
                                         <td rowspan="3" class="margin">
-                                            {{ $item->tahun_menjabat }}
+                                            {{ $carbon::parse($item->tahun)->format('Y') }}
                                         </td>
                                         <td class="text-justify">
                                             <div class="judul">
-                                                {{ $item->nama_organisasi }}
+                                                {{ $item->nama }}
                                             </div>
                                             <div style="margin-top: 15px;"></div>
-                                            Menjabat sebagai {{ $item->jabatan }} dengan masa jabatan dari tahun
-                                            {{ $item->tahun_menjabat . ' hingga ' . $item->tahun_berakhir }}
+                                            {{ $item->uraian }}
                                         </td>
                                     </tr>
                                 </table>

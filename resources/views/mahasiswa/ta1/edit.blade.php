@@ -71,7 +71,7 @@
                                         <optgroup label="Pembimbing 1">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_satu',$seminar->pembimbing_satu->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_satu', $seminar->pembimbing_satu->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
                                         </optgroup>
@@ -85,7 +85,7 @@
                                         <optgroup label="Pembimbing 2">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_dua',$seminar->pembimbing_dua->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
                                             @if (old('id_pembimbing_dua') == 'new' || $errors->has('pbl2_nama') || $seminar->pbl2_nama != null)
@@ -102,7 +102,8 @@
                                     <div class="form-group">
                                         <label>Dosen Pembimbing 2</label>
                                         <input autofocus name="pbl2_nama" class="form-control" type="text"
-                                            value="{{ old('pbl2_nama', $seminar->pbl2_nama) }}" placeholder="Masukkan Nama Dosen Pembimbing 2">
+                                            value="{{ old('pbl2_nama', $seminar->pbl2_nama) }}"
+                                            placeholder="Masukkan Nama Dosen Pembimbing 2">
                                         @error('pbl2_nama')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
@@ -114,7 +115,8 @@
                                     <div class="form-group">
                                         <label>NIP Pembimbing 2</label>
                                         <input autofocus name="pbl2_nip" class="form-control" type="text"
-                                            value="{{ old('pbl2_nip', $seminar->pbl2_nip) }}" placeholder="Masukkan NIP Dosen Pembimbing 2">
+                                            value="{{ old('pbl2_nip', $seminar->pbl2_nip) }}"
+                                            placeholder="Masukkan NIP Dosen Pembimbing 2">
                                         @error('pbl2_nip')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
@@ -187,9 +189,14 @@
                                 {{-- hanya tampil saat mode mobile --}}
                                 <div class="form-group" id="form-mobile">
                                     <label>Ide Judul</label>
-                                    <select name="sumber_penelitian" class="selectpicker form-control @error('sumber_penelitian') form-control-danger @enderror">
-                                    <option value="Dosen" {{old('sumber_penelitian',$seminar->sumber_penelitian)=='Dosen' ? 'selected' : ''}}>Dari Dosen</option>
-                                    <option value="Mahasiswa" {{old('sumber_penelitian', $seminar->sumber_penelitian)=='Mahasiswa' ? 'selected' : ''}}>Dari Mahasiswa</option>
+                                    <select name="sumber_penelitian"
+                                        class="selectpicker form-control @error('sumber_penelitian') form-control-danger @enderror">
+                                        <option value="Dosen"
+                                            {{ old('sumber_penelitian', $seminar->sumber_penelitian) == 'Dosen' ? 'selected' : '' }}>
+                                            Dari Dosen</option>
+                                        <option value="Mahasiswa"
+                                            {{ old('sumber_penelitian', $seminar->sumber_penelitian) == 'Mahasiswa' ? 'selected' : '' }}>
+                                            Dari Mahasiswa</option>
                                     </select>
                                     @error('sumber_penelitian')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>

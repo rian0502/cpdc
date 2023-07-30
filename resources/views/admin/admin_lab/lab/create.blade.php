@@ -28,17 +28,18 @@
                                     <label>Keperluan</label>
                                     <select class="custom-select2 form-control" style="width: 100%; height: 38px"
                                         name="keperluan" onchange="toggleDropdown(this, 'anggota_asistensi')">
-                                        
-                                        <option value="Praktikum"{{ old('keperluan') == 'Praktikum' ? 'selected' : '' }}>
-                                            Praktikum</option>
-                                        <option value="Ujian" {{ old('keperluan') == 'Ujian' ? 'selected' : '' }}>
-                                            Ujian</option>
+
+                                        <option value="MBKM" {{ old('keperluan') == 'MBKM' ? 'selected' : '' }}>
+                                            MBKM</option>
                                         <option value="PKL" {{ old('keperluan') == 'PKL' ? 'selected' : '' }}>
                                             PKL</option>
                                         <option value="PKM" {{ old('keperluan') == 'PKM' ? 'selected' : '' }}>
                                             PKM</option>
-                                        <option value="MBKM" {{ old('keperluan') == 'MBKM' ? 'selected' : '' }}>
-                                            MBKM</option>
+                                        <option value="Praktikum"{{ old('keperluan') == 'Praktikum' ? 'selected' : '' }}>
+                                            Praktikum</option>
+
+                                        <option value="Ujian" {{ old('keperluan') == 'Ujian' ? 'selected' : '' }}>
+                                            Ujian</option>
                                         <option value="Lainnya" {{ old('keperluan') == 'Lainnya' ? 'selected' : '' }}>
                                             Lainnya
                                         </option>
@@ -65,18 +66,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jam Mulai</label>
-                                    <input
-                                        class="form-control @error('jam_mulai') form-control-danger @enderror"
-                                        placeholder="jam" type="time" name="jam_mulai"
-                                        value="{{ old('jam_mulai') }}" />
+                                    <input class="form-control @error('jam_mulai') form-control-danger @enderror"
+                                        placeholder="jam" type="time" name="jam_mulai" value="{{ old('jam_mulai') }}" />
                                     @error('jam_mulai')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Jam Selesai</label>
-                                    <input
-                                        class="form-control @error('jam_selesai') form-control-danger @enderror"
+                                    <input class="form-control @error('jam_selesai') form-control-danger @enderror"
                                         placeholder="jam" type="time" name="jam_selesai"
                                         value="{{ old('jam_selesai') }}" />
                                 </div>

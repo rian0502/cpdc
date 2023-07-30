@@ -72,11 +72,12 @@
             border-radius: 50%;
             object-fit: cover;
         }
+
         table td {
-        min-width: 80px;
-        max-width: 150px;
-        word-wrap: break-word;
-      }
+            min-width: 80px;
+            max-width: 150px;
+            word-wrap: break-word;
+        }
     </style>
     <!-- End Google Tag Manager -->
 </head>
@@ -212,65 +213,62 @@
                         </li>
                     @endrole
                     @role('jurusan')
-                    <li>
-                        <a href="{{ route('jurusan.lokasi.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/lokasi*') ? 'active' : '' }}">
-                            <span class="micon bi bi-pin-map"></span><span class="mtext">Lokasi</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('sudo.akun_mahasiswa.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_mahasiswa*') ? 'active' : '' }}">
-                            <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('jurusan.alumni.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/alumni*') ? 'active' : '' }}">
-                            <span class="micon fa-solid fa-users"></span><span class="mtext">Data Alumni</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('sudo.akun_dosen.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_dosen*') ? 'active' : '' }}">
-                            <span class="micon bi bi-person-rolodex"></span><span class="mtext">Data Dosen</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('sudo.akun_admin.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">
-                            <span class="micon bi bi-person-workspace"></span><span class="mtext">Data Admin</span>
-                        </a>
-                    </li>
-
-
-
+                        <li>
+                            <a href="{{ route('jurusan.lokasi.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/lokasi*') ? 'active' : '' }}">
+                                <span class="micon bi bi-pin-map"></span><span class="mtext">Lokasi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jurusan.mahasiswa.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/mahasiswa*') ? 'active' : '' }}">
+                                <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jurusan.alumni.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/alumni*') ? 'active' : '' }}">
+                                <span class="micon fa-solid fa-users"></span><span class="mtext">Data Alumni</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('sudo.akun_dosen.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_dosen*') ? 'active' : '' }}">
+                                <span class="micon bi bi-person-rolodex"></span><span class="mtext">Data Dosen</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('sudo.akun_admin.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/akun_admin*') ? 'active' : '' }}">
+                                <span class="micon bi bi-person-workspace"></span><span class="mtext">Data Admin</span>
+                            </a>
+                        </li>
                     @endrole
                     @role('jurusan|tpmps')
-                    <li>
-                        <a href="{{ route('jurusan.prestasi.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/prestasi*') ? 'active' : '' }}">
-                            <span class="micon bi bi-award"></span><span class="mtext">Prestasi</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('jurusan.aktivitas.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/aktivitas*') ? 'active' : '' }}">
-                            <span class="micon bi bi-clock-history"></span><span class="mtext">Extra Aktivity</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('jurusan.publikasi.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/publikasi*') ? 'active' : '' }}">
-                            <span class="micon bi bi-journal-text"></span><span class="mtext">PUBLIKASI</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('jurusan.litabmas.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/litabmas*') ? 'active' : '' }}">
-                            <span class="micon bi bi-journal-richtext"></span><span class="mtext">LITABMAS</span>
-                        </a>
-                    </li>
+                        <li>
+                            <a href="{{ route('jurusan.prestasi.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/prestasi*') ? 'active' : '' }}">
+                                <span class="micon bi bi-award"></span><span class="mtext">Prestasi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jurusan.aktivitas.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/aktivitas*') ? 'active' : '' }}">
+                                <span class="micon bi bi-clock-history"></span><span class="mtext">Extra Aktivity</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jurusan.publikasi.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/publikasi*') ? 'active' : '' }}">
+                                <span class="micon bi bi-journal-text"></span><span class="mtext">PUBLIKASI</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jurusan.litabmas.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/litabmas*') ? 'active' : '' }}">
+                                <span class="micon bi bi-journal-richtext"></span><span class="mtext">LITABMAS</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="{{ route('jurusan.penghargaan.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/penghargaan*') ? 'active' : '' }}">
@@ -381,7 +379,7 @@
                         <li>
                             <a href="{{ route('sudo.admin_jurusan.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('sudo/admin_jurusan*') ? 'active' : '' }}">
-                                <span class="micon bi bi bi-person-fill"></span><span class="mtext">Admin Jurusan</span>
+                                <span class="micon fas fa-user-shield"></span><span class="mtext">Admin Jurusan</span>
                             </a>
                         </li>
                     @endrole
@@ -432,7 +430,7 @@
                         <li>
                             <a href="{{ route('mahasiswa.aktivitas_alumni.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni*') ? 'active' : '' }}">
-                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Aktivitas
+                                <span class="micon fas fa-user-clock"></span><span class="mtext">Aktivitas
                                     Alumni</span>
                             </a>
                         </li>

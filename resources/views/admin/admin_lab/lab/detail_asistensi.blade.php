@@ -35,7 +35,7 @@
                             <div class="row border-bottom">
                                 <label class="col-md-3 bold"> <strong>Nama</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $mahasiswa->nama }}
+                                    {{ $mahasiswa->nama_mahasiswa }}
                                 </div>
                                 <label class="col-md-3 bold"><b>NPM</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -49,46 +49,36 @@
                                 </div>
                                 <label class="col-md-3 bold"><strong> Email </strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $mahasiswa->email }}
+                                    {{ $mahasiswa->user->email }}
                                 </div>
-                            </div>
-                            <div class="row border-bottom">
-                                <label class="col-md-3 bold"> <strong>Total Jam</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $lab->total_jam }}
-                                </div>
-                                <label class="col-md-3 bold"> <strong>Total Kehadiran</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{$lab->total_kehadiran}}                                </div>
                             </div>
                         </div>
-                        @if ($anggota)
+                        @if ($asistensi)
                             <h4 class="mt-5">
                                 Data Presensi
                             </h4>
-                            <table class="table table-striped mt-2">
+                            <table class="table data-table table-striped mt-2">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Judul</th>
                                         <th scope="col">Lokasi</th>
-                                        <th scope="col">Keperluan</th>
                                         <th scope="col">Jumlah Peserta</th>
                                         <th scope="col">Tanggal Kegiatan</th>
-                                        <th scope="col">Durasi</th>
+                                        <th scope="col">Waktu</th>
                                         <th scope="col">Keterangan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($anggota as $item)
+                                    @foreach ($asistensi as $item)
                                         <tr>
-                                           <th scope="col">Judul</th>
-                                            <th scope="col" >{{$item->lokasi}}</th>
-                                            <th scope="col">{{$item->keperluan}}</th>
-                                            <th scope="col">{{$item->jumlah_peserta }}Peserta</th>
-                                            <th scope="col">{{$item->tanggal_peserta }}</th>
-                                            <th scope="col">{{$item->jam_mulai}} - {{$item->jam_selesai}}</th>
-                                            <th scope="col">{{$item->keterangan}}</th>
+                                            <th scope="col">{{ $loop->iteration }}</th>
+                                            <th scope="col">{{ $item->nama_kegiatan }}</th>
+                                            <th scope="col">{{ $item->lokasi->nama_lokasi }}</th>
+                                            <th scope="col">{{ $item->jumlah_mahasiswa }}Peserta</th>
+                                            <th scope="col">{{ $carbon::parse($item->tanggal_kegiatan)->format('d F Y') }}</th>
+                                            <th scope="col">{{ $carbon::parse($item->jam_mulai)->format('h:i') }} - {{ $carbon::parse($item->jam_selesai)->format('h:i') }}</th>
+                                            <th scope="col">{{ $item->keterangan }}</th>
                                         </tr>
                                     @endforeach
 

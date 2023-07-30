@@ -53,6 +53,7 @@ class LokasiController extends Controller
             'nama_lokasi' => $request->nama_lokasi,
             'nama_gedung' => $request->nama_gedung,
             'lantai_tingkat' => $request->lantai_tingkat,
+            'jenis_ruangan' => $request->jenis_ruangan,
             'created_at' => now()
         ];
         $simpan = Lokasi::create($data);
@@ -99,10 +100,12 @@ class LokasiController extends Controller
     public function update(StoreLokasiRequest $request, $id)
     {
         //
+        return dd($request->all());
         $data = [
             'nama_lokasi' => $request->nama_lokasi,
             'nama_gedung' => $request->nama_gedung,
             'lantai_tingkat' => $request->lantai_tingkat,
+            'jenis_ruangan' => $request->jenis_ruangan,
             'updated_at' => now()
         ];
         $update = Lokasi::where('id', Crypt::decrypt($id))->update($data);

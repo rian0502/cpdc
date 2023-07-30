@@ -32,52 +32,6 @@
                                 </thead>
                                 <tbody>
 
-                                    {{-- @foreach ($students as $item)
-                                    <tr>
-                                        <td>
-                                            {{ $loop->iteration }}
-                                        </td>
-                                        <td>
-                                            {{ $item->nama_mahasiswa }}
-                                        </td>
-                                        <td>
-                                            {{ $item->user->email }}
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
-                                                    role="button" data-toggle="dropdown">
-                                                    <i class="fa fa-ellipsis-h"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item"
-                                                        href="
-                                            {{ route('sudo.akun_mahasiswa.show', $item->id) }}
-                                            "><i
-                                                            class="fal fa-eye"></i> Detail</a>
-                                                    <a class="dropdown-item"
-                                                        href="
-                                            {{ route('sudo.akun_mahasiswa.edit', 1) }}
-                                            "><i
-                                                            class="fa fa-pencil"></i> Edit</a>
-                                                    <form
-                                                        action="
-                                            {{ route('sudo.akun_mahasiswa.destroy', 1) }}
-                                            "
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="dropdown-item text-danger"><i
-                                                                class="fa fa-trash"></i>
-                                                            Delete</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach --}}
-
-
                                 </tbody>
                             </table>
                         </div>

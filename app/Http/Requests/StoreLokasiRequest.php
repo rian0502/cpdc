@@ -28,6 +28,7 @@ class StoreLokasiRequest extends FormRequest
             'nama_lokasi' => 'required|max:100',
             'nama_gedung' => 'required|max:100',
             'lantai_tingkat' => 'required|numeric|max:100',
+            'jenis_ruangan' => 'required|in:Kelas,Lab'
         ];
     }
     public function messages()
@@ -39,6 +40,8 @@ class StoreLokasiRequest extends FormRequest
             'nama_gedung.max' => 'Nama Gedung maksimal 100 karakter',
             'lantai_tingkat.required' => 'Lantai/Tingkat harus diisi',
             'lantai_tingkat.max' => 'Lantai/Tingkat maksimal 100 karakter',
+            'jenis_ruangan.required' => 'Jenis Ruangan harus diisi',
+            'jenis_ruangan.in' => 'Jenis Ruangan harus diisi dengan benar'
         ];
     }
     protected function prepareForValidation()

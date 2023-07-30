@@ -28,6 +28,9 @@ class MahasiswaTaSatuController extends Controller
 
     public function create()
     {
+        if (Auth::user()->mahasiswa->ta_satu->first()) {
+            return redirect()->back();
+        }
         $data = [
             'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
                 ->where('status', 'Aktif')
@@ -40,6 +43,9 @@ class MahasiswaTaSatuController extends Controller
 
     public function edit($id)
     {
+        if (Auth::user()->mahasiswa->ta_satu->first()->id != Crypt::decrypt($id) && Auth::user()->mahasiswa->ta_satu->first()) {
+            return redirect()->back();
+        }
         $data = [
             'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
                 ->where('status', 'Aktif')
@@ -73,7 +79,6 @@ class MahasiswaTaSatuController extends Controller
             'status_admin' => 'Valid',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
-
         ];
 
         if ($request->id_pembimbing_dua == 'new') {
@@ -131,6 +136,7 @@ class MahasiswaTaSatuController extends Controller
         }
         $seminar->tahun_akademik = $request->tahun_akademik;
         $seminar->semester = $request->semester;
+        $seminar->sumber_penelitian = $request->sumber_penelitian;
         $seminar->periode_seminar = $request->periode_seminar;
         $seminar->judul_ta = Str::title($request->judul_ta);
         $seminar->sks = $request->sks;

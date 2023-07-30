@@ -48,6 +48,29 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label for="">Jenis Lokasi</label>
+                                    <div class="@error('jenis_ruangan') form-control-danger @enderror">
+                                        <div class="custom-control custom-radio custom-control-inline pb-0">
+                                            <input type="radio" id="Lab" name="jenis_ruangan"
+                                                value="Lab" class="custom-control-input"
+                                                {{ old('jenis_ruangan') == 'Lab' ? 'checked' : '' }} />
+                                            <label class="custom-control-label"
+                                                for="Lab">Laboratorium</label>
+                                        </div>
+                                        <div
+                                            class="custom-control custom-radio custom-control-inline pb-0">
+                                            <input type="radio" id="Kelas" name="jenis_ruangan"
+                                                value="Kelas" class="custom-control-input"
+                                                {{ old('jenis_ruangan') == 'Kelas' ? 'checked' : '' }} />
+                                            <label class="custom-control-label"
+                                                for="Kelas">Kelas</label>
+                                        </div>
+                                    </div>
+                                    @error('jenis_ruangan')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">

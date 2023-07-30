@@ -3,24 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Dosen;
 use App\Models\Mahasiswa;
-use Illuminate\Support\Str;
-use App\Models\ModelSeminarKP;
 use Illuminate\Routing\Controller;
-use App\Http\Requests\StoreSeminarKP;
-use App\Http\Requests\UpdateSeminarKpRequest;
-use App\Models\BaSKP;
-use Illuminate\Support\Facades\Crypt;
-use App\Models\BerkasPersyaratanSeminar;
-use App\Models\ModelSeminarKompre;
-use App\Http\Requests\UpdateSidangKompreRequest;
-use App\Http\Requests\StoreTugasAkhirSatuRequest;
-use App\Http\Requests\UpdateSeminarTaSatuRequest;
-use Illuminate\Support\Facades\Auth;
-use App\Models\ModelSeminarTaSatu;
-use App\Models\ModelSeminarTaDua;
-use Illuminate\Http\File;
+
 
 class ChartSeminarController extends Controller
 {
@@ -112,9 +97,9 @@ class ChartSeminarController extends Controller
 
             $BelumSeminarTA1 = $mahasiswaAktif - $SudahSeminarTA1;
 
-            $BelumSeminarTA2 = $mahasiswaAktif - $SudahSeminarTA2;
+            $BelumSeminarTA2 = $SudahSeminarTA1 - $SudahSeminarTA2;
 
-            $BelumSidangKompre = $mahasiswaAktif - $SudahSidangKompre;
+            $BelumSidangKompre = $SudahSeminarTA2 - $SudahSidangKompre;
 
             $data['seminar'] = [
                 $mahasiswaAktif,

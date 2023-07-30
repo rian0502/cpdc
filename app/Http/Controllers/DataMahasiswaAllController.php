@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use App\Models\AktivitasAlumni;
+use App\Models\Laboratorium;
 use App\Models\ModelSeminarTaDua;
 use App\Models\ModelSeminarKompre;
 use App\Models\ModelSeminarTaSatu;
@@ -75,6 +76,7 @@ class DataMahasiswaAllController extends Controller
             'ba_ta1' => $seminarTa1 ? $seminarTa1->ba_seminar : null,
             'ba_ta2' => $seminarTa2 ? $seminarTa2->ba_seminar : null,
             'ba_kompre' => $sidangKompre ? $sidangKompre->beritaAcara : null,
+            'presentsi' => Laboratorium::where('user_id', $mahasiswa->user->id)->get(),
         ];
         if($mahasiswa->user->hasRole('alumni')){
             $data['alumni'] = AktivitasAlumni::where('mahasiswa_id', $mahasiswa->id)->
