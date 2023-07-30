@@ -51,111 +51,114 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-                <div class="pd-20 card-box mb-30">
-                    @if ($absen)
-                        <div class="clearfix mb-30">
-                            <div class="pull-left">
-                                <h4 class="text-dark h4">Daftar Hadir Pengerjaan Tugas Akhir di Laboratorium Utama</h4>
-                                <div>Presensi Lab Utama (Peer Group)</div>
+                @if ($absen || $absen_second)
+                    <div class="pd-20 card-box mb-30">
+                        @if ($absen)
+                            <div class="clearfix mb-30">
+                                <div class="pull-left">
+                                    <h4 class="text-dark h4">Daftar Hadir Pengerjaan Tugas Akhir di Laboratorium Utama</h4>
+                                    <div>Presensi Lab Utama (Peer Group)</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="jadwal_seminar">
-                            <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                                <div class="row border-bottom">
+                            <div class="jadwal_seminar">
+                                <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+                                    <div class="row border-bottom">
 
-                                    <label class="col-md-3 bold mt-2"> <strong>Tanggal Presensi</strong></label>
-                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        {{ $carbon::parse($absen->tanggal_kegiatan)->format('d F Y') }}
-                                    </div>
-                                    <label class="col-md-3 bold mt-2"><b>Jam Mulai</b></label>
-                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        {{ $carbon::parse($absen->jam_mulai)->format('H:i') }} WIB
-                                    </div>
-                                </div>
-                                <div class="row border-bottom mt-2">
-                                    <label class="col-md-3 bold"> <strong>Lokasi Penelitian Utama</strong></label>
-                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        <div>
-                                            {{ $absen->lokasi->nama_lokasi }}
+                                        <label class="col-md-3 bold mt-2"> <strong>Tanggal Presensi</strong></label>
+                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                            {{ $carbon::parse($absen->tanggal_kegiatan)->format('d F Y') }}
+                                        </div>
+                                        <label class="col-md-3 bold mt-2"><b>Jam Mulai</b></label>
+                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                            {{ $carbon::parse($absen->jam_mulai)->format('H:i') }} WIB
                                         </div>
                                     </div>
-                                    <label class="col-md-3 bold mt-1"><strong>Jam Selesai</strong></label>
-                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        {{ $carbon::parse($absen->jam_selesai)->format('H:i') }} WIB
-                                    </div>
-                                </div>
-                                <div class="row border-bottom mt-2">
-                                    <label class="col-md-3 bold"> <strong>Nama Kegiatan</strong></label>
-                                    <div class="col" style="display:block;word-wrap:break-word;">
-                                        <div>
-                                            {{ $absen->nama_kegiatan }}
+                                    <div class="row border-bottom mt-2">
+                                        <label class="col-md-3 bold"> <strong>Lokasi Penelitian Utama</strong></label>
+                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                            <div>
+                                                {{ $absen->lokasi->nama_lokasi }}
+                                            </div>
+                                        </div>
+                                        <label class="col-md-3 bold mt-1"><strong>Jam Selesai</strong></label>
+                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                            {{ $carbon::parse($absen->jam_selesai)->format('H:i') }} WIB
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row border-bottom mt-2">
-                                    <label class="col-md-3 bold"> <strong>Keterangan</strong></label>
-                                    <div class="col" style="display:block;word-wrap:break-word;">
-                                        <div>
-                                            {{ $absen->keterangan }}
+                                    <div class="row border-bottom mt-2">
+                                        <label class="col-md-3 bold"> <strong>Nama Kegiatan</strong></label>
+                                        <div class="col" style="display:block;word-wrap:break-word;">
+                                            <div>
+                                                {{ $absen->nama_kegiatan }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row border-bottom mt-2">
+                                        <label class="col-md-3 bold"> <strong>Keterangan</strong></label>
+                                        <div class="col" style="display:block;word-wrap:break-word;">
+                                            <div>
+                                                {{ $absen->keterangan }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
+                        @endif
 
-                    @if ($absen_second)
-                        <div class="clearfix mb-30 mt-5">
-                            <div class="pull-left">
-                                <h4 class="text-dark h4">Daftar Hadir Pengerjaan Tugas Akhir di Laboratorium Alternatif</h4>
-                                <div>Presensi Lab Alternatif</div>
+                        @if ($absen_second)
+                            <div class="clearfix mb-30 mt-5">
+                                <div class="pull-left">
+                                    <h4 class="text-dark h4">Daftar Hadir Pengerjaan Tugas Akhir di Laboratorium Alternatif
+                                    </h4>
+                                    <div>Presensi Lab Alternatif</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="jadwal_seminar">
-                            <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                                <div class="row border-bottom">
+                            <div class="jadwal_seminar">
+                                <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+                                    <div class="row border-bottom">
 
-                                    <label class="col-md-3 bold mt-2"> <strong>Tanggal Presensi</strong></label>
-                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        {{ $carbon::parse($absen_second->tanggal_kegiatan)->format('d F Y') }}
-                                    </div>
-                                    <label class="col-md-3 bold mt-2"><b>Jam Mulai</b></label>
-                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        {{ $carbon::parse($absen_second->jam_mulai)->format('H:i') }} WIB
-                                    </div>
-                                </div>
-                                <div class="row border-bottom mt-2">
-                                    <label class="col-md-3 bold"> <strong>Lokasi Penelitian Kedua</strong></label>
-                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        <div>
-                                            {{ $absen_second->lokasi->nama_lokasi }}
+                                        <label class="col-md-3 bold mt-2"> <strong>Tanggal Presensi</strong></label>
+                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                            {{ $carbon::parse($absen_second->tanggal_kegiatan)->format('d F Y') }}
+                                        </div>
+                                        <label class="col-md-3 bold mt-2"><b>Jam Mulai</b></label>
+                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                            {{ $carbon::parse($absen_second->jam_mulai)->format('H:i') }} WIB
                                         </div>
                                     </div>
-                                    <label class="col-md-3 bold mt-1"><strong>Jam Selesai</strong></label>
-                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        {{ $carbon::parse($absen_second->jam_selesai)->format('H:i') }} WIB
-                                    </div>
-                                </div>
-                                <div class="row border-bottom mt-2">
-                                    <label class="col-md-3 bold"> <strong>Nama Kegiatan</strong></label>
-                                    <div class="col" style="display:block;word-wrap:break-word;">
-                                        <div>
-                                            {{ $absen_second->nama_kegiatan }}
+                                    <div class="row border-bottom mt-2">
+                                        <label class="col-md-3 bold"> <strong>Lokasi Penelitian Kedua</strong></label>
+                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                            <div>
+                                                {{ $absen_second->lokasi->nama_lokasi }}
+                                            </div>
+                                        </div>
+                                        <label class="col-md-3 bold mt-1"><strong>Jam Selesai</strong></label>
+                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                            {{ $carbon::parse($absen_second->jam_selesai)->format('H:i') }} WIB
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row border-bottom mt-2">
-                                    <label class="col-md-3 bold"> <strong>Keterangan</strong></label>
-                                    <div class="col" style="display:block;word-wrap:break-word;">
-                                        <div>
-                                            {{ $absen_second->keterangan }}
+                                    <div class="row border-bottom mt-2">
+                                        <label class="col-md-3 bold"> <strong>Nama Kegiatan</strong></label>
+                                        <div class="col" style="display:block;word-wrap:break-word;">
+                                            <div>
+                                                {{ $absen_second->nama_kegiatan }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row border-bottom mt-2">
+                                        <label class="col-md-3 bold"> <strong>Keterangan</strong></label>
+                                        <div class="col" style="display:block;word-wrap:break-word;">
+                                            <div>
+                                                {{ $absen_second->keterangan }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
-                </div>
+                        @endif
+                    </div>
+                @endif
 
                 @if (!Auth::user()->lokasi_id)
                     <div class="pd-20 card-box mb-30">
@@ -197,7 +200,6 @@
                         </form>
                     </div>
                 @elseif(Auth::user()->mahasiswa->ta_satu->first())
-                    {{ dd(Auth::user()->mahasiswa->ta_satu) }}
                     @if (!$absen)
                         <div class="pd-20 card-box mb-30">
                             <div class="clearfix">
@@ -229,10 +231,10 @@
                                             <input class="form-control @error('jam_mulai') form-control-danger @enderror"
                                                 placeholder="jam" type="time" name="jam_mulai"
                                                 value="{{ old('jam_mulai') }}" />
+                                            </div>
                                             @error('jam_mulai')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
-                                        </div>
                                         <div class="form-group">
                                             <label>Jam Selesai</label>
                                             <input class="form-control @error('jam_selesai') form-control-danger @enderror"
@@ -266,8 +268,8 @@
                                     <div class="weight-500 col-md-6">
                                         <div class="form-group">
                                             <label>Keterangan</label>
-                                            <textarea class="form-control textarea @error('ket') form-control-danger @enderror" name="ket">{{ old('ket') }}</textarea>
-                                            @error('ket')
+                                            <textarea class="form-control textarea @error('ket2') form-control-danger @enderror" name="ket2">{{ old('ket2') }}</textarea>
+                                            @error('ket2')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -278,35 +280,35 @@
                                         <div class="form-group">
                                             <label>Lokasi </label>
                                             <select
-                                                class="custom-select2 form-control @error('id_lokasi') form-control-danger @enderror"
-                                                name="id_lokasi" style="width: 100%; height: 38px">
+                                                class="custom-select2 form-control @error('id_lokasi2') form-control-danger @enderror"
+                                                name="id_lokasi2" style="width: 100%; height: 38px">
                                                 @foreach ($alternatif as $item)
                                                     <option value="{{ $item->encrypt_id }}"
-                                                        {{ $user->lokasi_id == $item->id || old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
+                                                        {{ $user->lokasi_id == $item->id || old('id_lokasi2') == $item->encrypt_id ? 'selected' : '' }}>
                                                         {{ $item->nama_lokasi }}
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @error('id_lokasi')
+                                            @error('id_lokasi2')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label>Jam Mulai</label>
-                                            <input class="form-control @error('jam_mulai') form-control-danger @enderror"
-                                                placeholder="jam" type="time" name="jam_mulai"
-                                                value="{{ old('jam_mulai') }}" />
-                                            @error('jam_mulai')
+                                            <input class="form-control @error('jam_mulai2') form-control-danger @enderror"
+                                                placeholder="jam" type="time" name="jam_mulai2"
+                                                value="{{ old('jam_mulai2') }}" />
+                                            </div>
+                                            @error('jam_mulai2')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
-                                        </div>
                                         <div class="form-group">
                                             <label>Jam Selesai</label>
-                                            <input class="form-control @error('jam_selesai') form-control-danger @enderror"
-                                                placeholder="jam" type="time" name="jam_selesai"
-                                                value="{{ old('jam_selesai') }}" />
+                                            <input class="form-control @error('jam_selesai2') form-control-danger @enderror"
+                                                placeholder="jam" type="time" name="jam_selesai2"
+                                                value="{{ old('jam_selesai2') }}" />
                                         </div>
-                                        @error('jam_selesai')
+                                        @error('jam_selesai2')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
 
@@ -358,10 +360,10 @@
                                             <input class="form-control @error('jam_mulai') form-control-danger @enderror"
                                                 placeholder="jam" type="time" name="jam_mulai"
                                                 value="{{ old('jam_mulai') }}" />
+                                            </div>
                                             @error('jam_mulai')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
-                                        </div>
                                         <div class="form-group">
                                             <label>Jam Selesai</label>
                                             <input
@@ -397,17 +399,17 @@
                                     <div class="weight-500 col-md-6">
                                         <div class="form-group">
                                             <label>Judul Penelitian</label>
-                                            <input type="text" value="{{ old('nama_kegiatan') }}"
-                                                class="form-control @error('nama_kegiatan') form-control-danger @enderror"
-                                                name="nama_kegiatan" placeholder="Nama Kegiatan" />
-                                            @error('nama_kegiatan')
+                                            <input type="text" value="{{ old('nama_kegiatan2') }}"
+                                                class="form-control @error('nama_kegiatan2') form-control-danger @enderror"
+                                                name="nama_kegiatan2" placeholder="Nama Kegiatan" />
+                                            @error('nama_kegiatan2')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label>Keterangan</label>
-                                            <textarea class="form-control textarea @error('ket') form-control-danger @enderror" name="ket">{{ old('ket') }}</textarea>
-                                            @error('ket')
+                                            <textarea class="form-control textarea @error('ket2') form-control-danger @enderror" name="ket2">{{ old('ket2') }}</textarea>
+                                            @error('ket2')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -418,37 +420,36 @@
                                         <div class="form-group">
                                             <label>Lokasi </label>
                                             <select
-                                                class="custom-select2 form-control @error('id_lokasi') form-control-danger @enderror"
-                                                name="id_lokasi" style="width: 100%; height: 38px">
-                                                name="id_lokasi" required>
+                                                class="custom-select2 form-control @error('id_lokasi2') form-control-danger @enderror"
+                                                name="id_lokasi2" style="width: 100%; height: 38px">
                                                 @foreach ($alternatif as $item)
                                                     <option value="{{ $item->encrypt_id }}"
-                                                        {{ $user->lokasi_id == $item->id || old('id_lokasi') == $item->encrypt_id ? 'selected' : '' }}>
+                                                        {{ $user->lokasi_id == $item->id || old('id_lokasi2') == $item->encrypt_id ? 'selected' : '' }}>
                                                         {{ $item->nama_lokasi }}
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @error('id_lokasi')
+                                            @error('id_lokasi2')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label>Jam Mulai</label>
-                                            <input class="form-control @error('jam_mulai') form-control-danger @enderror"
-                                                placeholder="jam" type="time" name="jam_mulai"
-                                                value="{{ old('jam_mulai') }}" />
-                                            @error('jam_mulai')
+                                            <input class="form-control @error('jam_mulai2') form-control-danger @enderror"
+                                                placeholder="jam" type="time" name="jam_mulai2"
+                                                value="{{ old('jam_mulai2') }}" />
+                                            </div>
+                                            @error('jam_mulai2')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
-                                        </div>
                                         <div class="form-group">
                                             <label>Jam Selesai</label>
                                             <input
-                                                class="form-control @error('jam_selesai') form-control-danger @enderror"
-                                                placeholder="jam" type="time" name="jam_selesai"
-                                                value="{{ old('jam_selesai') }}" />
+                                                class="form-control @error('jam_selesai2') form-control-danger @enderror"
+                                                placeholder="jam" type="time" name="jam_selesai2"
+                                                value="{{ old('jam_selesai2') }}" />
                                         </div>
-                                        @error('jam_selesai')
+                                        @error('jam_selesai2')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
 
