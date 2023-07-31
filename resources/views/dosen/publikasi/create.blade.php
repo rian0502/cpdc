@@ -45,10 +45,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Halaman</label>
+                                    <label>Jumlah Halaman</label>
                                     <input value="{{ old('halaman') }}" autofocus name="halaman" id="halaman"
                                         class="form-control @error('halaman') form-control-danger @enderror" type="text"
-                                        placeholder="Halaman publikasi">
+                                        placeholder="Jumlah Halaman publikasi">
                                     @error('halaman')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -90,7 +90,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Scala</label>
+                                    <label>Skala</label>
                                     <select name="scala" id="scala" class="selectpicker form-control">
                                         <option value="Nasional" {{ old('scala') == 'Nasional' ? 'selected' : '' }}>
                                             Nasional</option>

@@ -62,7 +62,7 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>Tanggal</th>
-                                    <th>Scala</th>
+                                    <th>Skala</th>
                                     <th>Uraian</th>
                                     <th>Dokumentasi</th>
                                 </tr>

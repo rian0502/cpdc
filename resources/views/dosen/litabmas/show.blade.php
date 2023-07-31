@@ -39,7 +39,7 @@
                                     <td scope="row">{{ $litabmas->sumber_dana }}</td>
                                     <td scope="row">Rp. {{ number_format($litabmas->jumlah_dana, 0, ',', '.') }}</td>
                                     <td scope="row">{{ $litabmas->tahun_penelitian }}</td>
-                                    <td scope="col"><a href="{{ $litabmas->url }}" class="text-primary">Klik</a></td>
+                                    <td scope="col"><a href="{{ $litabmas->url }}" target="_blank" class="text-primary">Lihat</a></td>
                                 </tr>
                             </tbody>
                         </table>

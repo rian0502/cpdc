@@ -37,7 +37,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Vol</label>
+                                    <label>Volume</label>
                                     <input value="{{ $publikasi->vol }}" autofocus name="vol" id="vol"
                                         class="form-control @error('vol') form-control-danger @enderror" type="number"
                                         placeholder="vol publikasi">
@@ -46,10 +46,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>No Halaman</label>
+                                    <label>Jumlah Halaman</label>
                                     <input value="{{ $publikasi->halaman }}" autofocus name="halaman" id="halaman"
                                         class="form-control @error('halaman') form-control-danger @enderror"
-                                        type="text" placeholder="halaman publikasi">
+                                        type="text" placeholder="Jumlah Halaman Publikasi">
                                     @error('halaman')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
