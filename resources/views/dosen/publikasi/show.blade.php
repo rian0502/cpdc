@@ -5,11 +5,14 @@
             float: right;
             margin-top: -25px;
         }
+
+        textarea[readonly] {
+            pointer-events: none;
+        }
     </style>
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Detail Publikasi Dosen</h4>
@@ -32,7 +35,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 <tr>
                                     <td scope="col">{{ $publikasi->judul }}</td>
                                     <td scope="col">{{ $publikasi->vol }}</td>
@@ -85,29 +87,13 @@
             </div>
         </div>
         <div class="pd-ltr-20 xs-pd-20-10">
-            <div class="min-height-200px" >
-                <div class="card-box mb-30" style="height:400px">
+            <div class="min-height-200px">
+                <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Anggota Lainnya</h4>
-                    </div>
-                    <div class="d-flex justify-content-around ">
-                        {{-- @if ($publikasi->anggota_dosen != null) --}}
-                        <div class="pr-5">
-                            <h4 class="text-dark h4 mb-2">
-                                Dosen Lainnya Yang Berkolaborasi
-                            </h4>
-                            <textarea name="form-control" disabled readonly rows="10" cols="50">{{ $publikasi->anggota_dosen }}</textarea>
+                        <div class="form-group mt-5">
+                            <textarea class="form-control" readonly onfocus="this.blur();">{{ $publikasi->anggota_external }}</textarea>
                         </div>
-
-                        {{-- @endif --}}
-                        {{-- @if ($publikasi->anggota_mahasiswa != null) --}}
-                        <div class="mb-5">
-                            <h4 class="text-dark h4 mb-2">
-                                Mahasiswa Lainnya Yang Berkolaborasi
-                            </h4>
-                            <textarea name="form-control" disabled readonly rows="10" cols="50">{{ $publikasi->anggota_mahasiswa }}</textarea>
-                        </div>
-                        {{-- @endif --}}
                     </div>
 
                 </div>
