@@ -89,7 +89,7 @@
                         <h4 class="text-blue h4">Anggota Lainnya</h4>
                         <div class="form-group mt-5">
                             <label for="">Dosen</label>
-                            <textarea class="form-control" readonly onfocus="this.blur();">{{ $litabmas->anggota_dosen }}</textarea>
+                            <textarea class="form-control" readonly onfocus="this.blur();">{{ $litabmas->anggota_external }}</textarea>
                         </div>
                         <div class="form-group mt-5">
                             <label for="">Mahasiswa</label>
