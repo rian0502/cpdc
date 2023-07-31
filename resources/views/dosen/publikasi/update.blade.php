@@ -3,7 +3,6 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-                <!-- Default Basic Forms Start -->
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
@@ -181,8 +180,5 @@
                 </div>
             </div>
         </div>
-        <!-- Input Validation End -->
-
-
     </div>
 @endsection
