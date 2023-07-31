@@ -144,7 +144,7 @@
                             name: 'url',
                             render: function(data, type, row) {
                                 var link = row.url;
-                                return `<a href="${link}" class="btn btn-primary btn-sm">Klik</a>`;
+                                return `<a href="${link}" class="text-blue">Lihat</a>`;
                             }
                         },
                     ]
