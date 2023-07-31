@@ -30,9 +30,11 @@
                                 <div class="form-group">
                                     <label for="kategori">Kategori</label>
                                     <select name="kategori" id="kategori" class="selectpicker form-control">
-                                        <option value="Penelitian" {{ $litabmas->kategori == 'Penelitian' ? 'selected' : '' }}>
+                                        <option value="Penelitian"
+                                            {{ $litabmas->kategori == 'Penelitian' ? 'selected' : '' }}>
                                             Penelitian</option>
-                                        <option value="Pengabdian" {{ $litabmas->kategori == 'Pengabdian' ? 'selected' : '' }}>
+                                        <option value="Pengabdian"
+                                            {{ $litabmas->kategori == 'Pengabdian' ? 'selected' : '' }}>
                                             Pengabdian</option>
                                     </select>
                                     @error('kategori')
@@ -69,12 +71,8 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
-                            </div>
-                            {{-- form untuk sebelah kanan --}}
-                            <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Link</label>
+                                    <label>Link Dokumen</label>
                                     <input value="{{ $litabmas->url }}" autofocus name="url" id="url"
                                         class="form-control @error('url') form-control-danger @enderror" type="text"
                                         placeholder="Link publikasi">
@@ -82,6 +80,10 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                            </div>
+                            {{-- form untuk sebelah kanan --}}
+                            <div class="kanan weight-500 col-md-6">
+
                                 <div class="form-group">
                                     <label for="anggota">Anggota</label>
                                     <select class="custom-select2 form-control" multiple="multiple" style="width: 100%"
@@ -97,23 +99,21 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label>Dosen Peneliti Lainnya <small>Yang tidak tercantum pada isian anggota</small></label>
-                                    <textarea autofocus name="anggota_external"
-                                        id="anggota_external"
+                                    <label>Dosen Peneliti Lainnya <small>Yang tidak tercantum pada isian
+                                            anggota</small></label>
+                                    <textarea autofocus name="anggota_external" id="anggota_external"
                                         placeholder='contoh: &#10;Dr. John Doe, &#10;Prof. Jane Smith, &#10;Dr. Michael Johnson,'
-                                        class="form-control @error('anggota_external') form-control-danger @enderror"
-                                        type="text">{{$litabmas->anggota_external}}</textarea>
+                                        class="form-control @error('anggota_external') form-control-danger @enderror" type="text">{{ $litabmas->anggota_external }}</textarea>
                                     @error('anggota_external')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Mahasiswa Peneliti Lainnya <small>Diisikan Mahasiswa S1 atau S2 yang berkolaborasi</small></label>
-                                    <textarea autofocus name="anggota_external"
-                                        id="anggota_external"
+                                    <label>Mahasiswa Peneliti Lainnya <small>Diisikan Mahasiswa S1 atau S2 yang
+                                            berkolaborasi</small></label>
+                                    <textarea autofocus name="anggota_external" id="anggota_external"
                                         placeholder='Format:&#10;Npm - Nama - Jenjang Studi, &#10;Contoh: &#10;2017051062 - Doe Joe - S1, &#10;2017051033 - Kamal Ramadhan - S2, &#10;2017051024 - Urip Surhajo - S2,'
-                                        class="form-control @error('anggota_external') form-control-danger @enderror"
-                                        type="text">{{$litabmas->anggota_mahasiswa}}</textarea>
+                                        class="form-control @error('anggota_external') form-control-danger @enderror" type="text">{{ $litabmas->anggota_mahasiswa }}</textarea>
                                     @error('anggota_external')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror

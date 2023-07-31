@@ -66,10 +66,6 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
-                            </div>
-                            {{-- form untuk sebelah kanan --}}
-                            <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Link Dokumen</label>
                                     <input value="{{ old('url') }}" autofocus name="url" id="url"
@@ -79,7 +75,9 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
+                            </div>
+                            {{-- form untuk sebelah kanan --}}
+                            <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Anggota</label>
                                     <select class="custom-select2 form-control" multiple="multiple" style="width: 100%"
@@ -93,24 +91,22 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label>Dosen Peneliti Lainnya <small>Yang tidak tercantum pada isian anggota</small></label>
-                                    <textarea value="{{ old('anggota_external') }}" autofocus name="anggota_external"
-                                        id="anggota_external"
+                                    <label>Dosen Peneliti Lainnya <small>Yang tidak tercantum pada isian
+                                            anggota</small></label>
+                                    <textarea value="{{ old('anggota_external') }}" autofocus name="anggota_external" id="anggota_external"
                                         placeholder='contoh: &#10;Dr. John Doe, &#10;Prof. Jane Smith, &#10;Dr. Michael Johnson,'
-                                        class="form-control @error('anggota_external') form-control-danger @enderror"
-                                        type="text"></textarea>
+                                        class="form-control @error('anggota_external') form-control-danger @enderror" type="text"></textarea>
                                     @error('anggota_external')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Mahasiswa Peneliti Lainnya <small>Diisikan Mahasiswa S1 atau S2 yang berkolaborasi</small></label>
-                                    <textarea value="{{ old('anggota_mahasiswa') }}" autofocus name="anggota_mahasiswa"
-                                        id="anggota_mahasiswa"
+                                    <label>Mahasiswa Peneliti Lainnya <small>Diisikan Mahasiswa S1 atau S2 yang
+                                            berkolaborasi</small></label>
+                                    <textarea value="{{ old('anggota_mahasiswa') }}" autofocus name="anggota_mahasiswa" id="anggota_mahasiswa"
                                         placeholder='Format:&#10;Npm - Nama - Jenjang Studi, &#10;Contoh: &#10;2017051062 - Doe Joe - S1, &#10;2017051033 - Kamal Ramadhan - S2, &#10;2017051024 - Urip Surhajo - S2,'
-                                        class="form-control @error('anggota_mahasiswa') form-control-danger @enderror"
-                                        type="text"></textarea>
+                                        class="form-control @error('anggota_mahasiswa') form-control-danger @enderror" type="text"></textarea>
                                     @error('anggota_mahasiswa')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
