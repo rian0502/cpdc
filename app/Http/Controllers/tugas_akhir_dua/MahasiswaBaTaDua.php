@@ -66,7 +66,7 @@ class MahasiswaBaTaDua extends Controller
                 'berkas_nilai_seminar_ta_dua' => $file_nilai,
                 'berkas_ppt_seminar_ta_dua' => $request->berkas_ppt_seminar_ta_dua,
                 'nilai' => $request->nilai,
-                'huruf_mutu' => $request->nilai_mutu,
+                'huruf_mutu' => $request->huruf_mutu,
                 'id_seminar' => $seminar->id,
             ];
             $insBa = ModelBaSeminarTaDua::create($data);
@@ -117,14 +117,14 @@ class MahasiswaBaTaDua extends Controller
         if ($request->_token != csrf_token()) {
             return redirect()->back();
         }
-        //validasi user 
+        //validasi user
         $ba = ModelBaSeminarTaDua::find(Crypt::decrypt($id));
         if (Auth::user()->mahasiswa->id != $ba->seminar->id_mahasiswa) {
             return redirect()->back();
         }
         $data = [
             'no_berkas_ba_seminar_ta_dua' => $request->no_berkas_ba_seminar_ta_dua,
-            'huruf_mutu' => $request->nilai_mutu,
+            'huruf_mutu' => $request->huruf_mutu,
             'nilai' => $request->nilai,
             'updated_at' => date('Y-m-d H:i:s'),
             'berkas_ppt_seminar_ta_dua' => $request->berkas_ppt_seminar_ta_dua,
