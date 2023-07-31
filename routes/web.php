@@ -1,8 +1,9 @@
 <?php
 
+
 use App\Models\JadwalSKP;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Seminar;
+use App\Http\Controllers\Kajur\Seminar;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\sudo\ResetTA;
