@@ -119,7 +119,7 @@ class PrestasiMahasiswaController extends Controller
                 'updated_at' => date('Y-m-d H:i:s'),
             ];
             if ($prestasi->file_prestasi != null) {
-                unlink(('uploads\file_prestasi\\' . $prestasi->file_prestasi));
+                unlink(('uploads/file_prestasi/' . $prestasi->file_prestasi));
             }
         } else {
             $data = [
