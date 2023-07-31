@@ -50,9 +50,10 @@
                                 <div class="col-md-3">
                                     {{ $mahasiswa->npm }}
                                 </div>
-                                <label class="col-md-3 bold"><strong>Alamat</strong></label>
+                                <label class="col-md-3 bold"><b>Jenis Kelamin</b></label>
                                 <div class="col-md-3">
-                                    {{ $mahasiswa->alamat }}
+                                    {{ $mahasiswa->jenis_kelamin }}
+
                                 </div>
                             </div>
                             <div class="row">
@@ -93,10 +94,10 @@
                                     {{ $mahasiswa->semester }}
 
                                 </div>
-                                <label class="col-md-3 bold"><b>Jenis Kelamin</b></label>
-                                <div class="col-md-3">
-                                    {{ $mahasiswa->jenis_kelamin }}
 
+                                <label class="col-md-3 bold"><strong>Alamat</strong></label>
+                                <div class="col-md-3">
+                                    {{ $mahasiswa->alamat }}
                                 </div>
                             </div>
                             <div class="row">
