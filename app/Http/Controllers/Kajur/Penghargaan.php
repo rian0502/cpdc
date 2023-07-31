@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\dosen;
+namespace App\Http\Controllers\Kajur;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
