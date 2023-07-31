@@ -172,7 +172,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Rencana Seminar</label>
-                                    <input autofocus class="form-control month-picker" type="text" name="rencana_seminar"
+                                    <input readonly class="form-control month-picker" type="text" name="rencana_seminar"
                                         value="{{ old('rencana_seminar', $seminar->rencana_seminar) }}"
                                         id="rencana_seminar" placeholder="Rencana Seminar">
                                     @error('rencana_seminar')
