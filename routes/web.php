@@ -376,7 +376,7 @@ Route::get('/ta2', function () {
     return view('ta2', compact('ta2'));
 });
 Route::get('/kompre', function () {
-    $kompre = ModelJadwalSeminarKompre::orderBy('tanggal_seminar_kompre', 'desc')->get();
+    $kompre = ModelJadwalSeminarKompre::orderBy('tanggal_komprehensif', 'desc')->get();
     return view('kompre', compact('kompre'));
 });
 Route::get('/about', function () {
