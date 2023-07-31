@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\JadwalPKLController;
+use App\Http\Controllers\kerja_praktik\JadwalPKLController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
