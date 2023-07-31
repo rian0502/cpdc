@@ -3,7 +3,6 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Data Publikasi Dosen</h4>
@@ -15,10 +14,7 @@
                                 </button>
                             </div>
                         @enderror
-
                         <div class="d-flex mt-4">
-
-
                             <a href="{{ route('dosen.publikasi.create') }}"
                                 class="bg-light-blue btn text-blue weight-500"><i class="ion-plus-round"></i> Tambah</a>
                             <a href="{{ url('uploads/Template Publikasi.xlsx') }}"
@@ -29,7 +25,6 @@
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 Upload Publikasi via Excel (xlsx)
                             </a>
-
                         </div>
                         <div class="col-md-4 col-sm-12 mb-30">
                             <div class="modal fade" id="via-excel" tabindex="-1" role="dialog"
@@ -56,7 +51,6 @@
                                                             class="form-control-file">
                                                     </div>
                                                 </div>
-
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -66,7 +60,6 @@
                                                 Kirim
                                             </button>
                                             </form>
-
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +80,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 @foreach (Auth::user()->dosen->publikasi as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
@@ -135,7 +127,6 @@
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

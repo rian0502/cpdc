@@ -49,13 +49,10 @@
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="pd-ltr-20 xs-pd-20-10">
-
             <div class="min-height-200px">
-                <!-- Default Basic Forms Start -->
                 <div class="pd-20 card-box mb-30">
                     <div class="table-responsive mb-2">
                         <h4 class="text-blue h4 mb-2">
@@ -82,7 +79,6 @@
                             </table>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -95,7 +91,6 @@
                             <textarea class="form-control" readonly onfocus="this.blur();">{{ $publikasi->anggota_external }}</textarea>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
