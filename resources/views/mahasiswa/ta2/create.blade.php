@@ -24,7 +24,7 @@
                             <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Rencana Periode Seminar</label>
-                                    <input autofocus class="form-control month-picker" type="text" name="periode_seminar"
+                                    <input readonly class="form-control month-picker" type="text" name="periode_seminar"
                                         value="{{ old('periode_seminar') }}" id="periode_seminar"
                                         placeholder="Periode Seminar">
                                     @error('periode_seminar')
@@ -65,7 +65,7 @@
                                     <div class="custom-file mb-1">
                                         <label class="custom-file-label" for="link-berkas_seminar_ta_dua"
                                             id="label-berkas_seminar_ta_dua">Pilih File</label>
-                                        <input value="{{ old('berkas_seminar_ta_dua') }}" accept=".pdf" autofocus
+                                        <input value="{{ old('berkas_seminar_ta_dua') }}" accept=".pdf"
                                             name="berkas_seminar_ta_dua" id="file-berkas_seminar_ta_dua"
                                             class="custom-file-input form-control @error('berkas_seminar_ta_dua') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
