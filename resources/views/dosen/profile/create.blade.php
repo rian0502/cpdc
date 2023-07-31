@@ -65,10 +65,10 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Sesuaikan Gambar</h5>
-                                        <button type="button" class="close" data-dismiss="modal" id="closeModalButton"
+                                        {{-- <button type="button" class="close" data-dismiss="modal" id="closeModalButton"
                                             aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
-                                        </button>
+                                        </button> --}}
                                     </div>
                                     <div class="modal-body">
                                         <div>

@@ -46,19 +46,21 @@
                                 <div class="col-md-3">
                                     {{ $mahasiswa->nama_mahasiswa }}
                                 </div>
-                                <label class="col-md-3 bold"><b>Tanggal Lahir</b></label>
-                                <div class="col-md-3" id="tanggal-lahir">
-                                    {{ $carbon::parse($mahasiswa->tanggal_lahir)->format('d F Y') }}
+                                <label class="col-md-3 bold"><strong>Tempat Lahir</strong></label>
+                                <div class="col-md-3">
+                                    {{ $mahasiswa->alamat }}
                                 </div>
+
                             </div>
                             <div class="row">
                                 <label class="col-md-3 bold"><b>NPM</b></label>
                                 <div class="col-md-3">
                                     {{ $mahasiswa->npm }}
                                 </div>
-                                <label class="col-md-3 bold"><strong>Alamat</strong></label>
-                                <div class="col-md-3">
-                                    {{ $mahasiswa->alamat }}
+
+                                <label class="col-md-3 bold"><b>Tanggal Lahir</b></label>
+                                <div class="col-md-3" id="tanggal-lahir">
+                                    {{ $carbon::parse($mahasiswa->tanggal_lahir)->format('d F Y') }}
                                 </div>
                             </div>
                             <div class="row">
@@ -66,9 +68,10 @@
                                 <div class="col-md-3">
                                     {{ $mahasiswa->tanggal_masuk }}
                                 </div>
-                                <label class="col-md-3 bold"><strong>Tempat Lahir</strong></label>
+
+                                <label class="col-md-3 bold"><b>Jenis Kelamin</b></label>
                                 <div class="col-md-3">
-                                    {{ $mahasiswa->alamat }}
+                                    {{ $mahasiswa->jenis_kelamin }}
                                 </div>
                             </div>
                             <div class="row">
@@ -99,10 +102,9 @@
                                     {{ $mahasiswa->semester }}
 
                                 </div>
-                                <label class="col-md-3 bold"><b>Jenis Kelamin</b></label>
+                                <label class="col-md-3 bold"><strong>Alamat</strong></label>
                                 <div class="col-md-3">
-                                    {{ $mahasiswa->jenis_kelamin }}
-
+                                    {{ $mahasiswa->alamat }}
                                 </div>
                             </div>
                             <div class="row">
@@ -173,7 +175,8 @@
                                                             style="display:block;word-wrap:break-word;">
                                                             {{ $seminarTa1->tahun_akademik }}
                                                         </div>
-                                                        <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
+                                                        <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai
+                                                                Eksternal</strong></label>
                                                         <div class="col-md-3 mt-2"
                                                             style="display:block;word-wrap:break-word;">
                                                             @if ($seminarTa1->pbl2_nip)
@@ -404,7 +407,8 @@
                                                             style="display:block;word-wrap:break-word;">
                                                             {{ $seminarTa2->tahun_akademik }}
                                                         </div>
-                                                        <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
+                                                        <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai
+                                                                Eksternal</strong></label>
                                                         <div class="col-md-3 mt-2"
                                                             style="display:block;word-wrap:break-word;">
                                                             @if ($seminarTa2->pbl2_nip)

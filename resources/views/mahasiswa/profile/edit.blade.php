@@ -66,10 +66,10 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Sesuaikan Gambar</h5>
-                                        <button type="button" class="close" data-dismiss="modal" id="closeModalButton"
+                                        {{-- <button type="button" class="close" data-dismiss="modal" id="closeModalButton"
                                             aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
-                                        </button>
+                                        </button> --}}
                                     </div>
                                     <div class="modal-body">
                                         <div>
@@ -150,7 +150,12 @@
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label for="">Tanggal Masuk</label>
+                                    <label for="">Tanggal Masuk
+                                        <small>Jika lupa, bisa lihat pada menu portal -> data mahasiswa di <a
+                                                href="https://siakadu.unila.ac.id" class="text-primary"
+                                                target="_blank">siakadu</a>
+                                        </small>
+                                    </label>
                                     <input name="tanggal_masuk"
                                         class="form-control @error('tanggal_masuk') form-control-danger @enderror"
                                         value="{{ old('tanggal_masuk', $mahasiswa->tanggal_masuk) }}" type="date">
@@ -160,7 +165,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Tempat Lahir</label>
+                                    <label>Tempat Lahir <small>Masukkan nama kabupaten/kota/provinsi saja</small></label>
                                     <input autofocus name="tempat_lahir" id="tempat_lahir"
                                         class="form-control @error('tempat_lahir') form-control-danger @enderror"
                                         value="{{ old('tempat_lahir', $mahasiswa->tempat_lahir) }}" type="text"
@@ -190,7 +195,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Dosen Pembimbing Akademik</label>
+                                    <label>Pembimbing Akademik</label>
                                     <select class="custom-select2 form-control" name="id_dosen"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Dosen Pembimbing Akademik">
