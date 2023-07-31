@@ -28,7 +28,7 @@
                                     <th scope="col">Volume</th>
                                     <th scope="col">Halaman</th>
                                     <th scope="col">Tahun</th>
-                                    <th scope="col">Scala</th>
+                                    <th scope="col">Skala</th>
                                     <th scope="col">Kategori</th>
                                     <th scope="col">Kategori LITABMAS</th>
                                     <th scope="col">Link</th>
@@ -43,7 +43,7 @@
                                     <td scope="col">{{ $publikasi->scala }}</td>
                                     <td scope="col">{{ $publikasi->kategori }}</td>
                                     <td scope="col">{{ $publikasi->kategori_litabmas }}</td>
-                                    <td scope="col"><a href="{{ $publikasi->url }}" class="text-primary">Klik</a></td>
+                                    <td scope="col"><a href="{{ $publikasi->url }}" target="_blank" class="text-primary">Lihat</a></td>
                                 </tr>
                             </tbody>
                         </table>
