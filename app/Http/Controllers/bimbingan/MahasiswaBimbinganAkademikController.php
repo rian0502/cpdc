@@ -19,7 +19,7 @@ class MahasiswaBimbinganAkademikController extends Controller
     {
         //
         $data = [
-            'mahasiswa' => Mahasiswa::select('id', 'nama_mahasiswa', 'npm', 'angkatan', 'id_dosen')->where('id_dosen', auth()->user()->dosen->first()->id)->get(),
+            'mahasiswa' => Mahasiswa::select('id', 'nama_mahasiswa', 'npm', 'angkatan', 'id_dosen')->where('id_dosen', auth()->user()->dosen->id)->get(),
         ];
         return view('dosen.mahasiswa.bimbingan.akademik.index', $data);
     }
