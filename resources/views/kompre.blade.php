@@ -37,14 +37,15 @@
                             <tr class="center">
                                 <td class="center-align">{{ $loop->iteration }}</td>
                                 <td class="center-align">{{ $item->seminar->mahasiswa->npm }}</td>
-                                <td class="center-align">{{ $item->seminar->mahasiswa->nama_mahasiswa }}</td>
+                                <td>{{ $item->seminar->mahasiswa->nama_mahasiswa }}</td>
                                 <td class="center-align">
                                     {{ $carbon::parse($item->tanggal_komprehensif)->format('d F Y') }}</td>
-                                <td class="center-align">{{ $item->jam_mulai_komprehensif }} - {{$item->jam_selesai_komprehensif }} WIB</td>
-                                <td class="center-align">{{ $item->lokasi->nama_lokasi }}</td>
-                                <td class="center-align">{{ $item->seminar->judul_ta }}</td>
-                                <td class="center-align">{{ $item->seminar->pembimbingSatu->nama_dosen }}</td>
-                                @if ($item->seminar->id_pembimbing_dua )
+                                <td class="center-align">{{ $item->jam_mulai_komprehensif }} -
+                                    {{ $item->jam_selesai_komprehensif }} WIB</td>
+                                <td>{{ $item->lokasi->nama_lokasi }}</td>
+                                <td class="center-align"> : {{ $item->seminar->judul_ta }}</td>
+                                <td class="center-align"> : {{ $item->seminar->pembimbingSatu->nama_dosen }}</td>
+                                @if ($item->seminar->id_pembimbing_dua)
                                     <td class="center-align"> : {{ $item->seminar->pembimbingDua->nama_dosen }}</td>
                                 @else
                                     <td class="center-align"> : {{ $item->seminar->pbl2_nama }}</td>
