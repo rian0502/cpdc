@@ -7,7 +7,6 @@ use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Str;
 use App\Http\Requests\LoginRequest;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Auth\Events\Registered;

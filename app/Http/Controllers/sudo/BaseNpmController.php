@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\sudo;
 
 use App\Http\Controllers\Controller;
-use App\Models\BaseNpm;
+use App\Models\BaseNPM;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use Yajra\DataTables\DataTables;
@@ -45,7 +45,7 @@ class BaseNpmController extends Controller
         //
 
         foreach ($request->npm as $npm) {
-            $data = new BaseNpm();
+            $data = new BaseNPM();
             $data->npm = $npm;
             $data->save();
         }
@@ -64,7 +64,7 @@ class BaseNpmController extends Controller
             if ($key == 0) {
                 continue;
             }
-            $baseNPM = new BaseNpm();
+            $baseNPM = new BaseNPM();
             $baseNPM->npm = $row[0];
             $baseNPM->status = $row[1];
             $baseNPM->created_at = now();
@@ -94,7 +94,7 @@ class BaseNpmController extends Controller
     public function edit($id)
     {
         $data = [
-            'item' => BaseNpm::where('id', $id)->first(),
+            'item' => BaseNPM::where('id', $id)->first(),
         ];
         //
         return view('npm.edit', $data);
@@ -115,7 +115,7 @@ class BaseNpmController extends Controller
             'npm' => $request->npm,
             'updated_at' => now()
         ];
-        $update = BaseNpm::where('id', $id)->update($data);
+        $update = BaseNPM::where('id', $id)->update($data);
         if ($update) {
             return redirect()->route('sudo.base_npm.index')->with('success', 'Data berhasil diubah');
         } else {
@@ -132,13 +132,13 @@ class BaseNpmController extends Controller
     public function destroy($id)
     {
         //
-        BaseNpm::where('id', $id)->delete();
+        BaseNPM::where('id', $id)->delete();
         return redirect()->route('sudo.base_npm.index')->with('success', 'Data berhasil dihapus');
     }
     public function BaseNpm(Request $request)
     {
         if ($request->ajax()) {
-            $model = BaseNpm::query();
+            $model = BaseNPM::query();
             return DataTables::of($model)->toJson();
         }
     }
