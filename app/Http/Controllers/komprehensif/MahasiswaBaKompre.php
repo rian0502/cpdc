@@ -63,7 +63,7 @@ class MahasiswaBaKompre extends Controller
                 'berkas_nilai_kompre' => $file_nilai,
                 'laporan_ta' => $request->laporan_ta,
                 'nilai' => $request->nilai,
-                'huruf_mutu' => $request->nilai_mutu,
+                'huruf_mutu' => $request->huruf_mutu,
                 'id_seminar' => $seminar->id,
             ];
             $insBa = ModelBaSeminarKompre::create($data);
@@ -113,14 +113,14 @@ class MahasiswaBaKompre extends Controller
         if ($request->_token != csrf_token()) {
             return redirect()->back();
         }
-        //validasi user 
+        //validasi user
         $ba = ModelBaSeminarKompre::find(Crypt::decrypt($id));
         if (Auth::user()->mahasiswa->id != $ba->seminar->id_mahasiswa) {
             return redirect()->back();
         }
         $data = [
             'no_ba_berkas' => $request->no_ba_berkas,
-            'huruf_mutu' => $request->nilai_mutu,
+            'huruf_mutu' => $request->huruf_mutu,
             'nilai' => $request->nilai,
             'updated_at' => date('Y-m-d H:i:s'),
             'laporan_ta' => $request->laporan_ta,
