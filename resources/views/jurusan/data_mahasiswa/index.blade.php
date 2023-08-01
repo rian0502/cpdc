@@ -25,6 +25,10 @@
                                         <th>Angkatan</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Status</th>
+                                        <th>KP</th>
+                                        <th>TA 1</th>
+                                        <th>TA 2</th>
+                                        <th>Kompre</th>
                                         <th>Tanggal Masuk</th>
                                         <th class="table-plus datatable-nosort">Aksi</th>
                                     </tr>
@@ -102,6 +106,26 @@
                         {
                             data: 'status',
                             name: 'status'
+                        },
+                        {
+                            data: 'kp',
+                            name: 'seminar_kp.status_seminar',
+                            orderable: true
+                        },
+                        {
+                            data: 'ta1',
+                            name: 'ta_satu.status_koor',
+                            orderable: true
+                        },
+                        {
+                            data: 'ta2',
+                            name: 'ta_dua.status_koor',
+                            orderable: true
+                        },
+                        {
+                            data: 'kompre',
+                            name: 'komprehensif.status_koor',
+                            orderable: true
                         },
                         {
                             data: 'tanggal_masuk',

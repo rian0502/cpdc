@@ -21,9 +21,9 @@ class MahasiswaTaDuaController extends Controller
     public function index()
     {
 
-        if (Auth::user()->mahasiswa->ta_dua->count() > 0) {
+        if (Auth::user()->mahasiswa->ta_dua) {
             $data = [
-                'seminar' => ModelSeminarTaDua::where('id_mahasiswa', Auth::user()->mahasiswa->id)->latest()->first(),
+                'seminar' => ModelSeminarTaDua::where('id_mahasiswa', Auth::user()->mahasiswa->id)->get(),
                 'mahasiswa' => Auth::user()->mahasiswa,
             ];
             return view('mahasiswa.ta2.index', $data);
@@ -39,7 +39,7 @@ class MahasiswaTaDuaController extends Controller
      */
     public function create()
     {
-        if (Auth::user()->mahasiswa->ta_dua->first()) {
+        if (Auth::user()->mahasiswa->ta_dua) {
             return redirect()->back();
         }
 
@@ -68,7 +68,7 @@ class MahasiswaTaDuaController extends Controller
             'berkas_seminar_ta_dua.max' => 'Berkas seminar maksimal 1MB',
         ]);
         $mahasiswa = Auth::user()->mahasiswa;
-        $seminar = $mahasiswa->ta_satu->first();
+        $seminar = $mahasiswa->ta_satu;
         $file = $request->file('berkas_seminar_ta_dua');
         $name_file = $file->hashName();
         $file->move('uploads/syarat_seminar_ta2', $name_file);

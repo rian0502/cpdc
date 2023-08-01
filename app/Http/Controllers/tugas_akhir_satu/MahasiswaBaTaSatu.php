@@ -47,7 +47,7 @@ class MahasiswaBaTaSatu extends Controller
         if($request->_token != csrf_token()){
             return redirect()->back();
         }else{
-            $seminar = Auth::user()->mahasiswa->ta_satu->last();
+            $seminar = Auth::user()->mahasiswa->ta_satu;
             $ta1 = ModelSeminarTaSatu::where('id_mahasiswa', Auth::user()->mahasiswa->id)->latest()->first();
             $ta1->status_koor = 'Selesai';
             $ta1->save();

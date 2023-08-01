@@ -24,8 +24,21 @@ class DataMahasiswaAllController extends Controller
     {
         //
         if ($request->ajax()) {
-            $data = Mahasiswa::query();
-            return DataTables::of($data)->toJson();
+            $data = Mahasiswa::query()->with(['seminar_kp', 'ta_satu', 'ta_dua', 'komprehensif'])->get();
+            return DataTables::of($data)
+                ->addColumn('kp', function ($data) {
+                    return $data->seminar_kp->status_seminar ?? 'Belum Daftar';
+                })
+                ->addColumn('ta1', function ($data) {
+                    return $data->ta_satu->status_koor ?? 'Belum Daftar';
+                })
+                ->addColumn('ta2', function ($data) {
+                    return $data->ta_dua->status_koor ?? 'Belum Daftar';
+                })
+                ->addColumn('kompre', function ($data) {
+                    return  $data->komprehensif->status_koor ?? 'Belum Daftar';
+                })
+                ->toJson();
         }
         return view('jurusan.data_mahasiswa.index');
     }
@@ -61,9 +74,9 @@ class DataMahasiswaAllController extends Controller
     {
         //
         $mahasiswa = Mahasiswa::where('npm', $id)->first();
-        $seminarTa1 = ModelSeminarTaSatu::where('id_mahasiswa', $mahasiswa->id)->first();
-        $seminarTa2 = ModelSeminarTaDua::where('id_mahasiswa', $mahasiswa->id)->first();
-        $sidangKompre = ModelSeminarKompre::where('id_mahasiswa', $mahasiswa->id)->first();
+        $seminarTa1 = ModelSeminarTaSatu::where('id_mahasiswa', $mahasiswa->id)->get();
+        $seminarTa2 = ModelSeminarTaDua::where('id_mahasiswa', $mahasiswa->id)->get();
+        $sidangKompre = ModelSeminarKompre::where('id_mahasiswa', $mahasiswa->id)->get();
         $data = [
             'mahasiswa' => $mahasiswa,
             'kp' => $mahasiswa->seminar_kp,
@@ -78,9 +91,8 @@ class DataMahasiswaAllController extends Controller
             'ba_kompre' => $sidangKompre ? $sidangKompre->beritaAcara : null,
             'presentsi' => Laboratorium::where('user_id', $mahasiswa->user->id)->get(),
         ];
-        if($mahasiswa->user->hasRole('alumni')){
-            $data['alumni'] = AktivitasAlumni::where('mahasiswa_id', $mahasiswa->id)->
-            orderBy('tahun_masuk', 'desc')->get();
+        if ($mahasiswa->user->hasRole('alumni')) {
+            $data['alumni'] = AktivitasAlumni::where('mahasiswa_id', $mahasiswa->id)->orderBy('tahun_masuk', 'desc')->get();
         }
 
 

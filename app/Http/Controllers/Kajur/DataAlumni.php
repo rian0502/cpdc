@@ -19,7 +19,11 @@ class DataAlumni extends Controller
     {
         if ($request->ajax()) {
             $data = User::role('alumni')->with('mahasiswa', 'mahasiswa.kegiatanTerakhir');
-            return DataTables::of($data)->addColumn('npm', function ($data) {
+            return DataTables::of($data)
+            ->addColumn('masa_studi', function ($data) {
+                return $data->mahasiswa->pendataanAlumni->masa_studi;
+            })
+            ->addColumn('npm', function ($data) {
                 return $data->mahasiswa->npm;
             })->toJson();
         }
