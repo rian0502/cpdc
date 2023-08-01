@@ -24,7 +24,7 @@ class MahasiswaKompreController extends Controller
     public function index()
     {
         //
-        $kompre = Auth::user()->mahasiswa->komprehensif->first();
+        $kompre = Auth::user()->mahasiswa->komprehensif;
         if ($kompre) {
             $data = [
                 'seminar' => $kompre,
@@ -44,8 +44,8 @@ class MahasiswaKompreController extends Controller
      */
     public function create()
     {
-        $kompre = Auth::user()->mahasiswa->komprehensif->first();
-        $seminar_ta_dua = Auth::user()->mahasiswa->ta_dua->first();
+        $kompre = Auth::user()->mahasiswa->komprehensif;
+        $seminar_ta_dua = Auth::user()->mahasiswa->ta_dua;
         if ($kompre) {
             return redirect()->route('mahasiswa.sidang.kompre.index');
         }
@@ -81,7 +81,7 @@ class MahasiswaKompreController extends Controller
             'berkas_kompre.max' => 'Berkas seminar maksimal 1MB',
         ]);
         $mahasiswa = Auth::user()->mahasiswa;
-        $seminar = $mahasiswa->ta_dua->first();
+        $seminar = $mahasiswa->ta_dua;
         $file = $request->file('berkas_kompre');
         $name_file = $file->hashName();
         $file->move('uploads/syarat_sidang_kompre', $name_file);

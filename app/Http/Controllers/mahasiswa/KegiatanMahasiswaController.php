@@ -5,7 +5,6 @@ namespace App\Http\Controllers\mahasiswa;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreKegiatanMhsRequest;
 use App\Models\AktivitasMahasiswa;
-use COM;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

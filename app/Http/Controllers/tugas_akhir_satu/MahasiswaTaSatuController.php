@@ -18,8 +18,8 @@ class MahasiswaTaSatuController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->mahasiswa->ta_satu()->count() > 0) {
-            $seminar = ModelSeminarTaSatu::where('id_mahasiswa', Auth::user()->mahasiswa->id)->latest()->first();
+        if (Auth::user()->mahasiswa->ta_satu) {
+            $seminar = ModelSeminarTaSatu::where('id_mahasiswa', Auth::user()->mahasiswa->id)->get();
             $mahasiswa = Auth::user()->mahasiswa;
             return view('mahasiswa.ta1.index', compact(['seminar', 'mahasiswa']));
         }
@@ -28,7 +28,7 @@ class MahasiswaTaSatuController extends Controller
 
     public function create()
     {
-        if (Auth::user()->mahasiswa->ta_satu->first()) {
+        if (Auth::user()->mahasiswa->ta_satu) {
             return redirect()->back();
         }
         $data = [
@@ -43,7 +43,7 @@ class MahasiswaTaSatuController extends Controller
 
     public function edit($id)
     {
-        if (Auth::user()->mahasiswa->ta_satu->first()->id != Crypt::decrypt($id) && Auth::user()->mahasiswa->ta_satu->first()) {
+        if (Auth::user()->mahasiswa->ta_satu->id != Crypt::decrypt($id) && Auth::user()->mahasiswa->ta_satu) {
             return redirect()->back();
         }
         $data = [

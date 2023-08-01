@@ -46,8 +46,8 @@ class MahasiswaBaKompre extends Controller
         if ($request->_token != csrf_token()) {
             return redirect()->back();
         } else {
-            $seminar = Auth::user()->mahasiswa->komprehensif->last();
-            $kompre = ModelSeminarKompre::where('id_mahasiswa', Auth::user()->mahasiswa->id)->latest()->first();
+            $seminar = Auth::user()->mahasiswa->komprehensif;
+            $kompre = ModelSeminarKompre::where('id_mahasiswa', Auth::user()->mahasiswa->id)->ge();
             $kompre->status_koor = 'Selesai';
             $kompre->save();
             $ba = $request->file('ba_seminar_komprehensif');

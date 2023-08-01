@@ -112,7 +112,7 @@ class PenjadwalanTaDua extends Controller
         $template->setValue('jam_mulai', $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
-        $namafile = $mahasiswa->npm . '_ba_ta1.docx';
+        $namafile = $mahasiswa->npm . '_ba_ta2.docx';
         $template->saveAs('uploads/print_ba_ta2/' . $namafile);
         $to_name = $mahasiswa->nama_mahasiswa;
         $to_email = $mahasiswa->user->email;

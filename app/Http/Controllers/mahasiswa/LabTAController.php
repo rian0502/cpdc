@@ -100,14 +100,14 @@ class LabTAController extends Controller
     {
         $user = User::find(Auth::user()->id);
         $mahasiswa = Auth::user()->mahasiswa;
-        if ($mahasiswa->ta_satu->first()) {
-            $judul_kegiatan = $mahasiswa->ta_satu->first()->judul_ta;
+        if ($mahasiswa->ta_satu) {
+            $judul_kegiatan = $mahasiswa->ta_satu->judul_ta;
         }
-        if ($mahasiswa->ta_dua->first()) {
-            $judul_kegiatan = $mahasiswa->ta_dua->first()->judul_ta;
+        if ($mahasiswa->ta_dua) {
+            $judul_kegiatan = $mahasiswa->ta_dua->judul_ta;
         }
-        if ($mahasiswa->komprehensif->first()) {
-            $judul_kegiatan = $mahasiswa->komprehensif->first()->judul_ta;
+        if ($mahasiswa->komprehensif) {
+            $judul_kegiatan = $mahasiswa->komprehensif->judul_ta;
         }
         $lab = Laboratorium::create([
             'nama_kegiatan' => $judul_kegiatan,
@@ -134,14 +134,14 @@ class LabTAController extends Controller
             'id_lokasi_alternatif.exists' => 'Lokasi tidak ditemukan',
         ]);
         $mahasiswa = Auth::user()->mahasiswa;
-        if ($mahasiswa->ta_satu->first()) {
-            $judul_kegiatan = $mahasiswa->ta_satu->first()->judul_ta;
+        if ($mahasiswa->ta_satu) {
+            $judul_kegiatan = $mahasiswa->ta_satu->judul_ta;
         }
-        if ($mahasiswa->ta_dua->first()) {
-            $judul_kegiatan = $mahasiswa->ta_dua->first()->judul_ta;
+        if ($mahasiswa->ta_dua) {
+            $judul_kegiatan = $mahasiswa->ta_dua->judul_ta;
         }
-        if ($mahasiswa->komprehensif->first()) {
-            $judul_kegiatan = $mahasiswa->komprehensif->first()->judul_ta;
+        if ($mahasiswa->komprehensif) {
+            $judul_kegiatan = $mahasiswa->komprehensif->judul_ta;
         }
         $lab = Laboratorium::create([
             'nama_kegiatan' => $judul_kegiatan,

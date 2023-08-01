@@ -28,9 +28,9 @@ class MahasiswaBimbinganAkademikController extends Controller
     public function show($id)
     {
         $mahasiswa = Mahasiswa::where('npm', $id)->first();
-        $seminarTa1 = ModelSeminarTaSatu::where('id_mahasiswa', $mahasiswa->id)->first();
-        $seminarTa2 = ModelSeminarTaDua::where('id_mahasiswa', $mahasiswa->id)->first();
-        $sidangKompre = ModelSeminarKompre::where('id_mahasiswa', $mahasiswa->id)->first();
+        $seminarTa1 = ModelSeminarTaSatu::where('id_mahasiswa', $mahasiswa->id)->get();
+        $seminarTa2 = ModelSeminarTaDua::where('id_mahasiswa', $mahasiswa->id)->get();
+        $sidangKompre = ModelSeminarKompre::where('id_mahasiswa', $mahasiswa->id)->get();
         $data = [
             'mahasiswa' => $mahasiswa,
             'kp' => $mahasiswa->seminar_kp,
