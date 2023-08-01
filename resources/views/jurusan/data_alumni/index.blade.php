@@ -22,6 +22,7 @@
                                         <th>No</th>
                                         <th>Nama Mahasiswa</th>
                                         <th>NPM</th>
+                                        <th>Masa Studi</th>
                                         <th>Pekerjaan</th>
                                         <th>Mitra</th>
                                         <th>Status</th>
@@ -88,6 +89,10 @@
                         {
                             data: 'npm',
                             name: 'npm',
+                        },
+                        {
+                            data: 'masa_studi',
+                            name: 'masa_studi',
                         },
                         {
                             data: 'mahasiswa.kegiatan_terakhir.jabatan',
