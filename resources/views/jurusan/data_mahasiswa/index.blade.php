@@ -70,10 +70,11 @@
             });
         </script>
         <script>
+
             $(function() {
                 var dataNpm = $('.data-akun').DataTable({
                     processing: true,
-                    serverSide: true,
+                    serverSide: false,
                     responsive: true,
                     autoWidth: false,
                     ajax: '{{ route('jurusan.mahasiswa.index') }}',
@@ -87,7 +88,8 @@
                         {
                             data: 'nama_mahasiswa',
                             name: 'nama_mahasiswa',
-                            orderable: true
+                            orderable: true,
+                            searchable: true
                         },
                         {
                             data: 'npm',
@@ -109,22 +111,23 @@
                         },
                         {
                             data: 'kp',
-                            name: 'seminar_kp.status_seminar',
-                            orderable: true
+                            name: 'kp',
+                            orderable: true,
+
                         },
                         {
                             data: 'ta1',
-                            name: 'ta_satu.status_koor',
+                            name: 'ta1',
                             orderable: true
                         },
                         {
                             data: 'ta2',
-                            name: 'ta_dua.status_koor',
+                            name: 'ta2',
                             orderable: true
                         },
                         {
                             data: 'kompre',
-                            name: 'komprehensif.status_koor',
+                            name: 'kompre',
                             orderable: true
                         },
                         {

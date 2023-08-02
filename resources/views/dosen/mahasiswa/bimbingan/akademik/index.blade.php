@@ -35,7 +35,10 @@
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                    <a class="dropdown-item" href="{{ route('dosen.mahasiswa.bimbingan.akademik.show', $item->npm) }}"><i class="dw dw-eye"></i>
+                                                    <a class="dropdown-item" href="{{
+                                                        // BUAT KONDISI DISINI UNTUK SHOW MAHASISWA S2 NYA
+                                                        route('dosen.mahasiswa.bimbingan.akademik.show', $item->npm) }}
+                                                        "><i class="dw dw-eye"></i>
                                                         View</a>
                                                 </div>
                                             </div>
