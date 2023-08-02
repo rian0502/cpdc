@@ -6,10 +6,10 @@ use App\Models\Dosen;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ModelPenghargaanDosen extends Model
+class ModelSPDosen extends Model
 {
     use HasFactory;
-    protected $table = 'penghargaan_dosen';
+    protected $table = 'sp_dosen';
     protected $fillable = [
         'encrypt_id',
         'nama',
@@ -17,6 +17,7 @@ class ModelPenghargaanDosen extends Model
         'tahun',
         'uraian',
         'url',
+        'jenis',
         'dosen_id'
     ];
     public function dosen()

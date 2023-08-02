@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\dosen;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreSeminarDosenRequest;
-use App\Models\ModelSeminarDosen;
+use App\Models\ModelSPDosen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\StoreSeminarDosenRequest;
 
 class ControllerSeminarDosen extends Controller
 {
@@ -24,10 +24,10 @@ class ControllerSeminarDosen extends Controller
         $startDate = $request->input('startDate', null);
           $endDate = $request->input('endDate', null);
           if ($startDate && $endDate) {
-              $data = ModelSeminarDosen::whereBetween('tahun', [$startDate, $endDate])->orderBy('tahun', 'desc');
+              $data = ModelSPDosen::whereBetween('tahun', [$startDate, $endDate])->orderBy('tahun', 'desc');
               return DataTables::of($data)->toJson();
           } else if ($request->ajax()&& $startDate == null && $endDate == null) {
-              $data = ModelSeminarDosen::orderBy('tahun', 'desc');
+              $data = ModelSPDosen::orderBy('tahun', 'desc');
               return DataTables::of($data)->toJson();
           }
 
@@ -55,15 +55,16 @@ class ControllerSeminarDosen extends Controller
     public function store(StoreSeminarDosenRequest $request)
     {
         //
-        $insert = ModelSeminarDosen::create([
+        $insert = ModelSPDosen::create([
             'nama' => $request->nama,
             'tahun' => $request->tahun,
             'scala' => $request->scala,
             'uraian' => $request->uraian,
             'url' => $request->url,
+            'jenis' => 'Seminar',
             'dosen_id' => Auth::user()->dosen->id,
         ]);
-        ModelSeminarDosen::find($insert->id)->update([
+        ModelSPDosen::find($insert->id)->update([
             'encrypt_id' => Crypt::encrypt($insert->id),
         ]);
         return redirect()->route('dosen.seminar.index')->with('success', 'Seminar berhasil ditambahkan');
@@ -79,7 +80,7 @@ class ControllerSeminarDosen extends Controller
     {
         //
         try {
-            $seminar = ModelSeminarDosen::findOrFail(Crypt::decrypt($id));
+            $seminar = ModelSPDosen::findOrFail(Crypt::decrypt($id));
             return view('dosen.seminar.show', compact('seminar'));
         } catch (\Exception $e) {
             return redirect()->route('dosen.seminar.index')->with('error', 'Data seminar tidak ditemukan');
@@ -96,7 +97,7 @@ class ControllerSeminarDosen extends Controller
     {
         //
         try {
-            $seminar = ModelSeminarDosen::findOrFail(Crypt::decrypt($id));
+            $seminar = ModelSPDosen::findOrFail(Crypt::decrypt($id));
             if ($seminar->dosen_id != Auth::user()->dosen->id) {
                 return redirect()->route('dosen.seminar.index')->with('error', 'Data seminar tidak ditemukan');
             }
@@ -117,7 +118,7 @@ class ControllerSeminarDosen extends Controller
     {
         //
         try {
-            $seminar = ModelSeminarDosen::findOrFail(Crypt::decrypt($id));
+            $seminar = ModelSPDosen::findOrFail(Crypt::decrypt($id));
             if ($seminar->dosen_id != Auth::user()->dosen->id) {
                 return redirect()->route('dosen.seminar.index')->with('error', 'Data seminar tidak ditemukan');
             }
@@ -144,7 +145,7 @@ class ControllerSeminarDosen extends Controller
     {
         //
         try {
-            $seminar = ModelSeminarDosen::findOrFail(Crypt::decrypt($id));
+            $seminar = ModelSPDosen::findOrFail(Crypt::decrypt($id));
             if ($seminar->dosen_id != Auth::user()->dosen->id) {
                 return redirect()->route('dosen.seminar.index')->with('error', 'Data seminar tidak ditemukan');
             }
@@ -160,9 +161,9 @@ class ControllerSeminarDosen extends Controller
         $starDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($starDate && $endDate) {
-            $seminar = ModelSeminarDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->whereBetween('tahun', [$starDate, $endDate])->groupBy('scala')->get();
+            $seminar = ModelSPDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->whereBetween('tahun', [$starDate, $endDate])->groupBy('scala')->get();
         } else {
-            $seminar = ModelSeminarDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->groupBy('scala')->get();
+            $seminar = ModelSPDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->groupBy('scala')->get();
         }
 
         return response()->json($seminar);
@@ -173,7 +174,7 @@ class ControllerSeminarDosen extends Controller
         $starDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($starDate && $endDate) {
-            $tahun = ModelSeminarDosen::select(DB::raw('YEAR(tahun) as year'), DB::raw('COUNT(*) as total'))
+            $tahun = ModelSPDosen::select(DB::raw('YEAR(tahun) as year'), DB::raw('COUNT(*) as total'))
                 ->whereBetween(DB::raw('YEAR(tahun)'), [$starDate, $endDate])
                 ->groupBy(DB::raw('YEAR(tahun)'))
                 ->get()
@@ -186,7 +187,7 @@ class ControllerSeminarDosen extends Controller
                 ->values()
                 ->toArray();
         } else {
-            $tahun = ModelSeminarDosen::select(DB::raw('YEAR(tahun) as year'), DB::raw('COUNT(*) as total'))
+            $tahun = ModelSPDosen::select(DB::raw('YEAR(tahun) as year'), DB::raw('COUNT(*) as total'))
                 ->groupBy(DB::raw('YEAR(tahun)'))
                 ->get()
                 ->map(function ($item) {
