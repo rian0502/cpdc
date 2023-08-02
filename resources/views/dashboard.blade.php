@@ -679,7 +679,7 @@
                 </div>
             @endrole
 
-            @role('admin lab')
+            @role('admin lab|kalab')
                 <div class="card-box pb-10" style="margin-bottom: 30px">
                     <div class="h5 pd-20 mb-0">Data Asistensi</div>
                     <table id="data-asisten" class="table warp stripe p-2">
@@ -1460,6 +1460,7 @@
             });
         </script>
 
+@endrole
 
         <script>
             function chartSeminar2(startDate2, endDate2, angkatan) {
@@ -1576,5 +1577,4 @@
                 selectElement.appendChild(optionElement);
             }
         </script>
-    @endrole
 @endsection

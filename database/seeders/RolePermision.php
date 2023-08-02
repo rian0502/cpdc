@@ -218,7 +218,7 @@ class RolePermision extends Seeder
             'email_verified_at' => now(),
             'password' =>  bcrypt('cpdc'),
         ]);
-        
+
         //endsudo
         //admin berkas
         $adminBerkas = User::create([
@@ -266,8 +266,8 @@ class RolePermision extends Seeder
         ]); //37
         //endadminlab
 
-        $roles = ['admin lab', 'admin berkas', 'mahasiswa', 'dosen', 'pkl', 'kompre', 'ta1', 'ta2', 
-        'jurusan', 'alumni', 'kalab', 'sudo', 'kaprodiS1', 'kaprodiS2', 'ta1s2', 'ta2S2', 'kompreS2', 'mahasiswaS2', 'alumniS2', 'tpmpsS1', 'tpmsS2'
+        $roles = ['admin lab', 'admin berkas', 'mahasiswa', 'dosen', 'pkl', 'kompre', 'ta1', 'ta2',
+        'jurusan', 'alumni', 'kalab', 'sudo', 'kaprodiS1', 'kaprodiS2', 'ta1S2', 'ta2S2', 'kompreS2', 'mahasiswaS2', 'alumniS2', 'tpmpsS1', 'tpmsS2'
     ];
         foreach ($roles as $role) {
             $role = Role::create([

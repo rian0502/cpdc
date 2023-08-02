@@ -37,18 +37,31 @@
                                             <option value="pkl" {{ $account->hasRole('pkl') ? 'selected' : '' }}>
                                                 Koordinator PKL</option>
                                             <option value="ta1" {{ $account->hasRole('ta1') ? 'selected' : '' }}>
-                                                Koordinator TA 1</option>
+                                                Koordinator TA 1 S1</option>
                                             <option value="ta2" {{ $account->hasRole('ta2') ? 'selected' : '' }}>
-                                                Koordinator TA 2</option>
+                                                Koordinator TA 2 S1</option>
                                             <option value="kompre" {{ $account->hasRole('kompre') ? 'selected' : '' }}>
-                                                KOMPRE
+                                                Koordinator KOMPRE S1
                                             </option>
+                                            <option value="ta1S2" {{ $account->hasRole('ta1S2') ? 'selected' : '' }}>
+                                                Koordinator TA 1 S2</option>
+                                            <option value="ta2S2" {{ $account->hasRole('ta2S2') ? 'selected' : '' }}>
+                                                Koordinator TA 2 S2</option>
+                                            <option value="kompreS2" {{ $account->hasRole('kompreS2') ? 'selected' : '' }}>
+                                                Koordinator KOMPRE S2
+                                            </option>
+                                            <option value="kaprodiS1" {{ $account->hasRole('kaprodiS1') ? 'selected' : '' }}>
+                                                Kaprodi S1</option>
+                                            <option value="kaprodiS2" {{ $account->hasRole('kaprodiS2') ? 'selected' : '' }}>
+                                                Kaprodi S2</option>
                                             <option value="jurusan" {{ $account->hasRole('jurusan') ? 'selected' : '' }}>
                                                 Ketua Jurusan</option>
                                             <option value="kalab" {{ $account->hasRole('kalab') ? 'selected' : '' }}>
                                                 Kepala Lab</option>
-                                            <option value="tpmps" {{ $account->hasRole('tpmps') ? 'selected' : '' }}>
-                                                TPMPS</option>
+                                            <option value="tpmpsS1" {{ $account->hasRole('tpmpsS1') ? 'selected' : '' }}>
+                                                TPMPS S1</option>
+                                            <option value="tpmpsS2" {{ $account->hasRole('tpmpsS2') ? 'selected' : '' }}>
+                                                TPMPS S2</option>
                                         </optgroup>
                                     </select>
                                 </div>

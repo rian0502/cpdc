@@ -193,21 +193,11 @@
                                             <div class="form-group">
                                                 <label for="">Jenis Akun</label>
                                                 <div class="@error('jenis_akun') form-control-danger @enderror">
-                                                    <div class="custom-control custom-radio custom-control-inline pb-0">
-                                                        <input type="radio" id="mahasiswa" name="jenis_akun"
-                                                            value="mahasiswa" class="custom-control-input"
-                                                            {{ old('jenis_akun') == 'mahasiswa' ? 'checked' : '' }} />
-                                                        <label class="custom-control-label"
-                                                            for="mahasiswa">Mahasiswa</label>
-                                                    </div>
-                                                    <div
-                                                        class="custom-control custom-radio custom-control-inline pb-0">
-                                                        <input type="radio" id="alumni" name="jenis_akun"
-                                                            value="alumni" class="custom-control-input"
-                                                            {{ old('jenis_akun') == 'alumni' ? 'checked' : '' }} />
-                                                        <label class="custom-control-label"
-                                                            for="alumni">Alumni</label>
-                                                    </div>
+                                                    <select name="jenis_akun" id="jenis_akun" class="selectpicker form-control">
+                                                        <option value="mahasiswa" {{ old('jenis_akun') == 'mahasiswa' ? 'selected' : '' }} >MAHASISWA S1</option>
+                                                        <option value="mahasiswaS2" {{ old('jenis_akun') == 'mahasiswaS2' ? 'selected' : '' }}>MAHASISWA S2</option>
+                                                        <option value="alumni" {{ old('jenis_akun') == 'alumni' ? 'selected' : '' }}>ALUMNI</option>
+                                                    </select>
                                                 </div>
                                                 @error('jenis_akun')
                                                     <small class="text-danger">{{ $message }}</small>
