@@ -117,8 +117,8 @@ Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verifi
     Route::get('asistensi', [LabController::class, 'tableAktivitasLab'])->name('asistensi.ajax');
     Route::get('detail_asistensi/{npm}', [LabController::class, 'showAsistensi'])->name('asistensi.show');
     Route::get('dataAktivitas', [LabController::class, 'dataLaboratorium'])->name('data.ajax');
-    //chart line aktivitas lab
 });
+//chart line aktivitas lab
 Route::get('chart/aktivitas', [LabController::class, 'chartAktivitasLab'])->name('chart.aktivitas.lab')->middleware('auth', 'verified', 'role:admin lab|jurusan|kalab');
 Route::get('chart/seminar', [ChartSeminarController::class, 'ChartSeminar'])->name('chart.seminar.all')->middleware('auth', 'verified', 'role:jurusan|tpmps');
 Route::get('chart/usiadosen', [AkunDosenController::class, 'chartUsiaDosen'])->name('chart.usia.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmps');
