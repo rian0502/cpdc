@@ -416,7 +416,7 @@
                                     TA</span>
                             </a>
                         </li>
-                        @if (Auth::user()->mahasiswa->komprehensif->first())
+                        @if (Auth::user()->mahasiswa->komprehensif-)
                             <li>
                                 <a href="{{ route('mahasiswa.pendataan_alumni.index') }}"
                                     class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni*') ? 'active' : '' }}">

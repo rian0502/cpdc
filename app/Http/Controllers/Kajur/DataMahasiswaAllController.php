@@ -24,20 +24,23 @@ class DataMahasiswaAllController extends Controller
     {
         //
         if ($request->ajax()) {
-            $data = Mahasiswa::query()->with(['seminar_kp', 'ta_satu', 'ta_dua', 'komprehensif'])->get();
+            $data = Mahasiswa::query()
+            ->selectRaw('*,
+            CONCAT(IFNULL((SELECT status_seminar FROM seminar_kp WHERE id_mahasiswa = mahasiswa.id LIMIT 1), "Belum Daftar KP"),
+                   IF((SELECT status_seminar FROM seminar_kp WHERE id_mahasiswa = mahasiswa.id LIMIT 1) IS NOT NULL, " KP", "")) as kp,
+
+            CONCAT(IFNULL((SELECT status_koor FROM seminar_ta_satu WHERE id_mahasiswa = mahasiswa.id LIMIT 1), "Belum Daftar TA1"),
+                   IF((SELECT status_koor FROM seminar_ta_satu WHERE id_mahasiswa = mahasiswa.id LIMIT 1) IS NOT NULL, " TA1", "")) as ta1,
+
+            CONCAT(IFNULL((SELECT status_koor FROM seminar_ta_dua WHERE id_mahasiswa = mahasiswa.id LIMIT 1), "Belum Daftar TA2"),
+                   IF((SELECT status_koor FROM seminar_ta_dua WHERE id_mahasiswa = mahasiswa.id LIMIT 1) IS NOT NULL, " TA2", "")) as ta2,
+
+            CONCAT(IFNULL((SELECT status_koor FROM seminar_komprehensif WHERE id_mahasiswa = mahasiswa.id LIMIT 1), "Belum Daftar KOMPRE"),
+                   IF((SELECT status_koor FROM seminar_komprehensif WHERE id_mahasiswa = mahasiswa.id LIMIT 1) IS NOT NULL, " KOMPRE", "")) as kompre
+        ')
+            ->get();
             return DataTables::of($data)
-                ->addColumn('kp', function ($data) {
-                    return $data->seminar_kp->status_seminar ?? 'Belum Daftar';
-                })
-                ->addColumn('ta1', function ($data) {
-                    return $data->ta_satu->status_koor ?? 'Belum Daftar';
-                })
-                ->addColumn('ta2', function ($data) {
-                    return $data->ta_dua->status_koor ?? 'Belum Daftar';
-                })
-                ->addColumn('kompre', function ($data) {
-                    return  $data->komprehensif->status_koor ?? 'Belum Daftar';
-                })
+
                 ->toJson();
         }
         return view('jurusan.data_mahasiswa.index');
