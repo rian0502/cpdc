@@ -22,14 +22,14 @@ class ControllerSeminarDosen extends Controller
     {
         //
         $startDate = $request->input('startDate', null);
-          $endDate = $request->input('endDate', null);
-          if ($startDate && $endDate) {
-              $data = ModelSPDosen::whereBetween('tahun', [$startDate, $endDate])->orderBy('tahun', 'desc');
-              return DataTables::of($data)->toJson();
-          } else if ($request->ajax()&& $startDate == null && $endDate == null) {
-              $data = ModelSPDosen::orderBy('tahun', 'desc');
-              return DataTables::of($data)->toJson();
-          }
+        $endDate = $request->input('endDate', null);
+        if ($startDate && $endDate) {
+            $data = ModelSPDosen::whereBetween('tahun', [$startDate, $endDate])->where('jenis', 'Seminar')->orderBy('tahun', 'desc');
+            return DataTables::of($data)->toJson();
+        } else if ($request->ajax() && $startDate == null && $endDate == null) {
+            $data = ModelSPDosen::where('jenis', 'Seminar')->orderBy('tahun', 'desc');
+            return DataTables::of($data)->toJson();
+        }
 
 
         return view('dosen.seminar.index');
@@ -161,9 +161,11 @@ class ControllerSeminarDosen extends Controller
         $starDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($starDate && $endDate) {
-            $seminar = ModelSPDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->whereBetween('tahun', [$starDate, $endDate])->groupBy('scala')->get();
+            $seminar = ModelSPDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->where('jenis', 'Seminar')
+                ->whereBetween('tahun', [$starDate, $endDate])->groupBy('scala')->get();
         } else {
-            $seminar = ModelSPDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->groupBy('scala')->get();
+            $seminar = ModelSPDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->where('jenis', 'Seminar')
+                ->groupBy('scala')->get();
         }
 
         return response()->json($seminar);
@@ -175,6 +177,7 @@ class ControllerSeminarDosen extends Controller
         $endDate = $request->input('endDate', null);
         if ($starDate && $endDate) {
             $tahun = ModelSPDosen::select(DB::raw('YEAR(tahun) as year'), DB::raw('COUNT(*) as total'))
+                ->where('jenis', 'Seminar')
                 ->whereBetween(DB::raw('YEAR(tahun)'), [$starDate, $endDate])
                 ->groupBy(DB::raw('YEAR(tahun)'))
                 ->get()
@@ -188,6 +191,7 @@ class ControllerSeminarDosen extends Controller
                 ->toArray();
         } else {
             $tahun = ModelSPDosen::select(DB::raw('YEAR(tahun) as year'), DB::raw('COUNT(*) as total'))
+                ->where('jenis', 'Seminar')
                 ->groupBy(DB::raw('YEAR(tahun)'))
                 ->get()
                 ->map(function ($item) {
