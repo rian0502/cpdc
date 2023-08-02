@@ -38,6 +38,12 @@ class S2TugasAkhir1 extends Migration
             $table->foreignId('id_pembahas_2')->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_pembahas_3')->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_mahasiswa')->constrained('mahasiswa')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('pembahas_external_1')->nullable();
+            $table->string('nip_pembahas_external_1')->nullable();
+            $table->string('pembahas_external_2')->nullable();
+            $table->string('nip_pembahas_external_2')->nullable();
+            $table->string('pembahas_external_3')->nullable();
+            $table->string('nip_pembahas_external_3')->nullable();
             $table->timestamps();
         });
     }

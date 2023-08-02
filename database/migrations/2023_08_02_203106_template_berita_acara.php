@@ -30,6 +30,6 @@ class TemplateBeritaAcara extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists ('template_berita_acara');
+        Schema::dropIfExists('template_berita_acara');
     }
 }
