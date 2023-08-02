@@ -266,7 +266,7 @@ class RolePermision extends Seeder
         ]); //37
         //endadminlab
 
-        $roles = ['admin lab', 'admin berkas', 'mahasiswa', 'dosen', 'pkl', 'kompre', 'ta1', 'ta2', 'jurusan', 'alumni', 'kalab', 'sudo'];
+        $roles = ['admin lab', 'admin berkas', 'mahasiswa', 'dosen', 'pkl', 'kompre', 'ta1', 'ta2', 'jurusan', 'alumni', 'kalab', 'sudo', 'kaprodiS1', 'kaprodiS2', 'ta1s2', 'ta2S2', 'kompreS2', 'mahasiswaS2'];
         foreach ($roles as $role) {
             $role = Role::create([
                 'name' => $role,

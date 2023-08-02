@@ -13,8 +13,7 @@ class SeminarDosen extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('seminar_dosen', function (Blueprint $table) {
+        Schema::create('sp_dosen', function (Blueprint $table) {
             $table->id();
             $table->string('encrypt_id')->nullable();
             $table->string('nama');
@@ -23,6 +22,7 @@ class SeminarDosen extends Migration
             $table->text('uraian');
             $table->string('url');
             $table->foreignId('dosen_id')->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
+            $table->enum('jenis', ['Seminar', 'Penghargaan']);
             $table->timestamps();
         });
     }

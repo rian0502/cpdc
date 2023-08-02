@@ -44,13 +44,11 @@ class MahasiswaBaTaDua extends Controller
     public function store(StoreBaTaDuaRequest $request)
     {
         //
-
-
         if ($request->_token != csrf_token()) {
             return redirect()->back();
         } else {
-            $seminar = Auth::user()->mahasiswa->ta_dua->last();
-            $ta2 = ModelSeminarTaDua::where('id_mahasiswa', Auth::user()->mahasiswa->id)->latest()->first();
+            $seminar = Auth::user()->mahasiswa->ta_dua;
+            $ta2 = ModelSeminarTaDua::where('id_mahasiswa', Auth::user()->mahasiswa->id)->first();
             $ta2->status_koor = 'Selesai';
             $ta2->save();
             $ba = $request->file('berkas_ba_seminar_ta_dua');
