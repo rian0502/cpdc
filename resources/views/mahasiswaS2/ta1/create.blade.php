@@ -62,142 +62,6 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Dosen Pembimbing 1</label>
-                                    <select class="custom-select2 form-control" name="id_pembimbing_satu"
-                                        id="id_pembimbing_satu" style="width: 100%; height: 38px">
-                                        <optgroup label="Pembimbing 1">
-                                            @foreach ($dosens as $item)
-                                                <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_satu') == $item->encrypt_id ? 'selected' : '' }}>
-                                                    {{ $item->nama_dosen }}</option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Pembimbing 2</label>
-                                    <select class="custom-select2 form-control" name="id_pembimbing_dua"
-                                        id="id_pembimbing_dua" style="width: 100%; height: 38px"
-                                        onchange="toggleInput(this, 'Pembimbing2', 'pbl2_nama')">
-                                        <optgroup label="Pembimbing 2">
-                                            @foreach ($dosens as $item)
-                                                <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
-                                                    {{ $item->nama_dosen }}</option>
-                                            @endforeach
-                                            @if (old('id_pembimbing_dua') == 'new' || $errors->has('pbl2_nama'))
-                                                <option value="new" selected>Tidak Ada di Daftar Ini</option>
-                                            @else
-                                                <option value="new">Tidak Ada di Daftar Ini</option>
-                                            @endif
-                                        </optgroup>
-                                    </select>
-                                </div>
-                                <div id="pbl2_nama"
-                                    style="display: {{ old('id_pembimbing_dua') == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_dua') == 'new' ? '' : 'hidden' }}>
-                                    <div class="form-group">
-                                        <label>Nama Pembimbing 2</label>
-                                        <input autofocus name="pbl2_nama" class="form-control" type="text"
-                                            value="{{ old('pbl2_nama') }}" placeholder="Masukkan Nama Pembimbing 2">
-                                        @error('pbl2_nama')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div id="Pembimbing2"
-                                    style="display: {{ old('id_pembimbing_dua') == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_dua') == 'new' ? '' : 'hidden' }}>
-                                    <div class="form-group">
-                                        <label>NIP Pembimbing 2</label>
-                                        <input autofocus name="pbl2_nip" class="form-control" type="text"
-                                            value="{{ old('pbl2_nip') }}"
-                                            placeholder="Masukkan Nomor Karyawan Pembimbing 2">
-                                        @error('pbl2_nip')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            {{-- form untuk sebelah kanan --}}
-                            <div class="kanan weight-500 col-md-6">
-                                <div class="form-group">
-                                    <label>Pembahas 1</label>
-                                    <select class="custom-select2 form-control" name="pembahas" id="pembahas"
-                                        style="width: 100%; height: 38px">
-                                        {{-- style="width: 100%; height: 38px" onchange="toggleInput(this, 'Pembahas')"> --}}
-                                        <optgroup label="Pembahas">
-                                            @foreach ($dosens as $item)
-                                                <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('pembahas') == $item->encrypt_id ? 'selected' : '' }}>
-                                                    {{ $item->nama_dosen }}
-                                                </option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Pembahas 2</label>
-                                    <select class="custom-select2 form-control" name="id_pembimbing_dua"
-                                        id="id_pembimbing_dua" style="width: 100%; height: 38px"
-                                        onchange="toggleInput(this, 'Pembimbing2', 'pbl2_nama')">
-                                        <optgroup label="Pembimbing 2">
-                                            @foreach ($dosens as $item)
-                                                <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
-                                                    {{ $item->nama_dosen }}</option>
-                                            @endforeach
-                                            @if (old('id_pembimbing_dua') == 'new' || $errors->has('pbl2_nama'))
-                                                <option value="new" selected>Tidak Ada di Daftar Ini</option>
-                                            @else
-                                                <option value="new">Tidak Ada di Daftar Ini</option>
-                                            @endif
-                                        </optgroup>
-                                    </select>
-                                </div>
-                                <div id="pbl2_nama"
-                                    style="display: {{ old('id_pembimbing_dua') == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_dua') == 'new' ? '' : 'hidden' }}>
-                                    <div class="form-group">
-                                        <label>Nama Pembimbing 2</label>
-                                        <input autofocus name="pbl2_nama" class="form-control" type="text"
-                                            value="{{ old('pbl2_nama') }}" placeholder="Masukkan Nama Pembimbing 2">
-                                        @error('pbl2_nama')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div id="Pembimbing2"
-                                    style="display: {{ old('id_pembimbing_dua') == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_dua') == 'new' ? '' : 'hidden' }}>
-                                    <div class="form-group">
-                                        <label>NIP Pembimbing 2</label>
-                                        <input autofocus name="pbl2_nip" class="form-control" type="text"
-                                            value="{{ old('pbl2_nip') }}"
-                                            placeholder="Masukkan Nomor Karyawan Pembimbing 2">
-                                        @error('pbl2_nip')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Pembahas 3</label>
-                                    <select class="custom-select2 form-control" name="pembahas" id="pembahas"
-                                        style="width: 100%; height: 38px">
-                                        {{-- style="width: 100%; height: 38px" onchange="toggleInput(this, 'Pembahas')"> --}}
-                                        <optgroup label="Pembahas">
-                                            @foreach ($dosens as $item)
-                                                <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('pembahas') == $item->encrypt_id ? 'selected' : '' }}>
-                                                    {{ $item->nama_dosen }}
-                                                </option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
                                     <label>Rencana Periode Seminar</label>
                                     <input readonly class="form-control month-picker" type="text" name="periode_seminar"
                                         value="{{ old('periode_seminar') }}" id="periode_seminar"
@@ -241,9 +105,13 @@
                                 {{-- hanya tampil saat mode mobile --}}
                                 <div class="form-group" id="form-mobile">
                                     <label>Ide Judul</label>
-                                    <select name="sumber_penelitian" class="selectpicker form-control @error('sumber_penelitian') form-control-danger @enderror">
-                                    <option value="Dosen" {{old('sumber_penelitian')=='Dosen' ? 'selected' : ''}}>Dari Dosen</option>
-                                    <option value="Mahasiswa" {{old('sumber_penelitian')=='Mahasiswa' ? 'selected' : ''}}>Dari Mahasiswa</option>
+                                    <select name="sumber_penelitian"
+                                        class="selectpicker form-control @error('sumber_penelitian') form-control-danger @enderror">
+                                        <option value="Dosen" {{ old('sumber_penelitian') == 'Dosen' ? 'selected' : '' }}>
+                                            Dari Dosen</option>
+                                        <option value="Mahasiswa"
+                                            {{ old('sumber_penelitian') == 'Mahasiswa' ? 'selected' : '' }}>Dari Mahasiswa
+                                        </option>
                                     </select>
                                     @error('sumber_penelitian')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -255,6 +123,171 @@
                                     @error('judul_ta')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
+                                </div>
+
+                            </div>
+
+                            {{-- form untuk sebelah kanan --}}
+                            <div class="kanan weight-500 col-md-6">
+
+                                <div class="form-group">
+                                    <label>Dosen Pembimbing 1</label>
+                                    <select class="custom-select2 form-control" name="id_pembimbing_satu"
+                                        id="id_pembimbing_satu" style="width: 100%; height: 38px">
+                                        <optgroup label="Pembimbing 1">
+                                            @foreach ($dosens as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ old('id_pembimbing_satu') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $item->nama_dosen }}</option>
+                                            @endforeach
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Pembimbing 2</label>
+                                    <select class="custom-select2 form-control" name="id_pembimbing_dua"
+                                        id="id_pembimbing_dua" style="width: 100%; height: 38px"
+                                        onchange="toggleInput(this, 'Pembimbing2', 'pbl2_nama')">
+                                        <optgroup label="Pembimbing 2">
+                                            @foreach ($dosens as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $item->nama_dosen }}</option>
+                                            @endforeach
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Pembahas 1</label>
+                                    <select class="custom-select2 form-control" name="id_pembahas_satu"
+                                        id="id_pembahas_satu" style="width: 100%; height: 38px"
+                                        onchange="toggleInput(this, 'pembahas1', 'phs1_nama')">
+                                        <optgroup label="Pembahas 1">
+                                            @foreach ($dosens as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ old('id_pembahas_satu') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $item->nama_dosen }}</option>
+                                            @endforeach
+                                            @if (old('id_pembahas_satu') == 'new' || $errors->has('phs1_nama'))
+                                                <option value="new" selected>Tidak Ada di Daftar Ini</option>
+                                            @else
+                                                <option value="new">Tidak Ada di Daftar Ini</option>
+                                            @endif
+                                        </optgroup>
+                                    </select>
+                                </div>
+
+                                <div id="phs1_nama"
+                                    style="display: {{ old('id_pembahas_satu') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_satu') == 'new' ? '' : 'hidden' }}>
+                                    <div class="form-group">
+                                        <label>Nama pembahas 1</label>
+                                        <input autofocus name="phs1_nama" class="form-control" type="text"
+                                            value="{{ old('phs1_nama') }}" placeholder="Masukkan Nama pembahas 1">
+                                        @error('phs1_nama')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div id="pembahas1"
+                                    style="display: {{ old('id_pembahas_satu') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_satu') == 'new' ? '' : 'hidden' }}>
+                                    <div class="form-group">
+                                        <label>NIP pembahas 1</label>
+                                        <input autofocus name="phs1_nip" class="form-control" type="text"
+                                            value="{{ old('phs1_nip') }}" placeholder="Masukkan Nomor Karyawan pembahas 1">
+                                        @error('phs1_nip')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Pembahas 2</label>
+                                    <select class="custom-select2 form-control" name="id_pembahas_dua"
+                                        id="id_pembahas_dua" style="width: 100%; height: 38px"
+                                        onchange="toggleInput(this, 'pembahas2', 'phs2_nama')">
+                                        <optgroup label="Pembahas 2">
+                                            @foreach ($dosens as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ old('id_pembahas_dua') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $item->nama_dosen }}</option>
+                                            @endforeach
+                                            @if (old('id_pembahas_dua') == 'new' || $errors->has('phs2_nama'))
+                                                <option value="new" selected>Tidak Ada di Daftar Ini</option>
+                                            @else
+                                                <option value="new">Tidak Ada di Daftar Ini</option>
+                                            @endif
+                                        </optgroup>
+                                    </select>
+                                </div>
+
+                                <div id="phs2_nama"
+                                    style="display: {{ old('id_pembahas_dua') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_dua') == 'new' ? '' : 'hidden' }}>
+                                    <div class="form-group">
+                                        <label>Nama pembahas 2</label>
+                                        <input autofocus name="phs2_nama" class="form-control" type="text"
+                                            value="{{ old('phs2_nama') }}" placeholder="Masukkan Nama pembahas 2">
+                                        @error('phs2_nama')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div id="pembahas2"
+                                    style="display: {{ old('id_pembahas_dua') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_dua') == 'new' ? '' : 'hidden' }}>
+                                    <div class="form-group">
+                                        <label>NIP pembahas 2</label>
+                                        <input autofocus name="phs2_nip" class="form-control" type="text"
+                                            value="{{ old('phs2_nip') }}" placeholder="Masukkan Nomor Karyawan pembahas 2">
+                                        @error('phs2_nip')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Pembahas 3</label>
+                                    <select class="custom-select2 form-control" name="id_pembahas_tiga"
+                                        id="id_pembahas_tiga" style="width: 100%; height: 38px"
+                                        onchange="toggleInput(this, 'pembahas3', 'phs3_nama')">
+                                        <optgroup label="Pembahas 3">
+                                            @foreach ($dosens as $item)
+                                                <option value="{{ $item->encrypt_id }}"
+                                                    {{ old('id_pembahas_tiga') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $item->nama_dosen }}</option>
+                                            @endforeach
+                                            @if (old('id_pembahas_tiga') == 'new' || $errors->has('phs3_nama'))
+                                                <option value="new" selected>Tidak Ada di Daftar Ini</option>
+                                            @else
+                                                <option value="new">Tidak Ada di Daftar Ini</option>
+                                            @endif
+                                        </optgroup>
+                                    </select>
+                                </div>
+
+                                <div id="phs3_nama"
+                                    style="display: {{ old('id_pembahas_tiga') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_tiga') == 'new' ? '' : 'hidden' }}>
+                                    <div class="form-group">
+                                        <label>Nama pembahas 3</label>
+                                        <input autofocus name="phs3_nama" class="form-control" type="text"
+                                            value="{{ old('phs3_nama') }}" placeholder="Masukkan Nama pembahas 3">
+                                        @error('phs3_nama')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div id="pembahas3"
+                                    style="display: {{ old('id_pembahas_tiga') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_tiga') == 'new' ? '' : 'hidden' }}>
+                                    <div class="form-group">
+                                        <label>NIP pembahas 3</label>
+                                        <input autofocus name="phs3_nip" class="form-control" type="text"
+                                            value="{{ old('phs3_nip') }}" placeholder="Masukkan Nomor Karyawan pembahas 3">
+                                        @error('phs3_nip')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="form-group" id="form-mobile">
                                     <label class="weight-600">Persetujuan</label>
@@ -305,8 +338,18 @@
         }
     </script>
     <script>
-        @if (old('pbl2_nama'))
-            toggleInput(document.getElementById('id_pembimbing_dua'), 'Pembimbing2')
+        @if (old('phs1_nama'))
+            toggleInput(document.getElementById('id_pembahas_satu'), 'pembahas1')
+        @endif
+    </script>
+    <script>
+        @if (old('phs2_nama'))
+            toggleInput(document.getElementById('id_pembahas_dua'), 'pembahas2')
+        @endif
+    </script>
+    <script>
+        @if (old('phs3_nama'))
+            toggleInput(document.getElementById('id_pembahas_tiga'), 'pembahas3')
         @endif
     </script>
 @endsection
