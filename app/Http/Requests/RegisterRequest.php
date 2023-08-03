@@ -24,7 +24,7 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
-        if ($this->jenis_akun == 'mahasiswa') {
+        if ($this->jenis_akun == 'mahasiswa' || $this->jenis_akun == 'mahasiswaS2') {
             return [
                 'email' => 'required|email|unique:users,email',
                 'nama_lengkap' => 'required|string|max:255|min:2',
@@ -34,7 +34,7 @@ class RegisterRequest extends FormRequest
                 'id_dosen' => 'required|exists:dosen,encrypt_id',
                 'password' => 'required|string|min:8|max:255|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/',
                 'password_confirm' => 'required|same:password',
-                'jenis_akun' => 'required|in:mahasiswa',
+                'jenis_akun' => 'required|in:mahasiswa,mahasiswaS2',
             ];
         }
         return [
@@ -51,7 +51,7 @@ class RegisterRequest extends FormRequest
     }
     public function messages()
     {
-        if ($this->jenis_akun == 'mahasiswa') {
+        if ($this->jenis_akun == 'mahasiswa' || $this->jenis_akun == 'mahasiswaS2') {
             return [
                 'email.required' => 'Email Harus diisi',
                 'email.email' => 'Email Tidak Valid',

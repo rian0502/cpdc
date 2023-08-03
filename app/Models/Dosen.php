@@ -87,10 +87,10 @@ class Dosen extends Model
     }
     public function seminar()
     {
-        return $this->hasMany(ModelSeminarDosen::class, 'dosen_id');
+        return $this->hasMany(ModelSPDosen::class, 'dosen_id')->where('jenis', 'Seminar')->orderBy('tahun', 'desc');
     }
     public function penghargaan()
     {
-        return $this->hasMany(ModelPenghargaanDosen::class, 'dosen_id');
+        return $this->hasMany(ModelSPDosen::class, 'dosen_id')->where('jenis', 'Penghargaan')->orderBy('tahun', 'desc');
     }
 }
