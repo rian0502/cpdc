@@ -69,6 +69,18 @@ class Mahasiswa extends Model
     {
         return $this->hasOne(ModelSeminarKompre::class, 'id_mahasiswa');
     }
+    public function taSatuS2()
+    {
+        return $this->hasOne(ModelSeminarTaSatuS2::class, 'id_mahasiswa');
+    }
+    public function taDuaS2()
+    {
+        return $this->hasOne(ModelSeminarTaDuaS2::class, 'id_mahasiswa');
+    }
+    public function komprehensifS2()
+    {
+        return $this->hasOne(ModelKompreS2::class, 'id_mahasiswa');
+    }
     public function aktivitasAlumni()
     {
         return $this->hasMany(AktivitasAlumni::class, 'mahasiswa_id');
