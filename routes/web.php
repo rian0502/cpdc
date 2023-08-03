@@ -59,6 +59,7 @@ use App\Http\Controllers\sudo\PenempatanAdminLabController;
 use App\Http\Controllers\sudo\PenempatanDosenLabController;
 use App\Http\Controllers\sudo\ResetTA;
 use App\Http\Controllers\SuggestionController;
+use App\Http\Controllers\TemplateSeminarController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaBaTaDua;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
@@ -135,6 +136,10 @@ Route::prefix('admin/berkas')->name('berkas.')->middleware(['auth', 'profile', '
     Route::resource('berkas_persyaratan', BerkasPersyaratanController::class)->except([
         'create', 'store', 'show', 'destroy'
     ]);
+    Route::resource('template_seminar', TemplateSeminarController::class)->except([
+        'create', 'store', 'show', 'destroy'
+    ]);
+
     Route::resource('validasi/seminar/kp', ValidasiSeminarKPController::class)->names('validasi.seminar.kp');
     Route::resource('validasi/seminar/ta1', ValidasiAdminTaSatu::class)->names('validasi.seminar.ta1');
     Route::resource('validasi/seminar/ta2', ValidasiAdminTaDua::class)->names('validasi.seminar.ta2');
