@@ -1,54 +1,52 @@
 <?php
 
-
-use App\Http\Controllers\alumni\AktivitasAlumniController;
-use App\Http\Controllers\alumni\PendataanAlumni;
+use App\Models\JadwalSKP;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Verified;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\sudo\ResetTA;
+use App\Http\Controllers\Kajur\Seminar;
+use App\Models\ModelJadwalSeminarTaDua;
 use App\Http\Controllers\AuthController;
+use App\Models\ModelJadwalSeminarKompre;
+use App\Models\ModelJadwalSeminarTaSatu;
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\BerkasPersyaratanController;
-use App\Http\Controllers\bimbingan\MahasiswaBimbinganAkademikController;
-use App\Http\Controllers\bimbingan\MahasiswaBimbinganKPController;
-use App\Http\Controllers\bimbingan\MahasiswaBimbinganTugasAkhirController;
+use App\Http\Controllers\Kajur\DataAlumni;
+use App\Http\Controllers\Kajur\ExportData;
+use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\Kajur\Penghargaan;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\dosen\ControllerPenghargaanDosen;
-use App\Http\Controllers\dosen\ControllerSeminarDosen;
+use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\dosen\GelarController;
+use App\Http\Controllers\alumni\PendataanAlumni;
+use App\Http\Controllers\Kajur\LokasiController;
 use App\Http\Controllers\dosen\JabatanController;
+use App\Http\Controllers\ValidasiPendataanAlumni;
 use App\Http\Controllers\dosen\LitabmasController;
+use App\Http\Controllers\dosen\PublikasiController;
+use App\Http\Controllers\TemplateSeminarController;
 use App\Http\Controllers\dosen\OrganisasiController;
+use App\Http\Controllers\BerkasPersyaratanController;
+use App\Http\Controllers\dosen\ControllerSeminarDosen;
 use App\Http\Controllers\dosen\PangkatDosenController;
 use App\Http\Controllers\dosen\ProfileDosenController;
-use App\Http\Controllers\dosen\PublikasiController;
-use App\Http\Controllers\HistoryController;
-use App\Http\Controllers\Kajur\AktivitasDataController;
 use App\Http\Controllers\Kajur\ChartSeminarController;
-use App\Http\Controllers\Kajur\DataAlumni;
-use App\Http\Controllers\Kajur\DataMahasiswaAllController;
-use App\Http\Controllers\Kajur\ExportData;
 use App\Http\Controllers\Kajur\LitabmasDataController;
-use App\Http\Controllers\Kajur\LokasiController;
 use App\Http\Controllers\Kajur\PrestasiDataController;
+use App\Http\Controllers\Kajur\AktivitasDataController;
 use App\Http\Controllers\Kajur\PublikasiDataController;
-use App\Http\Controllers\Kajur\Penghargaan;
-use App\Http\Controllers\Kajur\Seminar;
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\kerja_praktik\BeritaAcaraSeminarKerjaPraktik;
+use App\Http\Controllers\tugas_akhir_dua\ValidasiBaTaDua;
+use App\Http\Controllers\alumni\AktivitasAlumniController;
+use App\Http\Controllers\dosen\ControllerPenghargaanDosen;
+use App\Http\Controllers\Kajur\DataMahasiswaAllController;
+use App\Http\Controllers\tugas_akhir_dua\MahasiswaBaTaDua;
+use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
 use App\Http\Controllers\kerja_praktik\JadwalPKLController;
 use App\Http\Controllers\kerja_praktik\KPcontroller;
-use App\Http\Controllers\kerja_praktik\ValidasiBaPKLController;
-use App\Http\Controllers\kerja_praktik\ValidasiSeminarKPController;
-use App\Http\Controllers\komprehensif\AdminKompreController;
 use App\Http\Controllers\komprehensif\MahasiswaBaKompre;
-use App\Http\Controllers\komprehensif\MahasiswaKompreController;
-use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
-use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
 use App\Http\Controllers\LabController;
-use App\Http\Controllers\mahasiswa\KegiatanMahasiswaController;
-use App\Http\Controllers\mahasiswa_s2\KegiatanMahasiswaControllerS2;
 use App\Http\Controllers\mahasiswa\LabTAController;
-use App\Http\Controllers\mahasiswa_s2\PrestasiMahasiswaControllerS2;
-use App\Http\Controllers\mahasiswa\PrestasiMahasiswaController;
-use App\Http\Controllers\mahasiswa\ProfileMahasiswaController;
 use App\Http\Controllers\ModelController;
 use App\Http\Controllers\PangkatAdminController;
 use App\Http\Controllers\ProfileAdminController;
@@ -59,27 +57,29 @@ use App\Http\Controllers\sudo\AkunMahasiswaController;
 use App\Http\Controllers\sudo\BaseNpmController;
 use App\Http\Controllers\sudo\PenempatanAdminLabController;
 use App\Http\Controllers\sudo\PenempatanDosenLabController;
-use App\Http\Controllers\sudo\ResetTA;
-use App\Http\Controllers\SuggestionController;
-use App\Http\Controllers\TemplateSeminarController;
-use App\Http\Controllers\tugas_akhir_dua\MahasiswaBaTaDua;
-use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
-use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
-use App\Http\Controllers\tugas_akhir_dua\ValidasiAdminTaDua;
-use App\Http\Controllers\tugas_akhir_dua\ValidasiBaTaDua;
-use App\Http\Controllers\tugas_akhir_satu\MahasiswaBaTaSatu;
-use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
-use App\Http\Controllers\tugas_akhir_satu\PenjadwalanTaSatu;
-use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
 use App\Http\Controllers\tugas_akhir_satu\ValidasiBaTaSatu;
-use App\Http\Controllers\ValidasiPendataanAlumni;
-use App\Models\JadwalSKP;
-use App\Models\ModelJadwalSeminarKompre;
-use App\Models\ModelJadwalSeminarTaDua;
-use App\Models\ModelJadwalSeminarTaSatu;
-use Illuminate\Auth\Events\Verified;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\komprehensif\AdminKompreController;
+use App\Http\Controllers\tugas_akhir_dua\ValidasiAdminTaDua;
+use App\Http\Controllers\tugas_akhir_satu\MahasiswaBaTaSatu;
+use App\Http\Controllers\tugas_akhir_satu\PenjadwalanTaSatu;
+use App\Http\Controllers\mahasiswa\ProfileMahasiswaController;
+use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
+use App\Http\Controllers\kerja_praktik\ValidasiBaPKLController;
+use App\Http\Controllers\mahasiswa\KegiatanMahasiswaController;
+use App\Http\Controllers\mahasiswa\PrestasiMahasiswaController;
+use App\Http\Controllers\komprehensif\MahasiswaKompreController;
+use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
+use App\Http\Controllers\bimbingan\MahasiswaBimbinganKPController;
+use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
+use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
+use App\Http\Controllers\kerja_praktik\ValidasiSeminarKPController;
+use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
+use App\Http\Controllers\kerja_praktik\BeritaAcaraSeminarKerjaPraktik;
+use App\Http\Controllers\bimbingan\MahasiswaBimbinganAkademikController;
+use App\Http\Controllers\bimbingan\MahasiswaBimbinganTugasAkhirController;
+use App\Http\Controllers\mahasiswaS2\ta1\ControllerMahasiswaS2SeminarTaSatu;
+use App\Http\Controllers\mahasiswa_s2\KegiatanMahasiswaController as KegiatanMahasiswaControllerS2;
+use App\Http\Controllers\mahasiswa_s2\PrestasiMahasiswaController as PrestasiMahasiswaControllerS2;
 
 /*
 |--------------------------------------------------------------------------
@@ -242,14 +242,15 @@ Route::resource('survey', SuggestionController::class)->names('mahasiswa.survey'
 
 
 Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswa|alumni|mahasiswaS2')->group(function () {
-Route::resource('profile', ProfileMahasiswaController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
-Route::resource('aktivitas_alumni', AktivitasAlumniController::class)->names('aktivitas_alumni');
-Route::resource('pendataan_alumni', PendataanAlumni::class)->names('pendataan_alumni');
+    Route::resource('profile', ProfileMahasiswaController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
+    Route::resource('aktivitas_alumni', AktivitasAlumniController::class)->names('aktivitas_alumni');
+    Route::resource('pendataan_alumni', PendataanAlumni::class)->names('pendataan_alumni');
 });
 
-Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswaS2|mahasiswaS2&alumni')->group(function () {
-Route::resource('prestasiS2', PrestasiMahasiswaControllerS2::class)->names('prestasiS2');
-Route::resource('kegiatanS2', KegiatanMahasiswaControllerS2::class)->names('kegiatanS2');
+Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswaS2,mahasiswaS2&alumni')->group(function () {
+    Route::resource('seminarta1s2', ControllerMahasiswaS2SeminarTaSatu::class)->names('seminarta1s2');
+    Route::resource('prestasiS2', PrestasiMahasiswaControllerS2::class)->names('prestasiS2');
+    Route::resource('kegiatanS2', KegiatanMahasiswaControllerS2::class)->names('kegiatanS2');
 });
 
 Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswa|alumni')->group(function () {
