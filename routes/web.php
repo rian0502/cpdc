@@ -78,8 +78,8 @@ use App\Http\Controllers\kerja_praktik\BeritaAcaraSeminarKerjaPraktik;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganAkademikController;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganTugasAkhirController;
 use App\Http\Controllers\mahasiswaS2\ta1\ControllerMahasiswaS2SeminarTaSatu;
-use App\Http\Controllers\mahasiswa_s2\KegiatanMahasiswaController as KegiatanMahasiswaControllerS2;
-use App\Http\Controllers\mahasiswa_s2\PrestasiMahasiswaController as PrestasiMahasiswaControllerS2;
+use App\Http\Controllers\mahasiswa_s2\KegiatanMahasiswaControllerS2;
+use App\Http\Controllers\mahasiswa_s2\PrestasiMahasiswaControllerS2;
 
 /*
 |--------------------------------------------------------------------------
