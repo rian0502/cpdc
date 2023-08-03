@@ -105,7 +105,6 @@
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                         <span class="user-icon">
-                            {{-- <img src="/Assets/images/profile_picture/default.png" alt="" /> --}}
                             <img src="/uploads/profile/{{ Auth::user()->profile_picture }}"
                                 onerror="this.src='/uploads/profile/default.png'" alt="" class="photo-profil" />
                         </span>
@@ -151,10 +150,7 @@
     <div class="left-side-bar">
         <div class="brand-logo">
             <a href="/" class="text-dark">
-
                 <img src="/Assets/images/logo/color-text.png" width="" alt="Logo CPDC">
-                {{-- <img src="/Assets/admin/vendors/images/deskapp-logo.svg" alt="" class="dark-logo" /> --}}
-                {{-- <img src="/Assets/admin/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" /> --}}
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
@@ -308,15 +304,6 @@
                             </a>
                         </li>
                     @endrole
-                    {{-- @if (!Auth::user()->suggestion)
-                        <li>
-                            <a href="{{ route('mahasiswa.survey.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
-                                <span class="micon bi bi-newspaper"></span><span class="mtext">Survei
-                                </span>
-                            </a>
-                        </li>
-                    @endif --}}
                     @role('sudo')
                         <li
                             class="dropdown {{ Request::is('sudo/akun_mahasiswa*') || Request::is('sudo/akun_dosen*') || Request::is('sudo/akun_admin*') ? 'show' : '' }}">
@@ -441,6 +428,13 @@
                             <a href="{{ route('berkas.berkas_persyaratan.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('admin/berkas/berkas_persyaratan*') ? 'active' : '' }}">
                                 <span class="micon fa-solid fa-file"></span><span class="mtext">Syarat Seminar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('berkas.template_seminar.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('admin/berkas/template_seminar*') ? 'active' : '' }}">
+                                <span class="micon fa-solid fa-file"></span><span class="mtext">Template BA
+                                    Seminar</span>
                             </a>
                         </li>
                         <li class="dropdown {{ Request::is('admin/berkas/validasi/seminar*') ? 'show' : '' }}">

@@ -27,10 +27,10 @@ class StorePublikasiRequest extends FormRequest
         $regional = ['Nasional', 'Internasional'];
         $kategori_litabmas = ['Penelitian', 'Pengabdian'];
         $kategori = [
-            'Buku Referensi',
-            'Monograf',
-            'Buku Nasional',
-            'Buku Internasional',
+            'Buku Referensi', 
+            'Monograf', 
+            'Buku Nasional', 
+            'Buku Internasional', 
             'Artikel Internasional Bereputasi',
             'Artikel Internasional Terindkes',
             'Jurnal Nasional Terakreditasi Dikti',
@@ -38,7 +38,14 @@ class StorePublikasiRequest extends FormRequest
             'Jurnal Ilmiah',
             'Prosiding Internasional Terindeks',
             'Prosiding Internasional',
-            'Prosiding Nasional'
+            'Prosiding Nasional',
+            'Paten',
+            'Paten Sederhana',
+            'Hak Cipta',
+            'Desain Produk Industri',
+            'Teknologi',
+            'Buku ber-ISBN',
+            'Book Chapter'
         ];
         return [
             'nama_publikasi' => 'required|string|min:3|max:255',

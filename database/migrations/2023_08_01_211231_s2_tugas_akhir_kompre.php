@@ -24,7 +24,7 @@ class S2TugasAkhirKompre extends Migration
             $table->string('sks');
             $table->string('ipk');
             $table->string('toefl');
-            $table->string('berkas_ta_satu');
+            $table->string('berkas_kompre');
             $table->boolean('agreement');
             $table->string('komentar')->nullable();
             $table->enum('status_admin', ['Valid', 'Invalid', 'Process'])->default('Process');

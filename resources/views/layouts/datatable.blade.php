@@ -317,15 +317,6 @@
                             </a>
                         </li>
                     @endrole
-                    {{-- @if (!Auth::user()->suggestion)
-                        <li>
-                            <a href="{{ route('mahasiswa.survey.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/survey*') ? 'active' : '' }}">
-                                <span class="micon bi bi-newspaper"></span><span class="mtext">Survei
-                                </span>
-                            </a>
-                        </li>
-                    @endif --}}
                     @role('sudo')
                         <li
                             class="dropdown {{ Request::is('sudo/akun_mahasiswa*') || Request::is('sudo/akun_dosen*') || Request::is('sudo/akun_admin*') ? 'show' : '' }}">
@@ -452,10 +443,16 @@
                                 <span class="micon fa-solid fa-file"></span><span class="mtext">Syarat Seminar</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('berkas.template_seminar.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('admin/berkas/template_seminar*') ? 'active' : '' }}">
+                                <span class="micon fa-solid fa-file"></span><span class="mtext">Template BA
+                                    Seminar</span>
+                            </a>
+                        </li>
                         <li class="dropdown {{ Request::is('admin/berkas/validasi/seminar*') ? 'show' : '' }}">
                             <a href="javascript:;" class="dropdown-toggle"
                                 data-option="{{ Request::is('admin/berkas/validasi/seminar*') ? 'on' : '' }}">
-
                                 <span class="micon bi bi-person-rolodex"></span><span class="mtext">Validasi
                                     Seminar</span>
                             </a>
