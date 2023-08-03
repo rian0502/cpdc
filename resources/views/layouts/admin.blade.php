@@ -130,7 +130,8 @@
                             <a class="dropdown-item" href="{{ route('mahasiswa.profile.index') }}"><i
                                     class="dw dw-user1"></i> Profil</a>
                         @elseif(auth()->user()->hasRole('alumni'))
-                            <a class="dropdown-item" href="{{ route('mahasiswa.profile.edit')}}"><i class="dw dw-user1"></i>
+                            <a class="dropdown-item" href="{{ route('mahasiswa.profile.edit') }}"><i
+                                    class="dw dw-user1"></i>
                                 Profil</a>
                         @elseif(auth()->user()->hasRole('kalab'))
                             <a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profil</a>
@@ -372,7 +373,29 @@
                             </a>
                         </li>
                     @endrole
-
+                    @role('mahasiswaS2')
+                        <li
+                            class="dropdown {{ Request::is('mahasiswa/seminar/kp*') || Request::is('mahasiswa/seminar/skripsi*') || Request::is('mahasiswa/seminar/usul*') || Request::is('mahasiswa/seminar/semhas*') || Request::is('mahasiswa/seminar/kompre*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle"
+                                data-option="{{ Request::is('mahasiswa/seminar/kp*') || Request::is('mahasiswa/seminar/skripsi*') || Request::is('mahasiswa/seminar/usul*') || Request::is('mahasiswa/seminar/semhas*') || Request::is('mahasiswa/seminar/kompre*') ? 'show' : '' }}">
+                                <span class="micon fa-regular fa-graduation-cap"></span><span class="mtext">Seminar
+                                    S2</span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('mahasiswa.seminarta1s2.index') }}"
+                                        class="{{ Request::is('mahasiswa/seminarta1s2*') ? 'active' : '' }}">Tugas
+                                        Akhir
+                                        1</a></li>
+                                <li><a href="{{ route('mahasiswa.seminar.tugas_akhir_2.index') }}"
+                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_2*') ? 'active' : '' }}">Tugas
+                                        Akhir
+                                        2</a></li>
+                                <li><a href="{{ route('mahasiswa.sidang.kompre.index') }}"
+                                        class="{{ Request::is('mahasiswa/sidang/kompre*') ? 'active' : '' }}">Sidang
+                                        Komprehensif</a></li>
+                            </ul>
+                        </li>
+                    @endrole
                     @role('mahasiswa')
                         <li
                             class="dropdown {{ Request::is('mahasiswa/seminar/kp*') || Request::is('mahasiswa/seminar/skripsi*') || Request::is('mahasiswa/seminar/usul*') || Request::is('mahasiswa/seminar/semhas*') || Request::is('mahasiswa/seminar/kompre*') ? 'show' : '' }}">
