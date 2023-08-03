@@ -14,7 +14,7 @@ class StoreProfileMahasiswa extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->hasAnyRole(['mahasiswa', 'alumni']);
+        return Auth::user()->hasAnyRole(['mahasiswa', 'alumni', 'mahasiswaS2']);
     }
 
     /**

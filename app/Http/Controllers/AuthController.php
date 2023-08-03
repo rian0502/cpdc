@@ -118,7 +118,11 @@ class AuthController extends Controller
         if ($request->jenis_akun == 'mahasiswa') {
             $user->assignRole('mahasiswa');
             $mhs['status'] = 'Aktif';
-        } else {
+        }elseif ($request->jenis_akun == 'mahasiswaS2') {
+            $user->assignRole('mahasiswaS2');
+            $mhs['status'] = 'Aktif';
+        } 
+        else {
             $user->assignRole('alumni');
             $mhs['status'] = 'Alumni';
         }
