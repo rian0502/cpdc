@@ -136,8 +136,14 @@
                         @elseif(auth()->user()->hasRole('dosen'))
                             <a class="dropdown-item" href="{{ route('dosen.profile.index') }} "><i
                                     class="dw dw-user1"></i> Profil</a>
-                        @elseif(auth()->user()->hasRole(['mahasiswa', 'alumni']))
+                        @elseif(auth()->user()->hasRole('mahasiswa') ||
+                                auth()->user()->hasRole('mahasiswaS2') ||
+                                auth()->user()->hasRole('mahasiswa,alumni') ||
+                                auth()->user()->hasRole('mahasiswaS2,alumni'))
                             <a class="dropdown-item" href="{{ route('mahasiswa.profile.index') }}"><i
+                                    class="dw dw-user1"></i> Profil</a>
+                        @elseif(auth()->user()->hasRole('alumni'))
+                            <a class="dropdown-item" href="{{ route('mahasiswa.profile.edit') }}"><i
                                     class="dw dw-user1"></i>
                                 Profil</a>
                         @elseif(auth()->user()->hasRole('kalab'))
