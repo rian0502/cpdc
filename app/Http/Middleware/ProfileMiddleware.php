@@ -16,7 +16,7 @@ class ProfileMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->user()->hasRole('mahasiswa')){
+        if($request->user()->hasRole(['mahasiswa','mahasiswaS2'])){
             if($request->user()->mahasiswa->tanggal_masuk == null){
                 return redirect()->route('mahasiswa.profile.create');
             }
