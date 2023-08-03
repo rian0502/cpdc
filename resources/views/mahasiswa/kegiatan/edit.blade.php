@@ -11,7 +11,7 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{route('mahasiswa.kegiatan.update', $kegiatan->encrypt_id)}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.kegiatanS2.update':'mahasiswa.kegiatan.update', $kegiatan->encrypt_id)}}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="profile-edit-list row">

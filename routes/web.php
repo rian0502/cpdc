@@ -44,9 +44,9 @@ use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\mahasiswa\KegiatanMahasiswaController;
-use App\Http\Controllers\mahasiswa_s2\KegiatanMahasiswaController as KegiatanMahasiswaControllerS2  ;
+use App\Http\Controllers\mahasiswa_s2\KegiatanMahasiswaControllerS2;
 use App\Http\Controllers\mahasiswa\LabTAController;
-use App\Http\Controllers\mahasiswa_s2\PrestasiMahasiswaController as PrestasiMahasiswaControllerS2  ;
+use App\Http\Controllers\mahasiswa_s2\PrestasiMahasiswaControllerS2;
 use App\Http\Controllers\mahasiswa\PrestasiMahasiswaController;
 use App\Http\Controllers\mahasiswa\ProfileMahasiswaController;
 use App\Http\Controllers\ModelController;
@@ -242,7 +242,7 @@ Route::resource('aktivitas_alumni', AktivitasAlumniController::class)->names('ak
 Route::resource('pendataan_alumni', PendataanAlumni::class)->names('pendataan_alumni');
 });
 
-Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswaS2,mahasiswaS2&alumni')->group(function () {
+Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswaS2|mahasiswaS2&alumni')->group(function () {
 Route::resource('prestasiS2', PrestasiMahasiswaControllerS2::class)->names('prestasiS2');
 Route::resource('kegiatanS2', KegiatanMahasiswaControllerS2::class)->names('kegiatanS2');
 });

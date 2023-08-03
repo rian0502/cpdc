@@ -102,7 +102,7 @@
                                                             <h5>Data Prestasi</h5>
                                                         </div>
                                                         <div class="col-md-4 col-sm-12 text-right">
-                                                            <a href="{{ route('mahasiswa.prestasi.create') }}"
+                                                            <a href="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.prestasiS2.create':'mahasiswa.prestasi.create')}}"
                                                                 class="bg-light-blue btn text-blue weight-500"><i
                                                                     class="ion-plus-round"></i> Tambah</a>
                                                         </div>
@@ -142,11 +142,11 @@
                                                                                             class="dw dw-file"></i> Lihat
                                                                                         File</a>
                                                                                     <a class="dropdown-item"
-                                                                                        href="{{ route('mahasiswa.prestasi.edit', $item->encrypt_id) }}"><i
+                                                                                        href="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.prestasiS2.edit':'mahasiswa.prestasi.edit', $item->encrypt_id)}}"><i
                                                                                             class="dw dw-edit2"></i>
                                                                                         Edit</a>
                                                                                     <form class="deleteForm2"
-                                                                                        action="{{ route('mahasiswa.prestasi.destroy', $item->encrypt_id) }}"
+                                                                                        action="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.prestasiS2.destroy':'mahasiswa.prestasi.destroy', $item->encrypt_id)}}"
                                                                                         method="POST">
                                                                                         @csrf
                                                                                         @method('DELETE')
@@ -179,7 +179,7 @@
                                                             <h5>Data Kegiatan Lainnya</h5>
                                                         </div>
                                                         <div class="col-md-4 col-sm-12 text-right">
-                                                            <a href="/mahasiswa/kegiatan/create"
+                                                            <a href="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.kegiatanS2.create':'mahasiswa.kegiatan.create')}}"
                                                                 class="bg-light-blue btn text-blue weight-500"><i
                                                                     class="ion-plus-round"></i> Tambah</a>
                                                         </div>
@@ -220,10 +220,10 @@
                                                                                         class="dw dw-file"></i> Lihat
                                                                                     File</a>
                                                                                 <a class="dropdown-item"
-                                                                                    href="{{ route('mahasiswa.kegiatan.edit', $item->encrypt_id) }}"><i
+                                                                                    href="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.kegiatanS2.edit':'mahasiswa.kegiatan.edit', $item->encrypt_id)}}"><i
                                                                                         class="dw dw-edit2"></i> Edit</a>
                                                                                 <form class="deleteForm2"
-                                                                                    action="{{ route('mahasiswa.kegiatan.destroy', $item->encrypt_id) }}"
+                                                                                    action="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.kegiatanS2.destroy':'mahasiswa.kegiatan.destroy', $item->encrypt_id)}}"
                                                                                     method="POST">
                                                                                     @csrf
                                                                                     @method('DELETE')
