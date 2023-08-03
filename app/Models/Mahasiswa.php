@@ -12,6 +12,8 @@ use App\Models\AktivitasMahasiswa;
 use App\Models\ModelSeminarKompre;
 use App\Models\ModelSeminarTaSatu;
 use App\Models\ModelPendataanAlumni;
+use App\Models\PrestasiMahasiswaS2;
+use App\Models\AktivitasMahasiswaS2;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Auth;
@@ -52,6 +54,14 @@ class Mahasiswa extends Model
     public function prestasi()
     {
         return $this->hasMany(PrestasiMahasiswa::class);
+    }
+    public function aktivitas_s2()
+    {
+        return $this->hasMany(AktivitasMahasiswaS2::class);
+    }
+    public function prestasi_s2()
+    {
+        return $this->hasMany(PrestasiMahasiswaS2::class);
     }
     public function seminar_kp()
     {

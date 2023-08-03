@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProfileMahasiswa;
 use App\Http\Requests\UpdateProfileMahasiswaRequest;
 use App\Models\AktivitasMahasiswa;
+use App\Models\AktivitasMahasiswaS2;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use App\Models\PrestasiMahasiswa;
+use App\Models\PrestasiMahasiswaS2;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -22,11 +24,17 @@ class ProfileMahasiswaController extends Controller
      */
     public function index()
     {
-
-        $data = [
-            'prestasi' => PrestasiMahasiswa::where('mahasiswa_id', Auth::user()->mahasiswa->id)->get(),
-            'aktivitas' => AktivitasMahasiswa::where('mahasiswa_id', Auth::user()->mahasiswa->id)->get(),
-        ];
+        if(Auth::user()->hasRole('mahasiswaS2')){
+            $data = [
+                'prestasi' => PrestasiMahasiswaS2::where('mahasiswa_id', Auth::user()->mahasiswa->id)->get(),
+                'aktivitas' => AktivitasMahasiswaS2::where('mahasiswa_id', Auth::user()->mahasiswa->id)->get(),
+            ];
+        }else{
+            $data = [
+                'prestasi' => PrestasiMahasiswa::where('mahasiswa_id', Auth::user()->mahasiswa->id)->get(),
+                'aktivitas' => AktivitasMahasiswa::where('mahasiswa_id', Auth::user()->mahasiswa->id)->get(),
+            ];
+        }
         return view('mahasiswa.profile.index', $data);
     }
 

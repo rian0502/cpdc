@@ -4,6 +4,7 @@ namespace App\Http\Controllers\mahasiswa;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreKegiatanMhsRequest;
+use App\Http\Requests\UpdateKegiatanMhsRequest;
 use App\Models\AktivitasMahasiswa;
 use Exception;
 use Illuminate\Http\Request;
@@ -94,7 +95,7 @@ class KegiatanMahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateKegiatanMhsRequest $request, $id)
     {
         $kegaitan = AktivitasMahasiswa::find(Crypt::decrypt($id));
         if($request->file('file_aktivitas') != null){
