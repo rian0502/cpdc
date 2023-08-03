@@ -35,7 +35,14 @@ return new class extends Migration
                 'Jurnal Ilmiah',
                 'Prosiding Internasional Terindeks',
                 'Prosiding Internasional',
-                'Prosiding Nasional'
+                'Prosiding Nasional',
+                'Paten',
+                'Paten Sederhana',
+                'Hak Cipta',
+                'Desain Produk Industri',
+                'Teknologi',
+                'Buku ber-ISBN',
+                'Book Chapter'
             ]);
             $table->enum('kategori_litabmas', ['Penelitian', 'Pengabdian']);
             $table->string('url')->nullable();
