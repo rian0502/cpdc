@@ -57,6 +57,29 @@ use App\Http\Controllers\Kajur\DataMahasiswaAllController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaBaTaDua;
 use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
 use App\Http\Controllers\kerja_praktik\JadwalPKLController;
+use App\Http\Controllers\kerja_praktik\KPcontroller;
+use App\Http\Controllers\kerja_praktik\ValidasiBaPKLController;
+use App\Http\Controllers\kerja_praktik\ValidasiSeminarKPController;
+use App\Http\Controllers\komprehensif\AdminKompreController;
+use App\Http\Controllers\komprehensif\MahasiswaBaKompre;
+use App\Http\Controllers\komprehensif\MahasiswaKompreController;
+use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
+use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
+use App\Http\Controllers\LabController;
+use App\Http\Controllers\mahasiswa\KegiatanMahasiswaController;
+use App\Http\Controllers\mahasiswa_s2\KegiatanMahasiswaController as KegiatanMahasiswaControllerS2  ;
+use App\Http\Controllers\mahasiswa\LabTAController;
+use App\Http\Controllers\mahasiswa_s2\PrestasiMahasiswaController as PrestasiMahasiswaControllerS2  ;
+use App\Http\Controllers\mahasiswa\PrestasiMahasiswaController;
+use App\Http\Controllers\mahasiswa\ProfileMahasiswaController;
+use App\Http\Controllers\ModelController;
+use App\Http\Controllers\PangkatAdminController;
+use App\Http\Controllers\ProfileAdminController;
+use App\Http\Controllers\SopController;
+use App\Http\Controllers\sudo\AkunAdminController;
+use App\Http\Controllers\sudo\AkunDosenController;
+use App\Http\Controllers\sudo\AkunMahasiswaController;
+use App\Http\Controllers\sudo\BaseNpmController;
 use App\Http\Controllers\sudo\PenempatanAdminLabController;
 use App\Http\Controllers\sudo\PenempatanDosenLabController;
 use App\Http\Controllers\tugas_akhir_satu\ValidasiBaTaSatu;
@@ -249,10 +272,9 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
     Route::resource('pendataan_alumni', PendataanAlumni::class)->names('pendataan_alumni');
 });
 
-Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswaS2|mahasiswaS2&alumni')->group(function () {
-    Route::resource('seminarta1s2', ControllerMahasiswaS2SeminarTaSatu::class)->names('seminarta1s2');
-    Route::resource('prestasiS2', PrestasiMahasiswaControllerS2::class)->names('prestasiS2');
-    Route::resource('kegiatanS2', KegiatanMahasiswaControllerS2::class)->names('kegiatanS2');
+Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswaS2,mahasiswaS2&alumni')->group(function () {
+Route::resource('prestasiS2', PrestasiMahasiswaControllerS2::class)->names('prestasiS2');
+Route::resource('kegiatanS2', KegiatanMahasiswaControllerS2::class)->names('kegiatanS2');
 });
 
 Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswa|alumni')->group(function () {

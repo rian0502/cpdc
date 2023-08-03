@@ -11,7 +11,7 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('mahasiswa.prestasi.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.prestasiS2.store':'mahasiswa.prestasi.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
