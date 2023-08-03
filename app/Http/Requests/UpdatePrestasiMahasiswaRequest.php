@@ -14,7 +14,7 @@ class UpdatePrestasiMahasiswaRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->hasRole('mahasiswa');
+        return Auth::user()->hasRole(['mahasiswa', 'alumni', 'mahasiswaS2']);
     }
 
     /**

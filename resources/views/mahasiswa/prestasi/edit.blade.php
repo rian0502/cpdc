@@ -11,7 +11,7 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('mahasiswa.prestasi.update', $prestasi->encrypt_id) }}" method="POST"
+                    <form action="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.prestasiS2.update':'mahasiswa.prestasi.update', $prestasi->encrypt_id)}}" method="POST"
                         enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
