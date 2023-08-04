@@ -259,12 +259,35 @@
                             </a>
                         </li>
                     @endrole
-                    @role('jurusan|tpmps')
-                        <li>
-                            <a href="{{ route('jurusan.prestasi.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/prestasi*') ? 'active' : '' }}">
+                    @role('kaprodiS1|tpmpsS1')
+                    <li>
+                        <a href="{{ route('jurusan.prestasi.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/prestasi*') ? 'active' : '' }}">
+                            <span class="micon bi bi-award"></span><span class="mtext">Prestasi S1</span>
+                        </a>
+                    </li>
+                    @endrole
+
+                    @role('kaprodiS2|tpmpsS2')
+                    <li>
+                        <a href="{{ route('jurusan.prestasiS2.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/prestasiS2*') ? 'active' : '' }}">
+                            <span class="micon bi bi-award"></span><span class="mtext">Prestasi S2</span>
+                        </a>
+                    </li>
+                    @endrole
+
+                    @role('jurusan')
+                        <li class="dropdown {{ Request::is('jurusan/prestasi*')||Request::is('jurusan/prestasiS2*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle">
                                 <span class="micon bi bi-award"></span><span class="mtext">Prestasi</span>
                             </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('jurusan.prestasi.index') }}"
+                                        class="{{ Request::is('jurusan/prestasi') ? 'active' : '' }}">S1</a></li>
+                                <li><a href="{{ route('jurusan.prestasiS2.index') }}"
+                                        class="{{ Request::is('jurusan/prestasiS2') ? 'active' : '' }}">S2</a></li>
+                            </ul>
                         </li>
                         <li>
                             <a href="{{ route('jurusan.aktivitas.index') }}"
