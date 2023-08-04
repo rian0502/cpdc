@@ -124,7 +124,7 @@
                     },
                     columns: [{
                             data: null,
-                            name: 'mahasiswa.nama_mahasiswa',
+                            name: 'nama_prestasi',
                             render: function(data, type, row, meta) {
                                 var index = meta.row + meta.settings._iDisplayStart + 1;
                                 return index;
@@ -132,12 +132,12 @@
                         },
                         {
                             data: 'mahasiswa.nama_mahasiswa',
-                            name: 'nama_mahasiswa',
+                            name: 'mahasiswa.nama_mahasiswa',
                             orderable: true
                         },
                         {
                             data: 'mahasiswa.npm',
-                            name: 'npm',
+                            name: 'mahasiswa.npm',
                             orderable: true
                         },
                         {
@@ -401,7 +401,7 @@
                 },
                 columns: [{
                         data: null,
-                        name: 'mahasiswa.nama_mahasiswa',
+                        name: 'nama_prestasi',
                         render: function(data, type, row, meta) {
                             var index = meta.row + meta.settings._iDisplayStart + 1;
                             return index;
@@ -409,12 +409,12 @@
                     },
                     {
                         data: 'mahasiswa.nama_mahasiswa',
-                        name: 'nama_mahasiswa',
+                        name: 'mahasiswa.nama_mahasiswa',
                         orderable: true
                     },
                     {
                         data: 'mahasiswa.npm',
-                        name: 'npm',
+                        name: 'mahasiswa.npm',
                         orderable: true
                     },
                     {

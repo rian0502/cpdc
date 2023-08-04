@@ -27,10 +27,10 @@ class PrestasiDataController extends Controller
         if ($startDate && $endDate) {
             $data = PrestasiMahasiswa::with('mahasiswa')->whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc');
             return DataTables::of($data)
-                ->addColumn('nama_mahasiswa', function ($row) {
+                ->addIndexColumn()->editColumn('mahasiswa.nama_mahasiswa', function ($row) {
                     return $row->mahasiswa->nama_mahasiswa;
                 })
-                ->addColumn('npm', function ($row) {
+                ->addIndexColumn()->editColumn('mahasiswa.npm', function ($row) {
                     return $row->mahasiswa->npm;
                 })
                 ->toJson();
@@ -38,10 +38,10 @@ class PrestasiDataController extends Controller
             $data = PrestasiMahasiswa::with('mahasiswa')->orderBy('tanggal', 'desc');
 
             return DataTables::of($data)
-                ->addColumn('nama_mahasiswa', function ($row) {
+                ->addIndexColumn()->editColumn('mahasiswa.nama_mahasiswa', function ($row) {
                     return $row->mahasiswa->nama_mahasiswa;
                 })
-                ->addColumn('npm', function ($row) {
+                ->addIndexColumn()->editColumn('mahasiswa.npm', function ($row) {
                     return $row->mahasiswa->npm;
                 })
                 ->toJson();

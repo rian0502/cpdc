@@ -21,11 +21,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        $this->call(RolePermision::class);
-        // $this->call(PrestasiMahasiswaS2Seeder::class);
-        // $this->call(AktivitasMahasiswaS2Seeder::class);
-        // $this->call(AktivitasMahasiswaSeeder::class);
-        // $this->call(PrestasiMahasiswaSeeder::class);
+  
+        $this->call(PrestasiMahasiswaS2Seeder::class);
+        $this->call(AktivitasMahasiswaS2Seeder::class);
+
 
     }
 }
