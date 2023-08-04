@@ -24,23 +24,58 @@ class DataMahasiswaAllController extends Controller
     {
         //
         if ($request->ajax()) {
-            $data = Mahasiswa::query()
-            ->selectRaw('*,
-            CONCAT(IFNULL((SELECT status_seminar FROM seminar_kp WHERE id_mahasiswa = mahasiswa.id LIMIT 1), "Belum Daftar KP"),
-                   IF((SELECT status_seminar FROM seminar_kp WHERE id_mahasiswa = mahasiswa.id LIMIT 1) IS NOT NULL, " KP", "")) as kp,
 
-            CONCAT(IFNULL((SELECT status_koor FROM seminar_ta_satu WHERE id_mahasiswa = mahasiswa.id LIMIT 1), "Belum Daftar TA1"),
-                   IF((SELECT status_koor FROM seminar_ta_satu WHERE id_mahasiswa = mahasiswa.id LIMIT 1) IS NOT NULL, " TA1", "")) as ta1,
+            $status_kp = $request->input('status_kp');
+            $status_ta1 = $request->input('status_ta1');
+            $status_ta2 = $request->input('status_ta2');
+            $status_kompre = $request->input('status_kompre');
 
-            CONCAT(IFNULL((SELECT status_koor FROM seminar_ta_dua WHERE id_mahasiswa = mahasiswa.id LIMIT 1), "Belum Daftar TA2"),
-                   IF((SELECT status_koor FROM seminar_ta_dua WHERE id_mahasiswa = mahasiswa.id LIMIT 1) IS NOT NULL, " TA2", "")) as ta2,
+            $data = Mahasiswa::with(['seminar_kp', 'ta_satu', 'ta_dua', 'komprehensif']);
+            if ($status_kp != 'null' && $status_kp != '1') {
+                $data = $data->whereHas('seminar_kp', function ($query) use ($status_kp) {
+                    $query->where('status_seminar', $status_kp);
+                });
+            }elseif ($status_kp == 'null') {
+                $data = $data->whereDoesntHave('seminar_kp');
+            }
+            if ($status_ta1 != 'null' && $status_ta1 != '1') {
+                $data = $data->whereHas('ta_satu', function ($query) use ($status_ta1) {
+                    $query->where('status_koor', $status_ta1);
+                });
+            }
+            elseif ($status_ta1 == 'null') {
+                $data = $data->whereDoesntHave('ta_satu');
+            }
+            if ($status_ta2 != 'null' && $status_ta2 != '1') {
+                $data = $data->whereHas('ta_dua', function ($query) use ($status_ta2) {
+                    $query->where('status_koor', $status_ta2);
+                });
+            }
+            elseif ($status_ta2 == 'null') {
+                $data = $data->whereDoesntHave('ta_dua');
+            }
+            if ($status_kompre != 'null' && $status_kompre != '1') {
+                $data = $data->whereHas('komprehensif', function ($query) use ($status_kompre) {
+                    $query->where('status_koor', $status_kompre);
+                });
+            }
+            elseif ($status_kompre == 'null') {
+                $data = $data->whereDoesntHave('komprehensif');
+            }
 
-            CONCAT(IFNULL((SELECT status_koor FROM seminar_komprehensif WHERE id_mahasiswa = mahasiswa.id LIMIT 1), "Belum Daftar KOMPRE"),
-                   IF((SELECT status_koor FROM seminar_komprehensif WHERE id_mahasiswa = mahasiswa.id LIMIT 1) IS NOT NULL, " KOMPRE", "")) as kompre
-        ')
-            ->get();
             return DataTables::of($data)
-
+                ->addIndexColumn()->editColumn('seminar_kp.status_seminar', function ($data) {
+                    return $data->seminar_kp->status_seminar ?? 'Belum Daftar';
+                })
+                ->addIndexColumn()->editColumn('ta_satu.status_koor', function ($data) {
+                    return $data->ta_satu->status_koor ?? 'Belum Daftar';
+                })
+                ->addIndexColumn()->editColumn('ta_dua.status_koor', function ($data) {
+                    return $data->ta_dua->status_koor ?? 'Belum Daftar';
+                })
+                ->addIndexColumn()->editColumn('komprehensif.status_koor', function ($data) {
+                    return  $data->komprehensif->status_koor ?? 'Belum Daftar';
+                })
                 ->toJson();
         }
         return view('jurusan.data_mahasiswa.index');
@@ -97,7 +132,7 @@ class DataMahasiswaAllController extends Controller
         if ($mahasiswa->user->hasRole('alumni')) {
             $data['alumni'] = AktivitasAlumni::where('mahasiswa_id', $mahasiswa->id)->orderBy('tahun_masuk', 'desc')->get();
         }
-        
+
 
 
         return view('jurusan.data_mahasiswa.show', $data);

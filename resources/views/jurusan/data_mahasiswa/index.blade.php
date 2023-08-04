@@ -15,6 +15,57 @@
                                 </button>
                             </div>
                         @endif
+                        <div class="card-body">
+                            <div class="d-flex justify-content-start">
+                                <div class="form-group mr-3">
+                                    <label for="status_seminar">Status Seminar PKL:</label>
+                                    <select class="form-control selectpicker" id="status_kp">
+                                        <option value="1">Pilih Status</option>
+                                        <option value="Selesai">Selesai</option>
+                                        <option value="Belum Selesai">Belum Selesai</option>
+                                        <option value="Perbaikan">Perbaikan</option>
+                                        <option value="Tidak Lulus">Tidak Lulus</option>
+                                        <option value="null">Belum Daftar</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mr-3">
+                                    <label for="status_ta1">Status TA1:</label>
+                                    <select class="form-control selectpicker" id="status_ta1">
+                                        <option value="1">Pilih Status</option>
+                                        <option value="Selesai">Selesai</option>
+                                        <option value="Belum Selesai">Belum Selesai</option>
+                                        <option value="Perbaikan">Perbaikan</option>
+                                        <option value="Perbaikan">Perbaikan</option>
+                                        <option value="Tidak Lulus">Tidak Lulus</option>
+                                        <option value="null">Belum Daftar</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mr-3">
+                                    <label for="status_ta2">Status TA2:</label>
+                                    <select class="form-control selectpicker" id="status_ta2">
+                                        <option value="1">Pilih Status</option>
+                                        <option value="Selesai">Selesai</option>
+                                        <option value="Belum Selesai">Belum Selesai</option>
+                                        <option value="Perbaikan">Perbaikan</option>
+                                        <option value="Perbaikan">Perbaikan</option>
+                                        <option value="Tidak Lulus">Tidak Lulus</option>
+                                        <option value="null">Belum Daftar</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mr-3">
+                                    <label for="status_kompre">Status KOMPRE:</label>
+                                    <select class="form-control selectpicker" id="status_kompre">
+                                        <option value="1">Pilih Status</option>
+                                        <option value="Selesai">Selesai</option>
+                                        <option value="Belum Selesai">Belum Selesai</option>
+                                        <option value="Perbaikan">Perbaikan</option>
+                                        <option value="Perbaikan">Perbaikan</option>
+                                        <option value="Tidak Lulus">Tidak Lulus</option>
+                                        <option value="null">Belum Daftar</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="pd-20 table-responsive">
                             <table id="data-akun" class="data-akun table table-hover data-table-responsive stripe wrap">
                                 <thead>
@@ -25,7 +76,7 @@
                                         <th>Angkatan</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Status</th>
-                                        <th>KP</th>
+                                        <th>PKL</th>
                                         <th>TA 1</th>
                                         <th>TA 2</th>
                                         <th>Kompre</th>
@@ -70,14 +121,22 @@
             });
         </script>
         <script>
-
             $(function() {
                 var dataNpm = $('.data-akun').DataTable({
                     processing: true,
-                    serverSide: false,
+                    serverSide: true,
                     responsive: true,
                     autoWidth: false,
-                    ajax: '{{ route('jurusan.mahasiswa.index') }}',
+                    ajax: {
+                        url: '{{ route('jurusan.mahasiswa.index') }}',
+                        type: 'GET',
+                        data: function(data) {
+                            data.status_kp = $('#status_kp').val();
+                            data.status_ta1 = $('#status_ta1').val();
+                            data.status_ta2 = $('#status_ta2').val();
+                            data.status_kompre = $('#status_kompre').val();
+                        }
+                    },
                     columns: [{
                             data: 'id',
                             name: 'nama_mahasiswa',
@@ -110,24 +169,24 @@
                             name: 'status'
                         },
                         {
-                            data: 'kp',
-                            name: 'kp',
+                            data: 'seminar_kp.status_seminar',
+                            name: 'seminar_kp.status_seminar',
                             orderable: true,
 
                         },
                         {
-                            data: 'ta1',
-                            name: 'ta1',
-                            orderable: true
+                            data: 'ta_satu.status_koor',
+                            name: 'ta_satu.status_koor',
+                            orderable: true,
                         },
                         {
-                            data: 'ta2',
-                            name: 'ta2',
-                            orderable: true
+                            data: 'ta_dua.status_koor',
+                            name: 'ta_dua.status_koor',
+                            orderable: true,
                         },
                         {
-                            data: 'kompre',
-                            name: 'kompre',
+                            data: 'komprehensif.status_koor',
+                            name: 'komprehensif.status_koor',
                             orderable: true
                         },
                         {
@@ -157,6 +216,9 @@
                             }
                         }
                     ]
+                });
+                $('#status_kp, #status_ta1, #status_ta2, #status_kompre').on('change', function() {
+                    dataNpm.draw();
                 });
             });
         </script>

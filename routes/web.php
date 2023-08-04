@@ -47,6 +47,7 @@ use App\Http\Controllers\Kajur\PrestasiDataController;
 use App\Http\Controllers\Kajur\PrestasiDataS2Controller;
 use App\Http\Controllers\sudo\AkunMahasiswaController;
 use App\Http\Controllers\Kajur\AktivitasDataController;
+use App\Http\Controllers\Kajur\AktivitasDataS2Controller;
 use App\Http\Controllers\Kajur\PublikasiDataController;
 use App\Http\Controllers\komprehensif\MahasiswaBaKompre;
 use App\Http\Controllers\tugas_akhir_dua\ValidasiBaTaDua;
@@ -194,16 +195,37 @@ Route::prefix('koor')->name('koor.')->group(function () {
 
 
 //jurusan
-Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|tpmps')->group(function () {
+Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2|kaprodiS1|kaprodiS2')->group(function () {
 
     //prestasi
-    Route::resource('prestasi', PrestasiDataController::class);
-    Route::resource('prestasiS2', PrestasiDataS2Controller::class);
-    Route::resource('aktivitas', AktivitasDataController::class);
+
     Route::resource('publikasi', PublikasiDataController::class);
     Route::resource('litabmas', LitabmasDataController::class);
     Route::resource('penghargaan', Penghargaan::class);
     Route::resource('seminar', Seminar::class);
+
+    Route::get('pieChartScalaPublikasi', [PublikasiDataController::class, 'pieChartScala'])->name('publikasi.pieChartScala');
+    Route::get('pieChartKategoriPublikasi', [PublikasiDataController::class, 'pieChartKategori'])->name('publikasi.pieChartKategori');
+    Route::get('pieChartKategoriLitabmasPublikasi', [PublikasiDataController::class, 'pieChartKategoriLitabmas'])->name('publikasi.pieChartKategoriLitabmas');
+    Route::get('barChartTahunPublikasi', [PublikasiDataController::class, 'barChartTahun'])->name('publikasi.barChartTahun');
+    Route::get('barChartTahunLitabmas', [LitabmasDataController::class, 'barChartTahun'])->name('litabmas.barChartTahun');
+    Route::get('pieChartKategoriLitabmas', [LitabmasDataController::class, 'pieChartKategoriLitabmas'])->name('litabmas.pieChartKategoriLitabmas');
+});
+
+Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|kaprodiS1|tpmpsS1')->group(function () {
+    Route::resource('prestasi', PrestasiDataController::class);
+
+    Route::get('chartScalaPrestasi', [PrestasiDataController::class, 'pieChartScala'])->name('prestasi.chartScala');
+    Route::get('barChartPrestasi', [PrestasiDataController::class, 'barChartPrestasi'])->name('prestasi.barChartPrestasi');
+    Route::get('chartCapaianPrestasi', [PrestasiDataController::class, 'pieChartCapaian'])->name('prestasi.chartCapaian');
+
+    Route::resource('aktivitas', AktivitasDataController::class);
+    Route::get('barChartAktivitas', [AktivitasDataController::class, 'barChartAktivitas'])->name('aktivitas.barChartAktivitas');
+    Route::get('pieChartAktivitas', [AktivitasDataController::class, 'pieChartPeran'])->name('aktivitas.pieChartPeran');
+
+
+
+    //unduh data
     Route::get('unduh', [ExportData::class, 'index'])->name('unduh.index');
     Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
     Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
@@ -219,23 +241,18 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::post('unduh/seminar', [ExportData::class, 'seminar'])->name('unduh.seminar');
     Route::post('unduh/penghargaan', [ExportData::class, 'penghargaan'])->name('unduh.penghargaan');
 
-    Route::get('chartCapaianPrestasi', [PrestasiDataController::class, 'pieChartCapaian'])->name('prestasi.chartCapaian');
-    Route::get('chartScalaPrestasi', [PrestasiDataController::class, 'pieChartScala'])->name('prestasi.chartScala');
-    Route::get('barChartPrestasi', [PrestasiDataController::class, 'barChartPrestasi'])->name('prestasi.barChartPrestasi');
-
+});
+Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|kaprodiS2|tpmpsS2')->group(function () {
+    Route::resource('prestasiS2', PrestasiDataS2Controller::class);
     Route::get('chartCapaianPrestasiS2', [PrestasiDataS2Controller::class, 'pieChartCapaian'])->name('prestasiS2.chartCapaian');
     Route::get('chartScalaPrestasiS2', [PrestasiDataS2Controller::class, 'pieChartScala'])->name('prestasiS2.chartScala');
     Route::get('barChartPrestasiS2', [PrestasiDataS2Controller::class, 'barChartPrestasi'])->name('prestasiS2.barChartPrestasi');
 
-    Route::get('barChartAktivitas', [AktivitasDataController::class, 'barChartAktivitas'])->name('aktivitas.barChartAktivitas');
-    Route::get('pieChartAktivitas', [AktivitasDataController::class, 'pieChartPeran'])->name('aktivitas.pieChartPeran');
-    Route::get('pieChartScalaPublikasi', [PublikasiDataController::class, 'pieChartScala'])->name('publikasi.pieChartScala');
-    Route::get('pieChartKategoriPublikasi', [PublikasiDataController::class, 'pieChartKategori'])->name('publikasi.pieChartKategori');
-    Route::get('pieChartKategoriLitabmasPublikasi', [PublikasiDataController::class, 'pieChartKategoriLitabmas'])->name('publikasi.pieChartKategoriLitabmas');
-    Route::get('barChartTahunPublikasi', [PublikasiDataController::class, 'barChartTahun'])->name('publikasi.barChartTahun');
-    Route::get('barChartTahunLitabmas', [LitabmasDataController::class, 'barChartTahun'])->name('litabmas.barChartTahun');
-    Route::get('pieChartKategoriLitabmas', [LitabmasDataController::class, 'pieChartKategoriLitabmas'])->name('litabmas.pieChartKategoriLitabmas');
+    Route::resource('aktivitasS2', AktivitasDataS2Controller::class);
+    Route::get('barChartAktivitasS2', [AktivitasDataS2Controller::class, 'barChartAktivitas'])->name('aktivitasS2.barChartAktivitas');
+    Route::get('pieChartAktivitasS2', [AktivitasDataS2Controller::class, 'pieChartPeran'])->name('aktivitasS2.pieChartPeran');
 });
+
 
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan')->group(function () {
     Route::resource('lokasi', LokasiController::class);
