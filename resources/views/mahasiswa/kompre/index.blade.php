@@ -137,12 +137,12 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->tahun_akademik }}
                                 </div>
-                                <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
+                                <label class="col-md-3 bold mt-2"> <strong>Nomor Pembimbing External</strong></label>
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     @if ($seminar->pbl2_nip)
                                         {{ $seminar->pbl2_nip }}
                                     @else
-                                        -
+                                        Tidak Ada
                                     @endif
                                 </div>
                             </div>
@@ -287,7 +287,7 @@
                             <small>
                                 <b>
                                     <p
-                                        class="mb-30 text-center 
+                                        class="mb-30 text-center
                                 @if ($seminar->status_koor == 'Selesai') {{ 'Valid' }}
                                             @elseif($seminar->status_koor == 'Belum Selesai') {{ 'Proses' }}
                                             @elseif($seminar->status_koor == 'Perbaikan') {{ 'Invalid' }}
