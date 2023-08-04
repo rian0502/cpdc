@@ -17,7 +17,8 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('mahasiswa.seminarta1s2.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('mahasiswa.seminarta1s2.update', $seminar->encrypt_id) }}" method="POST" enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
