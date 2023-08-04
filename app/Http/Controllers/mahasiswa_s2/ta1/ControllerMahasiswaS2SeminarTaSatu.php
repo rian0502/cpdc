@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\mahasiswaS2\ta1;
+namespace App\Http\Controllers\mahasiswa_S2\ta1;
 
 use App\Models\Dosen;
 use Illuminate\Http\Request;
@@ -9,7 +9,6 @@ use App\Http\Requests\StoreTaSatuS2Request;
 use App\Models\ModelSeminarTaSatuS2;
 use Illuminate\Support\Facades\Auth;
 use App\Models\BerkasPersyaratanSeminar;
-use App\Models\ModelSeminarTaDuaS2;
 use Illuminate\Support\Facades\Crypt;
 
 class ControllerMahasiswaS2SeminarTaSatu extends Controller
