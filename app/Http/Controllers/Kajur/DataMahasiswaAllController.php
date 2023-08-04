@@ -97,6 +97,7 @@ class DataMahasiswaAllController extends Controller
         if ($mahasiswa->user->hasRole('alumni')) {
             $data['alumni'] = AktivitasAlumni::where('mahasiswa_id', $mahasiswa->id)->orderBy('tahun_masuk', 'desc')->get();
         }
+        
 
 
         return view('jurusan.data_mahasiswa.show', $data);

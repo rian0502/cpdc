@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Crypt;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PrestasiMahasiswa>
  */
-class PrestasiMahasiswaFactory extends Factory
+class PrestasiMahasiswaS2Factory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +19,7 @@ class PrestasiMahasiswaFactory extends Factory
     {
 
         return [
-            'encrypt_id' => Crypt::encrypt($this->faker->unique()->numberBetween(1, 9999999)),
+            'encrypt_id' => Crypt::encrypt($this->faker->unique()->numberBetween(1, 999999999)),
             'nama_prestasi' => $this->faker->sentence(3),
             'scala' => $this->faker->randomElement(['Nasional', 'Internasional', 'Provinsi', 'Kabupaten/Kota', 'Universitas']),
             'tanggal' => $this->faker->date(),
@@ -33,7 +33,7 @@ class PrestasiMahasiswaFactory extends Factory
                 'Peserta'
             ]),
             'file_prestasi' => 'default.pdf',
-            'mahasiswa_id' => $this->faker->numberBetween(1, 50),
+            'mahasiswa_id' => 76,
             'created_at' => '2023-08-30 00:00:00',
             'updated_at' => '2023-08-30 00:00:00',
         ];

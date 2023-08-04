@@ -42,7 +42,7 @@
 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Detail Mahasiswa</h4>
+                        <h4 class="text-blue h4">Detail Mahasiswa {{$mahasiswa->user->hasRole('mahasiswa')?'S1':'S2'}} </h4>
                         {{-- <a href="{{ route('jurusan.mahasiswa.index') }}">
                             <button class="btn btn-primary right-button">Kembali</button>
                         </a> --}}

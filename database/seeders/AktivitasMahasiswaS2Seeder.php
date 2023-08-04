@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\AktivitasMahasiswa;
+use App\Models\AktivitasMahasiswaS2;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AktivitasMahasiswaSeeder extends Seeder
+class AktivitasMahasiswaS2Seeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class AktivitasMahasiswaSeeder extends Seeder
     public function run()
     {
         //
-        AktivitasMahasiswa::factory()->count(100)->create();
-        
+        AktivitasMahasiswaS2::factory()->count(100)->create();
+
     }
 }
