@@ -120,20 +120,20 @@
                     },
                     columns: [{
                             data: null,
-                            name: 'nama_mahasiswa',
+                            name: 'nama_aktivitas',
                             render: function(data, type, row, meta) {
                                 var index = meta.row + meta.settings._iDisplayStart + 1;
                                 return index;
                             }
                         },
                         {
-                            data: 'nama_mahasiswa',
-                            name: 'nama_mahasiswa',
+                            data: 'mahasiswa.nama_mahasiswa',
+                            name: 'mahasiswa.nama_mahasiswa',
                             orderable: true
                         },
                         {
-                            data: 'npm',
-                            name: 'npm',
+                            data: 'mahasiswa.npm',
+                            name: 'mahasiswa.npm',
                             orderable: true
                         },
                         {
