@@ -66,12 +66,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Dosen Pembimbing 1</label>
-                                    <select class="custom-select2 form-control" name="id_pembimbing_satu"
-                                        id="id_pembimbing_satu" style="width: 100%; height: 38px">
+                                    <select class="custom-select2 form-control" name="id_pembimbing_1" id="id_pembimbing_1"
+                                        style="width: 100%; height: 38px">
                                         <optgroup label="Pembimbing 1">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_satu', $seminar->pembimbing_satu->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_1', $seminar->pembimbingSatu->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
                                         </optgroup>
@@ -85,7 +85,7 @@
                                         <optgroup label="Pembimbing 2">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_dua', $seminar->pembimbingDua->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
                                             @if (old('id_pembimbing_dua') == 'new' || $errors->has('pbl2_nama') || $seminar->pbl2_nama != null)
@@ -135,7 +135,7 @@
                                         <optgroup label="Pembahas">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('pembahas', $seminar->pembahas->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('pembahas', $seminar->pembahasSatu->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}
                                                 </option>
                                             @endforeach
@@ -233,7 +233,7 @@
                             <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
                     </form>
-                    <a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}">
+                    <a href="{{ route('mahasiswa.seminarta1s2.index') }}">
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>
                 </div>

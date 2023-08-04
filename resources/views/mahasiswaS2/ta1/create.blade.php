@@ -17,8 +17,7 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('mahasiswa.seminar.tugas_akhir_1.store') }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('mahasiswa.seminarta1s2.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
@@ -148,14 +147,43 @@
                                     <select class="custom-select2 form-control" name="id_pembimbing_dua"
                                         id="id_pembimbing_dua" style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'Pembimbing2', 'pbl2_nama')">
-                                        <optgroup label="Pembimbing 2">
+                                        <optgroup label="Pembahas 1">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
                                                     {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
+                                            @if (old('id_pembimbing_dua') == 'new' || $errors->has('pbl2_nama'))
+                                                <option value="new" selected>Tidak Ada di Daftar Ini</option>
+                                            @else
+                                                <option value="new">Tidak Ada di Daftar Ini</option>
+                                            @endif
                                         </optgroup>
                                     </select>
+                                </div>
+                                <div id="pbl2_nama"
+                                    style="display: {{ old('id_pembimbing_dua') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembimbing_dua') == 'new' ? '' : 'hidden' }}>
+                                    <div class="form-group">
+                                        <label>Nama Pembimbing 2</label>
+                                        <input autofocus name="pbl2_nama" class="form-control" type="text"
+                                            value="{{ old('pbl2_nama') }}" placeholder="Masukkan Nama Pembimbing 2">
+                                        @error('pbl2_nama')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div id="Pembimbing2"
+                                    style="display: {{ old('id_pembimbing_dua') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembimbing_dua') == 'new' ? '' : 'hidden' }}>
+                                    <div class="form-group">
+                                        <label>NIP Pembimbing 2</label>
+                                        <input autofocus name="pbl2_nip" class="form-control" type="text"
+                                            value="{{ old('pbl2_nip') }}" placeholder="Masukkan NIP Pembimbing 2">
+                                        @error('pbl2_nip')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Pembahas 1</label>
@@ -195,7 +223,7 @@
                                     <div class="form-group">
                                         <label>NIP pembahas 1</label>
                                         <input autofocus name="phs1_nip" class="form-control" type="text"
-                                            value="{{ old('phs1_nip') }}" placeholder="Masukkan Nomor Karyawan pembahas 1">
+                                            value="{{ old('phs1_nip') }}" placeholder="Masukkan NIP pembahas 1">
                                         @error('phs1_nip')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
@@ -239,7 +267,7 @@
                                     <div class="form-group">
                                         <label>NIP pembahas 2</label>
                                         <input autofocus name="phs2_nip" class="form-control" type="text"
-                                            value="{{ old('phs2_nip') }}" placeholder="Masukkan Nomor Karyawan pembahas 2">
+                                            value="{{ old('phs2_nip') }}" placeholder="Masukkan NIP pembahas 2">
                                         @error('phs2_nip')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
@@ -283,7 +311,7 @@
                                     <div class="form-group">
                                         <label>NIP pembahas 3</label>
                                         <input autofocus name="phs3_nip" class="form-control" type="text"
-                                            value="{{ old('phs3_nip') }}" placeholder="Masukkan Nomor Karyawan pembahas 3">
+                                            value="{{ old('phs3_nip') }}" placeholder="Masukkan NIP pembahas 3">
                                         @error('phs3_nip')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
@@ -349,6 +377,11 @@
     </script>
     <script>
         @if (old('phs3_nama'))
+            toggleInput(document.getElementById('id_pembahas_tiga'), 'pembahas3')
+        @endif
+    </script>
+    <script>
+        @if (old('pbl2_nama'))
             toggleInput(document.getElementById('id_pembahas_tiga'), 'pembahas3')
         @endif
     </script>
