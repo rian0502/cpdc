@@ -99,7 +99,7 @@
 
                         </div>
                         @if ($seminar->status_admin != 'Valid')
-                            <a href="/mahasiswa/seminar/tugas_akhir_1/{{ $seminar->encrypt_id }}/edit">
+                            <a href="/mahasiswa/seminarta1s2/{{ $seminar->encrypt_id }}/edit">
                                 <button class="btn btn-primary right">Edit Data</button>
                             </a>
                         @endif
@@ -114,7 +114,7 @@
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->pembimbing_satu->nama_dosen }}
+                                    {{ $seminar->pembimbingSatu->nama_dosen }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
@@ -124,8 +124,8 @@
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Pembimbing 2</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    @if ($seminar->pembimbing_dua)
-                                        {{ $seminar->pembimbing_dua->nama_dosen }}
+                                    @if ($seminar->id_pembimbing_2)
+                                        {{ $seminar->pembimbingDua->nama_dosen }}
                                     @else
                                         {{ $seminar->pbl2_nama }}
                                     @endif
@@ -152,9 +152,13 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $mahasiswa->semester }}
                                 </div>
-                                <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
+                                <label class="col-md-3 bold"> <strong>Pembahas 1</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->pembahas->nama_dosen }}
+                                    @if ($seminar->id_pembahas_1)
+                                        {{ $seminar->pembahasSatu->nama_dosen }}
+                                    @else
+                                        {{ $seminar->pembahas_external_1 }}
+                                    @endif
                                 </div>
                             </div>
 
