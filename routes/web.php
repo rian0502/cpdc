@@ -44,6 +44,7 @@ use App\Http\Controllers\dosen\ProfileDosenController;
 use App\Http\Controllers\Kajur\ChartSeminarController;
 use App\Http\Controllers\Kajur\LitabmasDataController;
 use App\Http\Controllers\Kajur\PrestasiDataController;
+use App\Http\Controllers\Kajur\PrestasiDataS2Controller;
 use App\Http\Controllers\sudo\AkunMahasiswaController;
 use App\Http\Controllers\Kajur\AktivitasDataController;
 use App\Http\Controllers\Kajur\PublikasiDataController;
@@ -197,6 +198,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
 
     //prestasi
     Route::resource('prestasi', PrestasiDataController::class);
+    Route::resource('prestasiS2', PrestasiDataS2Controller::class);
     Route::resource('aktivitas', AktivitasDataController::class);
     Route::resource('publikasi', PublikasiDataController::class);
     Route::resource('litabmas', LitabmasDataController::class);
@@ -216,9 +218,15 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
     Route::post('unduh/seminar', [ExportData::class, 'seminar'])->name('unduh.seminar');
     Route::post('unduh/penghargaan', [ExportData::class, 'penghargaan'])->name('unduh.penghargaan');
+
     Route::get('chartCapaianPrestasi', [PrestasiDataController::class, 'pieChartCapaian'])->name('prestasi.chartCapaian');
     Route::get('chartScalaPrestasi', [PrestasiDataController::class, 'pieChartScala'])->name('prestasi.chartScala');
     Route::get('barChartPrestasi', [PrestasiDataController::class, 'barChartPrestasi'])->name('prestasi.barChartPrestasi');
+
+    Route::get('chartCapaianPrestasiS2', [PrestasiDataS2Controller::class, 'pieChartCapaian'])->name('prestasiS2.chartCapaian');
+    Route::get('chartScalaPrestasiS2', [PrestasiDataS2Controller::class, 'pieChartScala'])->name('prestasiS2.chartScala');
+    Route::get('barChartPrestasiS2', [PrestasiDataS2Controller::class, 'barChartPrestasi'])->name('prestasiS2.barChartPrestasi');
+
     Route::get('barChartAktivitas', [AktivitasDataController::class, 'barChartAktivitas'])->name('aktivitas.barChartAktivitas');
     Route::get('pieChartAktivitas', [AktivitasDataController::class, 'pieChartPeran'])->name('aktivitas.pieChartPeran');
     Route::get('pieChartScalaPublikasi', [PublikasiDataController::class, 'pieChartScala'])->name('publikasi.pieChartScala');
