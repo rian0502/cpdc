@@ -243,18 +243,119 @@
                             </a>
                         </li>
                     @endrole
-                    @role('jurusan|tpmps')
-                        <li>
-                            <a href="{{ route('jurusan.prestasi.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/prestasi*') ? 'active' : '' }}">
+
+                    @role('kaprodiS1|tpmpsS1')
+                    <li>
+                        <a href="{{ route('jurusan.prestasi.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/prestasi*') ? 'active' : '' }}">
+                            <span class="micon bi bi-award"></span><span class="mtext">Prestasi S1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('jurusan.aktivitas.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/aktivitas*') ? 'active' : '' }}">
+                            <span class="micon bi bi-clock-history"></span><span class="mtext">Extra Aktivity S1</span>
+                        </a>
+                    </li>                        <li>
+                        <a href="{{ route('jurusan.publikasi.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/publikasi*') ? 'active' : '' }}">
+                            <span class="micon bi bi-journal-text"></span><span class="mtext">PUBLIKASI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('jurusan.litabmas.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/litabmas*') ? 'active' : '' }}">
+                            <span class="micon bi bi-journal-richtext"></span><span class="mtext">LITABMAS</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('jurusan.penghargaan.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/penghargaan*') ? 'active' : '' }}">
+                            <span class="micon bi bi-trophy"></span><span class="mtext">Penghargaan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('jurusan.seminar.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/seminar*') ? 'active' : '' }}">
+                            <span class="micon bi bi-mic"></span><span class="mtext">Seminar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('jurusan.unduh.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
+                            <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
+                        </a>
+                    </li>
+                    @endrole
+
+                    @role('kaprodiS2|tpmpsS2')
+
+                    <li>
+                        <a href="{{ route('jurusan.prestasiS2.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/prestasiS2*') ? 'active' : '' }}">
+                            <span class="micon bi bi-award"></span><span class="mtext">Prestasi S2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('jurusan.aktivitasS2.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/aktivitasS2*') ? 'active' : '' }}">
+                            <span class="micon bi bi-clock-history"></span><span class="mtext">Extra Aktivity S2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('jurusan.publikasi.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/publikasi*') ? 'active' : '' }}">
+                            <span class="micon bi bi-journal-text"></span><span class="mtext">PUBLIKASI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('jurusan.litabmas.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/litabmas*') ? 'active' : '' }}">
+                            <span class="micon bi bi-journal-richtext"></span><span class="mtext">LITABMAS</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('jurusan.penghargaan.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/penghargaan*') ? 'active' : '' }}">
+                            <span class="micon bi bi-trophy"></span><span class="mtext">Penghargaan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('jurusan.seminar.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/seminar*') ? 'active' : '' }}">
+                            <span class="micon bi bi-mic"></span><span class="mtext">Seminar</span>
+                        </a>
+                    </li>
+                    {{-- <li>
+                        <a href="{{ route('jurusan.unduh.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
+                            <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
+                        </a>
+                    </li> --}}
+                    @endrole
+
+                    @role('jurusan')
+                        <li class="dropdown {{ Request::is('jurusan/prestasi*')||Request::is('jurusan/prestasiS2*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle">
                                 <span class="micon bi bi-award"></span><span class="mtext">Prestasi</span>
                             </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('jurusan.prestasi.index') }}"
+                                        class="{{ Request::is('jurusan/prestasi') ? 'active' : '' }}">S1</a></li>
+                                <li><a href="{{ route('jurusan.prestasiS2.index') }}"
+                                        class="{{ Request::is('jurusan/prestasiS2') ? 'active' : '' }}">S2</a></li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="{{ route('jurusan.aktivitas.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/aktivitas*') ? 'active' : '' }}">
-                                <span class="micon bi bi-clock-history"></span><span class="mtext">Extra Aktivity</span>
+                        <li class="dropdown {{ Request::is('jurusan/aktivitas*')||Request::is('jurusan/aktivitasS2*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle">
+                                <span class="micon bi bi-clock-history"></span><span class="mtext">Aktivitas Mahasiswa</span>
                             </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('jurusan.aktivitas.index') }}"
+                                        class="{{ Request::is('jurusan/aktivitas') ? 'active' : '' }}">S1</a></li>
+                                <li><a href="{{ route('jurusan.aktivitasS2.index') }}"
+                                        class="{{ Request::is('jurusan/aktivitasS2') ? 'active' : '' }}">S2</a></li>
+                            </ul>
                         </li>
                         <li>
                             <a href="{{ route('jurusan.publikasi.index') }}"
