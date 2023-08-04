@@ -196,6 +196,7 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
             'mahasiswa' => $mahasiswa,
             'seminar' => $seminar,
             'dosens' => Dosen::where('status', 'Aktif')->get(),
+            'syarat' => BerkasPersyaratanSeminar::find(2),
         ];
 
         return view("mahasiswaS2.ta1.edit", $data);
