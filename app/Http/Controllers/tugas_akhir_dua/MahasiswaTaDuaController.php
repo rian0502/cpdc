@@ -23,7 +23,7 @@ class MahasiswaTaDuaController extends Controller
 
         if (Auth::user()->mahasiswa->ta_dua) {
             $data = [
-                'seminar' => ModelSeminarTaDua::where('id_mahasiswa', Auth::user()->mahasiswa->id)->get(),
+                'seminar' => ModelSeminarTaDua::where('id_mahasiswa', Auth::user()->mahasiswa->id)->first(),
                 'mahasiswa' => Auth::user()->mahasiswa,
             ];
             return view('mahasiswa.ta2.index', $data);
@@ -100,7 +100,7 @@ class MahasiswaTaDuaController extends Controller
         $update = ModelSeminarTaDua::find($id);
         $update->encrypt_id = Crypt::encrypt($id);
         $update->save();
-        //khusus mahasiswa 19 
+        //khusus mahasiswa 19
         $faker = \Faker\Factory::create('id_ID');
         $jadwal = ModelJadwalSeminarTaDua::create([
             'tanggal_seminar_ta_dua' => date('Y-m-d'),

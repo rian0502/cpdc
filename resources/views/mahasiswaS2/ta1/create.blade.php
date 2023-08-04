@@ -382,7 +382,7 @@
     </script>
     <script>
         @if (old('pbl2_nama'))
-            toggleInput(document.getElementById('id_pembahas_tiga'), 'pembahas3')
+            toggleInput(document.getElementById('id_pembimbing_dua'), 'Pembimbing2')
         @endif
     </script>
 @endsection

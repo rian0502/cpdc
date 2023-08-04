@@ -124,7 +124,7 @@
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Pembimbing 2</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    @if ($seminar->id_pembimbing_2)
+                                    @if ($seminar->id_pembimbing_dua)
                                         {{ $seminar->pembimbingDua->nama_dosen }}
                                     @else
                                         {{ $seminar->pbl2_nama }}
@@ -137,12 +137,12 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->tahun_akademik }}
                                 </div>
-                                <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
-                                <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    @if ($seminar->pbl2_nip)
-                                        {{ $seminar->pbl2_nip }}
+                                <label class="col-md-3 bold mt-1"><strong>Pembahas 1</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    @if ($seminar->id_pembahas_satu)
+                                        {{ $seminar->pembahasSatu->nama_dosen }}
                                     @else
-                                        -
+                                        {{ $seminar->phs1_nama }}
                                     @endif
                                 </div>
                             </div>
@@ -152,12 +152,12 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $mahasiswa->semester }}
                                 </div>
-                                <label class="col-md-3 bold"> <strong>Pembahas 1</strong></label>
+                                <label class="col-md-3 bold"> <strong>Pembahas 2</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    @if ($seminar->id_pembahas_1)
-                                        {{ $seminar->pembahasSatu->nama_dosen }}
+                                    @if ($seminar->id_pembahas_dua)
+                                        {{ $seminar->pembahasDua->nama_dosen }}
                                     @else
-                                        {{ $seminar->pembahas_external_1 }}
+                                        {{ $seminar->phs2_nama }}
                                     @endif
                                 </div>
                             </div>
@@ -167,10 +167,15 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->sks }}
                                 </div>
-                                <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
+                                <label class="col-md-3 bold"> <strong>Pembahas 3</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->periode_seminar }}
+                                    @if ($seminar->id_pembahas_tiga)
+                                        {{ $seminar->pembahasTiga->nama_dosen }}
+                                    @else
+                                        {{ $seminar->phs2_nama }}
+                                    @endif
                                 </div>
+
                             </div>
 
                             <div class="row border-bottom mt-2">
@@ -186,6 +191,7 @@
                                 </div>
                             </div>
 
+
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -195,6 +201,12 @@
                                 <label class="col-md-3 bold"> <strong>Ide Judul</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     Dari {{ $seminar->sumber_penelitian }}
+                                </div>
+                            </div>
+                            <div class="row border-bottom mt-2">
+                                <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    {{ $seminar->periode_seminar }}
                                 </div>
                             </div>
 

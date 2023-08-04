@@ -19,12 +19,14 @@ class MahasiswaTaSatuController extends Controller
     public function index()
     {
         if (Auth::user()->mahasiswa->ta_satu) {
-            $seminar = ModelSeminarTaSatu::where('id_mahasiswa', Auth::user()->mahasiswa->id)->get();
+            $seminar = ModelSeminarTaSatu::where('id_mahasiswa', Auth::user()->mahasiswa->id)->first();
+
             $mahasiswa = Auth::user()->mahasiswa;
             return view('mahasiswa.ta1.index', compact(['seminar', 'mahasiswa']));
         }
         return redirect()->route('mahasiswa.seminar.tugas_akhir_1.create');
     }
+
 
     public function create()
     {
