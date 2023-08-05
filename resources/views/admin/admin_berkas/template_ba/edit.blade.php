@@ -59,7 +59,7 @@
                         </div>
 
                     </form>
-                    <a href="/admin/berkas/berkas_persyaratan">
+                    <a href="/admin/berkas/template_seminar">
 
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>
