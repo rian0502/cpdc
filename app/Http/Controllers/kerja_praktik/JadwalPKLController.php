@@ -9,6 +9,7 @@ use App\Models\ModelJadwalSeminarKompre;
 use App\Models\ModelJadwalSeminarTaDua;
 use App\Models\ModelJadwalSeminarTaSatu;
 use App\Models\ModelSeminarKP;
+use App\Models\TemplateBeritaAcara;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -19,6 +20,15 @@ use PhpOffice\PhpWord\TemplateProcessor;
 
 class JadwalPKLController extends Controller
 {
+    private $ba;
+    private $koor;
+
+    public function __construct()
+    {
+        $this->ba = TemplateBeritaAcara::find(1);
+        $this->koor = User::role('pkl')->with('dosen')->first();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -100,11 +110,12 @@ class JadwalPKLController extends Controller
         $jadwal_skp = JadwalSKP::find($ins_id);
         $jadwal_skp->encrypt_id = Crypt::encrypt($ins_id);
         $jadwal_skp->save();
-
         //export word
         $seminar = ModelSeminarKP::find(Crypt::decrypt($id_seminar));
         //lokasi template
-        $template = new TemplateProcessor('uploads/template_ba_kp/' . 'template_ba_kp.docx');
+        $template = new TemplateProcessor($this->ba->path);
+        $template->setValue('nama_koor_pkl', $this->koor->dosen->nama_dosen);
+        $template->setValue('nip_koor_pkl', $this->koor->dosen->nip);
         $template->setValue('nama_admin', $admin->nama_administrasi);
         $template->setValue('nip_admin', $admin->nip);
         $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
@@ -222,8 +233,9 @@ class JadwalPKLController extends Controller
         $jadwal_skp->id_lokasi = Crypt::decrypt($request->id_lokasi);
         $jadwal_skp->save();
         //lokasi template
-        $path = ('uploads\template_ba_kp\\');
-        $template = new TemplateProcessor($path . 'template_ba_kp.docx');
+        $template = new TemplateProcessor($this->ba->path);
+        $template->setValue('nama_koor_pkl', $this->koor->dosen->nama_dosen);
+        $template->setValue('nip_koor_pkl', $this->koor->dosen->nip);
         $template->setValue('nama_admin', $admin->nama_administrasi);
         $template->setValue('nip_admin', $admin->nip);
         $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
@@ -243,7 +255,7 @@ class JadwalPKLController extends Controller
         $template->setValue('lokasi', $jadwal_skp->lokasi->nama_lokasi);
         $template->setValue('pembimbing_lapangan', $request->pembimbing_lapangan);
         $template->setValue('nip_pembimbing_lapangan', $request->ni_pemlap);
-        $output = ('uploads\print_ba_kp\\');
+        $output = ('uploads/print_ba_kp/');
         $namafile = $seminar->mahasiswa->npm . '_ba_kp_' . time() . '.docx';
         $template->saveAs($output . $namafile);
         //send email
@@ -266,9 +278,9 @@ class JadwalPKLController extends Controller
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach(('uploads\print_ba_kp\\') . $namafile);
+            $message->attach(('uploads/print_ba_kp/') . $namafile);
         });
-        unlink(('uploads\print_ba_kp\\' . $namafile));
+        unlink(('uploads/print_ba_kp/' . $namafile));
         return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Diubah');
     }
 
@@ -281,8 +293,9 @@ class JadwalPKLController extends Controller
         $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
         $kajur = User::role('jurusan')->with('dosen')->first();
         //lokasi template
-        $path = ('uploads\template_ba_kp\\');
-        $template = new TemplateProcessor($path . 'template_ba_kp.docx');
+        $template = new TemplateProcessor($this->ba->path);
+        $template->setValue('nama_koor_pkl', $this->koor->dosen->nama_dosen);
+        $template->setValue('nip_koor_pkl', $this->koor->dosen->nip);
         $template->setValue('nama_admin', $admin->nama_administrasi);
         $template->setValue('nip_admin', $admin->nip);
         $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
@@ -302,7 +315,7 @@ class JadwalPKLController extends Controller
         $template->setValue('lokasi', $jadwal_skp->lokasi->nama_lokasi);
         $template->setValue('pembimbing_lapangan', $jadwal_skp->pembimbing_lapangan);
         $template->setValue('nip_pembimbing_lapangan', $jadwal_skp->ni_pemlap);
-        $output = ('uploads\print_ba_kp\\');
+        $output = ('uploads/print_ba_kp/');
         $namafile = $seminar->mahasiswa->npm . '_ba_kp_' . time() . '.docx';
         $template->saveAs($output . $namafile);
         //send email
@@ -325,9 +338,9 @@ class JadwalPKLController extends Controller
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach(('uploads\print_ba_kp\\') . $namafile);
+            $message->attach(('uploads/print_ba_kp/') . $namafile);
         });
-        unlink(('uploads\print_ba_kp\\' . $namafile));
+        unlink(('uploads/print_ba_kp/' . $namafile));
         return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Dikirim Ulang');
     }
 

@@ -14,10 +14,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaSatu;
+use App\Models\TemplateBeritaAcara;
 
 class PenjadwalanTaSatu extends Controller
 {
     //koor
+    private $ba;
+
+    public function __construct()
+    {
+        $this->ba = TemplateBeritaAcara::find(2);
+    }
 
     public function index()
     {
@@ -77,8 +84,7 @@ class PenjadwalanTaSatu extends Controller
         $update->save();
         $seminar = ModelSeminarTaSatu::find($id);
         $mahasiswa = $seminar->mahasiswa;
-        $path = ('uploads\template_ba_ta1\\');
-        $template = new \PhpOffice\PhpWord\TemplateProcessor('uploads/template_ba_ta1/' . 'template_ba_ta1.docx');
+        $template = new \PhpOffice\PhpWord\TemplateProcessor($this->ba->path);
         $template->setValue('nama_admin', $admin->nama_administrasi);
         $template->setValue('nip_admin', $admin->nip);
         $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
@@ -125,7 +131,7 @@ class PenjadwalanTaSatu extends Controller
             $message->from('chemistryprogramdatacenter@gmail.com');
             $message->attach('uploads/print_ba_ta1/' . $namafile);
         });
-        unlink(('uploads/print_ba_ta1/' . $namafile));
+        unlink('uploads/print_ba_ta1/' . $namafile);
         return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Menjadwalkan Seminar Tugas Akhir 1');
     }
 
@@ -162,7 +168,7 @@ class PenjadwalanTaSatu extends Controller
             'id_lokasi' => Crypt::decrypt($request->id_lokasi),
         ];
         $updateJadwal = ModelJadwalSeminarTaSatu::where('id_seminar', $seminar->id)->update($data);
-        $template = new \PhpOffice\PhpWord\TemplateProcessor('uploads/template_ba_ta1/' . 'template_ba_ta1.docx');
+        $template = new \PhpOffice\PhpWord\TemplateProcessor($this->ba->path);
         $template->setValue('nama_admin', $admin->nama_administrasi);
         $template->setValue('nip_admin', $admin->nip);
         $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
@@ -208,7 +214,7 @@ class PenjadwalanTaSatu extends Controller
             $message->from('chemistryprogramdatacenter@gmail.com');
             $message->attach('uploads/print_ba_ta1/' . $namafile);
         });
-        unlink(('uploads/print_ba_ta1/' . $namafile));
+        unlink('uploads/print_ba_ta1/' . $namafile);
         return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Menjadwalkan Ulang Seminar Tugas Akhir 1');
     }
 
@@ -221,7 +227,7 @@ class PenjadwalanTaSatu extends Controller
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', $jadwal->id_lokasi)->first();
         $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
         $kajur = User::role('jurusan')->with('dosen')->first();
-        $template = new \PhpOffice\PhpWord\TemplateProcessor('uploads/template_ba_ta1/' . 'template_ba_ta1.docx');
+        $template = new \PhpOffice\PhpWord\TemplateProcessor($this->ba->path);
         $template->setValue('nama_admin', $admin->nama_administrasi);
         $template->setValue('nip_admin', $admin->nip);
         $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
@@ -266,7 +272,7 @@ class PenjadwalanTaSatu extends Controller
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 1');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach(('uploads/print_ba_ta1/') . $namafile);
+            $message->attach('uploads/print_ba_ta1/' . $namafile);
         });
         unlink(('uploads/print_ba_ta1/' . $namafile));
         return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar Tugas Akhir 1');

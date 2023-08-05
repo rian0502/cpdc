@@ -24,7 +24,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama }}</td>
                                         <td>
-                                            <a href="/uploads/template_ba/{{ $item->path }}">Lihat</a>
+                                            <a href="/{{ $item->path }}">Lihat</a>
                                         </td>
                                         <td>
                                             <div class="dropdown">

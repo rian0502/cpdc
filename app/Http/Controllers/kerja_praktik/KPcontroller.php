@@ -86,11 +86,10 @@ class KPcontroller extends Controller
             'berkas_seminar_pkl' => $nama_file,
             'agreement' => 1,
             'status_seminar' => 'Belum Selesai',
-            'proses_admin' => 'Proses',
+            'proses_admin' => 'Valid',
             'ket' => '',
             'id_dospemkp' => Crypt::decrypt($request->id_dospemkp),
             'id_mahasiswa' => $mahasiswa->id,
-            'proses_admin' => 'Valid',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
@@ -99,19 +98,7 @@ class KPcontroller extends Controller
         $update = ModelSeminarKP::find($insert_id);
         $update->encrypt_id = Crypt::encrypt($insert_id);
         $update->save();
-        //buatkan jadwal seminar untuk mahasiswa 19
-        $faker = \Faker\Factory::create('id_ID');
-        $jadwal = JadwalSKP::create([
-            'tanggal_skp' => date('Y-m-d'),
-            'jam_mulai_skp' => date('H:i'),
-            'jam_selesai_skp' => date('H:i'),
-            'id_lokasi' => $faker->numberBetween(1, 5),
-            'id_skp' => $insert_id,
-        ]);
-        $jadwal_id = $jadwal->id;
-        $jadwal_update = JadwalSKP::find($jadwal_id);
-        $jadwal_update->encrypt_id = Crypt::encrypt($jadwal_id);
-        $jadwal_update->save();
+
         return redirect()->route('mahasiswa.seminar.kp.index')->with('success', 'Data Seminar KP Berhasil Ditambahkan');
     }
 
