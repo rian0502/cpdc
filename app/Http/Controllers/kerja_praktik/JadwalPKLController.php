@@ -213,6 +213,8 @@ class JadwalPKLController extends Controller
         }
         $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         $jadwal_skp = JadwalSKP::find(Crypt::decrypt($id));
+        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $kajur = User::role('jurusan')->with('dosen')->first();
         $seminar = ModelSeminarKP::find($jadwal_skp->id_skp);
         $jadwal_skp->tanggal_skp = $request->tanggal_skp;
         $jadwal_skp->jam_mulai_skp = $request->jam_mulai_skp;
@@ -222,6 +224,10 @@ class JadwalPKLController extends Controller
         //lokasi template
         $path = ('uploads\template_ba_kp\\');
         $template = new TemplateProcessor($path . 'template_ba_kp.docx');
+        $template->setValue('nama_admin', $admin->nama_administrasi);
+        $template->setValue('nip_admin', $admin->nip);
+        $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
+        $template->setValue('nip_kajur', $kajur->dosen->nip);
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
         $template->setValue('judul_kp', $seminar->judul_kp);
@@ -272,9 +278,15 @@ class JadwalPKLController extends Controller
         $seminar = ModelSeminarKP::find(Crypt::decrypt($id));
         $jadwal_skp = JadwalSKP::where('id_skp', '=', $seminar->id)->first();
         $hari = Carbon::parse($jadwal_skp->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
+        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $kajur = User::role('jurusan')->with('dosen')->first();
         //lokasi template
         $path = ('uploads\template_ba_kp\\');
         $template = new TemplateProcessor($path . 'template_ba_kp.docx');
+        $template->setValue('nama_admin', $admin->nama_administrasi);
+        $template->setValue('nip_admin', $admin->nip);
+        $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
+        $template->setValue('nip_kajur', $kajur->dosen->nip);
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
         $template->setValue('judul_kp', $seminar->judul_kp);
