@@ -83,6 +83,7 @@ use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 use App\Http\Controllers\kerja_praktik\BeritaAcaraSeminarKerjaPraktik;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganAkademikController;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganTugasAkhirController;
+use App\Http\Controllers\mahasiswa_s2\ta1\ControllerAdminS2BpTaSatu;
 
 /*
 |--------------------------------------------------------------------------
@@ -145,6 +146,9 @@ Route::prefix('admin/berkas')->name('berkas.')->middleware(['auth', 'profile', '
         'create', 'store', 'show', 'destroy'
     ]);
 
+    Route::resource('validasi/s2/tesis1', ControllerAdminS2BpTaSatu::class)->names('validasi.s2.tesis1');
+
+
     Route::resource('validasi/seminar/kp', ValidasiSeminarKPController::class)->names('validasi.seminar.kp');
     Route::resource('validasi/seminar/ta1', ValidasiAdminTaSatu::class)->names('validasi.seminar.ta1');
     Route::resource('validasi/seminar/ta2', ValidasiAdminTaDua::class)->names('validasi.seminar.ta2');
@@ -187,7 +191,6 @@ Route::prefix('koor')->name('koor.')->group(function () {
     Route::get('/jadwalTA1/resend/{id}', [PenjadwalanTaSatu::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1.resend');
     Route::get('/jadwalTA2/resend/{id}', [PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('jadwalTA2.resend');
     Route::get('/jadwalKompre/resend/{id}', [PenjadwalanKompreController::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('jadwalKompre.resend');
-
     Route::resource('validasiBaPKL', ValidasiBaPKLController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('validasiBaPKL');
     Route::resource('validasiBaTA1', ValidasiBaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('validasiBaTA1');
     Route::resource('validasiBaTA2', ValidasiBaTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('validasiBaTA2');
@@ -204,7 +207,6 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::resource('litabmas', LitabmasDataController::class);
     Route::resource('penghargaan', Penghargaan::class);
     Route::resource('seminar', Seminar::class);
-
     Route::get('pieChartScalaPublikasi', [PublikasiDataController::class, 'pieChartScala'])->name('publikasi.pieChartScala');
     Route::get('pieChartKategoriPublikasi', [PublikasiDataController::class, 'pieChartKategori'])->name('publikasi.pieChartKategori');
     Route::get('pieChartKategoriLitabmasPublikasi', [PublikasiDataController::class, 'pieChartKategoriLitabmas'])->name('publikasi.pieChartKategoriLitabmas');
@@ -215,18 +217,13 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
 
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|kaprodiS1|tpmpsS1')->group(function () {
     Route::resource('alumni', DataAlumni::class);
-
     Route::resource('prestasi', PrestasiDataController::class);
-
     Route::get('chartScalaPrestasi', [PrestasiDataController::class, 'pieChartScala'])->name('prestasi.chartScala');
     Route::get('barChartPrestasi', [PrestasiDataController::class, 'barChartPrestasi'])->name('prestasi.barChartPrestasi');
     Route::get('chartCapaianPrestasi', [PrestasiDataController::class, 'pieChartCapaian'])->name('prestasi.chartCapaian');
-
     Route::resource('aktivitas', AktivitasDataController::class);
     Route::get('barChartAktivitas', [AktivitasDataController::class, 'barChartAktivitas'])->name('aktivitas.barChartAktivitas');
     Route::get('pieChartAktivitas', [AktivitasDataController::class, 'pieChartPeran'])->name('aktivitas.pieChartPeran');
-
-
 
     //unduh data
     Route::get('unduh', [ExportData::class, 'index'])->name('unduh.index');
@@ -252,7 +249,6 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::get('chartCapaianPrestasiS2', [PrestasiDataS2Controller::class, 'pieChartCapaian'])->name('prestasiS2.chartCapaian');
     Route::get('chartScalaPrestasiS2', [PrestasiDataS2Controller::class, 'pieChartScala'])->name('prestasiS2.chartScala');
     Route::get('barChartPrestasiS2', [PrestasiDataS2Controller::class, 'barChartPrestasi'])->name('prestasiS2.barChartPrestasi');
-
     Route::resource('aktivitasS2', AktivitasDataS2Controller::class);
     Route::get('barChartAktivitasS2', [AktivitasDataS2Controller::class, 'barChartAktivitas'])->name('aktivitasS2.barChartAktivitas');
     Route::get('pieChartAktivitasS2', [AktivitasDataS2Controller::class, 'pieChartPeran'])->name('aktivitasS2.pieChartPeran');
