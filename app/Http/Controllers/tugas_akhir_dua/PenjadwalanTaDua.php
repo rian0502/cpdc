@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\tugas_akhir_dua;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Lokasi;
 use App\Models\Mahasiswa;
+use App\Models\Administrasi;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarTaDua;
 use App\Http\Controllers\Controller;
@@ -70,7 +72,8 @@ class PenjadwalanTaDua extends Controller
     {
         $id = Crypt::decrypt(array_key_last($request->except('_token')));
         $seminar = ModelSeminarTaDua::find($id);
-
+        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $kajur = User::role('jurusan')->with('dosen')->first();
         $hari =  $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
         $data = [
@@ -88,6 +91,10 @@ class PenjadwalanTaDua extends Controller
         $mahasiswa = $seminar->mahasiswa;
 
         $template = new \PhpOffice\PhpWord\TemplateProcessor('uploads/template_ba_ta2/' . 'template_ba_ta2.docx');
+        $template->setValue('nama_admin', $admin->nama_administrasi);
+        $template->setValue('nip_admin', $admin->nip);
+        $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
+        $template->setValue('nip_kajur', $kajur->dosen->nip);
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
         $template->setValue('judul_ta', $seminar->judul_ta);
@@ -180,6 +187,8 @@ class PenjadwalanTaDua extends Controller
         $mahasiswa = $seminar->mahasiswa;
         $hari =  $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
+        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $kajur = User::role('jurusan')->with('dosen')->first();
         $data = [
             'tanggal_seminar_ta_dua' => $request->tanggal_skp,
             'jam_mulai_seminar_ta_dua' => $request->jam_mulai_skp,
@@ -190,6 +199,10 @@ class PenjadwalanTaDua extends Controller
         ];
         $update = ModelJadwalSeminarTaDua::where('id_seminar', $seminar->id)->update($data);
         $template = new \PhpOffice\PhpWord\TemplateProcessor('uploads/template_ba_ta2/' . 'template_ba_ta2.docx');
+        $template->setValue('nama_admin', $admin->nama_administrasi);
+        $template->setValue('nip_admin', $admin->nip);
+        $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
+        $template->setValue('nip_kajur', $kajur->dosen->nip);
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
         $template->setValue('judul_ta', $seminar->judul_ta);
@@ -243,7 +256,13 @@ class PenjadwalanTaDua extends Controller
         $jadwal_seminar = $seminar->jadwal;
         $hari =  $hari = Carbon::parse($jadwal_seminar->tanggal_seminar_ta_dua)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', $jadwal_seminar->id_lokasi)->first();
+        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $kajur = User::role('jurusan')->with('dosen')->first();
         $template = new \PhpOffice\PhpWord\TemplateProcessor('uploads/template_ba_ta2/' . 'template_ba_ta2.docx');
+        $template->setValue('nama_admin', $admin->nama_administrasi);
+        $template->setValue('nip_admin', $admin->nip);
+        $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
+        $template->setValue('nip_kajur', $kajur->dosen->nip);
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
         $template->setValue('judul_ta', $seminar->judul_ta);
@@ -287,15 +306,5 @@ class PenjadwalanTaDua extends Controller
         });
         unlink('uploads/template_ba_ta2/' . $namafile);
         return redirect()->route('koor.jadwalTA2.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar TA 2');
-    }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

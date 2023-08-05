@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\komprehensif;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Lokasi;
+use App\Models\Administrasi;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarKompre;
 use App\Http\Controllers\Controller;
@@ -61,10 +63,10 @@ class PenjadwalanKompreController extends Controller
         //
         $id = Crypt::decrypt(array_key_last($request->except('_token')));
         $seminar = ModelSeminarKompre::find($id);
-
         $hari =  $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
-
+        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $kajur = User::role('jurusan')->with('dosen')->first();
         $data = [
             'tanggal_komprehensif' => $request->tanggal_skp,
             'jam_mulai_komprehensif' => $request->jam_mulai_skp,
@@ -79,6 +81,10 @@ class PenjadwalanKompreController extends Controller
         $update->save();
         $mahasiswa = $seminar->mahasiswa;
         $template = new \PhpOffice\PhpWord\TemplateProcessor('uploads/template_ba_kompre/' . 'template_ba_kompre.docx');
+        $template->setValue('nama_admin', $admin->nama_administrasi);
+        $template->setValue('nip_admin', $admin->nip);
+        $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
+        $template->setValue('nip_kajur', $kajur->dosen->nip);
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
         $template->setValue('judul_ta', $seminar->judul_ta);
@@ -118,9 +124,9 @@ class PenjadwalanKompreController extends Controller
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Sidang Komprehensif');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach('uploads/print_ba_kompre/'. $namafile);
+            $message->attach('uploads/print_ba_kompre/' . $namafile);
         });
-        unlink('uploads/print_ba_kompre/'. $namafile);
+        unlink('uploads/print_ba_kompre/' . $namafile);
         return redirect()->route('koor.jadwalKompre.index')->with('success', 'Berhasil Menjadwalkan Sidang Komprehensif');
     }
 
@@ -165,6 +171,8 @@ class PenjadwalanKompreController extends Controller
         //
         $seminar = ModelSeminarKompre::find(Crypt::decrypt($id));
         $mahasiswa = $seminar->mahasiswa;
+        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $kajur = User::role('jurusan')->with('dosen')->first();
         $hari =  $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
         $data = [
@@ -178,6 +186,10 @@ class PenjadwalanKompreController extends Controller
         $update->update($data);
         $path = ('uploads\template_ba_kompre\\');
         $template = new \PhpOffice\PhpWord\TemplateProcessor($path . 'template_ba_kompre.docx');
+        $template->setValue('nama_admin', $admin->nama_administrasi);
+        $template->setValue('nip_admin', $admin->nip);
+        $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
+        $template->setValue('nip_kajur', $kajur->dosen->nip);
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
         $template->setValue('judul_ta', $seminar->judul_ta);
@@ -224,14 +236,21 @@ class PenjadwalanKompreController extends Controller
         return redirect()->route('koor.jadwalKompre.index')->with('success', 'Berhasil Merubah Jadwal Sidang Komprehensif');
     }
 
-    public function resend($id){
+    public function resend($id)
+    {
         $seminar =  ModelSeminarKompre::find(Crypt::decrypt($id));
         $mahasiswa = $seminar->mahasiswa;
         $jadwal_semianr = $seminar->jadwal;
+        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $kajur = User::role('jurusan')->with('dosen')->first();
         $hari =  $hari = Carbon::parse($jadwal_semianr->tanggal_komprehensif)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', $jadwal_semianr->id_lokasi)->first();
         $path = ('uploads\template_ba_kompre\\');
         $template = new \PhpOffice\PhpWord\TemplateProcessor($path . 'template_ba_kompre.docx');
+        $template->setValue('nama_admin', $admin->nama_administrasi);
+        $template->setValue('nip_admin', $admin->nip);
+        $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
+        $template->setValue('nip_kajur', $kajur->dosen->nip);
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
         $template->setValue('judul_ta', $seminar->judul_ta);
@@ -276,7 +295,6 @@ class PenjadwalanKompreController extends Controller
         });
         unlink(('uploads\print_ba_kompre\\' . $namafile));
         return redirect()->route('koor.jadwalKompre.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Sidang Komprehensif');
-
     }
     /**
      * Remove the specified resource from storage.

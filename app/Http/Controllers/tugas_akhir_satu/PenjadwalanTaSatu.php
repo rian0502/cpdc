@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\tugas_akhir_satu;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Lokasi;
+use App\Models\Mahasiswa;
+use App\Models\Administrasi;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarTaSatu;
 use App\Http\Controllers\Controller;
@@ -11,7 +14,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaSatu;
-use App\Models\Mahasiswa;
 
 class PenjadwalanTaSatu extends Controller
 {
@@ -59,7 +61,8 @@ class PenjadwalanTaSatu extends Controller
         $id = Crypt::decrypt(array_key_last($request->except('_token')));
         $hari =  $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
-
+        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $kajur = User::role('jurusan')->with('dosen')->first();
         $data = [
             'tanggal_seminar_ta_satu' => $request->tanggal_skp,
             'jam_mulai_seminar_ta_satu' => $request->jam_mulai_skp,
@@ -76,6 +79,10 @@ class PenjadwalanTaSatu extends Controller
         $mahasiswa = $seminar->mahasiswa;
         $path = ('uploads\template_ba_ta1\\');
         $template = new \PhpOffice\PhpWord\TemplateProcessor('uploads/template_ba_ta1/' . 'template_ba_ta1.docx');
+        $template->setValue('nama_admin', $admin->nama_administrasi);
+        $template->setValue('nip_admin', $admin->nip);
+        $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
+        $template->setValue('nip_kajur', $kajur->dosen->nip);
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
         $template->setValue('judul_ta', $seminar->judul_ta);
@@ -145,6 +152,9 @@ class PenjadwalanTaSatu extends Controller
         $mahasiswa = $seminar->mahasiswa;
         $hari =  $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
+        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $kajur = User::role('jurusan')->with('dosen')->first();
+
         $data = [
             'tanggal_seminar_ta_satu' => $request->tanggal_skp,
             'jam_mulai_seminar_ta_satu' => $request->jam_mulai_skp,
@@ -153,12 +163,15 @@ class PenjadwalanTaSatu extends Controller
         ];
         $updateJadwal = ModelJadwalSeminarTaSatu::where('id_seminar', $seminar->id)->update($data);
         $template = new \PhpOffice\PhpWord\TemplateProcessor('uploads/template_ba_ta1/' . 'template_ba_ta1.docx');
+        $template->setValue('nama_admin', $admin->nama_administrasi);
+        $template->setValue('nip_admin', $admin->nip);
+        $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
+        $template->setValue('nip_kajur', $kajur->dosen->nip);
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
         $template->setValue('judul_ta', $seminar->judul_ta);
         $template->setValue('pb_1', $seminar->pembimbing_satu->nama_dosen);
         $template->setValue('nip_pb_1', $seminar->pembimbing_satu->nip);
-
         if ($seminar->pembimbing_dua) {
             $template->setValue('pb_2', $seminar->pembimbing_dua->nama_dosen);
             $template->setValue('nip_pb_2', $seminar->pembimbing_dua->nip);
@@ -206,7 +219,13 @@ class PenjadwalanTaSatu extends Controller
         $jadwal = $seminar->jadwal;
         $hari =  $hari = Carbon::parse($jadwal->tanggal_seminar_ta_satu)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', $jadwal->id_lokasi)->first();
+        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $kajur = User::role('jurusan')->with('dosen')->first();
         $template = new \PhpOffice\PhpWord\TemplateProcessor('uploads/template_ba_ta1/' . 'template_ba_ta1.docx');
+        $template->setValue('nama_admin', $admin->nama_administrasi);
+        $template->setValue('nip_admin', $admin->nip);
+        $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
+        $template->setValue('nip_kajur', $kajur->dosen->nip);
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
         $template->setValue('judul_ta', $seminar->judul_ta);
