@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class ModelPendataanAlumni extends Model
 {
     use HasFactory;
-    protected $table = 'pendataam_alumni';
+    protected $table = 'pendataan_alumni';
     protected $fillable = [
         'encrypted_id',
         'tahun_akademik',

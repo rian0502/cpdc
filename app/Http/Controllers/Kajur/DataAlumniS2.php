@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Yajra\DataTables\DataTables;
 
-class DataAlumni extends Controller
+class DataAlumniS2 extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class DataAlumni extends Controller
             // $data = User::role(['mahasiswa', 'alumni'])->with('mahasiswa', 'mahasiswa.kegiatanTerakhir', 'mahasiswa.pendataanAlumni');
 
             $data = User::whereHas('roles', function ($query) {
-                $query->where('name', 'mahasiswa');
+                $query->where('name', 'mahasiswaS2');
             })->whereHas('roles', function ($query) {
                 $query->where('name', 'alumni');
             })->with('mahasiswa', 'mahasiswa.kegiatanTerakhir', 'mahasiswa.pendataanAlumni');

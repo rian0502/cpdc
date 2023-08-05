@@ -15,6 +15,7 @@ use App\Models\ModelJadwalSeminarTaSatu;
 use App\Http\Controllers\ModelController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\Kajur\DataAlumni;
+use App\Http\Controllers\Kajur\DataAlumniS2;
 use App\Http\Controllers\Kajur\ExportData;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\Kajur\Penghargaan;
@@ -213,6 +214,8 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
 });
 
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|kaprodiS1|tpmpsS1')->group(function () {
+    Route::resource('alumni', DataAlumni::class);
+
     Route::resource('prestasi', PrestasiDataController::class);
 
     Route::get('chartScalaPrestasi', [PrestasiDataController::class, 'pieChartScala'])->name('prestasi.chartScala');
@@ -243,6 +246,8 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
 
 });
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|kaprodiS2|tpmpsS2')->group(function () {
+    Route::resource('alumniS2', DataAlumniS2::class);
+
     Route::resource('prestasiS2', PrestasiDataS2Controller::class);
     Route::get('chartCapaianPrestasiS2', [PrestasiDataS2Controller::class, 'pieChartCapaian'])->name('prestasiS2.chartCapaian');
     Route::get('chartScalaPrestasiS2', [PrestasiDataS2Controller::class, 'pieChartScala'])->name('prestasiS2.chartScala');
@@ -251,13 +256,14 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::resource('aktivitasS2', AktivitasDataS2Controller::class);
     Route::get('barChartAktivitasS2', [AktivitasDataS2Controller::class, 'barChartAktivitas'])->name('aktivitasS2.barChartAktivitas');
     Route::get('pieChartAktivitasS2', [AktivitasDataS2Controller::class, 'pieChartPeran'])->name('aktivitasS2.pieChartPeran');
+
+
 });
 
 
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan')->group(function () {
     Route::resource('lokasi', LokasiController::class);
     Route::resource('mahasiswa', DataMahasiswaAllController::class);
-    Route::resource('alumni', DataAlumni::class);
 });
 
 //end jurusan

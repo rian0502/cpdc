@@ -66,70 +66,71 @@
                 });
             });
         </script>
-        <script>
-            $(function() {
-                var dataNpm = $('.data-akun').DataTable({
-                    processing: true,
-                    serverSide: true,
-                    responsive: true,
-                    autoWidth: false,
-                    ajax: '{{ route('jurusan.alumni.index') }}',
-                    columns: [{
-                            data: 'npm',
-                            name: 'npm',
-                            render: function(data, type, row, meta) {
-                                return meta.row + meta.settings._iDisplayStart + 1;
-                            }
-                        },
-                        {
-                            data: 'name',
-                            name: 'name',
-                            orderable: true
-                        },
-                        {
-                            data: 'npm',
-                            name: 'npm',
-                        },
-                        {
-                            data: 'masa_studi',
-                            name: 'masa_studi',
-                        },
-                        {
-                            data: 'mahasiswa.kegiatan_terakhir.jabatan',
-                            name: 'mahasiswa.kegiatanTerakhir.jabatan',
-                            orderable: false,
-                        },
-                        {
-                            data: 'mahasiswa.kegiatan_terakhir.tempat',
-                            name: 'mahasiswa.kegiatanTerakhir.tempat',
-                            orderable: false,
-                        },
-                        {
-                            data: 'mahasiswa.kegiatan_terakhir.status',
-                            name: 'mahasiswa.kegiatanTerakhir.status',
-                            orderable: false,
-                        },
-                        {
-                            data: 'mahasiswa.kegiatan_terakhir.tahun_masuk',
-                            name: 'mahasiswa.kegiatanTerakhir.tahun_masuk',
-                            orderable: false,
-                            render: function(data) {
-                                var date = new Date(data);
-                                var formattedDate = date.toISOString().slice(0, 10);
-                                return formattedDate;
-                            }
-                        },
-                        {
-                            data: 'aksi',
-                            name: 'aksi',
-                            orderable: false,
-                            searchable: false,
-                            exportable: false,
-                            render: function(data, type, row) {
+        @if (Request::is('jurusan/alumni'))
+            <script>
+                $(function() {
+                    var dataNpm = $('.data-akun').DataTable({
+                        processing: true,
+                        serverSide: true,
+                        responsive: true,
+                        autoWidth: false,
+                        ajax: '{{ route('jurusan.alumni.index') }}',
+                        columns: [{
+                                data: 'name',
+                                name: 'name',
+                                render: function(data, type, row, meta) {
+                                    return meta.row + meta.settings._iDisplayStart + 1;
+                                }
+                            },
+                            {
+                                data: 'name',
+                                name: 'name',
+                                orderable: true
+                            },
+                            {
+                                data: 'mahasiswa.npm',
+                                name: 'mahasiswa.npm',
+                            },
+                            {
+                                data: 'mahasiswa.pendataanAlumni.masa_studi',
+                                name: 'mahasiswa.pendataanAlumni.masa_studi',
+                            },
+                            {
+                                data: 'mahasiswa.kegiatan_terakhir.jabatan',
+                                name: 'mahasiswa.kegiatanTerakhir.jabatan',
+                                orderable: false,
+                            },
+                            {
+                                data: 'mahasiswa.kegiatan_terakhir.tempat',
+                                name: 'mahasiswa.kegiatanTerakhir.tempat',
+                                orderable: false,
+                            },
+                            {
+                                data: 'mahasiswa.kegiatan_terakhir.status',
+                                name: 'mahasiswa.kegiatanTerakhir.status',
+                                orderable: false,
+                            },
+                            {
+                                data: 'mahasiswa.kegiatan_terakhir.tahun_masuk',
+                                name: 'mahasiswa.kegiatanTerakhir.tahun_masuk',
+                                orderable: false,
+                                render: function(data) {
+                                    var date = new Date(data);
+                                    var formattedDate = date.toISOString().slice(0, 10);
+                                    return formattedDate;
+                                }
+                            },
+                            {
+                                data: 'aksi',
+                                name: 'aksi',
+                                orderable: false,
+                                searchable: false,
+                                exportable: false,
+                                render: function(data, type, row) {
 
-                                var editUrl = "{{ route('jurusan.mahasiswa.show', ':id') }}".replace(
-                                    ':id', row.mahasiswa.npm);
-                                return `
+                                    var editUrl = "{{ route('jurusan.mahasiswa.show', ':id') }}".replace(
+                                        ':id', row.mahasiswa.npm);
+                                    return `
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" data-color="#1b3133" href="#"
                                     role="button" data-toggle="dropdown">
@@ -139,12 +140,120 @@
                                         <a class="dropdown-item" href="${editUrl}"><i class="dw dw-eye"></i> Lihat</a>
                                     </div>
                             </div>`;
+                                }
                             }
-                        }
-                    ]
+                        ]
+                    });
+                    var searchTimeout;
+
+                    // Event handler saat melakukan pencarian di kolom pencarian
+                    $('#data-akun_filter input').on('keyup', function() {
+                        var searchText = $(this).val();
+
+                        // Hapus timeout sebelumnya (jika ada)
+                        clearTimeout(searchTimeout);
+
+                        // Buat timeout baru untuk menjalankan pencarian setelah 500ms
+                        searchTimeout = setTimeout(function() {
+                            dataTable.search(searchText).draw();
+                        }, 1000); // Ganti 500 dengan waktu debounce yang Anda inginkan (dalam milidetik)
+                    });
                 });
-            });
-        </script>
-        
+            </script>
+        @elseif (Request::is('jurusan/alumniS2'))
+            <script>
+                $(function() {
+                    var dataNpm = $('.data-akun').DataTable({
+                        processing: true,
+                        serverSide: true,
+                        responsive: true,
+                        autoWidth: false,
+                        ajax: '{{ route('jurusan.alumniS2.index') }}',
+                        columns: [{
+                                data: 'name',
+                                name: 'name',
+                                render: function(data, type, row, meta) {
+                                    return meta.row + meta.settings._iDisplayStart + 1;
+                                }
+                            },
+                            {
+                                data: 'name',
+                                name: 'name',
+                                orderable: true
+                            },
+                            {
+                                data: 'mahasiswa.npm',
+                                name: 'mahasiswa.npm',
+                            },
+                            {
+                                data: 'mahasiswa.pendataanAlumni.masa_studi',
+                                name: 'mahasiswa.pendataanAlumni.masa_studi',
+                            },
+                            {
+                                data: 'mahasiswa.kegiatan_terakhir.jabatan',
+                                name: 'mahasiswa.kegiatanTerakhir.jabatan',
+                                orderable: false,
+                            },
+                            {
+                                data: 'mahasiswa.kegiatan_terakhir.tempat',
+                                name: 'mahasiswa.kegiatanTerakhir.tempat',
+                                orderable: false,
+                            },
+                            {
+                                data: 'mahasiswa.kegiatan_terakhir.status',
+                                name: 'mahasiswa.kegiatanTerakhir.status',
+                                orderable: false,
+                            },
+                            {
+                                data: 'mahasiswa.kegiatan_terakhir.tahun_masuk',
+                                name: 'mahasiswa.kegiatanTerakhir.tahun_masuk',
+                                orderable: false,
+                                render: function(data) {
+                                    var date = new Date(data);
+                                    var formattedDate = date.toISOString().slice(0, 10);
+                                    return formattedDate;
+                                }
+                            },
+                            {
+                                data: 'aksi',
+                                name: 'aksi',
+                                orderable: false,
+                                searchable: false,
+                                exportable: false,
+                                render: function(data, type, row) {
+
+                                    var editUrl = "{{ route('jurusan.mahasiswa.show', ':id') }}".replace(
+                                        ':id', row.mahasiswa.npm);
+                                    return `
+                            <div class="dropdown">
+                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" data-color="#1b3133" href="#"
+                                    role="button" data-toggle="dropdown">
+                                        <i class="dw dw-more"></i>
+                                </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                        <a class="dropdown-item" href="${editUrl}"><i class="dw dw-eye"></i> Lihat</a>
+                                    </div>
+                            </div>`;
+                                }
+                            }
+                        ]
+                    });
+                    var searchTimeout;
+
+                    // Event handler saat melakukan pencarian di kolom pencarian
+                    $('#data-akun_filter input').on('keyup', function() {
+                        var searchText = $(this).val();
+
+                        // Hapus timeout sebelumnya (jika ada)
+                        clearTimeout(searchTimeout);
+
+                        // Buat timeout baru untuk menjalankan pencarian setelah 500ms
+                        searchTimeout = setTimeout(function() {
+                            dataTable.search(searchText).draw();
+                        }, 1000); // Ganti 500 dengan waktu debounce yang Anda inginkan (dalam milidetik)
+                    });
+                });
+            </script>
+        @endif
         <!-- Input Validation End -->
     @endsection

@@ -240,11 +240,16 @@
                                 <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('jurusan.alumni.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/alumni*') ? 'active' : '' }}">
-                                <span class="micon fa-solid fa-users"></span><span class="mtext">Data Alumni</span>
+                        <li class="dropdown {{ Request::is('jurusan/alumni*')||Request::is('jurusan/alumniS2*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle">
+                                <span class="micon bi bi-award"></span><span class="mtext">Data Alumni</span>
                             </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('jurusan.alumni.index') }}"
+                                        class="{{ Request::is('jurusan/alumni') ? 'active' : '' }}">S1</a></li>
+                                <li><a href="{{ route('jurusan.alumniS2.index') }}"
+                                        class="{{ Request::is('jurusan/alumniS2') ? 'active' : '' }}">S2</a></li>
+                            </ul>
                         </li>
                         <li>
                             <a href="{{ route('sudo.akun_dosen.index') }}"
@@ -260,6 +265,12 @@
                         </li>
                     @endrole
                     @role('kaprodiS1|tpmpsS1')
+                    <li>
+                        <a href="{{ route('jurusan.alumni.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/alumni*') ? 'active' : '' }}">
+                            <span class="micon fa-solid fa-users"></span><span class="mtext">Data Alumni S1</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ route('jurusan.prestasi.index') }}"
                             class="dropdown-toggle no-arrow {{ Request::is('jurusan/prestasi*') ? 'active' : '' }}">
@@ -304,6 +315,12 @@
                     @endrole
 
                     @role('kaprodiS2|tpmpsS2')
+                    <li>
+                        <a href="{{ route('jurusan.alumniS2.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/alumni*') ? 'active' : '' }}">
+                            <span class="micon fa-solid fa-users"></span><span class="mtext">Data Alumni S2</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ route('jurusan.prestasiS2.index') }}"
                             class="dropdown-toggle no-arrow {{ Request::is('jurusan/prestasiS2*') ? 'active' : '' }}">

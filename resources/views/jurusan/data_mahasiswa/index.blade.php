@@ -15,56 +15,67 @@
                                 </button>
                             </div>
                         @endif
-                        <div class="card-body">
-                            <div class="d-flex justify-content-start">
-                                <div class="form-group mr-3">
-                                    <label for="status_seminar">Status Seminar PKL:</label>
-                                    <select class="form-control selectpicker" id="status_kp">
-                                        <option value="1">Pilih Status</option>
-                                        <option value="Selesai">Selesai</option>
-                                        <option value="Belum Selesai">Belum Selesai</option>
-                                        <option value="Perbaikan">Perbaikan</option>
-                                        <option value="Tidak Lulus">Tidak Lulus</option>
-                                        <option value="null">Belum Daftar</option>
-                                    </select>
+                        <div class="pd-20">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="status_seminar">Status PKL:</label>
+                                            <select class="form-control selectpicker" id="status_kp">
+                                                <option value="1">Pilih Status</option>
+                                                <option value="Selesai">Selesai</option>
+                                                <option value="Belum Selesai">Belum Selesai</option>
+                                                <option value="Perbaikan">Perbaikan</option>
+                                                <option value="Tidak Lulus">Tidak Lulus</option>
+                                                <option value="null">Belum Daftar</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="status_ta1">Status TA1:</label>
+                                            <select class="form-control selectpicker" id="status_ta1">
+                                                <option value="1">Pilih Status</option>
+                                                <option value="Selesai">Selesai</option>
+                                                <option value="Belum Selesai">Belum Selesai</option>
+                                                <option value="Perbaikan">Perbaikan</option>
+                                                <option value="Perbaikan">Perbaikan</option>
+                                                <option value="Tidak Lulus">Tidak Lulus</option>
+                                                <option value="null">Belum Daftar</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="status_ta2">Status TA2:</label>
+                                            <select class="form-control selectpicker" id="status_ta2">
+                                                <option value="1">Pilih Status</option>
+                                                <option value="Selesai">Selesai</option>
+                                                <option value="Belum Selesai">Belum Selesai</option>
+                                                <option value="Perbaikan">Perbaikan</option>
+                                                <option value="Perbaikan">Perbaikan</option>
+                                                <option value="Tidak Lulus">Tidak Lulus</option>
+                                                <option value="null">Belum Daftar</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="status_kompre">Status KOMPRE:</label>
+                                            <select class="form-control selectpicker" id="status_kompre">
+                                                <option value="1">Pilih Status</option>
+                                                <option value="Selesai">Selesai</option>
+                                                <option value="Belum Selesai">Belum Selesai</option>
+                                                <option value="Perbaikan">Perbaikan</option>
+                                                <option value="Perbaikan">Perbaikan</option>
+                                                <option value="Tidak Lulus">Tidak Lulus</option>
+                                                <option value="null">Belum Daftar</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <div class="form-group mr-3">
-                                    <label for="status_ta1">Status TA1:</label>
-                                    <select class="form-control selectpicker" id="status_ta1">
-                                        <option value="1">Pilih Status</option>
-                                        <option value="Selesai">Selesai</option>
-                                        <option value="Belum Selesai">Belum Selesai</option>
-                                        <option value="Perbaikan">Perbaikan</option>
-                                        <option value="Perbaikan">Perbaikan</option>
-                                        <option value="Tidak Lulus">Tidak Lulus</option>
-                                        <option value="null">Belum Daftar</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mr-3">
-                                    <label for="status_ta2">Status TA2:</label>
-                                    <select class="form-control selectpicker" id="status_ta2">
-                                        <option value="1">Pilih Status</option>
-                                        <option value="Selesai">Selesai</option>
-                                        <option value="Belum Selesai">Belum Selesai</option>
-                                        <option value="Perbaikan">Perbaikan</option>
-                                        <option value="Perbaikan">Perbaikan</option>
-                                        <option value="Tidak Lulus">Tidak Lulus</option>
-                                        <option value="null">Belum Daftar</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mr-3">
-                                    <label for="status_kompre">Status KOMPRE:</label>
-                                    <select class="form-control selectpicker" id="status_kompre">
-                                        <option value="1">Pilih Status</option>
-                                        <option value="Selesai">Selesai</option>
-                                        <option value="Belum Selesai">Belum Selesai</option>
-                                        <option value="Perbaikan">Perbaikan</option>
-                                        <option value="Perbaikan">Perbaikan</option>
-                                        <option value="Tidak Lulus">Tidak Lulus</option>
-                                        <option value="null">Belum Daftar</option>
-                                    </select>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                         <div class="pd-20 table-responsive">
                             <table id="data-akun" class="data-akun table table-hover data-table-responsive stripe wrap">
