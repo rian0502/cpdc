@@ -21,10 +21,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-  
-        $this->call(PrestasiMahasiswaS2Seeder::class);
-        $this->call(AktivitasMahasiswaS2Seeder::class);
-
+        $this->call(RolePermision::class);
+        $this->call(TemplateBaSeeder::class);
 
     }
 }
