@@ -18,19 +18,38 @@ class DataAlumni extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::role('alumni')->with('mahasiswa', 'mahasiswa.kegiatanTerakhir');
+            // $data = User::role(['mahasiswa', 'alumni'])->with('mahasiswa', 'mahasiswa.kegiatanTerakhir', 'mahasiswa.pendataanAlumni');
+
+            $data = User::whereHas('roles', function ($query) {
+                $query->where('name', 'mahasiswa');
+            })->whereHas('roles', function ($query) {
+                $query->where('name', 'alumni');
+            })->with('mahasiswa', 'mahasiswa.kegiatanTerakhir', 'mahasiswa.pendataanAlumni');
+
             return DataTables::of($data)
-            ->addColumn('masa_studi', function ($data) {
-                return $data->mahasiswa->pendataanAlumni->masa_studi;
-            })
-            ->addColumn('npm', function ($data) {
-                return $data->mahasiswa->npm;
-            })->toJson();
+                ->addIndexColumn()->editColumn('mahasiswa.kegiatanTerakhir.jabatan', function ($data) {
+                    return $data->mahasiswa->kegiatanTerakhir->jabatan;
+                })
+                ->addIndexColumn()->editColumn('mahasiswa.kegiatanTerakhir.tempat', function ($data) {
+                    return $data->mahasiswa->kegiatanTerakhir->tempat;
+                })
+                ->addIndexColumn()->editColumn('mahasiswa.kegiatanTerakhir.status', function ($data) {
+                    return $data->mahasiswa->kegiatanTerakhir->status;
+                })
+                ->addIndexColumn()->editColumn('mahasiswa.kegiatanTerakhir.tahun_masuk', function ($data) {
+                    return $data->mahasiswa->kegiatanTerakhir->tahun_masuk;
+                })
+                ->addIndexColumn()->editColumn('mahasiswa.pendataanAlumni.masa_studi', function ($data) {
+                    return $data->mahasiswa->pendataanAlumni->masa_studi;
+                })
+                ->addIndexColumn()->editColumn('mahasiswa.npm', function ($data) {
+                    return $data->mahasiswa->npm;
+                })->toJson();
         }
         $data = [
             'mahasiswa' => Mahasiswa::all(),
         ];
-        return view('jurusan.data_alumni.index',$data);
+        return view('jurusan.data_alumni.index', $data);
     }
 
     /**

@@ -14,7 +14,7 @@ class PendataanAlumni extends Migration
     public function up()
     {
         //
-        Schema::create('pendataam_alumni', function(Blueprint $table){
+        Schema::create('pendataan_alumni', function(Blueprint $table){
             $table->id();
             $table->string('encrypted_id')->nullable()->unique();
             $table->string('tahun_akademik');
