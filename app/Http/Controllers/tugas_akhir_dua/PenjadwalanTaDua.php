@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaDua;
+use App\Models\TemplateBeritaAcara;
 
 class PenjadwalanTaDua extends Controller
 {
@@ -22,6 +23,11 @@ class PenjadwalanTaDua extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $ba;
+
+    public function __construct(){
+        $this->ba = TemplateBeritaAcara::find(3);
+    } 
     public function index()
     {
         $now = date('Y-m-d');
@@ -89,8 +95,7 @@ class PenjadwalanTaDua extends Controller
         $update->encrypt_id = Crypt::encrypt($ins_id);
         $update->save();
         $mahasiswa = $seminar->mahasiswa;
-
-        $template = new \PhpOffice\PhpWord\TemplateProcessor('uploads/template_ba_ta2/' . 'template_ba_ta2.docx');
+        $template = new \PhpOffice\PhpWord\TemplateProcessor($this->ba->path);
         $template->setValue('nama_admin', $admin->nama_administrasi);
         $template->setValue('nip_admin', $admin->nip);
         $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
@@ -198,7 +203,7 @@ class PenjadwalanTaDua extends Controller
             'updated_at' => date('Y-m-d H:i:s')
         ];
         $update = ModelJadwalSeminarTaDua::where('id_seminar', $seminar->id)->update($data);
-        $template = new \PhpOffice\PhpWord\TemplateProcessor('uploads/template_ba_ta2/' . 'template_ba_ta2.docx');
+        $template = new \PhpOffice\PhpWord\TemplateProcessor($this->ba->path);
         $template->setValue('nama_admin', $admin->nama_administrasi);
         $template->setValue('nip_admin', $admin->nip);
         $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
@@ -258,7 +263,7 @@ class PenjadwalanTaDua extends Controller
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', $jadwal_seminar->id_lokasi)->first();
         $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
         $kajur = User::role('jurusan')->with('dosen')->first();
-        $template = new \PhpOffice\PhpWord\TemplateProcessor('uploads/template_ba_ta2/' . 'template_ba_ta2.docx');
+        $template = new \PhpOffice\PhpWord\TemplateProcessor($this->ba->path);
         $template->setValue('nama_admin', $admin->nama_administrasi);
         $template->setValue('nip_admin', $admin->nip);
         $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
