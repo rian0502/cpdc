@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\kerja_praktik;
 
+use App\Models\Administrasi;
 use App\Models\JadwalSKP;
 use App\Models\Lokasi;
 use App\Models\ModelJadwalSeminarKompre;
 use App\Models\ModelJadwalSeminarTaDua;
 use App\Models\ModelJadwalSeminarTaSatu;
 use App\Models\ModelSeminarKP;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -84,6 +86,8 @@ class JadwalPKLController extends Controller
         $id_seminar = array_key_last($request->all());
         $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
+        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $kajur = User::role('jurusan')->with('dosen')->first();
 
         $insert = JadwalSKP::create([
             'tanggal_skp' => $request->tanggal_skp,
@@ -101,6 +105,10 @@ class JadwalPKLController extends Controller
         $seminar = ModelSeminarKP::find(Crypt::decrypt($id_seminar));
         //lokasi template
         $template = new TemplateProcessor('uploads/template_ba_kp/' . 'template_ba_kp.docx');
+        $template->setValue('nama_admin', $admin->nama_administrasi);
+        $template->setValue('nip_admin', $admin->nip);
+        $template->setValue('nama_kajur', $kajur->dosen->nama_dosen);
+        $template->setValue('nip_kajur', $kajur->dosen->nip);
         $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
         $template->setValue('npm', $seminar->mahasiswa->npm);
         $template->setValue('judul_kp', $seminar->judul_kp);
