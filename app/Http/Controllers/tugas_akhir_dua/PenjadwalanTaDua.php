@@ -307,14 +307,4 @@ class PenjadwalanTaDua extends Controller
         unlink('uploads/template_ba_ta2/' . $namafile);
         return redirect()->route('koor.jadwalTA2.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar TA 2');
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
