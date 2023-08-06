@@ -408,17 +408,11 @@
                                 <span class="micon bi bi-mic"></span><span class="mtext">Seminar</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('jurusan.unduh.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
-                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
-                            </a>
-                        </li>
                         <li
                             class="dropdown {{ Request::is('jurusan/unduh*') || Request::is('jurusan/unduhS2*') ? 'show' : '' }}">
                             {{-- Routenya nanti --}}
                             <a href="javascript:;" class="dropdown-toggle">
-                                <span class="micon bi bi-clock-history"></span><span class="mtext">Unduh Data S2</span>
+                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data S2</span>
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('jurusan.unduh.index') }}"
