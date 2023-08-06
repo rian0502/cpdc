@@ -140,6 +140,27 @@
                                         <option value="Prosiding Nasional"
                                             {{ $publikasi->kategori == 'Prosiding Nasional' ? 'selected' : '' }}>
                                             Prosiding Nasion</option>
+                                        <option value="Paten"
+                                            {{ $publikasi->kategori == 'Paten' ? 'selected' : '' }}>
+                                            Paten</option>
+                                        <option value="Paten Sederhana"
+                                            {{ $publikasi->kategori == 'Paten Sederhana' ? 'selected' : '' }}>
+                                            Paten Sederhana</option>
+                                        <option value="Hak Cipta"
+                                            {{ $publikasi->kategori == 'Hak Cipta' ? 'selected' : '' }}>
+                                            Hak Cipta</option>
+                                        <option value="Desain Produk Industri"
+                                            {{ $publikasi->kategori == 'Desain Produk Industri' ? 'selected' : '' }}>
+                                            Desain Produk Industri</option>
+                                        <option value="Teknologi Tepat Guna"
+                                            {{ $publikasi->kategori == 'Teknologi Tepat Guna' ? 'selected' : '' }}>
+                                            Teknologi Tepat Guna</option>
+                                        <option value="Buku ber-ISBN"
+                                            {{ $publikasi->kategori == 'Buku ber-ISBN' ? 'selected' : '' }}>
+                                            Buku ber-ISBN</option>
+                                        <option value="Book Chapter"
+                                            {{ $publikasi->kategori == 'Book Chapter' ? 'selected' : '' }}>
+                                            Book Chapter</option>
                                     </select>
                                     @error('kategori')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>

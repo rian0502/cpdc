@@ -55,10 +55,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="kategori_litabmas">LITABMAS</label>
-                                    <select name="kategori_litabmas" id="kategori_litabmas" class="selectpicker form-control">
-                                        <option value="Penelitian" {{ old('kategori_litabmas') == 'Penelitian' ? 'selected' : '' }}>
+                                    <select name="kategori_litabmas" id="kategori_litabmas"
+                                        class="selectpicker form-control">
+                                        <option value="Penelitian"
+                                            {{ old('kategori_litabmas') == 'Penelitian' ? 'selected' : '' }}>
                                             Penelitian</option>
-                                        <option value="Pengabdian" {{ old('kategori_litabmas') == 'Pengabdian' ? 'selected' : '' }}>
+                                        <option value="Pengabdian"
+                                            {{ old('kategori_litabmas') == 'Pengabdian' ? 'selected' : '' }}>
                                             Pengabdian</option>
                                     </select>
                                     @error('kategori_litabmas')
@@ -140,6 +143,28 @@
                                         <option value="Prosiding Nasional"
                                             {{ old('kategori') == 'Prosiding Nasional' ? 'selected' : '' }}>
                                             Prosiding Nasional</option>
+                                        <option value="Paten"
+                                            {{ old('kategori') == 'Paten' ? 'selected' : '' }}>
+                                            Paten</option>
+                                        <option value="Paten Sederhana"
+                                            {{ old('kategori') == 'Paten Sederhana' ? 'selected' : '' }}>
+                                            Paten Sederhana</option>
+                                        <option value="Hak Cipta"
+                                            {{ old('kategori') == 'Hak Cipta' ? 'selected' : '' }}>
+                                            Hak Cipta</option>
+                                        <option value="Desain Produk Industri"
+                                            {{ old('kategori') == 'Desain Produk Industri' ? 'selected' : '' }}>
+                                            Desain Produk Industri</option>
+                                        <option value="Teknologi Tepat Guna"
+                                            {{ old('kategori') == 'Teknologi Tepat Guna' ? 'selected' : '' }}>
+                                            Teknologi Tepat Guna</option>
+                                        <option value="Buku ber-ISBN"
+                                            {{ old('kategori') == 'Buku ber-ISBN' ? 'selected' : '' }}>
+                                            Buku ber-ISBN</option>
+                                        <option value="Book Chapter"
+                                            {{ old('kategori') == 'Book Chapter' ? 'selected' : '' }}>
+                                            Book Chapter</option>
+
                                     </select>
                                     @error('kategori')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -162,8 +187,8 @@
                                 <div class="form-group">
                                     <label>Anggota External</label>
                                     <textarea value="{{ old('anggota_external') }}" autofocus name="anggota_external" id="anggota_external"
-                                    placeholder='contoh: &#10;Dr. John Doe, &#10;Prof. Jane Smith, &#10;Dr. Michael Johnson,'
-                                    class="form-control @error('anggota_external') form-control-danger @enderror" type="text"></textarea>
+                                        placeholder='contoh: &#10;Dr. John Doe, &#10;Prof. Jane Smith, &#10;Dr. Michael Johnson,'
+                                        class="form-control @error('anggota_external') form-control-danger @enderror" type="text"></textarea>
                                     @error('anggota_external')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror

@@ -271,33 +271,10 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('jurusan.publikasi.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/publikasi*') ? 'active' : '' }}">
-                                <span class="micon bi bi-journal-text"></span><span class="mtext">PUBLIKASI</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('jurusan.litabmas.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/litabmas*') ? 'active' : '' }}">
-                                <span class="micon bi bi-journal-richtext"></span><span class="mtext">LITABMAS</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('jurusan.penghargaan.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/penghargaan*') ? 'active' : '' }}">
-                                <span class="micon bi bi-trophy"></span><span class="mtext">Penghargaan</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('jurusan.seminar.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/seminar*') ? 'active' : '' }}">
-                                <span class="micon bi bi-mic"></span><span class="mtext">Seminar</span>
-                            </a>
-                        </li>
-                        <li>
                             <a href="{{ route('jurusan.unduh.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
-                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
+                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data S1</span>
+
                             </a>
                         </li>
                     @endrole
@@ -323,6 +300,21 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ route('jurusan.unduh.index') }}" {{-- Routenya nanti --}}
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
+                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data S2</span>
+
+                            </a>
+                        </li>
+                        {{-- <li>
+                        <a href="{{ route('jurusan.unduh.index') }}"
+                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
+                            <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
+                        </a>
+                    </li> --}}
+                    @endrole
+                    @role('tpmpsS1|tpmpsS2')
+                        <li>
                             <a href="{{ route('jurusan.publikasi.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/publikasi*') ? 'active' : '' }}">
                                 <span class="micon bi bi-journal-text"></span><span class="mtext">PUBLIKASI</span>
@@ -346,12 +338,6 @@
                                 <span class="micon bi bi-mic"></span><span class="mtext">Seminar</span>
                             </a>
                         </li>
-                        {{-- <li>
-                        <a href="{{ route('jurusan.unduh.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
-                            <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
-                        </a>
-                    </li> --}}
                     @endrole
 
                     @role('jurusan')
@@ -409,6 +395,19 @@
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
                                 <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
                             </a>
+                        </li>
+                        <li
+                            class="dropdown {{ Request::is('jurusan/unduh*') || Request::is('jurusan/unduhS2*') ? 'show' : '' }}">
+                            {{-- Routenya nanti --}}
+                            <a href="javascript:;" class="dropdown-toggle">
+                                <span class="micon bi bi-clock-history"></span><span class="mtext">Unduh Data S2</span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('jurusan.unduh.index') }}"
+                                        class="{{ Request::is('jurusan/unduh') ? 'active' : '' }}">S1</a></li>
+                                <li><a href="{{ route('jurusan.unduh.index') }}"
+                                        class="{{ Request::is('jurusan/unduhS2') ? 'active' : '' }}">S2</a></li>
+                            </ul>
                         </li>
                     @endrole
                     @role('admin lab|kalab')
