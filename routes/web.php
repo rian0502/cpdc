@@ -196,7 +196,7 @@ Route::prefix('koor')->name('koor.')->group(function () {
 
 
 //jurusan
-Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2|kaprodiS1|kaprodiS2')->group(function () {
+Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2')->group(function () {
 
     //prestasi
 
