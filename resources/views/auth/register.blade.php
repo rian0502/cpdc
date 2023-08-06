@@ -172,7 +172,7 @@
                                                 <select class="custom-select2 form-control "
                                                     value="{{ old('id_dosen') }}" name="id_dosen"
                                                     style="width: 100%; height: 38px">
-                                                    <optgroup label="Dosen Pembimbing Akademik">
+                                                    <optgroup label="Pembimbing Akademik">
                                                         //tidak ada di daftar
                                                         <option value=""
                                                             {{ old('id_dosen') == '' ? 'selected' : '' }}>Tidak ada di
