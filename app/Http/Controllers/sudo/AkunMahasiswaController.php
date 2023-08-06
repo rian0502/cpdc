@@ -21,7 +21,7 @@ class AkunMahasiswaController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::role('mahasiswa');
+            $data = User::role(['mahasiswa', 'mahasiswaS2']);
             return DataTables::of($data)
                 ->addColumn(
                     'aktivasi',
