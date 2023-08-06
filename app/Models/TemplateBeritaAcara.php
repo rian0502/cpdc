@@ -9,5 +9,10 @@ class TemplateBeritaAcara extends Model
 {
     use HasFactory;
     protected $table = 'template_berita_acara';
-    protected $fillable = ['nama', 'path'];
+    protected $fillable = [
+        'nama', 
+        'path',
+        'created_at',
+        'updated_at',
+];
 }

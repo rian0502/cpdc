@@ -5,26 +5,35 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Template Berita Acara Seminar</h4>
+                        <h4 class="text-blue h4">Validasi Seminar Tesis 1</h4>
                     </div>
                     <div class="pb-20 m-3">
 
-                        <table class="table data-table-responsive stripe data-table-noexport nowrap ">
+                        <table class="table data-table-responsive stripe data-table-noexport">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama File</th>
-                                    <th>Link File</th>
+                                    <th>Nama</th>
+                                    <th>NPM</th>
+                                    <th>Judul</th>
+                                    <th>Status</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($files as $item)
+
+                                @foreach ($ta1 as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->nama }}</td>
+                                        <td>{{ $item->mahasiswa->nama_mahasiswa }}</td>
+                                        <td>{{ $item->mahasiswa->npm }}</td>
+                                        <td>{{ $item->judul_ta }}</td>
                                         <td>
-                                            <a href="/{{ $item->path }}">Lihat</a>
+                                            @if ($item->status_admin == 'Process')
+                                                <span class="badge badge-warning">Belum Divalidasi</span>
+                                            @elseif ($item->status_admin == 'Invalid')
+                                                <span class="badge badge-danger">Invalid</span>
+                                            @endif
                                         </td>
                                         <td>
                                             <div class="dropdown">
@@ -34,10 +43,8 @@
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('berkas.template_seminar.edit', $item->id) }}"><i
-                                                            class="dw dw-edit2"></i>
-                                                        Edit</a>
+                                                    <a class="dropdown-item" href="{{ route('berkas.validasi.s2.tesis1.edit', $item->encrypt_id) }}"><i class="dw dw-edit2"></i>
+                                                        Validasi</a>
                                                 </div>
                                             </div>
                                         </td>

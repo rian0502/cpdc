@@ -627,6 +627,27 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="dropdown {{ Request::is('admin/berkas/validasi/s2*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle"
+                                data-option="{{ Request::is('admin/berkas/validasi/s2*') ? 'on' : '' }}">
+                                <span class="micon bi bi-person-rolodex"></span><span class="mtext">Validasi
+                                    Seminar S2</span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('berkas.validasi.s2.tesis1.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/s2/tesis1*') ? 'active' : '' }}">Tesis
+                                        1</a>
+                                </li>
+                                <li><a href="{{ route('berkas.validasi.seminar.ta2.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/seminar/ta2*') ? 'active' : '' }}">Tesis
+                                        2</a>
+                                </li>
+                                <li><a href="{{ route('berkas.validasi.sidang.kompre.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/sidang/kompre*') ? 'active' : '' }}">Sidang
+                                        Tesis</a>
+                                </li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="{{ route('berkas.validasi.pendataan_alumni.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('admin/berkas/validasi/pendataan_alumni*') ? 'active' : '' }}">

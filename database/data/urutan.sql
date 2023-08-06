@@ -142,6 +142,7 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (4, 'App\\Models\\User', 4),
 (4, 'App\\Models\\User', 5),
 (4, 'App\\Models\\User', 6),
+(15, 'App\\Models\\User', 6),
 (4, 'App\\Models\\User', 7),
 (11, 'App\\Models\\User', 7),
 (4, 'App\\Models\\User', 8),
@@ -150,6 +151,7 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (4, 'App\\Models\\User', 10),
 (4, 'App\\Models\\User', 11),
 (6, 'App\\Models\\User', 11),
+(13, 'App\\Models\\User', 11),
 (4, 'App\\Models\\User', 12),
 (11, 'App\\Models\\User', 12),
 (4, 'App\\Models\\User', 13),
@@ -159,15 +161,19 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (4, 'App\\Models\\User', 15),
 (4, 'App\\Models\\User', 16),
 (4, 'App\\Models\\User', 17),
+(21, 'App\\Models\\User', 17),
 (4, 'App\\Models\\User', 18),
+(14, 'App\\Models\\User', 18),
+(17, 'App\\Models\\User', 18),
 (4, 'App\\Models\\User', 19),
 (8, 'App\\Models\\User', 19),
 (11, 'App\\Models\\User', 19),
+(16, 'App\\Models\\User', 19),
 (4, 'App\\Models\\User', 20),
 (4, 'App\\Models\\User', 21),
 (7, 'App\\Models\\User', 21),
 (4, 'App\\Models\\User', 22),
-(13, 'App\\Models\\User', 22),
+(20, 'App\\Models\\User', 22),
 (4, 'App\\Models\\User', 23),
 (4, 'App\\Models\\User', 24),
 (4, 'App\\Models\\User', 25),
@@ -422,7 +428,6 @@ INSERT INTO `litabmas_dosen` (`id`, `encrypt_id`, `nama_litabmas`, `kategori`, `
 --
 -- Dumping data for table `organisasi_dosen`
 --
-
 INSERT INTO `organisasi_dosen` (`id`, `encrypt_id`, `nama_organisasi`, `tahun_menjabat`, `tahun_berakhir`, `jabatan`, `dosen_id`, `created_at`, `updated_at`) VALUES
 (2, 'eyJpdiI6ImdYblhFaTNWOFVUL3p6enU2MldKSVE9PSIsInZhbHVlIjoiVGkzM3BqQ001MVZLU2dUc3NORTdIdz09IiwibWFjIjoiN2FlYjY4YmQ2ZjllODk1ODBlMDZlMTI3OGRjOTU2ZDIxYmUwZGFmMjYwZmE3ZDAwNmFlNjE5NmQ0OGMyOTU2MCIsInRhZyI6IiJ9', 'Moslem Student Association of University of Queensland, Brisbane, Australia', 1999, 2000, 'President', 1, '2023-07-26 03:35:18', '2023-07-26 03:35:18'),
 (3, 'eyJpdiI6InNhOTA4R3hsNjl4UGNlZnI1UzNidlE9PSIsInZhbHVlIjoiQ0x1SXBpWXdRVVdlSS9HdnJWZUd2QT09IiwibWFjIjoiYjIyZDg2ZjY2NWQxMjBjY2Y1NTgyMjA5NzM2ZGFhMjhhN2FjMDkwODI2OThkYTM1MmQyYTBjMzAyNjljYjg0YiIsInRhZyI6IiJ9', 'Himpunan Kimia Indonesia', 2021, 2023, 'Ketua Bidang 2 HKI Cabang Lampung', 1, '2023-07-26 08:05:48', '2023-07-26 08:05:48'),
@@ -430,7 +435,7 @@ INSERT INTO `organisasi_dosen` (`id`, `encrypt_id`, `nama_organisasi`, `tahun_me
 (5, 'eyJpdiI6InZwL2FRZU05eXl3MmN4THRwWlgxN3c9PSIsInZhbHVlIjoiQnRMTW5PM2hQWmk2dHdIdkxtZy9BQT09IiwibWFjIjoiZGExYTRkYjU4MDEwYmQwODExZTMzZmQ2ODRkYTM0NzhjZDdkZjIxY2I0NmUwZTJjZjVlY2M3NGZiOTFjZjFiMyIsInRhZyI6IiJ9', 'Masyarakat Komputasi Indonesia', 2019, 2023, 'Bendahara', 1, '2023-07-26 08:07:18', '2023-07-26 08:07:18'),
 (6, 'eyJpdiI6Im1PK2IxUExGeS9hc0ZvS1ZLV3RBVFE9PSIsInZhbHVlIjoieTFNelBYaTcwREh3dkpuTE4wT1pGdz09IiwibWFjIjoiYTllMjA4NDZmZGJiODcyMThlYTc1MDNhY2NiYzdhMTFhZjEzY2E0NGQ4MzVhNjkzMDdiNGFhMGM5OGM3MDIxZiIsInRhZyI6IiJ9', 'Dewan Riset Daerah Provinsi Lampung', 2019, 2023, 'Anggota Bidang 4', 1, '2023-07-26 08:08:11', '2023-07-26 08:08:12');
 
-INSERT INTO `pendataam_alumni` (`id`, `encrypted_id`, `tahun_akademik`, `sks`, `ipk`, `tgl_lulus`, `masa_studi`, `periode_wisuda`, `toefl`, `berkas_pengesahan`, `transkrip`, `berkas_toefl`, `status`, `komentar`, `mahasiswa_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `pendataan_alumni` (`id`, `encrypted_id`, `tahun_akademik`, `sks`, `ipk`, `tgl_lulus`, `masa_studi`, `periode_wisuda`, `toefl`, `berkas_pengesahan`, `transkrip`, `berkas_toefl`, `status`, `komentar`, `mahasiswa_id`, `created_at`, `updated_at`) VALUES
 (1, 'eyJpdiI6IjJmR3NneG1VY2RQMEQvZVJ4UTNkMEE9PSIsInZhbHVlIjoiNXJUU2Y2dHJ3cUJLTjZ0RjVFVFBGQT09IiwibWFjIjoiM2U5ZTc3NzVkMDQyYWFhMjM3M2FhMDU2OTk0ZmE3YmNkMDYyZDM0MjFkYWJlNWMyNTk3YzNiNGE5MGQyZjUzOCIsInRhZyI6IiJ9', '2023/2024', '146', '3.77', '2023-07-27', '4', 'February 2023', '500', '913GmnkesgLnfzIe21PS3vJelBCO6VJToGjchc7U.pdf', 'w1Bw3Qs7IL5KiN2AjwQdHy7mtt0nBkA5ruwaIJJX.pdf', '4ZFen6AdVWwIF18p9LXo6uKT6BYqRJFgy9BIbKBP.pdf', 'Valid', NULL, 1, '2023-07-25 04:14:16', '2023-07-25 04:16:23'),
 (2, 'eyJpdiI6InhUQ05rUElORm1Nb2tkLzFrMDJmeFE9PSIsInZhbHVlIjoiY2l2bG1icktlRmQ4NnIrRFF6eTJlZz09IiwibWFjIjoiZGE1N2RkNmVlODBiZTUyYmZhOGJjMzQ0YWM0ZDNiYmI5NTJjMWQ3YmQ2ZWI1ZjcwMThiYmQzZmI3YmEwMWVlNSIsInRhZyI6IiJ9', '2022/2023', '144', '3.85', '2023-05-30', '3.78', 'July 2023', '453', 'NKOqYmZ4afScOiepiZx6PFZos9gFAU6uCOMCSF0i.pdf', 'hi8e7HhBxQlmav9YdCdxikneoMMyeeAWhgQ4XyQf.pdf', 'wgsKXqn5WJdZqNvFCYoH8w54f7gOUrmRcrr52Kfu.pdf', 'Pending', NULL, 25, '2023-07-25 04:18:00', '2023-07-25 04:18:00'),
 (3, 'eyJpdiI6Im5WTGlIM05yRmRHcllrY1k5Y0JpaUE9PSIsInZhbHVlIjoiaXRhQmQ2UUNwOUtHTGFEdHd5TERrUT09IiwibWFjIjoiNWQ1ZTIzMWY1OTc4ODdiOWQ4NTQ0MDQwNDBiMmFlZTExY2MxMTUyYjY4OTY5NWIzZWQ1NzZlMDFiN2I4ZjA0MCIsInRhZyI6IiJ9', '2023/2024', '146', '3.87', '2023-05-25', '3.78', 'July 2023', '480', 'wDZF3z9MYRSLfVu84UErF3cNzttevPZ0ooVMCiML.pdf', '0BtRPCeim1qZ7Gm46MkWWwzK30COJHtso40Hd4g8.pdf', 'R0POB8xrPV0dnDBJP0XEVOvEFnZyErWy8JA6LVsh.pdf', 'Pending', NULL, 18, '2023-07-25 04:18:24', '2023-07-25 04:18:24'),
@@ -1425,7 +1430,8 @@ INSERT INTO `base_npm` (`id`, `npm`, `status`, `created_at`, `updated_at`) VALUE
 (573, '1917011033', 'aktif', '2023-07-25 03:21:25', '2023-07-25 03:21:51'),
 (574, '1957011013', 'aktif', '2023-07-25 03:21:25', '2023-07-25 03:21:48'),
 (575, '1917011027', 'aktif', '2023-07-25 03:21:50', '2023-07-25 03:22:22'),
-(576, '1917011062', 'aktif', '2023-07-25 03:33:32', '2023-07-25 03:34:29');
+(576, '1917011062', 'aktif', '2023-07-25 03:33:32', '2023-07-25 03:34:29'),
+(577, '2033051033', 'nonaktif', '2023-07-25 01:39:36', '2023-07-25 01:41:17');
 
 --
 -- Dumping data for table `ba_seminar_komprehensif`
