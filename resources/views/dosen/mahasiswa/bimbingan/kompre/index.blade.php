@@ -44,10 +44,10 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Mahasiswa Bimbingan Tugas Akhir</h4>
+                        <h4 class="text-blue h4">Mahasiswa Bimbingan @if(Request::is('dosen/mahasiswa/bimbingan/tesis'))Tesis @else Tugas Akhir @endif</h4>
                         <div class="containerr">
                             <div class="move">
-                                <form action="{{ route('dosen.mahasiswa.bimbingan.ta.export') }}" method="POST"
+                                <form action="{{ Request::is('dosen/mahasiswa/bimbingan/tesis')?route('dosen.mahasiswa.bimbingan.tesis.export') : route('dosen.mahasiswa.bimbingan.ta.export') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="name-avatar d-flex align-items-center pr-2 mt-2">
@@ -113,7 +113,7 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('dosen.mahasiswa.bimbingan.kompre.show', $item->mahasiswa->npm) }}"><i
+                                                        href="{{ route(Request::is('dosen/mahasiswa/bimbingan/tesis')?'dosen.mahasiswa.bimbingan.tesis.show':'dosen.mahasiswa.bimbingan.kompre.show', $item->mahasiswa->npm) }}"><i
                                                             class="dw dw-eye"></i>
                                                         View</a>
                                                 </div>

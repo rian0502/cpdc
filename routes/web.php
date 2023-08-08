@@ -84,6 +84,7 @@ use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 use App\Http\Controllers\kerja_praktik\BeritaAcaraSeminarKerjaPraktik;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganAkademikController;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganTugasAkhirController;
+use App\Http\Controllers\bimbingan\MahasiswaBimbinganTesisController;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
 
 /*
@@ -178,6 +179,8 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::post('mahasiswa/bimbingan/kp/export', [MahasiswaBimbinganKPController::class, 'export'])->name('mahasiswa.bimbingan.kp.export');
     Route::post('mahasiswa/bimbingan/ta/export', [MahasiswaBimbinganTugasAkhirController::class, 'export'])->name('mahasiswa.bimbingan.ta.export');
     Route::resource('mahasiswa/bimbingan/kompre', MahasiswaBimbinganTugasAkhirController::class)->names('mahasiswa.bimbingan.kompre');
+    Route::post('mahasiswa/bimbingan/tesis/export', [MahasiswaBimbinganTesisController::class, 'export'])->name('mahasiswa.bimbingan.tesis.export');
+    Route::resource('mahasiswa/bimbingan/tesis', MahasiswaBimbinganTesisController::class)->names('mahasiswa.bimbingan.tesis');
     Route::get('cv', [ProfileDosenController::class, 'export']);
 });
 //end dosen

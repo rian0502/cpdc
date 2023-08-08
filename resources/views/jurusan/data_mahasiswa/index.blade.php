@@ -150,59 +150,59 @@
                     },
                     columns: [{
                             data: 'id',
-                            name: 'nama_mahasiswa',
+                            name: 'mahasiswa.nama_mahasiswa',
                             render: function(data, type, row, meta) {
                                 return meta.row + meta.settings._iDisplayStart + 1;
                             },
                         },
                         {
-                            data: 'nama_mahasiswa',
-                            name: 'nama_mahasiswa',
+                            data: 'mahasiswa.nama_mahasiswa',
+                            name: 'mahasiswa.nama_mahasiswa',
                             orderable: true,
                             searchable: true
                         },
                         {
-                            data: 'npm',
-                            name: 'npm',
+                            data: 'mahasiswa.npm',
+                            name: 'mahasiswa.npm',
                             orderable: true
                         },
                         {
-                            data: 'angkatan',
-                            name: 'angkatan',
+                            data: 'mahasiswa.angkatan',
+                            name: 'mahasiswa.angkatan',
                             orderable: true
                         },
                         {
-                            data: 'jenis_kelamin',
-                            name: 'jenis_kelamin'
+                            data: 'mahasiswa.jenis_kelamin',
+                            name: 'mahasiswa.jenis_kelamin'
                         },
                         {
-                            data: 'status',
-                            name: 'status'
+                            data: 'mahasiswa.status',
+                            name: 'mahasiswa.status'
                         },
                         {
-                            data: 'seminar_kp.status_seminar',
-                            name: 'seminar_kp.status_seminar',
+                            data: 'mahasiswa.seminar_kp.status_seminar',
+                            name: 'mahasiswa.seminar_kp.status_seminar',
                             orderable: true,
 
                         },
                         {
-                            data: 'ta_satu.status_koor',
-                            name: 'ta_satu.status_koor',
+                            data: 'mahasiswa.ta_satu.status_koor',
+                            name: 'mahasiswa.ta_satu.status_koor',
                             orderable: true,
                         },
                         {
-                            data: 'ta_dua.status_koor',
-                            name: 'ta_dua.status_koor',
+                            data: 'mahasiswa.ta_dua.status_koor',
+                            name: 'mahasiswa.ta_dua.status_koor',
                             orderable: true,
                         },
                         {
-                            data: 'komprehensif.status_koor',
-                            name: 'komprehensif.status_koor',
+                            data: 'mahasiswa.komprehensif.status_koor',
+                            name: 'mahasiswa.komprehensif.status_koor',
                             orderable: true
                         },
                         {
-                            data: 'tanggal_masuk',
-                            name: 'tanggal_masuk',
+                            data: 'mahasiswa.tanggal_masuk',
+                            name: 'mahasiswa.tanggal_masuk',
                         },
                         {
                             data: 'aksi',
@@ -213,7 +213,7 @@
                             render: function(data, type, row) {
 
                                 var editUrl = "{{ route('jurusan.mahasiswa.show', ':id') }}".replace(
-                                    ':id', row.npm);
+                                    ':id', row.mahasiswa.npm);
                                 return `
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" data-color="#1b3133" href="#"
