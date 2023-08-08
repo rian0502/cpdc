@@ -193,10 +193,17 @@
                                             <div class="form-group">
                                                 <label for="">Jenis Akun</label>
                                                 <div class="@error('jenis_akun') form-control-danger @enderror">
-                                                    <select name="jenis_akun" id="jenis_akun" class="selectpicker form-control">
-                                                        <option value="mahasiswa" {{ old('jenis_akun') == 'mahasiswa' ? 'selected' : '' }} >Mahasiswa S1</option>
-                                                        <option value="mahasiswaS2" {{ old('jenis_akun') == 'mahasiswaS2' ? 'selected' : '' }}>Mahasiswa S2</option>
-                                                        <option value="alumni" {{ old('jenis_akun') == 'alumni' ? 'selected' : '' }}>Alumni</option>
+                                                    <select name="jenis_akun" id="jenis_akun"
+                                                        class="selectpicker form-control">
+                                                        <option value="mahasiswa"
+                                                            {{ old('jenis_akun') == 'mahasiswa' ? 'selected' : '' }}>
+                                                            Mahasiswa S1</option>
+                                                        <option value="mahasiswaS2"
+                                                            {{ old('jenis_akun') == 'mahasiswaS2' ? 'selected' : '' }}>
+                                                            Mahasiswa S2</option>
+                                                        <option value="alumni"
+                                                            {{ old('jenis_akun') == 'alumni' ? 'selected' : '' }}>
+                                                            Alumni</option>
                                                     </select>
                                                 </div>
                                                 @error('jenis_akun')

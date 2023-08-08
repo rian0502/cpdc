@@ -263,6 +263,41 @@
                 </div>
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
+                        <div class="h5 mb-0">TPMPS</div>
+                    </div>
+                    <form action="{{ route('jurusan.unduh.penghargaan') }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
+                            <div class="weight-500 col-md-9" style="margin-left: 5px">
+                                <div class="form-group">
+                                    <label>Data TPMPS</label>
+                                    <select class="custom-select2 form-control" name="tahun_penghargaan"
+                                        id="tahun_penghargaan" style="width: 100%; height: 38px">
+                                        <optgroup label="Tahun">
+                                            @foreach ($penghargaan_dosen as $item)
+                                                <option value="{{ $item->tahun }}">{{ $item->tahun }}
+                                                </option>
+                                            @endforeach
+                                        </optgroup>
+                                    </select>
+                                    @error('tahun_penghargaan')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="weight-500 col-md-3">
+                                <div class="form-group">
+                                    <div class="cta  d-flex align-items-center justify-content-end mt-4">
+                                        <button class="btn btn-sm btn-outline-primary">Unduh</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-box" style="height:256px;">
+                    <div class="pd-20">
                         <div class="h5 mb-0">Mahasiswa</div>
                     </div>
                     <form action="{{ route('jurusan.unduh.mahasiswa') }}" method="POST" enctype="multipart/form-data">
