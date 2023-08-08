@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Kajur;
 use App\Models\AktivitasAlumni;
 use App\Models\Laboratorium;
 use App\Models\Mahasiswa;
+use App\Models\User;
 use App\Models\ModelSeminarKompre;
 use App\Models\ModelSeminarTaDua;
 use App\Models\ModelSeminarTaSatu;
@@ -30,51 +31,56 @@ class DataMahasiswaAllController extends Controller
             $status_ta2 = $request->input('status_ta2');
             $status_kompre = $request->input('status_kompre');
 
-            $data = Mahasiswa::with(['seminar_kp', 'ta_satu', 'ta_dua', 'komprehensif']);
+            $data = User::whereHas('roles', function ($query) {
+                $query->where('name', 'mahasiswa');
+            })
+            ->with('mahasiswa', 'mahasiswa.seminar_kp', 'mahasiswa.ta_satu', 'mahasiswa.ta_dua', 'mahasiswa.komprehensif')
+            ->select('users.*');
+
             if ($status_kp != 'null' && $status_kp != '1') {
-                $data = $data->whereHas('seminar_kp', function ($query) use ($status_kp) {
+                $data = $data->whereHas('mahasiswa.seminar_kp', function ($query) use ($status_kp) {
                     $query->where('status_seminar', $status_kp);
                 });
-            }elseif ($status_kp == 'null') {
-                $data = $data->whereDoesntHave('seminar_kp');
+            } elseif ($status_kp == 'null') {
+                $data = $data->whereDoesntHave('mahasiswa.seminar_kp');
             }
+
             if ($status_ta1 != 'null' && $status_ta1 != '1') {
-                $data = $data->whereHas('ta_satu', function ($query) use ($status_ta1) {
+                $data = $data->whereHas('mahasiswa.ta_satu', function ($query) use ($status_ta1) {
                     $query->where('status_koor', $status_ta1);
                 });
+            } elseif ($status_ta1 == 'null') {
+                $data = $data->whereDoesntHave('mahasiswa.ta_satu');
             }
-            elseif ($status_ta1 == 'null') {
-                $data = $data->whereDoesntHave('ta_satu');
-            }
+
             if ($status_ta2 != 'null' && $status_ta2 != '1') {
-                $data = $data->whereHas('ta_dua', function ($query) use ($status_ta2) {
+                $data = $data->whereHas('mahasiswa.ta_dua', function ($query) use ($status_ta2) {
                     $query->where('status_koor', $status_ta2);
                 });
+            } elseif ($status_ta2 == 'null') {
+                $data = $data->whereDoesntHave('mahasiswa.ta_dua');
             }
-            elseif ($status_ta2 == 'null') {
-                $data = $data->whereDoesntHave('ta_dua');
-            }
+
             if ($status_kompre != 'null' && $status_kompre != '1') {
-                $data = $data->whereHas('komprehensif', function ($query) use ($status_kompre) {
+                $data = $data->whereHas('mahasiswa.komprehensif', function ($query) use ($status_kompre) {
                     $query->where('status_koor', $status_kompre);
                 });
-            }
-            elseif ($status_kompre == 'null') {
-                $data = $data->whereDoesntHave('komprehensif');
+            } elseif ($status_kompre == 'null') {
+                $data = $data->whereDoesntHave('mahasiswa.komprehensif');
             }
 
             return DataTables::of($data)
-                ->addIndexColumn()->editColumn('seminar_kp.status_seminar', function ($data) {
-                    return $data->seminar_kp->status_seminar ?? 'Belum Daftar';
+                ->addIndexColumn()->editColumn('mahasiswa.seminar_kp.status_seminar', function ($data) {
+                    return $data->mahasiswa->seminar_kp->status_seminar ?? 'Belum Daftar';
                 })
-                ->addIndexColumn()->editColumn('ta_satu.status_koor', function ($data) {
-                    return $data->ta_satu->status_koor ?? 'Belum Daftar';
+                ->addIndexColumn()->editColumn('mahasiswa.ta_satu.status_koor', function ($data) {
+                    return $data->mahasiswa->ta_satu->status_koor ?? 'Belum Daftar';
                 })
-                ->addIndexColumn()->editColumn('ta_dua.status_koor', function ($data) {
-                    return $data->ta_dua->status_koor ?? 'Belum Daftar';
+                ->addIndexColumn()->editColumn('mahasiswa.ta_dua.status_koor', function ($data) {
+                    return $data->mahasiswa->ta_dua->status_koor ?? 'Belum Daftar';
                 })
-                ->addIndexColumn()->editColumn('komprehensif.status_koor', function ($data) {
-                    return  $data->komprehensif->status_koor ?? 'Belum Daftar';
+                ->addIndexColumn()->editColumn('mahasiswa.komprehensif.status_koor', function ($data) {
+                    return  $data->mahasiswa->komprehensif->status_koor ?? 'Belum Daftar';
                 })
                 ->toJson();
         }

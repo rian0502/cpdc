@@ -185,6 +185,9 @@
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.kompre.index') }}"
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/kompre*') ? 'active' : '' }}">Bimbingan
                                         Tugas Akhir</a></li>
+                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.tesis.index') }}"
+                                            class="{{ Request::is('dosen/mahasiswa/bimbingan/tesis*') ? 'active' : '' }}">Bimbingan Tesis</a></li>
+
                             </ul>
                         </li>
                         <li

@@ -201,6 +201,9 @@
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.kompre.index') }}"
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/kompre*') ? 'active' : '' }}">Bimbingan
                                         Tugas Akhir</a></li>
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.tesis.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/tesis*') ? 'active' : '' }}">Bimbingan Tesis</a></li>
+
                             </ul>
                         </li>
                         <li
@@ -412,7 +415,7 @@
                             class="dropdown {{ Request::is('jurusan/unduh*') || Request::is('jurusan/unduhS2*') ? 'show' : '' }}">
                             {{-- Routenya nanti --}}
                             <a href="javascript:;" class="dropdown-toggle">
-                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data S2</span>
+                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('jurusan.unduh.index') }}"
