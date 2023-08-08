@@ -320,7 +320,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('jurusan.unduh.index') }}" {{-- Routenya nanti --}}
+                            <a href="{{ route('jurusan.unduhs2.index') }}" {{-- Routenya nanti --}}
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
                                 <span class="micon bi bi-download"></span><span class="mtext">Unduh Data S2</span>
                             </a>
@@ -409,16 +409,16 @@
                             </a>
                         </li>
                         <li
-                            class="dropdown {{ Request::is('jurusan/unduh*') || Request::is('jurusan/unduhS2*') ? 'show' : '' }}">
+                            class="dropdown {{ Request::is('jurusan/unduh_data_s1*') || Request::is('jurusan/unduh_data_s2*') ? 'show' : '' }}">
                             {{-- Routenya nanti --}}
                             <a href="javascript:;" class="dropdown-toggle">
-                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data S2</span>
+                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('jurusan.unduh.index') }}"
-                                        class="{{ Request::is('jurusan/unduh') ? 'active' : '' }}">S1</a></li>
-                                <li><a href="{{ route('jurusan.unduh.index') }}"
-                                        class="{{ Request::is('jurusan/unduhS2') ? 'active' : '' }}">S2</a></li>
+                                        class="{{ Request::is('jurusan/unduh_data_s1*') ? 'active' : '' }}">S1</a></li>
+                                <li><a href="{{ route('jurusan.unduhs2.index') }}"
+                                        class="{{ Request::is('jurusan/unduh_data_s2*') ? 'active' : '' }}">S2</a></li>
                             </ul>
                         </li>
                     @endrole

@@ -15,10 +15,11 @@ use App\Models\ModelJadwalSeminarTaSatu;
 use App\Http\Controllers\ModelController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\Kajur\DataAlumni;
-use App\Http\Controllers\Kajur\DataAlumniS2;
 use App\Http\Controllers\Kajur\ExportData;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\Kajur\Penghargaan;
+use App\Http\Controllers\Kajur\DataAlumniS2;
+use App\Http\Controllers\Kajur\ExportDataS2;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SuggestionController;
@@ -45,12 +46,12 @@ use App\Http\Controllers\dosen\ProfileDosenController;
 use App\Http\Controllers\Kajur\ChartSeminarController;
 use App\Http\Controllers\Kajur\LitabmasDataController;
 use App\Http\Controllers\Kajur\PrestasiDataController;
-use App\Http\Controllers\Kajur\PrestasiDataS2Controller;
 use App\Http\Controllers\sudo\AkunMahasiswaController;
 use App\Http\Controllers\Kajur\AktivitasDataController;
-use App\Http\Controllers\Kajur\AktivitasDataS2Controller;
 use App\Http\Controllers\Kajur\PublikasiDataController;
+use App\Http\Controllers\Kajur\PrestasiDataS2Controller;
 use App\Http\Controllers\komprehensif\MahasiswaBaKompre;
+use App\Http\Controllers\Kajur\AktivitasDataS2Controller;
 use App\Http\Controllers\tugas_akhir_dua\ValidasiBaTaDua;
 use App\Http\Controllers\alumni\AktivitasAlumniController;
 use App\Http\Controllers\dosen\ControllerPenghargaanDosen;
@@ -78,12 +79,12 @@ use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\kerja_praktik\ValidasiSeminarKPController;
 use App\Http\Controllers\mahasiswa_s2\KegiatanMahasiswaControllerS2;
 use App\Http\Controllers\mahasiswa_s2\PrestasiMahasiswaControllerS2;
-use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
+use App\Http\Controllers\mahasiswa_s2\ta1\ControllerAdminS2BpTaSatu;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 use App\Http\Controllers\kerja_praktik\BeritaAcaraSeminarKerjaPraktik;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganAkademikController;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganTugasAkhirController;
-use App\Http\Controllers\mahasiswa_s2\ta1\ControllerAdminS2BpTaSatu;
+use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
 
 /*
 |--------------------------------------------------------------------------
@@ -226,7 +227,8 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::get('pieChartAktivitas', [AktivitasDataController::class, 'pieChartPeran'])->name('aktivitas.pieChartPeran');
 
     //unduh data
-    Route::get('unduh', [ExportData::class, 'index'])->name('unduh.index');
+    Route::get('unduh_data_s1', [ExportData::class, 'index'])->name('unduh.index');
+    Route::get('unduh_data_s2', [ExportDataS2::class, 'index'])->name('unduhs2.index');
     Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
     Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
     Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
