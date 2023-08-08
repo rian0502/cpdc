@@ -274,7 +274,7 @@
                                     <label>Data TPMPS</label>
                                     <select class="custom-select2 form-control" name="tahun_penghargaan"
                                         id="tahun_penghargaan" style="width: 100%; height: 38px">
-                                        <optgroup label="Tahun">
+                                        <optgroup label="Data Mahasiswa">
                                             @foreach ($penghargaan_dosen as $item)
                                                 <option value="{{ $item->tahun }}">{{ $item->tahun }}
                                                 </option>
