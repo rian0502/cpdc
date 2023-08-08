@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\kerja_praktik\JadwalPKLController;
+use App\Http\Controllers\CekJadwalController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/check-jadwal', [JadwalPKLController::class, 'checkJadwal']);
-Route::put('/check-update', [JadwalPKLController::class, 'checkUpdate']);
+Route::post('/check-jadwal', [CekJadwalController::class, 'checkJadwal']);
+Route::put('/check-update', [CekJadwalController::class, 'checkUpdate']);
