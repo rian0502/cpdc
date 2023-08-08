@@ -394,7 +394,7 @@
                             class="dropdown {{ Request::is('jurusan/unduh*') || Request::is('jurusan/unduhS2*') ? 'show' : '' }}">
                             {{-- Routenya nanti --}}
                             <a href="javascript:;" class="dropdown-toggle">
-                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data S2</span>
+                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('jurusan.unduh.index') }}"
@@ -584,7 +584,7 @@
                                 data-option="{{ Request::is('admin/berkas/validasi/seminar*') ? 'on' : '' }}">
 
                                 <span class="micon bi bi-person-rolodex"></span><span class="mtext">Validasi
-                                    Seminar</span>
+                                    Seminar S1</span>
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('berkas.validasi.seminar.kp.index') }}"

@@ -597,11 +597,11 @@
                                     Seminar</span>
                             </a>
                         </li>
-                        <li class="dropdown {{ Request::is('admin/berkas/validasi/seminar*') ? 'show' : '' }}">
+                        <li class="dropdown {{ Request::is('admin/berkas/validasi/seminar/s1*') ? 'show' : '' }}">
                             <a href="javascript:;" class="dropdown-toggle"
-                                data-option="{{ Request::is('admin/berkas/validasi/seminar*') ? 'on' : '' }}">
+                                data-option="{{ Request::is('admin/berkas/validasi/seminar/s1*') ? 'on' : '' }}">
                                 <span class="micon bi bi-person-rolodex"></span><span class="mtext">Validasi
-                                    Seminar</span>
+                                    Seminar S1</span>
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('berkas.validasi.seminar.kp.index') }}"
@@ -633,11 +633,11 @@
                                         1</a>
                                 </li>
                                 <li><a href="{{ route('berkas.validasi.seminar.ta2.index') }}"
-                                        class="{{ Request::is('admin/berkas/validasi/seminar/ta2*') ? 'active' : '' }}">Tesis
+                                        class="{{ Request::is('admin/berkas/validasi/seminar/tesis2*') ? 'active' : '' }}">Tesis
                                         2</a>
                                 </li>
                                 <li><a href="{{ route('berkas.validasi.sidang.kompre.index') }}"
-                                        class="{{ Request::is('admin/berkas/validasi/sidang/kompre*') ? 'active' : '' }}">Sidang
+                                        class="{{ Request::is('admin/berkas/validasi/sidang/tesis*') ? 'active' : '' }}">Sidang
                                         Tesis</a>
                                 </li>
                             </ul>
