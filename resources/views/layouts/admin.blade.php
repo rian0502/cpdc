@@ -504,15 +504,15 @@
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('mahasiswa.seminarta1s2.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminarta1s2*') ? 'active' : '' }}">Tugas
+                                        class="{{ Request::is('mahasiswa/seminar/ta1/S2*') ? 'active' : '' }}">Tugas
                                         Akhir
                                         1</a></li>
-                                <li><a href="{{ route('mahasiswa.seminar.tugas_akhir_2.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/tugas_akhir_2*') ? 'active' : '' }}">Tugas
+                                <li><a href="{{ route('mahasiswa.seminarta2s2.index') }}"
+                                        class="{{ Request::is('mahasiswa/seminar/ta2/S2*') ? 'active' : '' }}">Tugas
                                         Akhir
                                         2</a></li>
-                                <li><a href="{{ route('mahasiswa.sidang.kompre.index') }}"
-                                        class="{{ Request::is('mahasiswa/sidang/kompre*') ? 'active' : '' }}">Sidang
+                                <li><a href="{{ route('mahasiswa.sidang.kompres2.index') }}"
+                                        class="{{ Request::is('mahasiswa/sidang/kompre/S2*') ? 'active' : '' }}">Sidang
                                         Komprehensif</a></li>
                             </ul>
                         </li>

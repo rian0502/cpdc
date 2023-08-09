@@ -13,7 +13,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Daftar Seminar Tugas Akhir 1</h4>
+                            <h4 class="text-dark h4">Daftar Seminar Tugas Akhir 2</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                                         Berkas Kelengkapan
                                         <small>
                                             <a target="_blank"
-                                                href="/uploads/syarat_seminar/{{ $syarat->path_file }}">Lihat
+                                                href="/uploads/syarat_seminar/{{-- $syarat->path_file --}}">Lihat
                                                 Persyaratan</a>
                                         </small>
                                     </label>
@@ -134,11 +134,11 @@
                                     <select class="custom-select2 form-control" name="id_pembimbing_satu"
                                         id="id_pembimbing_satu" style="width: 100%; height: 38px">
                                         <optgroup label="Pembimbing 1">
-                                            @foreach ($dosens as $item)
+                                            {{-- @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
                                                     {{ old('id_pembimbing_satu') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
-                                            @endforeach
+                                            @endforeach --}}
                                         </optgroup>
                                     </select>
                                 </div>
@@ -148,7 +148,7 @@
                                         id="id_pembimbing_dua" style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'Pembimbing2', 'pbl2_nama')">
                                         <optgroup label="Pembahas 1">
-                                            @foreach ($dosens as $item)
+                                            {{-- @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
                                                     {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
@@ -157,7 +157,7 @@
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
-                                            @endif
+                                            @endif --}}
                                         </optgroup>
                                     </select>
                                 </div>
@@ -191,7 +191,7 @@
                                         id="id_pembahas_satu" style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'pembahas1', 'phs1_nama')">
                                         <optgroup label="Pembahas 1">
-                                            @foreach ($dosens as $item)
+                                            {{-- @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
                                                     {{ old('id_pembahas_satu') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
@@ -200,7 +200,7 @@
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
-                                            @endif
+                                            @endif --}}
                                         </optgroup>
                                     </select>
                                 </div>
@@ -235,7 +235,7 @@
                                         id="id_pembahas_dua" style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'pembahas2', 'phs2_nama')">
                                         <optgroup label="Pembahas 2">
-                                            @foreach ($dosens as $item)
+                                            {{-- @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
                                                     {{ old('id_pembahas_dua') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
@@ -244,7 +244,7 @@
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
-                                            @endif
+                                            @endif --}}
                                         </optgroup>
                                     </select>
                                 </div>
@@ -262,7 +262,7 @@
                                     </div>
                                 </div>
                                 <div id="pembahas2"
-                                    style="display: {{ old('id_pembahas_dua') == 'new' ? 'block' : 'none' }};"
+                                    style="display: {{ old('id_pembahas_dua') == 'new' ? 'block' : 'none' }};"$
                                     {{ old('id_pembahas_dua') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP pembahas 2</label>
@@ -279,7 +279,7 @@
                                         id="id_pembahas_tiga" style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'pembahas3', 'phs3_nama')">
                                         <optgroup label="Pembahas 3">
-                                            @foreach ($dosens as $item)
+                                            {{-- @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
                                                     {{ old('id_pembahas_tiga') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
@@ -288,7 +288,7 @@
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
-                                            @endif
+                                            @endif --}}
                                         </optgroup>
                                     </select>
                                 </div>

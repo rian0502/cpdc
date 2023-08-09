@@ -85,9 +85,14 @@ use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganTesisController;
 use App\Http\Controllers\kerja_praktik\BeritaAcaraSeminarKerjaPraktik;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerAdminS2BpKompre;
+use App\Http\Controllers\mahasiswa_s2\ta2\ControllerMahasiswaS2BaTaDua;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganAkademikController;
+use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2BaTaSatu;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganTugasAkhirController;
+use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2BaKompre;
+use App\Http\Controllers\mahasiswa_s2\ta2\ControllerMahasiswaS2SeminarTaDua;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
+use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
 
 /*
 |--------------------------------------------------------------------------
@@ -284,10 +289,17 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
 });
 
 Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswaS2|mahasiswaS2&alumni')->group(function () {
-    Route::resource('seminarta1s2', ControllerMahasiswaS2SeminarTaSatu::class)->names('seminarta1s2');
-    Route::resource('seminarta2s2', ControllerMahasiswaS2SeminarTaSatu::class)->names('seminarta2s2');
+    Route::resource('seminar/ta1/S2', ControllerMahasiswaS2SeminarTaSatu::class)->names('seminarta1s2');
+    Route::resource('seminar/ta2/S2', ControllerMahasiswaS2SeminarTaDua::class)->names('seminarta2s2');
+    Route::resource('ba/ta1/S2', ControllerMahasiswaS2BaTaSatu::class)->names('bata1s2');
+    Route::resource('ba/ta2/S2', ControllerMahasiswaS2BaTaDua::class)->names('bata2s2');
+    Route::resource('ba/kompre/S2', ControllerMahasiswaS2BaKompre::class)->names('bakompres2');
     Route::resource('prestasiS2', PrestasiMahasiswaControllerS2::class)->names('prestasiS2');
     Route::resource('kegiatanS2', KegiatanMahasiswaControllerS2::class)->names('kegiatanS2');
+
+    Route::group(['prefix' => 'sidang', 'as' => 'sidang.'], function () {
+        Route::resource('kompre/S2', ControllerMahasiswaS2SidangKompre::class)->names('kompres2');
+    });
 });
 
 Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswa|alumni&mahasiswa')->group(function () {
@@ -305,6 +317,7 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
     });
     Route::group(['prefix' => 'sidang', 'as' => 'sidang.'], function () {
         Route::resource('kompre', MahasiswaKompreController::class)->names('kompre');
+        
     });
 
 

@@ -31,7 +31,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Nomor Berita Acara Seminar Tugas Akhir 1</label>
+                                    <label>Nomor Berita Acara Seminar Tugas Akhir 2</label>
                                     <input autofocus name="no_berkas_ba_seminar_ta_satu" id="no_berkas_ba_seminar_ta_satu"
                                         class="form-control" type="text"
                                         value="{{ old('no_berkas_ba_seminar_ta_satu') }}"
@@ -94,7 +94,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="mt-2"> Berkas Nilai Tugas Akhir 1 <small> <a
+                                    <label class="mt-2"> Berkas Nilai Tugas Akhir 2 <small> <a
                                                 id="link-berkas_nilai_seminar_ta_satu" href="#" target="_blank"
                                                 style="display: none;">Lihat File</a>
                                         </small></label>
