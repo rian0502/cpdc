@@ -82,10 +82,10 @@ class ControllerAdminS2BpTaSatu extends Controller
     public function update(Request $request, $id)
     {
         //
-        if($request->status_admin == 'Invalid'){
+        if ($request->status_admin == 'Invalid') {
             $request->validate([
                 'komentar' => 'required|min:10|string|max:255'
-            ],[
+            ], [
                 'komentar.required' => 'Komentar harus diisi',
                 'komentar.min' => 'Komentar minimal 10 karakter',
                 'komentar.max' => 'Komentar maksimal 255 karakter'
@@ -95,7 +95,7 @@ class ControllerAdminS2BpTaSatu extends Controller
             $seminar->komentar = $request->komentar;
             $seminar->updated_at = date('Y-m-d H:i:s');
             $seminar->save();
-        }else{
+        } else {
             $seminar = ModelSeminarTaSatuS2::find(Crypt::decrypt($id));
             $seminar->status_admin = $request->status_admin;
             $seminar->updated_at = date('Y-m-d H:i:s');

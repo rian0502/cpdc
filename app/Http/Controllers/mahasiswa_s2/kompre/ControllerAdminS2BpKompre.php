@@ -14,7 +14,7 @@ class ControllerAdminS2BpKompre extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.admin_berkas.validasi.sidang.kompreS2.index');
     }
 
     /**
@@ -57,7 +57,7 @@ class ControllerAdminS2BpKompre extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.admin_berkas.validasi.sidang.kompreS2.edit');
     }
 
     /**

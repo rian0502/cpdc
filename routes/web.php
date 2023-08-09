@@ -77,14 +77,16 @@ use App\Http\Controllers\bimbingan\MahasiswaBimbinganKPController;
 use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\kerja_praktik\ValidasiSeminarKPController;
+use App\Http\Controllers\mahasiswa_s2\ta2\ControllerAdminS2BpTaDua;
 use App\Http\Controllers\mahasiswa_s2\KegiatanMahasiswaControllerS2;
 use App\Http\Controllers\mahasiswa_s2\PrestasiMahasiswaControllerS2;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerAdminS2BpTaSatu;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
+use App\Http\Controllers\bimbingan\MahasiswaBimbinganTesisController;
 use App\Http\Controllers\kerja_praktik\BeritaAcaraSeminarKerjaPraktik;
+use App\Http\Controllers\mahasiswa_s2\kompre\ControllerAdminS2BpKompre;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganAkademikController;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganTugasAkhirController;
-use App\Http\Controllers\bimbingan\MahasiswaBimbinganTesisController;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
 
 /*
@@ -149,6 +151,8 @@ Route::prefix('admin/berkas')->name('berkas.')->middleware(['auth', 'profile', '
     ]);
 
     Route::resource('validasi/s2/tesis1', ControllerAdminS2BpTaSatu::class)->names('validasi.s2.tesis1');
+    Route::resource('validasi/s2/tesis2', ControllerAdminS2BpTaDua::class)->names('validasi.s2.tesis2');
+    Route::resource('validasi/s2/sidang_tesis', ControllerAdminS2BpKompre::class)->names('validasi.s2.tesis3');
 
 
     Route::resource('validasi/seminar/kp', ValidasiSeminarKPController::class)->names('validasi.seminar.kp');
