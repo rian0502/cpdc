@@ -310,11 +310,11 @@
                         </div>
                         @if ($seminar->status_koor != 'Selesai')
                             @if ($seminar->ba_seminar)
-                                <a href="{{ route('mahasiswa.bata1s2.edit', $seminar->ba_seminar->encrypt_id) }}">
+                                <a href="{{ route('mahasiswa.bakompres2.edit', $seminar->ba_seminar->encrypt_id) }}">
                                     <button class="btn btn-primary right">Edit</button>
                                 </a>
                             @else
-                                <a href="{{ route('mahasiswa.bata1s2.create') }}">
+                                <a href="{{ route('mahasiswa.bakompres2.create') }}">
                                     <button class="btn btn-primary right">Unggah</button>
                                 </a>
                             @endif

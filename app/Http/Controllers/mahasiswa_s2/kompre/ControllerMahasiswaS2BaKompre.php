@@ -14,7 +14,7 @@ class ControllerMahasiswaS2BaKompre extends Controller
      */
     public function index()
     {
-        //
+        // return view("mahasiswaS2.kompre.ba.index");
     }
 
     /**
@@ -24,7 +24,7 @@ class ControllerMahasiswaS2BaKompre extends Controller
      */
     public function create()
     {
-        //
+        return view("mahasiswaS2.kompre.ba.create");
     }
 
     /**
@@ -57,7 +57,7 @@ class ControllerMahasiswaS2BaKompre extends Controller
      */
     public function edit($id)
     {
-        //
+        return view("mahasiswaS2.kompre.ba.edit");
     }
 
     /**

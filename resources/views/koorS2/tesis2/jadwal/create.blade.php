@@ -41,14 +41,14 @@
                     </div>
                     <div class="">
                         <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                            <div class="row border-bottom">
+                           <div class="row border-bottom">
                                 <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $mahasiswa->npm }}
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->pembimbing_satu->nama_dosen }}
+                                    {{ $seminar->pembimbingSatu->nama_dosen }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
@@ -58,8 +58,8 @@
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Pembimbing 2</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    @if ($seminar->pembimbing_dua)
-                                        {{ $seminar->pembimbing_dua->nama_dosen }}
+                                    @if ($seminar->id_pembimbing_2)
+                                        {{ $seminar->pembimbingDua->nama_dosen }}
                                     @else
                                         {{ $seminar->pbl2_nama }}
                                     @endif
@@ -71,12 +71,12 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->tahun_akademik }}
                                 </div>
-                                <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
+                                <label class="col-md-3 bold mt-2"> <strong>Pembahas 1</strong></label>
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    @if ($seminar->pbl2_nip)
-                                        {{ $seminar->pbl2_nip }}
+                                    @if ($seminar->id_pembahas_1)
+                                        {{ $seminar->pembahasSatu->nama_dosen }}
                                     @else
-                                        -
+                                        {{ $seminar->pembahas_external_1 }}
                                     @endif
                                 </div>
                             </div>
@@ -86,9 +86,13 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $mahasiswa->semester }}
                                 </div>
-                                <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
+                                <label class="col-md-3 bold"> <strong>Pembahas 2</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->pembahas->nama_dosen }}
+                                    @if ($seminar->id_pembahas_2)
+                                        {{ $seminar->pembahasDua->nama_dosen }}
+                                    @else
+                                        {{ $seminar->pembahas_external_2 }}
+                                    @endif
                                 </div>
                             </div>
 
@@ -97,9 +101,13 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->sks }}
                                 </div>
-                                <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
+                                <label class="col-md-3 bold"> <strong>Pembahas 3</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->periode_seminar }}
+                                    @if ($seminar->id_pembahas_3)
+                                        {{ $seminar->pembahasTiga->nama_dosen }}
+                                    @else
+                                        {{ $seminar->pembahas_external_3 }}
+                                    @endif
                                 </div>
                             </div>
 
@@ -111,7 +119,7 @@
                                 <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/syarat_seminar_ta1/{{ $seminar->berkas_ta_satu }}">Lihat
+                                        href="/uploads/syarat_seminar_ta_satu_s2/{{ $seminar->berkas_ta_satu }}">Lihat
                                         Berkas</a>
                                 </div>
                             </div>
@@ -122,9 +130,9 @@
                                     {{ $seminar->toefl }}
                                 </div>
 
-                                <label class="col-md-3 bold"> <strong></strong></label>
+                                <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->status_seminar }}
+                                    {{ $seminar->periode_seminar }}
                                 </div>
                             </div>
 

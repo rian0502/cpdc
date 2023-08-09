@@ -24,7 +24,7 @@ class ControllerMahasiswaS2BaTaSatu extends Controller
      */
     public function create()
     {
-        //
+        return view("mahasiswaS2.ta1.ba.create");
     }
 
     /**
@@ -57,7 +57,7 @@ class ControllerMahasiswaS2BaTaSatu extends Controller
      */
     public function edit($id)
     {
-        //
+        return view("mahasiswaS2.ta1.ba.edit");
     }
 
     /**

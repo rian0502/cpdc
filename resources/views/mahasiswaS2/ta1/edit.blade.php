@@ -138,7 +138,7 @@
                             <div class="kanan weight-500 col-md-6">
 
                                 <div class="form-group">
-                                    <label>Dosen Pembimbing 1</label>
+                                    <label>Pembimbing 1</label>
                                     <select class="custom-select2 form-control" name="id_pembimbing_1" id="id_pembimbing_1"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Pembimbing 1">
