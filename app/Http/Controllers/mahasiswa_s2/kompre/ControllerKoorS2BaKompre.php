@@ -14,7 +14,7 @@ class ControllerKoorS2BaKompre extends Controller
      */
     public function index()
     {
-        //
+        return View('koorS2.sidang.validasi_ba.index');
     }
 
     /**
@@ -57,7 +57,7 @@ class ControllerKoorS2BaKompre extends Controller
      */
     public function edit($id)
     {
-        //
+        return View('koorS2.sidang.validasi_ba.index');
     }
 
     /**
