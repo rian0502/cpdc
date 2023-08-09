@@ -672,9 +672,25 @@
                             </a>
                         </li>
                     @endrole
+                    @role('ta1S2')
+                        <li>
+                            <a href="{{ route('koor.jadwalTA1S2.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalTA1*') ? 'active' : '' }}">
+                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
+                                    1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('koor.validasiBaTA1.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaTA1*') ? 'active' : '' }}">
+                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
+                                    1</span>
+                            </a>
+                        </li>
+                    @endrole
                     @role('ta2')
                         <li>
-                            <a href="{{ route('koor.jadwalTA2.index') }}"
+                            <a href="{{ route('koor.jadwalTA2S2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalTA2*') ? 'active' : '' }}">
                                 <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
                                     2</span>
@@ -690,7 +706,7 @@
                     @endrole
                     @role('kompre')
                         <li>
-                            <a href="{{ route('koor.jadwalKompre.index') }}"
+                            <a href="{{ route('koor.jadwalKompreS2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalKompre*') ? 'active' : '' }}">
                                 <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan
                                     Kompre</span>

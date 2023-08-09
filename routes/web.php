@@ -75,8 +75,10 @@ use App\Http\Controllers\komprehensif\MahasiswaKompreController;
 use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganKPController;
 use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
+use App\Http\Controllers\mahasiswa_s2\ta2\ControllerKoorS2BaTaDua;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\kerja_praktik\ValidasiSeminarKPController;
+use App\Http\Controllers\mahasiswa_s2\ta1\ControllerKoorS2BaTaSatu;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerAdminS2BpTaDua;
 use App\Http\Controllers\mahasiswa_s2\KegiatanMahasiswaControllerS2;
 use App\Http\Controllers\mahasiswa_s2\PrestasiMahasiswaControllerS2;
@@ -84,12 +86,16 @@ use App\Http\Controllers\mahasiswa_s2\ta1\ControllerAdminS2BpTaSatu;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganTesisController;
 use App\Http\Controllers\kerja_praktik\BeritaAcaraSeminarKerjaPraktik;
+use App\Http\Controllers\mahasiswa_s2\kompre\ControllerKoorS2BaKompre;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerAdminS2BpKompre;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerMahasiswaS2BaTaDua;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganAkademikController;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2BaTaSatu;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganTugasAkhirController;
+use App\Http\Controllers\mahasiswa_s2\kompre\ControllerKoorS2JadwalKompre;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2BaKompre;
+use App\Http\Controllers\mahasiswa_s2\ta2\ControllerKoorS2PenjadwalanTaDua;
+use App\Http\Controllers\mahasiswa_s2\ta1\ControllerKoorS2PenjadwalanTaSatu;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerMahasiswaS2SeminarTaDua;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
@@ -208,6 +214,15 @@ Route::prefix('koor')->name('koor.')->group(function () {
     Route::resource('validasiBaTA1', ValidasiBaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('validasiBaTA1');
     Route::resource('validasiBaTA2', ValidasiBaTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('validasiBaTA2');
     Route::resource('validasiBaKompre', ValidasiBaKompreController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('validasiBaKompre');
+
+    //koor S2
+    Route::resource('jadwal/TA1/S2', ControllerKoorS2PenjadwalanTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('jadwalTA1S2');
+    Route::resource('jadwal/TA2/S2', ControllerKoorS2PenjadwalanTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('jadwalTA2S2');
+    Route::resource('jadwal/Kompre/S2', ControllerKoorS2JadwalKompre::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('jadwalKompreS2');
+
+    Route::resource('validasi/Ba/TA1/S2', ControllerKoorS2BaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('ValidasiBaTa1S2');
+    Route::resource('validasi/Ba/TA2/S2', ControllerKoorS2BaTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('ValidasiBaTa2S2');
+    Route::resource('validasi/Ba/Kompre/S2', ControllerKoorS2BaKompre::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('ValidasiBaKompreS2');
 });
 
 

@@ -14,7 +14,7 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
      */
     public function index()
     {
-        //
+        return View('koorS2.tesis1.jadwal.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
      */
     public function create()
     {
-        //
+        return View('koorS2.tesis1.jadwal.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
      */
     public function edit($id)
     {
-        //
+        return View('koorS2.tesis1.jadwal.edit');
     }
 
     /**
