@@ -8,7 +8,6 @@
                         <h4 class="text-blue h4">Penjadwalan Seminar Tugas Akhir 1</h4>
                     </div>
                     <div class="pb-20 m-3">
-
                         <table class="table data-table-responsive stripe data-table-export">
                             <thead>
                                 <tr>
@@ -69,8 +68,6 @@
                                                     </a>
 
                                                     {{-- DI KASIH KONDISI KLK UDAH TERJADWAL BAKAL MUNCUL EDIT JADWALKANNYA ILANG BEGITU JG SEBALIKNYA --}}
-
-
                                                     {{-- NANTI FITUR EDIT KLK MAU EDIT BERARTI DOKUMEN YANG TERGENERATE AKAN TERPEBAHARUI JUGA --}}
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         @if ($item->jadwal)
@@ -88,8 +85,6 @@
                                                                     class="bi bi-calendar-plus-fill"></i>
                                                                 Jadwalkan</a>
                                                         @endif
-
-
                                                     </div>
                                                 </div>
                                             </td>
