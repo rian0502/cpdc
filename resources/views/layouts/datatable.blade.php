@@ -635,12 +635,12 @@
                                         class="{{ Request::is('admin/berkas/validasi/s2/tesis1*') ? 'active' : '' }}">Tesis
                                         1</a>
                                 </li>
-                                <li><a href="{{ route('berkas.validasi.seminar.ta2.index') }}"
-                                        class="{{ Request::is('admin/berkas/validasi/seminar/tesis2*') ? 'active' : '' }}">Tesis
+                                <li><a href="{{ route('berkas.validasi.s2.tesis2.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/s2/tesis2*') ? 'active' : '' }}">Tesis
                                         2</a>
                                 </li>
-                                <li><a href="{{ route('berkas.validasi.sidang.kompre.index') }}"
-                                        class="{{ Request::is('admin/berkas/validasi/sidang/tesis*') ? 'active' : '' }}">Sidang
+                                <li><a href="{{ route('berkas.validasi.s2.tesis3.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/s2/sidang_tesis*') ? 'active' : '' }}">Sidang
                                         Tesis</a>
                                 </li>
                             </ul>

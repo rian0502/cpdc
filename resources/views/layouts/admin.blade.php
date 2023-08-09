@@ -185,8 +185,9 @@
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.kompre.index') }}"
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/kompre*') ? 'active' : '' }}">Bimbingan
                                         Tugas Akhir</a></li>
-                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.tesis.index') }}"
-                                            class="{{ Request::is('dosen/mahasiswa/bimbingan/tesis*') ? 'active' : '' }}">Bimbingan Tesis</a></li>
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.tesis.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/tesis*') ? 'active' : '' }}">Bimbingan
+                                        Tesis</a></li>
 
                             </ul>
                         </li>
@@ -619,12 +620,12 @@
                                         class="{{ Request::is('admin/berkas/validasi/s2/tesis1*') ? 'active' : '' }}">Tesis
                                         1</a>
                                 </li>
-                                <li><a href="{{ route('berkas.validasi.seminar.ta2.index') }}"
+                                <li><a href="{{ route('berkas.validasi.s2.tesis2.index') }}"
                                         class="{{ Request::is('admin/berkas/validasi/seminar/ta2*') ? 'active' : '' }}">Tesis
                                         2</a>
                                 </li>
-                                <li><a href="{{ route('berkas.validasi.sidang.kompre.index') }}"
-                                        class="{{ Request::is('admin/berkas/validasi/sidang/kompre*') ? 'active' : '' }}">Sidang
+                                <li><a href="{{ route('berkas.validasi.s2.tesis3.index') }}"
+                                        class="{{ Request::is('admin/berkas/validasi/s2/sidang_tesis*') ? 'active' : '' }}">Sidang
                                         Tesis</a>
                                 </li>
                             </ul>

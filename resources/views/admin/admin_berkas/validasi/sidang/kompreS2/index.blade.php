@@ -5,7 +5,7 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Validasi Seminar Tugas Akhir 2</h4>
+                        <h4 class="text-blue h4">Validasi Seminar Komprehensif</h4>
                     </div>
                     <div class="pb-20 m-3">
 
@@ -44,7 +44,7 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                     <a class="dropdown-item"
-                                                        href="{{-- route('berkas.validasi.seminar.ta2.edit',$item->encrypt_id) --}}"><i
+                                                        href="{{-- route('berkas.validasi.sidang.kompre.edit',$item->encrypt_id) --}}"><i
                                                             class="dw dw-edit2"></i>
                                                         Validasi</a>
                                                 </div>
