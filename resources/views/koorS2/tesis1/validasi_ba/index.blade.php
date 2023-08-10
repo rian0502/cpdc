@@ -22,37 +22,37 @@
                             </thead>
                             <tbody>
 
-                                @foreach ($berkas as $item)
-                                    {{-- LOKASI TANGGAL JAM MULAI SELESAI MISAL BLM TERJADWAL MAKA OUTPUTIN KONDISIIN TULUSANNYA BLM TERJADWAL --}}
-                                    @if ($item->jadwal && $item->ba_seminar)
-                                        <tr>
-                                            <td>
-                                                {{ $loop->iteration }}
-                                            </td>
-                    
-                                            <td>
-                                                {{ $item->mahasiswa->npm }}
-                                            </td>
-                                            <td>
-                                                {{ $item->judul_ta }}
-                                            </td>
-                                            <td>
-                                                {{ $item->ba_seminar->no_berkas_ba_seminar_ta_satu }}
-                                            </td>
-                                            <td>
-                                                {{ $item->status_koor }}
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-warning"
-                                                    href="
-                                                        {{ route('koor.validasiBaTA1.edit', $item->encrypt_id) }}
+                                {{-- @foreach ($berkas as $item) --}}
+                                {{-- LOKASI TANGGAL JAM MULAI SELESAI MISAL BLM TERJADWAL MAKA OUTPUTIN KONDISIIN TULUSANNYA BLM TERJADWAL --}}
+                                {{-- @if ($item->jadwal && $item->ba_seminar) --}}
+                                <tr>
+                                    <td>
+                                        {{-- $loop->iteration --}}
+                                    </td>
+
+                                    <td>
+                                        {{-- $item->mahasiswa->npm --}}
+                                    </td>
+                                    <td>
+                                        {{-- $item->judul_ta --}}
+                                    </td>
+                                    <td>
+                                        {{-- $item->ba_seminar->no_berkas_ba_seminar_ta_satu --}}
+                                    </td>
+                                    <td>
+                                        {{-- $item->status_koor --}}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning"
+                                            href="
+                                                        {{-- route('koor.validasiBaTA1.edit',$item->encrypt_id) --}}
                                                         "><i
-                                                        class="bi bi-pencil-square"></i>
-                                                    Validasi</a>
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
+                                                class="bi bi-pencil-square"></i>
+                                            Validasi</a>
+                                    </td>
+                                </tr>
+                                {{-- @endif --}}
+                                {{-- @endforeach --}}
 
                             </tbody>
                         </table>
