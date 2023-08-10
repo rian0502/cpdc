@@ -212,8 +212,6 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-
         $seminar = ModelSeminarTaSatuS2::find(Crypt::decrypt($id));
         if ($request->file('berkas_seminar_ta_satu')) {
             $file = $request->file('berkas_seminar_ta_satu');
