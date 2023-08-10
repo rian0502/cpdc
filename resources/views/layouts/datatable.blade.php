@@ -202,7 +202,8 @@
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/kompre*') ? 'active' : '' }}">Bimbingan
                                         Tugas Akhir</a></li>
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.tesis.index') }}"
-                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/tesis*') ? 'active' : '' }}">Bimbingan Tesis</a></li>
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/tesis*') ? 'active' : '' }}">Bimbingan
+                                        Tesis</a></li>
 
                             </ul>
                         </li>
@@ -689,15 +690,15 @@
                     @endrole
                     @role('ta1S2')
                         <li>
-                            <a href="{{ route('koor.jadwalTA1.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalTA1*') ? 'active' : '' }}">
+                            <a href="{{ route('koor.jadwalTA1S2.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwal/TA1/S2*') ? 'active' : '' }}">
                                 <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
                                     1</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('koor.validasiBaTA1.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaTA1*') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/ValidasiBaTa1S2*') ? 'active' : '' }}">
                                 <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
                                     1</span>
                             </a>
@@ -949,7 +950,7 @@
             }
         }
     </script>
-    @role('kompre|ta2|ta1|pkl')
+    @role('kompre|ta2|ta1|pkl|ta1S2')
         <script>
             $(document).ready(function() {
                 $('#formJadwal').submit(function(e) {
@@ -1060,11 +1061,6 @@
             });
         </script>
     @endrole
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-    {{-- <script type="text/javascript"
-        src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-colvis-2.0.1/b-html5-2.0.1/datatables.min.js">
-    </script> --}}
-
 </body>
 
 </html>

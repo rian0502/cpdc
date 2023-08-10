@@ -675,14 +675,14 @@
                     @role('ta1S2')
                         <li>
                             <a href="{{ route('koor.jadwalTA1S2.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalTA1*') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwal/TA1/S2*') ? 'active' : '' }}">
                                 <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
                                     1</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('koor.validasiBaTA1.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaTA1*') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/ValidasiBaTa1S2*') ? 'active' : '' }}">
                                 <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
                                     1</span>
                             </a>
@@ -864,7 +864,7 @@
         }
     </script>
 
-    @role('kompre|ta2|ta1|pkl')
+    @role('kompre|ta2|ta1|pkl|ta1S2')
         <script>
             $(document).ready(function() {
                 $('#formJadwal').submit(function(e) {

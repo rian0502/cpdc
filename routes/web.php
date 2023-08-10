@@ -205,7 +205,6 @@ Route::prefix('koor')->name('koor.')->group(function () {
     Route::resource('jadwalTA1', PenjadwalanTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('jadwalTA1');
     Route::resource('jadwalTA2', PenjadwalanTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('jadwalTA2');
     Route::resource('jadwalKompre', PenjadwalanKompreController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('jadwalKompre');
-
     Route::get('/jadwalPPKL/resend/{id}', [JadwalPKLController::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:pkl'])->name('jadwalPKL.resend');
     Route::get('/jadwalTA1/resend/{id}', [PenjadwalanTaSatu::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1.resend');
     Route::get('/jadwalTA2/resend/{id}', [PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('jadwalTA2.resend');
@@ -214,12 +213,10 @@ Route::prefix('koor')->name('koor.')->group(function () {
     Route::resource('validasiBaTA1', ValidasiBaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('validasiBaTA1');
     Route::resource('validasiBaTA2', ValidasiBaTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('validasiBaTA2');
     Route::resource('validasiBaKompre', ValidasiBaKompreController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('validasiBaKompre');
-
     //koor S2
     Route::resource('jadwal/TA1/S2', ControllerKoorS2PenjadwalanTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('jadwalTA1S2');
     Route::resource('jadwal/TA2/S2', ControllerKoorS2PenjadwalanTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('jadwalTA2S2');
     Route::resource('jadwal/Kompre/S2', ControllerKoorS2JadwalKompre::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('jadwalKompreS2');
-
     Route::resource('validasi/Ba/TA1/S2', ControllerKoorS2BaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('ValidasiBaTa1S2');
     Route::resource('validasi/Ba/TA2/S2', ControllerKoorS2BaTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('ValidasiBaTa2S2');
     Route::resource('validasi/Ba/Kompre/S2', ControllerKoorS2BaKompre::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('ValidasiBaKompreS2');
