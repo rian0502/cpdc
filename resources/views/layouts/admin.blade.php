@@ -674,15 +674,15 @@
                         <li>
                             <a href="{{ route('koor.jadwalTA1S2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/jadwal/TA1/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
-                                    1 S2</span>
+                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan Tesis
+                                    1</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('koor.ValidasiBaTa1S2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/validasi/Ba/TA1/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
-                                    1 S2</span>
+                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA Tesis
+                                    1</span>
                             </a>
                         </li>
                     @endrole
@@ -706,15 +706,15 @@
                         <li>
                             <a href="{{ route('koor.jadwalTA2S2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/jadwal/TA2/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
-                                    2 S2</span>
+                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan Tesis
+                                    2</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('koor.ValidasiBaTa2S2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor//Ba/TA2/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
-                                    2 S2</span>
+                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA Tesis
+                                    2</span>
                             </a>
                         </li>
                     @endrole
@@ -739,14 +739,14 @@
                             <a href="{{ route('koor.jadwalKompreS2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/jadwal/Kompre/S2*') ? 'active' : '' }}">
                                 <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan
-                                    Kompre S2</span>
+                                    Sidang Tesis</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('koor.ValidasiBaKompreS2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/validasi/Ba/Kompre/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti
-                                    Kompre S2</span>
+                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA
+                                    Sidang Tesis</span>
                             </a>
                         </li>
                     @endrole
