@@ -13,11 +13,12 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Daftar Seminar Tugas Akhir 1</h4>
+                            <h4 class="text-dark h4">Edit Seminar Tesis 1</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('mahasiswa.seminarta1s2.update', $seminar->encrypt_id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('mahasiswa.seminarta1s2.update', $seminar->encrypt_id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="profile-edit-list row">
@@ -291,8 +292,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Pembahas 3</label>
-                                    <select class="custom-select2 form-control" name="id_pembahas_3"
-                                        id="id_pembahas_3" style="width: 100%; height: 38px"
+                                    <select class="custom-select2 form-control" name="id_pembahas_3" id="id_pembahas_3"
+                                        style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'pembahas3', 'phs3_nama')">
                                         <optgroup label="Pembahas 3">
                                             @foreach ($dosens as $item)
@@ -327,7 +328,8 @@
                                     {{ old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id) == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP pembahas 3</label>
-                                        <input autofocus name="nip_pembahas_external_3" class="form-control" type="text"
+                                        <input autofocus name="nip_pembahas_external_3" class="form-control"
+                                            type="text"
                                             value="{{ old('nip_pembahas_external_3', $seminar->nip_pembahas_external_3) }}"
                                             placeholder="Masukkan NIP pembahas 3">
                                         @error('nip_pembahas_external_3')

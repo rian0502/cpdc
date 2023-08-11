@@ -57,37 +57,36 @@
                                 <label class="col-md-3 bold"> <strong>Berita Acara Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/ba_seminar_ta_dua/{{ $seminar->ba_seminar->berkas_ba_seminar_ta_dua }}">Lihat</a>
+                                        href="/uploads/ba_seminar_tesis_2/{{ $seminar->beritaAcara->file_ba }}">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Nomor Berita Acara Seminar</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->ba_seminar->no_berkas_ba_seminar_ta_dua }}
+                                    {{ $seminar->beritaAcara->no_ba }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/nilai_seminar_ta_dua/{{ $seminar->ba_seminar->berkas_nilai_seminar_ta_dua }}">Lihat</a>
+                                        href="/uploads/nilai_seminar_tesis_2/{{ $seminar->beritaAcara->file_nilai }}">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->ba_seminar->huruf_mutu }}
+                                    {{ $seminar->beritaAcara->nilai_mutu }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"> <strong>PowerPoint</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a target="_blank"
-                                        href="{{ $seminar->ba_seminar->berkas_ppt_seminar_ta_dua }}">Lihat</a>
+                                    <a target="_blank" href="{{ $seminar->beritaAcara->ppt }}">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Nilai</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->ba_seminar->nilai }}
+                                    {{ $seminar->beritaAcara->nilai }}
                                 </div>
                             </div>
 
-                            <form id="formStatus" action="{{ route('koor.validasiBaTA2.update', $seminar->encrypt_id) }}"
+                            <form id="formStatus" action="{{ route('koor.ValidasiBaTa2S2.update', $seminar->encrypt_id) }}"
                                 method="post">
                                 @method('put')
                                 @csrf
@@ -123,7 +122,7 @@
                                     <button type="submit" id="submitButton" class="submit btn btn-primary">Kirim</button>
                                 </div>
                             </form>
-                            <a href="{{ route('koor.validasiBaTA2.index') }}">
+                            <a href="{{ route('koor.ValidasiBaTa2S2.index') }}">
                                 <button class="batal btn btn-secondary">Batal</button>
                             </a>
                         </div>

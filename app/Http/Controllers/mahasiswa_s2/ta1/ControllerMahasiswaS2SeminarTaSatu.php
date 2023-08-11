@@ -41,7 +41,9 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::user()->mahasiswa->taSatuS2){
+            return redirect()->route('mahasiswa.seminarta1s2.index');
+        }
         $data = [
             'dosens' => Dosen::where('status', 'Aktif')->get(),
             'syarat' => BerkasPersyaratanSeminar::find(2),
@@ -212,8 +214,6 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-
         $seminar = ModelSeminarTaSatuS2::find(Crypt::decrypt($id));
         if ($request->file('berkas_seminar_ta_satu')) {
             $file = $request->file('berkas_seminar_ta_satu');
@@ -260,6 +260,8 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
                 'id_pembahas_1.exists' => 'Pembahas 1 tidak valid'
             ]);
             $seminar->id_pembahas_1 = Crypt::decrypt($request->id_pembahas_1);
+            $seminar->pembahas_external_1 = null;
+            $seminar->nip_pembahas_external_1 = null;
         } else {
             $request->validate([
                 'pembahas_external_1' => ['required', 'string', 'max:255'],
@@ -272,6 +274,7 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
                 'nip_pembahas_external_1.string' => 'NIP Pembahas 1 harus berupa kata',
                 'nip_pembahas_external_1.max' => 'NIP Pembahas 1 maksimal 255 karakter'
             ]);
+            $seminar->id_pembahas_1 = null;
             $seminar->pembahas_external_1 = $request->pembahas_external_1;
             $seminar->nip_pembahas_external_1 = $request->nip_pembahas_external_1;
         }
@@ -284,6 +287,8 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
                 'id_pembahas_2.exists' => 'Pembahas 1 tidak valid'
             ]);
             $seminar->id_pembahas_2 = Crypt::decrypt($request->id_pembahas_2);
+            $seminar->pembahas_external_2 = null;
+            $seminar->nip_pembahas_external_2 = null;
         } else {
             $request->validate([
                 'pembahas_external_2' => ['required', 'string', 'max:255'],
@@ -296,6 +301,7 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
                 'nip_pembahas_external_2.string' => 'NIP Pembahas 1 harus berupa kata',
                 'nip_pembahas_external_2.max' => 'NIP Pembahas 1 maksimal 255 karakter'
             ]);
+            $seminar->id_pembahas_2 = null;
             $seminar->pembahas_external_2 = $request->pembahas_external_2;
             $seminar->nip_pembahas_external_2 = $request->nip_pembahas_external_2;
         }
@@ -308,6 +314,8 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
                 'id_pembahas_3.exists' => 'Pembahas 1 tidak valid'
             ]);
             $seminar->id_pembahas_3 = Crypt::decrypt($request->id_pembahas_3);
+            $seminar->pembahas_external_3 = null;
+            $seminar->nip_pembahas_external_3 = null;
         } else {
             $request->validate([
                 'pembahas_external_3' => ['required', 'string', 'max:255'],
@@ -320,6 +328,7 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
                 'nip_pembahas_external_3.string' => 'NIP Pembahas 1 harus berupa kata',
                 'nip_pembahas_external_3.max' => 'NIP Pembahas 1 maksimal 255 karakter'
             ]);
+            $seminar->id_pembahas_3 = null;
             $seminar->pembahas_external_3 = $request->pembahas_external_3;
             $seminar->nip_pembahas_external_3 = $request->nip_pembahas_external_3;
         }

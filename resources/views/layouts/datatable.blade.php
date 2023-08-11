@@ -522,16 +522,14 @@
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('mahasiswa.seminarta1s2.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/ta1/S2*') ? 'active' : '' }}">Tugas
-                                        Akhir
+                                        class="{{ Request::is('mahasiswa/seminar/ta1/S2*') ? 'active' : '' }}">Tesis
                                         1</a></li>
                                 <li><a href="{{ route('mahasiswa.seminarta2s2.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/ta2/S2*') ? 'active' : '' }}">Tugas
-                                        Akhir
+                                        class="{{ Request::is('mahasiswa/seminar/ta2/S2*') ? 'active' : '' }}">Tesis
                                         2</a></li>
                                 <li><a href="{{ route('mahasiswa.sidang.kompres2.index') }}"
                                         class="{{ Request::is('mahasiswa/sidang/kompre/S2*') ? 'active' : '' }}">Sidang
-                                        Komprehensif</a></li>
+                                        Tesis</a></li>
                             </ul>
                         </li>
                     @endrole
@@ -691,16 +689,16 @@
                     @role('ta1S2')
                         <li>
                             <a href="{{ route('koor.jadwalTA1S2.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalTA1*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
-                                    1 S2</span>
+                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwal/TA1/S2*') ? 'active' : '' }}">
+                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan Tesis
+                                    1</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('koor.ValidasiBaTa1S2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/validasi/Ba/TA1/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
-                                    1 S2</span>
+                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA Tesis
+                                    1</span>
                             </a>
                         </li>
                     @endrole
@@ -724,15 +722,15 @@
                         <li>
                             <a href="{{ route('koor.jadwalTA2S2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/jadwal/TA2/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
-                                    2 S2</span>
+                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan Tesis
+                                    2</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('koor.ValidasiBaTa2S2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor//Ba/TA2/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
-                                    2 S2</span>
+                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA Tesis
+                                    2</span>
                             </a>
                         </li>
                     @endrole
@@ -757,14 +755,14 @@
                             <a href="{{ route('koor.jadwalKompreS2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/jadwal/Kompre/S2*') ? 'active' : '' }}">
                                 <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan
-                                    Kompre S2</span>
+                                    Sidang Tesis</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('koor.ValidasiBaKompreS2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/validasi/Ba/Kompre/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti
-                                    Kompre S2</span>
+                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA
+                                    Sidang Tesis</span>
                             </a>
                         </li>
                     @endrole
@@ -982,7 +980,7 @@
             }
         }
     </script>
-    @role('kompre|ta2|ta1|pkl')
+    @role('kompre|ta2|ta1|pkl|ta1S2')
         <script>
             $(document).ready(function() {
                 $('#formJadwal').submit(function(e) {
@@ -1093,11 +1091,6 @@
             });
         </script>
     @endrole
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-    {{-- <script type="text/javascript"
-        src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-colvis-2.0.1/b-html5-2.0.1/datatables.min.js">
-    </script> --}}
-
 </body>
 
 </html>
