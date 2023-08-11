@@ -5,7 +5,7 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Validasi Seminar Tugas Akhir 2</h4>
+                        <h4 class="text-blue h4">Validasi Seminar Tesis 2</h4>
                     </div>
                     <div class="pb-20 m-3">
 
@@ -21,19 +21,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-                                {{-- @foreach ($seminar as $item) --}}
+                                @foreach ($ta2 as $item)
                                     <tr>
-                                        <td>{{-- $loop->iteration --}}</td>
-                                        <td>{{-- $item->mahasiswa->nama_mahasiswa --}}</td>
-                                        <td>{{-- $item->mahasiswa->npm --}}</td>
-                                        <td>{{-- $item->judul_ta --}}</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->mahasiswa->nama_mahasiswa }}</td>
+                                        <td>{{ $item->mahasiswa->npm }}</td>
+                                        <td>{{ $item->judul_ta }}</td>
                                         <td>
-                                            {{-- @if ($item->status_admin == 'Process')
+                                            @if ($item->status_admin == 'Process')
                                                 <span class="badge badge-warning">Belum Divalidasi</span>
                                             @elseif ($item->status_admin == 'Invalid')
                                                 <span class="badge badge-danger">Invalid</span>
-                                            @endif --}}
+                                            @endif
                                         </td>
                                         <td>
                                             <div class="dropdown">
@@ -44,14 +43,14 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                     <a class="dropdown-item"
-                                                        href="{{-- route('berkas.validasi.seminar.ta2.edit',$item->encrypt_id) --}}"><i
+                                                        href="{{ route('berkas.validasi.s2.tesis2.edit', $item->encrypt_id) }}"><i
                                                             class="dw dw-edit2"></i>
                                                         Validasi</a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-                                {{-- @endforeach --}}
+                                @endforeach
 
                             </tbody>
                         </table>

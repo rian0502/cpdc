@@ -154,7 +154,7 @@
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
-                        <form id="formJadwal" action="{{ route('koor.jadwalTA2.store', $seminar->encrypt_id) }}"
+                        <form id="formJadwal" action="{{ route('koor.jadwalTA2S2.store', $seminar->encrypt_id) }}"
                             method="POST">
                             @csrf
                             <div class="profile-edit-list row">
@@ -208,7 +208,7 @@
                             <div class="form-group">
                                 <button type="submit" class="submit btn btn-primary">Kirim</button>
                             </div>
-                            <a href="{{ route('koor.jadwalTA2.index') }}">
+                            <a href="{{ route('koor.jadwalTA2S2.index') }}">
 
                                 <button class="batal btn btn-secondary">Batal</button>
                             </a>
