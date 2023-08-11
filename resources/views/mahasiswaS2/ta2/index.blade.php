@@ -99,7 +99,7 @@
 
                         </div>
                         @if ($seminar->status_admin != 'Valid')
-                            <a href="/mahasiswa/seminarta1s2/{{ $seminar->encrypt_id }}/edit">
+                            <a href="{{ route('mahasiswa.seminarta2s2.edit', $seminar->encrypt_id) }}">
                                 <button class="btn btn-primary right">Edit Data</button>
                             </a>
                         @endif
@@ -186,7 +186,7 @@
                                 <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/syarat_seminar_ta_satu_s2/{{ $seminar->berkas_ta_satu }}">Lihat
+                                        href="/uploads/syarat_seminar_ta_dua_s2/{{ $seminar->berkas_ta_dua }}">Lihat
                                         Berkas</a>
                                 </div>
                             </div>
@@ -195,17 +195,12 @@
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->toefl }}
                                 </div>
-
-                                <label class="col-md-3 bold"> <strong>Ide Judul</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    Dari {{ $seminar->sumber_penelitian }}
-                                </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->periode_seminar }}
                                 </div>
+                            </div>
+                            <div class="row border-bottom mt-2">
                             </div>
                             <div class="row border-bottom mt-3">
                                 <label class="col-md-12 bold"><b>Judul atau Topik Tugas Akhir</b></label>
