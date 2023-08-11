@@ -522,16 +522,14 @@
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('mahasiswa.seminarta1s2.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/ta1/S2*') ? 'active' : '' }}">Tugas
-                                        Akhir
+                                        class="{{ Request::is('mahasiswa/seminar/ta1/S2*') ? 'active' : '' }}">Tesis
                                         1</a></li>
                                 <li><a href="{{ route('mahasiswa.seminarta2s2.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/ta2/S2*') ? 'active' : '' }}">Tugas
-                                        Akhir
+                                        class="{{ Request::is('mahasiswa/seminar/ta2/S2*') ? 'active' : '' }}">Tesis
                                         2</a></li>
                                 <li><a href="{{ route('mahasiswa.sidang.kompres2.index') }}"
                                         class="{{ Request::is('mahasiswa/sidang/kompre/S2*') ? 'active' : '' }}">Sidang
-                                        Komprehensif</a></li>
+                                        Tesis</a></li>
                             </ul>
                         </li>
                     @endrole
