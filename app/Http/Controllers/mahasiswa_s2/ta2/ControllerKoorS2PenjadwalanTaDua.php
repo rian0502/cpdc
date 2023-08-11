@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\ModelSeminarTaDuaS2;
 use App\Models\TemplateBeritaAcara;
 use App\Http\Controllers\Controller;
+use App\Models\ModelJadwalSeminarTaDuaS2;
 use App\Models\ModelSeminarTaSatuS2;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -29,7 +30,17 @@ class ControllerKoorS2PenjadwalanTaDua extends Controller
 
     public function index()
     {
-        return View('koorS2.tesis2.jadwal.index');
+        $now = date('Y-m-d');
+        $seminar = ModelSeminarTaDuaS2::with('jadwal')
+            ->whereDoesntHave('beritaAcara')
+            ->where('status_admin', 'Valid')
+            ->where(function ($query) use ($now) {
+                $query->whereDoesntHave('jadwal')
+                    ->orWhereHas('jadwal', function ($query) use ($now) {
+                        $query->whereDate('tanggal', '>=', $now);
+                    });
+            })->get();
+        return View('koorS2.tesis2.jadwal.index', compact('seminar'));
     }
 
     public function create(Request $request)
@@ -52,18 +63,18 @@ class ControllerKoorS2PenjadwalanTaDua extends Controller
         $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
         $kajur = User::role('kaprodiS2')->with('dosen')->first();
         $data = [
-            'tanggal_seminar_ta_satu' => $request->tanggal_skp,
-            'jam_mulai_seminar_ta_satu' => $request->jam_mulai_skp,
-            'jam_selesai_seminar_ta_satu' => $request->jam_selesai_skp,
+            'tanggal' => $request->tanggal_skp,
+            'jam_mulai' => $request->jam_mulai_skp,
+            'jam_selesai' => $request->jam_selesai_skp,
             'id_lokasi' => Crypt::decrypt($request->id_lokasi),
             'id_seminar' => $id
         ];
-        $insertJadwal = ModelJadwalSeminarTaSatuS2::create($data);
+        $insertJadwal = ModelJadwalSeminarTaDuaS2::create($data);
         $ins_id = $insertJadwal->id;
-        $update = ModelJadwalSeminarTaSatuS2::find($ins_id);
+        $update = ModelJadwalSeminarTaDuaS2::find($ins_id);
         $update->encrypt_id = Crypt::encrypt($ins_id);
         $update->save();
-        $seminar = ModelSeminarTaSatuS2::find($id);
+        $seminar = ModelSeminarTaDuaS2::find($id);
         $mahasiswa = $seminar->mahasiswa;
         $template = new \PhpOffice\PhpWord\TemplateProcessor($this->ba->path);
         $template->setValue('nama_admin', $admin->nama_administrasi);
@@ -79,8 +90,8 @@ class ControllerKoorS2PenjadwalanTaDua extends Controller
             $template->setValue('nama_pembimbing_2', $seminar->pembimbingDua->nama_dosen);
             $template->setValue('nip_pembimbing_2', $seminar->pembimbingDua->nip);
         } else {
-            $template->setValue('pbl2_nama', $seminar->pembimbingSatu->nama_dosen);
-            $template->setValue('pbl2_nip', $seminar->pembimbingSatu->nip);
+            $template->setValue('nama_pembimbing_2', $seminar->pbl2_nama);
+            $template->setValue('nip_pembimbing_2', $seminar->pbl2_nip);
         }
         if ($seminar->id_pembahas_1) {
             $template->setValue('nama_pembahas_1', $seminar->pembahasSatu->nama_dosen);
@@ -93,30 +104,30 @@ class ControllerKoorS2PenjadwalanTaDua extends Controller
             $template->setValue('nama_pembahas_2', $seminar->pembahasDua->nama_dosen);
             $template->setValue('nip_pembimbing_2', $seminar->pembahasDua->nip);
         } else {
-            $template->setValue('nama_pembahas_2', $seminar->pembimbingSatu->nama_dosen);
-            $template->setValue('nip_pembimbing_2', $seminar->pembimbingSatu->nip);
+            $template->setValue('nama_pembahas_2', $seminar->pembahas_external_2);
+            $template->setValue('nip_pembimbing_2', $seminar->nip_pembahas_external_2);
         }
         if ($seminar->id_pembahas_3) {
-            $template->setValue('nama_pembimbing_3', $seminar->pembahasTiga->nama_dosen);
-            $template->setValue('nip_pembimbing_3', $seminar->pembahasTiga->nip);
+            $template->setValue('nama_pembahas_3', $seminar->pembahasTiga->nama_dosen);
+            $template->setValue('nip_pembahas_3', $seminar->pembahasTiga->nip);
         } else {
-            $template->setValue('nama_pembimbing_3', $seminar->pembimbingSatu->nama_dosen);
-            $template->setValue('nip_pembimbing_3', $seminar->pembimbingSatu->nip);
+            $template->setValue('nama_pembahas_3', $seminar->pembahas_external_3);
+            $template->setValue('nip_pembahas_3', $seminar->nip_pembahas_external_3);
         }
-        $template->setValue('nama_koor_ta1', Auth::user()->name);
-        $template->setValue('nip_koor_ta1', Auth::user()->dosen->nip);
+        $template->setValue('nama_koor_ta2', Auth::user()->name);
+        $template->setValue('nip_koor_ta2', Auth::user()->dosen->nip);
         $template->setValue('hari', $hari);
         $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'));
         $template->setValue('jam_mulai', $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
-        $namafile = $mahasiswa->npm . '_ba_tesis_1.docx';
-        $template->saveAs('uploads/print_ba_tesis_1/' . $namafile);
+        $namafile = $mahasiswa->npm . '_ba_tesis_2.docx';
+        $template->saveAs('uploads/print_ba_tesis_2/' . $namafile);
         $to_name = $mahasiswa->nama_mahasiswa;
         $to_email = $mahasiswa->user->email;
         $data = [
             'name' => $seminar->mahasiswa->nama_mahasiswa,
-            'body' => 'Berikut adalah jadwal Seminar Tesis 1 Anda',
+            'body' => 'Berikut adalah jadwal Seminar Tesis 2 Anda',
             'seminar' => $seminar->judul_ta,
             'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'),
             'jam_mulai' => $request->jam_mulai_skp,
@@ -124,12 +135,12 @@ class ControllerKoorS2PenjadwalanTaDua extends Controller
             'lokasi' => $lokasi->nama_lokasi,
         ];
         Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
-            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tesis 1');
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tesis 2');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach('uploads/print_ba_tesis_1/' . $namafile);
+            $message->attach('uploads/print_ba_tesis_2/' . $namafile);
         });
-        unlink('uploads/print_ba_tesis_1/' . $namafile);
-        return redirect()->route('koor.jadwalTA1S2.index')->with('success', 'Berhasil Menjadwalkan Seminar Tesis 1');
+        unlink('uploads/print_ba_tesis_2/' . $namafile);
+        return redirect()->route('koor.jadwalTA2S2.index')->with('success', 'Berhasil Menjadwalkan Seminar Tesis 2');
     }
 
     /**
@@ -165,6 +176,4 @@ class ControllerKoorS2PenjadwalanTaDua extends Controller
     {
         //
     }
-
-
 }
