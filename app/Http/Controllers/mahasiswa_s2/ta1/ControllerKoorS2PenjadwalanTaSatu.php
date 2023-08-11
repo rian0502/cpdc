@@ -77,9 +77,9 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
         $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
         $kajur = User::role('kaprodiS2')->with('dosen')->first();
         $data = [
-            'tanggal_seminar_ta_satu' => $request->tanggal_skp,
-            'jam_mulai_seminar_ta_satu' => $request->jam_mulai_skp,
-            'jam_selesai_seminar_ta_satu' => $request->jam_selesai_skp,
+            'tanggal' => $request->tanggal_skp,
+            'jam_mulai' => $request->jam_mulai_skp,
+            'jam_selesai' => $request->jam_selesai_skp,
             'id_lokasi' => Crypt::decrypt($request->id_lokasi),
             'id_seminar' => $id
         ];
@@ -104,8 +104,8 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
             $template->setValue('nama_pembimbing_2', $seminar->pembimbingDua->nama_dosen);
             $template->setValue('nip_pembimbing_2', $seminar->pembimbingDua->nip);
         } else {
-            $template->setValue('pbl2_nama', $seminar->pembimbingSatu->nama_dosen);
-            $template->setValue('pbl2_nip', $seminar->pembimbingSatu->nip);
+            $template->setValue('nama_pembimbing_2', $seminar->pbl2_nama);
+            $template->setValue('nip_pembimbing_2', $seminar->pbl2_nip);
         }
         if ($seminar->id_pembahas_1) {
             $template->setValue('nama_pembahas_1', $seminar->pembahasSatu->nama_dosen);
@@ -118,15 +118,15 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
             $template->setValue('nama_pembahas_2', $seminar->pembahasDua->nama_dosen);
             $template->setValue('nip_pembimbing_2', $seminar->pembahasDua->nip);
         } else {
-            $template->setValue('nama_pembahas_2', $seminar->pembimbingSatu->nama_dosen);
-            $template->setValue('nip_pembimbing_2', $seminar->pembimbingSatu->nip);
+            $template->setValue('nama_pembahas_2', $seminar->pembahas_external_2);
+            $template->setValue('nip_pembimbing_2', $seminar->nip_pembahas_external_2);
         }
         if ($seminar->id_pembahas_3) {
-            $template->setValue('nama_pembimbing_3', $seminar->pembahasTiga->nama_dosen);
-            $template->setValue('nip_pembimbing_3', $seminar->pembahasTiga->nip);
+            $template->setValue('nama_pembahas_3', $seminar->pembahasTiga->nama_dosen);
+            $template->setValue('nip_pembahas_3', $seminar->pembahasTiga->nip);
         } else {
-            $template->setValue('nama_pembimbing_3', $seminar->pembimbingSatu->nama_dosen);
-            $template->setValue('nip_pembimbing_3', $seminar->pembimbingSatu->nip);
+            $template->setValue('nama_pembahas_3', $seminar->pembahas_external_3);
+            $template->setValue('nip_pembahas_3', $seminar->nip_pembahas_external_3);
         }
         $template->setValue('nama_koor_ta1', Auth::user()->name);
         $template->setValue('nip_koor_ta1', Auth::user()->dosen->nip);
@@ -155,6 +155,10 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
         });
         unlink('uploads/print_ba_tesis_1/' . $namafile);
         return redirect()->route('koor.jadwalTA1S2.index')->with('success', 'Berhasil Menjadwalkan Seminar Tesis 1');
+    }
+
+    public function resend($id){
+
     }
     /**
      * Display the specified resource.
