@@ -697,7 +697,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('koor.validasiBaTA1.index') }}"
+                            <a href="{{ route('koor.ValidasiBaTa1S2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('koor/ValidasiBaTa1S2*') ? 'active' : '' }}">
                                 <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
                                     1 S2</span>

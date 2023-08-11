@@ -41,7 +41,9 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::user()->mahasiswa->taSatuS2){
+            return redirect()->route('mahasiswa.seminarta1s2.index');
+        }
         $data = [
             'dosens' => Dosen::where('status', 'Aktif')->get(),
             'syarat' => BerkasPersyaratanSeminar::find(2),

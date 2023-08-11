@@ -119,6 +119,8 @@ class ControllerMahasiswaS2BaTaSatu extends Controller
         $berita_acara->save();
         $seminar = ModelSeminarTaSatuS2::find($berita_acara->id_seminar);
         $seminar->status_koor = 'Belum Selesai';
+        $seminar->komentar = '';
+        $seminar->updated_at = now();
         $seminar->save();
         return redirect()->route('mahasiswa.seminarta1s2.index')->with('success', 'Berhasil mengubah berita acara seminar tesis 1');
     }
