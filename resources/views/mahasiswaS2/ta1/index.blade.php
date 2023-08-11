@@ -225,7 +225,6 @@
                         <div class="clearfix">
                             <div class="pull-left mb-4">
                                 <h4 class="text-dark h4">Jadwal Seminar</h4>
-
                             </div>
                         </div>
 
@@ -328,7 +327,7 @@
                                     <label class="col-md-3 bold"> <strong>Berita Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="/uploads/ba/{{ $seminar->beritaAcara->file_ba }}">Lihat</a>
+                                            href="/uploads/ba_seminar_tesis_1/{{ $seminar->beritaAcara->file_ba }}">Lihat</a>
                                     </div>
                                     <label class="col-md-3 bold mt-2"><b>Nomor Berita Seminar</b></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -339,7 +338,7 @@
                                     <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="/uploads/nilai/{{ $seminar->beritaAcara->file_nilai }}">Lihat</a>
+                                            href="/uploads/nilai_seminar_tesis_1/{{ $seminar->beritaAcara->file_nilai }}">Lihat</a>
                                     </div>
                                     <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
