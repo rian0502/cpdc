@@ -41,7 +41,7 @@
                     </div>
                     <div class="">
                         <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                           <div class="row border-bottom">
+                            <div class="row border-bottom">
                                 <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $mahasiswa->npm }}
@@ -155,15 +155,16 @@
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
-                        <form id="formJadwal" action="{{ route('koor.jadwalTA1.store', $seminar->encrypt_id ) }}" method="POST">
+                        <form id="formJadwal" action="{{ route('koor.jadwalTA1.store', $seminar->encrypt_id) }}"
+                            method="POST">
                             @csrf
                             <div class="profile-edit-list row">
                                 {{-- form untuk sebelah kiri --}}
                                 <div class="weight-500 col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Seminar</label>
-                                        <input value="{{ old('tanggal_skp') }}" autofocus
-                                            name="tanggal_skp" id="tanggal_skp"
+                                        <input value="{{ old('tanggal_skp') }}" autofocus name="tanggal_skp"
+                                            id="tanggal_skp"
                                             class="form-control @error('tanggal_skp') form-control-danger @enderror"
                                             type="date" placeholder="Tanggal Pelaksanaan Seminar">
                                         @error('tanggal_skp')
@@ -189,8 +190,7 @@
                                 <div class="kanan weight-500 col-md-6">
                                     <div class="form-group">
                                         <label>Jam Mulai</label>
-                                        <input type="time" value="{{ old('jam_mulai_skp') }}"
-                                            name="jam_mulai_skp"
+                                        <input type="time" value="{{ old('jam_mulai_skp') }}" name="jam_mulai_skp"
                                             class="form-control @error('jam_mulai_skp') form-control-danger @enderror">
                                         @error('jam_mulai_skp')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -198,8 +198,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Jam Selesai</label>
-                                        <input type="time" name="jam_selesai_skp"
-                                            value="{{ old('jam_selesai_skp') }}"
+                                        <input type="time" name="jam_selesai_skp" value="{{ old('jam_selesai_skp') }}"
                                             class="form-control @error('jam_selesai_skp') form-control-danger @enderror">
                                         @error('jam_selesai_skp')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -212,7 +211,7 @@
                             </div>
                             <a href="{{ route('koor.jadwalTA1.index') }}">
 
-                                <button class="batal btn btn-secondary" >Batal</button>
+                                <button class="batal btn btn-secondary">Batal</button>
                             </a>
 
                         </form>
