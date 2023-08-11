@@ -41,7 +41,9 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::user()->mahasiswa->taSatuS2){
+            return redirect()->route('mahasiswa.seminarta1s2.index');
+        }
         $data = [
             'dosens' => Dosen::where('status', 'Aktif')->get(),
             'syarat' => BerkasPersyaratanSeminar::find(2),
@@ -212,8 +214,6 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-
         $seminar = ModelSeminarTaSatuS2::find(Crypt::decrypt($id));
         if ($request->file('berkas_seminar_ta_satu')) {
             $file = $request->file('berkas_seminar_ta_satu');
