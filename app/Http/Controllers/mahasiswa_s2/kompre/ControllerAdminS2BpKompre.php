@@ -96,6 +96,7 @@ class ControllerAdminS2BpKompre extends Controller
             $seminar->save();
         } else {
             $seminar = ModelKompreS2::find(Crypt::decrypt($id));
+            $seminar->komentar = null;
             $seminar->status_admin = $request->status_admin;
             $seminar->updated_at = date('Y-m-d H:i:s');
             $seminar->save();

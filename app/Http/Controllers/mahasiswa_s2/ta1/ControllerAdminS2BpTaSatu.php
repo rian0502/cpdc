@@ -98,6 +98,7 @@ class ControllerAdminS2BpTaSatu extends Controller
         } else {
             $seminar = ModelSeminarTaSatuS2::find(Crypt::decrypt($id));
             $seminar->status_admin = $request->status_admin;
+            $seminar->komentar = null;
             $seminar->updated_at = date('Y-m-d H:i:s');
             $seminar->save();
         }

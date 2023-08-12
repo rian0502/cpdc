@@ -116,10 +116,10 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
         }
         if ($seminar->id_pembahas_2) {
             $template->setValue('nama_pembahas_2', $seminar->pembahasDua->nama_dosen);
-            $template->setValue('nip_pembimbing_2', $seminar->pembahasDua->nip);
+            $template->setValue('nip_pembahas_2', $seminar->pembahasDua->nip);
         } else {
             $template->setValue('nama_pembahas_2', $seminar->pembahas_external_2);
-            $template->setValue('nip_pembimbing_2', $seminar->nip_pembahas_external_2);
+            $template->setValue('nip_pembahas_2', $seminar->nip_pembahas_external_2);
         }
         if ($seminar->id_pembahas_3) {
             $template->setValue('nama_pembahas_3', $seminar->pembahasTiga->nama_dosen);

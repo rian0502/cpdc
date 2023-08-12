@@ -60,6 +60,7 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
     public function store(StoreTaSatuS2Request $request)
     {
         //
+
         $file = $request->file('berkas_seminar_ta_satu');
         $nama_berkas = $file->hashName();
         $file->move('uploads/syarat_seminar_ta_satu_s2', $nama_berkas);
