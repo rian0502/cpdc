@@ -13,11 +13,12 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Daftar Seminar Tugas Akhir 1</h4>
+                            <h4 class="text-dark h4">Edit Data Sidang Tesis</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('mahasiswa.seminarta1s2.update', $seminar->encrypt_id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('mahasiswa.sidang.kompres2.update', $seminar->encrypt_id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="profile-edit-list row">
@@ -91,41 +92,24 @@
                                         </small>
                                     </label>
                                     <div class="custom-file mb-1">
-                                        <label class="custom-file-label" for="link-berkas_seminar_ta_satu"
-                                            id="label-berkas_seminar_ta_satu">Pilih File</label>
-                                        <input
-                                            value="{{ old('berkas_seminar_ta_satu', $seminar->berkas_seminar_ta_satu) }}"
-                                            accept=".pdf" autofocus name="berkas_seminar_ta_satu"
-                                            id="file-berkas_seminar_ta_satu"
-                                            class="custom-file-input form-control @error('berkas_seminar_ta_satu') form-control-danger @enderror"
+                                        <label class="custom-file-label" for="link-berkas_kompre"
+                                            id="label-berkas_kompre">Pilih File</label>
+                                        <input value="{{ old('berkas_kompre', $seminar->berkas_kompre) }}" accept=".pdf"
+                                            autofocus name="berkas_kompre" id="file-berkas_kompre"
+                                            class="custom-file-input form-control @error('berkas_kompre') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_seminar_ta_satu','label-berkas_seminar_ta_satu','link-berkas_seminar_ta_satu')">
+                                            onchange="updateFileNameAndLink('file-berkas_kompre','label-berkas_kompre','link-berkas_kompre')">
                                     </div>
-                                    <small class="mt-2"> <a id="link-berkas_seminar_ta_satu" href="#"
-                                            target="_blank" style="display: none;">Lihat File</a> </small>
-                                    @error('berkas_seminar_ta_satu')
+                                    <small class="mt-2"> <a id="link-berkas_kompre" href="#" target="_blank"
+                                            style="display: none;">Lihat File</a> </small>
+                                    @error('berkas_kompre')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 {{-- hanya tampil saat mode mobile --}}
+
                                 <div class="form-group" id="form-mobile">
-                                    <label>Ide Judul</label>
-                                    <select name="sumber_penelitian"
-                                        class="selectpicker form-control @error('sumber_penelitian') form-control-danger @enderror">
-                                        <option value="Dosen"
-                                            {{ old('sumber_penelitian', $seminar->sumber_penelitian) == 'Dosen' ? 'selected' : '' }}>
-                                            Dari Dosen</option>
-                                        <option value="Mahasiswa"
-                                            {{ old('sumber_penelitian', $seminar->sumber_penelitian) == 'Mahasiswa' ? 'selected' : '' }}>
-                                            Dari Mahasiswa
-                                        </option>
-                                    </select>
-                                    @error('sumber_penelitian')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group" id="form-mobile">
-                                    <label>Judul atau Topik Tugas Akhir</label>
+                                    <label>Judul Tesis</label>
                                     <textarea name="judul_ta" id="judul_ta" rows="" class="form-control">{{ old('judul_ta', $seminar->judul_ta) }}</textarea>
                                     @error('judul_ta')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -152,8 +136,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Pembimbing 2</label>
-                                    <select class="custom-select2 form-control" name="id_pembimbing_2"
-                                        id="id_pembimbing_2" style="width: 100%; height: 38px"
+                                    <select class="custom-select2 form-control" name="id_pembimbing_2" id="id_pembimbing_2"
+                                        style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'Pembimbing2', 'pbl2_nama')">
                                         <optgroup label="Pembahas 1">
                                             @foreach ($dosens as $item)
@@ -291,8 +275,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Pembahas 3</label>
-                                    <select class="custom-select2 form-control" name="id_pembahas_3"
-                                        id="id_pembahas_3" style="width: 100%; height: 38px"
+                                    <select class="custom-select2 form-control" name="id_pembahas_3" id="id_pembahas_3"
+                                        style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'pembahas3', 'phs3_nama')">
                                         <optgroup label="Pembahas 3">
                                             @foreach ($dosens as $item)
@@ -327,7 +311,8 @@
                                     {{ old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id) == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP pembahas 3</label>
-                                        <input autofocus name="nip_pembahas_external_3" class="form-control" type="text"
+                                        <input autofocus name="nip_pembahas_external_3" class="form-control"
+                                            type="text"
                                             value="{{ old('nip_pembahas_external_3', $seminar->nip_pembahas_external_3) }}"
                                             placeholder="Masukkan NIP pembahas 3">
                                         @error('nip_pembahas_external_3')
