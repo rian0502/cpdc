@@ -306,8 +306,8 @@
                             </small>
                         </div>
                         @if ($seminar->status_koor != 'Selesai')
-                            @if ($seminar->ba_seminar)
-                                <a href="{{ route('mahasiswa.bakompres2.edit', $seminar->ba_seminar->encrypt_id) }}">
+                            @if ($seminar->beritaAcara)
+                                <a href="{{ route('mahasiswa.bakompres2.edit', $seminar->beritaAcara->encrypt_id) }}">
                                     <button class="btn btn-primary right">Edit</button>
                                 </a>
                             @else
@@ -318,40 +318,40 @@
                         @endif
                         {{-- jika sudah diupload end --}}
                     </div>
-                    @if ($seminar->ba_seminar)
+                    @if ($seminar->beritaAcara)
                         <div class="bukti_seminar">
                             <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
                                 <div class="row border-bottom">
                                     <label class="col-md-3 bold"> <strong>Berita Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="/uploads/ba/{{ $seminar->ba_seminar->berkas_ba }}">Lihat</a>
+                                            href="/uploads/ba_sidang_tesis/{{ $seminar->beritaAcara->file_ba }}">Lihat</a>
                                     </div>
                                     <label class="col-md-3 bold mt-2"><b>Nomor Berita Seminar</b></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        {{ $seminar->ba_seminar->no_berkas_ba }}
+                                        {{ $seminar->beritaAcara->no_ba }}
                                     </div>
                                 </div>
                                 <div class="row border-bottom mt-2">
                                     <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="/uploads/nilai/{{ $seminar->ba_seminar->berkas_nilai }}">Lihat</a>
+                                            href="/uploads/nilai_sidang_tesis/{{ $seminar->beritaAcara->file_nilai }}">Lihat</a>
                                     </div>
                                     <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        {{ $seminar->ba_seminar->huruf_mutu }}
+                                        {{ $seminar->beritaAcara->nilai_mutu }}
                                     </div>
                                 </div>
                                 <div class="row border-bottom mt-2">
-                                    <label class="col-md-3 bold"> <strong>PowerPoint</strong></label>
+                                    <label class="col-md-3 bold"> <strong>Lembar Pengesahan</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="{{ $seminar->ba_seminar->berkas_ppt }}">Lihat</a>
+                                            href="{{ $seminar->beritaAcara->pengesahan }}">Lihat</a>
                                     </div>
                                     <label class="col-md-3 bold"> <strong>Nilai</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        {{ $seminar->ba_seminar->nilai }}
+                                        {{ $seminar->beritaAcara->nilai }}
                                     </div>
                                 </div>
                             </div>

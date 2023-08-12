@@ -40,15 +40,15 @@
                                                 {{ $item->judul_ta }}
                                             </td>
                                             <td>
-                                                {{ $item->jadwal->tanggal_komprehensif }}
+                                                {{ $item->jadwal->tanggal }}
                                             </td>
                                             <td>
-                                                {{ $item->beritaAcara->no_ba_berkas}}
+                                                {{ $item->beritaAcara->no_ba}}
                                             </td>
                                             <td>
                                                     <a class="btn btn-warning"
                                                         href="
-                                                        {{ route('koor.validasiBaKompre.edit', $item->encrypt_id) }}
+                                                        {{ route('koor.ValidasiBaKompreS2.edit', $item->encrypt_id) }}
                                                         "><i
                                                             class="bi bi-pencil-square"></i>
                                                         Validasi</a>
