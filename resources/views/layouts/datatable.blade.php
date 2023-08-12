@@ -974,7 +974,7 @@
             }
         }
     </script>
-    @role('kompre|ta2|ta1|pkl|ta1S2')
+    @role('kompre|ta2|ta1|pkl|ta1S2|ta2S2|kompreS2')
         <script>
             $(document).ready(function() {
                 $('#formJadwal').submit(function(e) {
