@@ -211,15 +211,4 @@ class ControllerMahasiswaS2SidangKompre extends Controller
         $seminar->save();
         return redirect()->route('mahasiswa.sidang.kompres2.index')->with('success', 'Berhasil mengubah sidang tesis');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
