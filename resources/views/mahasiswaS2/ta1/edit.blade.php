@@ -159,7 +159,7 @@
                                         <optgroup label="Pembahas 1">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
                                             @if (old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id) == 'new' || $errors->has('pbl2_nama'))
@@ -184,8 +184,8 @@
                                     </div>
                                 </div>
                                 <div id="Pembimbing2"
-                                    style="display: {{ old('id_pembimbing_dua', $seminar->pembimbingDua->encrypt_id) == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_dua', $seminar->pembimbingDua->encrypt_id) == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembimbing_dua', $seminar->pembimbingDua->encrypt_id ?? null) == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembimbing_dua', $seminar->pembimbingDua->encrypt_id ?? null) == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP Pembimbing 2</label>
                                         <input autofocus name="pbl2_nip" class="form-control" type="text"
@@ -204,10 +204,10 @@
                                         <optgroup label="Pembahas 1">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembahas_1', $seminar->pembahasSatu->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembahas_1', $seminar->pembahasSatu->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (old('id_pembahas_1', $seminar->pembahasSatu->encrypt_id) == 'new' || $errors->has('phs1_nama'))
+                                            @if (old('id_pembahas_1', $seminar->pembahasSatu->encrypt_id ?? null) == 'new' || $errors->has('phs1_nama'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
@@ -217,8 +217,8 @@
                                 </div>
 
                                 <div id="phs1_nama"
-                                    style="display: {{ old('id_pembahas_1', $seminar->pembahasSatu->encrypt_id) == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembahas_1 ', $seminar->pembahasSatu->encrypt_id) == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembahas_1', $seminar->pembahasSatu->encrypt_id ?? null) == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_1 ', $seminar->pembahasSatu->encrypt_id ?? null) == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama pembahas 1</label>
                                         <input autofocus name="pembahas_external_1" class="form-control" type="text"
@@ -230,8 +230,8 @@
                                     </div>
                                 </div>
                                 <div id="pembahas1"
-                                    style="display: {{ old('id_pembahas_1', $seminar->pembahasSatu->encrypt_id) == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembahas_1', $seminar->pembahasSatu->encrypt_id) == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembahas_1', $seminar->pembahasSatu->encrypt_id ?? null) == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_1', $seminar->pembahasSatu->encrypt_id ?? null) == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP pembahas 1</label>
                                         <input autofocus name="nip_pembahas_external_1" class="form-control"
@@ -251,10 +251,10 @@
                                         <optgroup label="Pembahas 2">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembahas_2', $seminar->pembahasDua->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembahas_2', $seminar->pembahasDua->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (old('id_pembahas_2', $seminar->pembahasDua->encrypt_id) == 'new' || $errors->has('phs2_nama'))
+                                            @if (old('id_pembahas_2', $seminar->pembahasDua->encrypt_id ?? null) == 'new' || $errors->has('phs2_nama'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
@@ -264,8 +264,8 @@
                                 </div>
 
                                 <div id="phs2_nama"
-                                    style="display: {{ old('id_pembahas_2', $seminar->pembahasDua->encrypt_id) == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembahas_2', $seminar->pembahasDua->encrypt_id) == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembahas_2', $seminar->pembahasDua->encrypt_id ?? null) == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_2', $seminar->pembahasDua->encrypt_id ?? null) == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama pembahas 2</label>
                                         <input autofocus name="pembahas_external_2" class="form-control" type="text"
@@ -277,8 +277,8 @@
                                     </div>
                                 </div>
                                 <div id="pembahas2"
-                                    style="display: {{ old('id_pembahas_2', $seminar->pembahasDua->encrypt_id) == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembahas_2', $seminar->pembahasDua->encrypt_id) == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembahas_2', $seminar->pembahasDua->encrypt_id ?? null) == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_2', $seminar->pembahasDua->encrypt_id ?? null) == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP pembahas 2</label>
                                         <input autofocus name="nip_pembahas_external_2" class="form-control"
@@ -298,10 +298,10 @@
                                         <optgroup label="Pembahas 3">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id) == 'new' || $errors->has('phs3_nama'))
+                                            @if (old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id ?? null) == 'new' || $errors->has('phs3_nama'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
@@ -311,8 +311,8 @@
                                 </div>
 
                                 <div id="phs3_nama"
-                                    style="display: {{ old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id) == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id) == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id ?? null) == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id ?? null) == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama pembahas 3</label>
                                         <input autofocus name="pembahas_external_3" class="form-control" type="text"
@@ -324,8 +324,8 @@
                                     </div>
                                 </div>
                                 <div id="pembahas3"
-                                    style="display: {{ old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id) == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id) == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id ?? null) == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id ?? null) == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP pembahas 3</label>
                                         <input autofocus name="nip_pembahas_external_3" class="form-control"
@@ -385,24 +385,24 @@
             select.add(option);
         }
     </script>
-    <script>
-        @if (old('phs1_nama', $seminar->phs1_nama))
-            toggleInput(document.getElementById('id_pembahas_satu'), 'pembahas1')
-        @endif
-    </script>
-    <script>
-        @if (old('phs2_nama', $seminar->phs2_nama))
-            toggleInput(document.getElementById('id_pembahas_dua'), 'pembahas2')
-        @endif
-    </script>
-    <script>
-        @if (old('phs3_nama', $seminar->phs3_nama))
-            toggleInput(document.getElementById('id_pembahas_tiga'), 'pembahas3')
-        @endif
-    </script>
-    <script>
-        @if (old('pbl2_nama', $seminar->pbl2_nama))
-            toggleInput(document.getElementById('id_pembimbing_dua'), 'Pembimbing2')
-        @endif
-    </script>
+<script>
+    @if (old('pembahas_external_1', $seminar->pembahas_external_1))
+        toggleInput(document.getElementById('pembahas_external_1'), 'pembahas1')
+    @endif
+</script>
+<script>
+    @if (old('pembahas_external_2', $seminar->pembahas_external_2))
+        toggleInput(document.getElementById('pembahas_external_2'), 'pembahas2')
+    @endif
+</script>
+<script>
+    @if (old('pembahas_external_3', $seminar->pembahas_external_3))
+        toggleInput(document.getElementById('pembahas_external_3'), 'pembahas3')
+    @endif
+</script>
+<script>
+    @if (old('pbl2_nama', $seminar->pbl2_nama))
+        toggleInput(document.getElementById('id_pembimbing_dua'), 'Pembimbing2')
+    @endif
+</script>
 @endsection
