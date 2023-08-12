@@ -329,12 +329,6 @@
                                 <span class="micon bi bi-download"></span><span class="mtext">Unduh Data S2</span>
                             </a>
                         </li>
-                        {{-- <li>
-                        <a href="{{ route('jurusan.unduh.index') }}"
-                            class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
-                            <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
-                        </a>
-                    </li> --}}
                     @endrole
                     @role('tpmpsS1|tpmpsS2')
                         <li>
