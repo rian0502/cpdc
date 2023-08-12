@@ -64,4 +64,12 @@ class ModelKompreS2 extends Model
     {
         return $this->belongsTo(Dosen::class, 'id_pembahas_3');
     }
+    public function jadwal()
+    {
+        return $this->hasOne(ModelJadwalSeminarKompreS2::class, 'id_seminar');
+    }
+    public function beritaAcara()
+    {
+        return $this->hasOne(ModelBaKompreS2::class, 'id_seminar');
+    }
 }

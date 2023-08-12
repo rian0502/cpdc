@@ -186,7 +186,7 @@
                                 <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/syarat_seminar_ta_satu_s2/{{ $seminar->berkas_ta_satu }}">Lihat
+                                        href="/uploads/syarat_s2/{{ $seminar->berkas_ta_satu }}">Lihat
                                         Berkas</a>
                                 </div>
                             </div>
@@ -196,16 +196,13 @@
                                     {{ $seminar->toefl }}
                                 </div>
 
-                                <label class="col-md-3 bold"> <strong>Ide Judul</strong></label>
-                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    Dari {{ $seminar->sumber_penelitian }}
-                                </div>
-                            </div>
-                            <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->periode_seminar }}
                                 </div>
+                            </div>
+                            <div class="row border-bottom mt-2">
+    
                             </div>
                             <div class="row border-bottom mt-3">
                                 <label class="col-md-12 bold"><b>Judul atau Topik Tugas Akhir</b></label>
@@ -235,7 +232,7 @@
                                     <label class="col-md-3 bold mt-2"> <strong>Tanggal Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         @if ($seminar->jadwal)
-                                            {{ $seminar->jadwal->tanggal_seminar_ta_satu }}
+                                            {{ $seminar->jadwal->tanggal }}
                                         @else
                                             <div>Belum terjadwal</div>
                                         @endif
@@ -245,7 +242,7 @@
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
 
                                         @if ($seminar->jadwal)
-                                            {{ $seminar->jadwal->jam_mulai_seminar_ta_satu }} WIB
+                                            {{ $seminar->jadwal->jam_mulai }} WIB
                                         @else
                                             <div>Belum terjadwal</div>
                                         @endif
@@ -263,7 +260,7 @@
                                     <label class="col-md-3 bold mt-1"><strong>Jam Selesai</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         @if ($seminar->jadwal)
-                                            {{ $seminar->jadwal->jam_selesai_seminar_ta_satu }} WIB
+                                            {{ $seminar->jadwal->jam_selesai }} WIB
                                         @else
                                             <div>Belum terjadwal</div>
                                         @endif
@@ -328,18 +325,18 @@
                                     <label class="col-md-3 bold"> <strong>Berita Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="/uploads/ba_seminar_ta_satu/{{ $seminar->ba_seminar->berkas_ba_seminar_ta_satu }}">Lihat</a>
+                                            href="/uploads/ba/{{ $seminar->ba_seminar->berkas_ba }}">Lihat</a>
                                     </div>
                                     <label class="col-md-3 bold mt-2"><b>Nomor Berita Seminar</b></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        {{ $seminar->ba_seminar->no_berkas_ba_seminar_ta_satu }}
+                                        {{ $seminar->ba_seminar->no_berkas_ba }}
                                     </div>
                                 </div>
                                 <div class="row border-bottom mt-2">
                                     <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="/uploads/nilai_seminar_ta_satu/{{ $seminar->ba_seminar->berkas_nilai_seminar_ta_satu }}">Lihat</a>
+                                            href="/uploads/nilai/{{ $seminar->ba_seminar->berkas_nilai }}">Lihat</a>
                                     </div>
                                     <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -350,7 +347,7 @@
                                     <label class="col-md-3 bold"> <strong>PowerPoint</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="{{ $seminar->ba_seminar->berkas_ppt_seminar_ta_satu }}">Lihat</a>
+                                            href="{{ $seminar->ba_seminar->berkas_ppt }}">Lihat</a>
                                     </div>
                                     <label class="col-md-3 bold"> <strong>Nilai</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
