@@ -23,8 +23,8 @@ class ModelKompreS2 extends Model
         'komentar',
         'status_admin',
         'status_koor',
-        'id_pembimbing_satu',
-        'id_pembimbing_dua',
+        'id_pembimbing_1',
+        'id_pembimbing_2',
         'pbl2_nama',
         'pbl2_nip',
         'id_pembahas_1',
@@ -46,11 +46,11 @@ class ModelKompreS2 extends Model
     }
     public function pembimbingSatu()
     {
-        return $this->belongsTo(Dosen::class, 'id_pembimbing_satu');
+        return $this->belongsTo(Dosen::class, 'id_pembimbing_1');
     }
     public function pembimbingDua()
     {
-        return $this->belongsTo(Dosen::class, 'id_pembimbing_dua');
+        return $this->belongsTo(Dosen::class, 'id_pembimbing_2');
     }
     public function pembahasSatu()
     {
@@ -63,5 +63,13 @@ class ModelKompreS2 extends Model
     public function pembahasTiga()
     {
         return $this->belongsTo(Dosen::class, 'id_pembahas_3');
+    }
+    public function jadwal()
+    {
+        return $this->hasOne(ModelJadwalSeminarKompreS2::class, 'id_seminar');
+    }
+    public function beritaAcara()
+    {
+        return $this->hasOne(ModelBaKompreS2::class, 'id_seminar');
     }
 }
