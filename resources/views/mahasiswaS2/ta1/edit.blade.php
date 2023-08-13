@@ -126,8 +126,8 @@
                                     @enderror
                                 </div>
                                 <div class="form-group" id="form-mobile">
-                                    <label>Judul atau Topik Tugas Akhir</label>
-                                    <textarea name="judul_ta" id="judul_ta" rows="" class="form-control @error('judul_ta') form-control-danger @enderror">{{ old('judul_ta') }}</textarea>
+                                    <label>Judul Tesis</label>
+                                    <textarea name="judul_ta" id="judul_ta" rows="" class="form-control @error('judul_ta') form-control-danger @enderror">{{ old('judul_ta', $seminar->judul_ta) }}</textarea>
                                     @error('judul_ta')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
