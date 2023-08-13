@@ -27,9 +27,6 @@ class ControllerMahasiswaS2SeminarTaDua extends Controller
             ];
             return view("mahasiswaS2.ta2.index", $data);
         }
-        if (Auth::user()->mahasiswa->taSatuS2->status_koor != 'Selesai') {
-            return redirect()->route('mahasiswa.seminarta1s2.create');
-        }
         return redirect()->route('mahasiswa.seminarta2s2.create');
     }
 
@@ -40,10 +37,21 @@ class ControllerMahasiswaS2SeminarTaDua extends Controller
      */
     public function create()
     {
-        $data = [
-            'syarat' => BerkasPersyaratanSeminar::find(3),
-        ];
-        return view("mahasiswaS2.ta2.create", $data);
+        if (Auth::user()->mahasiswa->taSatuS2) {
+            if (Auth::user()->mahasiswa->taSatuS2->status_koor == 'Selesai') {
+                if (Auth::user()->mahasiswa->taDuaS2) {
+                    return redirect()->route("mahasiswa.seminarta2s2.index");
+                }
+                $data = [
+                    'syarat' => BerkasPersyaratanSeminar::find(3)
+                ];
+                return view("mahasiswaS2.ta2.create", $data);
+            } else {
+                return redirect()->route("mahasiswa.seminarta1s2.index");
+            }
+        } else {
+            return redirect()->route("mahasiswa.seminarta1s2.index");
+        }
     }
 
     /**

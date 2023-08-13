@@ -39,16 +39,21 @@ class ControllerMahasiswaS2SidangKompre extends Controller
     public function create()
     {
 
-        if (Auth::user()->mahasiswa->taDuaS2->status_koor != 'Selesai') {
+        if (Auth::user()->mahasiswa->taDuaS2) {
+            if (Auth::user()->mahasiswa->taDuaS2->status_koor == 'Selesai') {
+                if (Auth::user()->mahasiswa->komprehensifS2) {
+                    return redirect()->route("mahasiswa.sidang.kompres2.index");
+                }
+                $data = [
+                    'syarat' => BerkasPersyaratanSeminar::find(4)
+                ];
+                return view("mahasiswaS2.kompre.create", $data);
+            }else{
+                return redirect()->route("mahasiswa.seminarta2s2.index");
+            }
+        } else {
             return redirect()->route("mahasiswa.seminarta2s2.index");
         }
-        if (Auth::user()->mahasiswa->komprehensifS2) {
-            return redirect()->route("mahasiswa.sidang.kompres2.index");
-        }
-        $data = [
-            'syarat' => BerkasPersyaratanSeminar::find(4)
-        ];
-        return view("mahasiswaS2.kompre.create", $data);
     }
 
     /**
@@ -145,6 +150,7 @@ class ControllerMahasiswaS2SidangKompre extends Controller
      */
     public function update(Request $request, $id)
     {
+        return dd($request->all());
         $seminar = ModelKompreS2::find(Crypt::decrypt($id));
         $seminar->semester = $request->semester;
         $seminar->tahun_akademik = $request->tahun_akademik;

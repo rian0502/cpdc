@@ -24,7 +24,7 @@ class StoreTaSatuS2Request extends FormRequest
      */
     public function rules()
     {
-        if ($this->id_pembimbing_dua != 'new') {
+        if ($this->id_pembimbing_2 != 'new') {
             return [
                 'semester' => ['required', 'in:Ganjil,Genap'],
                 'tahun_akademik' => ['required'],
@@ -36,8 +36,8 @@ class StoreTaSatuS2Request extends FormRequest
                 'judul_ta' => ['required', 'string', 'max:255'],
                 'agreement' => ['required', 'in:on'],
                 'berkas_seminar_ta_satu' => ['required', 'file', 'mimes:pdf', 'max:1048'],
-                'id_pembimbing_satu' => ['required', 'exists:dosen,encrypt_id'],
-                'id_pembimbing_dua' => ['required', 'exists:dosen,encrypt_id'],
+                'id_pembimbing_1' => ['required', 'exists:dosen,encrypt_id'],
+                'id_pembimbing_2' => ['required', 'exists:dosen,encrypt_id'],
             ];
         } else {
             return [
@@ -51,7 +51,7 @@ class StoreTaSatuS2Request extends FormRequest
                 'judul_ta' => ['required', 'string', 'max:255'],
                 'agreement' => ['required', 'in:on'],
                 'berkas_seminar_ta_satu' => ['required', 'file', 'mimes:pdf', 'max:1048'],
-                'id_pembimbing_satu' => ['required', 'exists:dosen,encrypt_id'],
+                'id_pembimbing_1' => ['required', 'exists:dosen,encrypt_id'],
             ];
         }
     }
@@ -83,8 +83,10 @@ class StoreTaSatuS2Request extends FormRequest
             'berkas_seminar_ta_satu.file' => 'Berkas seminar TA satu harus berupa file',
             'berkas_seminar_ta_satu.mimes' => 'Berkas seminar TA satu harus berupa pdf',
             'berkas_seminar_ta_satu.max' => 'Berkas seminar TA satu maksimal 1MB',
-            'id_pembimbing_satu.required' => 'Pembimbing satu harus diisi',
-            'id_pembimbing_satu.exists' => 'Pembimbing satu tidak ditemukan',
+            'id_pembimbing_1.required' => 'Pembimbing satu harus diisi',
+            'id_pembimbing_1.exists' => 'Pembimbing satu tidak ditemukan',
+            'id_pembimbing_2.required' => 'Pembimbing dua harus diisi',
+            'id_pembimbing_2.exists' => 'Pembimbing dua tidak ditemukan',
         ];
     }
 }
