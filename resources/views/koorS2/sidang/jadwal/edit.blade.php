@@ -48,7 +48,7 @@
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->pembimbing_satu->nama_dosen }}
+                                    {{ $seminar->pembimbingSatu->nama_dosen }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
@@ -58,8 +58,8 @@
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Pembimbing 2</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    @if ($seminar->pembimbing_dua)
-                                        {{ $seminar->pembimbing_dua->nama_dosen }}
+                                    @if ($seminar->id_pembimbing_2)
+                                        {{ $seminar->pembimbingDua->nama_dosen }}
                                     @else
                                         {{ $seminar->pbl2_nama }}
                                     @endif
@@ -71,12 +71,12 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->tahun_akademik }}
                                 </div>
-                                <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
+                                <label class="col-md-3 bold mt-2"> <strong>Pembahas 1</strong></label>
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    @if ($seminar->pbl2_nip)
-                                        {{ $seminar->pbl2_nip }}
+                                    @if ($seminar->id_pembahas_1)
+                                        {{ $seminar->pembahasSatu->nama_dosen }}
                                     @else
-                                        -
+                                        {{ $seminar->pembahas_external_1 }}
                                     @endif
                                 </div>
                             </div>
@@ -86,9 +86,13 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $mahasiswa->semester }}
                                 </div>
-                                <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
+                                <label class="col-md-3 bold"> <strong>Pembahas 2</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->pembahas->nama_dosen }}
+                                    @if ($seminar->id_pembahas_2)
+                                        {{ $seminar->pembahasDua->nama_dosen }}
+                                    @else
+                                        {{ $seminar->pembahas_external_2 }}
+                                    @endif
                                 </div>
                             </div>
 
@@ -97,9 +101,13 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->sks }}
                                 </div>
-                                <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
+                                <label class="col-md-3 bold"> <strong>Pembahas 3</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->periode_seminar }}
+                                    @if ($seminar->id_pembahas_3)
+                                        {{ $seminar->pembahasTiga->nama_dosen }}
+                                    @else
+                                        {{ $seminar->pembahas_external_3 }}
+                                    @endif
                                 </div>
                             </div>
 
@@ -111,7 +119,7 @@
                                 <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/syarat_seminar_ta1/{{ $seminar->berkas_ta_satu }}">Lihat
+                                        href="/uploads/syarat_seminar_ta_satu_s2/{{ $seminar->berkas_ta_satu }}">Lihat
                                         Berkas</a>
                                 </div>
                             </div>
@@ -122,9 +130,9 @@
                                     {{ $seminar->toefl }}
                                 </div>
 
-                                <label class="col-md-3 bold"> <strong></strong></label>
+                                <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->status_seminar }}
+                                    {{ $seminar->periode_seminar }}
                                 </div>
                             </div>
 
@@ -142,11 +150,11 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
                         <div class="pull-left">
-                            <h4 class="text-dark h4" style="margin-left: 10px">Jadwalkan Seminar PKL</h4>
+                            <h4 class="text-dark h4" style="margin-left: 10px">Edit Jadwal Seminar Tesis 2</h4>
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
-                        <form id="formJadwalUpdate" action="{{ route('koor.jadwalKompre.update', $seminar->encrypt_id) }}"
+                        <form id="formJadwalUpdate" action="{{ route('koor.jadwalKompreS2.update', $seminar->encrypt_id) }}"
                             method="POST">
                             @method('PUT')
                             @csrf
@@ -155,7 +163,7 @@
                                 <div class="weight-500 col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Seminar</label>
-                                        <input value="{{ old('tanggal_skp', $jadwal->tanggal_seminar_ta_dua) }}" autofocus
+                                        <input value="{{ old('tanggal_skp', $jadwal->tanggal) }}" autofocus
                                             name="tanggal_skp" id="tanggal_skp"
                                             class="form-control @error('tanggal_skp') form-control-danger @enderror"
                                             type="date" placeholder="Nama Barang">
@@ -183,8 +191,7 @@
 
                                     <div class="form-group">
                                         <label>Jam Mulai</label>
-                                        <input type="time"
-                                            value="{{ old('jam_mulai_skp', $jadwal->jam_mulai_seminar_ta_dua) }}"
+                                        <input type="time" value="{{ old('jam_mulai_skp', $jadwal->jam_mulai) }}"
                                             name="jam_mulai_skp"
                                             class="form-control @error('jam_mulai_skp') form-control-danger @enderror">
                                         @error('jam_mulai_skp')
@@ -194,7 +201,7 @@
                                     <div class="form-group">
                                         <label>Jam Selesai</label>
                                         <input type="time" name="jam_selesai_skp"
-                                            value="{{ old('jam_selesai_skp', $jadwal->jam_selesai_seminar_ta_dua) }}"
+                                            value="{{ old('jam_selesai_skp', $jadwal->jam_selesai) }}"
                                             class="form-control @error('jam_selesai_skp') form-control-danger @enderror">
                                         @error('jam_selesai_skp')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -206,8 +213,8 @@
                                 <button type="submit" class="submit btn btn-primary">Kirim</button>
                             </div>
                         </form>
-                        <a href="{{ route('koor.jadwalKompre.index') }}">
-                            <button class="batal btn btn-secondary" id="submitButton">Batal</button>
+                        <a href="{{ route('koor.jadwalTA2S2.index') }}">
+                            <button class="batal btn btn-secondary">Batal</button>
                         </a>
                     </div>
                 </div>
@@ -216,7 +223,6 @@
         </div>
         <!-- Input Validation End -->
     </div>
-
     <script>
         // Mendapatkan elemen select
         var select = document.getElementById("tahunAkademik");

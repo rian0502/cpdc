@@ -57,7 +57,7 @@
                                 <label class="col-md-3 bold"> <strong>Berita Acara Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/ba_seminar_tesis_1/{{ $seminar->beritaAcara->file_ba }}">Lihat</a>
+                                        href="/uploads/ba_seminar_tesis_2/{{ $seminar->beritaAcara->file_ba }}">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Nomor Berita Acara Seminar</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -68,7 +68,7 @@
                                 <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/nilai_seminar_tesis_1/{{ $seminar->beritaAcara->file_nilai }}">Lihat</a>
+                                        href="/uploads/nilai_seminar_tesis_2/{{ $seminar->beritaAcara->file_nilai }}">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -78,8 +78,7 @@
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"> <strong>PowerPoint</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a target="_blank"
-                                        href="{{ $seminar->beritaAcara->ppt }}">Lihat</a>
+                                    <a target="_blank" href="{{ $seminar->beritaAcara->ppt }}">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Nilai</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -110,7 +109,7 @@
                                 </div>
                                 <div class="row border-bottom mt-3">
                                     <label class="col-md-12 bold"><b>Catatan</b></label>
-                                    <textarea id="catatan" name="keterangan" class="form-control m-3" style="height: 100px;">{{ old('keterangan', $seminar->komentar) }}</textarea>
+                                    <textarea id="catatan" name="keterangan" class="form-control m-3" style="height: 100px;">{{ old('keterangan', $seminar->keterangan) }}</textarea>
                                     @error('keterangan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -119,7 +118,7 @@
                                     <button type="submit" id="submitButton" class="submit btn btn-primary">Kirim</button>
                                 </div>
                             </form>
-                            <a href="{{ route('koor.ValidasiBaKompreS2.index') }}">
+                            <a href="{{ route('koor.ValidasiBaTa2S2.index') }}">
                                 <button class="batal btn btn-secondary">Batal</button>
                             </a>
                         </div>

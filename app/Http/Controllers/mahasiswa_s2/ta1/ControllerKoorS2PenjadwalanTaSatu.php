@@ -159,7 +159,6 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
 
     public function resend($id)
     {
-
         $seminar = ModelSeminarTaSatuS2::with(['jadwal', 'mahasiswa'])->where('id', Crypt::decrypt($id))->first();
         $jadwal = $seminar->jadwal;
         $mahasiswa = $seminar->mahasiswa;
