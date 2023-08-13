@@ -97,7 +97,7 @@
                                                 href="/uploads/syarat_seminar/{{ $syarat->path_file }}">Lihat
                                                 Persyaratan</a>
                                         </small>
-                                    </label>
+                                    </label>`
                                     <div class="custom-file mb-1">
                                         <label class="custom-file-label" for="link-berkas_ta_dua"
                                             id="label-berkas_ta_dua">Pilih File</label>

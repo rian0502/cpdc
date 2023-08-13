@@ -205,7 +205,7 @@
     
                             </div>
                             <div class="row border-bottom mt-3">
-                                <label class="col-md-12 bold"><b>Judul atau Topik Tugas Akhir</b></label>
+                                <label class="col-md-12 bold"><b>Judul Tesis</b></label>
                                 <div class="col-md-12 mb-3" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->judul_ta }}
                                 </div>
