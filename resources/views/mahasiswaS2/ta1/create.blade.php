@@ -210,9 +210,9 @@
                                     {{ old('id_pembahas_1') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama pembahas 1</label>
-                                        <input autofocus name="phs1_nama" class="form-control" type="text"
-                                            value="{{ old('phs1_nama') }}" placeholder="Masukkan Nama pembahas 1">
-                                        @error('phs1_nama')
+                                        <input autofocus name="pembahas_external_1" class="form-control" type="text"
+                                            value="{{ old('pembahas_external_1') }}" placeholder="Masukkan Nama pembahas 1">
+                                        @error('pembahas_external_1')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -222,9 +222,9 @@
                                     {{ old('id_pembahas_1') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP pembahas 1</label>
-                                        <input autofocus name="phs1_nip" class="form-control" type="text"
-                                            value="{{ old('phs1_nip') }}" placeholder="Masukkan NIP pembahas 1">
-                                        @error('phs1_nip')
+                                        <input autofocus name="nip_pembahas_external_1" class="form-control" type="text"
+                                            value="{{ old('nip_pembahas_external_1') }}" placeholder="Masukkan NIP pembahas 1">
+                                        @error('nip_pembahas_external_1')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -254,9 +254,9 @@
                                     {{ old('id_pembahas_2') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama pembahas 2</label>
-                                        <input autofocus name="phs2_nama" class="form-control" type="text"
-                                            value="{{ old('phs2_nama') }}" placeholder="Masukkan Nama pembahas 2">
-                                        @error('phs2_nama')
+                                        <input autofocus name="pembahas_external_2" class="form-control" type="text"
+                                            value="{{ old('pembahas_external_2') }}" placeholder="Masukkan Nama pembahas 2">
+                                        @error('pembahas_external_2')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -266,9 +266,9 @@
                                     {{ old('id_pembahas_2') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP pembahas 2</label>
-                                        <input autofocus name="phs2_nip" class="form-control" type="text"
-                                            value="{{ old('phs2_nip') }}" placeholder="Masukkan NIP pembahas 2">
-                                        @error('phs2_nip')
+                                        <input autofocus name="nip_pembahas_external_2" class="form-control" type="text"
+                                            value="{{ old('nip_pembahas_external_2') }}" placeholder="Masukkan NIP pembahas 2">
+                                        @error('nip_pembahas_external_2')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -298,9 +298,9 @@
                                     {{ old('id_pembahas_3') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama pembahas 3</label>
-                                        <input autofocus name="phs3_nama" class="form-control" type="text"
-                                            value="{{ old('phs3_nama') }}" placeholder="Masukkan Nama pembahas 3">
-                                        @error('phs3_nama')
+                                        <input autofocus name="pembahas_external_3" class="form-control" type="text"
+                                            value="{{ old('pembahas_external_3') }}" placeholder="Masukkan Nama pembahas 3">
+                                        @error('pembahas_external_3')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -310,9 +310,9 @@
                                     {{ old('id_pembahas_3') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP pembahas 3</label>
-                                        <input autofocus name="phs3_nip" class="form-control" type="text"
-                                            value="{{ old('phs3_nip') }}" placeholder="Masukkan NIP pembahas 3">
-                                        @error('phs3_nip')
+                                        <input autofocus name="nip_pembahas_external_3" class="form-control" type="text"
+                                            value="{{ old('nip_pembahas_external_3') }}" placeholder="Masukkan NIP pembahas 3">
+                                        @error('nip_pembahas_external_3')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

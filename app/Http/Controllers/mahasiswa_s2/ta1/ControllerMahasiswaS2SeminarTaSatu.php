@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\BerkasPersyaratanSeminar;
 use App\Http\Requests\StoreTaSatuS2Request;
+use App\Http\Requests\UpdateSeminarTaSatuS2Request;
 
 class ControllerMahasiswaS2SeminarTaSatu extends Controller
 {
@@ -60,7 +61,7 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
     public function store(StoreTaSatuS2Request $request)
     {
         //
-
+        return dd($request->all());
         $file = $request->file('berkas_seminar_ta_satu');
         $nama_berkas = $file->hashName();
         $file->move('uploads/syarat_seminar_ta_satu_s2', $nama_berkas);
@@ -75,7 +76,7 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
             'toefl' => $request->toefl,
             'berkas_ta_satu' => $nama_berkas,
             'agreement' => 1,
-            'id_pembimbing_1' => Crypt::decrypt($request->id_pembimbing_satu),
+            'id_pembimbing_1' => Crypt::decrypt($request->id_pembimbing_1),
             'id_mahasiswa' => Auth::user()->mahasiswa->id,
         ];
         if ($request->id_pembimbing_2 != 'new') {
@@ -213,7 +214,7 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSeminarTaSatuS2Request $request, $id)
     {
         $seminar = ModelSeminarTaSatuS2::find(Crypt::decrypt($id));
         if ($request->file('berkas_seminar_ta_satu')) {
