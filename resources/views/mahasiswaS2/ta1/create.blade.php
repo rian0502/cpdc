@@ -131,12 +131,12 @@
 
                                 <div class="form-group">
                                     <label>Pembimbing 1</label>
-                                    <select class="custom-select2 form-control" name="id_pembimbing_satu"
-                                        id="id_pembimbing_satu" style="width: 100%; height: 38px">
+                                    <select class="custom-select2 form-control" name="id_pembimbing_1"
+                                        id="id_pembimbing_1" style="width: 100%; height: 38px">
                                         <optgroup label="Pembimbing 1">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_satu') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_1') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
                                         </optgroup>
@@ -144,16 +144,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Pembimbing 2</label>
-                                    <select class="custom-select2 form-control" name="id_pembimbing_dua"
-                                        id="id_pembimbing_dua" style="width: 100%; height: 38px"
+                                    <select class="custom-select2 form-control" name="id_pembimbing_2"
+                                        id="id_pembimbing_2" style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'Pembimbing2', 'pbl2_nama')">
                                         <optgroup label="Pembahas 1">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_dua') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_2') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (old('id_pembimbing_dua') == 'new' || $errors->has('pbl2_nama'))
+                                            @if (old('id_pembimbing_2') == 'new' || $errors->has('pbl2_nama'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
@@ -162,8 +162,8 @@
                                     </select>
                                 </div>
                                 <div id="pbl2_nama"
-                                    style="display: {{ old('id_pembimbing_dua') == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_dua') == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembimbing_2') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembimbing_2') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama Pembimbing 2</label>
                                         <input autofocus name="pbl2_nama" class="form-control" type="text"
@@ -174,8 +174,8 @@
                                     </div>
                                 </div>
                                 <div id="Pembimbing2"
-                                    style="display: {{ old('id_pembimbing_dua') == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_dua') == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembimbing_2') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembimbing_2') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP Pembimbing 2</label>
                                         <input autofocus name="pbl2_nip" class="form-control" type="text"
@@ -187,16 +187,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Pembahas 1</label>
-                                    <select class="custom-select2 form-control" name="id_pembahas_satu"
-                                        id="id_pembahas_satu" style="width: 100%; height: 38px"
+                                    <select class="custom-select2 form-control" name="id_pembahas_1"
+                                        id="id_pembahas_1" style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'pembahas1', 'phs1_nama')">
                                         <optgroup label="Pembahas 1">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembahas_satu') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembahas_1') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (old('id_pembahas_satu') == 'new' || $errors->has('phs1_nama'))
+                                            @if (old('id_pembahas_1') == 'new' || $errors->has('phs1_nama'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
@@ -206,8 +206,8 @@
                                 </div>
 
                                 <div id="phs1_nama"
-                                    style="display: {{ old('id_pembahas_satu') == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembahas_satu') == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembahas_1') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_1') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama pembahas 1</label>
                                         <input autofocus name="phs1_nama" class="form-control" type="text"
@@ -218,8 +218,8 @@
                                     </div>
                                 </div>
                                 <div id="pembahas1"
-                                    style="display: {{ old('id_pembahas_satu') == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembahas_satu') == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembahas_1') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_1') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP pembahas 1</label>
                                         <input autofocus name="phs1_nip" class="form-control" type="text"
@@ -231,16 +231,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Pembahas 2</label>
-                                    <select class="custom-select2 form-control" name="id_pembahas_dua"
-                                        id="id_pembahas_dua" style="width: 100%; height: 38px"
+                                    <select class="custom-select2 form-control" name="id_pembahas_2"
+                                        id="id_pembahas_2" style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'pembahas2', 'phs2_nama')">
                                         <optgroup label="Pembahas 2">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembahas_dua') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembahas_2') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (old('id_pembahas_dua') == 'new' || $errors->has('phs2_nama'))
+                                            @if (old('id_pembahas_2') == 'new' || $errors->has('phs2_nama'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
@@ -250,8 +250,8 @@
                                 </div>
 
                                 <div id="phs2_nama"
-                                    style="display: {{ old('id_pembahas_dua') == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembahas_dua') == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembahas_2') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_2') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama pembahas 2</label>
                                         <input autofocus name="phs2_nama" class="form-control" type="text"
@@ -262,8 +262,8 @@
                                     </div>
                                 </div>
                                 <div id="pembahas2"
-                                    style="display: {{ old('id_pembahas_dua') == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembahas_dua') == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembahas_2') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_2') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP pembahas 2</label>
                                         <input autofocus name="phs2_nip" class="form-control" type="text"
@@ -275,16 +275,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Pembahas 3</label>
-                                    <select class="custom-select2 form-control" name="id_pembahas_tiga"
-                                        id="id_pembahas_tiga" style="width: 100%; height: 38px"
+                                    <select class="custom-select2 form-control" name="id_pembahas_3"
+                                        id="id_pembahas_3" style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'pembahas3', 'phs3_nama')">
                                         <optgroup label="Pembahas 3">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembahas_tiga') == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembahas_3') == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (old('id_pembahas_tiga') == 'new' || $errors->has('phs3_nama'))
+                                            @if (old('id_pembahas_3') == 'new' || $errors->has('phs3_nama'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
@@ -294,8 +294,8 @@
                                 </div>
 
                                 <div id="phs3_nama"
-                                    style="display: {{ old('id_pembahas_tiga') == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembahas_tiga') == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembahas_3') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_3') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama pembahas 3</label>
                                         <input autofocus name="phs3_nama" class="form-control" type="text"
@@ -306,8 +306,8 @@
                                     </div>
                                 </div>
                                 <div id="pembahas3"
-                                    style="display: {{ old('id_pembahas_tiga') == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembahas_tiga') == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembahas_3') == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembahas_3') == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP pembahas 3</label>
                                         <input autofocus name="phs3_nip" class="form-control" type="text"
@@ -367,22 +367,22 @@
     </script>
     <script>
         @if (old('phs1_nama'))
-            toggleInput(document.getElementById('id_pembahas_satu'), 'pembahas1')
+            toggleInput(document.getElementById('id_pembahas_1'), 'pembahas1')
         @endif
     </script>
     <script>
         @if (old('phs2_nama'))
-            toggleInput(document.getElementById('id_pembahas_dua'), 'pembahas2')
+            toggleInput(document.getElementById('id_pembahas_2'), 'pembahas2')
         @endif
     </script>
     <script>
         @if (old('phs3_nama'))
-            toggleInput(document.getElementById('id_pembahas_tiga'), 'pembahas3')
+            toggleInput(document.getElementById('id_pembahas_3'), 'pembahas3')
         @endif
     </script>
     <script>
         @if (old('pbl2_nama'))
-            toggleInput(document.getElementById('id_pembimbing_dua'), 'Pembimbing2')
+            toggleInput(document.getElementById('id_pembimbing_2'), 'Pembimbing2')
         @endif
     </script>
 @endsection

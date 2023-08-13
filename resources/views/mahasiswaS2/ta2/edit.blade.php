@@ -152,16 +152,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Pembimbing 2</label>
-                                    <select class="custom-select2 form-control" name="id_pembimbing_dua"
-                                        id="id_pembimbing_dua" style="width: 100%; height: 38px"
+                                    <select class="custom-select2 form-control" name="id_pembimbing_2"
+                                        id="id_pembimbing_2" style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'Pembimbing2', 'pembimbimng_external_2')">
                                         <optgroup label="Pembahas 1">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_dua', $seminar->pembimbingDua->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (old('id_pembimbing_dua', $seminar->pembimbingDua->encrypt_id) == 'new' || $errors->has('pembimbimng_external_2'))
+                                            @if (old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id) == 'new' || $errors->has('pembimbimng_external_2'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
@@ -170,8 +170,8 @@
                                     </select>
                                 </div>
                                 <div id="pembimbimng_external_2"
-                                    style="display: {{ old('id_pembimbing_dua', $seminar->pembimbingDua->encrypt_id) == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_dua', $seminar->pembimbingDua->encrypt_id) == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id) == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id) == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama Pembimbing 2</label>
                                         <input autofocus name="pembimbimng_external_2" class="form-control" type="text"
@@ -183,8 +183,8 @@
                                     </div>
                                 </div>
                                 <div id="Pembimbing2"
-                                    style="display: {{ old('id_pembimbing_dua', $seminar->pembimbingDua->encrypt_id ?? null) == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_dua', $seminar->pembimbingDua->encrypt_id ?? null) == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP Pembimbing 2</label>
                                         <input autofocus name="pbl2_nip" class="form-control" type="text"
@@ -401,7 +401,7 @@
     </script>
     <script>
         @if (old('pembimbimng_external_2', $seminar->pembimbimng_external_2))
-            toggleInput(document.getElementById('id_pembimbing_dua'), 'Pembimbing2')
+            toggleInput(document.getElementById('id_pembimbing_2'), 'Pembimbing2')
         @endif
     </script>
 @endsection
