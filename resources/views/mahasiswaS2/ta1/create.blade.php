@@ -13,7 +13,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Daftar Seminar Tugas Akhir 1</h4>
+                            <h4 class="text-dark h4">Daftar Seminar Tesis 1</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group" id="form-mobile">
-                                    <label>Judul atau Topik Tugas Akhir</label>
+                                    <label>Judul Tesis</label>
                                     <textarea name="judul_ta" id="judul_ta" rows="" class="form-control @error('judul_ta') form-control-danger @enderror">{{ old('judul_ta') }}</textarea>
                                     @error('judul_ta')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>

@@ -33,7 +33,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Nomor Berita Acara Seminar Tugas Akhir 1</label>
+                                    <label>Nomor Berita Acara Seminar Tesis 2</label>
                                     <input autofocus name="no_ba" id="no_ba" class="form-control" type="text"
                                         value="{{ old('no_ba', $seminar->no_ba) }}"
                                         placeholder="Contoh : 986/UN26.17.03/DT/2022">

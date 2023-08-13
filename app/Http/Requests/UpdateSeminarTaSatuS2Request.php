@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateSeminarTaSatuS2Request extends FormRequest
@@ -23,7 +24,7 @@ class UpdateSeminarTaSatuS2Request extends FormRequest
      */
     public function rules()
     {
-        if ($this->id_pembimbing_dua != 'new') {
+        if ($this->id_pembimbing_2 != 'new') {
             return [
                 'semester' => ['required', 'in:Ganjil,Genap'],
                 'tahun_akademik' => ['required'],
