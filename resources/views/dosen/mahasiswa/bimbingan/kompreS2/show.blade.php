@@ -24,15 +24,15 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Detail Mahasiswa</h4>
-                        <a href="{{ route('dosen.mahasiswa.bimbingan.kompre.index') }}">
+                        <a href="{{ route('dosen.mahasiswa.bimbingan.tesis.index') }}">
                             <button class="btn btn-primary right-button">Kembali</button>
                         </a>
                     </div>
                     <div class="mb-3 pb-2">
                         <div class="form-group">
                             <div class="profile-photo">
-                                <img id="preview-image" src="/uploads/profile/{{-- $mahasiswa->profile_picture --}}" alt="Foto Profile"
-                                    onerror="this.src='/uploads/profile/default.png'" class="foto">
+                                <img id="preview-image" src="/uploads/profile/{{ $mahasiswa->user->profile_picture }}"
+                                    alt="Foto Profile" onerror="this.src='/uploads/profile/default.png'" class="foto">
 
                             </div>
 
@@ -126,22 +126,22 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link active text-blue" data-toggle="tab" href="#ta1" role="tab"
-                                        aria-selected="false">Tugas Akhir Satu</a>
+                                        aria-selected="false">Tesis 1</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-blue" data-toggle="tab" href="#ta2" role="tab"
-                                        aria-selected="false">Tugas Akhir Dua</a>
+                                        aria-selected="false">Tesis 2</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-blue" data-toggle="tab" href="#kompre" role="tab"
-                                        aria-selected="false">Komprehensif</a>
+                                        aria-selected="false">Sidang Tesis</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="ta1" role="tabpanel">
                                     <div class="pd-20">
                                         <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Data Seminar Tugas Akhir Satu</h5>
+                                            <h5 class="h4 text-blue mb-20">Data Seminar Tesis 1</h5>
                                             @if ($seminarTa1 != null)
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="row border-bottom mt-3">
@@ -155,13 +155,13 @@
                                                     <div class="row border-bottom">
                                                         <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa1->pembimbing_satu->nama_dosen }}
+                                                            {{ $seminarTa1->pembimbingSatu->nama_dosen }}
                                                         </div>
                                                         <label class="col-md-3 bold mt-1"><strong>Pembimbing
                                                                 2</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            @if ($seminarTa1->pembimbing_dua)
-                                                                {{ $seminarTa1->pembimbing_dua->nama_dosen }}
+                                                            @if ($seminarTa1->pembimbingDua)
+                                                                {{ $seminarTa1->pembimbingDua->nama_dosen }}
                                                             @else
                                                                 {{ $seminarTa1->pbl2_nama }}
                                                             @endif
@@ -175,15 +175,11 @@
                                                             style="display:block;word-wrap:break-word;">
                                                             {{ $seminarTa1->tahun_akademik }}
                                                         </div>
-                                                        <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai
-                                                                Eksternal</strong></label>
+                                                        <label class="col-md-3 bold mt-2"> <strong>Pemabahas
+                                                                1</strong></label>
                                                         <div class="col-md-3 mt-2"
                                                             style="display:block;word-wrap:break-word;">
-                                                            @if ($seminarTa1->pbl2_nip)
-                                                                {{ $seminarTa1->pbl2_nip }}
-                                                            @else
-                                                                -
-                                                            @endif
+                                                            {{ $seminarTa1->id_pembahas_1 ? $seminarTa1->pembahasSatu->nama_dosen : $seminarTa1->pembahas_external_1 }}
                                                         </div>
                                                     </div>
 
@@ -194,9 +190,9 @@
                                                             style="display:block;word-wrap:break-word;">
                                                             {{ $mahasiswa->semester }}
                                                         </div>
-                                                        <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
+                                                        <label class="col-md-3 bold"> <strong>Pembahas 2</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa1->pembahas->nama_dosen }}
+                                                            {{ $seminarTa1->id_pembahas_2 ? $seminarTa1->pembahasDua->nama_dosen : $seminarTa1->pembahas_external_2 }}
                                                         </div>
                                                     </div>
 
@@ -206,10 +202,9 @@
                                                             style="display:block;word-wrap:break-word;">
                                                             {{ $seminarTa1->sks }}
                                                         </div>
-                                                        <label class="col-md-3 bold"> <strong>Rencana
-                                                                Seminar</strong></label>
+                                                        <label class="col-md-3 bold"> <strong>Pembahas 3</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa1->periode_seminar }}
+                                                            {{ $seminarTa1->id_pembahas_3 ? $seminarTa1->pembahasTiga->nama_dosen : $seminarTa1->pembahas_external_3 }}
                                                         </div>
                                                     </div>
 
@@ -222,7 +217,7 @@
                                                                 Kelengkapan</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/syarat_seminar_ta1/{{ $seminarTa1->berkas_ta_satu }}">Lihat
+                                                                href="/uploads/syarat_seminar_ta_satu_s2/{{ $seminarTa1->berkas_ta_satu }}">Lihat
                                                                 Berkas</a>
                                                         </div>
                                                     </div>
@@ -239,6 +234,20 @@
                                                             {{ $seminarTa1->status_admin }}
                                                         </div>
                                                     </div>
+                                                    <div class="row mt-2">
+                                                        <label class="col-md-3 bold mt-2"> <strong>Payung
+                                                                Penlitian</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $seminarTa1->sumber_penelitian }}
+                                                        </div>
+
+                                                        <label class="col-md-3 bold"> <strong>Rencana
+                                                                Seminar</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $seminarTa1->periode_seminar }}
+                                                        </div>
+                                                    </div>
+
 
 
                                                 </div>
@@ -262,7 +271,7 @@
                                                                 Seminar</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             @if ($seminarTa1->jadwal)
-                                                                {{ $seminarTa1->jadwal->tanggal_seminar_ta_satu }}
+                                                                {{ $seminarTa1->jadwal->tanggal }}
                                                             @else
                                                                 <div>Belum terjadwal</div>
                                                             @endif
@@ -270,7 +279,7 @@
                                                         <label class="col-md-3 bold mt-2"><b>Jam Mulai</b></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             @if ($seminarTa1->jadwal)
-                                                                {{ $seminarTa1->jadwal->jam_mulai_seminar_ta_satu }} WIB
+                                                                {{ $seminarTa1->jadwal->jam_mulai }} WIB
                                                             @else
                                                                 <div>Belum terjadwal</div>
                                                             @endif
@@ -292,7 +301,7 @@
                                                                 Selesai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             @if ($seminarTa1->jadwal)
-                                                                {{ $seminarTa1->jadwal->jam_selesai_seminar_ta_satu }} WIB
+                                                                {{ $seminarTa1->jadwal->jam_selesai }} WIB
                                                             @else
                                                                 <div>Belum terjadwal</div>
                                                             @endif
@@ -318,24 +327,23 @@
                                                         <label class="col-md-3 bold"> <strong>Berita Acara</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/ba_seminar_ta_satu/{{ $ba_ta1->berkas_ba_seminar_ta_satu }}">Lihat</a>
+                                                                href="/uploads/ba_seminar_tesis_1/{{ $ba_ta1->file_ba }}">Lihat</a>
                                                         </div>
                                                         <label class="col-md-3 bold mt-2"><b>Nomor Bukti
                                                                 Seminar</b></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $ba_ta1->no_berkas_ba_seminar_ta_satu }}
+                                                            {{ $ba_ta1->no_ba }}
                                                         </div>
                                                     </div>
                                                     <div class="row border-bottom mt-2">
                                                         <label class="col-md-3 bold"> <strong>PPT</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <a target="_blank"
-                                                                href="/uploads/ta_satu/{{ $ba_ta1->ta_satu }}">Lihat</a>
+                                                            <a target="_blank" href="{{ $ba_ta1->ppt }}">Lihat</a>
                                                         </div>
                                                         <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/ta_satu/{{ $ba_ta1->ta_satu }}">Lihat</a>
+                                                                href="/uploads/nilai_seminar_tesis_1/{{ $ba_ta1->file_nilai }}">Lihat</a>
                                                         </div>
 
                                                     </div>
@@ -346,7 +354,7 @@
                                                         </div>
                                                         <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <b> {{ $ba_ta1->huruf_mutu }} </b>
+                                                            <b> {{ $ba_ta1->nilai_mutu }} </b>
                                                         </div>
                                                     </div>
                                                     <div class="row mt-2">
@@ -373,7 +381,7 @@
                                 <div class="tab-pane fade" id="ta2" role="tabpanel">
                                     <div class="pd-20">
                                         <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Data Seminar Tugas Akhir Dua</h5>
+                                            <h5 class="h4 text-blue mb-20">Data Seminar Tesis 2</h5>
                                             @if ($seminarTa2 != null)
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="row border-bottom mt-3">
@@ -387,16 +395,12 @@
                                                     <div class="row border-bottom">
                                                         <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa2->pembimbing_satu->nama_dosen }}
+                                                            {{ $seminarTa2->pembimbingSatu->nama_dosen }}
                                                         </div>
                                                         <label class="col-md-3 bold mt-1"><strong>Pembimbing
                                                                 2</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            @if ($seminarTa2->pembimbing_dua)
-                                                                {{ $seminarTa2->pembimbing_dua->nama_dosen }}
-                                                            @else
-                                                                {{ $seminarTa2->pbl2_nama }}
-                                                            @endif
+                                                            {{ $seminarTa2->id_pembimbing_2 ? $seminarTa2->pembimbingDua->nama_dosen : $seminarTa2->pbl2_nama }}
                                                         </div>
                                                     </div>
 
@@ -407,15 +411,11 @@
                                                             style="display:block;word-wrap:break-word;">
                                                             {{ $seminarTa2->tahun_akademik }}
                                                         </div>
-                                                        <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai
-                                                                Eksternal</strong></label>
+                                                        <label class="col-md-3 bold mt-2"> <strong>Pembahas
+                                                                1</strong></label>
                                                         <div class="col-md-3 mt-2"
                                                             style="display:block;word-wrap:break-word;">
-                                                            @if ($seminarTa2->pbl2_nip)
-                                                                {{ $seminarTa2->pbl2_nip }}
-                                                            @else
-                                                                -
-                                                            @endif
+                                                            {{ $seminarTa2->id_pembahas_1 ? $seminarTa2->pembahasSatu->nama_dosen : $seminarTa2->pembahas_external_1 }}
                                                         </div>
                                                     </div>
 
@@ -426,9 +426,9 @@
                                                             style="display:block;word-wrap:break-word;">
                                                             {{ $mahasiswa->semester }}
                                                         </div>
-                                                        <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
+                                                        <label class="col-md-3 bold"> <strong>Pembahas 2</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa2->pembahas->nama_dosen }}
+                                                            {{ $seminarTa2->id_pembahas_2 ? $seminarTa1->pembahasDua->nama_dosen : $seminarTa2->pembahas_external_2 }}
                                                         </div>
                                                     </div>
 
@@ -438,10 +438,9 @@
                                                             style="display:block;word-wrap:break-word;">
                                                             {{ $seminarTa2->sks }}
                                                         </div>
-                                                        <label class="col-md-3 bold"> <strong>Rencana
-                                                                Seminar</strong></label>
+                                                        <label class="col-md-3 bold"> <strong>Pembahas 3</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa2->periode_seminar }}
+                                                            {{ $seminarTa2->id_pembahas_3 ? $seminarTa1->pembahasTiga->nama_dosen : $seminarTa2->pembahas_external_3 }}
                                                         </div>
                                                     </div>
 
@@ -454,7 +453,7 @@
                                                                 Kelengkapan</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/syarat_seminar_ta2/{{ $seminarTa2->berkas_ta_dua }}">Lihat
+                                                                href="/uploads/syarat_seminar_ta_dua_s2/{{ $seminarTa2->berkas_ta_dua }}">Lihat
                                                                 Berkas</a>
                                                         </div>
                                                     </div>
@@ -469,6 +468,13 @@
                                                                 Berkas</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             {{ $seminarTa2->status_admin }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <label class="col-md-3 bold"> <strong>Rencana
+                                                                Seminar</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $seminarTa2->periode_seminar }}
                                                         </div>
                                                     </div>
 
@@ -495,7 +501,7 @@
                                                                 Seminar</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             @if ($seminarTa2->jadwal)
-                                                                {{ $seminarTa2->jadwal->tanggal_seminar_ta_dua }}
+                                                                {{ $seminarTa2->jadwal->tanggal }}
                                                             @else
                                                                 <div>Belum terjadwal</div>
                                                             @endif
@@ -503,7 +509,7 @@
                                                         <label class="col-md-3 bold mt-2"><b>Jam Mulai</b></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             @if ($seminarTa2->jadwal)
-                                                                {{ $seminarTa2->jadwal->jam_mulai_seminar_ta_dua }} WIB
+                                                                {{ $seminarTa2->jadwal->jam_mulai }} WIB
                                                             @else
                                                                 <div>Belum terjadwal</div>
                                                             @endif
@@ -525,7 +531,7 @@
                                                                 Selesai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             @if ($seminarTa2->jadwal)
-                                                                {{ $seminarTa2->jadwal->jam_selesai_seminar_ta_dua }} WIB
+                                                                {{ $seminarTa2->jadwal->jam_selesai }} WIB
                                                             @else
                                                                 <div>Belum terjadwal</div>
                                                             @endif
@@ -550,24 +556,23 @@
                                                         <label class="col-md-3 bold"> <strong>Berita Acara</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/ba_seminar_ta_dua/{{ $ba_ta2->berkas_ba_seminar_ta_dua }}">Lihat</a>
+                                                                href="/uploads/ba_seminar_tesis_2/{{ $ba_ta2->file_ba }}">Lihat</a>
                                                         </div>
                                                         <label class="col-md-3 bold mt-2"><b>Nomor Bukti
                                                                 Seminar</b></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $ba_ta2->no_berkas_ba_seminar_ta_dua }}
+                                                            {{ $ba_ta2->no_ba }}
                                                         </div>
                                                     </div>
                                                     <div class="row border-bottom mt-2">
                                                         <label class="col-md-3 bold"> <strong>PPT</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <a target="_blank"
-                                                                href="/uploads/ta_dua/{{ $ba_ta2->berkas_ppt_seminar_ta_dua }}">Lihat</a>
+                                                            <a target="_blank" href="{{ $ba_ta2->ppt }}">Lihat</a>
                                                         </div>
                                                         <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/ta_dua/{{ $ba_ta2->berkas_nilai_seminar_ta_dua }}">Lihat</a>
+                                                                href="/uploads/nilai_seminar_tesis_2/{{ $ba_ta2->file_nilai }}">Lihat</a>
                                                         </div>
                                                     </div>
                                                     <div class="row border-bottom mt-2">
@@ -579,7 +584,7 @@
                                                         <label class="col-md-3 bold"> <strong>Huruf
                                                                 Mutu</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <b> {{ $ba_ta2->huruf_mutu }} </b>
+                                                            <b> {{ $ba_ta2->nilai_mutu }} </b>
                                                         </div>
                                                     </div>
                                                     <div class="row mt-2">
@@ -605,7 +610,7 @@
                                 <div class="tab-pane fade" id="kompre" role="tabpanel">
                                     <div class="pd-20">
                                         <div class="p-md-4">
-                                            <h5 class="h4 text-blue mb-20">Data Seminar Komprehensif</h5>
+                                            <h5 class="h4 text-blue mb-20">Data Sidang Tesis</h5>
                                             @if ($sidangKompre != null)
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="row border-bottom mt-3">
@@ -663,7 +668,7 @@
                                                         </div>
                                                         <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->pembahas->nama_dosen }}
+                                                            {{ $sidangKompre->pembahasSatu->nama_dosen }}
                                                         </div>
                                                     </div>
 
@@ -727,7 +732,7 @@
                                                                 Seminar</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             @if ($sidangKompre->jadwal)
-                                                                {{ $sidangKompre->jadwal->tanggal_komprehensif }}
+                                                                {{ $sidangKompre->jadwal->tanggal }}
                                                             @else
                                                                 <div>Belum terjadwal</div>
                                                             @endif
@@ -735,7 +740,7 @@
                                                         <label class="col-md-3 bold mt-2"><b>Jam Mulai</b></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             @if ($sidangKompre->jadwal)
-                                                                {{ $sidangKompre->jadwal->jam_mulai_komprehensif }} WIB
+                                                                {{ $sidangKompre->jadwal->jam_mulai }} WIB
                                                             @else
                                                                 <div>Belum terjadwal</div>
                                                             @endif
@@ -757,7 +762,7 @@
                                                                 Selesai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             @if ($sidangKompre->jadwal)
-                                                                {{ $sidangKompre->jadwal->jam_selesai_komprehensif }} WIB
+                                                                {{ $sidangKompre->jadwal->jam_selesai }} WIB
                                                             @else
                                                                 <div>Belum terjadwal</div>
                                                             @endif
@@ -783,25 +788,25 @@
                                                             Acara</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         <a target="_blank"
-                                                            href="/uploads/ba_sidang_kompre/{{ $ba_kompre->ba_seminar_komprehensif }}">Lihat</a>
+                                                            href="/uploads/ba_sidang_tesis/{{ $ba_kompre->file_ba }}">Lihat</a>
                                                     </div>
                                                     <label class="col-md-3 bold mt-2"><b>Nomor Bukti
                                                             Seminar</b></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $ba_kompre->no_ba_berkas }}
+                                                        {{ $ba_kompre->no_ba }}
                                                     </div>
                                                 </div>
                                                 <div class="row border-bottom mt-2">
                                                     <label class="col-md-3 bold"> <strong>Laporan
-                                                            Akhir</strong></label>
+                                                            Pengesahan</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <a target="_blank" href="{{ $ba_kompre->laporan_ta }}">Lihat</a>
+                                                        <a target="_blank" href="{{ $ba_kompre->pengesahan }}">Lihat</a>
                                                     </div>
                                                     <label class="col-md-3 bold"> <strong>Berkas
                                                             Nilai</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         <a target="_blank"
-                                                            href="/uploads/nilai_sidang_kompre/{{ $ba_kompre->berkas_nilai_kompre }}">Lihat</a>
+                                                            href="/uploads/nilai_sidang_tesis/{{ $ba_kompre->file_nilai }}">Lihat</a>
                                                     </div>
 
                                                 </div>
@@ -814,7 +819,7 @@
                                                     <label class="col-md-3 bold"> <strong>Huruf
                                                             Mutu</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <b> {{ $ba_kompre->huruf_mutu }} </b>
+                                                        <b> {{ $ba_kompre->nilai_mutu }} </b>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
