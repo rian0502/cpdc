@@ -40,7 +40,7 @@ return new class extends Migration
                 'Paten Sederhana',
                 'Hak Cipta',
                 'Desain Produk Industri',
-                'Teknologi',
+                'Teknologi Tepat Guna',
                 'Buku ber-ISBN',
                 'Book Chapter'
             ]);
