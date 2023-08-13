@@ -78,8 +78,7 @@
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"> <strong>PowerPoint</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a target="_blank"
-                                        href="{{ $seminar->beritaAcara->ppt }}">Lihat</a>
+                                    <a target="_blank" href="{{ $seminar->beritaAcara->ppt }}">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Nilai</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -95,10 +94,6 @@
                                     <label><b>Status Seminar</b></label>
                                     <select name="status_koor" id="status" class="selectpicker form-control"
                                         onchange="toggleCatatan()" data-size="5">
-                                        <option value="Belum Selesai"
-                                            {{ $seminar->status_koor == 'Belum Selesai' ? 'selected' : '' }}>Belum
-                                            Selesai
-                                        </option>
                                         <option value="Perbaikan"
                                             {{ $seminar->status_koor == 'Perbaikan' ? 'selected' : '' }}>Perbaikan
                                         </option>

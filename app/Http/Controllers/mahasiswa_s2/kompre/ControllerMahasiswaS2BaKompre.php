@@ -13,21 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ControllerMahasiswaS2BaKompre extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        // return view("mahasiswaS2.kompre.ba.index");
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view("mahasiswaS2.kompre.ba.create");
@@ -63,16 +48,6 @@ class ControllerMahasiswaS2BaKompre extends Controller
         return redirect()->route('mahasiswa.sidang.kompres2.index')->with('success', 'Berita Acara Sidang Tesis berhasil ditambahkan!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -124,14 +99,4 @@ class ControllerMahasiswaS2BaKompre extends Controller
         return redirect()->route('mahasiswa.sidang.kompres2.index')->with('success', 'Berita Acara Sidang Tesis berhasil diubah!');;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

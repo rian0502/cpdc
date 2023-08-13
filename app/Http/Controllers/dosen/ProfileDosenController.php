@@ -9,8 +9,7 @@ use App\Models\HistoryJabatanDosen;
 use App\Models\HistoryPangkatDosen;
 use App\Models\LitabmasDosen;
 use App\Models\ModelGelar;
-use App\Models\ModelPenghargaanDosen;
-use App\Models\ModelSeminarDosen;
+use App\Models\ModelSPDosen;
 use App\Models\PublikasiDosen;
 use App\Models\User;
 use Carbon\Carbon;
@@ -114,8 +113,6 @@ class ProfileDosenController extends Controller
             'encrypted_id' => Crypt::encrypt($idJabatan)
         ]);
         //end insert data ketable jabatan dosen
-
-
         //insert data ketable pangkat dosen
         $file_sk_pangkat = $request->file('file_sk_pangkat');
         $nama_file_sk_pangkat = Str::random() . '.' . $file_sk_pangkat->getClientOriginalExtension();
@@ -179,8 +176,8 @@ class ProfileDosenController extends Controller
         if ($request->file('foto_profile') != null) {
             $foto = $request->file('foto_profile');
             $nama_foto = $foto->hashName();
-            if($user->profile_picture != 'default.png'){
-                unlink('uploads/profile/'.$user->profile_picture);
+            if ($user->profile_picture != 'default.png') {
+                unlink('uploads/profile/' . $user->profile_picture);
             }
             $foto->move('uploads/profile', $nama_foto);
             $user->profile_picture = $nama_foto;
@@ -224,8 +221,8 @@ class ProfileDosenController extends Controller
             $q->where('dosen.id', Auth::user()->dosen->id);
         })->get();
         $gelar = ModelGelar::where('dosen_id', Auth::user()->dosen->id)->get();
-        $seminar = ModelSeminarDosen::where('dosen_id', Auth::user()->dosen->id)->get();
-        $penghargaan = ModelPenghargaanDosen::where('dosen_id', Auth::user()->dosen->id)->get();
+        $seminar = ModelSPDosen::where('jenis', 'Seminar')->where('dosen_id', Auth::user()->dosen->id)->get();
+        $penghargaan = ModelSPDosen::where('jenis', 'Penghargaan')->where('dosen_id', Auth::user()->dosen->id)->get();
         $gelar_pendidikan = [
             'S.Pd.',          // Sarjana Pendidikan
             'S.Kom.',         // Sarjana Komputer

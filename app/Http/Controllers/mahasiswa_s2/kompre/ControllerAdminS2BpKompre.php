@@ -23,44 +23,6 @@ class ControllerAdminS2BpKompre extends Controller
         return view('admin.admin_berkas.validasi.sidang.kompreS2.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $seminar = ModelKompreS2::find(Crypt::decrypt($id));
@@ -96,6 +58,7 @@ class ControllerAdminS2BpKompre extends Controller
             $seminar->save();
         } else {
             $seminar = ModelKompreS2::find(Crypt::decrypt($id));
+            $seminar->komentar = null;
             $seminar->status_admin = $request->status_admin;
             $seminar->updated_at = date('Y-m-d H:i:s');
             $seminar->save();

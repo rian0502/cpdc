@@ -41,7 +41,7 @@
                     </div>
                     <div class="">
                         <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                           <div class="row border-bottom">
+                            <div class="row border-bottom">
                                 <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $mahasiswa->npm }}
@@ -150,7 +150,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
                         <div class="pull-left">
-                            <h4 class="text-dark h4" style="margin-left: 10px">Jadwalkan Seminar Tugas Akhir 2</h4>
+                            <h4 class="text-dark h4" style="margin-left: 10px">Jadwalkan Seminar Tesis 2</h4>
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
