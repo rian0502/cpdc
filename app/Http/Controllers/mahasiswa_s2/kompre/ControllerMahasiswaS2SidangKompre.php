@@ -145,6 +145,7 @@ class ControllerMahasiswaS2SidangKompre extends Controller
      */
     public function update(Request $request, $id)
     {
+        return dd($request->all());
         $seminar = ModelKompreS2::find(Crypt::decrypt($id));
         $seminar->semester = $request->semester;
         $seminar->tahun_akademik = $request->tahun_akademik;

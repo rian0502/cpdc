@@ -41,7 +41,7 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
      */
     public function create()
     {
-        if(Auth::user()->mahasiswa->taSatuS2){
+        if (Auth::user()->mahasiswa->taSatuS2) {
             return redirect()->route('mahasiswa.seminarta1s2.index');
         }
         $data = [
@@ -78,8 +78,8 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
             'id_pembimbing_1' => Crypt::decrypt($request->id_pembimbing_satu),
             'id_mahasiswa' => Auth::user()->mahasiswa->id,
         ];
-        if ($request->id_pembimbing_dua != 'new') {
-            $data['id_pembimbing_2'] = Crypt::decrypt($request->id_pembimbing_dua);
+        if ($request->id_pembimbing_2 != 'new') {
+            $data['id_pembimbing_2'] = Crypt::decrypt($request->id_pembimbing_2);
         } else {
             $request->validate([
                 'pbl2_nama' => ['required', 'string', 'max:255'],
@@ -96,76 +96,76 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
             $data['pbl2_nip'] = $request->pbl2_nip;
         }
         //cek apakah pembahas 1 dari luar
-        if ($request->id_pembahas_satu != 'new') {
+        if ($request->id_pembahas_1 != 'new') {
             $request->validate([
-                'id_pembahas_satu' => ['required', 'exists:dosen,encrypt_id'],
+                'id_pembahas_1' => ['required', 'exists:dosen,encrypt_id'],
             ], [
-                'id_pembahas_satu.required' => 'Pembahas 1 harus diisi',
-                'id_pembahas_satu.exists' => 'Pembahas 1 tidak valid'
+                'id_pembahas_1.required' => 'Pembahas 1 harus diisi',
+                'id_pembahas_1.exists' => 'Pembahas 1 tidak valid'
             ]);
-            $data['id_pembahas_1'] = Crypt::decrypt($request->id_pembahas_satu);
+            $data['id_pembahas_1'] = Crypt::decrypt($request->id_pembahas_1);
         } else {
             $request->validate([
-                'phs1_nama' => ['required', 'string', 'max:255'],
-                'phs1_nip' => ['required', 'string', 'max:255'],
+                'pembahas_external_1' => ['required', 'string', 'max:255'],
+                'nip_pembahas_external_1' => ['required', 'string', 'max:255'],
             ], [
-                'phs1_nama.required' => 'Nama Pembahas 1 harus diisi',
-                'phs1_nama.string' => 'Nama Pembahas 1 harus berupa kata',
-                'phs1_nama.max' => 'Nama Pembahas 1 maksimal 255 karakter',
-                'phs1_nip.required' => 'NIP Pembahas 1 harus diisi',
-                'phs1_nip.string' => 'NIP Pembahas 1 harus berupa kata',
-                'phs1_nip.max' => 'NIP Pembahas 1 maksimal 255 karakter'
+                'pembahas_external_1.required' => 'Nama Pembahas 1 harus diisi',
+                'pembahas_external_1.string' => 'Nama Pembahas 1 harus berupa kata',
+                'pembahas_external_1.max' => 'Nama Pembahas 1 maksimal 255 karakter',
+                'nip_pembahas_external_1.required' => 'NIP Pembahas 1 harus diisi',
+                'nip_pembahas_external_1.string' => 'NIP Pembahas 1 harus berupa kata',
+                'nip_pembahas_external_1.max' => 'NIP Pembahas 1 maksimal 255 karakter'
             ]);
-            $data['pembahas_external_1'] = $request->phs1_nama;
-            $data['nip_pembahas_external_1'] = $request->phs1_nip;
+            $data['pembahas_external_1'] = $request->pembahas_external_1;
+            $data['nip_pembahas_external_1'] = $request->nip_pembahas_external_1;
         }
         //check apakah pembhas 2 dari luar
-        if ($request->id_pembahas_dua != 'new') {
+        if ($request->id_pembahas_2 != 'new') {
             $request->validate([
-                'id_pembahas_dua' => ['required', 'exists:dosen,encrypt_id'],
+                'id_pembahas_2' => ['required', 'exists:dosen,encrypt_id'],
             ], [
-                'id_pembahas_dua.required' => 'Pembahas 1 harus diisi',
-                'id_pembahas_dua.exists' => 'Pembahas 1 tidak valid'
+                'id_pembahas_2.required' => 'Pembahas 1 harus diisi',
+                'id_pembahas_2.exists' => 'Pembahas 1 tidak valid'
             ]);
-            $data['id_pembahas_2'] = Crypt::decrypt($request->id_pembahas_dua);
+            $data['id_pembahas_2'] = Crypt::decrypt($request->id_pembahas_2);
         } else {
             $request->validate([
-                'phs2_nama' => ['required', 'string', 'max:255'],
-                'phs2_nip' => ['required', 'string', 'max:255'],
+                'pembahas_external_2' => ['required', 'string', 'max:255'],
+                'nip_pembahas_external_2' => ['required', 'string', 'max:255'],
             ], [
-                'phs2_nama.required' => 'Nama Pembahas 1 harus diisi',
-                'phs2_nama.string' => 'Nama Pembahas 1 harus berupa kata',
-                'phs2_nama.max' => 'Nama Pembahas 1 maksimal 255 karakter',
-                'phs2_nip.required' => 'NIP Pembahas 1 harus diisi',
-                'phs2_nip.string' => 'NIP Pembahas 1 harus berupa kata',
-                'phs2_nip.max' => 'NIP Pembahas 1 maksimal 255 karakter'
+                'pembahas_external_2.required' => 'Nama Pembahas 1 harus diisi',
+                'pembahas_external_2.string' => 'Nama Pembahas 1 harus berupa kata',
+                'pembahas_external_2.max' => 'Nama Pembahas 1 maksimal 255 karakter',
+                'nip_pembahas_external_2.required' => 'NIP Pembahas 1 harus diisi',
+                'nip_pembahas_external_2.string' => 'NIP Pembahas 1 harus berupa kata',
+                'nip_pembahas_external_2.max' => 'NIP Pembahas 1 maksimal 255 karakter'
             ]);
-            $data['pembahas_external_2'] = $request->phs2_nama;
-            $data['nip_pembahas_external_2'] = $request->phs2_nip;
+            $data['pembahas_external_2'] = $request->pembahas_external_2;
+            $data['nip_pembahas_external_2'] = $request->nip_pembahas_external_2;
         }
         //check apakah pembhas 3 dari luar
-        if ($request->id_pembahas_tiga != 'new') {
+        if ($request->id_pembahas_3 != 'new') {
             $request->validate([
-                'id_pembahas_tiga' => ['required', 'exists:dosen,encrypt_id'],
+                'id_pembahas_3' => ['required', 'exists:dosen,encrypt_id'],
             ], [
-                'id_pembahas_tiga.required' => 'Pembahas 1 harus diisi',
-                'id_pembahas_tiga.exists' => 'Pembahas 1 tidak valid'
+                'id_pembahas_3.required' => 'Pembahas 1 harus diisi',
+                'id_pembahas_3.exists' => 'Pembahas 1 tidak valid'
             ]);
-            $data['id_pembahas_3'] = Crypt::decrypt($request->id_pembahas_tiga);
+            $data['id_pembahas_3'] = Crypt::decrypt($request->id_pembahas_3);
         } else {
             $request->validate([
-                'phs3_nama' => ['required', 'string', 'max:255'],
-                'phs3_nip' => ['required', 'string', 'max:255'],
+                'pembahas_external_3' => ['required', 'string', 'max:255'],
+                'nip_pembahas_external_3' => ['required', 'string', 'max:255'],
             ], [
-                'phs3_nama.required' => 'Nama Pembahas 1 harus diisi',
-                'phs3_nama.string' => 'Nama Pembahas 1 harus berupa kata',
-                'phs3_nama.max' => 'Nama Pembahas 1 maksimal 255 karakter',
-                'phs3_nip.required' => 'NIP Pembahas 1 harus diisi',
-                'phs3_nip.string' => 'NIP Pembahas 1 harus berupa kata',
-                'phs3_nip.max' => 'NIP Pembahas 1 maksimal 255 karakter'
+                'pembahas_external_3.required' => 'Nama Pembahas 1 harus diisi',
+                'pembahas_external_3.string' => 'Nama Pembahas 1 harus berupa kata',
+                'pembahas_external_3.max' => 'Nama Pembahas 1 maksimal 255 karakter',
+                'nip_pembahas_external_3.required' => 'NIP Pembahas 1 harus diisi',
+                'nip_pembahas_external_3.string' => 'NIP Pembahas 1 harus berupa kata',
+                'nip_pembahas_external_3.max' => 'NIP Pembahas 1 maksimal 255 karakter'
             ]);
-            $data['pembahas_external_3'] = $request->phs3_nama;
-            $data['nip_pembahas_external_3'] = $request->phs3_nip;
+            $data['pembahas_external_3'] = $request->pembahas_external_3;
+            $data['nip_pembahas_external_3'] = $request->nip_pembahas_external_3;
         }
         $insert = ModelSeminarTaSatuS2::create($data);
         $update = ModelSeminarTaSatuS2::find($insert->id);
