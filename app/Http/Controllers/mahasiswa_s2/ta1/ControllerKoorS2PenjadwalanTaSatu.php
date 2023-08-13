@@ -159,7 +159,6 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
 
     public function resend($id)
     {
-
         $seminar = ModelSeminarTaSatuS2::with(['jadwal', 'mahasiswa'])->where('id', Crypt::decrypt($id))->first();
         $jadwal = $seminar->jadwal;
         $mahasiswa = $seminar->mahasiswa;
@@ -274,7 +273,6 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
         $jadwal->id_lokasi = Crypt::decrypt($request->id_lokasi);
         $jadwal->updated_at = date('Y-m-d H:i:s');
         $jadwal->save();
-        $seminar = ModelSeminarTaSatuS2::find($id);
         $mahasiswa = $seminar->mahasiswa;
         $template = new \PhpOffice\PhpWord\TemplateProcessor($this->ba->path);
         $template->setValue('nama_admin', $admin->nama_administrasi);

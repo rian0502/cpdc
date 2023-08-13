@@ -94,10 +94,6 @@
                                     <label><b>Status Seminar</b></label>
                                     <select name="status_koor" id="status" class="selectpicker form-control"
                                         onchange="toggleCatatan()" data-size="5">
-                                        <option value="Belum Selesai"
-                                            {{ $seminar->status_koor == 'Belum Selesai' ? 'selected' : '' }}>Belum
-                                            Selesai
-                                        </option>
                                         <option value="Perbaikan"
                                             {{ $seminar->status_koor == 'Perbaikan' ? 'selected' : '' }}>Perbaikan
                                         </option>
