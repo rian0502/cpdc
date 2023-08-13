@@ -203,12 +203,12 @@
                             <div class="form-group">
                                 <button type="submit" class="submit btn btn-primary">Kirim</button>
                             </div>
-                            <a href="{{ route('koor.jadwalTA1S2.index') }}">
-
-                                <button class="batal btn btn-secondary">Batal</button>
-                            </a>
 
                         </form>
+                        <a href="{{ route('koor.jadwalTA1S2.index') }}">
+
+                            <button class="batal btn btn-secondary">Batal</button>
+                        </a>
                     </div>
                 </div>
                 <!-- Data Registrasi End -->
