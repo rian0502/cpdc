@@ -208,9 +208,9 @@ Route::prefix('koor')->name('koor.')->group(function () {
     Route::get('/jadwalTA2/resend/{id}', [PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('jadwalTA2.resend');
     Route::get('/jadwalKompre/resend/{id}', [PenjadwalanKompreController::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('jadwalKompre.resend');
 
-    Route::get('/jadwalTA1S2/resend/{id}', [ControllerKoorS2PenjadwalanTaSatu::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1S2.resend');
-    Route::get('/jadwalTA2S2/resend/{id}', [ControllerKoorS2PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('jadwalTA2S2.resend');
-    Route::get('/jadwalSidangS2/resend/{id}', [ControllerKoorS2JadwalKompre::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('jadwalSidangS2.resend');
+    Route::get('/jadwalTA1S2/resend/{id}', [ControllerKoorS2PenjadwalanTaSatu::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->name('jadwalTA1S2.resend');
+    Route::get('/jadwalTA2S2/resend/{id}', [ControllerKoorS2PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->name('jadwalTA2S2.resend');
+    Route::get('/jadwalSidangS2/resend/{id}', [ControllerKoorS2JadwalKompre::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->name('jadwalSidangS2.resend');
 
     Route::resource('validasiBaPKL', ValidasiBaPKLController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('validasiBaPKL');
     Route::resource('validasiBaTA1', ValidasiBaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('validasiBaTA1');

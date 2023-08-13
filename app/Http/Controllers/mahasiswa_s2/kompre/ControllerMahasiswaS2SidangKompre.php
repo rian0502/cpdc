@@ -118,16 +118,6 @@ class ControllerMahasiswaS2SidangKompre extends Controller
         return redirect()->route('mahasiswa.sidang.kompres2.index')->with('success', 'Berhasil mengajukan Sidang Tesis');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

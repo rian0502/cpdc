@@ -15,7 +15,9 @@ class ModelJadwalSeminarTaSatuS2 extends Model
         'jam_mulai',
         'jam_selesai',
         'id_lokasi',
-        'id_seminar'
+        'id_seminar',
+        'created_at',
+        'updated_at'
     ];
     public function seminar()
     {
