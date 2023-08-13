@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\AktivitasMahasiswa;
 use App\Models\LitabmasDosen;
 use App\Models\Mahasiswa;
-use App\Models\ModelPenghargaanDosen;
-use App\Models\ModelSeminarDosen;
 use App\Models\ModelSPDosen;
 use App\Models\PrestasiMahasiswa;
 use App\Models\PublikasiDosen;
@@ -57,7 +55,7 @@ class ExportData extends Controller
     }
     public function seminar(Request $request)
     {
-        $seminar = ModelSeminarDosen::with('dosen')->whereYear('tahun', $request->tahun_seminar)->get();
+        $seminar = ModelSPDosen::with('dosen')->where('jenis', 'Seminar')->whereYear('tahun', $request->tahun_seminar)->get();
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Seminar Dosen');
@@ -84,7 +82,7 @@ class ExportData extends Controller
 
     public function penghargaan(Request $request)
     {
-        $penghargaan = ModelPenghargaanDosen::with('dosen')->whereYear('tahun', $request->tahun_penghargaan)->get();
+        $penghargaan = ModelSPDosen::with('dosen')->where('jenis', 'Penghargaan')->whereYear('tahun', $request->tahun_penghargaan)->get();
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Penghargaan Dosen');
