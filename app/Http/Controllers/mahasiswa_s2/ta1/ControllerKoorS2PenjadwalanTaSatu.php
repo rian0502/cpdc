@@ -274,7 +274,6 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
         $jadwal->id_lokasi = Crypt::decrypt($request->id_lokasi);
         $jadwal->updated_at = date('Y-m-d H:i:s');
         $jadwal->save();
-        $seminar = ModelSeminarTaSatuS2::find($id);
         $mahasiswa = $seminar->mahasiswa;
         $template = new \PhpOffice\PhpWord\TemplateProcessor($this->ba->path);
         $template->setValue('nama_admin', $admin->nama_administrasi);
