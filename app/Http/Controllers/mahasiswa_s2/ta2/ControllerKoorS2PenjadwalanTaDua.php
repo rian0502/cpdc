@@ -120,7 +120,7 @@ class ControllerKoorS2PenjadwalanTaDua extends Controller
         $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'));
         $template->setValue('jam_mulai', $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
-        $template->setValue('lokasi', $lokasi->nama_lokasi);
+        $template->setValue('nama_lokasi', $lokasi->nama_lokasi);
         $namafile = $mahasiswa->npm . '_ba_tesis_2.docx';
         $template->saveAs('uploads/print_ba_tesis_2/' . $namafile);
         $to_name = $mahasiswa->nama_mahasiswa;
@@ -143,37 +143,86 @@ class ControllerKoorS2PenjadwalanTaDua extends Controller
         return redirect()->route('koor.jadwalTA2S2.index')->with('success', 'Berhasil Menjadwalkan Seminar Tesis 2');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function resend($id)
     {
-        //
+        $seminar = ModelSeminarTaDuaS2::with(['jadwal', 'mahasiswa'])->where('id', Crypt::decrypt($id))->first();
+        $jadwal = $seminar->jadwal;
+        $mahasiswa = $seminar->mahasiswa;
+        $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', $jadwal->id_lokasi)->first();
+        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $hari = Carbon::parse($jadwal->tanggal)->locale('id_ID')->isoFormat('dddd');
+        $kajur = User::role('kaprodiS2')->with('dosen')->first();
+        $template = new \PhpOffice\PhpWord\TemplateProcessor($this->ba->path);
+        $template->setValue('nama_admin', $admin->nama_administrasi);
+        $template->setValue('nip_admin', $admin->nip);
+        $template->setValue('nama_kaprodi_s2', $kajur->dosen->nama_dosen);
+        $template->setValue('nip_kaprodi_s2', $kajur->dosen->nip);
+        $template->setValue('nama_mahasiswa', $seminar->mahasiswa->nama_mahasiswa);
+        $template->setValue('npm', $seminar->mahasiswa->npm);
+        $template->setValue('judul_ta', $seminar->judul_ta);
+        $template->setValue('nama_pembimbing_1', $seminar->pembimbingSatu->nama_dosen);
+        $template->setValue('nip_pembimbing_1', $seminar->pembimbingSatu->nip);
+        if ($seminar->id_pembimbing_2) {
+            $template->setValue('nama_pembimbing_2', $seminar->pembimbingDua->nama_dosen);
+            $template->setValue('nip_pembimbing_2', $seminar->pembimbingDua->nip);
+        } else {
+            $template->setValue('nama_pembimbing_2', $seminar->pbl2_nama);
+            $template->setValue('nip_pembimbing_2', $seminar->pbl2_nip);
+        }
+        if ($seminar->id_pembahas_1) {
+            $template->setValue('nama_pembahas_1', $seminar->pembahasSatu->nama_dosen);
+            $template->setValue('nip_pembahas_1', $seminar->pembahasSatu->nip);
+        } else {
+            $template->setValue('nama_pembahas_1', $seminar->pembahas_external_1);
+            $template->setValue('nip_pembahas_1', $seminar->nip_pembahas_external_1);
+        }
+        if ($seminar->id_pembahas_2) {
+            $template->setValue('nama_pembahas_2', $seminar->pembahasDua->nama_dosen);
+            $template->setValue('nip_pembahas_2', $seminar->pembahasDua->nip);
+        } else {
+            $template->setValue('nama_pembahas_2', $seminar->pembahas_external_2);
+            $template->setValue('nip_pembahas_2', $seminar->nip_pembahas_external_2);
+        }
+        if ($seminar->id_pembahas_3) {
+            $template->setValue('nama_pembahas_3', $seminar->pembahasTiga->nama_dosen);
+            $template->setValue('nip_pembahas_3', $seminar->pembahasTiga->nip);
+        } else {
+            $template->setValue('nama_pembahas_3', $seminar->pembahas_external_3);
+            $template->setValue('nip_pembahas_3', $seminar->nip_pembahas_external_3);
+        }
+        $template->setValue('nama_koor_ta2', Auth::user()->name);
+        $template->setValue('nip_koor_ta2', Auth::user()->dosen->nip);
+        $template->setValue('hari', $hari);
+        $template->setValue('tanggal', Carbon::parse($jadwal->tanggal)->locale('id_ID')->isoFormat('D MMMM YYYY'));
+        $template->setValue('jam_mulai', $jadwal->jam_mulai);
+        $template->setValue('jam_selesai', $jadwal->jam_selesai);
+        $template->setValue('nama_lokasi', $lokasi->nama_lokasi);
+        $namafile = $mahasiswa->npm . '_ba_tesis_2.docx';
+        $template->saveAs('uploads/print_ba_tesis_2/' . $namafile);
+        $to_name = $mahasiswa->nama_mahasiswa;
+        $to_email = $mahasiswa->user->email;
+        $data = [
+            'name' => $seminar->mahasiswa->nama_mahasiswa,
+            'body' => 'Berikut adalah jadwal Seminar Tesis 2 Anda',
+            'seminar' => $seminar->judul_ta,
+            'tanggal' => $hari . ', ' . Carbon::parse($jadwal->tanggal)->locale('id_ID')->isoFormat('D MMMM YYYY'),
+            'jam_mulai' => $jadwal->jam_mulai,
+            'jam_selesai' => $jadwal->jam_selesai,
+            'lokasi' => $lokasi->nama_lokasi,
+        ];
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tesis 2');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_tesis_2/' . $namafile);
+        });
+        unlink('uploads/print_ba_tesis_2/' . $namafile);
+        return redirect()->route('koor.jadwalTA2S2.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar Tesis 2');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         return View('koorS2.tesis2.jadwal.edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 }

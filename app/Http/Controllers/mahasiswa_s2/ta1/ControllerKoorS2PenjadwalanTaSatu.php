@@ -134,7 +134,7 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
         $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'));
         $template->setValue('jam_mulai', $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
-        $template->setValue('lokasi', $lokasi->nama_lokasi);
+        $template->setValue('nama_lokasi', $lokasi->nama_lokasi);
         $namafile = $mahasiswa->npm . '_ba_tesis_1.docx';
         $template->saveAs('uploads/print_ba_tesis_1/' . $namafile);
         $to_name = $mahasiswa->nama_mahasiswa;
@@ -211,7 +211,7 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
         $template->setValue('tanggal', Carbon::parse($jadwal->tanggal)->locale('id_ID')->isoFormat('D MMMM YYYY'));
         $template->setValue('jam_mulai', $jadwal->jam_mulai);
         $template->setValue('jam_selesai', $jadwal->jam_selesai);
-        $template->setValue('lokasi', $lokasi->nama_lokasi);
+        $template->setValue('nama_lokasi', $lokasi->nama_lokasi);
         $namafile = $mahasiswa->npm . '_ba_tesis_1.docx';
         $template->saveAs('uploads/print_ba_tesis_1/' . $namafile);
         $to_name = $mahasiswa->nama_mahasiswa;
@@ -320,7 +320,7 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
         $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'));
         $template->setValue('jam_mulai', $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
-        $template->setValue('lokasi', $lokasi->nama_lokasi);
+        $template->setValue('nama_lokasi', $lokasi->nama_lokasi);
         $namafile = $mahasiswa->npm . '_ba_tesis_1.docx';
         $template->saveAs('uploads/print_ba_tesis_1/' . $namafile);
         $to_name = $mahasiswa->nama_mahasiswa;
