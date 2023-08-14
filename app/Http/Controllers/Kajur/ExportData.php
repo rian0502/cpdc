@@ -34,7 +34,11 @@ class ExportData extends Controller
                 ->get(),
             'aktivitas' => AktivitasMahasiswa::selectRaw('YEAR(tanggal) as year')->distinct()->orderBy('year', 'desc')
                 ->get(),
-            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()->where('status', 'Aktif')->orderBy('angkatan', 'desc')
+            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()->where('status', 'Aktif')->whereHas('user', function ($query) {
+                $query->whereHas('roles', function ($query) {
+                    $query->where('name', 'mahasiswa');
+                });
+            })->orderBy('angkatan', 'desc')
                 ->get(),
             'alumni' => Mahasiswa::select('angkatan')->distinct()->where('status', 'Alumni')->orderBy('angkatan', 'desc')
                 ->get(),
@@ -46,9 +50,9 @@ class ExportData extends Controller
                 ->get(),
             'kompre' => Mahasiswa::select('angkatan')->distinct()->whereHas('komprehensif')->orderBy('angkatan', 'desc')
                 ->get(),
-            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->orderBy('tahun', 'desc')
+            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->where('jenis', 'Seminar')->orderBy('tahun', 'desc')
                 ->get(),
-            'penghargaan_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->orderBy('tahun', 'desc')
+            'penghargaan_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->where('jenis', 'Penghargaan')->orderBy('tahun', 'desc')
                 ->get(),
         ];
         return view('jurusan.export.index', $data);
@@ -337,9 +341,12 @@ class ExportData extends Controller
     }
     public function mahasiswa(Request $request)
     {
-        $mahasiswa = Mahasiswa::with(['seminar_kp', 'ta_satu', 'ta_dua', 'komprehensif'])->where('angkatan', $request->tahun_mahasiswa)
-            ->where('status', 'Aktif')
-            ->get();
+        $mahasiswa = Mahasiswa::with(['seminar_kp', 'ta_satu', 'ta_dua', 'komprehensif'])->where('angkatan', $request->tahun_mahasiswa)->whereHas('user', function ($query) {
+            $query->whereHas('roles', function ($query) {
+                $query->where('name', 'mahasiswa');
+            });
+        })->where('status', 'Aktif')->get();
+        
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Mahasiswa');

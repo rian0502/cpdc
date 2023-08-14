@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBaTaSatuS2Request;
 use App\Http\Requests\UpdateBaTaSatuS2Request;
 use App\Models\ModelBaSeminarTaSatuS2;
+use App\Models\ModelJadwalSeminarTaSatuS2;
 use App\Models\ModelSeminarTaSatuS2;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -60,6 +61,10 @@ class ControllerMahasiswaS2BaTaSatu extends Controller
         $update = ModelBaSeminarTaSatuS2::find($insert_id);
         $update->encrypt_id = Crypt::encrypt($insert_id);
         $update->save();
+        $jadwal = ModelJadwalSeminarTaSatuS2::where('id_seminar', $id_seminar)->first();
+        $jadwal->tanggal = $request->tgl_realisasi_seminar;
+        $jadwal->updated_at = now();
+        $jadwal->save();
         return redirect()->route('mahasiswa.seminarta1s2.index')->with('success', 'Berhasil menambahkan berita acara seminar tesis 1');
     }
 
@@ -109,7 +114,7 @@ class ControllerMahasiswaS2BaTaSatu extends Controller
             $file_ba->move('uploads/ba_seminar_tesis_1', $name_file_ba);
             $berita_acara->file_ba = $name_file_ba;
         }
-        if($request->file('file_nilai')){
+        if ($request->file('file_nilai')) {
             unlink('uploads/nilai_seminar_tesis_1/' . $berita_acara->file_nilai);
             $file_nilai = $request->file('file_nilai');
             $name_file_nilai = $file_nilai->hashName();
@@ -122,7 +127,10 @@ class ControllerMahasiswaS2BaTaSatu extends Controller
         $seminar->komentar = '';
         $seminar->updated_at = now();
         $seminar->save();
+        $jadwal = ModelJadwalSeminarTaSatuS2::where('id_seminar', $seminar->id)->first();
+        $jadwal->tanggal = $request->tgl_realisasi_seminar;
+        $jadwal->updated_at = now();
+        $jadwal->save();
         return redirect()->route('mahasiswa.seminarta1s2.index')->with('success', 'Berhasil mengubah berita acara seminar tesis 1');
     }
-
 }

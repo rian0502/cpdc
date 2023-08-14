@@ -255,7 +255,6 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
 
     //unduh data
     Route::get('unduh_data_s1', [ExportData::class, 'index'])->name('unduh.index');
-    Route::get('unduh_data_s2', [ExportDataS2::class, 'index'])->name('unduhs2.index');
     Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
     Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
     Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
@@ -269,9 +268,25 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
     Route::post('unduh/seminar', [ExportData::class, 'seminar'])->name('unduh.seminar');
     Route::post('unduh/penghargaan', [ExportData::class, 'penghargaan'])->name('unduh.penghargaan');
-
 });
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|kaprodiS2|tpmpsS2')->group(function () {
+    Route::get('unduh_data_s2', [ExportDataS2::class, 'index'])->name('unduhs2.index');
+    Route::post('unduh/prestasiS2', [ExportDataS2::class, 'prestasiS2'])->name('unduh.prestasiS2');
+    Route::post('unduh/aktivitasS2', [ExportDataS2::class, 'aktivitasS2'])->name('unduh.aktivitasS2');
+    Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
+    Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
+    Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
+    Route::post('unduh/seminar', [ExportData::class, 'seminar'])->name('unduh.seminar');
+    Route::post('unduh/penghargaan', [ExportData::class, 'penghargaan'])->name('unduh.penghargaan');
+
+    Route::post('unduh/tesis1', [ExportDataS2::class, 'tesis1'])->name('unduh.tesis1');
+    Route::post('unduh/tesis2', [ExportDataS2::class, 'tesis2'])->name('unduh.tesis2');
+    Route::post('unduh/sidang', [ExportDataS2::class, 'sidang'])->name('unduh.sidang');
+    Route::post('unduh/mahasiswas2', [ExportDataS2::class, 'mahasiswas2'])->name('unduh.mahasiswas2');
+
+
+
+
     Route::resource('alumniS2', DataAlumniS2::class);
     Route::resource('prestasiS2', PrestasiDataS2Controller::class);
     Route::get('chartCapaianPrestasiS2', [PrestasiDataS2Controller::class, 'pieChartCapaian'])->name('prestasiS2.chartCapaian');
@@ -328,7 +343,6 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
     });
     Route::group(['prefix' => 'sidang', 'as' => 'sidang.'], function () {
         Route::resource('kompre', MahasiswaKompreController::class)->names('kompre');
-
     });
     Route::get('lab', [LabTAController::class, 'index'])->name('lab.index');
     Route::get('lab/cekin', [LabTAController::class, 'cekin'])->name('lab.cekin');

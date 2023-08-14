@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\StoreBaTaTesisRequest;
 use App\Http\Requests\UpdateBaSidangTesisRequest;
+use App\Models\ModelJadwalSeminarKompreS2;
 use App\Models\ModelKompreS2;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,6 +46,10 @@ class ControllerMahasiswaS2BaKompre extends Controller
         $update->save();
         $file_ba->move('uploads/ba_sidang_tesis', $nama_ba);
         $file_nilai->move('uploads/nilai_sidang_tesis', $nama_nilai);
+        $jadwal = ModelJadwalSeminarKompreS2::where('id_seminar', Auth::user()->mahasiswa->komprehensifS2->id)->first();
+        $jadwal->tanggal = $request->tgl_realisasi_seminar;
+        $jadwal->updated_at = now();
+        $jadwal->save();
         return redirect()->route('mahasiswa.sidang.kompres2.index')->with('success', 'Berita Acara Sidang Tesis berhasil ditambahkan!');
     }
 
@@ -96,7 +101,10 @@ class ControllerMahasiswaS2BaKompre extends Controller
         $seminar->komentar = null;
         $seminar->updated_at = date('Y-m-d H:i:s');
         $seminar->save();
+        $jadwal = ModelJadwalSeminarKompreS2::where('id_seminar', $seminar->id)->first();
+        $jadwal->tanggal = $request->tgl_realisasi_seminar;
+        $jadwal->updated_at = now();
+        $jadwal->save();
         return redirect()->route('mahasiswa.sidang.kompres2.index')->with('success', 'Berita Acara Sidang Tesis berhasil diubah!');;
     }
-
 }
