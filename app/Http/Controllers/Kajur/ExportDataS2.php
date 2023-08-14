@@ -96,7 +96,7 @@ class ExportDataS2 extends Controller
                 $sheet->setCellValue('M' . ($key + 2), $value->komprehensifS2->beritaAcara->nilai_mutu);
                 $sheet->setCellValue('N' . ($key + 2), $value->komprehensifS2->beritaAcara->nilai);
                 $sheet->setCellValue('O' . ($key + 2), $value->komprehensifS2->beritaAcara->no_ba);
-                $sheet->setCellValue('P' . ($key + 2), url('/uploads/ba_seminar_tesis_2/' . $value->taDuaS2->beritaAcara->file_ba));
+                $sheet->setCellValue('P' . ($key + 2), url('/uploads/ba_sidang_tesis/' . $value->taDuaS2->beritaAcara->file_ba));
             } else {
                 $sheet->setCellValue('M' . ($key + 2), '-');
                 $sheet->setCellValue('N' . ($key + 2), '-');
