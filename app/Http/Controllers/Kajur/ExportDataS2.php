@@ -45,11 +45,65 @@ class ExportDataS2 extends Controller
                 ->get(),
             'sidang' =>  Mahasiswa::select('angkatan')->distinct()->whereHas('komprehensifS2')->orderBy('angkatan', 'desc')
                 ->get(),
+            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()->where('status', 'Aktif')->whereHas('user', function ($query) {
+                $query->whereHas('roles', function ($query) {
+                    $query->where('name', 'mahasiswaS2');
+                });
+            })->orderBy('angkatan', 'desc')
+                ->get(),
         ];
         return view('jurusan.exportS2.index', $data);
     }
 
+    public function mahasiswa(Request $request)
+    {
+        $mahasiswa = Mahasiswa::with(['taSatuS2', 'taDuaS2', 'komprehensifS2'])->where('angkatan', $request->tahun_mahasiswa)->whereHas('user', function ($query) {
+            $query->whereHas('roles', function ($query) {
+                $query->where('name', 'mahasiswaS2');
+            });
+        })->where('status', 'Aktif')->get();
 
+        $spdsheet = new Spreadsheet();
+        $sheet = $spdsheet->getActiveSheet();
+        $sheet->setTitle('Mahasiswa');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'NPM');
+        $sheet->setCellValue('C1', 'Nama Mahasiswa');
+        $sheet->setCellValue('D1', 'Tanggal Lahir');
+        $sheet->setCellValue('E1', 'Tempat Lahir');
+        $sheet->setCellValue('F1', 'No HP');
+        $sheet->setCellValue('G1', 'Alamat');
+        $sheet->setCellValue('H1', 'Jenis Kelamin');
+        $sheet->setCellValue('I1', 'Tanggal Masuk');
+        $sheet->setCellValue('J1', 'Angkatan');
+        $sheet->setCellValue('K1', 'Semester');
+        $sheet->setCellValue('L1', 'Status');
+        $sheet->setCellValue('M1', 'Dosen Pembimbing');
+        $sheet->setCellValue('N1', 'Seminar Tesis 1');
+        $sheet->setCellValue('O1', 'Seminar Tesis 2');
+        $sheet->setCellValue('P1', 'Seminar Sidang Tesis');
+        foreach ($mahasiswa as $key => $value) {
+            $sheet->setCellValue('A' . ($key + 2), $key + 1);
+            $sheet->setCellValue('B' . ($key + 2), $value->npm ?? '-');
+            $sheet->setCellValue('C' . ($key + 2), $value->nama_mahasiswa ?? '-');
+            $sheet->setCellValue('D' . ($key + 2), $value->tanggal_lahir ?? '-');
+            $sheet->setCellValue('E' . ($key + 2), $value->tempat_lahir ?? '-');
+            $sheet->setCellValue('F' . ($key + 2), $value->no_hp ?? '-');
+            $sheet->setCellValue('G' . ($key + 2), $value->alamat ?? '-');
+            $sheet->setCellValue('H' . ($key + 2), $value->jenis_kelamin ?? '-');
+            $sheet->setCellValue('I' . ($key + 2), $value->tanggal_masuk ?? '-');
+            $sheet->setCellValue('J' . ($key + 2), $value->angkatan ?? '-');
+            $sheet->setCellValue('K' . ($key + 2), $value->semester ?? '-');
+            $sheet->setCellValue('L' . ($key + 2), $value->status ?? '-');
+            $sheet->setCellValue('M' . ($key + 2), $value->dosen->nama_dosen ?? '-');
+            $sheet->setCellValue('N' . ($key + 2), $value->taSatuS2 ? $value->taSatuS2->status_koor : '0');
+            $sheet->setCellValue('O' . ($key + 2), $value->taDuaS2 ? $value->taDuaS2->status_koor : '0');
+            $sheet->setCellValue('P' . ($key + 2), $value->komprehensifS2 ? $value->komprehensifS2->status_koor : '0');
+        }
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('mahasiswa_s2' . $request->tahun_mahasiswa . '.xlsx');
+        return response()->download('mahasiswa_s2' . $request->tahun_mahasiswa . '.xlsx')->deleteFileAfterSend(true);
+    }
 
     public function sidang(Request $request)
     {
