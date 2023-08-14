@@ -249,7 +249,7 @@
                     <div class="pd-20">
                         <div class="h5 mb-0">Mahasiswa S2</div>
                     </div>
-                    <form action="{{ route('jurusan.unduh.mahasiswa') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.mahasiswas2') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
@@ -258,10 +258,10 @@
                                     <select class="custom-select2 form-control" name="tahun_mahasiswa"
                                         id="tahun_mahasiswa" style="width: 100%; height: 38px">
                                         <optgroup label="Angkatan">
-                                            {{-- @foreach ($mahasiswa as $item)
+                                            @foreach ($mahasiswa as $item)
                                                 <option value="{{ $item->angkatan }}">{{ $item->angkatan }}
                                                 </option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </optgroup>
                                     </select>
                                 </div>

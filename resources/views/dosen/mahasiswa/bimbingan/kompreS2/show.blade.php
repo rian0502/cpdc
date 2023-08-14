@@ -440,7 +440,7 @@
                                                         </div>
                                                         <label class="col-md-3 bold"> <strong>Pembahas 3</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $seminarTa2->id_pembahas_3 ? $seminarTa1->pembahasTiga->nama_dosen : $seminarTa2->pembahas_external_3 }}
+                                                            {{ $seminarTa2->id_pembahas_3 ? $seminarTa2->pembahasTiga->nama_dosen : $seminarTa2->pembahas_external_3 }}
                                                         </div>
                                                     </div>
 

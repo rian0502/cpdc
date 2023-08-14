@@ -55,7 +55,7 @@ class ExportDataS2 extends Controller
         return view('jurusan.exportS2.index', $data);
     }
 
-    public function mahasiswa(Request $request)
+    public function mahasiswas2(Request $request)
     {
         $mahasiswa = Mahasiswa::with(['taSatuS2', 'taDuaS2', 'komprehensifS2'])->where('angkatan', $request->tahun_mahasiswa)->whereHas('user', function ($query) {
             $query->whereHas('roles', function ($query) {
@@ -101,8 +101,8 @@ class ExportDataS2 extends Controller
             $sheet->setCellValue('P' . ($key + 2), $value->komprehensifS2 ? $value->komprehensifS2->status_koor : '0');
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('mahasiswa_s2' . $request->tahun_mahasiswa . '.xlsx');
-        return response()->download('mahasiswa_s2' . $request->tahun_mahasiswa . '.xlsx')->deleteFileAfterSend(true);
+        $writer->save('mahasiswa_s2_' . $request->tahun_mahasiswa . '.xlsx');
+        return response()->download('mahasiswa_s2_' . $request->tahun_mahasiswa . '.xlsx')->deleteFileAfterSend(true);
     }
 
     public function sidang(Request $request)
