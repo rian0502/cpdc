@@ -39,10 +39,10 @@
                                     <select class="custom-select2 form-control" name="tahun_penelitian"
                                         id="tahun_penelitian" style="width: 100%; height: 38px">
                                         <optgroup label="Tahun">
-                                            {{-- @foreach ($penelitian as $item)
+                                            @foreach ($penelitian as $item)
                                                 <option value="{{ $item->tahun_penelitian }}">{{ $item->tahun_penelitian }}
                                                 </option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </optgroup>
                                     </select>
                                 </div>
@@ -65,10 +65,10 @@
                                     <select class="custom-select2 form-control" name="tahun_pengabdian"
                                         id="tahun_pengabdian" style="width: 100%; height: 38px">
                                         <optgroup label="Tahun">
-                                            {{-- @foreach ($pengabdian as $item)
+                                            @foreach ($pengabdian as $item)
                                                 <option value="{{ $item->tahun_penelitian }}">{{ $item->tahun_penelitian }}
                                                 </option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </optgroup>
                                     </select>
                                 </div>
@@ -96,42 +96,10 @@
                                     <select class="custom-select2 form-control" name="tahun_publikasi" id="tahun_publikasi"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Tahun">
-                                            {{-- @foreach ($publikasi as $item)
+                                            @foreach ($publikasi as $item)
                                                 <option value="{{ $item->tahun }}">{{ $item->tahun }}
                                                 </option>
-                                            @endforeach --}}
-                                        </optgroup>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="weight-500 col-md-3">
-                                <div class="form-group">
-                                    <div class="cta  d-flex align-items-center justify-content-end mt-4">
-                                        <button class="btn btn-sm btn-outline-primary">Unduh</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="card-box" style="height:256px;">
-                    <div class="pd-20">
-                        <div class="h5 mb-0">Prestasi</div>
-                    </div>
-                    <form action="{{ route('jurusan.unduh.prestasi') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
-                            <div class="weight-500 col-md-9" style="margin-left: 5px">
-                                <div class="form-group">
-                                    <label>Data Prestasi</label>
-                                    <select class="custom-select2 form-control" name="tahun_prestasi" id="tahun_prestasi"
-                                        style="width: 100%; height: 38px">
-                                        <optgroup label="Tahun">
-                                            {{-- @foreach ($prestasi as $item)
-                                                <option value="{{ $item->year }}">{{ $item->year }}
-                                                </option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </optgroup>
                                     </select>
                                 </div>
@@ -148,38 +116,7 @@
                 </div>
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
-                        <div class="h5 mb-0">Aktivitas</div>
-                    </div>
-                    <form action="{{ route('jurusan.unduh.aktivitas') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
-                            <div class="weight-500 col-md-9" style="margin-left: 5px">
-                                <div class="form-group">
-                                    <label>Data Aktivitas</label>
-                                    <select class="custom-select2 form-control" name="tahun_aktivitas"
-                                        id="tahun_aktivitas" style="width: 100%; height: 38px">
-                                        <optgroup label="Tahun">
-                                            {{-- @foreach ($aktivitas as $item)
-                                                <option value="{{ $item->year }}">{{ $item->year }}
-                                                </option>
-                                            @endforeach --}}
-                                        </optgroup>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="weight-500 col-md-3">
-                                <div class="form-group">
-                                    <div class="cta  d-flex align-items-center justify-content-end mt-4">
-                                        <button class="btn btn-sm btn-outline-primary">Unduh</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="card-box" style="height:256px;">
-                    <div class="pd-20">
-                        <div class="h5 mb-0">Seminar</div>
+                        <div class="h5 mb-0">Seminar Dosen</div>
                     </div>
                     <form action="{{ route('jurusan.unduh.seminar') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -190,13 +127,13 @@
                                     <select class="custom-select2 form-control" name="tahun_seminar" id="tahun_seminar"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Tahun">
-                                            {{-- @foreach ($seminar_dosen as $item)
+                                            @foreach ($seminar_dosen as $item)
                                                 <option value="{{ $item->tahun }}">{{ $item->tahun }}
                                                 </option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </optgroup>
                                     </select>
-                                    
+
                                 </div>
                             </div>
                             <div class="weight-500 col-md-3">
@@ -211,10 +148,9 @@
                 </div>
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
-                        <div class="h5 mb-0">Penghargaan</div>
+                        <div class="h5 mb-0">Penghargaan Dosen</div>
                     </div>
-                    <form action="{{ route('jurusan.unduh.penghargaan') }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.penghargaan') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
@@ -223,10 +159,10 @@
                                     <select class="custom-select2 form-control" name="tahun_penghargaan"
                                         id="tahun_penghargaan" style="width: 100%; height: 38px">
                                         <optgroup label="Tahun">
-                                            {{-- @foreach ($penghargaan_dosen as $item)
+                                            @foreach ($penghargaan_dosen as $item)
                                                 <option value="{{ $item->tahun }}">{{ $item->tahun }}
                                                 </option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </optgroup>
                                     </select>
                                     @error('tahun_penghargaan')
@@ -244,24 +180,24 @@
                         </div>
                     </form>
                 </div>
+
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
-                        <div class="h5 mb-0">TPMPS</div>
+                        <div class="h5 mb-0">Prestasi Mahasiswa S2</div>
                     </div>
-                    <form action="{{ route('jurusan.unduh.penghargaan') }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.prestasiS2') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
-                                    <label>Data TPMPS</label>
-                                    <select class="custom-select2 form-control" name="tahun_penghargaan"
-                                        id="tahun_penghargaan" style="width: 100%; height: 38px">
-                                        <optgroup label="Data Mahasiswa">
-                                            {{-- @foreach ($penghargaan_dosen as $item)
-                                                <option value="{{ $item->tahun }}">{{ $item->tahun }}
+                                    <label>Data Prestasi</label>
+                                    <select class="custom-select2 form-control" name="tahun_prestasi" id="tahun_prestasi"
+                                        style="width: 100%; height: 38px">
+                                        <optgroup label="Tahun">
+                                            @foreach ($prestasi as $item)
+                                                <option value="{{ $item->year }}">{{ $item->year }}
                                                 </option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </optgroup>
                                     </select>
                                 </div>
@@ -278,7 +214,40 @@
                 </div>
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
-                        <div class="h5 mb-0">Mahasiswa</div>
+                        <div class="h5 mb-0">Aktivitas Mahasiswa S2</div>
+                    </div>
+                    <form action="{{ route('jurusan.unduh.aktivitasS2') }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
+                            <div class="weight-500 col-md-9" style="margin-left: 5px">
+                                <div class="form-group">
+                                    <label>Data Aktivitas</label>
+                                    <select class="custom-select2 form-control" name="tahun_aktivitas"
+                                        id="tahun_aktivitas" style="width: 100%; height: 38px">
+                                        <optgroup label="Tahun">
+                                            @foreach ($aktivitas as $item)
+                                                <option value="{{ $item->year }}">{{ $item->year }}
+                                                </option>
+                                            @endforeach
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="weight-500 col-md-3">
+                                <div class="form-group">
+                                    <div class="cta  d-flex align-items-center justify-content-end mt-4">
+                                        <button class="btn btn-sm btn-outline-primary">Unduh</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card-box" style="height:256px;">
+                    <div class="pd-20">
+                        <div class="h5 mb-0">Mahasiswa S2</div>
                     </div>
                     <form action="{{ route('jurusan.unduh.mahasiswa') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -309,7 +278,7 @@
                 </div>
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
-                        <div class="h5 mb-0">Alumni</div>
+                        <div class="h5 mb-0">Alumni S2</div>
                     </div>
                     <form action="{{ route('jurusan.unduh.alumni') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -340,21 +309,21 @@
                 </div>
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
-                        <div class="h5 mb-0">Seminar PKL / KP</div>
+                        <div class="h5 mb-0">Tesis 1</div>
                     </div>
-                    <form action="{{ route('jurusan.unduh.kp') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.tesis1') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Data Mahasiswa</label>
-                                    <select class="custom-select2 form-control" name="akt_kp" id="akt_kp"
+                                    <select class="custom-select2 form-control" name="akt_tesis_1" id="akt_tesis_1"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Angkatan">
-                                            {{-- @foreach ($kp as $item)
+                                            @foreach ($tesis_1 as $item)
                                                 <option value="{{ $item->angkatan }}">{{ $item->angkatan }}
                                                 </option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </optgroup>
                                     </select>
                                 </div>
@@ -371,21 +340,21 @@
                 </div>
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
-                        <div class="h5 mb-0">Seminar Tugas Akhir 1</div>
+                        <div class="h5 mb-0">Tesis 2</div>
                     </div>
-                    <form action="{{ route('jurusan.unduh.ta1') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.tesis2') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Data Mahasiswa</label>
-                                    <select class="custom-select2 form-control" name="akt_ta1" id="akt_ta1"
+                                    <select class="custom-select2 form-control" name="akt_tesis_2" id="akt_tesis_2"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Angkatan">
-                                            {{-- @foreach ($ta1 as $item)
+                                            @foreach ($tesis_2 as $item)
                                                 <option value="{{ $item->angkatan }}">{{ $item->angkatan }}
                                                 </option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </optgroup>
                                     </select>
                                 </div>
@@ -402,21 +371,21 @@
                 </div>
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
-                        <div class="h5 mb-0">Seminar Tugas Akhir 2</div>
+                        <div class="h5 mb-0">Sidang Tesis</div>
                     </div>
-                    <form action="{{ route('jurusan.unduh.ta2') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.sidang') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Data Mahasiswa</label>
-                                    <select class="custom-select2 form-control" name="akt_ta2" id="akt_ta2"
+                                    <select class="custom-select2 form-control" name="akt_sidang" id="akt_sidang"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="angkatan">
-                                            {{-- @foreach ($ta2 as $item)
+                                            @foreach ($sidang as $item)
                                                 <option value="{{ $item->angkatan }}">{{ $item->angkatan }}
                                                 </option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </optgroup>
                                     </select>
                                 </div>
@@ -431,37 +400,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="card-box" style="height:256px;">
-                    <div class="pd-20">
-                        <div class="h5 mb-0">Sidang Komprehensif</div>
-                    </div>
-                    <form action="{{ route('jurusan.unduh.kompre') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
-                            <div class="weight-500 col-md-9" style="margin-left: 5px">
-                                <div class="form-group">
-                                    <label>Data Mahasiswa</label>
-                                    <select class="custom-select2 form-control" name="akt_kompre" id="akt_kompre"
-                                        style="width: 100%; height: 38px">
-                                        <optgroup label="Angkatan">
-                                            {{-- @foreach ($kompre as $item)
-                                                <option value="{{ $item->angkatan }}">{{ $item->angkatan }}
-                                                </option>
-                                            @endforeach --}}
-                                        </optgroup>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="weight-500 col-md-3">
-                                <div class="form-group">
-                                    <div class="cta  d-flex align-items-center justify-content-end mt-4">
-                                        <button class="btn btn-sm btn-outline-primary">Unduh</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+
             </div>
         </div>
     </div>

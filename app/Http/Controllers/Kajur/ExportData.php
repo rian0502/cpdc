@@ -46,9 +46,9 @@ class ExportData extends Controller
                 ->get(),
             'kompre' => Mahasiswa::select('angkatan')->distinct()->whereHas('komprehensif')->orderBy('angkatan', 'desc')
                 ->get(),
-            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->orderBy('tahun', 'desc')
+            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->where('jenis', 'Seminar')->orderBy('tahun', 'desc')
                 ->get(),
-            'penghargaan_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->orderBy('tahun', 'desc')
+            'penghargaan_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->where('jenis', 'Penghargaan')->orderBy('tahun', 'desc')
                 ->get(),
         ];
         return view('jurusan.export.index', $data);
