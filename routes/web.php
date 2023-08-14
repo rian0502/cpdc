@@ -282,6 +282,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::post('unduh/tesis1', [ExportDataS2::class, 'tesis1'])->name('unduh.tesis1');
     Route::post('unduh/tesis2', [ExportDataS2::class, 'tesis2'])->name('unduh.tesis2');
     Route::post('unduh/sidang', [ExportDataS2::class, 'sidang'])->name('unduh.sidang');
+    Route::post('unduh/mahasiswas2', [ExportDataS2::class, 'mahasiswas2'])->name('unduh.mahasiswas2');
 
 
 
