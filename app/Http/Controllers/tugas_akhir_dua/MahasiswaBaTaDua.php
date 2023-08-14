@@ -7,6 +7,7 @@ use App\Models\ModelBaSeminarTaDua;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBaTaDuaRequest;
 use App\Http\Requests\UpdateBaTaDuaRequest;
+use App\Models\ModelJadwalSeminarTaDua;
 use App\Models\ModelSeminarTaDua;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -72,6 +73,10 @@ class MahasiswaBaTaDua extends Controller
             $update = ModelBaSeminarTaDua::find($ins_id);
             $update->encrypt_id = Crypt::encrypt($ins_id);
             $update->save();
+            $jadwal = ModelJadwalSeminarTaDua::where('id_seminar', $seminar->id)->first();
+            $jadwal->tanggal_seminar_ta_dua = $request->tgl_realisasi_seminar;
+            $jadwal->updated_at = now();
+            $jadwal->save();
             return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('success', 'Berhasil mengunggah berita acara seminar TA 2');
         }
     }
@@ -148,6 +153,10 @@ class MahasiswaBaTaDua extends Controller
             $data['berkas_nilai_seminar_ta_dua'] = $file_nilai;
         }
         $ba->update($data);
+        $jadwal = ModelJadwalSeminarTaDua::where('id_seminar', $ba->seminar->id)->first();
+        $jadwal->tanggal_seminar_ta_dua = $request->tgl_realisasi_seminar;
+        $jadwal->updated_at = now();
+        $jadwal->save();
         return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('success', 'Berhasil mengubah berita acara seminar TA 2');
     }
 

@@ -26,7 +26,8 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Nilai</label>
-                                    <input autofocus name="nilai" id="nilai" class="form-control @error('nilai') form-control-danger @enderror" type="text"
+                                    <input autofocus name="nilai" id="nilai"
+                                        class="form-control @error('nilai') form-control-danger @enderror" type="text"
                                         value="{{ old('nilai', $seminar->nilai) }}" placeholder="Contoh : 89.87">
                                     @error('nilai')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -44,16 +45,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Realisasi Seminar</label>
-                                    <input autofocus name="tgl_realisasi_seminar" id="tgl_realisasi_seminar" class="form-control @error('tgl_realisasi_seminar') form-control-danger @enderror"
-                                        type="date" value="{{ old('tgl_realisasi_seminar',$seminar->tgl_realisasi_seminar) }}" >
+                                    <input autofocus name="tgl_realisasi_seminar" id="tgl_realisasi_seminar"
+                                        class="form-control @error('tgl_realisasi_seminar') form-control-danger @enderror"
+                                        type="date"
+                                        value="{{ old('tgl_realisasi_seminar', $seminar->seminar->jadwal->tanggal) }}">
                                     @error('tgl_realisasi_seminar')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Pilih Huruf Mutu</label>
-                                    <select class="custom-select2 form-control @error('nilai_mutu') form-control-danger @enderror" name="nilai_mutu"
-                                        style="width: 100%; height: 38px">
+                                    <select
+                                        class="custom-select2 form-control @error('nilai_mutu') form-control-danger @enderror"
+                                        name="nilai_mutu" style="width: 100%; height: 38px">
                                         <optgroup label="Huruf Mutu">
                                             <option
                                                 value="A"{{ old('nilai_mutu', $seminar->nilai_mutu) == 'A' ? 'selected' : '' }}>
@@ -110,13 +114,13 @@
                             <div class="kanan weight-500 col-md-6">
 
                                 <div class="form-group">
-                                    <label> Berkas Berita Acara<small> <a id="link-file_ba" href="#"
-                                                target="_blank" style="display: none;">Lihat File</a> </small></label>
+                                    <label> Berkas Berita Acara<small> <a id="link-file_ba" href="#" target="_blank"
+                                                style="display: none;">Lihat File</a> </small></label>
                                     <div class="custom-file">
-                                        <label class="custom-file-label" for="link-file_ba"
-                                            id="label-file_ba">Pilih File</label>
-                                        <input value="{{ old('file_ba') }}" accept=".pdf" autofocus
-                                            name="file_ba" id="file-file_ba"
+                                        <label class="custom-file-label" for="link-file_ba" id="label-file_ba">Pilih
+                                            File</label>
+                                        <input value="{{ old('file_ba') }}" accept=".pdf" autofocus name="file_ba"
+                                            id="file-file_ba"
                                             class="custom-file-input form-control @error('file_ba') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
                                             onchange="updateFileNameAndLink('file-file_ba','label-file_ba','link-file_ba')">
@@ -126,16 +130,14 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="mt-2"> Berkas Nilai Tesis 1 <small> <a
-                                                id="link-file_nilai" href="#" target="_blank"
-                                                style="display: none;">Lihat File</a>
+                                    <label class="mt-2"> Berkas Nilai Tesis 1 <small> <a id="link-file_nilai"
+                                                href="#" target="_blank" style="display: none;">Lihat File</a>
                                         </small></label>
                                     <div class="custom-file">
-                                        <label class="custom-file-label" for="link-file_nilai"
-                                            id="label-file_nilai">Pilih
+                                        <label class="custom-file-label" for="link-file_nilai" id="label-file_nilai">Pilih
                                             File</label>
-                                        <input value="{{ old('file_nilai') }}" accept=".pdf" autofocus
-                                            name="file_nilai" id="file-file_nilai"
+                                        <input value="{{ old('file_nilai') }}" accept=".pdf" autofocus name="file_nilai"
+                                            id="file-file_nilai"
                                             class="custom-file-input form-control @error('file_nilai') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
                                             onchange="updateFileNameAndLink('file-file_nilai','label-file_nilai','link-file_nilai')">
