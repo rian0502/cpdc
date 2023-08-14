@@ -31,6 +31,7 @@ class StoreBaTaDuaRequest extends FormRequest
             'berkas_ppt_seminar_ta_dua' => 'required|url',
             'nilai' => 'required|numeric|min:0|max:100',
             'huruf_mutu' => ['required', 'string'],
+            'tgl_realisasi_seminar' => 'required|date',
         ];
     }
     public function messages()
@@ -53,6 +54,8 @@ class StoreBaTaDuaRequest extends FormRequest
             'berkas_nilai_seminar_ta_dua.required' => 'Berkas Nilai Seminar TA 2 tidak boleh kosong',
             'berkas_nilai_seminar_ta_dua.mimes' => 'Berkas Nilai Seminar TA 2 harus berupa file pdf',
             'berkas_nilai_seminar_ta_dua.max' => 'Berkas Nilai Seminar TA 2 maksimal 1MB',
+            'tgl_realisasi_seminar.required' => 'Tanggal Realisasi Seminar TA 2 tidak boleh kosong',
+            'tgl_realisasi_seminar.date' => 'Tanggal Realisasi Seminar TA 2 harus berupa tanggal',
         ];
     }
 }

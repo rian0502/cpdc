@@ -31,6 +31,7 @@ class UpdateBaTaSatuRequest extends FormRequest
             'berkas_ppt_seminar_ta_satu' => 'required|url',
             'berkas_ba_seminar_ta_satu' => 'nullable|mimes:pdf|max:2048',
             'berkas_nilai_seminar_ta_satu' => 'nullable|mimes:pdf|max:2048',
+            'tgl_realisasi_seminar' => 'required|date',
         ];
     }
     public function messages()
@@ -50,7 +51,8 @@ class UpdateBaTaSatuRequest extends FormRequest
             'berkas_ba_seminar_ta_satu.mimes' => 'Berkas Berita Acara Seminar TA 1 harus berupa file pdf',
             'berkas_ba_seminar_ta_satu.max' => 'Berkas Berita Acara Seminar TA 1 maksimal 1MB',
             'berkas_nilai_seminar_ta_satu.mimes' => 'Berkas Nilai Seminar TA 1 harus berupa file pdf',
-            'berkas_nilai_seminar_ta_satu.max' => 'Berkas Nilai Seminar TA 1 maksimal 1MB'
+            'berkas_nilai_seminar_ta_satu.max' => 'Berkas Nilai Seminar TA 1 maksimal 1MB',
+            
         ];
     }
 }

@@ -31,6 +31,7 @@ class StoreBaTaDuaS2Request extends FormRequest
             'ppt' => ['required', 'url'],
             'file_nilai' => ['required', 'file', 'mimes:pdf', 'max:1024'],
             'file_ba' => ['required', 'file', 'mimes:pdf', 'max:1024'],
+            'tgl_realisasi_seminar' => 'required|date',
         ];
     }
     public function messages()
@@ -57,6 +58,8 @@ class StoreBaTaDuaS2Request extends FormRequest
             'file_ba.file' => 'File BA harus berupa file',
             'file_ba.mimes' => 'File BA harus berupa PDF',
             'file_ba.max' => 'File BA maksimal 1 MB',
+            'tgl_realisasi_seminar.required' => 'Tanggal realisasi seminar harus diisi',
+            'tgl_realisasi_seminar.date' => 'Tanggal realisasi seminar harus berupa tanggal',
         ];
     }
 }

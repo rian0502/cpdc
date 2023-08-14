@@ -31,6 +31,7 @@ class UpdateBaKompre extends FormRequest
             'laporan_ta' => 'required|url',
             'nilai' => 'required|numeric|min:0|max:100',
             'huruf_mutu' => 'required|string|max:255',
+            'tgl_realisasi_seminar' => 'required|date',
         ];
     }
     public function messages()
@@ -54,6 +55,8 @@ class UpdateBaKompre extends FormRequest
             'huruf_mutu.required' => 'Huruf Mutu harus diisi',
             'huruf_mutu.string' => 'Huruf Mutu harus berupa string',
             'huruf_mutu.max' => 'Huruf Mutu maksimal 255 karakter',
+            'tgl_realisasi_seminar.required' => 'Tanggal Realisasi Seminar harus diisi',
+            'tgl_realisasi_seminar.date' => 'Tanggal Realisasi Seminar harus berupa tanggal',
         ];
     }
 }

@@ -31,6 +31,7 @@ class StoreBaTaTesisRequest extends FormRequest
             'pengesahan' => ['required', 'url'],
             'file_ba' => ['required', 'file', 'max:1048', 'mimes:pdf'],
             'file_nilai' => ['required', 'file', 'max:1048', 'mimes:pdf'],
+            'tgl_realisasi_seminar' => 'required|date',
         ];
     }
     public function messages()
@@ -55,7 +56,9 @@ class StoreBaTaTesisRequest extends FormRequest
             'file_nilai.required' => 'File Nilai tidak boleh kosong',
             'file_nilai.file' => 'File Nilai harus berupa file',
             'file_nilai.max' => 'File Nilai maksimal 1MB',
-            'file_nilai.mimes' => 'File Nilai harus berupa pdf'
+            'file_nilai.mimes' => 'File Nilai harus berupa pdf',
+            'tgl_realisasi_seminar.required' => 'Tanggal Realisasi Seminar tidak boleh kosong',
+            'tgl_realisasi_seminar.date' => 'Tanggal Realisasi Seminar harus berupa tanggal
         ];
     }
 }

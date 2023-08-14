@@ -32,6 +32,7 @@ class StoreBaTaSatuRequest extends FormRequest
             'berkas_ppt_seminar_ta_satu' => 'required|url',
             'berkas_ba_seminar_ta_satu' => 'required|mimes:pdf|max:2048',
             'berkas_nilai_seminar_ta_satu' => 'required|mimes:pdf|max:2048',
+            'tgl_realisasi_seminar' => 'required|date',
         ];
     }
 
@@ -55,6 +56,8 @@ class StoreBaTaSatuRequest extends FormRequest
             'berkas_nilai_seminar_ta_satu.required' => 'Berkas Nilai Seminar TA 1 tidak boleh kosong',
             'berkas_nilai_seminar_ta_satu.mimes' => 'Berkas Nilai Seminar TA 1 harus berupa file pdf',
             'berkas_nilai_seminar_ta_satu.max' => 'Berkas Nilai Seminar TA 1 maksimal 1MB',
+            'tgl_realisasi_seminar.required' => 'Tanggal Realisasi Seminar tidak boleh kosong',
+            'tgl_realisasi_seminar.date' => 'Tanggal Realisasi Seminar harus berupa tanggal',
         ];
     }
 }
