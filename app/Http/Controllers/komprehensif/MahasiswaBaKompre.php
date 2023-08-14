@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBaKompre;
 use App\Http\Requests\UpdateBaKompre;
 use App\Models\ModelBaSeminarKompre;
+use App\Models\ModelJadwalSeminarKompre;
 use App\Models\ModelSeminarKompre;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -71,6 +72,10 @@ class MahasiswaBaKompre extends Controller
             $update = ModelBaSeminarKompre::find($ins_id);
             $update->encrypt_id = Crypt::encrypt($ins_id);
             $update->save();
+            $jadwal = ModelJadwalSeminarKompre::where('id_seminar', $seminar->id)->first();
+            $jadwal->tanggal_komprehensif = $request->tgl_realisasi_seminar;
+            $jadwal->updated_at = now();
+            $jadwal->save();
             return redirect()->route('mahasiswa.sidang.kompre.index')->with('success', 'Berhasil mengunggah berita acara sidang komprehensif');
         }
     }
@@ -151,6 +156,10 @@ class MahasiswaBaKompre extends Controller
         $seminar->status_koor = 'Belum Selesai';
         $seminar->save();
 
+        $jadwal = ModelJadwalSeminarKompre::where('id_seminar', $ba->seminar->id)->first();
+        $jadwal->tanggal_komprehensif = $request->tgl_realisasi_seminar;
+        $jadwal->updated_at = now();
+        $jadwal->save();
 
         return redirect()->route('mahasiswa.sidang.kompre.index')->with('success', 'Berhasil mengubah berita acara sidang komprehensif');
     }
