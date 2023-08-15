@@ -21,7 +21,7 @@ class ModelJadwalSeminarKompreS2 extends Model
     ];
     public function seminar()
     {
-      return $this->belongsTo(ModelSeminarTaSatuS2::class, 'id_seminar');
+      return $this->belongsTo(ModelKompreS2::class, 'id_seminar');
     }
     public function lokasi()
     {

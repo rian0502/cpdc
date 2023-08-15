@@ -109,6 +109,12 @@
                                     Akhir 2</a>
                                 <a href="/kompre"
                                     class="dropdown-item margin-top {{ Request::is('kompre*') ? 'active' : '' }}">Komprehensif</a>
+                                <a href="/tesis1"
+                                    class="dropdown-item margin-top {{ Request::is('tesis1*') ? 'active' : '' }}">Tesis 1</a>
+                                <a href="/tesis2"
+                                    class="dropdown-item margin-top {{ Request::is('tesis2*') ? 'active' : '' }}">Tesis 2</a>
+                                <a href="/sidang"
+                                    class="dropdown-item margin-top {{ Request::is('sidang*') ? 'active' : '' }}">Sidang Tesis</a>
                             </div>
                             <style>
                                 .margin-top {

@@ -69,7 +69,7 @@
 </head>
 
 <body style="user-select: none;">
-    
+
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -89,7 +89,8 @@
                 <div class="ms-auto d-flex align-items-center">
                     {{-- <small class="ms-4"><i class="fa fa-map-marker-alt me-3"></i>Jl. Prof. Dr. Ir.
                         Soemantri Brodjonegoro, Gedong Meneng, Rajabasa, Bandar Lampung</small> --}}
-                    <small class="ms-4"><i class="fa fa-envelope me-3"></i>Chemistryprogramdatacenter@gmail.com</small>
+                    <small class="ms-4"><i
+                            class="fa fa-envelope me-3"></i>Chemistryprogramdatacenter@gmail.com</small>
                     <small class="ms-4"><i class="fa fa-phone-alt me-3"></i>0721-704625</small>
                     <small class="ms-4">
                         <i class="fa-solid fa-calendar-days me-3"></i>
@@ -137,6 +138,15 @@
                                     Akhir 2</a>
                                 <a href="/kompre"
                                     class="dropdown-item margin-top {{ Request::is('kompre*') ? 'active' : '' }}">Komprehensif</a>
+                                <a href="/tesis1"
+                                    class="dropdown-item margin-top {{ Request::is('tesis1*') ? 'active' : '' }}">Tesis
+                                    1</a>
+                                <a href="/tesis2"
+                                    class="dropdown-item margin-top {{ Request::is('tesis2*') ? 'active' : '' }}">Tesis
+                                    2</a>
+                                <a href="/sidang"
+                                    class="dropdown-item margin-top {{ Request::is('sidang*') ? 'active' : '' }}">Sidang
+                                    Tesis</a>
                             </div>
                         </div>
                         <a href="/help"
