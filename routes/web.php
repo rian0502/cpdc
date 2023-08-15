@@ -99,6 +99,9 @@ use App\Http\Controllers\mahasiswa_s2\ta1\ControllerKoorS2PenjadwalanTaSatu;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerMahasiswaS2SeminarTaDua;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
+use App\Models\ModelJadwalSeminarKompreS2;
+use App\Models\ModelJadwalSeminarTaDuaS2;
+use App\Models\ModelJadwalSeminarTaSatuS2;
 
 /*
 |--------------------------------------------------------------------------
@@ -461,6 +464,21 @@ Route::get('/kompre', function () {
     $kompre = ModelJadwalSeminarKompre::orderBy('tanggal_komprehensif', 'desc')->get();
     return view('kompre', compact('kompre'));
 });
+
+Route::get('/tesis1', function () {
+    $tesis1 = ModelJadwalSeminarTaSatuS2::orderBy('tanggal', 'desc')->get();
+    return view('tesis1', compact('tesis1'));
+});
+Route::get('/tesis2', function () {
+    $tesis2 = ModelJadwalSeminarTaDuaS2::orderBy('tanggal', 'desc')->get();
+    return view('tesis2', compact('tesis2'));
+});
+Route::get('/sidang', function () {
+    $sidang = ModelJadwalSeminarKompreS2::orderBy('tanggal', 'desc')->get();
+    return view('sidang', compact('sidang'));
+});
+
+
 Route::get('/about', function () {
     return view('about');
 });
