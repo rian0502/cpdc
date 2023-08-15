@@ -110,15 +110,15 @@
                                 </div>
                                 {{-- hanya tampil saat mode mobile --}}
                                 <div class="form-group" id="form-mobile">
-                                    <label>Ide Judul</label>
+                                    <label>Payung Penelitian</label>
                                     <select name="sumber_penelitian"
                                         class="selectpicker form-control @error('sumber_penelitian') form-control-danger @enderror">
                                         <option value="Dosen"
                                             {{ old('sumber_penelitian', $seminar->sumber_penelitian) == 'Dosen' ? 'selected' : '' }}>
-                                            Dari Dosen</option>
+                                            Penelitian Dosen</option>
                                         <option value="Mahasiswa"
                                             {{ old('sumber_penelitian', $seminar->sumber_penelitian) == 'Mahasiswa' ? 'selected' : '' }}>
-                                            Dari Mahasiswa
+                                            Non Penelitian Dosen
                                         </option>
                                     </select>
                                     @error('sumber_penelitian')
