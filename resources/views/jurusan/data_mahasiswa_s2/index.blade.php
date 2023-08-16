@@ -6,7 +6,7 @@
 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Data Mahasiswa S1</h4>
+                        <h4 class="text-blue h4">Data Mahasiswa S2</h4>
                         @if (session('error'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 {{ session('error') }}
@@ -20,8 +20,8 @@
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label for="status_seminar">Status PKL:</label>
-                                            <select class="form-control selectpicker" id="status_kp">
+                                            <label for="tesis1">Status Tesis 1:</label>
+                                            <select class="form-control selectpicker" id="tesis1">
                                                 <option value="1">Pilih Status</option>
                                                 <option value="Selesai">Selesai</option>
                                                 <option value="Belum Selesai">Belum Selesai</option>
@@ -33,22 +33,8 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label for="status_ta1">Status TA1:</label>
-                                            <select class="form-control selectpicker" id="status_ta1">
-                                                <option value="1">Pilih Status</option>
-                                                <option value="Selesai">Selesai</option>
-                                                <option value="Belum Selesai">Belum Selesai</option>
-                                                <option value="Perbaikan">Perbaikan</option>
-                                                <option value="Perbaikan">Perbaikan</option>
-                                                <option value="Tidak Lulus">Tidak Lulus</option>
-                                                <option value="null">Belum Daftar</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label for="status_ta2">Status TA2:</label>
-                                            <select class="form-control selectpicker" id="status_ta2">
+                                            <label for="tesis2">Status Tesis 2:</label>
+                                            <select class="form-control selectpicker" id="tesis2">
                                                 <option value="1">Pilih Status</option>
                                                 <option value="Selesai">Selesai</option>
                                                 <option value="Belum Selesai">Belum Selesai</option>
@@ -61,8 +47,8 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label for="status_kompre">Status KOMPRE:</label>
-                                            <select class="form-control selectpicker" id="status_kompre">
+                                            <label for="tesis3">Status Tesis 3:</label>
+                                            <select class="form-control selectpicker" id="tesis3">
                                                 <option value="1">Pilih Status</option>
                                                 <option value="Selesai">Selesai</option>
                                                 <option value="Belum Selesai">Belum Selesai</option>
@@ -109,10 +95,9 @@
                                         <th>Angkatan</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Status</th>
-                                        <th>PKL</th>
-                                        <th>TA 1</th>
-                                        <th>TA 2</th>
-                                        <th>Kompre</th>
+                                        <th>TESIS 1</th>
+                                        <th>TESIS 2</th>
+                                        <th>TESIS 3</th>
                                         <th>Tanggal Masuk</th>
                                         <th class="table-plus datatable-nosort">Aksi</th>
                                     </tr>
@@ -161,13 +146,12 @@
                     responsive: true,
                     autoWidth: false,
                     ajax: {
-                        url: '{{ route('jurusan.mahasiswa.index') }}',
+                        url: '{{ route('jurusan.mahasiswaS2.index') }}',
                         type: 'GET',
                         data: function(data) {
-                            data.status_kp = $('#status_kp').val();
-                            data.status_ta1 = $('#status_ta1').val();
-                            data.status_ta2 = $('#status_ta2').val();
-                            data.status_kompre = $('#status_kompre').val();
+                            data.tesis1 = $('#tesis1').val();
+                            data.tesis2 = $('#tesis2').val();
+                            data.tesis3 = $('#tesis3').val();
                             data.angkatan = $('#angkatan').val();
                         }
                     },
@@ -203,24 +187,18 @@
                             name: 'mahasiswa.status'
                         },
                         {
-                            data: 'mahasiswa.seminar_kp.status_seminar',
-                            name: 'mahasiswa.seminar_kp.status_seminar',
-                            orderable: true,
-
-                        },
-                        {
-                            data: 'mahasiswa.ta_satu.status_koor',
-                            name: 'mahasiswa.ta_satu.status_koor',
+                            data: 'mahasiswa.taSatuS2.status_koor',
+                            name: 'mahasiswa.taSatuS2.status_koor',
                             orderable: true,
                         },
                         {
-                            data: 'mahasiswa.ta_dua.status_koor',
-                            name: 'mahasiswa.ta_dua.status_koor',
+                            data: 'mahasiswa.taDuaS2.status_koor',
+                            name: 'mahasiswa.taDuaS2.status_koor',
                             orderable: true,
                         },
                         {
-                            data: 'mahasiswa.komprehensif.status_koor',
-                            name: 'mahasiswa.komprehensif.status_koor',
+                            data: 'mahasiswa.komprehensifS2.status_koor',
+                            name: 'mahasiswa.komprehensifS2.status_koor',
                             orderable: true
                         },
                         {
@@ -235,7 +213,7 @@
                             exportable: false,
                             render: function(data, type, row) {
 
-                                var editUrl = "{{ route('jurusan.mahasiswa.show', ':id') }}".replace(
+                                var editUrl = "{{ route('jurusan.mahasiswaS2.show', ':id') }}".replace(
                                     ':id', row.mahasiswa.npm);
                                 return `
                             <div class="dropdown">
@@ -251,7 +229,7 @@
                         }
                     ]
                 });
-                $('#status_kp, #status_ta1, #status_ta2, #status_kompre, #angkatan  ').on('change', function() {
+                $('#tesis1, #tesis2, #tesis3, #angkatan  ').on('change', function() {
                     dataNpm.draw();
                 });
             });

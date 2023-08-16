@@ -8,13 +8,32 @@
             margin-bottom: 10px;
         }
 
-        .right-button {
-            float: right;
-            margin-top: -25px;
+        .rounded-circle {
+            border-radius: 50%;
+        }
+
+        .circle-wrapper {
+            width: 150px;
+            /* Sesuaikan dengan ukuran yang diinginkan */
+            height: 150px;
+            /* Sesuaikan dengan ukuran yang diinginkan */
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .foto {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         a:hover {
             cursor: pointer;
+        }
+
+        .right-button {
+            float: right;
+            margin-top: -25px;
         }
     </style>
     </style>
@@ -23,7 +42,7 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Detail Mahasiswa</h4>
+                        <h4 class="text-blue h4">Detail Mahasiswa S2</h4>
                         <a href="{{ route('dosen.mahasiswa.bimbingan.tesis.index') }}">
                             <button class="btn btn-primary right-button">Kembali</button>
                         </a>
@@ -31,11 +50,11 @@
                     <div class="mb-3 pb-2">
                         <div class="form-group">
                             <div class="profile-photo">
-                                <img id="preview-image" src="/uploads/profile/{{ $mahasiswa->user->profile_picture }}"
-                                    alt="Foto Profile" onerror="this.src='/uploads/profile/default.png'" class="foto">
-
+                                <div class="circle-wrapper">
+                                    <img id="preview-image" src="/uploads/profile/{{ $mahasiswa->user->profile_picture }}"
+                                        alt="Foto Profile" onerror="this.src='/uploads/profile/default.png'" class="foto">
+                                </div>
                             </div>
-
                         </div>
                     </div>
                     <div class="p-md-4">
@@ -571,8 +590,7 @@
                                                         </div>
                                                         <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <a target="_blank"
-                                                                href="/uploads/nilai_seminar_tesis_2/{{ $ba_ta2->file_nilai }}">Lihat</a>
+                                                            <a target="_blank" href="/uploads/nilai_seminar_tesis_2/{{ $ba_ta2->file_nilai }}">Lihat</a>
                                                         </div>
                                                     </div>
                                                     <div class="row border-bottom mt-2">
@@ -778,14 +796,12 @@
                                                     </div>
                                             @endif
                                         </div>
-                                    </div>
                                     <div class="p-md-4">
                                         <h5 class="h4 text-blue mb-20">Berita Acara</h5>
                                         @if ($ba_kompre != null)
                                             <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                 <div class="row border-bottom">
-                                                    <label class="col-md-3 bold"> <strong>Berita
-                                                            Acara</strong></label>
+                                                    <label class="col-md-3 bold"> <strong>Berita Acara</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         <a target="_blank"
                                                             href="/uploads/ba_sidang_tesis/{{ $ba_kompre->file_ba }}">Lihat</a>
@@ -797,16 +813,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="row border-bottom mt-2">
-                                                    <label class="col-md-3 bold"> <strong>Laporan
-                                                            Pengesahan</strong></label>
+                                                    <label class="col-md-3 bold"> <strong>Laporan Pengesahan</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         <a target="_blank" href="{{ $ba_kompre->pengesahan }}">Lihat</a>
                                                     </div>
                                                     <label class="col-md-3 bold"> <strong>Berkas
                                                             Nilai</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <a target="_blank"
-                                                            href="/uploads/nilai_sidang_tesis/{{ $ba_kompre->file_nilai }}">Lihat</a>
+                                                        <a target="_blank" href="/uploads/nilai_sidang_tesis/{{ $ba_kompre->file_nilai }}">Lihat</a>
                                                     </div>
 
                                                 </div>
@@ -831,7 +845,7 @@
                                                 </div>
 
                                             </div>
-                                        @else
+                                            @else
                                             <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                 <div class="d-flex justify-content-center align-items-center mt-2">
                                                     <div>

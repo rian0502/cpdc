@@ -30,12 +30,13 @@ class DataMahasiswaAllController extends Controller
             $status_ta1 = $request->input('status_ta1');
             $status_ta2 = $request->input('status_ta2');
             $status_kompre = $request->input('status_kompre');
+            $angkatan = $request->input('angkatan');
 
             $data = User::whereHas('roles', function ($query) {
                 $query->where('name', 'mahasiswa');
             })
-            ->with('mahasiswa', 'mahasiswa.seminar_kp', 'mahasiswa.ta_satu', 'mahasiswa.ta_dua', 'mahasiswa.komprehensif')
-            ->select('users.*');
+                ->with('mahasiswa', 'mahasiswa.seminar_kp', 'mahasiswa.ta_satu', 'mahasiswa.ta_dua', 'mahasiswa.komprehensif')
+                ->select('users.*');
 
             if ($status_kp != 'null' && $status_kp != '1') {
                 $data = $data->whereHas('mahasiswa.seminar_kp', function ($query) use ($status_kp) {
@@ -68,6 +69,13 @@ class DataMahasiswaAllController extends Controller
             } elseif ($status_kompre == 'null') {
                 $data = $data->whereDoesntHave('mahasiswa.komprehensif');
             }
+            if ($angkatan != 'null' && $angkatan != '1') {
+                $data = $data->whereHas('mahasiswa', function ($query) use ($angkatan) {
+                    $query->where('angkatan', $angkatan);
+                });
+            }
+
+
 
             return DataTables::of($data)
                 ->addIndexColumn()->editColumn('mahasiswa.seminar_kp.status_seminar', function ($data) {
@@ -84,7 +92,17 @@ class DataMahasiswaAllController extends Controller
                 })
                 ->toJson();
         }
-        return view('jurusan.data_mahasiswa.index');
+        $mahasiswa = [
+
+            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()->where('status', 'Aktif')->whereHas('user', function ($query) {
+                $query->whereHas('roles', function ($query) {
+                    $query->where('name', 'mahasiswa');
+                });
+            })->orderBy('angkatan', 'desc')
+                ->get(),
+
+        ];
+        return view('jurusan.data_mahasiswa.index', $mahasiswa);
     }
 
     /**

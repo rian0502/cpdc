@@ -238,12 +238,20 @@
                                 <span class="micon bi bi-pin-map"></span><span class="mtext">Lokasi</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('jurusan.mahasiswa.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/mahasiswa*') ? 'active' : '' }}">
+
+                        <li
+                            class="dropdown {{ Request::is('jurusan/mahasiswa*') || Request::is('jurusan/mahasiswaS2*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle">
                                 <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa</span>
                             </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('jurusan.mahasiswa.index') }}"
+                                        class="{{ Request::is('jurusan/mahasiswa*') && !Request::is('jurusan/mahasiswaS2*') ? 'active' : '' }}">S1</a></li>
+                                <li><a href="{{ route('jurusan.mahasiswaS2.index') }}"
+                                        class="{{ Request::is('jurusan/mahasiswaS2*') ? 'active' : '' }}">S2</a></li>
+                            </ul>
                         </li>
+
                         <li
                             class="dropdown {{ Request::is('jurusan/alumni*') || Request::is('jurusan/alumniS2*') ? 'show' : '' }}">
                             <a href="javascript:;" class="dropdown-toggle">
@@ -295,6 +303,12 @@
                                 <span class="micon bi bi-download"></span><span class="mtext">Unduh Data S1</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('jurusan.mahasiswa.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/mahasiswa*') ? 'active' : '' }}">
+                                <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa S1</span>
+                            </a>
+                        </li>
                     @endrole
 
                     @role('kaprodiS2|tpmpsS2')
@@ -327,6 +341,12 @@
                             <a href="{{ route('jurusan.unduhs2.index') }}" {{-- Routenya nanti --}}
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
                                 <span class="micon bi bi-download"></span><span class="mtext">Unduh Data S2</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jurusan.mahasiswaS2.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/mahasiswaS2*') ? 'active' : '' }}">
+                                <span class="micon fa-solid fa-users"></span><span class="mtext">Data Mahasiswa S2</span>
                             </a>
                         </li>
                     @endrole
