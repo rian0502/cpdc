@@ -42,9 +42,9 @@ class CekJadwalController extends Controller
         $cekJadwalSidangTesis = $this->sidangTesis($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
 
         if ($cekJadwalPkl > 0 || $cekJadwalTa1 > 0 || $cekJadwalTa2 > 0 || $cekJadwalKompre > 0 || $cekJadwalTesis1 > 0 || $cekJadwalTesis2 > 0 || $cekJadwalSidangTesis > 0) {
-            return response()->json(['message' => 'Failed'], 200);
+            return response()->json(['message' => 'Failed'], 400);
         } else {
-            return response()->json(['message' => 'Valid'], 400);
+            return response()->json(['message' => 'Valid'], 200);
         }
         return $request->all();
     }
