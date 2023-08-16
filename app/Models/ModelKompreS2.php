@@ -23,6 +23,8 @@ class ModelKompreS2 extends Model
         'komentar',
         'status_admin',
         'status_koor',
+        'draft_artikel',
+        'url_draft_artikel',
         'id_pembimbing_1',
         'id_pembimbing_2',
         'pbl2_nama',

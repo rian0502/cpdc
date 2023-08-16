@@ -33,6 +33,8 @@ class S2TugasAkhirKompre extends Migration
             $table->foreignId('id_pembimbing_2')->nullable()->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
             $table->string('pbl2_nama')->nullable();
             $table->string('pbl2_nip')->nullable();
+            $table->string('draft_artikel');
+            $table->string('url_draft_artikel');
             $table->foreignId('id_pembahas_1')->nullable()->index()->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_pembahas_2')->nullable()->index()->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_pembahas_3')->nullable()->index()->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');

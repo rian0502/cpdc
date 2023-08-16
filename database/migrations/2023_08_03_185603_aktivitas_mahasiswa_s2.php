@@ -22,6 +22,7 @@ class AktivitasMahasiswaS2 extends Migration
             $table->string('sks_konversi');
             $table->date('tanggal');
             $table->string('file_aktivitas');
+            $table->enum('kategori', ['Internasional', 'Nasional']);
             $table->foreignId('mahasiswa_id')->index()->constrained('mahasiswa')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
