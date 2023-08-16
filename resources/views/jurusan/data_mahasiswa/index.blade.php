@@ -6,7 +6,7 @@
 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Data Mahasiswa</h4>
+                        <h4 class="text-blue h4">Data Mahasiswa S1</h4>
                         @if (session('error'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 {{ session('error') }}
@@ -18,7 +18,7 @@
                         <div class="pd-20">
                             <form>
                                 <div class="row">
-                                    <div class="col-md-3 col-sm-12">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="status_seminar">Status PKL:</label>
                                             <select class="form-control selectpicker" id="status_kp">
@@ -31,7 +31,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 col-sm-12">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="status_ta1">Status TA1:</label>
                                             <select class="form-control selectpicker" id="status_ta1">
@@ -45,7 +45,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 col-sm-12">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="status_ta2">Status TA2:</label>
                                             <select class="form-control selectpicker" id="status_ta2">
@@ -59,7 +59,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 col-sm-12">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="status_kompre">Status KOMPRE:</label>
                                             <select class="form-control selectpicker" id="status_kompre">
@@ -73,6 +73,28 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="angkatan">Angkatan</label>
+                                            <select class="form-control selectpicker" id="angkatan">
+                                                <option value="1">Pilih Angkatan</option>
+                                                @foreach ($mahasiswa as $item)
+                                                    <option value="{{ $item->angkatan }}">{{ $item->angkatan }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="weight-500 col-md-3">
+                                        <div class="form-group">
+                                            <div class="cta  d-flex align-items-center justify-content-start"
+                                                style="margin-top: 34px">
+                                                <button class="btn btn-sm btn-success"><i class="fa fa-download"></i>
+                                                    Unduh</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                 </div>
                             </form>
@@ -146,6 +168,7 @@
                             data.status_ta1 = $('#status_ta1').val();
                             data.status_ta2 = $('#status_ta2').val();
                             data.status_kompre = $('#status_kompre').val();
+                            data.angkatan = $('#angkatan').val();
                         }
                     },
                     columns: [{
@@ -228,7 +251,7 @@
                         }
                     ]
                 });
-                $('#status_kp, #status_ta1, #status_ta2, #status_kompre').on('change', function() {
+                $('#status_kp, #status_ta1, #status_ta2, #status_kompre, #angkatan  ').on('change', function() {
                     dataNpm.draw();
                 });
             });
