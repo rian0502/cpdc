@@ -74,9 +74,6 @@ class DataMahasiswaAllController extends Controller
                     $query->where('angkatan', $angkatan);
                 });
             }
-
-
-
             return DataTables::of($data)
                 ->addIndexColumn()->editColumn('mahasiswa.seminar_kp.status_seminar', function ($data) {
                     return $data->mahasiswa->seminar_kp->status_seminar ?? 'Belum Daftar';
