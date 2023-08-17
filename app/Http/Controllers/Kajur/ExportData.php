@@ -63,7 +63,6 @@ class ExportData extends Controller
     {
 
         $mahasiswa = User::with('mahasiswa');
-
         if ($request->angkatan != '1') {
             $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
                 if ($request->angkatan != '1') {
@@ -144,7 +143,6 @@ class ExportData extends Controller
             $sheet->setCellValue('I' . ($key + 2), $item->mahasiswa->ta_dua ?  $item->mahasiswa->ta_dua->status_koor : '-');
             $sheet->setCellValue('J' . ($key + 2), $item->mahasiswa->komprehensif ?  $item->mahasiswa->komprehensif->status_koor : '-');
         }
-
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('data_mahasiswa_seminar.xlsx');
         return response()->download('data_mahasiswa_seminar.xlsx')->deleteFileAfterSend(true);

@@ -16,12 +16,13 @@
                             </div>
                         @endif
                         <div class="pd-20">
-                            <form>
+                            <form action="{{ route('jurusan.unduh.mahasiswaS2.seminar') }}" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="tesis1">Status Tesis 1:</label>
-                                            <select class="form-control selectpicker" id="tesis1">
+                                            <select class="form-control selectpicker" id="tesis1" name="tesis1">
                                                 <option value="1">Pilih Status</option>
                                                 <option value="Selesai">Selesai</option>
                                                 <option value="Belum Selesai">Belum Selesai</option>
@@ -34,7 +35,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="tesis2">Status Tesis 2:</label>
-                                            <select class="form-control selectpicker" id="tesis2">
+                                            <select class="form-control selectpicker" id="tesis2" name="tesis2">
                                                 <option value="1">Pilih Status</option>
                                                 <option value="Selesai">Selesai</option>
                                                 <option value="Belum Selesai">Belum Selesai</option>
@@ -48,7 +49,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="tesis3">Status Tesis 3:</label>
-                                            <select class="form-control selectpicker" id="tesis3">
+                                            <select class="form-control selectpicker" id="tesis3" name="tesis3">
                                                 <option value="1">Pilih Status</option>
                                                 <option value="Selesai">Selesai</option>
                                                 <option value="Belum Selesai">Belum Selesai</option>
@@ -62,7 +63,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="angkatan">Angkatan</label>
-                                            <select class="form-control selectpicker" id="angkatan">
+                                            <select class="form-control selectpicker" id="angkatan" name="angkatan">
                                                 <option value="1">Pilih Angkatan</option>
                                                 @foreach ($mahasiswa as $item)
                                                     <option value="{{ $item->angkatan }}">{{ $item->angkatan }}

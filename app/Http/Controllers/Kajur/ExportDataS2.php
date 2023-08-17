@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Kajur;
 
+use App\Models\User;
 use App\Models\Mahasiswa;
 use App\Models\ModelSPDosen;
 use Illuminate\Http\Request;
@@ -53,6 +54,80 @@ class ExportDataS2 extends Controller
                 ->get(),
         ];
         return view('jurusan.exportS2.index', $data);
+    }
+    public function mahasiswaS2Seminar(Request $request)
+    {
+        $mahasiswa = User::with('mahasiswa');
+        if ($request->angkatan != '1') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                if ($request->angkatan != '1') {
+                    $query->where('angkatan', $request->angkatan);
+                }
+            });
+        }
+        if ($request->tesis1 != '1' && $request->tesis1 != 'null') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereHas('taSatuS2', function ($query) use ($request) {
+                    $query->where('status_koor', $request->tesis1);
+                });
+            });
+        } else if ($request->tesis1 == 'null') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereDoesntHave('taSatuS2');
+            });
+        }
+
+        if ($request->tesis2 != '1' && $request->tesis2 != 'null') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereHas('taDuaS2', function ($query) use ($request) {
+                    $query->where('status_koor', $request->tesis2);
+                });
+            });
+        } else if ($request->tesis2 == 'null') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereDoesntHave('taDuaS2');
+            });
+        }
+
+        if ($request->tesis3 != '1' && $request->tesis3 != 'null') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereHas('komprehensifS2', function ($query) use ($request) {
+                    $query->where('status_koor', $request->tesis3);
+                });
+            });
+        } else if ($request->tesis3 == 'null') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereDoesntHave('komprehensifS2');
+            });
+        }
+
+        $mahasiswa = $mahasiswa->role('mahasiswaS2')->get();
+        $spdsheet = new Spreadsheet();
+        $sheet = $spdsheet->getActiveSheet();
+        $sheet->setTitle('Data Mahasiswa Seminar');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'NPM');
+        $sheet->setCellValue('C1', 'Nama Mahasiswa');
+        $sheet->setCellValue('D1', 'Status');
+        $sheet->setCellValue('E1', 'Angkatan');
+        $sheet->setCellValue('F1', 'Dosen Pembimbing Akademik');
+        $sheet->setCellValue('G1', 'Seminar Tesis 1');
+        $sheet->setCellValue('H1', 'Seminar Tesis 2');
+        $sheet->setCellValue('I1', 'Sidang Tesis');
+        foreach ($mahasiswa as $key => $item) {
+            $sheet->setCellValue('A' . ($key + 2), $key + 1);
+            $sheet->setCellValue('B' . ($key + 2), $item->mahasiswa->npm);
+            $sheet->setCellValue('C' . ($key + 2), $item->mahasiswa->nama_mahasiswa);
+            $sheet->setCellValue('D' . ($key + 2), $item->mahasiswa->status);
+            $sheet->setCellValue('E' . ($key + 2), $item->mahasiswa->angkatan);
+            $sheet->setCellValue('F' . ($key + 2), $item->mahasiswa->dosen->nama_dosen);
+            $sheet->setCellValue('G' . ($key + 2), $item->mahasiswa->taSatuS2 ?  $item->mahasiswa->taSatuS2->status_koor : '-');
+            $sheet->setCellValue('H' . ($key + 2), $item->mahasiswa->taDuaS2 ?  $item->mahasiswa->taDuaS2->status_koor : '-');
+            $sheet->setCellValue('I' . ($key + 2), $item->mahasiswa->komprehensifS2 ?  $item->mahasiswa->komprehensifS2->status_koor : '-');
+        }
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('data_mahasiswaS2_seminar.xlsx');
+        return response()->download('data_mahasiswaS2_seminar.xlsx')->deleteFileAfterSend(true);
     }
 
     public function mahasiswas2(Request $request)
