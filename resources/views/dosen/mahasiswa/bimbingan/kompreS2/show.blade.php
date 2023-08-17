@@ -630,105 +630,101 @@
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Data Sidang Tesis</h5>
                                             @if ($sidangKompre != null)
-                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                                    <div class="row border-bottom mt-3">
-                                                        <label class="col-md-12 bold"><b>Judul atau Topik Tugas
-                                                                Akhir</b></label>
-                                                        <div class="col-md-12 mb-3"
-                                                            style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->judul_ta }}
-                                                        </div>
+                                            <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                <div class="row border-bottom mt-3">
+                                                    <label class="col-md-12 bold"><b>Judul atau Topik Tugas
+                                                            Akhir</b></label>
+                                                    <div class="col-md-12 mb-3"
+                                                        style="display:block;word-wrap:break-word;">
+                                                        {{ $sidangKompre->judul_ta }}
                                                     </div>
-                                                    <div class="row border-bottom">
-                                                        <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->pembimbingSatu->nama_dosen }}
-                                                        </div>
-                                                        <label class="col-md-3 bold mt-1"><strong>Pembimbing
-                                                                2</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            @if ($sidangKompre->pembimbingDua)
-                                                                {{ $sidangKompre->pembimbingDua->nama_dosen }}
-                                                            @else
-                                                                {{ $sidangKompre->pbl2_nama }}
-                                                            @endif
-                                                        </div>
+                                                </div>
+                                                <div class="row border-bottom">
+                                                    <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        {{ $sidangKompre->pembimbingSatu->nama_dosen }}
                                                     </div>
-                                                    <div class="row border-bottom">
-                                                        <label class="col-md-3 bold mt-2"> <strong>Tahun
-                                                                Akademik</strong></label>
-                                                        <div class="col-md-3 mt-2"
-                                                            style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->tahun_akademik }}
-                                                        </div>
-                                                        <label class="col-md-3 bold mt-2"> <strong>NIP Dosen
-                                                                External</strong trong></label>
-                                                        <div class="col-md-3 mt-2"
-                                                            style="display:block;word-wrap:break-word;">
-                                                            @if ($sidangKompre->pbl2_nip)
-                                                                {{ $sidangKompre->pbl2_nip }}
-                                                            @else
-                                                                -
-                                                            @endif
-                                                        </div>
-                                                        <div class="col-md-3 mt-2"
-                                                            style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->mitra }}
-                                                        </div>
+                                                    <label class="col-md-3 bold mt-1"><strong>Pembimbing
+                                                            2</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        {{ $sidangKompre->id_pembimbing_2 ? $sidangKompre->pembimbingDua->nama_dosen : $sidangKompre->pbl2_nama }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="row border-bottom">
+                                                    <label class="col-md-3 bold mt-2"> <strong>Tahun
+                                                            Akademik</strong></label>
+                                                    <div class="col-md-3 mt-2"
+                                                        style="display:block;word-wrap:break-word;">
+                                                        {{ $sidangKompre->tahun_akademik }}
+                                                    </div>
+                                                    <label class="col-md-3 bold mt-2"> <strong>Pembahas
+                                                            1</strong></label>
+                                                    <div class="col-md-3 mt-2"
+                                                        style="display:block;word-wrap:break-word;">
+                                                        {{ $sidangKompre->id_pembahas_1 ? $sidangKompre->pembahasSatu->nama_dosen : $sidangKompre->pembahas_external_1 }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="row border-bottom mt-2">
+                                                    <label class="col-md-3 bold mt-1">
+                                                        <strong>Semester</strong></label>
+                                                    <div class="col-md-3 mt-2"
+                                                        style="display:block;word-wrap:break-word;">
+                                                        {{ $mahasiswa->semester }}
+                                                    </div>
+                                                    <label class="col-md-3 bold"> <strong>Pembahas 2</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        {{ $sidangKompre->id_pembahas_2 ? $seminarTa1->pembahasDua->nama_dosen : $sidangKompre->pembahas_external_2 }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="row border-bottom mt-2">
+                                                    <label class="col-md-3 bold mt-2"> <strong>SKS</strong></label>
+                                                    <div class="col-md-3 mt-2"
+                                                        style="display:block;word-wrap:break-word;">
+                                                        {{ $sidangKompre->sks }}
+                                                    </div>
+                                                    <label class="col-md-3 bold"> <strong>Pembahas 3</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        {{ $sidangKompre->id_pembahas_3 ? $sidangKompre->pembahasTiga->nama_dosen : $sidangKompre->pembahas_external_3 }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="row border-bottom mt-2">
+                                                    <label class="col-md-3 bold mt-2"> <strong>IPK</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        {{ $sidangKompre->ipk }}
+                                                    </div>
+                                                    <label class="col-md-3 bold"> <strong>Berkas
+                                                            Kelengkapan</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        <a target="_blank"
+                                                            href="/uploads/syarat_seminar_ta_dua_s2/{{ $sidangKompre->berkas_ta_dua }}">Lihat
+                                                            Berkas</a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-2">
+                                                    <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        {{ $sidangKompre->toefl }}
                                                     </div>
 
-                                                    <div class="row border-bottom mt-2">
-                                                        <label class="col-md-3 bold mt-1">
-                                                            <strong>Semester</strong></label>
-                                                        <div class="col-md-3 mt-2"
-                                                            style="display:block;word-wrap:break-word;">
-                                                            {{ $mahasiswa->semester }}
-                                                        </div>
-                                                        <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->pembahasSatu->nama_dosen }}
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row border-bottom mt-2">
-                                                        <label class="col-md-3 bold mt-2"> <strong>SKS</strong></label>
-                                                        <div class="col-md-3 mt-2"
-                                                            style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->sks }}
-                                                        </div>
-                                                        <label class="col-md-3 bold"> <strong>Rencana
-                                                                Seminar</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->periode_seminar }}
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row border-bottom mt-2">
-                                                        <label class="col-md-3 bold mt-2"> <strong>IPK</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->ipk }}
-                                                        </div>
-                                                        <label class="col-md-3 bold"> <strong>Berkas
-                                                                Kelengkapan</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <a target="_blank"
-                                                                href="/uploads/syarat_sidang_kompre/{{ $sidangKompre->berkas_kompre }}">Unduh
-                                                                Berkas</a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row mt-2">
-                                                        <label class="col-md-3 bold mt-2">
-                                                            <strong>TOEFL</strong></label>
-                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            {{ $sidangKompre->toefl }}
-                                                        </div>
-                                                    </div>
-                                                    <label class="col-md-3 bold"> <strong>Status Berkas</strong></label>
+                                                    <label class="col-md-3 bold"> <strong>Status
+                                                            Berkas</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         {{ $sidangKompre->status_admin }}
                                                     </div>
                                                 </div>
+                                                <div class="row mt-2">
+                                                    <label class="col-md-3 bold"> <strong>Rencana
+                                                            Seminar</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        {{ $sidangKompre->periode_seminar }}
+                                                    </div>
+                                                </div>
+                                            </div>
                                             @else
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="d-flex justify-content-center align-items-center mt-2">
