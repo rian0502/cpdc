@@ -16,12 +16,13 @@
                             </div>
                         @endif
                         <div class="pd-20">
-                            <form>
+                            <form action="{{ route('jurusan.unduh.mahasiswa.seminar') }}" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="status_seminar">Status PKL:</label>
-                                            <select class="form-control selectpicker" id="status_kp">
+                                            <select class="form-control selectpicker" id="status_kp" name="status_kp">
                                                 <option value="1">Pilih Status</option>
                                                 <option value="Selesai">Selesai</option>
                                                 <option value="Belum Selesai">Belum Selesai</option>
@@ -34,7 +35,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="status_ta1">Status TA1:</label>
-                                            <select class="form-control selectpicker" id="status_ta1">
+                                            <select class="form-control selectpicker" id="status_ta1" name="status_ta1">
                                                 <option value="1">Pilih Status</option>
                                                 <option value="Selesai">Selesai</option>
                                                 <option value="Belum Selesai">Belum Selesai</option>
@@ -48,7 +49,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="status_ta2">Status TA2:</label>
-                                            <select class="form-control selectpicker" id="status_ta2">
+                                            <select class="form-control selectpicker" id="status_ta2" name="status_ta2">
                                                 <option value="1">Pilih Status</option>
                                                 <option value="Selesai">Selesai</option>
                                                 <option value="Belum Selesai">Belum Selesai</option>
@@ -62,7 +63,8 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="status_kompre">Status KOMPRE:</label>
-                                            <select class="form-control selectpicker" id="status_kompre">
+                                            <select class="form-control selectpicker" id="status_kompre"
+                                                name="status_kompre">
                                                 <option value="1">Pilih Status</option>
                                                 <option value="Selesai">Selesai</option>
                                                 <option value="Belum Selesai">Belum Selesai</option>
@@ -76,7 +78,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="angkatan">Angkatan</label>
-                                            <select class="form-control selectpicker" id="angkatan">
+                                            <select class="form-control selectpicker" name="angkatan" id="angkatan">
                                                 <option value="1">Pilih Angkatan</option>
                                                 @foreach ($mahasiswa as $item)
                                                     <option value="{{ $item->angkatan }}">{{ $item->angkatan }}

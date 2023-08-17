@@ -259,6 +259,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
 
     //unduh data
     Route::get('unduh_data_s1', [ExportData::class, 'index'])->name('unduh.index');
+    Route::post('unduh/mahasiswa/seminar', [ExportData::class, 'mahasiswaSeminar'])->name('unduh.mahasiswa.seminar');
     Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
     Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
     Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
@@ -283,7 +284,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
     Route::post('unduh/seminar', [ExportData::class, 'seminar'])->name('unduh.seminar');
     Route::post('unduh/penghargaan', [ExportData::class, 'penghargaan'])->name('unduh.penghargaan');
-
+    Route::post('unduh/mahasiswaS2/seminar', [ExportDataS2::class, 'mahasiswaS2Seminar'])->name('unduh.mahasiswaS2.seminar');
     Route::post('unduh/tesis1', [ExportDataS2::class, 'tesis1'])->name('unduh.tesis1');
     Route::post('unduh/tesis2', [ExportDataS2::class, 'tesis2'])->name('unduh.tesis2');
     Route::post('unduh/sidang', [ExportDataS2::class, 'sidang'])->name('unduh.sidang');
