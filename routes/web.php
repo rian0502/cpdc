@@ -259,6 +259,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
 
     //unduh data
     Route::get('unduh_data_s1', [ExportData::class, 'index'])->name('unduh.index');
+    Route::post('unduh/mahasiswa/seminar', [ExportData::class, 'mahasiswaSeminar'])->name('unduh.mahasiswa.seminar');
     Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
     Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
     Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');

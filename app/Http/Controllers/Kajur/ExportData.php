@@ -9,6 +9,7 @@ use App\Models\Mahasiswa;
 use App\Models\ModelSPDosen;
 use App\Models\PrestasiMahasiswa;
 use App\Models\PublikasiDosen;
+use App\Models\User;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
@@ -57,6 +58,100 @@ class ExportData extends Controller
         ];
         return view('jurusan.export.index', $data);
     }
+
+    public function mahasiswaSeminar(Request $request)
+    {
+
+        $mahasiswa = User::with('mahasiswa');
+
+        if ($request->angkatan != '1') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                if ($request->angkatan != '1') {
+                    $query->where('angkatan', $request->angkatan);
+                }
+            });
+        }
+        if ($request->status_kp != '1' && $request->status_kp != 'null') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereHas('seminar_kp', function ($query) use ($request) {
+                    $query->where('status_seminar', $request->status_kp);
+                });
+            });
+        } else if ($request->status_kp == 'null') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereDoesntHave('seminar_kp');
+            });
+        }
+
+        if ($request->status_ta1 != '1' && $request->status_ta1 != 'null') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereHas('ta_satu', function ($query) use ($request) {
+                    $query->where('status_koor', $request->status_ta1);
+                });
+            });
+        } else if ($request->status_ta1 == 'null') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereDoesntHave('ta_satu');
+            });
+        }
+
+        if ($request->status_ta2 != '1' && $request->status_ta2 != 'null') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereHas('ta_dua', function ($query) use ($request) {
+                    $query->where('status_koor', $request->status_ta2);
+                });
+            });
+        } else if ($request->status_ta2 == 'null') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereDoesntHave('ta_dua');
+            });
+        }
+
+        if ($request->status_kompre != '1' && $request->status_kompre != 'null') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereHas('komprehensif', function ($query) use ($request) {
+                    $query->where('status_koor', $request->status_kompre);
+                });
+            });
+        } else if ($request->status_kompre == 'null') {
+            $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->whereDoesntHave('komprehensif');
+            });
+        }
+        $mahasiswa = $mahasiswa->role('mahasiswa')->get();  
+        $spdsheet = new Spreadsheet();
+        $sheet = $spdsheet->getActiveSheet();
+        $sheet->setTitle('Data Mahasiswa Seminar');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'NPM');
+        $sheet->setCellValue('C1', 'Nama Mahasiswa');
+        $sheet->setCellValue('D1', 'Status');
+        $sheet->setCellValue('E1', 'Angkatan');
+        $sheet->setCellValue('F1', 'Dosen Pembimbing Akademik');
+        $sheet->setCellValue('G1', 'Seminar KP/PKL');
+        $sheet->setCellValue('H1', 'Seminar TA 1');
+        $sheet->setCellValue('I1', 'Seminar TA 2');
+        $sheet->setCellValue('J1', 'Seminar Komprehensif');
+        foreach ($mahasiswa as $key => $item){
+            $sheet->setCellValue('A' . ($key + 2), $key + 1);
+            $sheet->setCellValue('B' . ($key + 2), $item->mahasiswa->npm);
+            $sheet->setCellValue('C' . ($key + 2), $item->mahasiswa->nama_mahasiswa);
+            $sheet->setCellValue('D' . ($key + 2), $item->mahasiswa->status);
+            $sheet->setCellValue('E' . ($key + 2), $item->mahasiswa->angkatan);
+            $sheet->setCellValue('F' . ($key + 2), $item->mahasiswa->dosen->nama_dosen);
+            $sheet->setCellValue('G' . ($key + 2), $item->mahasiswa->seminar_kp ?  $item->mahasiswa->seminar_kp->status_seminar : '-');
+            $sheet->setCellValue('H' . ($key + 2), $item->mahasiswa->ta_satu ?  $item->mahasiswa->ta_satu->status_koor : '-');
+            $sheet->setCellValue('I' . ($key + 2), $item->mahasiswa->ta_dua ?  $item->mahasiswa->ta_dua->status_koor : '-');
+            $sheet->setCellValue('J' . ($key + 2), $item->mahasiswa->komprehensif ?  $item->mahasiswa->komprehensif->status_koor : '-');
+        }
+
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('data_mahasiswa_seminar.xlsx');
+        return response()->download('data_mahasiswa_seminar.xlsx')->deleteFileAfterSend(true);
+    }
+
+
+
     public function seminar(Request $request)
     {
         $seminar = ModelSPDosen::with('dosen')->where('jenis', 'Seminar')->whereYear('tahun', $request->tahun_seminar)->get();
@@ -346,7 +441,7 @@ class ExportData extends Controller
                 $query->where('name', 'mahasiswa');
             });
         })->where('status', 'Aktif')->get();
-        
+
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Mahasiswa');
