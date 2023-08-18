@@ -24,8 +24,8 @@
 
                 <div class="faq-wrap">
                     @if (Auth::check())
-                        @role('mahasiswa')
-                            <h4 class="mb-20 h4 text-blue mb-3">Daftar Seminar</h4>
+                        @role('mahasiswa' | 'mahasiswaS2')
+                            <h4 class="mb-20 h4 text-blue mb-4">Daftar Seminar</h4>
                             <div id="accordion">
                                 <div class="card">
                                     <div class="card-header">
@@ -162,12 +162,13 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="mb-5"></div>
                         @endrole
                         @if (Auth::check() && Auth::user()->hasRole('sudo'))
                             <!-- tidak muncul di role "sudo" -->
                         @else
                             <!-- muncul jika role bukan "sudo" -->
-                            <h4 class="mb-30 h4 text-blue padding-top-30">Mengubah Data Profil Akun</h4>
+                            <h4 class="mb-30 h4 text-blue padding-top-30 mb-4">Mengubah Data Profil Akun</h4>
                             <div id="accordion1">
                                 <div class="card">
                                     <div class="card-header">
@@ -263,9 +264,7 @@
                                 </div>
                             </div>
                         @endif
-
-
-                        <h4 class="mb-30 h4 text-blue padding-top-30">Kata Sandi</h4>
+                        <h4 class="mb-30 h4 text-blue padding-top-30 mt-5 mb-4">Kata Sandi</h4>
                         <div id="accordion2">
                             <div class="card">
                                 <div class="card-header">
