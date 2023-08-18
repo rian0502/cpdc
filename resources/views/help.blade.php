@@ -480,7 +480,7 @@
                             </div>
                         </div> --}}
 
-                        <h4 class="mb-30 h4 text-blue padding-top-30 mb-4">Mengubah Data Profil Akun</h4>
+                        {{-- <h4 class="mb-30 h4 text-blue padding-top-30 mb-4">Mengubah Data Profil Akun</h4>
 
                         <div id="accordion1">
                             <div class="card">
@@ -533,11 +533,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <h4 class="mb-30 h4 text-blue padding-top-30 mb-4">Kata Sandi</h4>
                         <div id="accordion2">
-                            <div class="card">
+                            {{-- <div class="card">
                                 <div class="card-header">
                                     <button class="btn btn-block collapsed" data-toggle="collapse"
                                         data-target="#pengaturan">
@@ -565,7 +565,7 @@
 
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="card">
                                 <div class="card-header">
                                     <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#lupa">
