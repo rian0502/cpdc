@@ -1130,6 +1130,7 @@
                                                     <th>Scala</th>
                                                     <th>Tanggal</th>
                                                     <th>Capaian</th>
+                                                    <th>File</th>
 
                                                 </tr>
                                             </thead>
@@ -1141,6 +1142,10 @@
                                                         <td>{{ $item->scala }}</td>
                                                         <td>{{ $item->tanggal }}</td>
                                                         <td>{{ $item->capaian }}</td>
+                                                        <td>
+                                                            <a target="_blank"
+                                                                href="/uploads/file_prestasi/{{ $item->file_prestasi }}">Lihat</a>
+                                                        </td>
 
                                                     </tr>
                                                 @endforeach
@@ -1161,6 +1166,7 @@
                                                     <th>Peran</th>
                                                     <th>Tanggal</th>
                                                     <th>SKS Konversi</th>
+                                                    <th>File</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1181,6 +1187,11 @@
                                                         <td>
                                                             {{ $item->sks_konversi }}
                                                             SKS</td>
+                                                        <td>
+                                                            <a target="_blank"
+                                                                href="/uploads/file_act_mhs/{{ $item->file_aktivitas }}">Lihat</a>
+
+                                                        </td>
 
                                                     </tr>
                                                 @endforeach

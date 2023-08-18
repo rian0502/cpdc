@@ -155,6 +155,14 @@
                                     <a class="nav-link text-blue" data-toggle="tab" href="#kompre" role="tab"
                                         aria-selected="false">Sidang Tesis</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-blue" data-toggle="tab" href="#prestasi" role="tab"
+                                        aria-selected="false">Prestasi</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-blue" data-toggle="tab" href="#extra_activity" role="tab"
+                                        aria-selected="false">Aktivitas</a>
+                                </li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="ta1" role="tabpanel">
@@ -241,7 +249,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="row mt-2">
+                                                    <div class="row border-bottom mt-2">
                                                         <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             {{ $seminarTa1->toefl }}
@@ -477,7 +485,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="row mt-2">
+                                                    <div class="row  border-bottom mt-2">
                                                         <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             {{ $seminarTa2->toefl }}
@@ -590,7 +598,8 @@
                                                         </div>
                                                         <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <a target="_blank" href="/uploads/nilai_seminar_tesis_2/{{ $ba_ta2->file_nilai }}">Lihat</a>
+                                                            <a target="_blank"
+                                                                href="/uploads/nilai_seminar_tesis_2/{{ $ba_ta2->file_nilai }}">Lihat</a>
                                                         </div>
                                                     </div>
                                                     <div class="row border-bottom mt-2">
@@ -630,101 +639,112 @@
                                         <div class="p-md-4">
                                             <h5 class="h4 text-blue mb-20">Data Sidang Tesis</h5>
                                             @if ($sidangKompre != null)
-                                            <div class="p-3 mb-2 bg-light text-dark rounded-div">
-                                                <div class="row border-bottom mt-3">
-                                                    <label class="col-md-12 bold"><b>Judul atau Topik Tugas
-                                                            Akhir</b></label>
-                                                    <div class="col-md-12 mb-3"
-                                                        style="display:block;word-wrap:break-word;">
-                                                        {{ $sidangKompre->judul_ta }}
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    <div class="row border-bottom mt-3">
+                                                        <label class="col-md-12 bold"><b>Judul atau Topik Tugas
+                                                                Akhir</b></label>
+                                                        <div class="col-md-12 mb-3"
+                                                            style="display:block;word-wrap:break-word;">
+                                                            {{ $sidangKompre->judul_ta }}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row border-bottom">
-                                                    <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $sidangKompre->pembimbingSatu->nama_dosen }}
-                                                    </div>
-                                                    <label class="col-md-3 bold mt-1"><strong>Pembimbing
-                                                            2</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $sidangKompre->id_pembimbing_2 ? $sidangKompre->pembimbingDua->nama_dosen : $sidangKompre->pbl2_nama }}
-                                                    </div>
-                                                </div>
-
-                                                <div class="row border-bottom">
-                                                    <label class="col-md-3 bold mt-2"> <strong>Tahun
-                                                            Akademik</strong></label>
-                                                    <div class="col-md-3 mt-2"
-                                                        style="display:block;word-wrap:break-word;">
-                                                        {{ $sidangKompre->tahun_akademik }}
-                                                    </div>
-                                                    <label class="col-md-3 bold mt-2"> <strong>Pembahas
-                                                            1</strong></label>
-                                                    <div class="col-md-3 mt-2"
-                                                        style="display:block;word-wrap:break-word;">
-                                                        {{ $sidangKompre->id_pembahas_1 ? $sidangKompre->pembahasSatu->nama_dosen : $sidangKompre->pembahas_external_1 }}
-                                                    </div>
-                                                </div>
-
-                                                <div class="row border-bottom mt-2">
-                                                    <label class="col-md-3 bold mt-1">
-                                                        <strong>Semester</strong></label>
-                                                    <div class="col-md-3 mt-2"
-                                                        style="display:block;word-wrap:break-word;">
-                                                        {{ $mahasiswa->semester }}
-                                                    </div>
-                                                    <label class="col-md-3 bold"> <strong>Pembahas 2</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $sidangKompre->id_pembahas_2 ? $seminarTa1->pembahasDua->nama_dosen : $sidangKompre->pembahas_external_2 }}
-                                                    </div>
-                                                </div>
-
-                                                <div class="row border-bottom mt-2">
-                                                    <label class="col-md-3 bold mt-2"> <strong>SKS</strong></label>
-                                                    <div class="col-md-3 mt-2"
-                                                        style="display:block;word-wrap:break-word;">
-                                                        {{ $sidangKompre->sks }}
-                                                    </div>
-                                                    <label class="col-md-3 bold"> <strong>Pembahas 3</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $sidangKompre->id_pembahas_3 ? $sidangKompre->pembahasTiga->nama_dosen : $sidangKompre->pembahas_external_3 }}
-                                                    </div>
-                                                </div>
-
-                                                <div class="row border-bottom mt-2">
-                                                    <label class="col-md-3 bold mt-2"> <strong>IPK</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $sidangKompre->ipk }}
-                                                    </div>
-                                                    <label class="col-md-3 bold"> <strong>Berkas
-                                                            Kelengkapan</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <a target="_blank"
-                                                            href="/uploads/syarat_seminar_ta_dua_s2/{{ $sidangKompre->berkas_ta_dua }}">Lihat
-                                                            Berkas</a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row mt-2">
-                                                    <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $sidangKompre->toefl }}
+                                                    <div class="row border-bottom">
+                                                        <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $sidangKompre->pembimbingSatu->nama_dosen }}
+                                                        </div>
+                                                        <label class="col-md-3 bold mt-1"><strong>Pembimbing
+                                                                2</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $sidangKompre->id_pembimbing_2 ? $sidangKompre->pembimbingDua->nama_dosen : $sidangKompre->pbl2_nama }}
+                                                        </div>
                                                     </div>
 
-                                                    <label class="col-md-3 bold"> <strong>Status
-                                                            Berkas</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $sidangKompre->status_admin }}
+                                                    <div class="row border-bottom">
+                                                        <label class="col-md-3 bold mt-2"> <strong>Tahun
+                                                                Akademik</strong></label>
+                                                        <div class="col-md-3 mt-2"
+                                                            style="display:block;word-wrap:break-word;">
+                                                            {{ $sidangKompre->tahun_akademik }}
+                                                        </div>
+                                                        <label class="col-md-3 bold mt-2"> <strong>Pembahas
+                                                                1</strong></label>
+                                                        <div class="col-md-3 mt-2"
+                                                            style="display:block;word-wrap:break-word;">
+                                                            {{ $sidangKompre->id_pembahas_1 ? $sidangKompre->pembahasSatu->nama_dosen : $sidangKompre->pembahas_external_1 }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row border-bottom mt-2">
+                                                        <label class="col-md-3 bold mt-1">
+                                                            <strong>Semester</strong></label>
+                                                        <div class="col-md-3 mt-2"
+                                                            style="display:block;word-wrap:break-word;">
+                                                            {{ $mahasiswa->semester }}
+                                                        </div>
+                                                        <label class="col-md-3 bold"> <strong>Pembahas 2</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $sidangKompre->id_pembahas_2 ? $seminarTa1->pembahasDua->nama_dosen : $sidangKompre->pembahas_external_2 }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row border-bottom mt-2">
+                                                        <label class="col-md-3 bold mt-2"> <strong>SKS</strong></label>
+                                                        <div class="col-md-3 mt-2"
+                                                            style="display:block;word-wrap:break-word;">
+                                                            {{ $sidangKompre->sks }}
+                                                        </div>
+                                                        <label class="col-md-3 bold"> <strong>Pembahas 3</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $sidangKompre->id_pembahas_3 ? $sidangKompre->pembahasTiga->nama_dosen : $sidangKompre->pembahas_external_3 }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row border-bottom mt-2">
+                                                        <label class="col-md-3 bold mt-2"> <strong>IPK</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $sidangKompre->ipk }}
+                                                        </div>
+                                                        <label class="col-md-3 bold"> <strong>Berkas
+                                                                Kelengkapan</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            <a target="_blank"
+                                                                href="/uploads/syarat_seminar_ta_dua_s2/{{ $sidangKompre->berkas_ta_dua }}">Lihat
+                                                                Berkas</a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row border-bottom mt-2">
+                                                        <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $sidangKompre->toefl }}
+                                                        </div>
+
+                                                        <label class="col-md-3 bold"> <strong>Status
+                                                                Berkas</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            {{ $sidangKompre->status_admin }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row border-bottom mt-2">
+                                                        <label class="col-md-3 bold mt-2"> <strong>Link Artikel</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            <a href="{{$sidangKompre->url_draft_artikel}}"></a>
+                                                        </div>
+
+                                                        <label class="col-md-3 bold"> <strong>Draft Artikel</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            <a href="uploads/draft_artikel/{{$sidangKompre->draft_artikel}}"></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <label class="col-md-3 bold"> <strong>Rencana
+                                                                Seminar</strong></label>
+                                                        <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                            <a href="uploads/draft_artikel{{$sidangKompre->url_draft_artikel}}"></a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="row mt-2">
-                                                    <label class="col-md-3 bold"> <strong>Rencana
-                                                            Seminar</strong></label>
-                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        {{ $sidangKompre->periode_seminar }}
-                                                    </div>
-                                                </div>
-                                            </div>
                                             @else
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     <div class="d-flex justify-content-center align-items-center mt-2">
@@ -810,14 +830,16 @@
                                                     </div>
                                                 </div>
                                                 <div class="row border-bottom mt-2">
-                                                    <label class="col-md-3 bold"> <strong>Laporan Pengesahan</strong></label>
+                                                    <label class="col-md-3 bold"> <strong>Laporan
+                                                            Pengesahan</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                         <a target="_blank" href="{{ $ba_kompre->pengesahan }}">Lihat</a>
                                                     </div>
                                                     <label class="col-md-3 bold"> <strong>Berkas
                                                             Nilai</strong></label>
                                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                        <a target="_blank" href="/uploads/nilai_sidang_tesis/{{ $ba_kompre->file_nilai }}">Lihat</a>
+                                                        <a target="_blank"
+                                                            href="/uploads/nilai_sidang_tesis/{{ $ba_kompre->file_nilai }}">Lihat</a>
                                                     </div>
 
                                                 </div>
@@ -842,7 +864,7 @@
                                                 </div>
 
                                             </div>
-                                            @else
+                                        @else
                                             <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                 <div class="d-flex justify-content-center align-items-center mt-2">
                                                     <div>
@@ -852,15 +874,98 @@
                                             </div>
                                         @endif
                                     </div>
+
+
+                                </div>
+                                </div>
+                                <div class="tab-pane fade" id="prestasi" role="tabpanel">
+                                    <div class="pd-20">
+                                        <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama Prestasi</th>
+                                                    <th>Scala</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Capaian</th>
+                                                    <th>File</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($prestasi as $item)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $item->nama_prestasi }}</td>
+                                                        <td>{{ $item->scala }}</td>
+                                                        <td>{{ $item->tanggal }}</td>
+                                                        <td>{{ $item->capaian }}</td>
+                                                        <td>
+                                                            <a target="_blank"
+                                                                href="/uploads/file_prestasi/{{ $item->file_prestasi }}">Lihat</a>
+                                                        </td>
+
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                {{-- prestasi end --}}
+
+                                {{-- kegiatan lainnya start --}}
+                                <div class="tab-pane fade" id="extra_activity" role="tabpanel">
+                                    <div class="pd-20">
+                                        <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Judul Kegiatan</th>
+                                                    <th>Peran</th>
+                                                    <th>Tanggal</th>
+                                                    <th>SKS Konversi</th>
+                                                    <th>File</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($aktivitas as $item)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $loop->iteration }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->nama_aktivitas }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->peran }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->tanggal }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->sks_konversi }}
+                                                            SKS</td>
+                                                        <td>
+                                                            <a target="_blank"
+                                                                href="/uploads/file_act_mhs/{{ $item->file_aktivitas }}">Lihat</a>
+
+                                                        </td>
+
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {{-- kegiatan lainnya end --}}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
-
-
         </div>
-    </div>
     </div>
     <script>
         // Ambil elemen tanggal lahir dan umur dari HTML
