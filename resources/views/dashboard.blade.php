@@ -927,6 +927,7 @@
             @role('dosen')
                 <div class="faq-wrap">
                     <div id="accordion1">
+                        {{-- s1 --}}
                         <div class="" style="margin-bottom: 20px">
                             <div class="card-header" style="margin-bottom: 20px">
                                 <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#s1">
@@ -1049,6 +1050,7 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- s2 --}}
                         <div class="" style="margin-bottom: 20px">
                             <div class="card-header" style="margin-bottom: 20px">
                                 <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#s2">
