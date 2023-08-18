@@ -5,7 +5,7 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Penjadwalan Seminar Tugas Akhir 1</h4>
+                        <h4 class="text-blue h4">Penjadwalan Seminar Tugas Akhir 1 S2</h4>
                     </div>
                     <div class="pb-20 m-3">
                         <table class="table data-table-responsive stripe data-table-export">

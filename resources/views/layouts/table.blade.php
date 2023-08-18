@@ -125,7 +125,7 @@
                         <div
                             class="nav-item dropdown {{ Request::is('/kp*') || Request::is('/kompre*') || Request::is('/ta1*') || Request::is('/ta2*') ? 'show' : '' }}">
                             <a href="#" class="nav-link dropdown-toggle topbar"
-                                data-bs-toggle="dropdown">Seminar</a>
+                                data-bs-toggle="dropdown">Seminar S1</a>
                             <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0">
                                 <a href="/kp"
                                     class="dropdown-item margin-top {{ Request::is('kp*') ? 'active' : '' }}">Kerja
@@ -138,6 +138,13 @@
                                     Akhir 2</a>
                                 <a href="/kompre"
                                     class="dropdown-item margin-top {{ Request::is('kompre*') ? 'active' : '' }}">Komprehensif</a>
+                            </div>
+                        </div>
+                        <div
+                            class="nav-item dropdown {{ Request::is('/tesis1*') || Request::is('/tesis2*') || Request::is('/sidang*') ? 'show' : '' }}">
+                            <a href="#" class="nav-link dropdown-toggle topbar"
+                                data-bs-toggle="dropdown">Seminar S2</a>
+                            <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0">
                                 <a href="/tesis1"
                                     class="dropdown-item margin-top {{ Request::is('tesis1*') ? 'active' : '' }}">Tesis
                                     1</a>
@@ -149,8 +156,10 @@
                                     Tesis</a>
                             </div>
                         </div>
+
+                        
                         <a href="/help"
-                            class="nav-item nav-link topbar{{ Request::is('help') ? 'active' : '' }}">Tentang</a>
+                            class="nav-item nav-link topbar{{ Request::is('help') ? 'active' : '' }}">Bantuan</a>
                         @auth
 
                             {{-- tampil saat mode mobile --}}

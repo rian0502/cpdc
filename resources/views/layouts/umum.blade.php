@@ -66,7 +66,8 @@
                     <img src="/Assets/images/logo/white.png" width="55" style="margin-top:-22px;" alt="Logo CPDC">
                 </a>
                 <div class="ms-auto d-flex align-items-center">
-                    <small class="ms-4"><i class="fa fa-envelope me-3"></i>Chemistryprogramdatacenter@gmail.com</small>
+                    <small class="ms-4"><i
+                            class="fa fa-envelope me-3"></i>Chemistryprogramdatacenter@gmail.com</small>
                     <small class="ms-4"><i class="fa fa-phone-alt me-3"></i>0721-704625</small>
                     <small class="ms-4">
                         <i class="fa-solid fa-calendar-days me-3"></i>
@@ -96,7 +97,7 @@
                             class="nav-item nav-link {{ Request::is('about') ? 'active' : '' }}">Tentang</a>
                         <div
                             class="nav-item dropdown {{ Request::is('kp*') || Request::is('kompre*') || Request::is('ta1*') || Request::is('ta2*') ? 'show' : '' }}">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Seminar</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Seminar S1</a>
                             <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0">
                                 <a href="/kp"
                                     class="dropdown-item margin-top {{ Request::is('kp*') ? 'active' : '' }}">Kerja
@@ -109,19 +110,31 @@
                                     Akhir 2</a>
                                 <a href="/kompre"
                                     class="dropdown-item margin-top {{ Request::is('kompre*') ? 'active' : '' }}">Komprehensif</a>
-                                <a href="/tesis1"
-                                    class="dropdown-item margin-top {{ Request::is('tesis1*') ? 'active' : '' }}">Tesis 1</a>
-                                <a href="/tesis2"
-                                    class="dropdown-item margin-top {{ Request::is('tesis2*') ? 'active' : '' }}">Tesis 2</a>
-                                <a href="/sidang"
-                                    class="dropdown-item margin-top {{ Request::is('sidang*') ? 'active' : '' }}">Sidang Tesis</a>
                             </div>
-                            <style>
-                                .margin-top {
-                                    margin-top: 0px;
-                                }
-                            </style>
                         </div>
+                        <div
+                            class="nav-item dropdown {{ Request::is('/tesis1*') || Request::is('/tesis2*') || Request::is('/sidang*') ? 'show' : '' }}">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Seminar
+                                S2</a>
+                            <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0">
+                                <a href="/tesis1"
+                                    class="dropdown-item margin-top {{ Request::is('tesis1*') ? 'active' : '' }}">Tesis
+                                    1</a>
+                                <a href="/tesis2"
+                                    class="dropdown-item margin-top {{ Request::is('tesis2*') ? 'active' : '' }}">Tesis
+                                    2</a>
+                                <a href="/sidang"
+                                    class="dropdown-item margin-top {{ Request::is('sidang*') ? 'active' : '' }}">Sidang
+                                    Tesis</a>
+                            </div>
+                        </div>
+
+
+                        <style>
+                            .margin-top {
+                                margin-top: 0px;
+                            }
+                        </style>
                         <a href="/help"
                             class="nav-item nav-link {{ Request::is('help') ? 'active' : '' }}">Bantuan</a>
                         @auth
