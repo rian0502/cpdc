@@ -146,7 +146,8 @@ Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verifi
 });
 //chart line aktivitas lab
 Route::get('chart/aktivitas', [LabController::class, 'chartAktivitasLab'])->name('chart.aktivitas.lab')->middleware('auth', 'verified', 'role:admin lab|jurusan|kalab');
-Route::get('chart/seminar', [ChartSeminarController::class, 'ChartSeminar'])->name('chart.seminar.all')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
+Route::get('chart/seminar', [ChartSeminarController::class, 'ChartSeminar'])->name('chart.seminar.all')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|kaprodiS1');
+Route::get('chart/seminarS2', [ChartSeminarController::class, 'ChartSeminarS2'])->name('chart.seminarS2.all')->middleware('auth', 'verified', 'role:jurusan|tpmpsS2|kaprodiS2');
 Route::get('chart/usiadosen', [AkunDosenController::class, 'chartUsiaDosen'])->name('chart.usia.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
 Route::get('chart/jabatandosen', [AkunDosenController::class, 'chartJabatanDosen'])->name('chart.jabatan.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
 Route::get('chart/aktivitasalumni', [AktivitasAlumniController::class, 'chartAktivitasAlumni'])->name('chart.aktivitas.alumni')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
