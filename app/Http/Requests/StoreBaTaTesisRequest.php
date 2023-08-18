@@ -58,7 +58,7 @@ class StoreBaTaTesisRequest extends FormRequest
             'file_nilai.max' => 'File Nilai maksimal 1MB',
             'file_nilai.mimes' => 'File Nilai harus berupa pdf',
             'tgl_realisasi_seminar.required' => 'Tanggal Realisasi Seminar tidak boleh kosong',
-            'tgl_realisasi_seminar.date' => 'Tanggal Realisasi Seminar harus berupa tanggal
+            'tgl_realisasi_seminar.date' => 'Tanggal Realisasi Seminar harus berupa tanggal'
         ];
     }
 }
