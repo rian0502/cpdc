@@ -347,7 +347,7 @@
                             </div>
                         </div>
                     @else
-                        <h4 class="mb-20 h4 text-blue mb-3">Daftar Seminar</h4>
+                        {{-- <h4 class="mb-20 h4 text-blue mb-3">Daftar Seminar</h4>
                         <div id="accordion">
                             <div class="card">
                                 <div class="card-header">
@@ -478,7 +478,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <h4 class="mb-30 h4 text-blue padding-top-30 mb-4">Mengubah Data Profil Akun</h4>
 
