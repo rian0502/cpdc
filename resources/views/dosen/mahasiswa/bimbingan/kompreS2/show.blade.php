@@ -792,6 +792,7 @@
                                                     </div>
                                             @endif
                                         </div>
+                                    </div>
                                     <div class="p-md-4">
                                         <h5 class="h4 text-blue mb-20">Berita Acara</h5>
                                         @if ($ba_kompre != null)
@@ -851,7 +852,6 @@
                                             </div>
                                         @endif
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
