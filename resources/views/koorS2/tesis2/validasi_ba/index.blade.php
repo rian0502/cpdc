@@ -5,7 +5,9 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
+
                         <h4 class="text-blue h4">Validasi Berita Acara Seminar Tesis 2</h4>
+
                     </div>
                     <div class="pb-20 m-3">
 
@@ -17,7 +19,7 @@
                                     <th>NPM</th>
                                     <th>Judul</th>
                                     <th>Tanggal Seminar</th>
-                                    <th>No Surat</th>
+                                    <th>Nomor Surat</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
                                 </tr>
                             </thead>
