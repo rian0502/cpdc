@@ -37,7 +37,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Bukti Seminar</h4>
+                            <h4 class="text-dark h4">Berita Acara Seminar</h4>
                             <small>
                                 <b>
                                     <p
@@ -54,31 +54,31 @@
                     <div class="bukti_seminar">
                         <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
                             <div class="row border-bottom">
-                                <label class="col-md-3 bold"> <strong>Bukti Seminar</strong></label>
+                                <label class="col-md-3 bold"> <strong>Berita Acara Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/ba_sidang_kompre/{{ $seminar->beritaAcara->ba_seminar_komprehensif }}">Lihat</a>
+                                        href="/uploads/ba_seminar_tesis_2/{{ $seminar->beritaAcara->file_ba }}">Lihat</a>
                                 </div>
-                                <label class="col-md-3 bold mt-2"><b>Nomor Bukti Seminar</b></label>
+                                <label class="col-md-3 bold mt-2"><b>Nomor Berita Acara Seminar</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->beritaAcara->no_ba_berkas }}
+                                    {{ $seminar->beritaAcara->no_ba }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/nilai_sidang_kompre/{{ $seminar->beritaAcara->berkas_nilai_kompre }}">Lihat</a>
+                                        href="/uploads/nilai_seminar_tesis_2/{{ $seminar->beritaAcara->file_nilai }}">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->beritaAcara->huruf_mutu }}
+                                    {{ $seminar->beritaAcara->nilai_mutu }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>Laporan Tugas Akhir</strong></label>
+                                <label class="col-md-3 bold"> <strong>PowerPoint</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a target="_blank" href="{{ $seminar->beritaAcara->laporan_ta }}">Lihat</a>
+                                    <a target="_blank" href="{{ $seminar->beritaAcara->ppt }}">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Nilai</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -86,7 +86,7 @@
                                 </div>
                             </div>
 
-                            <form id="formStatus" action="{{ route('koor.validasiBaKompre.update', $seminar->encrypt_id) }}"
+                            <form id="formStatus" action="{{ route('koor.ValidasiBaKompreS2.update', $seminar->encrypt_id) }}"
                                 method="post">
                                 @method('put')
                                 @csrf
@@ -94,10 +94,6 @@
                                     <label><b>Status Seminar</b></label>
                                     <select name="status_koor" id="status" class="selectpicker form-control"
                                         onchange="toggleCatatan()" data-size="5">
-                                        <option value="Belum Selesai"
-                                            {{ $seminar->status_koor == 'Belum Selesai' ? 'selected' : '' }}>Belum
-                                            Selesai
-                                        </option>
                                         <option value="Perbaikan"
                                             {{ $seminar->status_koor == 'Perbaikan' ? 'selected' : '' }}>Perbaikan
                                         </option>
@@ -113,7 +109,7 @@
                                 </div>
                                 <div class="row border-bottom mt-3">
                                     <label class="col-md-12 bold"><b>Catatan</b></label>
-                                    <textarea id="catatan" name="keterangan" class="form-control m-3" style="height: 100px;">{{ old('keterangan', $seminar->komentar) }}</textarea>
+                                    <textarea id="catatan" name="keterangan" class="form-control m-3" style="height: 100px;">{{ old('keterangan', $seminar->keterangan) }}</textarea>
                                     @error('keterangan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -122,16 +118,20 @@
                                     <button type="submit" id="submitButton" class="submit btn btn-primary">Kirim</button>
                                 </div>
                             </form>
-                            <a href="{{ route('koor.validasiBaKompre.index') }}">
+                            <a href="{{ route('koor.ValidasiBaTa2S2.index') }}">
                                 <button class="batal btn btn-secondary">Batal</button>
                             </a>
                         </div>
                     </div>
+
                 </div>
+
                 <!-- Data Registrasi End -->
+
             </div>
         </div>
         <!-- Input Validation End -->
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.js"></script>
 @endsection

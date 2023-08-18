@@ -25,7 +25,7 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Nilai</label>
-                                    <input autofocus name="nilai" id="nilai" class="form-control" type="text"
+                                    <input autofocus name="nilai" id="nilai" class="form-control @error('nilai') form-control-danger @enderror" type="text"
                                         value="{{ old('nilai', $berkas->nilai) }}" placeholder="Contoh : 89.87">
                                     @error('nilai')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nomor Berita Acara Sidang Komprehensif</label>
-                                    <input autofocus name="no_ba_berkas" id="no_ba_berkas" class="form-control"
+                                    <input autofocus name="no_ba_berkas" id="no_ba_berkas" class="form-control @error('no_ba_berkas') form-control-danger @enderror"
                                         type="text" value="{{ old('no_ba_berkas', $berkas->no_ba_berkas) }}"
                                         placeholder="Contoh : 986/UN26.17.03/DT/2022">
                                     @error('no_ba_berkas')
@@ -41,8 +41,16 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label>Tanggal Realisasi Seminar</label>
+                                    <input autofocus name="tgl_realisasi_seminar" id="tgl_realisasi_seminar" class="form-control @error('tgl_realisasi_seminar') form-control-danger @enderror"
+                                        type="date" value="{{ old('tgl_realisasi_seminar',$seminar->tgl_realisasi_seminar) }}" >
+                                    @error('tgl_realisasi_seminar')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label>Pilih Huruf Mutu</label>
-                                    <select class="custom-select2 form-control" name="huruf_mutu"
+                                    <select class="custom-select2 form-control @error('huruf_mutu') form-control-danger @enderror" name="huruf_mutu"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Huruf Mutu">
                                             <option value="A"{{ old('huruf_mutu', $berkas->huruf_mutu) == 'A' ? 'selected' : '' }}>A
@@ -114,7 +122,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Laporan Tugas Akhir Lengkap</label>
-                                    <input autofocus name="laporan_ta" id="laporan_ta" class="form-control" type="text"
+                                    <input autofocus name="laporan_ta" id="laporan_ta" class="form-control @error('laporan_ta') form-control-danger @enderror" type="text"
                                         value="{{ old('laporan_ta', $berkas->laporan_ta) }}"
                                         placeholder="Link Gdrive / Penyimpanan Cloud Tugas Akhir">
                                     @error('laporan_ta')
@@ -127,7 +135,7 @@
                             <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
                     </form>
-                    <a href="/mahasiswa/seminar/ta1">
+                    <a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}">
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>
                 </div>

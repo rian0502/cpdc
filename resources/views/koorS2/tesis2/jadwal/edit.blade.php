@@ -150,11 +150,12 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
                         <div class="pull-left">
-                            <h4 class="text-dark h4" style="margin-left: 10px">Jadwalkan Seminar Tugas Akhir 2</h4>
+                            <h4 class="text-dark h4" style="margin-left: 10px">Edit Jadwal Seminar Tesis 2</h4>
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
-                        <form id="formJadwalUpdate" action="{{ route('koor.jadwalTA2.update', $seminar->encrypt_id)}}" method="POST">
+                        <form id="formJadwalUpdate" action="{{ route('koor.jadwalTA2S2.update', $seminar->encrypt_id) }}"
+                            method="POST">
                             @method('PUT')
                             @csrf
                             <div class="profile-edit-list row">
@@ -162,7 +163,7 @@
                                 <div class="weight-500 col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Seminar</label>
-                                        <input value="{{ old('tanggal_skp', $jadwal->tanggal_seminar_ta_dua) }}" autofocus
+                                        <input value="{{ old('tanggal_skp', $jadwal->tanggal) }}" autofocus
                                             name="tanggal_skp" id="tanggal_skp"
                                             class="form-control @error('tanggal_skp') form-control-danger @enderror"
                                             type="date" placeholder="Nama Barang">
@@ -190,8 +191,7 @@
 
                                     <div class="form-group">
                                         <label>Jam Mulai</label>
-                                        <input type="time"
-                                            value="{{ old('jam_mulai_skp', $jadwal->jam_mulai_seminar_ta_dua) }}"
+                                        <input type="time" value="{{ old('jam_mulai_skp', $jadwal->jam_mulai) }}"
                                             name="jam_mulai_skp"
                                             class="form-control @error('jam_mulai_skp') form-control-danger @enderror">
                                         @error('jam_mulai_skp')
@@ -201,7 +201,7 @@
                                     <div class="form-group">
                                         <label>Jam Selesai</label>
                                         <input type="time" name="jam_selesai_skp"
-                                            value="{{ old('jam_selesai_skp', $jadwal->jam_selesai_seminar_ta_dua) }}"
+                                            value="{{ old('jam_selesai_skp', $jadwal->jam_selesai) }}"
                                             class="form-control @error('jam_selesai_skp') form-control-danger @enderror">
                                         @error('jam_selesai_skp')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -213,7 +213,7 @@
                                 <button type="submit" class="submit btn btn-primary">Kirim</button>
                             </div>
                         </form>
-                        <a href="{{ route('koor.jadwalTA2.index') }}">
+                        <a href="{{ route('koor.jadwalTA2S2.index') }}">
                             <button class="batal btn btn-secondary">Batal</button>
                         </a>
                     </div>

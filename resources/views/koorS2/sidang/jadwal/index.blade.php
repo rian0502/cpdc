@@ -5,7 +5,11 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
+<<<<<<< HEAD
                         <h4 class="text-blue h4">Penjadwalan Sidang Komprehensif S2</h4>
+=======
+                        <h4 class="text-blue h4">Penjadwalan Sidang Tesis</h4>
+>>>>>>> a47b569c98fe0f348dde85a77f67ecd20d911834
                     </div>
                     <div class="pb-20 m-3">
 
@@ -44,10 +48,10 @@
                                                     {{ $item->jadwal->lokasi->nama_lokasi }}
                                                 </td>
                                                 <td>
-                                                    {{ $carbon::parse($item->jadwal->tanggal_komprehensif)->format('d F Y') }}
+                                                    {{ $carbon::parse($item->jadwal->tanggal)->format('d F Y') }}
                                                 </td>
                                                 <td>
-                                                    {{ $item->jadwal->jam_mulai_komprehensif . ' - ' . $item->jadwal->jam_selesai_komprehensif }}
+                                                    {{ $item->jadwal->jam_mulai . ' - ' . $item->jadwal->jam_selesai }}
                                                 </td>
                                             @else
                                                 <td>
@@ -75,16 +79,16 @@
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         @if ($item->jadwal)
                                                             <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalKompre.edit', $item->encrypt_id) }}"><i
+                                                                href="{{ route('koor.jadwalKompreS2.edit', $item->encrypt_id) }}"><i
                                                                     class="fa fa-pencil"></i>
                                                                 Edit</a>
                                                             <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalKompre.resend', $item->encrypt_id) }}"><i
+                                                                href="{{ route('koor.jadwalSidangS2.resend', $item->encrypt_id) }}"><i
                                                                     class="fa fa-share"></i>
                                                                 Kirim Kembali</a>
                                                         @else
                                                             <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalKompre.create', $item->encrypt_id) }}"><i
+                                                                href="{{ route('koor.jadwalKompreS2.create', $item->encrypt_id) }}"><i
                                                                     class="bi bi-calendar-plus-fill"></i>
                                                                 Jadwalkan</a>
                                                         @endif

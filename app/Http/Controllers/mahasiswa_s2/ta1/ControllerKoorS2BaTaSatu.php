@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\mahasiswa_s2\ta1;
 
 use App\Http\Controllers\Controller;
+use App\Models\ModelBaSeminarTaSatuS2;
+use App\Models\ModelSeminarTaSatuS2;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class ControllerKoorS2BaTaSatu extends Controller
 {
@@ -14,7 +17,11 @@ class ControllerKoorS2BaTaSatu extends Controller
      */
     public function index()
     {
-        return View('koorS2.tesis1.validasi_ba.index');
+        $seminar = ModelSeminarTaSatuS2::with(['beritaAcara', 'mahasiswa'])
+            ->whereHas('beritaAcara')
+            ->where('status_koor', '!=', 'Selesai')
+            ->get();
+        return View('koorS2.tesis1.validasi_ba.index', compact('seminar'));
     }
 
     /**
@@ -57,7 +64,11 @@ class ControllerKoorS2BaTaSatu extends Controller
      */
     public function edit($id)
     {
-        return View('koorS2.tesis1.validasi_ba.edit');
+        $seminar = ModelSeminarTaSatuS2::with(['beritaAcara', 'mahasiswa'])
+            ->whereHas('beritaAcara')
+            ->where('id', Crypt::decrypt($id))
+            ->first();
+        return View('koorS2.tesis1.validasi_ba.edit', compact('seminar'));
     }
 
     /**
@@ -70,6 +81,29 @@ class ControllerKoorS2BaTaSatu extends Controller
     public function update(Request $request, $id)
     {
         //
+        $seminar = ModelSeminarTaSatuS2::find(Crypt::decrypt($id));
+        if ($request->_token != csrf_token()) {
+            return redirect()->back();
+        } else {
+            if ($request->status_koor == 'Perbaikan' || $request->status_koor == 'Tidak Lulus') {
+                $validated = $request->validate([
+                    'keterangan' => 'required|min:3|max:255',
+                ], [
+                    'keterangan.required' => 'Keterangan harus diisi',
+                    'keterangan.min' => 'Keterangan minimal 3 karakter',
+                    'keterangan.max' => 'Keterangan maksimal 255 karakter',
+                ]);
+                $seminar->status_koor = $request->status_koor;
+                $seminar->komentar = $request->keterangan;
+                $seminar->updated_at = date('Y-m-d H:i:s');
+                $seminar->save();
+            } else {
+                $seminar->status_koor = $request->status_koor;
+                $seminar->updated_at = date('Y-m-d H:i:s');
+                $seminar->save();
+            }
+        }
+        return redirect()->route('koor.ValidasiBaTa1S2.index')->with('success', "Berita acara seminar berhasil diperbarui");
     }
 
     /**

@@ -33,9 +33,11 @@ class S2TugasAkhirKompre extends Migration
             $table->foreignId('id_pembimbing_2')->nullable()->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
             $table->string('pbl2_nama')->nullable();
             $table->string('pbl2_nip')->nullable();
-            $table->foreignId('id_pembahas_1')->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('id_pembahas_2')->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('id_pembahas_3')->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('draft_artikel');
+            $table->string('url_draft_artikel');
+            $table->foreignId('id_pembahas_1')->nullable()->index()->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_pembahas_2')->nullable()->index()->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_pembahas_3')->nullable()->index()->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_mahasiswa')->constrained('mahasiswa')->onDelete('cascade')->onUpdate('cascade');
             $table->string('pembahas_external_1')->nullable();
             $table->string('nip_pembahas_external_1')->nullable();

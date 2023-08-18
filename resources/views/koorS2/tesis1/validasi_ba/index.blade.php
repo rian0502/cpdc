@@ -5,7 +5,11 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
+<<<<<<< HEAD
                         <h4 class="text-blue h4">Validasi Berita Acara Seminar Tugas Akhir 1 S2</h4>
+=======
+                        <h4 class="text-blue h4">Validasi Berita Acara Seminar Tesis 1</h4>
+>>>>>>> a47b569c98fe0f348dde85a77f67ecd20d911834
                     </div>
                     <div class="pb-20 m-3">
 
@@ -22,37 +26,29 @@
                             </thead>
                             <tbody>
 
-                                {{-- @foreach ($berkas as $item) --}}
-                                {{-- LOKASI TANGGAL JAM MULAI SELESAI MISAL BLM TERJADWAL MAKA OUTPUTIN KONDISIIN TULUSANNYA BLM TERJADWAL --}}
-                                {{-- @if ($item->jadwal && $item->ba_seminar) --}}
-                                <tr>
-                                    <td>
-                                        {{-- $loop->iteration --}}
-                                    </td>
+                                @foreach ($seminar as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->mahasiswa->npm }}</td>
+                                        <td>{{ $item->judul_ta }}</td>
+                                        <td>{{ $item->beritaAcara->no_ba }}</td>
+                                        <td>{{ $item->status_koor }}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
+                                                    role="button" data-toggle="dropdown">
+                                                    <i class="fa fa-ellipsis-h"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
 
-                                    <td>
-                                        {{-- $item->mahasiswa->npm --}}
-                                    </td>
-                                    <td>
-                                        {{-- $item->judul_ta --}}
-                                    </td>
-                                    <td>
-                                        {{-- $item->ba_seminar->no_berkas_ba_seminar_ta_satu --}}
-                                    </td>
-                                    <td>
-                                        {{-- $item->status_koor --}}
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-warning"
-                                            href="
-                                                        {{-- route('koor.validasiBaTA1.edit',$item->encrypt_id) --}}
-                                                        "><i
-                                                class="bi bi-pencil-square"></i>
-                                            Validasi</a>
-                                    </td>
-                                </tr>
-                                {{-- @endif --}}
-                                {{-- @endforeach --}}
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('koor.ValidasiBaTa1S2.edit', $item->encrypt_id) }}"><i
+                                                            class="fa fa-pencil"></i> Validasi</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
                             </tbody>
                         </table>
