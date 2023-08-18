@@ -5,7 +5,9 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Penjadwalan Seminar Tugas Akhir 2 S2</h4>
+
+                        <h4 class="text-blue h4">Penjadwalan Seminar Tesis 2</h4>
+
                     </div>
                     <div class="pb-20 m-3">
 
@@ -24,8 +26,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($seminar as $item)
-                                    {{-- LOKASI TANGGAL JAM MULAI SELESAI MISAL BLM TERJADWAL MAKA OUTPUTIN KONDISIIN TULUSANNYA BLM TERJADWAL --}}
-                                    @if ($item->ba_seminar == null)
+                                   
                                         <tr>
                                             <td>
                                                 {{ $loop->iteration }}
@@ -44,10 +45,10 @@
                                                     {{ $item->jadwal->lokasi->nama_lokasi }}
                                                 </td>
                                                 <td>
-                                                    {{ $carbon::parse($item->jadwal->tanggal_seminar_ta_dua)->format('d F Y') }}
+                                                    {{ $carbon::parse($item->jadwal->tanggal)->format('d F Y') }}
                                                 </td>
                                                 <td>
-                                                    {{ $item->jadwal->jam_mulai_seminar_ta_dua . ' - ' . $item->jadwal->jam_selesai_seminar_ta_dua }}
+                                                    {{ $item->jadwal->jam_mulai . ' - ' . $item->jadwal->jam_selesai }}
                                                 </td>
                                             @else
                                                 <td>
@@ -67,24 +68,19 @@
                                                         role="button" data-toggle="dropdown">
                                                         <i class="fa fa-ellipsis-h"></i>
                                                     </a>
-
-                                                    {{-- DI KASIH KONDISI KLK UDAH TERJADWAL BAKAL MUNCUL EDIT JADWALKANNYA ILANG BEGITU JG SEBALIKNYA --}}
-
-
-                                                    {{-- NANTI FITUR EDIT KLK MAU EDIT BERARTI DOKUMEN YANG TERGENERATE AKAN TERPEBAHARUI JUGA --}}
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         @if ($item->jadwal)
                                                             <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalTA2.edit', $item->encrypt_id) }}"><i
+                                                                href="{{ route('koor.jadwalTA2S2.edit', $item->encrypt_id) }}"><i
                                                                     class="fa fa-pencil"></i>
                                                                 Edit</a>
                                                                 <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalTA2.resend', $item->encrypt_id) }}"><i
+                                                                href="{{ route('koor.jadwalTA2S2.resend', $item->encrypt_id) }}"><i
                                                                     class="fa fa-share"></i>
                                                                 Kirim Kembali</a>
                                                         @else
                                                             <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalTA2.create', $item->encrypt_id) }}"><i
+                                                                href="{{ route('koor.jadwalTA2S2.create', $item->encrypt_id) }}"><i
                                                                     class="bi bi-calendar-plus-fill"></i>
                                                                 Jadwalkan</a>
                                                         @endif
@@ -92,7 +88,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    @endif
+                      
                                 @endforeach
                             </tbody>
                         </table>

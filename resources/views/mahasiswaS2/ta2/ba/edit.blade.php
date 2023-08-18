@@ -17,7 +17,7 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('mahasiswa.bata1.update', $seminar->encrypt_id) }}" method="POST"
+                    <form action="{{ route('mahasiswa.bata2s2.update', $seminar->encrypt_id) }}" method="POST"
                         enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
@@ -26,69 +26,76 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Nilai</label>
-                                    <input autofocus name="nilai" id="nilai" class="form-control" type="text"
+                                    <input autofocus name="nilai" id="nilai" class="form-control @error('nilai') form-control-danger @enderror" type="text"
                                         value="{{ old('nilai', $seminar->nilai) }}" placeholder="Contoh : 89.87">
                                     @error('nilai')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Nomor Berita Acara Seminar Tugas Akhir 1</label>
-                                    <input autofocus name="no_berkas_ba_seminar_ta_satu" id="no_berkas_ba_seminar_ta_satu"
-                                        class="form-control" type="text"
-                                        value="{{ old('no_berkas_ba_seminar_ta_satu', $seminar->no_berkas_ba_seminar_ta_satu) }}"
+                                    <label>Nomor Berita Acara Seminar Tesis 2</label>
+                                    <input autofocus name="no_ba" id="no_ba" class="form-control @error('no_ba') form-control-danger @enderror" type="text"
+                                        value="{{ old('no_ba', $seminar->no_ba) }}"
                                         placeholder="Contoh : 986/UN26.17.03/DT/2022">
-                                    @error('no_berkas_ba_seminar_ta_satu')
+                                    @error('no_ba')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>Tanggal Realisasi Seminar</label>
+                                    <input autofocus name="tgl_realisasi_seminar" id="tgl_realisasi_seminar" class="form-control @error('tgl_realisasi_seminar') form-control-danger @enderror"
+                                        type="date" value="{{ old('tgl_realisasi_seminar',$seminar->seminar->jadwal->tanggal) }}" >
+                                    @error('tgl_realisasi_seminar')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Pilih Huruf Mutu</label>
-                                    <select class="custom-select2 form-control" name="nilai_mutu"
+                                    <select class="custom-select2 form-control @error('nilai_mutu') form-control-danger @enderror" name="nilai_mutu"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Huruf Mutu">
                                             <option
-                                                value="A"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'A' ? 'selected' : '' }}>
+                                                value="A" {{ old('nilai_mutu', $seminar->nilai_mutu) == 'A' ? 'selected' : '' }}>
                                                 A
                                             </option>
                                             <option
-                                                value="A-"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'A-' ? 'selected' : '' }}>
+                                                value="A-" {{ old('nilai_mutu', $seminar->nilai_mutu) == 'A-' ? 'selected' : '' }}>
                                                 A-
                                             </option>
                                             <option
-                                                value="AB"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'AB' ? 'selected' : '' }}B>
+                                                value="AB" {{ old('nilai_mutu', $seminar->nilai_mutu) == 'AB' ? 'selected' : '' }}>
                                                 AB
                                             </option>
                                             <option
-                                                value="B+"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'B+' ? 'selected' : '' }}>
+                                                value="B+" {{ old('nilai_mutu', $seminar->nilai_mutu) == 'B+' ? 'selected' : '' }}>
                                                 B+
                                             </option>
                                             <option
-                                                value="B"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'B' ? 'selected' : '' }}>
+                                                value="B" {{ old('nilai_mutu', $seminar->nilai_mutu) == 'B' ? 'selected' : '' }}>
                                                 B
                                             </option>
                                             <option
-                                                value="B-"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'B-' ? 'selected' : '' }}>
+                                                value="B-" {{ old('nilai_mutu', $seminar->nilai_mutu) == 'B-' ? 'selected' : '' }}>
                                                 B-
                                             </option>
                                             <option
-                                                value="BC"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'BC' ? 'selected' : '' }}C>
+                                                value="BC" {{ old('nilai_mutu', $seminar->nilai_mutu) == 'BC' ? 'selected' : '' }}C>
                                                 BC
                                             </option>
                                             <option
-                                                value="C+"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'C+' ? 'selected' : '' }}>
+                                                value="C+" {{ old('nilai_mutu', $seminar->nilai_mutu) == 'C+' ? 'selected' : '' }}>
                                                 C+
                                             </option>
                                             <option
-                                                value="C"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'C' ? 'selected' : '' }}>
+                                                value="C" {{ old('nilai_mutu', $seminar->nilai_mutu) == 'C' ? 'selected' : '' }}>
                                                 C
                                             </option>
                                             <option
-                                                value="D"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'D' ? 'selected' : '' }}>
+                                                value="D" {{ old('nilai_mutu', $seminar->nilai_mutu) == 'D' ? 'selected' : '' }}>
                                                 D+
                                             </option>
                                             <option
-                                                value="E"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'E' ? 'selected' : '' }}>
+                                                value="E" {{ old('nilai_mutu', $seminar->nilai_mutu) == 'E' ? 'selected' : '' }}>
                                                 E
                                             </option>
                                         </optgroup>
@@ -102,47 +109,44 @@
                             <div class="kanan weight-500 col-md-6">
 
                                 <div class="form-group">
-                                    <label> Berkas Berita Acara<small> <a id="link-berkas_ba_seminar_ta_satu" href="#"
-                                                target="_blank" style="display: none;">Lihat File</a> </small></label>
+                                    <label> Berkas Berita Acara<small> <a id="link-file_ba" href="#" target="_blank"
+                                                style="display: none;">Lihat File</a> </small></label>
                                     <div class="custom-file">
-                                        <label class="custom-file-label" for="link-berkas_ba_seminar_ta_satu"
-                                            id="label-berkas_ba_seminar_ta_satu">Pilih File</label>
-                                        <input value="{{ old('berkas_ba_seminar_ta_satu') }}" accept=".pdf" autofocus
-                                            name="berkas_ba_seminar_ta_satu" id="file-berkas_ba_seminar_ta_satu"
-                                            class="custom-file-input form-control @error('berkas_ba_seminar_ta_satu') form-control-danger @enderror"
+                                        <label class="custom-file-label" for="link-file_ba" id="label-file_ba">Pilih
+                                            File</label>
+                                        <input value="{{ old('file_ba') }}" accept=".pdf" autofocus name="file_ba"
+                                            id="file-file_ba"
+                                            class="custom-file-input form-control @error('file_ba') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_ba_seminar_ta_satu','label-berkas_ba_seminar_ta_satu','link-berkas_ba_seminar_ta_satu')">
+                                            onchange="updateFileNameAndLink('file-file_ba','label-file_ba','link-file_ba')">
                                     </div>
-                                    @error('berkas_ba_seminar_ta_satu')
+                                    @error('file_ba')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="mt-2"> Berkas Nilai Tugas Akhir 1 <small> <a
-                                                id="link-berkas_nilai_seminar_ta_satu" href="#" target="_blank"
-                                                style="display: none;">Lihat File</a>
+                                    <label class="mt-2"> Berkas Nilai Tesis 2 <small> <a id="link-file_nilai"
+                                                href="#" target="_blank" style="display: none;">Lihat File</a>
                                         </small></label>
                                     <div class="custom-file">
-                                        <label class="custom-file-label" for="link-berkas_nilai_seminar_ta_satu"
-                                            id="label-berkas_nilai_seminar_ta_satu">Pilih
+                                        <label class="custom-file-label" for="link-file_nilai" id="label-file_nilai">Pilih
                                             File</label>
-                                        <input value="{{ old('berkas_nilai_seminar_ta_satu') }}" accept=".pdf" autofocus
-                                            name="berkas_nilai_seminar_ta_satu" id="file-berkas_nilai_seminar_ta_satu"
-                                            class="custom-file-input form-control @error('berkas_nilai_seminar_ta_satu') form-control-danger @enderror"
+                                        <input value="{{ old('file_nilai') }}" accept=".pdf" autofocus name="file_nilai"
+                                            id="file-file_nilai"
+                                            class="custom-file-input form-control @error('file_nilai') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_nilai_seminar_ta_satu','label-berkas_nilai_seminar_ta_satu','link-berkas_nilai_seminar_ta_satu')">
+                                            onchange="updateFileNameAndLink('file-file_nilai','label-file_nilai','link-file_nilai')">
                                     </div>
-                                    @error('berkas_nilai_seminar_ta_satu')
+                                    @error('file_nilai')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Power Point Bahasa Inggris</label>
-                                    <input autofocus name="berkas_ppt_seminar_ta_satu" id="berkas_ppt_seminar_ta_satu"
-                                        class="form-control" type="text"
-                                        value="{{ old('berkas_ppt_seminar_ta_satu', $seminar->berkas_ppt_seminar_ta_satu) }}"
+                                    <input autofocus name="ppt" id="ppt" class="form-control @error('ppt') form-control-danger @enderror" type="text"
+                                        value="{{ old('ppt', $seminar->ppt) }}"
                                         placeholder="Link Google Drive / Penyimpanan Cloud PowerPoint">
-                                    @error('berkas_ppt_seminar_ta_satu')
+                                    @error('ppt')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -152,7 +156,7 @@
                             <button type="submit" class="submit btn btn-primary">Kirim</button>
                         </div>
                     </form>
-                    <a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}">
+                    <a href="{{ route('mahasiswa.bata2s2.index') }}">
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>
                 </div>

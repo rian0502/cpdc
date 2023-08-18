@@ -20,25 +20,18 @@ class MahasiswaBimbinganTesisController extends Controller
      */
     public function index()
     {
-        $seminar = ModelSeminarTaSatuS2::where('id_pembimbing_1', Auth::user()->dosen->id)->orWhere('id_pembimbing_2', Auth::user()->dosen->id)->get();
+        $seminar = ModelSeminarTaSatuS2::where('id_pembimbing_1', Auth::user()->dosen->id)
+            ->orWhere('id_pembimbing_2', Auth::user()->dosen->id)
+            ->get();
         $mahasiswa = Mahasiswa::select('angkatan')->distinct()->whereHas('taSatuS2', function ($query) {
             $query->where('id_pembimbing_1', Auth::user()->dosen->id)
-                ->orWhere('id_pembimbing_2', Auth::user()->dosen->id)
-                ->orWhere('id_pembahas_1', Auth::user()->dosen->id)
-                ->orWhere('id_pembahas_2', Auth::user()->dosen->id)
-                ->orWhere('id_pembahas_3', Auth::user()->dosen->id);
+                ->orWhere('id_pembimbing_2', Auth::user()->dosen->id);
         })->orWhereHas('taDuaS2', function ($query) {
             $query->where('id_pembimbing_1', Auth::user()->dosen->id)
-                ->orWhere('id_pembimbing_2', Auth::user()->dosen->id)
-                ->orWhere('id_pembahas_1', Auth::user()->dosen->id)
-                ->orWhere('id_pembahas_2', Auth::user()->dosen->id)
-                ->orWhere('id_pembahas_3', Auth::user()->dosen->id);
+                ->orWhere('id_pembimbing_2', Auth::user()->dosen->id);
         })->orWhereHas('komprehensifS2', function ($query) {
             $query->where('id_pembimbing_1', Auth::user()->dosen->id)
-                ->orWhere('id_pembimbing_2', Auth::user()->dosen->id)
-                ->orWhere('id_pembahas_1', Auth::user()->dosen->id)
-                ->orWhere('id_pembahas_2', Auth::user()->dosen->id)
-                ->orWhere('id_pembahas_3', Auth::user()->dosen->id);
+                ->orWhere('id_pembimbing_2', Auth::user()->dosen->id);
         })->get();
         return view('dosen.mahasiswa.bimbingan.kompre.index', compact('seminar', 'mahasiswa'));
     }
@@ -290,6 +283,6 @@ class MahasiswaBimbinganTesisController extends Controller
             'aktivitas' => $mahasiswa->aktivitas,
         ];
         // return dd($data);
-        return view('dosen.mahasiswa.bimbingan.kompre.showS2', $data);
+        return view('dosen.mahasiswa.bimbingan.kompreS2.show', $data);
     }
 }

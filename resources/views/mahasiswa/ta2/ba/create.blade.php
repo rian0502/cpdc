@@ -24,25 +24,32 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Nilai</label>
-                                    <input autofocus name="nilai" id="nilai" class="form-control" type="text"
+                                    <input autofocus name="nilai" id="nilai" class="form-control @error('nilai') form-control-danger @enderror" type="text"
                                         value="{{ old('nilai') }}" placeholder="Contoh : 89.87">
                                     @error('nilai')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Nomor Berita Acara Seminar Tugas Akhir 2</label>
-                                    <input autofocus name="no_berkas_ba_seminar_ta_dua" id="no_berkas_ba_seminar_ta_dua"
-                                        class="form-control" type="text"
-                                        value="{{ old('no_berkas_ba_seminar_ta_dua') }}"
+                                    <label>Nomor Berita Acara Tugas Akhir 2</label>
+                                    <input autofocus name="no_berkas_ba_seminar_ta_dua" id="no_berkas_ba_seminar_ta_dua" class="form-control @error('no_berkas_ba_seminar_ta_dua') form-control-danger @enderror"
+                                        type="text" value="{{ old('no_berkas_ba_seminar_ta_dua') }}"
                                         placeholder="Contoh : 986/UN26.17.03/DT/2022">
                                     @error('no_berkas_ba_seminar_ta_dua')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label>Tanggal Realisasi Seminar</label>
+                                    <input autofocus name="tgl_realisasi_seminar" id="tgl_realisasi_seminar" class="form-control @error('tgl_realisasi_seminar') form-control-danger @enderror"
+                                        type="date" value="{{ old('tgl_realisasi_seminar') }}">
+                                    @error('tgl_realisasi_seminar')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label>Pilih Huruf Mutu</label>
-                                    <select class="custom-select2 form-control" name="huruf_mutu"
+                                    <select class="custom-select2 form-control @error('huruf_mutu') form-control-danger @enderror" name="huruf_mutu"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Huruf Mutu">
                                             <option value="A"{{ old('huruf_mutu') == 'A' ? 'selected' : '' }}>A
@@ -78,25 +85,25 @@
                             <div class="kanan weight-500 col-md-6">
 
                                 <div class="form-group">
-                                    <label> Berkas Berita Acara<small> <a id="link-berkas_ba_seminar_ta_dua" href="#"
+                                    <label> Berkas Berita Acara<small> <a id="link-ba_seminar_ta_dua" href="#"
                                                 target="_blank" style="display: none;">Lihat File</a> </small></label>
                                     <div class="custom-file">
-                                        <label class="custom-file-label" for="link-berkas_ba_seminar_ta_dua"
-                                            id="label-berkas_ba_seminar_ta_dua">Pilih File</label>
-                                        <input value="{{ old('berkas_ba_seminar_ta_dua') }}" accept=".pdf" autofocus
-                                            name="berkas_ba_seminar_ta_dua" id="file-berkas_ba_seminar_ta_dua"
-                                            class="custom-file-input form-control @error('berkas_ba_seminar_ta_dua') form-control-danger @enderror"
+                                        <label class="custom-file-label" for="link-ba_seminar_ta_dua"
+                                            id="label-ba_seminar_ta_dua">Pilih File</label>
+                                        <input value="{{ old('ba_seminar_ta_dua') }}" accept=".pdf" autofocus
+                                            name="ba_seminar_ta_dua" id="file-ba_seminar_ta_dua"
+                                            class="custom-file-input form-control @error('ba_seminar_ta_dua') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_ba_seminar_ta_dua','label-berkas_ba_seminar_ta_dua','link-berkas_ba_seminar_ta_dua')">
+                                            onchange="updateFileNameAndLink('file-ba_seminar_ta_dua','label-ba_seminar_ta_dua','link-ba_seminar_ta_dua')">
                                     </div>
-                                    @error('berkas_ba_seminar_ta_dua')
+                                    @error('ba_seminar_ta_dua')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
-
                                 </div>
                                 <div class="form-group">
-                                    <label> Berkas Nilai Tugas Akhir 2 <small> <a id="link-berkas_nilai_seminar_ta_dua"
-                                                href="#" target="_blank" style="display: none;">Lihat File</a>
+                                    <label class="mt-2">Berkas Nilai Tugas Akhir 2 <small> <a
+                                                id="link-berkas_nilai_seminar_ta_dua" href="#" target="_blank"
+                                                style="display: none;">Lihat File</a>
                                         </small></label>
                                     <div class="custom-file">
                                         <label class="custom-file-label" for="link-berkas_nilai_seminar_ta_dua"
@@ -112,11 +119,11 @@
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-
                                 <div class="form-group">
-                                    <label>PowerPoint Bahasa Inggris</label>
+                                    <label>Power Point Bahasa Inggris</label>
                                     <input autofocus name="berkas_ppt_seminar_ta_dua" id="berkas_ppt_seminar_ta_dua"
-                                        class="form-control" type="text" value="{{ old('berkas_ppt_seminar_ta_dua') }}"
+                                        class="form-control @error('berkas_ppt_seminar_ta_dua') form-control-danger @enderror" type="text"
+                                        value="{{ old('berkas_ppt_seminar_ta_dua') }}"
                                         placeholder="Link Gdrive / Penyimpanan Cloud Power Point">
                                     @error('berkas_ppt_seminar_ta_dua')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>

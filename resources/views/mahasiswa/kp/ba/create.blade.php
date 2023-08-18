@@ -24,7 +24,7 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Nilai Pembimbing Lapangan</label>
-                                    <input autofocus name="nilai_lapangan" id="nilai_lapangan" class="form-control"
+                                    <input autofocus name="nilai_lapangan" id="nilai_lapangan" class="form-control @error('nilai_lapangan') form-control-danger @enderror"
                                         type="text" value="{{ old('nilai_lapangan') }}" placeholder="Contoh : 89.87">
                                     @error('nilai_lapangan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nilai Dosen Pembimbing</label>
-                                    <input autofocus name="nilai_akd" id="nilai_akd" class="form-control" type="text"
+                                    <input autofocus name="nilai_akd" id="nilai_akd" class="form-control @error('nilai_akd') form-control-danger @enderror" type="text"
                                         value="{{ old('nilai_akd') }}" placeholder="Contoh : 89.87">
                                     @error('nilai_akd')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nilai Akhir</label>
-                                    <input autofocus name="nilai_akhir" id="nilai_akhir" class="form-control" type="text"
+                                    <input autofocus name="nilai_akhir" id="nilai_akhir" class="form-control @error('nilai_akhir') form-control-danger @enderror" type="text"
                                         value="{{ old('nilai_akhir') }}" placeholder="Contoh : 89.87">
                                     @error('nilai_akhir')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nomor Berita Acara Seminar Kerja Praktik</label>
-                                    <input autofocus name="no_ba_seminar_kp" id="no_ba_seminar_kp" class="form-control"
+                                    <input autofocus name="no_ba_seminar_kp" id="no_ba_seminar_kp" class="form-control @error('no_ba_seminar_kp') form-control-danger @enderror"
                                         type="text" value="{{ old('no_ba_seminar_kp') }}" placeholder="Contoh : 986/UN26.17.03/DT/2022">
                                     @error('no_ba_seminar_kp')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -60,7 +60,7 @@
                             <div class="kanan weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Pilih Huruf Mutu</label>
-                                    <select class="custom-select2 form-control" name="nilai_mutu"
+                                    <select class="custom-select2 form-control @error('nilai_mutu') form-control-danger @enderror" name="nilai_mutu"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Huruf Mutu">
                                             <option value="A"{{old('nilai_mutu')=='A'?'selected':''}}>A</option>
@@ -114,6 +114,14 @@
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
 
+                                </div>
+                                <div class="form-group">
+                                    <label>Tanggal Realisasi Seminar</label>
+                                    <input autofocus name="tgl_realisasi_seminar" id="tgl_realisasi_seminar" class="form-control @error('tgl_realisasi_seminar') form-control-danger @enderror"
+                                        type="date" value="{{ old('tgl_realisasi_seminar') }}">
+                                    @error('tgl_realisasi_seminar')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

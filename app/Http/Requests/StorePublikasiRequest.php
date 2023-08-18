@@ -43,7 +43,7 @@ class StorePublikasiRequest extends FormRequest
             'Paten Sederhana',
             'Hak Cipta',
             'Desain Produk Industri',
-            'Teknologi',
+            'Teknologi Tepat Guna',
             'Buku ber-ISBN',
             'Book Chapter'
         ];
