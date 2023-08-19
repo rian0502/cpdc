@@ -74,4 +74,35 @@ class ModelKompreS2 extends Model
     {
         return $this->hasOne(ModelBaKompreS2::class, 'id_seminar');
     }
+    public function getJadwalDosenDate($id_dosen)
+    {
+        return $this->join('jadwal_s2_kompre', 's2_kompre.id', '=', 'jadwal_s2_kompre.id_seminar')
+            ->where(function ($query) use ($id_dosen) {
+                $query->where('s2_kompre.id_pembimbing_satu', $id_dosen)
+                    ->orWhere('s2_kompre.id_pembimbing_dua', $id_dosen)
+                    ->orWhere('s2_kompre.id_pembahas', $id_dosen)
+                    ->orWhere('s2_kompre.id_pembahas_1', $id_dosen)
+                    ->orWhere('s2_kompre.id_pembahas_2', $id_dosen)
+                    ->orWhere('s2_kompre.id_pembahas_3', $id_dosen);
+            })
+            ->where('jadwal_s2_kompre.tanggal', '>=', date('Y-m-d'))
+            ->select('s2_kompre.id', 's2_kompre.judul_ta', 's2_kompre.id_mahasiswa')
+            ->orderBy('jadwal_s2_kompre.tanggal', 'asc')
+            ->get();
+    }
+
+    public function getInvalidJumlahBerkas()
+    {
+        return $this->where('status_koor', 'Belum Selesai')
+            ->orWhere('status_koor', 'Perbaikan')
+            ->whereHas('beritaAcara', function ($query) {
+                $query->where('s2_kompre.id', 'ba_s2_kompre.id_seminar');
+            })->count();
+    }
+
+    public function getJumlahJadwal()
+    {
+        return $this->where('status_admin', 'Valid')
+            ->whereDoesntHave('jadwal')->count();
+    }
 }

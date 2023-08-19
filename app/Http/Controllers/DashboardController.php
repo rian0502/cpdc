@@ -9,9 +9,12 @@ use App\Models\AktivitasMahasiswa;
 use App\Models\BaseNPM;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
+use App\Models\ModelBaKompreS2;
 use App\Models\ModelBaSeminarKompre;
 use App\Models\ModelBaSeminarTaDua;
+use App\Models\ModelBaSeminarTaDuaS2;
 use App\Models\ModelBaSeminarTaSatu;
+use App\Models\ModelBaSeminarTaSatuS2;
 use App\Models\ModelSeminarKompre;
 use App\Models\ModelSeminarKP;
 use App\Models\ModelSeminarTaDua;
@@ -86,6 +89,24 @@ class DashboardController extends Controller
                 $data['invalid_jadwal'] = (new ModelSeminarKompre())->getJumlahJadwal();
                 $data['total_berkas']  = ModelBaSeminarKompre::count();
                 $data['jumlah_kompre'] = ModelSeminarKompre::count();
+            }
+            if (Auth::user()->hasRole('ta1S2')) {
+                $data['invalid_berkas_s2'] = (new ModelSeminarTaSatuS2())->getInvalidJumlahBerkas();
+                $data['invalid_jadwal_s2'] = (new ModelSeminarTaSatuS2())->getJumlahJadwal();
+                $data['total_berkas_s2']  = ModelBaSeminarTaSatuS2::count();
+                $data['jumlah_ta1_s2'] = ModelSeminarTaSatuS2::count();
+            }
+            if (Auth::user()->hasRole('ta2S2')) {
+                $data['invalid_berkas_s2'] = (new ModelSeminarTaDuaS2())->getInvalidJumlahBerkas();
+                $data['invalid_jadwal_s2'] = (new ModelSeminarTaDuaS2())->getJumlahJadwal();
+                $data['total_berkas_s2']  = ModelBaSeminarTaDuaS2::count();
+                $data['jumlah_ta2_s2'] = ModelSeminarTaDuaS2::count();
+            }
+            if (Auth::user()->hasRole('kompreS2')) {
+                $data['invalid_berkas_s2'] = (new ModelKompreS2())->getInvalidJumlahBerkas();
+                $data['invalid_jadwal_s2'] = (new ModelKompreS2())->getJumlahJadwal();
+                $data['total_berkas_s2']  = ModelBaKompreS2::count();
+                $data['jumlah_kompre_s2'] = ModelKompreS2::count();
             }
             return view('dashboard', $data);
         } else {

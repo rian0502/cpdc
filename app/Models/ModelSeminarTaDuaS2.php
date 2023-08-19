@@ -72,4 +72,35 @@ class ModelSeminarTaDuaS2 extends Model
     {
         return $this->hasOne(ModelBaSeminarTaDuaS2::class, 'id_seminar');
     }
+    public function getJadwalDosenDate($id_dosen)
+    {
+        return $this->join('jadwal_s2_seminar_ta2', 's2_tugas_akhir_2.id', '=', 'jadwal_s2_seminar_ta2.id_seminar')
+            ->where(function ($query) use ($id_dosen) {
+                $query->where('s2_tugas_akhir_2.id_pembimbing_satu', $id_dosen)
+                    ->orWhere('s2_tugas_akhir_2.id_pembimbing_dua', $id_dosen)
+                    ->orWhere('s2_tugas_akhir_2.id_pembahas', $id_dosen)
+                    ->orWhere('s2_tugas_akhir_2.id_pembahas_1', $id_dosen)
+                    ->orWhere('s2_tugas_akhir_2.id_pembahas_2', $id_dosen)
+                    ->orWhere('s2_tugas_akhir_2.id_pembahas_3', $id_dosen);
+            })
+            ->where('jadwal_s2_seminar_ta2.tanggal', '>=', date('Y-m-d'))
+            ->select('s2_tugas_akhir_2.id', 's2_tugas_akhir_2.judul_ta', 's2_tugas_akhir_2.id_mahasiswa')
+            ->orderBy('jadwal_s2_seminar_ta2.tanggal', 'asc')
+            ->get();
+    }
+
+    public function getInvalidJumlahBerkas()
+    {
+        return $this->where('status_koor', 'Belum Selesai')
+            ->orWhere('status_koor', 'Perbaikan')
+            ->whereHas('beritaAcara', function ($query) {
+                $query->where('s2_tugas_akhir_2.id', 'ba_s2_seminar_ta2.id_seminar');
+            })->count();
+    }
+
+    public function getJumlahJadwal()
+    {
+        return $this->where('status_admin', 'Valid')
+            ->whereDoesntHave('jadwal')->count();
+    }
 }
