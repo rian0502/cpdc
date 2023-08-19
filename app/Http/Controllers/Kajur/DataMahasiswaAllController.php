@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Kajur;
 
-
-use App\Models\AktivitasAlumni;
-use App\Models\Laboratorium;
-use App\Models\Mahasiswa;
 use App\Models\User;
-use App\Models\ModelSeminarKompre;
+use App\Models\Mahasiswa;
+use Illuminate\Http\Request;
+use App\Models\Laboratorium;
+use App\Models\AktivitasAlumni;
 use App\Models\ModelSeminarTaDua;
 use App\Models\ModelSeminarTaSatu;
-use Illuminate\Http\Request;
+use App\Models\ModelSeminarKompre;
 use Illuminate\Routing\Controller;
 use Yajra\DataTables\Facades\DataTables;
 
