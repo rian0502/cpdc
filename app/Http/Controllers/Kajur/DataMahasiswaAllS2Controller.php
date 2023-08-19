@@ -134,8 +134,8 @@ class DataMahasiswaAllS2Controller extends Controller
             'ba_ta1' => $seminarTa1 ? $seminarTa1->beritaAcara : null,
             'ba_ta2' => $seminarTa2 ? $seminarTa2->beritaAcara : null,
             'ba_kompre' => $sidangKompre ? $sidangKompre->beritaAcara : null,
-            'prestasi' => $mahasiswa->prestasi,
-            'aktivitas' => $mahasiswa->aktivitas,
+            'prestasi' => $mahasiswa->prestasi_s2,
+            'aktivitas' => $mahasiswa->aktivitas_s2,
         ];
         // return dd($data);
         return view('dosen.mahasiswa.bimbingan.kompreS2.show', $data);

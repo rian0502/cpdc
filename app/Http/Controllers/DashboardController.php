@@ -16,6 +16,9 @@ use App\Models\ModelSeminarKompre;
 use App\Models\ModelSeminarKP;
 use App\Models\ModelSeminarTaDua;
 use App\Models\ModelSeminarTaSatu;
+use App\Models\ModelKompreS2;
+use App\Models\ModelSeminarTaDuaS2;
+use App\Models\ModelSeminarTaSatuS2;
 use App\Models\PrestasiMahasiswa;
 use App\Models\SopLab;
 use App\Models\User;
@@ -34,6 +37,10 @@ class DashboardController extends Controller
                     'ta1' => ModelSeminarTaSatu::where('status_admin', '!=', 'Valid')->count(),
                     'ta2' => ModelSeminarTaDua::where('status_admin', '!=', 'Valid')->count(),
                     'kompre' => ModelSeminarTaDua::where('status_admin', '!=', 'Valid')->count(),
+                    'tesis1' => ModelSeminarTaSatuS2::where('status_admin', '!=', 'Valid')->count(),
+                    'tesis2' => ModelSeminarTaDuaS2::where('status_admin', '!=', 'Valid')->count(),
+                    'tesis3' => ModelKompreS2::where('status_admin', '!=', 'Valid')->count(),
+
                 ];
                 return view('dashboard', $data);
             }
@@ -59,7 +66,7 @@ class DashboardController extends Controller
                 'jadwalkompre' => (new ModelSeminarKompre())->getJadwalDosenDate(Auth::user()->dosen->id),
             ];
             if (Auth::user()->hasRole('pkl')) {
-                $data['unvalid_kp'] = ModelSeminarKP::where('proses_admin', 'Valid')->where('status_seminar', '!=', 'Invalid')->count();
+                $data['`invalid_`kp'] = ModelSeminarKP::where('proses_admin', 'Valid')->where('status_seminar', '!=', 'Invalid')->count();
                 $data['jadwal_seminar'] = ModelSeminarKP::leftJoin('jadwal_skp', 'seminar_kp.id', '=', 'jadwal_skp.id_skp')->count();
             }
             if (Auth::user()->hasRole('ta1')) {

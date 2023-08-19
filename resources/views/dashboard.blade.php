@@ -1,5 +1,6 @@
 @extends('layouts.datatable')
 @section('datatable')
+    <link rel="stylesheet" href="/Assets/css/helps.css">
     <style>
         .hover:hover {
             tercolor: #1818d7;
@@ -245,7 +246,7 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <a href="link validasi berkas ta 1">
+                        <a href="{{ route('berkas.validasi.seminar.ta1.index') }}">
                             <div class="card-box height-100-p widget-style3 ">
                                 <div class="d-flex flex-wrap">
                                     <div class="widget-data">
@@ -264,7 +265,7 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <a href="link validasi berkas ta 2">
+                        <a href="{{ route('berkas.validasi.seminar.ta2.index') }}">
                             <div class="card-box height-100-p widget-style3 ">
                                 <div class="d-flex flex-wrap">
                                     <div class="widget-data">
@@ -283,7 +284,7 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <a href="link validasi berkas kompre">
+                        <a href="{{route('berkas.validasi.sidang.kompre.index')}}">
                             <div class="card-box height-100-p widget-style3 ">
                                 <div class="d-flex flex-wrap">
                                     <div class="widget-data">
@@ -295,6 +296,65 @@
                                     <div class="widgets">
                                         <div class="icon" data-color="#00eccf">
                                             <STROng>KOMPRE</STROng>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row pb-10">
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{ route('berkas.validasi.s2.tesis1.index') }}">
+                            <div class="card-box height-100-p widget-style3 ">
+                                <div class="d-flex flex-wrap">
+                                    <div class="widget-data">
+                                        <div class="weight-700 font-24 text-dark">{{ $tesis1 }}</div>
+                                        <div class="font-14 text-secondary weight-500">
+                                            Belum Tervalidasi
+                                        </div>
+                                    </div>
+                                    <div class="widgets">
+                                        <div class="icon" data-color="#00eccf">
+                                            <STROng>TESIS 1</STROng>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{route('berkas.validasi.s2.tesis2.index')}}">
+                            <div class="card-box height-100-p widget-style3 ">
+                                <div class="d-flex flex-wrap">
+                                    <div class="widget-data">
+                                        <div class="weight-700 font-24 text-dark">{{ $tesis2 }}</div>
+                                        <div class="font-14 text-secondary weight-500">
+                                            Belum Tervalidasi
+                                        </div>
+                                    </div>
+                                    <div class="widgets">
+                                        <div class="icon" data-color="#00eccf">
+                                            <STRong>TESIS 2</STRong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{route('berkas.validasi.s2.tesis3.index')}}">
+                            <div class="card-box height-100-p widget-style3 ">
+                                <div class="d-flex flex-wrap">
+                                    <div class="widget-data">
+                                        <div class="weight-700 font-24 text-dark">{{ $tesis3 }}</div>
+                                        <div class="font-14 text-secondary weight-500">
+                                            Belum Tervalidasi
+                                        </div>
+                                    </div>
+                                    <div class="widgets">
+                                        <div class="icon" data-color="#00eccf">
+                                            <STRong>TESIS 3</STRong>
                                         </div>
                                     </div>
                                 </div>
@@ -699,10 +759,10 @@
                     </table>
                 </div>
             @endrole
-            @role('jurusan')
+            @role('jurusan|kaprodiS1|tpmpsS1')
                 <div class="card-box height-100-p pd-20 min-height-200px mb-20">
                     <div class="row align-items-center justify-content-center mb-3">
-                        <h2>Data Seminar</h2>
+                        <h2>Data Seminar S1</h2>
                     </div>
                     <div class="row align-items-center justify-content-center">
                         <div class="col-md-4">
@@ -733,6 +793,41 @@
                     <div id="chart_seminar2"></div>
                 </div>
             @endrole
+            @role('jurusan|kaprodiS2|tpmpsS2')
+                <div class="card-box height-100-p pd-20 min-height-200px mb-20">
+                    <div class="row align-items-center justify-content-center mb-3">
+                        <h2>Data Seminar S2</h2>
+                    </div>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="startDate2S2">Tanggal Awal</label>
+                                <input type="date" name="startDate2S2" class="form-control" placeholder="Tanggal Awal"
+                                    id="startDate2S2" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="endDate2S2">Tanggal Akhir</label>
+                                <input type="date" class="form-control" name="endDate2S2" placeholder="Tanggal Akhir"
+                                    id="endDate2S2" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="angkatanS2">Angkatan</label>
+                                <select class="selectpicker form-control" data-style="btn-outline-primary" data-size="5"
+                                    id="angkatanS2" name="angkatanS2">
+                                    <option value="all" selected>Semua</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart_seminar2S2"></div>
+                </div>
+            @endrole
+
             @role(['alumni', 'mahasiswa'])
                 <div class="row pb-10">
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
@@ -924,118 +1019,227 @@
 
             {{-- BUAT UNTUK PEMBERITAHUAN SEMINAR H-1 UNTUK ROLE DOSEN --}}
             @role('dosen')
-                <div class="card-box pb-10" style="margin-bottom: 30px">
-                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Kerja Praktik</div>
+                <div class="faq-wrap">
+                    <div id="accordion1">
+                        {{-- s1 --}}
+                        <div class="" style="margin-bottom: 20px">
+                            <div class="card-header" style="margin-bottom: 20px">
+                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#s1">
+                                    Data Pelaksanaan Seminar S1
+                                </button>
+                            </div>
+                            <div id="s1" class="collapse" data-parent="#accordion1">
 
-                    <table class="table data-table-responsive warp stripe data-table-noexport p-2">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>NPM</th>
-                                <th>Judul</th>
-                                <th>Tanggal</th>
-                                <th>Waktu</th>
-                                <th>Ruangan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($jadwalskp as $item)
-                                <tr>
-                                    <td> {{ $loop->iteration }}</td>
-                                    <td>{{ $item->mahasiswa->npm }}</td>
-                                    <td>{{ $item->judul_kp }}</td>
-                                    <td>{{ $item->jadwal->tanggal_skp }}</td>
-                                    <td>{{ $item->jadwal->jam_mulai_skp . ' - ' . $item->jadwal->jam_selesai_skp }}
-                                    </td>
-                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card-box pb-10" style="margin-bottom: 30px">
-                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tugas Akhir 1</div>
-                    <table class="table data-table-responsive stripe data-table-noexport p-2">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>NPM</th>
-                                <th>Judul</th>
-                                <th>Tanggal</th>
-                                <th>Waktu</th>
-                                <th>Ruangan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($jadwalta1 as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->mahasiswa->npm }}</td>
-                                    <td>{{ $item->judul_ta }}</td>
-                                    <td>{{ $item->jadwal->tanggal_seminar_ta_satu }}</td>
-                                    <td>{{ $item->jadwal->jam_mulai_seminar_ta_satu }} -
-                                        {{ $item->jadwal->jam_selesai_seminar_ta_satu }} WIB</td>
-                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card-box pb-10" style="margin-bottom: 30px">
-                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tugas Akhir 2</div>
-                    <table class="table data-table-responsive stripe data-table-noexport p-2">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>NPM</th>
-                                <th>Judul</th>
-                                <th>Tanggal</th>
-                                <th>Waktu</th>
-                                <th>Ruangan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($jadwalta2 as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->mahasiswa->npm }}</td>
-                                    <td>{{ $item->judul_ta }}</td>
-                                    <td>{{ $item->jadwal->tanggal_seminar_ta_dua }}</td>
-                                    <td>{{ $item->jadwal->jam_mulai_seminar_ta_dua }} -
-                                        {{ $item->jadwal->jam_selesai_seminar_ta_dua }} WIB</td>
-                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card-box pb-10" style="margin-bottom: 30px">
-                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Sidang Komprehensif</div>
-                    <table class="table data-table-responsive stripe data-table-noexport p-2 nowarp">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>NPM</th>
-                                <th>Judul</th>
-                                <th>Tanggal</th>
-                                <th>Waktu</th>
-                                <th>Ruangan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($jadwalkompre as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->mahasiswa->npm }}</td>
-                                    <td>{{ $item->judul_ta }}</td>
-                                    <td>{{ $item->jadwal->tanggal_komprehensif }}</td>
-                                    <td>{{ $item->jadwal->jam_mulai_komprehensif }} -
-                                        {{ $item->jadwal->jam_selesai_komprehensif }} WIB</td>
-                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                <div class="card-box pb-10" style="margin-bottom: 30px">
+                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Kerja Praktik</div>
+                                    <table class="table data-table-responsive warp stripe data-table-noexport p-2">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>NPM</th>
+                                                <th>Judul</th>
+                                                <th>Tanggal</th>
+                                                <th>Waktu</th>
+                                                <th>Ruangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($jadwalskp as $item)
+                                                <tr>
+                                                    <td> {{ $loop->iteration }}</td>
+                                                    <td>{{ $item->mahasiswa->npm }}</td>
+                                                    <td>{{ $item->judul_kp }}</td>
+                                                    <td>{{ $item->jadwal->tanggal_skp }}</td>
+                                                    <td>{{ $item->jadwal->jam_mulai_skp . ' - ' . $item->jadwal->jam_selesai_skp }}
+                                                    </td>
+                                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-box pb-10" style="margin-bottom: 30px">
+                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tugas Akhir 1</div>
+                                    <table class="table data-table-responsive stripe data-table-noexport p-2">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>NPM</th>
+                                                <th>Judul</th>
+                                                <th>Tanggal</th>
+                                                <th>Waktu</th>
+                                                <th>Ruangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($jadwalta1 as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->mahasiswa->npm }}</td>
+                                                    <td>{{ $item->judul_ta }}</td>
+                                                    <td>{{ $item->jadwal->tanggal_seminar_ta_satu }}</td>
+                                                    <td>{{ $item->jadwal->jam_mulai_seminar_ta_satu }} -
+                                                        {{ $item->jadwal->jam_selesai_seminar_ta_satu }} WIB</td>
+                                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-box pb-10" style="margin-bottom: 30px">
+                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tugas Akhir 2</div>
+                                    <table class="table data-table-responsive stripe data-table-noexport p-2">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>NPM</th>
+                                                <th>Judul</th>
+                                                <th>Tanggal</th>
+                                                <th>Waktu</th>
+                                                <th>Ruangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($jadwalta2 as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->mahasiswa->npm }}</td>
+                                                    <td>{{ $item->judul_ta }}</td>
+                                                    <td>{{ $item->jadwal->tanggal_seminar_ta_dua }}</td>
+                                                    <td>{{ $item->jadwal->jam_mulai_seminar_ta_dua }} -
+                                                        {{ $item->jadwal->jam_selesai_seminar_ta_dua }} WIB</td>
+                                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-box pb-10" style="margin-bottom: 30px">
+                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Sidang Komprehensif</div>
+                                    <table class="table data-table-responsive stripe data-table-noexport p-2 nowarp">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>NPM</th>
+                                                <th>Judul</th>
+                                                <th>Tanggal</th>
+                                                <th>Waktu</th>
+                                                <th>Ruangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($jadwalkompre as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->mahasiswa->npm }}</td>
+                                                    <td>{{ $item->judul_ta }}</td>
+                                                    <td>{{ $item->jadwal->tanggal_komprehensif }}</td>
+                                                    <td>{{ $item->jadwal->jam_mulai_komprehensif }} -
+                                                        {{ $item->jadwal->jam_selesai_komprehensif }} WIB</td>
+                                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- s2 --}}
+                        <div class="" style="margin-bottom: 20px">
+                            <div class="card-header" style="margin-bottom: 20px">
+                                <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#s2">
+                                    Data Pelaksanaan Seminar S2
+                                </button>
+                            </div>
+                            <div id="s2" class="collapse" data-parent="#accordion1">
+
+                                <div class="card-box pb-10" style="margin-bottom: 30px">
+                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tugas Akhir 1</div>
+                                    <table class="table data-table-responsive stripe data-table-noexport p-2">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>NPM</th>
+                                                <th>Judul</th>
+                                                <th>Tanggal</th>
+                                                <th>Waktu</th>
+                                                <th>Ruangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($jadwalta1 as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->mahasiswa->npm }}</td>
+                                                    <td>{{ $item->judul_ta }}</td>
+                                                    <td>{{ $item->jadwal->tanggal_seminar_ta_satu }}</td>
+                                                    <td>{{ $item->jadwal->jam_mulai_seminar_ta_satu }} -
+                                                        {{ $item->jadwal->jam_selesai_seminar_ta_satu }} WIB</td>
+                                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-box pb-10" style="margin-bottom: 30px">
+                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tugas Akhir 2</div>
+                                    <table class="table data-table-responsive stripe data-table-noexport p-2">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>NPM</th>
+                                                <th>Judul</th>
+                                                <th>Tanggal</th>
+                                                <th>Waktu</th>
+                                                <th>Ruangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($jadwalta2 as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->mahasiswa->npm }}</td>
+                                                    <td>{{ $item->judul_ta }}</td>
+                                                    <td>{{ $item->jadwal->tanggal_seminar_ta_dua }}</td>
+                                                    <td>{{ $item->jadwal->jam_mulai_seminar_ta_dua }} -
+                                                        {{ $item->jadwal->jam_selesai_seminar_ta_dua }} WIB</td>
+                                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-box pb-10" style="margin-bottom: 30px">
+                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Sidang Komprehensif</div>
+                                    <table class="table data-table-responsive stripe data-table-noexport p-2 nowarp">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>NPM</th>
+                                                <th>Judul</th>
+                                                <th>Tanggal</th>
+                                                <th>Waktu</th>
+                                                <th>Ruangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($jadwalkompre as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->mahasiswa->npm }}</td>
+                                                    <td>{{ $item->judul_ta }}</td>
+                                                    <td>{{ $item->jadwal->tanggal_komprehensif }}</td>
+                                                    <td>{{ $item->jadwal->jam_mulai_komprehensif }} -
+                                                        {{ $item->jadwal->jam_selesai_komprehensif }} WIB</td>
+                                                    <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             @endrole
         </div>
@@ -1459,106 +1663,199 @@
                 });
             });
         </script>
+    @endrole
 
-@endrole
+    <script>
+        function chartSeminar2S2(startDate2S2, endDate2S2, angkatan) {
+            $.ajax({
+                url: '{{ route('chart.seminarS2.all') }}',
+                method: 'GET',
+                dataType: 'json',
+                data: {
+                    startDate2S2: startDate2S2,
+                    endDate2S2: endDate2S2,
+                    angkatanS2: angkatanS2
+                },
+                success: function(response) {
+                    var data = response;
 
-        <script>
-            function chartSeminar2(startDate2, endDate2, angkatan) {
-                $.ajax({
-                    url: '{{ route('chart.seminar.all') }}',
-                    method: 'GET',
-                    dataType: 'json',
-                    data: {
-                        startDate2: startDate2,
-                        endDate2: endDate2,
-                        angkatan: angkatan
-                    },
-                    success: function(response) {
-                        var data = response;
+                    var categories = data.categories;
+                    var seminarData = data.seminar;
+                    var nonseminarData = data.nonseminar;
 
-                        var categories = data.categories;
-                        var seminarData = data.seminar;
-                        var nonseminarData = data.nonseminar;
+                    var seriesData = [{
+                        name: 'False',
+                        data: nonseminarData
 
-                        var seriesData = [{
-                            name: 'False',
-                            data: nonseminarData
+                    }, {
+                        name: 'True',
+                        data: seminarData
+                    }];
 
-                        }, {
-                            name: 'True',
-                            data: seminarData
-                        }];
-
-                        var options = {
-                            chart: {
-                                type: 'column'
-                            },
+                    var options = {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: categories,
+                        },
+                        yAxis: {
                             title: {
-                                text: ''
+                                text: 'Jumlah'
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                            pointFormatter: function() {
+                                return '<tr><td style="text-align: left; padding:0; color:' + this
+                                    .series.color + '">' +
+                                    this.series.name + ': </td>' +
+                                    '<td style="text-align: right; padding:0"><b>' + Highcharts
+                                    .numberFormat(this.y, 0, ".", ",") +
+                                    '</b></td></tr>';
                             },
-                            xAxis: {
-                                categories: categories,
-                            },
-                            yAxis: {
-                                title: {
-                                    text: 'Jumlah'
+                            footerFormat: '</table>',
+                            shared: true,
+                            useHTML: true
+                        },
+                        plotOptions: {
+                            column: {
+                                stacking: 'normal',
+                                grouping: false,
+                                shadow: false,
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true
                                 }
-                            },
-                            tooltip: {
-                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                                pointFormatter: function() {
-                                    return '<tr><td style="text-align: left; padding:0; color:' + this
-                                        .series.color + '">' +
-                                        this.series.name + ': </td>' +
-                                        '<td style="text-align: right; padding:0"><b>' + Highcharts
-                                        .numberFormat(this.y, 0, ".", ",") +
-                                        '</b></td></tr>';
-                                },
-                                footerFormat: '</table>',
-                                shared: true,
-                                useHTML: true
-                            },
-                            plotOptions: {
-                                column: {
-                                    stacking: 'normal',
-                                    grouping: false,
-                                    shadow: false,
-                                    borderWidth: 0,
-                                    dataLabels: {
-                                        enabled: true
-                                    }
-                                }
-                            },
-                            colors: ['#FF1818', '#5463FF'],
-                            series: seriesData
-                        };
+                            }
+                        },
+                        colors: ['#FF1818', '#5463FF'],
+                        series: seriesData
+                    };
 
-                        Highcharts.chart('chart_seminar2', options);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            }
-
-            // Panggil fungsi chartSeminar2 dengan nilai awal tanggal dan angkatan
-            var startDate2 = null;
-            var endDate2 = null;
-            var angkatan = null;
-            chartSeminar2(startDate2, endDate2, angkatan);
-
-            // Atur event listener untuk mengaktifkan pemfilteran berdasarkan tanggal dan angkatan saat nilai berubah
-            $('#startDate2, #endDate2, #angkatan').change(function() {
-                startDate2 = $('#startDate2').val();
-                endDate2 = $('#endDate2').val();
-                angkatan = $('#angkatan').val();
-                console.log(startDate2, endDate2, angkatan);
-                chartSeminar2(startDate2, endDate2, angkatan);
+                    Highcharts.chart('chart_seminar2S2', options);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
             });
-        </script>
-        <script>
-            var selectElement = document.getElementById("angkatan");
+        }
 
+        // Panggil fungsi chartSeminar2S2 dengan nilai awal tanggal dan angkatanS2
+        var startDate2S2 = null;
+        var endDate2S2 = null;
+        var angkatanS2 = null;
+        chartSeminar2S2(startDate2S2, endDate2S2, angkatanS2);
+
+        // Atur event listener untuk mengaktifkan pemfilteran berdasarkan tanggal dan angkatanS2 saat nilai berubah
+        $('#startDate2S2, #endDate2S2, #angkatanS2').change(function() {
+            startDate2S2 = $('#startDate2S2').val();
+            endDate2S2 = $('#endDate2S2').val();
+            angkatanS2 = $('#angkatanS2').val();
+            console.log(startDate2S2, endDate2S2, angkatanS2);
+            chartSeminar2S2(startDate2S2, endDate2S2, angkatanS2);
+        });
+    </script>
+    <script>
+        function chartSeminar2(startDate2, endDate2, angkatan) {
+            $.ajax({
+                url: '{{ route('chart.seminar.all') }}',
+                method: 'GET',
+                dataType: 'json',
+                data: {
+                    startDate2: startDate2,
+                    endDate2: endDate2,
+                    angkatan: angkatan
+                },
+                success: function(response) {
+                    var data = response;
+
+                    var categories = data.categories;
+                    var seminarData = data.seminar;
+                    var nonseminarData = data.nonseminar;
+
+                    var seriesData = [{
+                        name: 'False',
+                        data: nonseminarData
+
+                    }, {
+                        name: 'True',
+                        data: seminarData
+                    }];
+
+                    var options = {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: categories,
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Jumlah'
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                            pointFormatter: function() {
+                                return '<tr><td style="text-align: left; padding:0; color:' + this
+                                    .series.color + '">' +
+                                    this.series.name + ': </td>' +
+                                    '<td style="text-align: right; padding:0"><b>' + Highcharts
+                                    .numberFormat(this.y, 0, ".", ",") +
+                                    '</b></td></tr>';
+                            },
+                            footerFormat: '</table>',
+                            shared: true,
+                            useHTML: true
+                        },
+                        plotOptions: {
+                            column: {
+                                stacking: 'normal',
+                                grouping: false,
+                                shadow: false,
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true
+                                }
+                            }
+                        },
+                        colors: ['#FF1818', '#5463FF'],
+                        series: seriesData
+                    };
+
+                    Highcharts.chart('chart_seminar2', options);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+
+        // Panggil fungsi chartSeminar2 dengan nilai awal tanggal dan angkatan
+        var startDate2 = null;
+        var endDate2 = null;
+        var angkatan = null;
+        chartSeminar2(startDate2, endDate2, angkatan);
+
+        // Atur event listener untuk mengaktifkan pemfilteran berdasarkan tanggal dan angkatan saat nilai berubah
+        $('#startDate2, #endDate2, #angkatan').change(function() {
+            startDate2 = $('#startDate2').val();
+            endDate2 = $('#endDate2').val();
+            angkatan = $('#angkatan').val();
+            console.log(startDate2, endDate2, angkatan);
+            chartSeminar2(startDate2, endDate2, angkatan);
+        });
+    </script>
+
+    <script>
+        function addYearOptionsToSelectElement(selectElement) {
             // Mendapatkan tahun saat ini
             var currentYear = new Date().getFullYear();
 
@@ -1576,5 +1873,12 @@
                 optionElement.text = options[i];
                 selectElement.appendChild(optionElement);
             }
-        </script>
+        }
+
+        var selectElement = document.getElementById("angkatan");
+        var selectElement2 = document.getElementById("angkatanS2");
+        addYearOptionsToSelectElement(selectElement);
+        addYearOptionsToSelectElement(selectElement2);
+
+    </script>
 @endsection
