@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Administrasi;
 use App\Models\AktivitasMahasiswa;
+use App\Models\AktivitasMahasiswaS2;
 use App\Models\BaseNPM;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
@@ -23,10 +24,12 @@ use App\Models\ModelKompreS2;
 use App\Models\ModelSeminarTaDuaS2;
 use App\Models\ModelSeminarTaSatuS2;
 use App\Models\PrestasiMahasiswa;
+use App\Models\PrestasiMahasiswaS2 as ModelsPrestasiMahasiswaS2;
 use App\Models\SopLab;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PrestasiMahasiswaS2;
 
 class DashboardController extends Controller
 {
@@ -49,17 +52,23 @@ class DashboardController extends Controller
             }
 
             return view('dashboard');
-        } else if (Auth::user()->hasAnyRole(['mahasiswa', 'alumni'])) {
-
-            $data = [
-                'jumlah_prestasi' => PrestasiMahasiswa::select('mahasiswa_id')->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
-                'jumlah_aktivitas' => AktivitasMahasiswa::select('mahasiswa_id')->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
-                'sop_kimdas' => SopLab::where('id_lokasi', 4)->get(),
-                'sop_organik' => SopLab::where('id_lokasi', 3)->get(),
-                'sop_analitik' => SopLab::where('id_lokasi', 1)->get(),
-                'sop_anorganik' => SopLab::where('id_lokasi', 2)->get(),
-                'sop_biokimia' => SopLab::where('id_lokasi', 5)->get(),
-            ];
+        } else if (Auth::user()->hasAnyRole(['mahasiswa', 'alumni', 'mahasiswaS2', 'alumniS2'])) {
+            if (Auth::user()->hasAnyRole(['mahasiswa', 'alumni'])) {
+                $data = [
+                    'jumlah_prestasi' => PrestasiMahasiswa::select('mahasiswa_id')->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
+                    'jumlah_aktivitas' => AktivitasMahasiswa::select('mahasiswa_id')->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
+                    'sop_kimdas' => SopLab::where('id_lokasi', 4)->get(),
+                    'sop_organik' => SopLab::where('id_lokasi', 3)->get(),
+                    'sop_analitik' => SopLab::where('id_lokasi', 1)->get(),
+                    'sop_anorganik' => SopLab::where('id_lokasi', 2)->get(),
+                    'sop_biokimia' => SopLab::where('id_lokasi', 5)->get(),
+                ];
+            } else {
+                $data = [
+                    'jumlah_prestasi_s2' => ModelsPrestasiMahasiswaS2::select('mahasiswa_id')->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
+                    'jumlah_aktivitas_s2' => AktivitasMahasiswaS2::select('mahasiswa_id')->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
+                ];
+            }
             return view('dashboard', $data);
         } else if (Auth::user()->hasRole('dosen')) {
             $data = [
