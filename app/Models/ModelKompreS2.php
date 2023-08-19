@@ -78,9 +78,8 @@ class ModelKompreS2 extends Model
     {
         return $this->join('jadwal_s2_kompre', 's2_kompre.id', '=', 'jadwal_s2_kompre.id_seminar')
             ->where(function ($query) use ($id_dosen) {
-                $query->where('s2_kompre.id_pembimbing_satu', $id_dosen)
-                    ->orWhere('s2_kompre.id_pembimbing_dua', $id_dosen)
-                    ->orWhere('s2_kompre.id_pembahas', $id_dosen)
+                $query->where('s2_kompre.id_pembimbing_1', $id_dosen)
+                    ->orWhere('s2_kompre.id_pembimbing_2', $id_dosen)
                     ->orWhere('s2_kompre.id_pembahas_1', $id_dosen)
                     ->orWhere('s2_kompre.id_pembahas_2', $id_dosen)
                     ->orWhere('s2_kompre.id_pembahas_3', $id_dosen);

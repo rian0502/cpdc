@@ -284,7 +284,7 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <a href="{{route('berkas.validasi.sidang.kompre.index')}}">
+                        <a href="{{ route('berkas.validasi.sidang.kompre.index') }}">
                             <div class="card-box height-100-p widget-style3 ">
                                 <div class="d-flex flex-wrap">
                                     <div class="widget-data">
@@ -324,7 +324,7 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <a href="{{route('berkas.validasi.s2.tesis2.index')}}">
+                        <a href="{{ route('berkas.validasi.s2.tesis2.index') }}">
                             <div class="card-box height-100-p widget-style3 ">
                                 <div class="d-flex flex-wrap">
                                     <div class="widget-data">
@@ -343,7 +343,7 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <a href="{{route('berkas.validasi.s2.tesis3.index')}}">
+                        <a href="{{ route('berkas.validasi.s2.tesis3.index') }}">
                             <div class="card-box height-100-p widget-style3 ">
                                 <div class="d-flex flex-wrap">
                                     <div class="widget-data">
@@ -1154,7 +1154,7 @@
                             <div id="s2" class="collapse" data-parent="#accordion1">
 
                                 <div class="card-box pb-10" style="margin-bottom: 30px">
-                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tugas Akhir 1</div>
+                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tesis 1</div>
                                     <table class="table data-table-responsive stripe data-table-noexport p-2">
                                         <thead>
                                             <tr>
@@ -1167,14 +1167,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($jadwalta1 as $item)
+                                            @foreach ($jadwalTesis1 as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->mahasiswa->npm }}</td>
                                                     <td>{{ $item->judul_ta }}</td>
-                                                    <td>{{ $item->jadwal->tanggal_seminar_ta_satu }}</td>
-                                                    <td>{{ $item->jadwal->jam_mulai_seminar_ta_satu }} -
-                                                        {{ $item->jadwal->jam_selesai_seminar_ta_satu }} WIB</td>
+                                                    <td>{{ $item->jadwal->tanggal }}</td>
+                                                    <td>{{ $item->jadwal->jam_mulai }} -
+                                                        {{ $item->jadwal->jam_selesai }} WIB</td>
                                                     <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
                                                 </tr>
                                             @endforeach
@@ -1182,7 +1182,7 @@
                                     </table>
                                 </div>
                                 <div class="card-box pb-10" style="margin-bottom: 30px">
-                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tugas Akhir 2</div>
+                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Tesis 2</div>
                                     <table class="table data-table-responsive stripe data-table-noexport p-2">
                                         <thead>
                                             <tr>
@@ -1195,14 +1195,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($jadwalta2 as $item)
+                                            @foreach ($jadwalTesis2 as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->mahasiswa->npm }}</td>
                                                     <td>{{ $item->judul_ta }}</td>
-                                                    <td>{{ $item->jadwal->tanggal_seminar_ta_dua }}</td>
-                                                    <td>{{ $item->jadwal->jam_mulai_seminar_ta_dua }} -
-                                                        {{ $item->jadwal->jam_selesai_seminar_ta_dua }} WIB</td>
+                                                    <td>{{ $item->jadwal->tanggal }}</td>
+                                                    <td>{{ $item->jadwal->jam_mulai }} -
+                                                        {{ $item->jadwal->jam_selesai }} WIB</td>
                                                     <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
                                                 </tr>
                                             @endforeach
@@ -1210,7 +1210,7 @@
                                     </table>
                                 </div>
                                 <div class="card-box pb-10" style="margin-bottom: 30px">
-                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Sidang Komprehensif</div>
+                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Sidang Tesis</div>
                                     <table class="table data-table-responsive stripe data-table-noexport p-2 nowarp">
                                         <thead>
                                             <tr>
@@ -1223,14 +1223,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($jadwalkompre as $item)
+                                            @foreach ($jadwalSidangTesis as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->mahasiswa->npm }}</td>
                                                     <td>{{ $item->judul_ta }}</td>
-                                                    <td>{{ $item->jadwal->tanggal_komprehensif }}</td>
-                                                    <td>{{ $item->jadwal->jam_mulai_komprehensif }} -
-                                                        {{ $item->jadwal->jam_selesai_komprehensif }} WIB</td>
+                                                    <td>{{ $item->jadwal->tanggal }}</td>
+                                                    <td>{{ $item->jadwal->jam_mulai }} -
+                                                        {{ $item->jadwal->jam_selesai }} WIB</td>
                                                     <td>{{ $item->jadwal->lokasi->nama_lokasi }}</td>
                                                 </tr>
                                             @endforeach
@@ -1879,6 +1879,5 @@
         var selectElement2 = document.getElementById("angkatanS2");
         addYearOptionsToSelectElement(selectElement);
         addYearOptionsToSelectElement(selectElement2);
-
     </script>
 @endsection

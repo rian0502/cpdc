@@ -67,6 +67,9 @@ class DashboardController extends Controller
                 'jadwalta1' => (new ModelSeminarTaSatu())->getJadwalDosenDate(Auth::user()->dosen->id),
                 'jadwalta2' => (new ModelSeminarTaDua())->getJadwalDosenDate(Auth::user()->dosen->id),
                 'jadwalkompre' => (new ModelSeminarKompre())->getJadwalDosenDate(Auth::user()->dosen->id),
+                'jadwalTesis1' => (new ModelSeminarTaSatuS2())->getJadwalDosenDate(Auth::user()->dosen->id),
+                'jadwalTesis2' => (new ModelSeminarTaDuaS2())->getJadwalDosenDate(Auth::user()->dosen->id),
+                'jadwalSidangTesis' => (new ModelKompreS2())->getJadwalDosenDate(Auth::user()->dosen->id),
             ];
             if (Auth::user()->hasRole('pkl')) {
                 $data['`invalid_`kp'] = ModelSeminarKP::where('proses_admin', 'Valid')->where('status_seminar', '!=', 'Invalid')->count();

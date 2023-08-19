@@ -80,9 +80,8 @@ class ModelSeminarTaSatuS2 extends Model
     {
         return $this->join('jadwal_s2_seminar_ta1', 's2_tugas_akhir_1.id', '=', 'jadwal_s2_seminar_ta1.id_seminar')
             ->where(function ($query) use ($id_dosen) {
-                $query->where('s2_tugas_akhir_1.id_pembimbing_satu', $id_dosen)
-                    ->orWhere('s2_tugas_akhir_1.id_pembimbing_dua', $id_dosen)
-                    ->orWhere('s2_tugas_akhir_1.id_pembahas', $id_dosen)
+                $query->where('s2_tugas_akhir_1.id_pembimbing_1', $id_dosen)
+                    ->orWhere('s2_tugas_akhir_1.id_pembimbing_2', $id_dosen)
                     ->orWhere('s2_tugas_akhir_1.id_pembahas_1', $id_dosen)
                     ->orWhere('s2_tugas_akhir_1.id_pembahas_2', $id_dosen)
                     ->orWhere('s2_tugas_akhir_1.id_pembahas_3', $id_dosen);
