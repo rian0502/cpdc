@@ -370,7 +370,7 @@
                             <div class="d-flex flex-wrap" style="width: -300px">
                                 <div class="widget-data">
                                     <div class="weight-700 font-24 text-dark">
-                                        0
+                                        {{ $total_berkas }}
                                     </div>
                                     <div class="font-14 text-secondary weight-500">
                                         Total Berkas
@@ -385,29 +385,32 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <div class="card-box height-100-p widget-style3 ">
-                            <div class="d-flex flex-wrap">
-                                <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark">
-                                        {{ $unvalid_kp }}
+                        <a href="{{ route('koor.validasiBaPKL.index') }}">
+                            <div class="card-box height-100-p widget-style3 ">
+                                <div class="d-flex flex-wrap">
+                                    <div class="widget-data">
+                                        <div class="weight-700 font-24 text-dark">
+                                            {{ $invalid_kp }}
+                                        </div>
+                                        <div class="font-14 text-secondary weight-500">
+                                            Belum Valid
+                                        </div>
                                     </div>
-                                    <div class="font-14 text-secondary weight-500">
-                                        Belum Valid
-                                    </div>
-                                </div>
-                                <div class="widget-icon ">
-                                    <div class="icon">
-                                        <i class="fas fa-tasks"></i>
+                                    <div class="widget-icon ">
+                                        <div class="icon">
+                                            <i class="fas fa-tasks"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                         <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark">10
+                                    <div class="weight-700 font-24 text-dark">
+                                        {{ $jumlah_kp }}
                                     </div>
                                     <div class="font-14 text-secondary weight-500">
                                         Total Seminar
@@ -422,6 +425,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{ route('koor.jadwalPKL.index') }}"></a>
                         <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
@@ -436,6 +440,7 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                 </div>
             @endrole
@@ -461,23 +466,25 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <div class="card-box height-100-p widget-style3 ">
-                            <div class="d-flex flex-wrap">
-                                <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark">
-                                        {{ $invalid_berkas }}
+                        <a href="{{ route('koor.validasiBaTA1.index') }}">
+                            <div class="card-box height-100-p widget-style3 ">
+                                <div class="d-flex flex-wrap">
+                                    <div class="widget-data">
+                                        <div class="weight-700 font-24 text-dark">
+                                            {{ $invalid_berkas }}
+                                        </div>
+                                        <div class="font-14 text-secondary weight-500">
+                                            Belum Sah
+                                        </div>
                                     </div>
-                                    <div class="font-14 text-secondary weight-500">
-                                        Belum Sah
-                                    </div>
-                                </div>
-                                <div class="widget-icon ">
-                                    <div class="icon">
-                                        <i class="fas fa-tasks"></i>
+                                    <div class="widget-icon ">
+                                        <div class="icon">
+                                            <i class="fas fa-tasks"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                         <div class="card-box height-100-p widget-style3 ">
@@ -498,6 +505,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{ route('koor.jadwalTA1.index') }}"></a>
                         <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
@@ -512,12 +520,14 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                 </div>
             @endrole
             @role('ta2')
                 <div class="row pb-10">
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{route('koor.jadwalTA2.index')}}"></a>
                         <div class="card-box height-100-p widget-style3">
                             <div class="d-flex flex-wrap" style="width: -300px">
                                 <div class="widget-data">
@@ -535,8 +545,10 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{ route('koor.validasiBaTA2.index') }}">
                         <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
@@ -554,6 +566,7 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                         <div class="card-box height-100-p widget-style3 ">
@@ -574,6 +587,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{ route('koor.jadwalTA2.index') }}"></a>
                         <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
@@ -588,6 +602,7 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                 </div>
             @endrole
@@ -613,6 +628,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{route('koor.validasiBaKompre.index')}}"></a>
                         <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
@@ -630,6 +646,7 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                         <div class="card-box height-100-p widget-style3 ">
@@ -650,6 +667,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{ route('koor.jadwalKompre.index') }}"></a>
                         <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
@@ -667,7 +685,248 @@
                     </div>
                 </div>
             @endrole
-            @role('jurusan')
+            @role('ta1S2')
+                <div class="row pb-10">
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap" style="width: -300px">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        {{ $total_berkas_s2_ta1 }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Total Berkas
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#fff">
+                                        <i class="far fa-folder-open"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{ route('koor.ValidasiBaTa1S2.index') }}">
+                            <div class="card-box height-100-p widget-style3 ">
+                                <div class="d-flex flex-wrap">
+                                    <div class="widget-data">
+                                        <div class="weight-700 font-24 text-dark">
+                                            {{ $invalid_berkas_s2_ta1 }}
+                                        </div>
+                                        <div class="font-14 text-secondary weight-500">
+                                            Belum Sah
+                                        </div>
+                                    </div>
+                                    <div class="widget-icon ">
+                                        <div class="icon">
+                                            <i class="fas fa-tasks"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $jumlah_ta1_s2_ta1 }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Total Seminar
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{ route('koor.jadwalTA1S2.index') }}"></a>
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $invalid_jadwal_s2_ta1 }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">Belum Terjadwal</div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="far fa-calendar-times"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            @endrole
+            @role('ta2S2')
+                <div class="row pb-10">
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{route('koor.jadwalTA2S2.index')}}"></a>
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap" style="width: -300px">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        {{ $total_berkas_s2_ta2 }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Total Berkas
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#fff">
+                                        <i class="far fa-folder-open"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{ route('koor.ValidasiBaTa2S2.index') }}">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        {{ $invalid_berkas_s2_ta2 }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Belum Valid
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon">
+                                        <i class="fas fa-tasks"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $jumlah_ta2_s2_ta2 }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Total Seminar
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{ route('koor.jadwalTA2S2.index') }}"></a>
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $invalid_jadwal_s2_ta2 }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">Belum Terjadwal</div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="far fa-calendar-times"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            @endrole
+            @role('kompreS2')
+                <div class="row pb-10">
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap" style="width: -300px">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        {{ $total_berkas_s2_kompre }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Total Berkas
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#fff">
+                                        <i class="far fa-folder-open"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{route('koor.ValidasiBaKompreS2.index')}}"></a>
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">
+                                        {{ $invalid_berkas_s2_kompre }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Belum Valid
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon">
+                                        <i class="fas fa-tasks"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $jumlah_kompre_s2_kompre }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Total Seminar
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <a href="{{ route('koor.jadwalKompreS2.index') }}"></a>
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $invalid_jadwal_s2_kompre }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">Belum Terjadwal</div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="far fa-calendar-times"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endrole
+            @role('jurusanS2')
                 <div class="row">
 
                     <div class="col-lg-4 col-md-6 mb-20">
@@ -1861,7 +2120,7 @@
 
             // Membuat array opsi tahun dari tahun terbaru ke tahun 1950
             var options = [];
-            for (var year = 1950; year <= currentYear; year++) {
+            for (var year = 2000; year <= currentYear; year++) {
                 options.push(year);
             }
             options.reverse(); // Membalik urutan elemen array
