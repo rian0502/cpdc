@@ -192,7 +192,7 @@ class MahasiswaBimbinganTesisController extends Controller
             $sheet2->setCellValue('R' . ($key + 2), $value->taDuaS2->status_koor);
         }
         $sheet3 = $spreadsheet->createSheet();
-        $sheet3->setTitle('Bimbingan Komprehensif S2');
+        $sheet3->setTitle('Sidang Tesis');
         $sheet3->setCellValue('A1', 'No');
         $sheet3->setCellValue('B1', 'NPM');
         $sheet3->setCellValue('C1', 'Nama');
