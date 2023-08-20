@@ -96,7 +96,7 @@
             </div>
         </div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -278,6 +278,9 @@
                 });
 
                 pieChart1 = Highcharts.chart('pieChart', {
+                    credits:{
+                        enabled:false
+                    },
                     chart: {
                         type: 'pie',
                         alignTicks: false,
@@ -312,6 +315,9 @@
                 });
 
                 pieChart2 = Highcharts.chart('pieChart2', {
+                    credits:{
+                        enabled:false
+                    },
                     chart: {
                         type: 'pie',
                         alignTicks: false,
@@ -346,6 +352,9 @@
                 });
 
                 pieChart3 = Highcharts.chart('pieChart3', {
+                    credits:{
+                        enabled:false
+                    },
                     chart: {
                         type: 'pie',
                         alignTicks: false,
@@ -385,6 +394,9 @@
 
                 // Membangun chart
                 barChart = Highcharts.chart('barChart', {
+                    credits:{
+                        enabled:false
+                    },
                     chart: {
                         type: 'column'
                     },
