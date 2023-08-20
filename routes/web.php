@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\sudo\ResetTA;
+use App\Http\Controllers\sudo\ResetTAS2;
 use App\Http\Controllers\Kajur\Seminar;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\SopController;
@@ -301,13 +302,11 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::get('pieChartAktivitasS2', [AktivitasDataS2Controller::class, 'pieChartPeran'])->name('aktivitasS2.pieChartPeran');
 
     Route::resource('mahasiswaS2', DataMahasiswaAllS2Controller::class);
-
 });
 
 
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan')->group(function () {
     Route::resource('lokasi', LokasiController::class);
-
 });
 
 //end jurusan
@@ -442,7 +441,9 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::resource('kategori', KategoriController::class);
     Route::resource('kalab', PenempatanDosenLabController::class);
     Route::resource('admin_jurusan', PenempatanAdminLabController::class);
+    Route::resource('resetSeminarS2', ResetTAS2::class);
     Route::get('resetSeminar', [ResetTA::class, 'index'])->name('reset.seminar.index');
+    // Route::get('resetSeminarS2', [ResetTAS2::class, 'index'])->name('reset.seminarS2.index');
     Route::delete('delete/{id}', [ResetTA::class, 'destroy'])->name('reset.seminar.destroy');
 });
 
