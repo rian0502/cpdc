@@ -91,6 +91,29 @@
                                 </div>
                                 <div class="form-group">
                                     <label>
+                                        Draft Jurnal
+                                        {{-- <small>
+                                            <a target="_blank" href="/uploads/syarat_seminar/{{ $syarat->path }}">Lihat
+                                                Persyaratan</a>
+                                        </small> --}}
+                                    </label>
+                                    <div class="custom-file mb-1">
+                                        <label class="custom-file-label" for="link-berkas_kompre"
+                                            id="label-berkas_kompre">Pilih File</label>
+                                        {{-- <input value="{{ old('berkas_kompre') }}" accept=".pdf" name="berkas_kompre"
+                                            id="file-berkas_kompre"
+                                            class="custom-file-input form-control @error('berkas_kompre') form-control-danger @enderror"
+                                            type="file" placeholder="FILE SK"
+                                            onchange="updateFileNameAndLink('file-berkas_kompre','label-berkas_kompre','link-berkas_kompre')"> --}}
+                                    </div>
+                                    <small class="mt-2"> <a id="link-berkas_kompre" href="#" target="_blank"
+                                            style="display: none;">Lihat File</a> </small>
+                                    @error('berkas_kompre')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>
                                         Berkas Kelengkapan
                                         <small>
                                             <a target="_blank"
@@ -346,6 +369,15 @@
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Link Artikel</label>
+                                    <input autofocus name="ppt" id="ppt"
+                                        class="form-control @error('ppt') form-control-danger @enderror" type="text"
+                                        value="{{-- old('ppt',$seminar->ppt) --}}" placeholder="Link Artikel">
+                                    @error('ppt')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group" id="form-mobile">
                                     <label class="weight-600">Persetujuan</label>

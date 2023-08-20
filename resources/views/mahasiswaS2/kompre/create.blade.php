@@ -62,11 +62,11 @@
                                     <div class="custom-file mb-1">
                                         <label class="custom-file-label" for="link-berkas_kompre"
                                             id="label-berkas_kompre">Pilih File</label>
-                                        <input value="{{ old('berkas_kompre') }}" accept=".pdf" name="berkas_kompre"
+                                        {{-- <input value="{{ old('berkas_kompre') }}" accept=".pdf" name="berkas_kompre"
                                             id="file-berkas_kompre"
                                             class="custom-file-input form-control @error('berkas_kompre') form-control-danger @enderror"
                                             type="file" placeholder="FILE SK"
-                                            onchange="updateFileNameAndLink('file-berkas_kompre','label-berkas_kompre','link-berkas_kompre')">
+                                            onchange="updateFileNameAndLink('file-berkas_kompre','label-berkas_kompre','link-berkas_kompre')"> --}}
                                     </div>
                                     <small class="mt-2"> <a id="link-berkas_kompre" href="#" target="_blank"
                                             style="display: none;">Lihat File</a> </small>
