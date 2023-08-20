@@ -5,17 +5,8 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <h4 class="text-blue h4">Validasi Berita Acara Seminar Tugas Akhir 2 S2</h4>
-=======
-                        <h4 class="text-blue h4">Validasi Berita Acara Seminar Tesis 2</h4>
->>>>>>> a47b569c98fe0f348dde85a77f67ecd20d911834
-=======
-
                         <h4 class="text-blue h4">Validasi Berita Acara Seminar Tesis 2</h4>
 
->>>>>>> 7f72bce0c799fb9c87df96121dacce867c3fa446
                     </div>
                     <div class="pb-20 m-3">
 

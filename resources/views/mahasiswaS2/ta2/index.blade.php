@@ -325,7 +325,7 @@
                                     </div>
                                     <label class="col-md-3 bold mt-2"><b>Nomor Berita Seminar</b></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        {{ $seminar->beritaAcara->no_berkas_ba }}
+                                        {{ $seminar->beritaAcara->no_ba }}
                                     </div>
                                 </div>
                                 <div class="row border-bottom mt-2">

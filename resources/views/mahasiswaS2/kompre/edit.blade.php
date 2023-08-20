@@ -91,6 +91,25 @@
                                 </div>
                                 <div class="form-group">
                                     <label>
+                                        Draft Artikel/Jurnal
+                                    </label>
+                                    <div class="custom-file mb-1">
+                                        <label class="custom-file-label" for="link-draft_artikel"
+                                            id="label-draft_artikel">Pilih File</label>
+                                        <input value="{{ old('draft_artikel') }}" accept=".pdf" name="draft_artikel"
+                                            id="file-draft_artikel"
+                                            class="custom-file-input form-control @error('draft_artikel') form-control-danger @enderror"
+                                            type="file" placeholder="FILE SK"
+                                            onchange="updateFileNameAndLink('file-draft_artikel','label-draft_artikel','link-draft_artikel')">
+                                    </div>
+                                    <small class="mt-2"> <a id="link-draft_artikel" href="#" target="_blank"
+                                            style="display: none;">Lihat File</a> </small>
+                                    @error('draft_artikel')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>
                                         Berkas Kelengkapan
                                         <small>
                                             <a target="_blank"
@@ -346,6 +365,17 @@
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Link Artikel</label>
+                                    <input autofocus name="url_draft_artikel" id="url_draft_artikel"
+                                        class="form-control @error('url_draft_artikel') form-control-danger @enderror"
+                                        type="text"
+                                        value="{{ old('url_draft_artikel', $seminar->url_draft_artikel) }}"
+                                        placeholder="Link Artikel">
+                                    @error('url_draft_artikel')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group" id="form-mobile">
                                     <label class="weight-600">Persetujuan</label>

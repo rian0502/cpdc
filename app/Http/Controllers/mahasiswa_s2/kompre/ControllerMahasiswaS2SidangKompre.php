@@ -69,13 +69,25 @@ class ControllerMahasiswaS2SidangKompre extends Controller
         $request->validate([
             'berkas_kompre' => 'required|mimes:pdf|max:1024',
             'periode_seminar' => 'required|string|max:255',
+            'url_draft_artikel' => 'required|url|max:255',
+            'draft_artikel' => 'required|mimes:pdf|max:1024',
         ], [
             'berkas_kompre.required' => 'Berkas TA 2 wajib diisi',
             'berkas_kompre.mimes' => 'Berkas TA 2 harus bertipe pdf',
             'berkas_kompre.max' => 'Berkas TA 2 maksimal berukuran 1 MB',
             'periode_seminar.required' => 'Periode seminar wajib diisi',
             'periode_seminar.string' => 'Periode seminar harus berupa string',
+            'periode_seminar.max' => 'Periode seminar terlalu panjang',
+            'url_draft_artikel.required' => 'URL draft artikel wajib diisi',
+            'url_draft_artikel.url' => 'URL draft artikel harus berupa url',
+            'url_draft_artikel.max' => 'URL draft artikel terlalu panjang',
+            'draft_artikel.required' => 'Draft artikel wajib diisi',
+            'draft_artikel.mimes' => 'Draft artikel harus bertipe pdf',
+            'draft_artikel.max' => 'Draft artikel maksimal berukuran 1 MB',
         ]);
+        $berkas_artikel = $request->file('draft_artikel');
+        $nama_artikel = $berkas_artikel->hashName();
+        $berkas_artikel->move('uploads/draft_artikel_s2', $nama_artikel);
         $berkas_dua = $request->file('berkas_kompre');
         $nama_berkas = $berkas_dua->hashName();
         $berkas_dua->move('uploads/syarat_seminar_sidang_s2', $nama_berkas);
@@ -89,6 +101,8 @@ class ControllerMahasiswaS2SidangKompre extends Controller
             'ipk' => $seminarta1->ipk,
             'toefl' => $seminarta1->toefl,
             'berkas_kompre' => $nama_berkas,
+            'url_draft_artikel' => $request->url_draft_artikel,
+            'draft_artikel' => $nama_artikel,
             'agreement' => 1,
             'id_mahasiswa' => Auth::user()->mahasiswa->id,
             'id_pembimbing_1' => $seminarta1->id_pembimbing_1,
@@ -255,6 +269,14 @@ class ControllerMahasiswaS2SidangKompre extends Controller
             $berkas_dua->move('uploads/syarat_seminar_sidang_s2', $nama_berkas);
             $seminar->berkas_kompre = $nama_berkas;
         }
+        if($request->file('draft_artikel')){
+            unlink('uploads/draft_artikel_s2/'.$seminar->draft_artikel);
+            $berkas_artikel = $request->file('draft_artikel');
+            $nama_artikel = $berkas_artikel->hashName();
+            $berkas_artikel->move('uploads/draft_artikel_s2', $nama_artikel);
+            $seminar->draft_artikel = $nama_artikel;
+        }
+        $seminar->updated_at = date('Y-m-d H:i:s');
         $seminar->save();
         return redirect()->route('mahasiswa.sidang.kompres2.index')->with('success', 'Berhasil mengubah sidang tesis');
     }
