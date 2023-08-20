@@ -37,6 +37,8 @@ class UpdateSidangTesisS2Request extends FormRequest
                 'berkas_kompre' => ['nullable', 'file', 'mimes:pdf', 'max:1048'],
                 'id_pembimbing_1' => ['required', 'exists:dosen,encrypt_id'],
                 'id_pembimbing_2' => ['required', 'exists:dosen,encrypt_id'],
+                'draft_artikel' => ['nullable', 'file', 'mimes:pdf', 'max:1048'],
+                'url_draft_artikel' => ['required', 'url', 'max:255'],
             ];
         } else {
             return [
@@ -50,6 +52,8 @@ class UpdateSidangTesisS2Request extends FormRequest
                 'agreement' => ['required', 'in:on'],
                 'berkas_kompre' => ['nullable', 'file', 'mimes:pdf', 'max:1048'],
                 'id_pembimbing_1' => ['required', 'exists:dosen,encrypt_id'],
+                'draft_artikel' => ['nullable', 'file', 'mimes:pdf', 'max:1048'],
+                'url_draft_artikel' => ['required', 'url', 'max:255'],
             ];
         }
     }
@@ -82,6 +86,12 @@ class UpdateSidangTesisS2Request extends FormRequest
             'berkas_kompre.file' => 'Berkas kompre harus berupa file',
             'berkas_kompre.mimes' => 'Berkas kompre harus berupa file pdf',
             'berkas_kompre.max' => 'Berkas kompre maksimal 1MB',
+            'draft_artikel.file' => 'Draft artikel harus berupa file',
+            'draft_artikel.mimes' => 'Draft artikel harus berupa file pdf',
+            'draft_artikel.max' => 'Draft artikel maksimal 1MB',
+            'url_draft_artikel.url' => 'URL draft artikel tidak valid',
+            'url_draft_artikel.required' => 'URL draft artikel tidak boleh kosong',
+            'url_draft_artikel.max' => 'URL draft artikel maksimal 255 karakter',
         ];
     }
 }
