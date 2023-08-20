@@ -486,7 +486,14 @@
                             <a href="{{ route('sudo.reset.seminar.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('sudo/resetSeminar*') ? 'active' : '' }}">
                                 <span class="micon bi bi-arrow-counterclockwise"></span><span class="mtext">Reset
-                                    TA</span>
+                                    TA S1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('sudo.reset.seminarS2.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/resetSeminars2*') ? 'active' : '' }}">
+                                <span class="micon bi bi-arrow-counterclockwise"></span><span class="mtext">Reset
+                                    TA S2</span>
                             </a>
                         </li>
                         <li>

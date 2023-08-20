@@ -361,6 +361,9 @@
                             <button type="submit" class="submit btn btn-primary mt-4">Kirim</button>
                         </div>
                     </form>
+                     <a href="{{ route('mahasiswa.seminarta1s2.index') }}">
+                        <button class="batal btn btn-secondary">Batal</button>
+                    </a>
                 </div>
             </div>
         </div>
