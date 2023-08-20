@@ -926,7 +926,7 @@
                     </div>
                 </div>
             @endrole
-            @role('jurusanS2')
+            @role('jurusan')
                 <div class="row">
 
                     <div class="col-lg-4 col-md-6 mb-20">
@@ -1537,6 +1537,9 @@
                         data; // Tambahkan variabel chartData untuk menyimpan data yang diterima dari respons
 
                     var options = {
+                        credits:{
+                            enabled:false
+                        },
                         chart: {
                             type: 'pie',
                         },
@@ -1591,6 +1594,9 @@
                     dataType: "json",
                     success: function(data) {
                         var options = {
+                            credits:{
+                                enabled:false
+                            },
                             chart: {
                                 type: 'pie',
                             },
@@ -1646,6 +1652,9 @@
                     dataType: "json",
                     success: function(data) {
                         var options = {
+                            credits:{
+                                enabled:false
+                            },
                             chart: {
                                 type: 'pie',
                             },
@@ -1725,6 +1734,9 @@
 
                         // console.log(data);
                         var options = {
+                            credits:{
+                                enabled:false
+                            },
                             chart: {
                                 type: 'column'
                             },
@@ -1952,6 +1964,9 @@
                     }];
 
                     var options = {
+                        credits:{
+                            enabled:false
+                        },
                         chart: {
                             type: 'column'
                         },
@@ -2046,6 +2061,9 @@
                     }];
 
                     var options = {
+                        credits:{
+                            enabled:false
+                        },
                         chart: {
                             type: 'column'
                         },

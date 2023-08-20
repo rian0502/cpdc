@@ -221,6 +221,9 @@
                 });
 
                 pieChart1 = Highcharts.chart('pieChart', {
+                    credits:{
+                        enabled:false
+                    },
                     chart: {
                         type: 'pie',
                         alignTicks: false,
@@ -260,6 +263,9 @@
 
                 // Membangun chart
                 barChart = Highcharts.chart('barChart', {
+                    credits:{
+                        enabled:false
+                    },
                     chart: {
                         type: 'column'
                     },
@@ -451,6 +457,9 @@
                 });
 
                 pieChart1 = Highcharts.chart('pieChart', {
+                    credits:{
+                        enabled:false
+                    },
                     chart: {
                         type: 'pie',
                         alignTicks: false,
@@ -490,6 +499,9 @@
 
                 // Membangun chart
                 barChart = Highcharts.chart('barChart', {
+                    credits:{
+                        enabled:false
+                    },
                     chart: {
                         type: 'column'
                     },
