@@ -41,7 +41,7 @@
                     </div>
                     <div class="">
                         <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
-                           <div class="row border-bottom">
+                            <div class="row border-bottom">
                                 <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $mahasiswa->npm }}
@@ -135,6 +135,18 @@
                                     {{ $seminar->periode_seminar }}
                                 </div>
                             </div>
+                            <div class="row border-bottom mt-2">
+                                <label class="col-md-3 bold mt-2"> <strong>Draft Artikel</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    <a target="_blank" href="/uploads/draft_artikel_s2/{{-- $seminar->berkas_ta_dua --}}">Lihat
+                                        Berkas</a>
+                                </div>
+
+                                <label class="col-md-3 bold"> <strong>Link Artikel</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    <a target="_blank" href="/uploads/draft_artikel_s2/{{-- $seminar->berkas_ta_dua --}}">Lihat</a>
+                                </div>
+                            </div>
 
                             <div class="row border-bottom mt-3">
                                 <label class="col-md-12 bold"><b>Judul atau Topik Tugas Akhir</b></label>
@@ -197,7 +209,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Jam Selesai</label>
-                                        <input type="time" name="jam_selesai_skp" value="{{ old('jam_selesai_skp') }}"
+                                        <input type="time" name="jam_selesai_skp"
+                                            value="{{ old('jam_selesai_skp') }}"
                                             class="form-control @error('jam_selesai_skp') form-control-danger @enderror">
                                         @error('jam_selesai_skp')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>

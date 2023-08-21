@@ -230,7 +230,8 @@
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('jurusan.mahasiswa.index') }}"
-                                        class="{{ Request::is('jurusan/mahasiswa*') && !Request::is('jurusan/mahasiswaS2*') ? 'active' : '' }}">S1</a></li>
+                                        class="{{ Request::is('jurusan/mahasiswa*') && !Request::is('jurusan/mahasiswaS2*') ? 'active' : '' }}">S1</a>
+                                </li>
                                 <li><a href="{{ route('jurusan.mahasiswaS2.index') }}"
                                         class="{{ Request::is('jurusan/mahasiswaS2*') ? 'active' : '' }}">S2</a></li>
                             </ul>
@@ -537,6 +538,13 @@
                                         Tesis</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="{{ route('mahasiswa.pendataan_alumni_S2.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni_S2*') ? 'active' : '' }}">
+                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Pendataan
+                                    Alumni</span>
+                            </a>
+                        </li>
                     @endrole
                     @role('mahasiswa')
                         <li
@@ -589,7 +597,15 @@
                             </a>
                         </li>
                     @endrole
-
+                    @role('alumniS2')
+                        <li>
+                            <a href="{{ route('mahasiswa.aktivitas_alumni_S2.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/aktivitas_alumni_S2*') ? 'active' : '' }}">
+                                <span class="micon fas fa-user-clock"></span><span class="mtext">Aktivitas
+                                    Alumni</span>
+                            </a>
+                        </li>
+                    @endrole
                     @role('admin berkas')
                         <li>
                             <a href="{{ route('berkas.berkas_persyaratan.index') }}"
