@@ -404,27 +404,6 @@ Route::get('/email/activation-notification', function (Request $request) {
 //end routing untuk aktivasi email
 
 
-// Extra activity mahasiswa start
-Route::get('/mahasiswa/kegiatan/create', function () {
-    return view('mahasiswa.kegiatan.create');
-});
-Route::get('/mahasiswa/kegiatan/edit', function () {
-    return view('mahasiswa.kegiatan.edit');
-});
-// Extra activity mahasiswa end
-
-//pendaftaran seminar
-Route::get('/seminar/create', function () {
-    return view('mahasiswa.seminar.create');
-})->name('mahasiswa.seminar.create');
-Route::get('/seminar/edit', function () {
-    return view('mahasiswa.seminar.edit');
-})->name('mahasiswa.seminar.edit');
-Route::get('/seminar/detail', function () {
-    return view('mahasiswa.seminar.detail');
-})->name('mahasiswa.seminar.detail');
-
-
 
 Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo|jurusan'])->group(function () {
     Route::resource('akun_dosen', AkunDosenController::class);
