@@ -5,18 +5,21 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\sudo\ResetTA;
-use App\Http\Controllers\sudo\ResetTAS2;
 use App\Http\Controllers\Kajur\Seminar;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\SopController;
 use App\Models\ModelJadwalSeminarTaDua;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\sudo\ResetTAS2;
 use App\Models\ModelJadwalSeminarKompre;
 use App\Models\ModelJadwalSeminarTaSatu;
 use App\Http\Controllers\ModelController;
+use App\Models\ModelJadwalSeminarTaDuaS2;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\Kajur\DataAlumni;
 use App\Http\Controllers\Kajur\ExportData;
+use App\Models\ModelJadwalSeminarKompreS2;
+use App\Models\ModelJadwalSeminarTaSatuS2;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\Kajur\Penghargaan;
 use App\Http\Controllers\Kajur\DataAlumniS2;
@@ -40,6 +43,8 @@ use App\Http\Controllers\mahasiswa\LabTAController;
 use App\Http\Controllers\TemplateSeminarController;
 use App\Http\Controllers\dosen\OrganisasiController;
 use App\Http\Controllers\kerja_praktik\KPcontroller;
+use App\Http\Controllers\alumni\s2\AktivitasAlumniS2;
+use App\Http\Controllers\alumni\s2\PendataanAlumniS2;
 use App\Http\Controllers\BerkasPersyaratanController;
 use App\Http\Controllers\dosen\ControllerSeminarDosen;
 use App\Http\Controllers\dosen\PangkatDosenController;
@@ -57,13 +62,13 @@ use App\Http\Controllers\tugas_akhir_dua\ValidasiBaTaDua;
 use App\Http\Controllers\alumni\AktivitasAlumniController;
 use App\Http\Controllers\dosen\ControllerPenghargaanDosen;
 use App\Http\Controllers\Kajur\DataMahasiswaAllController;
-use App\Http\Controllers\Kajur\DataMahasiswaAllS2Controller;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaBaTaDua;
 use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
 use App\Http\Controllers\kerja_praktik\JadwalPKLController;
 use App\Http\Controllers\sudo\PenempatanAdminLabController;
 use App\Http\Controllers\sudo\PenempatanDosenLabController;
 use App\Http\Controllers\tugas_akhir_satu\ValidasiBaTaSatu;
+use App\Http\Controllers\Kajur\DataMahasiswaAllS2Controller;
 use App\Http\Controllers\komprehensif\AdminKompreController;
 use App\Http\Controllers\tugas_akhir_dua\ValidasiAdminTaDua;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaBaTaSatu;
@@ -101,9 +106,6 @@ use App\Http\Controllers\mahasiswa_s2\ta1\ControllerKoorS2PenjadwalanTaSatu;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerMahasiswaS2SeminarTaDua;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
-use App\Models\ModelJadwalSeminarKompreS2;
-use App\Models\ModelJadwalSeminarTaDuaS2;
-use App\Models\ModelJadwalSeminarTaSatuS2;
 
 /*
 |--------------------------------------------------------------------------
@@ -329,6 +331,8 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
     Route::resource('ba/kompre/S2', ControllerMahasiswaS2BaKompre::class)->names('bakompres2');
     Route::resource('prestasiS2', PrestasiMahasiswaControllerS2::class)->names('prestasiS2');
     Route::resource('kegiatanS2', KegiatanMahasiswaControllerS2::class)->names('kegiatanS2');
+    Route::resource('aktivitas_alumni_S2', AktivitasAlumniS2::class)->names('aktivitas_alumni_S2');
+    Route::resource('pendataan_alumni_S2', PendataanAlumniS2::class)->names('pendataan_alumni_S2');
 
     Route::group(['prefix' => 'sidang', 'as' => 'sidang.'], function () {
         Route::resource('kompre/S2', ControllerMahasiswaS2SidangKompre::class)->names('kompres2');
