@@ -554,13 +554,17 @@
                                         Tesis</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="{{ route('mahasiswa.pendataan_alumni_S2.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni_S2*') ? 'active' : '' }}">
-                                <span class="micon fa fa-user-graduate"></span><span class="mtext">Pendataan
-                                    Alumni</span>
-                            </a>
-                        </li>
+                        @if (Auth::user()->mahasiswa->komprehensifS2)
+                            @if (Auth::user()->mahasiswa->komprehensifS2->status_koor == 'Selesai')
+                                <li>
+                                    <a href="{{ route('mahasiswa.pendataan_alumni_S2.index') }}"
+                                        class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni_S2*') ? 'active' : '' }}">
+                                        <span class="micon fa fa-user-graduate"></span><span class="mtext">Pendataan
+                                            Alumni</span>
+                                    </a>
+                                </li>
+                            @endif
+                        @endif
                     @endrole
                     @role('mahasiswa')
                         <li
@@ -595,13 +599,15 @@
                             </a>
                         </li>
                         @if (Auth::user()->mahasiswa->komprehensif)
-                            <li>
-                                <a href="{{ route('mahasiswa.pendataan_alumni.index') }}"
-                                    class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni*') ? 'active' : '' }}">
-                                    <span class="micon fa fa-user-graduate"></span><span class="mtext">Pendataan
-                                        Alumni</span>
-                                </a>
-                            </li>
+                            @if (Auth::user()->mahasiswa->komprehensif->status_koor == 'Selesai')
+                                <li>
+                                    <a href="{{ route('mahasiswa.pendataan_alumni.index') }}"
+                                        class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/pendataan_alumni*') ? 'active' : '' }}">
+                                        <span class="micon fa fa-user-graduate"></span><span class="mtext">Pendataan
+                                            Alumni</span>
+                                    </a>
+                                </li>
+                            @endif
                         @endif
                     @endrole
                     @role('alumni')
