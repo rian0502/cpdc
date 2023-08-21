@@ -16,6 +16,7 @@ class AktivitasMahasiswaS2 extends Model
         "peran",
         "sks_konversi",
         "tanggal",
+        "kategori",
         "file_aktivitas",
         "mahasiswa_id",
         "created_at",

@@ -22,7 +22,7 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('mahasiswa.pendataan_alumni_S2.store') }}" method="POST"
+                    <form action="{{ route('mahasiswa.pendataan_alumni.store') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="profile-edit-list row">

@@ -30,7 +30,8 @@ class StoreKegiatanMhsRequest extends FormRequest
             "tanggal" => ["required", "date"],
             "sks_konversi" => ["required", "numeric", "min:0"],
             "peran" => ["required", "string", "in:" . implode(",", $peran)],
-            "file_aktivitas" => ["required", "file", "mimes:pdf", "max:2048"]
+            "file_aktivitas" => ["required", "file", "mimes:pdf", "max:1048"],
+            'kategori' => ['required', 'string', 'in:Nasional,Internasional'],
         ];
     }
 
@@ -52,7 +53,10 @@ class StoreKegiatanMhsRequest extends FormRequest
             "file_aktivitas.required" => "File aktivitas harus diupload",
             "file_aktivitas.file" => "File aktivitas harus berupa file",
             "file_aktivitas.mimes" => "File aktivitas harus berupa pdf",
-            "file_aktivitas.max" => "File aktivitas maksimal 2MB"
+            "file_aktivitas.max" => "File aktivitas maksimal 1MB",
+            'kategori.required' => 'Kategori harus diisi',
+            'kategori.string' => 'Kategori harus berupa string',
+            'kategori.in' => 'Kategori tidak valid',
         ];
     }
 }
