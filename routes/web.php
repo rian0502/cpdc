@@ -426,10 +426,6 @@ Route::get('/seminar/detail', function () {
 
 
 
-
-
-
-
 Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo|jurusan'])->group(function () {
     Route::resource('akun_dosen', AkunDosenController::class);
     Route::resource('akun_mahasiswa', AkunMahasiswaController::class);
@@ -443,8 +439,9 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::resource('admin_jurusan', PenempatanAdminLabController::class);
     Route::resource('resetSeminarS2', ResetTAS2::class);
     Route::get('resetSeminar', [ResetTA::class, 'index'])->name('reset.seminar.index');
-    // Route::get('resetSeminarS2', [ResetTAS2::class, 'index'])->name('reset.seminarS2.index');
+    Route::get('resetSeminarS2', [ResetTAS2::class, 'index'])->name('reset.seminarS2.index');
     Route::delete('delete/{id}', [ResetTA::class, 'destroy'])->name('reset.seminar.destroy');
+    Route::delete('delete/{id}', [ResetTAS2::class, 'destroy'])->name('reset.seminarS2.destroy');
 });
 
 Route::get('/', function () {

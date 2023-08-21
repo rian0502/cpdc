@@ -32,7 +32,6 @@ class MahasiswaKompreController extends Controller
             ];
 
             return view('mahasiswa.kompre.index', $data);
-
         }
         return redirect()->route('mahasiswa.sidang.kompre.create');
     }
@@ -44,21 +43,21 @@ class MahasiswaKompreController extends Controller
      */
     public function create()
     {
-        $kompre = Auth::user()->mahasiswa->komprehensif;
-        $seminar_ta_dua = Auth::user()->mahasiswa->ta_dua;
-        if ($kompre) {
-            return redirect()->route('mahasiswa.sidang.kompre.index');
+        if (Auth::user()->mahasiswa->ta_dua) {
+            if (Auth::user()->mahasiswa->ta_dua->status_koor == 'Selesai') {
+                if (Auth::user()->mahasiswa->komprehensif) {
+                    return redirect()->route('mahasiswa.sidang.kompre.index');
+                }
+                $data = [
+                    'syarat' => BerkasPersyaratanSeminar::find(4)
+                ];
+                return view('mahasiswa.kompre.create', $data);
+            } else {
+                return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('error', 'Anda belum menyelesaikan seminar tugas akhir 2');
+            }
+        } else {
+            return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('error', 'Anda belum menyelesaikan seminar tugas akhir 2');
         }
-        if (!$seminar_ta_dua) {
-            return redirect()->route('mahasiswa.seminar.tugas_akhir_2.create')->with('error', 'Anda belum menyelesaikan seminar TA 2');
-        }
-        if($seminar_ta_dua->status_koor != 'Selesai'){
-            return redirect()->route('mahasiswa.seminar.tugas_akhir_2.create')->with('error', 'Anda belum menyelesaikan seminar TA 2');
-        }
-        $data = [
-            'syarat' => BerkasPersyaratanSeminar::find(4)
-        ];
-        return view('mahasiswa.kompre.create', $data);
     }
 
     /**
@@ -119,7 +118,7 @@ class MahasiswaKompreController extends Controller
             'tanggal_komprehensif' => date('Y-m-d'),
             'jam_mulai_komprehensif' => date('H:i'),
             'jam_selesai_komprehensif' => date('H:i', strtotime('+2 hours')),
-            'id_lokasi' => $faker->randomElement([1, 2, 3,4,5]),
+            'id_lokasi' => $faker->randomElement([1, 2, 3, 4, 5]),
             'id_seminar' => $id,
         ]);
         $jadwal_id = $jadwal->id;
@@ -180,7 +179,7 @@ class MahasiswaKompreController extends Controller
         $seminar->ipk = $request->ipk;
         $seminar->toefl = $request->toefl;
         $seminar->agreement = 1;
-    
+
         $seminar->id_pembimbing_satu = Crypt::decrypt($request->id_pembimbing_satu);
         $seminar->id_pembahas = Crypt::decrypt($request->pembahas);
 
