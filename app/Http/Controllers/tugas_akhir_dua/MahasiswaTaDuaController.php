@@ -39,13 +39,19 @@ class MahasiswaTaDuaController extends Controller
      */
     public function create()
     {
-        if (Auth::user()->mahasiswa->ta_dua) {
-            return redirect()->back();
+        if (Auth::user()->mahasiswa->ta_satu) {
+            if (Auth::user()->mahasiswa->ta_satu->status_koor == 'Selesai') {
+                if (Auth::user()->mahasiswa->ta_dua == null) {
+                    return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index');
+                }
+                $syarat = BerkasPersyaratanSeminar::find(3);
+                return view('mahasiswa.ta2.create', compact(['syarat']));
+            } else {
+                return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Anda belum menyelesaikan seminar tugas akhir 1');
+            }
+        } else {
+            return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Anda belum menyelesaikan seminar tugas akhir 1');
         }
-
-
-        $syarat = BerkasPersyaratanSeminar::find(3);
-        return view('mahasiswa.ta2.create', compact(['syarat']));
     }
 
     /**
