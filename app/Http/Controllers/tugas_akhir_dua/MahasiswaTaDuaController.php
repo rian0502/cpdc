@@ -41,7 +41,7 @@ class MahasiswaTaDuaController extends Controller
     {
         if (Auth::user()->mahasiswa->ta_satu) {
             if (Auth::user()->mahasiswa->ta_satu->status_koor == 'Selesai') {
-                if (Auth::user()->mahasiswa->ta_dua == null) {
+                if (Auth::user()->mahasiswa->ta_dua) {
                     return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index');
                 }
                 $syarat = BerkasPersyaratanSeminar::find(3);
