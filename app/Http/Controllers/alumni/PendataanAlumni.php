@@ -84,7 +84,11 @@ class PendataanAlumni extends Controller
         $update = ModelPendataanAlumni::find($id);
         $update->encrypted_id = Crypt::encrypt($id);
         $update->save();
-        return redirect()->route('mahasiswa.pendataan_alumni.index')->with('success', 'Data berhasil ditambahkan');
+        if (Auth::user()->hasRole('mahasiswa')) {
+            return redirect()->route('mahasiswa.pendataan_alumni.index')->with('success', 'Data berhasil ditambahkan');
+        } else {
+            return redirect()->route('mahasiswa.pendataan_alumni_S2.index')->with('success', 'Data berhasil ditambahkan');
+        }
     }
 
     /**
@@ -108,7 +112,7 @@ class PendataanAlumni extends Controller
     public function edit($id)
     {
         $pendataan = ModelPendataanAlumni::find(Crypt::decrypt($id));
-        if($pendataan->mahasiswa_id != Auth::user()->mahasiswa->id){
+        if ($pendataan->mahasiswa_id != Auth::user()->mahasiswa->id) {
             return redirect()->route('mahasiswa.pendataan_alumni.index');
         }
         $data = [
@@ -129,7 +133,7 @@ class PendataanAlumni extends Controller
     {
         //
         $seminar = ModelPendataanAlumni::find(Crypt::decrypt($id));
-        if($seminar->mahasiswa_id != Auth::user()->mahasiswa->id){
+        if ($seminar->mahasiswa_id != Auth::user()->mahasiswa->id) {
             return redirect()->route('mahasiswa.pendataan_alumni.index');
         }
         $seminar->tahun_akademik = $request->tahun_akademik;
@@ -142,32 +146,36 @@ class PendataanAlumni extends Controller
         $seminar->updated_at = date('Y-m-d H:i:s');
         $seminar->komentar = null;
         $seminar->status = 'Pending';
-        if($request->file('berkas_pengesahan')){
+        if ($request->file('berkas_pengesahan')) {
             $oldFile = $seminar->berkas_pengesahan;
-            unlink('uploads/berkas_pengesahan/'.$oldFile);
+            unlink('uploads/berkas_pengesahan/' . $oldFile);
             $file = $request->file('berkas_pengesahan');
             $name = $file->hashName();
             $file->move('uploads/berkas_pengesahan', $name);
             $seminar->berkas_pengesahan = $name;
         }
-        if($request->file('transkrip')){
+        if ($request->file('transkrip')) {
             $oldFile = $seminar->transkrip;
-            unlink('uploads/transkrip/'.$oldFile);
+            unlink('uploads/transkrip/' . $oldFile);
             $file = $request->file('transkrip');
             $name = $file->hashName();
             $file->move('uploads/transkrip', $name);
             $seminar->transkrip = $name;
         }
-        if($request->file('berkas_toefl')){
+        if ($request->file('berkas_toefl')) {
             $oldFile = $seminar->berkas_toefl;
-            unlink('uploads/berkas_toefl/'.$oldFile);
+            unlink('uploads/berkas_toefl/' . $oldFile);
             $file = $request->file('berkas_toefl');
             $name = $file->hashName();
             $file->move('uploads/berkas_toefl', $name);
             $seminar->berkas_toefl = $name;
         }
         $seminar->save();
-        return redirect()->route('mahasiswa.pendataan_alumni.index')->with('success', 'Data berhasil diubah');
+        if (Auth::user()->hasRole('mahasiswa')) {
+            return redirect()->route('mahasiswa.pendataan_alumni.index')->with('success', 'Data berhasil diubah');
+        } else {
+            return redirect()->route('mahasiswa.pendataan_alumni_S2.index')->with('success', 'Data berhasil diubah');
+        }
     }
 
     /**

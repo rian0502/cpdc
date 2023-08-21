@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\alumni\s2;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PendataanAlumniS2 extends Controller
 {
@@ -14,7 +15,11 @@ class PendataanAlumniS2 extends Controller
      */
     public function index()
     {
-        return view('mahasiswaS2.alumni.pendataan.index');
+        if (Auth::user()->mahasiswa->pendataanAlumni) {
+            $pendataan = Auth::user()->mahasiswa->pendataanAlumni;
+            return view('mahasiswaS2.alumni.pendataan.index', compact('pendataan'));
+        }
+        return redirect()->route('mahasiswa.pendataan_alumni_S2.create');
     }
 
     /**
@@ -24,19 +29,13 @@ class PendataanAlumniS2 extends Controller
      */
     public function create()
     {
+        if (Auth::user()->mahasiswa->pendataanAlumni) {
+            return redirect()->route('mahasiswa.pendataan_alumni_S2.index');
+        }
         return view('mahasiswaS2.alumni.pendataan.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+
 
     /**
      * Display the specified resource.
