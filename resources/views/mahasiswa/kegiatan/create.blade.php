@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <form
-                        action="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.kegiatanS2.store':'mahasiswa.kegiatan.store')}}"
+                        action="{{ route(Auth::user()->hasRole('mahasiswaS2') ? 'mahasiswa.kegiatanS2.store' : 'mahasiswa.kegiatan.store') }}"
                         method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="profile-edit-list row">
@@ -31,13 +31,29 @@
                                 <div class="form-group">
                                     <label>Peran</label>
                                     <select class="selectpicker form-control" data-size="5" name="peran">
-                                        <option value="Ketua" {{ old('peran') == 'Ketua' ? 'selected' : '' }}>Ketua</option>
+                                        <option value="Ketua" {{ old('peran') == 'Ketua' ? 'selected' : '' }}>Ketua
+                                        </option>
                                         <option value="Anggota" {{ old('peran') == 'Anggota' ? 'selected' : '' }}>Anggota
                                         </option>
                                         <option value="Peserta" {{ old('peran') == 'Peserta' ? 'selected' : '' }}>Peserta
                                         </option>
                                     </select>
                                     @error('peran')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>Kategori</label>
+                                    <select class="selectpicker form-control" data-size="5" name="peran">
+                                        <option value="Nasional" {{ old('kategori') == 'Nasional' ? 'selected' : '' }}>
+                                            Nasional
+                                        </option>
+                                        <option value="Internasional"
+                                            {{ old('kategori') == 'Internasional' ? 'selected' : '' }}>
+                                            Internasional
+                                        </option>
+                                    </select>
+                                    @error('kategori')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
