@@ -43,21 +43,6 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Kategori</label>
-                                    <select class="selectpicker form-control" data-size="5" name="peran">
-                                        <option value="Nasional" {{ old('kategori') == 'Nasional' ? 'selected' : '' }}>
-                                            Nasional
-                                        </option>
-                                        <option value="Internasional"
-                                            {{ old('kategori') == 'Internasional' ? 'selected' : '' }}>
-                                            Internasional
-                                        </option>
-                                    </select>
-                                    @error('kategori')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
                                     <label>SKS Konversi</label>
                                     <input autofocus name="sks_konversi" id="sks_konversi"
                                         class="form-control @error('sks_konversi') form-control-danger @enderror""
@@ -79,8 +64,24 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                @role('mahasiswaS2')
+                                    <div class="form-group">
+                                        <label>Kategori</label>
+                                        <select class="selectpicker form-control" data-size="5" name="kategori">
+                                            <option value="Nasional" {{ old('kategori') == 'Nasional' ? 'selected' : '' }}>
+                                                Nasional
+                                            </option>
+                                            <option value="Internasional"
+                                                {{ old('kategori') == 'Internasional' ? 'selected' : '' }}>
+                                                Internasional
+                                            </option>
+                                        </select>
+                                        @error('kategori')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                @endrole
                                 <div class="form-group">
-
                                     <label>Dokumen Aktivitas<small> <a id="link-aktivitas" href="#" target="_blank"
                                                 style="display: none;">Lihat File</a> </small></label>
                                     <div class="custom-file">

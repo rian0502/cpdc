@@ -41,7 +41,7 @@ class KegiatanMahasiswaControllerS2 extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreKegiatanMhsRequest $request)
-{
+    {
         $id_mhs = Auth::user()->mahasiswa->id;
         $file = $request->file('file_aktivitas');
         $nama_file = $file->hashName();
@@ -52,6 +52,7 @@ class KegiatanMahasiswaControllerS2 extends Controller
             "tanggal" => $request->tanggal,
             "file_aktivitas" => $nama_file,
             "mahasiswa_id" => $id_mhs,
+            'kategori' => $request->kategori,
         ];
         $insert_Data = AktivitasMahasiswaS2::create($data);
         $insert_id = $insert_Data->id;
@@ -98,20 +99,21 @@ class KegiatanMahasiswaControllerS2 extends Controller
     public function update(UpdateKegiatanMhsRequest $request, $id)
     {
         $kegaitan = AktivitasMahasiswaS2::find(Crypt::decrypt($id));
-        if($request->file('file_aktivitas') != null){
-            $file = $request->file('file_aktivitas');
-            $nama_file = $file->hashName();
-            $file->move(('uploads/file_act_mhs'), $nama_file);
-            if($kegaitan->file_aktivitas != null){
-                File::delete(('uploads/file_act_mhs/'.$kegaitan->file_aktivitas));
-            }
-            $kegaitan->file_aktivitas = $nama_file;
-        }
         $kegaitan->nama_aktivitas = $request->nama_aktivitas;
         $kegaitan->peran = $request->peran;
         $kegaitan->sks_konversi = $request->sks_konversi;
         $kegaitan->tanggal = $request->tanggal;
         $kegaitan->updated_at = date('Y-m-d H:i:s');
+        $kegaitan->kategori = $request->kategori;
+        if ($request->file('file_aktivitas') != null) {
+            $file = $request->file('file_aktivitas');
+            $nama_file = $file->hashName();
+            $file->move(('uploads/file_act_mhs'), $nama_file);
+            if ($kegaitan->file_aktivitas != null) {
+                File::delete(('uploads/file_act_mhs/' . $kegaitan->file_aktivitas));
+            }
+            $kegaitan->file_aktivitas = $nama_file;
+        }
         $kegaitan->save();
         return redirect()->route('mahasiswa.profile.index')->with('success', 'Data berhasil diubah');
     }
@@ -125,11 +127,11 @@ class KegiatanMahasiswaControllerS2 extends Controller
     public function destroy($id)
     {
         $aktivitas = AktivitasMahasiswaS2::find(Crypt::decrypt($id));
-        if($aktivitas->mahasiswa_id != Auth::user()->mahasiswa->id){
+        if ($aktivitas->mahasiswa_id != Auth::user()->mahasiswa->id) {
             return redirect()->back();
         }
-        if($aktivitas->file_aktivitas != null){
-            File::delete(('uploads/file_act_mhs/'.$aktivitas->file_aktivitas));
+        if ($aktivitas->file_aktivitas != null) {
+            File::delete(('uploads/file_act_mhs/' . $aktivitas->file_aktivitas));
         }
         $aktivitas->delete();
         return redirect()->route('mahasiswa.profile.index')->with('success', 'Data berhasil dihapus');
