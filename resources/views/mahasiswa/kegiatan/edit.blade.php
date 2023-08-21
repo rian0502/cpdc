@@ -11,7 +11,9 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.kegiatanS2.update':'mahasiswa.kegiatan.update', $kegiatan->encrypt_id)}}" method="POST" enctype="multipart/form-data">
+                    <form
+                        action="{{ route(Auth::user()->hasRole('mahasiswaS2') ? 'mahasiswa.kegiatanS2.update' : 'mahasiswa.kegiatan.update', $kegiatan->encrypt_id) }}"
+                        method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="profile-edit-list row">
@@ -21,27 +23,41 @@
                                     <label>Nama Aktivitas</label>
                                     <input autofocus name="nama_aktivitas" id="nama_aktivitas"
                                         class="form-control @error('nama_aktivitas') form-control-danger @enderror"
-                                        type="text" value="{{old('nama_aktivitas', $kegiatan->nama_aktivitas)}}"
+                                        type="text" value="{{ old('nama_aktivitas', $kegiatan->nama_aktivitas) }}"
                                         placeholder="Nama Aktivitas">
                                     @error('nama_aktivitas')
-                                    <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group">
                                     <label>Peran</label>
                                     <select class="selectpicker form-control" data-size="5" name="peran">
-                                        <option {{old('peran', $kegiatan->peran)}} value="Ketua">Ketua</option>
-                                        <option {{old('peran', $kegiatan->peran)}} value="Anggota">Anggota</option>
-                                        <option {{old('peran', $kegiatan->peran)}} value="Peserta">Peserta</option>
+                                        <option {{ old('peran', $kegiatan->peran) }} value="Ketua">Ketua</option>
+                                        <option {{ old('peran', $kegiatan->peran) }} value="Anggota">Anggota</option>
+                                        <option {{ old('peran', $kegiatan->peran) }} value="Peserta">Peserta</option>
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Kategori</label>
+                                    <select class="selectpicker form-control" data-size="5" name="peran">
+                                        <option value="Nasional" {{ old('kategori') == 'Nasional' ? 'selected' : '' }}>
+                                            Nasional
+                                        </option>
+                                        <option value="Internasional"
+                                            {{ old('kategori') == 'Internasional' ? 'selected' : '' }}>
+                                            Internasional
+                                        </option>
+                                    </select>
+                                    @error('kategori')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>SKS Konversi</label>
                                     <input autofocus name="sks_konversi" id="sks_konversi"
                                         class="form-control @error('sks_konversi') form-control-danger @enderror""
-                                        type="number"
-                                        value="{{old('sks_konversi', $kegiatan->sks_konversi)}}"
+                                        type="number" value="{{ old('sks_konversi', $kegiatan->sks_konversi) }}"
                                         placeholder="Tuliskan sks yang akan dikonversikan.">
                                     @error('sks_konversi')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -53,9 +69,10 @@
                                 <div class="form-group">
                                     <label for="">Tanggal</label>
                                     <input name="tanggal"
-                                        class="form-control @error('tanggal') form-control-danger @enderror" value="{{old('tanggal', $kegiatan->tanggal)}}" type="date">
+                                        class="form-control @error('tanggal') form-control-danger @enderror"
+                                        value="{{ old('tanggal', $kegiatan->tanggal) }}" type="date">
                                     @error('tanggal')
-                                    <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
 

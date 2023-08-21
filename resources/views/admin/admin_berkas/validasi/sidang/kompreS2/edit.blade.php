@@ -134,6 +134,20 @@
                                     {{ $seminar->periode_seminar }}
                                 </div>
                             </div>
+                            <div class="row border-bottom mt-2">
+                                <label class="col-md-3 bold mt-2"> <strong>Draft Artikel</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    <a target="_blank"
+                                        href="/uploads/draft_artikel_s2/{{-- $seminar->berkas_ta_dua --}}">Lihat
+                                        Berkas</a>
+                                </div>
+
+                                <label class="col-md-3 bold"> <strong>Link Artikel</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    <a target="_blank"
+                                        href="/uploads/draft_artikel_s2/{{-- $seminar->berkas_ta_dua --}}">Lihat</a>
+                                </div>
+                            </div>
 
                             <div class="row border-bottom mt-3">
                                 <label class="col-md-12 bold"><b>Judul atau Topik Tugas Akhir</b></label>
