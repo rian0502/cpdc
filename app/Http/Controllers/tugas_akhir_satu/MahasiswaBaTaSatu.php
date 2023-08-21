@@ -64,7 +64,7 @@ class MahasiswaBaTaSatu extends Controller
                 'berkas_nilai_seminar_ta_satu' => $file_nilai,
                 'berkas_ppt_seminar_ta_satu' => $request->berkas_ppt_seminar_ta_satu,
                 'nilai' => $request->nilai,
-                'huruf_mutu' => $request->nilai_mutu,
+                'huruf_mutu' => $request->huruf_mutu,
                 'id_seminar' => $seminar->id,
             ];
             $insBa = ModelBaSeminarTaSatu::create($data);
@@ -118,14 +118,14 @@ class MahasiswaBaTaSatu extends Controller
         if($request->_token != csrf_token()){
             return redirect()->back();
         }
-        //validasi user 
+        //validasi user
         $ba = ModelBaSeminarTaSatu::find(Crypt::decrypt($id));
         if(Auth::user()->mahasiswa->id != $ba->seminar->id_mahasiswa){
             return redirect()->back();
         }
         $data = [
             'no_berkas_ba_seminar_ta_satu' => $request->no_berkas_ba_seminar_ta_satu,
-            'huruf_mutu' => $request->nilai_mutu,
+            'huruf_mutu' => $request->huruf_mutu,
             'nilai' => $request->nilai,
             'updated_at' => date('Y-m-d H:i:s'),
             'berkas_ppt_seminar_ta_satu' => $request->berkas_ppt_seminar_ta_satu,

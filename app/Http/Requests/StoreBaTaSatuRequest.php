@@ -24,11 +24,11 @@ class StoreBaTaSatuRequest extends FormRequest
      */
     public function rules()
     {
-        
+
         return [
             'nilai' => 'required|numeric|min:0|max:100',
             'no_berkas_ba_seminar_ta_satu' => 'required|string|max:255',
-            'nilai_mutu' => ['required', 'string'],
+            'huruf_mutu' => ['required', 'string'],
             'berkas_ppt_seminar_ta_satu' => 'required|url',
             'berkas_ba_seminar_ta_satu' => 'required|mimes:pdf|max:2048',
             'berkas_nilai_seminar_ta_satu' => 'required|mimes:pdf|max:2048',
@@ -46,8 +46,8 @@ class StoreBaTaSatuRequest extends FormRequest
             'no_berkas_ba_seminar_ta_satu.required' => 'Nomor Berkas Berita Acara Seminar TA 1 tidak boleh kosong',
             'no_berkas_ba_seminar_ta_satu.string' => 'Nomor Berkas Berita Acara Seminar TA 1 harus berupa karakter',
             'no_berkas_ba_seminar_ta_satu.max' => 'Nomor Berkas Berita Acara Seminar TA 1 maksimal 255 karakter',
-            'nilai_mutu.required' => 'Nilai Mutu tidak boleh kosong',
-            'nilai_mutu.string' => 'Nilai Mutu harus berupa huruf',
+            'huruf_mutu.required' => 'Nilai Mutu tidak boleh kosong',
+            'huruf_mutu.string' => 'Nilai Mutu harus berupa huruf',
             'berkas_ppt_seminar_ta_satu.required' => 'Berkas PPT Seminar TA 1 tidak boleh kosong',
             'berkas_ppt_seminar_ta_satu.url' => 'Berkas PPT Seminar TA 1 harus berupa URL',
             'berkas_ba_seminar_ta_satu.required' => 'Berkas Berita Acara Seminar TA 1 tidak boleh kosong',
