@@ -46,7 +46,7 @@ class ControllerMahasiswaS2SidangKompre extends Controller
                     return redirect()->route("mahasiswa.sidang.kompres2.index");
                 }
                 $data = [
-                    'syarat' => BerkasPersyaratanSeminar::find(4)
+                    'syarat' => BerkasPersyaratanSeminar::find(7)
                 ];
                 return view("mahasiswaS2.kompre.create", $data);
             } else {
@@ -149,7 +149,7 @@ class ControllerMahasiswaS2SidangKompre extends Controller
     {
         $seminar = ModelKompreS2::find(Crypt::decrypt($id));
         $data = [
-            'syarat' => BerkasPersyaratanSeminar::find(4),
+            'syarat' => BerkasPersyaratanSeminar::find(7),
             'seminar' => $seminar,
             'dosens' => Dosen::where('status', 'Aktif')->get(),
         ];
@@ -269,8 +269,8 @@ class ControllerMahasiswaS2SidangKompre extends Controller
             $berkas_dua->move('uploads/syarat_seminar_sidang_s2', $nama_berkas);
             $seminar->berkas_kompre = $nama_berkas;
         }
-        if($request->file('draft_artikel')){
-            unlink('uploads/draft_artikel_s2/'.$seminar->draft_artikel);
+        if ($request->file('draft_artikel')) {
+            unlink('uploads/draft_artikel_s2/' . $seminar->draft_artikel);
             $berkas_artikel = $request->file('draft_artikel');
             $nama_artikel = $berkas_artikel->hashName();
             $berkas_artikel->move('uploads/draft_artikel_s2', $nama_artikel);

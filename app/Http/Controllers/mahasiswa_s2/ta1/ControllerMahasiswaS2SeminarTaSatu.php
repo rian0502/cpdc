@@ -47,7 +47,7 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
         }
         $data = [
             'dosens' => Dosen::where('status', 'Aktif')->get(),
-            'syarat' => BerkasPersyaratanSeminar::find(2),
+            'syarat' => BerkasPersyaratanSeminar::find(5),
         ];
         return view("mahasiswaS2.ta1.create", $data);
     }
@@ -200,7 +200,7 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
             'mahasiswa' => $mahasiswa,
             'seminar' => $seminar,
             'dosens' => Dosen::where('status', 'Aktif')->get(),
-            'syarat' => BerkasPersyaratanSeminar::find(2),
+            'syarat' => BerkasPersyaratanSeminar::find(5),
         ];
 
         return view("mahasiswaS2.ta1.edit", $data);
