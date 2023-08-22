@@ -46,7 +46,13 @@ class ExportDataS2 extends Controller
                 ->get(),
             'sidang' =>  Mahasiswa::select('angkatan')->distinct()->whereHas('komprehensifS2')->orderBy('angkatan', 'desc')
                 ->get(),
-            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()->where('status', 'Aktif')->whereHas('user', function ($query) {
+            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()->whereHas('user', function ($query) {
+                $query->whereHas('roles', function ($query) {
+                    $query->where('name', 'mahasiswaS2');
+                });
+            })->orderBy('angkatan', 'desc')
+                ->get(),
+            'alumni' => Mahasiswa::select('angkatan')->distinct()->where('status', 'Alumni')->whereHas('user', function ($query) {
                 $query->whereHas('roles', function ($query) {
                     $query->where('name', 'mahasiswaS2');
                 });
@@ -54,6 +60,75 @@ class ExportDataS2 extends Controller
                 ->get(),
         ];
         return view('jurusan.exportS2.index', $data);
+    }
+    public function alumni(Request $request)
+    {
+        $mahasiswa = Mahasiswa::where('angkatan', $request->tahun_alumni)->whereHas('user', function ($query) {
+            $query->whereHas('roles', function ($query) {
+                $query->where('name', 'mahasiswaS2');
+            });
+        })->where('status', 'Alumni')->get();
+
+        $spdsheet = new Spreadsheet();
+        $sheet = $spdsheet->getActiveSheet();
+        $sheet->setTitle('Alumni');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'NPM');
+        $sheet->setCellValue('C1', 'Nama Mahasiswa');
+        $sheet->setCellValue('D1', 'Tanggal Lahir');
+        $sheet->setCellValue('E1', 'Tempat Lahir');
+        $sheet->setCellValue('F1', 'No HP');
+        $sheet->setCellValue('G1', 'Alamat');
+        $sheet->setCellValue('H1', 'Jenis Kelamin');
+        $sheet->setCellValue('I1', 'Tanggal Masuk');
+        $sheet->setCellValue('J1', 'Angkatan');
+        $sheet->setCellValue('K1', 'Dosen Pembimbing Akademik');
+        $sheet->setCellValue('L1', 'Pekerjaan Pertama');
+        $sheet->setCellValue('M1', 'Salary');
+        $sheet->setCellValue('N1', 'Mitra Kerja Pertama');
+        $sheet->setCellValue('O1', 'Lokasi');
+        $sheet->setCellValue('P1', 'Status');
+        $sheet->setCellValue('Q1', 'Salary');
+        $sheet->setCellValue('R1', 'Mitra');
+        $sheet->setCellValue('S1', 'Lokasi');
+        foreach ($mahasiswa as $key => $value) {
+            $sheet->setCellValue('A' . ($key + 2), $key + 1);
+            $sheet->setCellValue('B' . ($key + 2), $value->npm);
+            $sheet->setCellValue('C' . ($key + 2), $value->nama_mahasiswa);
+            $sheet->setCellValue('D' . ($key + 2), $value->tanggal_lahir);
+            $sheet->setCellValue('E' . ($key + 2), $value->tempat_lahir);
+            $sheet->setCellValue('F' . ($key + 2), $value->no_hp);
+            $sheet->setCellValue('G' . ($key + 2), $value->alamat);
+            $sheet->setCellValue('H' . ($key + 2), $value->jenis_kelamin);
+            $sheet->setCellValue('I' . ($key + 2), $value->tanggal_masuk);
+            $sheet->setCellValue('J' . ($key + 2), $value->angkatan);
+            $sheet->setCellValue('K' . ($key + 2), $value->dosen->nama_dosen);
+            if ($value->pekerjaanPertama) {
+                $sheet->setCellValue('L' . ($key + 2), $value->pekerjaanPertama->jabatan);
+                $sheet->setCellValue('M' . ($key + 2), $value->pekerjaanPertama->gaji);
+                $sheet->setCellValue('N' . ($key + 2), $value->pekerjaanPertama->tempat);
+                $sheet->setCellValue('O' . ($key + 2), $value->pekerjaanPertama->alamat);
+            } else {
+                $sheet->setCellValue('L' . ($key + 2), '-');
+                $sheet->setCellValue('M' . ($key + 2), '-');
+                $sheet->setCellValue('N' . ($key + 2), '-');
+                $sheet->setCellValue('O' . ($key + 2), '-');
+            }
+            if ($value->kegiatanTerakhir) {
+                $sheet->setCellValue('p' . ($key + 2), $value->kegiatanTerakhir->status);
+                $sheet->setCellValue('Q' . ($key + 2), $value->kegiatanTerakhir->gaji);
+                $sheet->setCellValue('R' . ($key + 2), $value->kegiatanTerakhir->tempat);
+                $sheet->setCellValue('S' . ($key + 2), $value->kegiatanTerakhir->alamat);
+            } else {
+                $sheet->setCellValue('p' . ($key + 2), "-");
+                $sheet->setCellValue('Q' . ($key + 2), "-");
+                $sheet->setCellValue('R' . ($key + 2), "-");
+                $sheet->setCellValue('S' . ($key + 2), "-");
+            }
+        }
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('alumniS2_' . $request->tahun_alumni . '.xlsx');
+        return response()->download('alumniS2_' . $request->tahun_alumni . '.xlsx')->deleteFileAfterSend(true);
     }
     public function mahasiswaS2Seminar(Request $request)
     {
@@ -136,7 +211,7 @@ class ExportDataS2 extends Controller
             $query->whereHas('roles', function ($query) {
                 $query->where('name', 'mahasiswaS2');
             });
-        })->where('status', 'Aktif')->get();
+        })->get();
 
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();

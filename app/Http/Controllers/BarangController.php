@@ -52,7 +52,6 @@ class BarangController extends Controller
     public function store(StoreBarangRequest $request)
     {
         $data = [
-            'nama_barang' => $request->nama_barang,
             'jumlah_akhir' => $request->jumlah_akhir,
             'id_lokasi' => Auth::user()->lokasi_id,
             'id_model' => Crypt::decrypt($request->id_model),
@@ -129,7 +128,6 @@ class BarangController extends Controller
             $updateHistori = History::where('id', $idHistori)->update(['encrypt_id' => $encrypt_id]);
             //proses update table barang
             $data = [
-                'nama_barang' => $request->nama_barang,
                 'id_lokasi' => Auth::user()->lokasi_id,
                 'id_model' => Crypt::decrypt($request->id_model),
                 'jumlah_akhir' => $request->jumlah_akhir,

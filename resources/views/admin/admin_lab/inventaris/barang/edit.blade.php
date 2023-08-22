@@ -18,15 +18,7 @@
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
-                                <div class="form-group">
-                                    <label>Nama Barang</label>
-                                    <input autofocus name="nama_barang" id="nama_barang" value="{{ $barang->nama_barang }}"
-                                        class="form-control @error('nama_barang') form-control-danger @enderror"
-                                        type="text" placeholder="Nama Barang">
-                                    @error('nama_barang')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
+
                                 <div class="form-group">
                                     <label>Jumlah Awal</label>
                                     <input autofocus name="jumlah_awal" id="jumlah_awal" disabled

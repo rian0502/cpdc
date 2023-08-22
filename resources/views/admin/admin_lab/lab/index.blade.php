@@ -90,7 +90,8 @@
                                 .encrypted_id);
                             var editUrl = "{{ route('lab.ruang.edit', ':id') }}".replace(':id', row
                                 .encrypted_id);
-                            var deletUrl = "{{ route('lab.ruang.destroy', ':id') }}".replace(':id', row
+                            var deletUrl = "{{ route('lab.ruang.destroy', ':id') }}".replace(':id',
+                                row
                                 .encrypted_id);
 
                             return `

@@ -25,7 +25,6 @@ class StoreBarangRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_barang' => 'required|max:255',
             'jumlah_akhir' => 'required|numeric|min:0',
             'id_model' => 'required|exists:model_barang,encrypt_id',
         ];
@@ -33,8 +32,6 @@ class StoreBarangRequest extends FormRequest
     public function messages()
     {
         return [
-            'nama_barang.required' => 'Nama Barang harus diisi',
-            'nama_barang.max' => 'Nama Barang maksimal 255 karakter',
             'jumlah_akhir.required' => 'Jumlah Barang harus diisi',
             'jumlah_akhir.numeric' => 'Jumlah Barang harus berupa angka',
             'jumlah_akhir.min' => 'Jumlah Barang tidak boleh kurang dari 0',

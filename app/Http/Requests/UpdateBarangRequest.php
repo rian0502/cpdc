@@ -26,7 +26,6 @@ class UpdateBarangRequest extends FormRequest
     {
         if ($this->request->get('ket') || $this->request->get('jumlah_akhir')) {
             return [
-                'nama_barang' => 'required|max:255',
                 'jumlah_akhir' => 'required|numeric|min:0',
                 'id_model' => 'required|exists:model_barang,encrypt_id',
                 'ket' => 'required|max:255|string',
@@ -44,8 +43,6 @@ class UpdateBarangRequest extends FormRequest
     {
         if ($this->request->get('ket') || $this->request->get('jumlah_akhir')) {
             return [
-                'nama_barang.required' => 'Nama Barang harus diisi',
-                'nama_barang.max' => 'Nama Barang maksimal 255 karakter',
                 'id_model.required' => 'Model Barang harus diisi',
                 'id_model.exists' => 'Model Barang tidak ditemukan',
                 'id_lokasi.exists' => 'Lokasi Barang tidak ditemukan',
@@ -57,8 +54,6 @@ class UpdateBarangRequest extends FormRequest
             ];
         } else {
             return [
-                'nama_barang.required' => 'Nama Barang harus diisi',
-                'nama_barang.max' => 'Nama Barang maksimal 255 karakter',
                 'id_model.required' => 'Model Barang harus diisi',
                 'id_model.exists' => 'Model Barang tidak ditemukan',
                 'id_lokasi.exists' => 'Lokasi Barang tidak ditemukan',
