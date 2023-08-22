@@ -36,9 +36,6 @@
                                         <option
                                             value="Praktikum"{{ old('keperluan', $lab->keperluan) == 'Praktikum' ? 'selected' : '' }}>
                                             Praktikum</option>
-                                        <option value="Ujian"
-                                            {{ old('keperluan', $lab->keperluan) == 'Ujian' ? 'selected' : '' }}>
-                                            Ujian</option>
                                         <option value="PKL"
                                             {{ old('keperluan', $lab->keperluan) == 'PKL' ? 'selected' : '' }}>
                                             PKL</option>
@@ -75,8 +72,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jam Mulai</label>
-                                    <input
-                                        value="{{ $lab->jam_mulai }}"
+                                    <input value="{{ $lab->jam_mulai }}"
                                         class="form-control @error('jam_mulai') form-control-danger @enderror"
                                         placeholder="jam" type="time" name="jam_mulai" />
                                     @error('jam_mulai')
