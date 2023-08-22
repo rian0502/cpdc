@@ -439,40 +439,6 @@ class ExportData extends Controller
         $sheet->setCellValue('L1', 'Status Alumni');
         $sheet->setCellValue('M1', 'Hubungan');
         $sheet->setCellValue('N1', 'Mitra Alumni');
-
-        $sheetKP = $spdsheet->createSheet();
-        $sheetKP->setTitle('Kerja Praktik');
-        $sheetKP->setCellValue('A1', 'No');
-        $sheetKP->setCellValue('B1', 'Mitra PKL');
-        $sheetKP->setCellValue('C1', 'Judul');
-        $sheetKP->setCellValue('D1', 'Dosen Pembimbing');
-        $sheetKP->setCellValue('E1', 'Pembimbing Lapangan');
-        $sheetKP->setCellValue('F1', 'No.BA');
-        $sheetKP->setCellValue('G1', 'URL BA');
-        $sheetKP->setCellValue('H1', 'Laporan BA');
-
-        $sheetTA1 = $spdsheet->createSheet();
-        $sheetTA1->setTitle('Seminar TA 1');
-        $sheetTA1->setCellValue('A1', 'No');
-        $sheetTA1->setCellValue('B1', 'Judul');
-        $sheetTA1->setCellValue('C1', 'Dosen Pembimbing 1');
-        $sheetTA1->setCellValue('D1', 'Dosen Pembimbing 2');
-        $sheetTA1->setCellValue('E1', 'Pembahas');
-        $sheetTA1->setCellValue('F1', 'No.BA');
-        $sheetTA1->setCellValue('G1', 'URL BA');
-        $sheetTA1->setCellValue('H1', 'PPT');
-
-        $sheetTA2 = $spdsheet->createSheet();
-        $sheetTA2->setTitle('Seminar TA 2');
-        $sheetTA2->setCellValue('A1', 'No');
-        $sheetTA2->setCellValue('B1', 'Judul');
-        $sheetTA2->setCellValue('C1', 'Dosen Pembimbing 1');
-        $sheetTA2->setCellValue('D1', 'Dosen Pembimbing 2');
-        $sheetTA2->setCellValue('E1', 'Pembahas');
-        $sheetTA2->setCellValue('F1', 'No.BA');
-        $sheetTA2->setCellValue('G1', 'URL BA');
-        $sheetTA2->setCellValue('H1', 'PPT');
-
         foreach ($mahasiswa as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->npm);
@@ -488,41 +454,6 @@ class ExportData extends Controller
             $sheet->setCellValue('L' . ($key + 2), $value->kegiatanTerakhir->status);
             $sheet->setCellValue('M' . ($key + 2), $value->kegiatanTerakhir->hubungan);
             $sheet->setCellValue('N' . ($key + 2), $value->kegiatanTerakhir->tempat);
-            if ($value->seminar_kp) {
-                $sheetKP->setCellValue('A' . ($key + 2), $key + 1);
-                $sheetKP->setCellValue('B' . ($key + 2), $value->seminar_kp->mitra);
-                $sheetKP->setCellValue('C' . ($key + 2), $value->seminar_kp->judul_kp);
-                $sheetKP->setCellValue('D' . ($key + 2), $value->seminar_kp->dosen->nama_dosen);
-                $sheetKP->setCellValue('E' . ($key + 2), $value->seminar_kp->pembimbing_lapangan);
-                if ($value->seminar_kp->berita_acara) {
-                    $sheetKP->setCellValue('F' . ($key + 2), $value->seminar_kp->berita_acara->no_ba_seminar_kp);
-                    $sheetKP->setCellValue('G' . ($key + 2), url('/uploads/berita_acara_seminar_kp/' . $value->seminar_kp->berita_acara->berkas_ba_seminar_kp));
-                    $sheetKP->setCellValue('G' . ($key + 2), url('/uploads/laporan_kp/' . $value->seminar_kp->berita_acara->laporan_kp));
-                } else {
-                    $sheetKP->setCellValue('F' . ($key + 2), '-');
-                    $sheetKP->setCellValue('G' . ($key + 2), '-');
-                }
-            }
-            if ($value->ta_satu) {
-                $sheetTA1->setCellValue('A' . ($key + 2), $key + 1);
-                $sheetTA1->setCellValue('B' . ($key + 2), $value->ta_satu->judul_ta);
-                $sheetTA1->setCellValue('C' . ($key + 2), $value->ta_satu->pembimbing_satu->nama_dosen);
-                if ($value->ta_satu->id_pembimbing_dua != null) {
-                    $sheetTA1->setCellValue('D' . ($key + 2), $value->ta_satu->pembimbing_dua->nama_dosen);
-                } else {
-                    $sheetTA1->setCellValue('D' . ($key + 2), $value->ta_satu->pbl2_nama);
-                }
-                $sheetTA1->setCellValue('E' . ($key + 2), $value->ta_satu->pembahas->nama_dosen);
-                if ($value->ta_satu->ba_seminar) {
-                    $sheetTA1->setCellValue('F' . ($key + 2), $value->ta_satu->ba_seminar->no_berkas_ba_seminar_ta_satu);
-                    $sheetTA1->setCellValue('G' . ($key + 2), url('/uploads/ba_seminar_ta_satu/' . $value->ta_satu->ba_seminar->berkas_ba_seminar_ta_satu));
-                    $sheetTA1->setCellValue('H' . ($key + 2), url($value->ta_satu->ba_seminar->berkas_ppt_seminar_ta_satu));
-                } else {
-                    $sheetTA1->setCellValue('F' . ($key + 2), '-');
-                    $sheetTA1->setCellValue('G' . ($key + 2), '-');
-                    $sheetTA1->setCellValue('H' . ($key + 2), '-');
-                }
-            }
         }
     }
     public function mahasiswa(Request $request)
