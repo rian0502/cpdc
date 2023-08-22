@@ -293,7 +293,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::post('unduh/tesis2', [ExportDataS2::class, 'tesis2'])->name('unduh.tesis2');
     Route::post('unduh/sidang', [ExportDataS2::class, 'sidang'])->name('unduh.sidang');
     Route::post('unduh/mahasiswas2', [ExportDataS2::class, 'mahasiswas2'])->name('unduh.mahasiswas2');
-
+    Route::post('unduh/alumniS2', [ExportDataS2::class, 'alumni'])->name('unduh.alumniS2');
     Route::resource('alumniS2', DataAlumniS2::class);
     Route::resource('prestasiS2', PrestasiDataS2Controller::class);
     Route::get('chartCapaianPrestasiS2', [PrestasiDataS2Controller::class, 'pieChartCapaian'])->name('prestasiS2.chartCapaian');

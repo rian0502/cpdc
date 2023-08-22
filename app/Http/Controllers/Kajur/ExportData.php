@@ -35,7 +35,7 @@ class ExportData extends Controller
                 ->get(),
             'aktivitas' => AktivitasMahasiswa::selectRaw('YEAR(tanggal) as year')->distinct()->orderBy('year', 'desc')
                 ->get(),
-            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()->where('status', 'Aktif')->whereHas('user', function ($query) {
+            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()->whereHas('user', function ($query) {
                 $query->whereHas('roles', function ($query) {
                     $query->where('name', 'mahasiswa');
                 });
@@ -419,9 +419,12 @@ class ExportData extends Controller
 
     public function alumni(Request $request)
     {
-        $mahasiswa = Mahasiswa::with(['seminar_kp', 'ta_satu', 'ta_dua', 'komprehensif'])->where('angkatan', $request->tahun_alumni)
-            ->where('status', 'Alumni')
-            ->get();
+        $mahasiswa = Mahasiswa::where('angkatan', $request->tahun_alumni)->whereHas('user', function ($query) {
+            $query->whereHas('roles', function ($query) {
+                $query->where('name', 'mahasiswa');
+            });
+        })->where('status', 'Alumni')->get();
+
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Alumni');
@@ -489,7 +492,7 @@ class ExportData extends Controller
             $query->whereHas('roles', function ($query) {
                 $query->where('name', 'mahasiswa');
             });
-        })->where('status', 'Aktif')->get();
+        })->get();
 
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();

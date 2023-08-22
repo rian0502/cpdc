@@ -4,6 +4,9 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Dosen;
+use App\Models\AsistenLab;
+use App\Models\Laboratorium;
+use App\Models\ModelKompreS2;
 use App\Models\ModelSeminarKP;
 use App\Models\AktivitasAlumni;
 use App\Models\ModelSeminarTaDua;
@@ -11,12 +14,13 @@ use App\Models\PrestasiMahasiswa;
 use App\Models\AktivitasMahasiswa;
 use App\Models\ModelSeminarKompre;
 use App\Models\ModelSeminarTaSatu;
-use App\Models\ModelPendataanAlumni;
+use App\Models\ModelSeminarTaDuaS2;
 use App\Models\PrestasiMahasiswaS2;
 use App\Models\AktivitasMahasiswaS2;
+use App\Models\ModelPendataanAlumni;
+use App\Models\ModelSeminarTaSatuS2;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\Auth;
 
 class Mahasiswa extends Model
 {
@@ -111,7 +115,19 @@ class Mahasiswa extends Model
     }
     public function pekerjaanPertama()
     {
-        return $this->hasOne(AktivitasAlumni::class, 'mahasiswa_id')->where('status', 'kerja')->orderBy('tahun_masuk', 'ASC')->first();
+        return $this->hasOne(AktivitasAlumni::class, 'mahasiswa_id')
+            ->where('status', 'Kerja')
+            ->orderBy('tahun_masuk', 'asc') // Urutkan secara descending berdasarkan tahun_masuk
+            ->withDefault([
+                'id' => '-',
+                'tempat' => '-',
+                'alamat' => '-',
+                'jabatan' => '-',
+                'tahun_masuk' => date('Y-m-d'), // Format tanggal yang benar
+                'hubungan' => '-',
+                'gaji' => '-',
+                'status' => '-'
+            ]);
     }
     public function pendataanAlumni()
     {
