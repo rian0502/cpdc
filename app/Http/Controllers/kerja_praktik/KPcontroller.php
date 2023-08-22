@@ -98,7 +98,20 @@ class KPcontroller extends Controller
         $update = ModelSeminarKP::find($insert_id);
         $update->encrypt_id = Crypt::encrypt($insert_id);
         $update->save();
-
+        $faker = \Faker\Factory::create('id_ID');
+        $data_jadwal = [
+            'id_skp' => $insert_id,
+            'tanggal_skp' => date('Y-m-d'),
+            'jam_mulai_skp' => date('H:i'),
+            'jam_selesai_skp' => date('H:i'),
+            'id_lokasi' => 6,
+            'created_at' => date('Y-m-d H:i:s'),
+        ];
+        $insert_jadwal = JadwalSKP::create($data_jadwal);
+        $insert_jadwal_id = $insert_jadwal->id;
+        $update_jadwal = JadwalSKP::find($insert_jadwal_id);
+        $update_jadwal->encrypt_id = Crypt::encrypt($insert_jadwal_id);
+        $update_jadwal->save();
         return redirect()->route('mahasiswa.seminar.kp.index')->with('success', 'Data Seminar KP Berhasil Ditambahkan');
     }
 
