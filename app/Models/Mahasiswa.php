@@ -109,6 +109,10 @@ class Mahasiswa extends Model
                 'status' => '-'
             ]);
     }
+    public function pekerjaanPertama()
+    {
+        return $this->hasOne(AktivitasAlumni::class, 'mahasiswa_id')->where('status', 'kerja')->orderBy('tahun_masuk', 'ASC')->first();
+    }
     public function pendataanAlumni()
     {
         return $this->hasOne(ModelPendataanAlumni::class, 'mahasiswa_id');

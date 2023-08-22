@@ -436,9 +436,14 @@ class ExportData extends Controller
         $sheet->setCellValue('I1', 'Tanggal Masuk');
         $sheet->setCellValue('J1', 'Angkatan');
         $sheet->setCellValue('K1', 'Dosen Pembimbing Akademik');
-        $sheet->setCellValue('L1', 'Status Alumni');
-        $sheet->setCellValue('M1', 'Hubungan');
-        $sheet->setCellValue('N1', 'Mitra Alumni');
+        $sheet->setCellValue('L1', 'Pekerjaan Pertama');
+        $sheet->setCellValue('M1', 'Salary');
+        $sheet->setCellValue('N1', 'Mitra Kerja Pertama');
+        $sheet->setCellValue('O1', 'Lokasi');
+        $sheet->setCellValue('P1', 'Status');
+        $sheet->setCellValue('Q1', 'Salary');
+        $sheet->setCellValue('R1', 'Mitra');
+        $sheet->setCellValue('S1', 'Lokasi');
         foreach ($mahasiswa as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->npm);
@@ -451,9 +456,28 @@ class ExportData extends Controller
             $sheet->setCellValue('I' . ($key + 2), $value->tanggal_masuk);
             $sheet->setCellValue('J' . ($key + 2), $value->angkatan);
             $sheet->setCellValue('K' . ($key + 2), $value->dosen->nama_dosen);
-            $sheet->setCellValue('L' . ($key + 2), $value->kegiatanTerakhir->status);
-            $sheet->setCellValue('M' . ($key + 2), $value->kegiatanTerakhir->hubungan);
-            $sheet->setCellValue('N' . ($key + 2), $value->kegiatanTerakhir->tempat);
+            if ($value->pekerjaanPertama) {
+                $sheet->setCellValue('L' . ($key + 2), $value->pekerjaanPertama->jabatan);
+                $sheet->setCellValue('M' . ($key + 2), $value->pekerjaanPertama->gaji);
+                $sheet->setCellValue('N' . ($key + 2), $value->pekerjaanPertama->tempat);
+                $sheet->setCellValue('O' . ($key + 2), $value->pekerjaanPertama->alamat);
+            } else {
+                $sheet->setCellValue('L' . ($key + 2), '-');
+                $sheet->setCellValue('M' . ($key + 2), '-');
+                $sheet->setCellValue('N' . ($key + 2), '-');
+                $sheet->setCellValue('O' . ($key + 2), '-');
+            }
+            if ($value->kegiatanTerakhir) {
+                $sheet->setCellValue('p' . ($key + 2), $value->kegiatanTerakhir->status);
+                $sheet->setCellValue('Q' . ($key + 2), $value->kegiatanTerakhir->gaji);
+                $sheet->setCellValue('R' . ($key + 2), $value->kegiatanTerakhir->tempat);
+                $sheet->setCellValue('S' . ($key + 2), $value->kegiatanTerakhir->alamat);
+            } else {
+                $sheet->setCellValue('p' . ($key + 2), "-");
+                $sheet->setCellValue('Q' . ($key + 2), "-");
+                $sheet->setCellValue('R' . ($key + 2), "-");
+                $sheet->setCellValue('S' . ($key + 2), "-");
+            }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('alumni' . $request->tahun_alumni . '.xlsx');
