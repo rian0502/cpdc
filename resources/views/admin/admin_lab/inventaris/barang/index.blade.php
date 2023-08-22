@@ -21,7 +21,6 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Barang</th>
                                     <th>Kategori</th>
                                     <th>Model</th>
                                     <th>Lokasi</th>
@@ -34,7 +33,6 @@
                                 @foreach ($barang as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->nama_barang }}</td>
                                         <td>{{ $item->modelBarang->kategori->nama_kategori }}</td>
                                         <td>{{ $item->modelBarang->nama_model }}</td>
                                         <td>{{ $item->lokasi->nama_lokasi }}</td>

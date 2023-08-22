@@ -13,7 +13,6 @@ class Barang extends Model
         'encrypt_id',
         'id_model',
         'id_lokasi',
-        'nama_barang',
         'jumlah_akhir',
         'created_at',
         'updated_at'

@@ -28,13 +28,6 @@
 
                         <div class="p-3 mb-2 bg-light text-dark rounded-div">
                             <div class="row">
-                                <label class="col-md-3 bold"> <strong> Nama Barang</strong></label>
-                                <div class="col-md-3">{{ $barang->nama_barang }}</div>
-                                <label class="col-md-3 bold"><b>Gedung / Lantai</b></label>
-                                <div class="col-md-3">
-                                    {{ $barang->lokasi->nama_gedung . ' / Lt-' . $barang->lokasi->lantai_tingkat }}</div>
-                            </div>
-                            <div class="row">
                                 <label class="col-md-3 bold"><b>Kategori</b></label>
                                 <div class="col-md-3">{{ $barang->modelBarang->kategori->nama_kategori }}</div>
                                 <label class="col-md-3 bold"> <strong> Lokasi</strong></label>
