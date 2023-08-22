@@ -54,7 +54,7 @@
                                     <label>
                                         Berkas Kelengkapan
                                         <small>
-                                            <a target="_blank" href="/uploads/syarat_seminar/{{ $syarat->path }}">Lihat Persyaratan</a>
+                                            <a target="_blank" href="/uploads/syarat_seminar/{{ $syarat->path_file }}">Lihat Persyaratan</a>
                                         </small>
                                     </label>
                                     <div class="custom-file mb-1">

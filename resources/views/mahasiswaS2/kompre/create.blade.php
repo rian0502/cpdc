@@ -74,7 +74,7 @@
                                     <label>
                                         Berkas Kelengkapan
                                         <small>
-                                            <a target="_blank" href="/uploads/syarat_seminar/{{ $syarat->path }}">Lihat
+                                            <a target="_blank" href="/uploads/syarat_seminar/{{ $syarat->path_file }}">Lihat
                                                 Persyaratan</a>
                                         </small>
                                     </label>
