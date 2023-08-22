@@ -455,6 +455,9 @@ class ExportData extends Controller
             $sheet->setCellValue('M' . ($key + 2), $value->kegiatanTerakhir->hubungan);
             $sheet->setCellValue('N' . ($key + 2), $value->kegiatanTerakhir->tempat);
         }
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('alumni' . $request->tahun_alumni . '.xlsx');
+        return response()->download('alumni' . $request->tahun_alumni . '.xlsx')->deleteFileAfterSend(true);
     }
     public function mahasiswa(Request $request)
     {
