@@ -55,9 +55,6 @@ class StoreProfileMahasiswa extends FormRequest
             'semester.numeric' => 'Semester Harus Berupa Angka',
             'semester.min' => 'Semester Minimal 1',
             'semester.max' => 'Semester Maksimal 14',
-
-
-
         ];
     }
 }
