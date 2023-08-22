@@ -100,7 +100,6 @@ class LokasiController extends Controller
     public function update(StoreLokasiRequest $request, $id)
     {
         //
-        return dd($request->all());
         $data = [
             'nama_lokasi' => $request->nama_lokasi,
             'nama_gedung' => $request->nama_gedung,
