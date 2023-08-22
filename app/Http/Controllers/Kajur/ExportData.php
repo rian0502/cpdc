@@ -141,7 +141,7 @@ class ExportData extends Controller
             $sheet->setCellValue('C' . ($key + 2), $item->mahasiswa->nama_mahasiswa);
             $sheet->setCellValue('D' . ($key + 2), $item->mahasiswa->status);
             $sheet->setCellValue('E' . ($key + 2), $item->mahasiswa->angkatan);
-            $sheet->setCellValue('F' . ($key + 2), $item->mahasiswa->dosen->nama_dosen);
+            $sheet->setCellValue('F' . ($key + 2), $item->mahasiswa->dosen->nama_dosen ?? '-');
             $sheet->setCellValue('G' . ($key + 2), $item->mahasiswa->seminar_kp ?  $item->mahasiswa->seminar_kp->status_seminar : '-');
             $sheet->setCellValue('H' . ($key + 2), $item->mahasiswa->ta_satu ?  $item->mahasiswa->ta_satu->status_koor : '-');
             $sheet->setCellValue('I' . ($key + 2), $item->mahasiswa->ta_dua ?  $item->mahasiswa->ta_dua->status_koor : '-');
