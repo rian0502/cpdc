@@ -44,7 +44,7 @@ class ControllerMahasiswaS2SeminarTaDua extends Controller
                     return redirect()->route("mahasiswa.seminarta2s2.index");
                 }
                 $data = [
-                    'syarat' => BerkasPersyaratanSeminar::find(3)
+                    'syarat' => BerkasPersyaratanSeminar::find(6),
                 ];
                 return view("mahasiswaS2.ta2.create", $data);
             } else {
@@ -144,7 +144,7 @@ class ControllerMahasiswaS2SeminarTaDua extends Controller
         $data = [
             'seminar' => ModelSeminarTaDuaS2::find(Crypt::decrypt($id)),
             'mahasiswa' => Auth::user()->mahasiswa,
-            'syarat' => BerkasPersyaratanSeminar::find(3),
+            'syarat' => BerkasPersyaratanSeminar::find(6),
             'dosens' => Dosen::where('status', 'Aktif')->get(),
         ];
         return view("mahasiswaS2.ta2.edit", $data);

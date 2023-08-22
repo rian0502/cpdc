@@ -17,7 +17,6 @@ return new class extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
             $table->string('encrypt_id')->unique()->nullable();
-            $table->string('nama_barang');
             $table->integer('jumlah_akhir');
             $table->foreignId('id_model')->index()->references('id')->on('model_barang')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('id_lokasi')->index()->references('id')->on('lokasi')->onDelete('cascade')->onUpdate('cascade');

@@ -48,6 +48,31 @@ class BerkasKelengkapanSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        DB::table('file_kelengkapan_seminar')->insert([
+            'id' => 5,
+            'encrypt_id' => Crypt::encrypt(5),
+            'nama_file' => 'Seminar Tesis 1',
+            'path_file' => 'syarat_seminar_tesis_1.pdf',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('file_kelengkapan_seminar')->insert([
+            'id' => 6,
+            'encrypt_id' => Crypt::encrypt(8),
+            'nama_file' => 'Seminar Tesis 2',
+            'path_file' => 'syarat_seminar_tesis_2.pdf',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('file_kelengkapan_seminar')->insert([
+            'id' => 7,
+            'encrypt_id' => Crypt::encrypt(7),
+            'nama_file' => 'Sidang Tesis',
+            'path_file' => 'syarat_sidang_tesis.pdf',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        
 
     }
 }

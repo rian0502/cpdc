@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
+        $this->call(BerkasKelengkapanSeeder::class);
         $this->call(RolePermision::class);
         $this->call(TemplateBaSeeder::class);
 
