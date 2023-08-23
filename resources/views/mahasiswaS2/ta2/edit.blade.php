@@ -155,7 +155,7 @@
                                                     {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id) == 'new' || $errors->has('pembimbimng_external_2'))
+                                            @if ((old('id_pembimbing_2') == 'new' || $seminar->id_pembimbing_2 == null) || $errors->has('pembimbimng_external_2'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
