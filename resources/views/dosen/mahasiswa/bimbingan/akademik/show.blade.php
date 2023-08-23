@@ -89,7 +89,7 @@
                                 </div>
                                 <label class="col-md-3 bold"><strong>Tempat Lahir</strong></label>
                                 <div class="col-md-3">
-                                    {{ $mahasiswa->alamat }}
+                                    {{ $mahasiswa->tempat_lahir }}
                                 </div>
                             </div>
                             <div class="row">
