@@ -4,9 +4,12 @@ namespace App\Http\Controllers\bimbingan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mahasiswa;
+use App\Models\ModelKompreS2;
 use App\Models\ModelSeminarKompre;
 use App\Models\ModelSeminarTaDua;
+use App\Models\ModelSeminarTaDuaS2;
 use App\Models\ModelSeminarTaSatu;
+use App\Models\ModelSeminarTaSatuS2;
 
 class MahasiswaBimbinganAkademikController extends Controller
 {
@@ -27,24 +30,45 @@ class MahasiswaBimbinganAkademikController extends Controller
 
     public function show($id)
     {
+
         $mahasiswa = Mahasiswa::where('npm', $id)->first();
-        $seminarTa1 = ModelSeminarTaSatu::where('id_mahasiswa', $mahasiswa->id)->first();
-        $seminarTa2 = ModelSeminarTaDua::where('id_mahasiswa', $mahasiswa->id)->first();
-        $sidangKompre = ModelSeminarKompre::where('id_mahasiswa', $mahasiswa->id)->first();
-        $data = [
-            'mahasiswa' => $mahasiswa,
-            'kp' => $mahasiswa->seminar_kp,
-            'ta1' => $mahasiswa->ta_satu,
-            'seminarTa1' => $seminarTa1,
-            'seminarTa2' => $seminarTa2,
-            'sidangKompre' => $sidangKompre,
-            'ba_ta1' => $seminarTa1 ? $seminarTa1->ba_seminar : null,
-            'ba_ta2' => $seminarTa2 ? $seminarTa2->ba_seminar : null,
-            'ba_kompre' => $sidangKompre ? $sidangKompre->beritaAcara : null,
-            'prestasi' => $mahasiswa->prestasi,
-            'aktivitas' => $mahasiswa->aktivitas,
-        ];
+        if ($mahasiswa->user->hasRole('mahasiswa')) {
+            $seminarTa1 = ModelSeminarTaSatu::where('id_mahasiswa', $mahasiswa->id)->first();
+            $seminarTa2 = ModelSeminarTaDua::where('id_mahasiswa', $mahasiswa->id)->first();
+            $sidangKompre = ModelSeminarKompre::where('id_mahasiswa', $mahasiswa->id)->first();
+            $data = [
+                'mahasiswa' => $mahasiswa,
+                'kp' => $mahasiswa->seminar_kp,
+                'ta1' => $mahasiswa->ta_satu,
+                'seminarTa1' => $seminarTa1,
+                'seminarTa2' => $seminarTa2,
+                'sidangKompre' => $sidangKompre,
+                'ba_ta1' => $seminarTa1 ? $seminarTa1->ba_seminar : null,
+                'ba_ta2' => $seminarTa2 ? $seminarTa2->ba_seminar : null,
+                'ba_kompre' => $sidangKompre ? $sidangKompre->beritaAcara : null,
+                'prestasi' => $mahasiswa->prestasi,
+                'aktivitas' => $mahasiswa->aktivitas,
+            ];
+            return view('dosen.mahasiswa.bimbingan.akademik.show', $data);
+        } elseif ($mahasiswa->user->hasRole('mahasiswaS2')) {
+            $mahasiswa = Mahasiswa::where('npm', $id)->first();
+            $seminarTa1 = ModelSeminarTaSatuS2::where('id_mahasiswa', $mahasiswa->id)->first();
+            $seminarTa2 = ModelSeminarTaDuaS2::where('id_mahasiswa', $mahasiswa->id)->first();
+            $sidangKompre = ModelKompreS2::where('id_mahasiswa', $mahasiswa->id)->first();
+            $data = [
+                'mahasiswa' => $mahasiswa,
+                'seminarTa1' => $seminarTa1,
+                'seminarTa2' => $seminarTa2,
+                'sidangKompre' => $sidangKompre,
+                'ba_ta1' => $seminarTa1 ? $seminarTa1->beritaAcara : null,
+                'ba_ta2' => $seminarTa2 ? $seminarTa2->beritaAcara : null,
+                'ba_kompre' => $sidangKompre ? $sidangKompre->beritaAcara : null,
+                'prestasi' => $mahasiswa->prestasi_s2,
+                'aktivitas' => $mahasiswa->aktivitas_s2,
+            ];
+            // return dd($data);
+            return view('dosen.mahasiswa.bimbingan.kompreS2.show', $data);
+        }
         // dd($data);
-        return view('dosen.mahasiswa.bimbingan.akademik.show', $data);
     }
 }
