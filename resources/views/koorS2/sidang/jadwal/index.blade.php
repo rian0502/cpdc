@@ -5,17 +5,7 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <h4 class="text-blue h4">Penjadwalan Sidang Komprehensif S2</h4>
-=======
                         <h4 class="text-blue h4">Penjadwalan Sidang Tesis</h4>
->>>>>>> a47b569c98fe0f348dde85a77f67ecd20d911834
-=======
-
-                        <h4 class="text-blue h4">Penjadwalan Sidang Tesis</h4>
-
->>>>>>> 7f72bce0c799fb9c87df96121dacce867c3fa446
                     </div>
                     <div class="pb-20 m-3">
 
@@ -77,11 +67,6 @@
                                                         role="button" data-toggle="dropdown">
                                                         <i class="fa fa-ellipsis-h"></i>
                                                     </a>
-
-                                                    {{-- DI KASIH KONDISI KLK UDAH TERJADWAL BAKAL MUNCUL EDIT JADWALKANNYA ILANG BEGITU JG SEBALIKNYA --}}
-
-
-                                                    {{-- NANTI FITUR EDIT KLK MAU EDIT BERARTI DOKUMEN YANG TERGENERATE AKAN TERPEBAHARUI JUGA --}}
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         @if ($item->jadwal)
                                                             <a class="dropdown-item"
