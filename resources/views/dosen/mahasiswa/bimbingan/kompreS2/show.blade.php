@@ -67,7 +67,7 @@
                                 </div>
                                 <label class="col-md-3 bold"><strong>Tempat Lahir</strong></label>
                                 <div class="col-md-3">
-                                    {{ $mahasiswa->alamat }}
+                                    {{ $mahasiswa->tempat_lahir }}
                                 </div>
 
                             </div>
@@ -729,12 +729,12 @@
                                                     <div class="row border-bottom mt-2">
                                                         <label class="col-md-3 bold mt-2"> <strong>Link Artikel</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <a href="{{$sidangKompre->url_draft_artikel}}"></a>
+                                                            <a href="{{$sidangKompre->url_draft_artikel}}">Lihat</a>
                                                         </div>
 
                                                         <label class="col-md-3 bold"> <strong>Draft Artikel</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                                            <a href="uploads/draft_artikel/{{$sidangKompre->draft_artikel}}"></a>
+                                                            <a href="uploads/draft_artikel/{{$sidangKompre->draft_artikel}}">Lihat</a>
                                                         </div>
                                                     </div>
                                                     <div class="row mt-2">
