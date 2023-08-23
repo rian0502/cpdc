@@ -99,7 +99,7 @@
 
                         </div>
                         @if ($seminar->status_admin != 'Valid')
-                            <a href="/mahasiswa/seminar/tugas_akhir_1/{{ $seminar->encrypt_id }}/edit">
+                            <a href="/mahasiswa/seminar/tugas_akhir_2/{{ $seminar->encrypt_id }}/edit">
                                 <button class="btn btn-primary right">Edit Data</button>
                             </a>
                         @endif

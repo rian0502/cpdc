@@ -145,6 +145,7 @@ class MahasiswaTaDuaController extends Controller
         //
         $data = [
             'dosens' => Dosen::select('encrypt_id', 'nama_dosen')->get(),
+            'seminar' => ModelSeminarTaDua::find(Crypt::decrypt($id)),
         ];
         return view('mahasiswa.ta2.edit', $data);
     }

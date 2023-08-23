@@ -162,7 +162,7 @@
                                                     {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id) == 'new' || $errors->has('pembimbimng_external_2'))
+                                            @if (in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id), ['new', null]) || $errors->has('pembimbimng_external_2'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
@@ -171,11 +171,11 @@
                                     </select>
                                 </div>
                                 <div id="pembimbimng_external_2"
-                                    style="display: {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id) == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id) == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id), ['new', null]) ? 'block' : 'none' }};"
+                                    {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id), ['new', null]) ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama Pembimbing 2</label>
-                                        <input autofocus name="pembimbimng_external_2" class="form-control @error('pembimbimng_external_2') form-control-danger @enderror" type="text"
+                                        <input autofocus name="pbl2_nama" class="form-control @error('pembimbimng_external_2') form-control-danger @enderror" type="text"
                                             value="{{ old('pembimbimng_external_2', $seminar->pembimbimng_external_2) }}"
                                             placeholder="Masukkan Nama Pembimbing 2">
                                         @error('pembimbimng_external_2')
@@ -184,8 +184,8 @@
                                     </div>
                                 </div>
                                 <div id="Pembimbing2"
-                                    style="display: {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null), ['new', null]) ? 'block' : 'none' }};"
+                                    {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null), ['new', null]) ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP Pembimbing 2</label>
                                         <input autofocus name="pbl2_nip" class="form-control @error('pbl2_nip') form-control-danger @enderror" type="text"
@@ -388,24 +388,24 @@
             select.add(option);
         }
     </script>
-<script>
-    @if (old('pembahas_external_1', $seminar->pembahas_external_1))
-        toggleInput(document.getElementById('pembahas_external_1'), 'pembahas1')
-    @endif
-</script>
-<script>
-    @if (old('pembahas_external_2', $seminar->pembahas_external_2))
-        toggleInput(document.getElementById('pembahas_external_2'), 'pembahas2')
-    @endif
-</script>
-<script>
-    @if (old('pembahas_external_3', $seminar->pembahas_external_3))
-        toggleInput(document.getElementById('pembahas_external_3'), 'pembahas3')
-    @endif
-</script>
-<script>
-    @if (old('pembimbimng_external_2', $seminar->pembimbimng_external_2))
-        toggleInput(document.getElementById('id_pembimbing_2'), 'Pembimbing2')
-    @endif
-</script>
+    <script>
+        @if (old('pembahas_external_1', $seminar->pembahas_external_1))
+            toggleInput(document.getElementById('id_pembahas_satu'), 'pembahas1')
+        @endif
+    </script>
+    <script>
+        @if (old('pembahas_external_2', $seminar->pembahas_external_2))
+            toggleInput(document.getElementById('id_pembahas_dua'), 'pembahas2')
+        @endif
+    </script>
+    <script>
+        @if (old('pembahas_external_3', $seminar->pembahas_external_3))
+            toggleInput(document.getElementById('id_pembahas_tiga'), 'pembahas3')
+        @endif
+    </script>
+    <script>
+        @if (old('pembimbing_external_2', $seminar->pbl2_nama))
+            toggleInput(document.getElementById('id_pembimbing_2'), 'Pembimbing2')
+        @endif
+    </script>
 @endsection
