@@ -148,14 +148,15 @@
                                     <select
                                         class="custom-select2 form-control @error('id_pembimbing_2') form-control-danger @enderror"
                                         name="id_pembimbing_2" id="id_pembimbing_2" style="width: 100%; height: 38px"
-                                        onchange="toggleInput(this, 'Pembimbing2', 'pembimbimng_external_2')">
+                                        onchange="toggleInput(this, 'Pembimbing2', 'pembimbing_external_2')">
                                         <optgroup label="Pembahas 1">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
                                                     {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (old('id_pembimbing_2') == 'new' || $seminar->id_pembimbing_2 == null || $errors->has('pembimbimng_external_2'))
+                                            @if (in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null), ['new', null]) ||
+                                                    $errors->has('pembimbing_external_2'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
@@ -163,24 +164,24 @@
                                         </optgroup>
                                     </select>
                                 </div>
-                                <div id="pembimbimng_external_2"
-                                    style="display: {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == 'new' ? '' : 'hidden' }}>
+                                <div id="pembimbing_external_2"
+                                    style="display: {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null), ['new', null]) ? 'block' : 'none' }};"
+                                    {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null), ['new', null]) ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama Pembimbing 2</label>
-                                        <input autofocus name="pembimbimng_external_2"
-                                            class="form-control @error('pembimbimng_external_2') form-control-danger @enderror"
+                                        <input autofocus name="pembimbing_external_2"
+                                            class="form-control @error('pembimbing_external_2') form-control-danger @enderror"
                                             type="text"
-                                            value="{{ old('pembimbimng_external_2', $seminar->pembimbimng_external_2) }}"
+                                            value="{{ old('pembimbing_external_2', $seminar->pbl2_nama) }}"
                                             placeholder="Masukkan Nama Pembimbing 2">
-                                        @error('pembimbimng_external_2')
+                                        @error('pembimbing_external_2')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div id="Pembimbing2"
-                                    style="display: {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null), ['new', null]) ? 'block' : 'none' }};"
+                                    {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null), ['new', null]) ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP Pembimbing 2</label>
                                         <input autofocus name="pbl2_nip"
@@ -418,7 +419,7 @@
         @endif
     </script>
     <script>
-        @if (old('pembimbimng_external_2', $seminar->pembimbimng_external_2))
+        @if (old('pembimbing_external_2', $seminar->pbl2_nama))
             toggleInput(document.getElementById('id_pembimbing_2'), 'Pembimbing2')
         @endif
     </script>
