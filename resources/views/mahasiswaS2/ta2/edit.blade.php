@@ -155,7 +155,7 @@
                                                     {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if ((old('id_pembimbing_2') == 'new' || $seminar->id_pembimbing_2 == null) || $errors->has('pembimbimng_external_2'))
+                                            @if (old('id_pembimbing_2') == 'new' || $seminar->id_pembimbing_2 == null || $errors->has('pembimbimng_external_2'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
@@ -164,8 +164,8 @@
                                     </select>
                                 </div>
                                 <div id="pembimbimng_external_2"
-                                    style="display: {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id) == 'new' ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id) == 'new' ? '' : 'hidden' }}>
+                                    style="display: {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == 'new' ? 'block' : 'none' }};"
+                                    {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == 'new' ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama Pembimbing 2</label>
                                         <input autofocus name="pembimbimng_external_2"
