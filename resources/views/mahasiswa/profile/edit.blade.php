@@ -201,7 +201,7 @@
                                         <optgroup label="Dosen Pembimbing Akademik">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ $mahasiswa->id_dosen == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ $mahasiswa->dosen->encrypt_id == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
                                         </optgroup>
