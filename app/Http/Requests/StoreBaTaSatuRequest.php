@@ -30,8 +30,8 @@ class StoreBaTaSatuRequest extends FormRequest
             'no_berkas_ba_seminar_ta_satu' => 'required|string|max:255',
             'huruf_mutu' => ['required', 'string'],
             'berkas_ppt_seminar_ta_satu' => 'required|url',
-            'berkas_ba_seminar_ta_satu' => 'required|mimes:pdf|max:2048',
-            'berkas_nilai_seminar_ta_satu' => 'required|mimes:pdf|max:2048',
+            'berkas_ba_seminar_ta_satu' => 'required|mimes:pdf|max:1048',
+            'berkas_nilai_seminar_ta_satu' => 'required|mimes:pdf|max:1048',
             'tgl_realisasi_seminar' => 'required|date',
         ];
     }

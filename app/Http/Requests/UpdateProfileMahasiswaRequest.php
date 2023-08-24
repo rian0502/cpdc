@@ -35,7 +35,7 @@ class UpdateProfileMahasiswaRequest extends FormRequest
             'angkatan' => 'required|numeric|digits:4',
             'semester' => 'required|numeric|digits_between:1,2',
             'id_dosen' => 'required|exists:dosen,encrypt_id',
-            'foto_profile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto_profile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1048',
         ];
     }
     public function messages()

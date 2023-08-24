@@ -32,7 +32,7 @@ class UpdateProfileAdminRequest extends FormRequest
             'tempat_lahir' => 'required|string|min:3|max:255',
             'tanggal_lahir' => 'required|date',
             'gender' => 'required|in:Laki-laki,Perempuan',
-            'foto_profile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto_profile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1048',
         ];
     }
     public function messages()

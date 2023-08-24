@@ -28,7 +28,7 @@ class StorePangkatAdmin extends FormRequest
         return [
             'kepangkatan' => ['required', 'string', 'in:' . implode(',', $pangkat)],
             'tanggal_sk' => ['required', 'date'],
-            'file_sk' => ['required', 'file', 'mimes:pdf', 'max:2048'],
+            'file_sk' => ['required', 'file', 'mimes:pdf', 'max:1048'],
         ];
     }
 

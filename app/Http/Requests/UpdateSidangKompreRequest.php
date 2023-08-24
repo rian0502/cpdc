@@ -35,7 +35,7 @@ class UpdateSidangKompreRequest extends FormRequest
             'toefl' => 'required|numeric|min:0|max:677',
             'judul_ta' => 'required|string|max:255|min:5',
             'agreement' => 'required',
-            'berkas_kompre' => 'nullable|mimes:pdf|max:2048'
+            'berkas_kompre' => 'nullable|mimes:pdf|max:1048'
         ];
     }
     public function messages()
@@ -65,7 +65,7 @@ class UpdateSidangKompreRequest extends FormRequest
             'judul_ta.min' => 'Judul TA minimal 5 karakter',
             'agreement.required' => 'Agreement harus di ceklis',
             'berkas_kompre.mimes' => 'Berkas seminar harus berupa pdf',
-            'berkas_kompre.max' => 'Berkas seminar maksimal 2MB',
+            'berkas_kompre.max' => 'Berkas seminar maksimal 1MB',
         ];
     }
 }

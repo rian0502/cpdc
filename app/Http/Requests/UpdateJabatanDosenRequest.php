@@ -28,7 +28,7 @@ class UpdateJabatanDosenRequest extends FormRequest
         return [
             'jabatan' => 'required|string|in:"' . implode('","', $jaban) . '"',
             'tanggal_sk' => 'required|date:Y-m-d',
-            'file_sk' => 'nullable|file|mimes:pdf|max:2048',
+            'file_sk' => 'nullable|file|mimes:pdf|max:1048',
         ];
     }
     public function messages()

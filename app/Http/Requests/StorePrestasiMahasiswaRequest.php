@@ -31,7 +31,7 @@ class StorePrestasiMahasiswaRequest extends FormRequest
             'scala' => 'required|in:' . implode(',', $scala),
             'capaian' => 'required|in:' . implode(',', $capaian),
             'tanggal' => 'required|date',
-            'file_prestasi' => 'required|mimes:pdf|max:2048'
+            'file_prestasi' => 'required|mimes:pdf|max:1048'
         ];
     }
     public function messages()
