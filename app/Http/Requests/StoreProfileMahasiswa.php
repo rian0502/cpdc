@@ -37,6 +37,7 @@ class StoreProfileMahasiswa extends FormRequest
     {
         return [
             'foto_profile.max' => 'Maximal 1MB',
+            'foto_profile.image' => 'Format Gambar Harus jpeg,png,jpg,gif,svg',
             'foto_profile.mimes' => 'Format Gambar Harus jpeg,png,jpg,gif,svg',
             'foto_profile.required' => 'Foto Profile Harus diunggah',
             'tanggal_lahir.required' => 'Tanggal Lahir Harus diisi',
