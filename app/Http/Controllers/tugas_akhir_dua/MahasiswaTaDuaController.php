@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\tugas_akhir_dua;
 
-use Faker\Factory;
 use App\Models\Dosen;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -228,14 +227,4 @@ class MahasiswaTaDuaController extends Controller
         return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('success', 'Berhasil Mengubah data Seminar Tugas Akhir 2');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
