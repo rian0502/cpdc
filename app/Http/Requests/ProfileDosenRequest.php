@@ -40,7 +40,7 @@ class ProfileDosenRequest extends FormRequest
             'kepangkatan' => ['required', 'string', 'max:255', 'in: ' . implode(',', $kepangkatan)],
             'tanggal_sk_pangkat' => 'required|date',
             'file_sk_pangkat' => 'nullable|mimes:pdf|max:2048',
-            'foto_profile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto_profile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1048',
         ];
     }
 
