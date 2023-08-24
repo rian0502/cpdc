@@ -32,9 +32,9 @@ class StorePendataanAlumniRequest extends FormRequest
             'masa_studi' => ['required', 'numeric', 'min:0'],
             'periode_wisuda' => 'required|string',
             'toefl' => ['required', 'numeric', 'min:0', 'max:677'],
-            'berkas_pengesahan' => 'required|mimes:pdf|max:2048',
-            'transkrip' => 'required|mimes:pdf|max:2048',
-            'berkas_toefl' => 'required|mimes:pdf|max:2048',
+            'berkas_pengesahan' => 'required|mimes:pdf|max:1048',
+            'transkrip' => 'required|mimes:pdf|max:1048',
+            'berkas_toefl' => 'required|mimes:pdf|max:1048',
         ];
     }
     public function messages()

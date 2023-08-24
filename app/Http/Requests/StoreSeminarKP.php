@@ -38,7 +38,7 @@ class StoreSeminarKP extends FormRequest
             'rencana_seminar' => ['required'],
             'toefl' => ['nullable','numeric', 'max:600'],
             'ipk' => ['required', 'numeric', 'max:4', 'min:1'],
-            'berkas_seminar_pkl' => ['required', 'mimes:pdf', 'max:2048'],
+            'berkas_seminar_pkl' => ['required', 'mimes:pdf', 'max:1048'],
             'agreement' => ['required'],
         ];
     }

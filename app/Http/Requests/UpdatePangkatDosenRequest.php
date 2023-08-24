@@ -38,7 +38,7 @@ class UpdatePangkatDosenRequest extends FormRequest
         return [
             'kepangkatan' => 'required|string|in:' . implode(',', $pangkat),
             'tgl_sk' => 'required|date',
-            'file_sk' => ['nullable', 'file', 'mimes:pdf', 'max:2048'],
+            'file_sk' => ['nullable', 'file', 'mimes:pdf', 'max:1048'],
         ];
     }
     public function messages()

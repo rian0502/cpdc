@@ -31,7 +31,7 @@ class UpdatePrestasiMahasiswaRequest extends FormRequest
             'scala' => 'required|in:' . implode(',', $scala),
             'capaian' => 'required|in:' . implode(',', $capaian),
             'tanggal' => 'required|date',
-            'file_prestasi' => 'nullable|mimes:pdf|max:2048'
+            'file_prestasi' => 'nullable|mimes:pdf|max:1048'
         ];
     }
 

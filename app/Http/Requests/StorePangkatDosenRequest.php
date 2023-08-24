@@ -38,7 +38,7 @@ class StorePangkatDosenRequest extends FormRequest
         return [
             'kepangkatan' => 'required|string|in:' . implode(',', $pangkat),
             'tanggal_sk' => 'required|date',
-            'file_sk' => 'required|file|mimes:pdf|max:2048',
+            'file_sk' => 'required|file|mimes:pdf|max:1048',
         ];
     }
 
@@ -53,7 +53,7 @@ class StorePangkatDosenRequest extends FormRequest
             'file_sk.required' => 'File SK tidak boleh kosong',
             'file_sk.file' => 'File SK tidak valid',
             'file_sk.mimes' => 'File SK harus berupa PDF',
-            'file_sk.max' => 'File SK maksimal 2MB',
+            'file_sk.max' => 'File SK maksimal 1MB',
         ];
     }
 }

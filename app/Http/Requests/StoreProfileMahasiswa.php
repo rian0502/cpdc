@@ -30,7 +30,7 @@ class StoreProfileMahasiswa extends FormRequest
             'tanggal_masuk' => 'required|date',
             'tempat_lahir' => 'required|string|min:3|max:255',
             'semester' => 'required|numeric|min:1|max:14',
-            'foto_profile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto_profile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1048',
         ];
     }
     public function messages()

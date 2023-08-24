@@ -34,7 +34,7 @@ class StoreProfileAdminRequest extends FormRequest
             'alamat' => 'required|string|min:3|max:255',
             'tanggal_sk' => 'required|date',
             'kepangkatan' => ['required','string','in:"' . implode('","', $pangkat) . '"'],
-            'file_sk' => 'required|mimes:pdf|max:2048',
+            'file_sk' => 'required|mimes:pdf|max:1048',
             'gender' => 'required|in:Laki-laki,Perempuan',
         ];
     }
