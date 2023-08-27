@@ -45,27 +45,27 @@
                                 <td class="center-align">{{ $item->jam_mulai }} -
                                     {{ $item->jam_selesai }} WIB</td>
                                 <td>{{ $item->lokasi->nama_lokasi }}</td>
-                                <td class="center-align"> : {{ $item->seminar->judul_ta }}</td>
-                                <td class="center-align"> : {{ $item->seminar->pembimbingSatu->nama_dosen }}</td>
+                                <td class="center-align"> {{ $item->seminar->judul_ta }}</td>
+                                <td class="center-align"> {{ $item->seminar->pembimbingSatu->nama_dosen }}</td>
                                 @if ($item->seminar->id_pembimbing_2)
-                                    <td class="center-align"> : {{ $item->seminar->pembimbingDua->nama_dosen }}</td>
+                                    <td class="center-align"> {{ $item->seminar->pembimbingDua->nama_dosen }}</td>
                                 @else
-                                    <td class="center-align"> : {{ $item->seminar->pbl2_nama }}</td>
+                                    <td class="center-align"> {{ $item->seminar->pbl2_nama }}</td>
                                 @endif
                                 @if ($item->seminar->id_pembahas_1)
-                                    <td class="center-align"> : {{ $item->seminar->pembahasSatu->nama_dosen }}</td>
+                                    <td class="center-align"> {{ $item->seminar->pembahasSatu->nama_dosen }}</td>
                                 @else
-                                    <td class="center-align"> : {{ $item->seminar->pembahas_external_1 }}</td>
+                                    <td class="center-align"> {{ $item->seminar->pembahas_external_1 }}</td>
                                 @endif
                                 @if ($item->seminar->id_pembahas_2)
-                                    <td class="center-align"> : {{ $item->seminar->pembahasDua->nama_dosen }}</td>
+                                    <td class="center-align"> {{ $item->seminar->pembahasDua->nama_dosen }}</td>
                                 @else
-                                    <td class="center-align"> : {{ $item->seminar->pembahas_external_2 }}</td>
+                                    <td class="center-align"> {{ $item->seminar->pembahas_external_2 }}</td>
                                 @endif
                                 @if ($item->seminar->id_pembahas_3)
-                                    <td class="center-align"> : {{ $item->seminar->pembahasTiga->nama_dosen }}</td>
+                                    <td class="center-align"> {{ $item->seminar->pembahasTiga->nama_dosen }}</td>
                                 @else
-                                    <td class="center-align"> : {{ $item->seminar->pembahas_external_3 }}</td>
+                                    <td class="center-align"> {{ $item->seminar->pembahas_external_3 }}</td>
                                 @endif
                             </tr>
                         @endforeach
