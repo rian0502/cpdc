@@ -8,7 +8,7 @@
                         <h4 class="text-blue h4">Penjadwalan Seminar Tesis 1</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export">
+                        <table class="table data-table-responsive stripe data-table-noexport">
                             <thead>
                                 <tr>
                                     <th>No</th>
