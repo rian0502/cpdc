@@ -71,10 +71,10 @@ class LabController extends Controller
         $id = Crypt::encrypt($insert->id);
         $update = Laboratorium::where('id', $insert->id)->update(['encrypted_id' => $id]);
         if ($request->keperluan == "Praktikum") {
-            for ($i = 0; $i < count($request->anggota_asistensi); $i++) {
+            foreach ($request->anggota_asistensi as $anggota) {
                 $data = [
                     'id_actity_lab' => $activity,
-                    'id_mahasiswa' => $request->anggota_asistensi[$i],
+                    'id_mahasiswa' => $anggota,
                 ];
                 $insert = ModelsAsistenLab::create($data);
             }
@@ -102,7 +102,8 @@ class LabController extends Controller
         return view('admin.admin_lab.lab.show', $data);
     }
 
-    public function showAsistensi($npm){
+    public function showAsistensi($npm)
+    {
         $mahasiswa = Mahasiswa::where('npm', $npm)->first();
         $data = [
             'mahasiswa' => $mahasiswa,
