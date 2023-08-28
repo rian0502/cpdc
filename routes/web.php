@@ -423,8 +423,8 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::resource('resetSeminarS2', ResetTAS2::class);
     Route::get('resetSeminar', [ResetTA::class, 'index'])->name('reset.seminar.index');
     Route::get('resetSeminarS2', [ResetTAS2::class, 'index'])->name('reset.seminarS2.index');
-    Route::delete('delete/{id}', [ResetTA::class, 'destroy'])->name('reset.seminar.destroy');
-    Route::delete('delete/{id}', [ResetTAS2::class, 'destroy'])->name('reset.seminarS2.destroy');
+    Route::delete('resetSeminar/delete/{id}', [ResetTA::class, 'destroy'])->name('reset.seminar.destroy');
+    Route::delete('resetSeminarS2/delete/{id}', [ResetTAS2::class, 'destroy'])->name('reset.seminarS2.destroy');
 });
 
 Route::get('/', function () {
