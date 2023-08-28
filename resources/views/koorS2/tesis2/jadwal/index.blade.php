@@ -9,7 +9,7 @@
                     </div>
                     <div class="pb-20 m-3">
 
-                        <table class="table data-table-responsive stripe data-table-export">
+                        <table class="table data-table-responsive stripe data-table-noexport">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -67,7 +67,7 @@
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                     @if ($item->jadwal)
+                                                    @if ($item->jadwal)
                                                         <a class="dropdown-item"
                                                             href="{{ route('koor.jadwalTA2S2.edit', $item->encrypt_id) }}"><i
                                                                 class="dw dw-edit2"></i>

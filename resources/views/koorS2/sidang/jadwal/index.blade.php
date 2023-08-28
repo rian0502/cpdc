@@ -9,7 +9,7 @@
                     </div>
                     <div class="pb-20 m-3">
 
-                        <table class="table data-table-responsive stripe data-table-export">
+                        <table class="table data-table-responsive stripe data-table-noexport">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -63,36 +63,29 @@
 
                                             <td>
                                                 <div class="dropdown">
-                                                    <a class="btn btn-outline-primary dropdown-toggle" href="#"
-                                                        role="button" data-toggle="dropdown">
-                                                        <i class="fa fa-ellipsis-h"></i>
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                        data-color="#1b3133" href="#" role="button"
+                                                        data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
                                                     </a>
-                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                         @if ($item->jadwal)
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalKompreS2.edit', $item->encrypt_id) }}"><i
-                                                                    class="fa fa-pencil"></i>
+                                                            <a class="dropdown-item" href="{{ route('koor.jadwalKompreS2.edit', $item->encrypt_id) }}"><i
+                                                                    class="dw dw-edit2"></i>
                                                                 Edit</a>
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalSidangS2.resend', $item->encrypt_id) }}"><i
-                                                                    class="fa fa-share"></i>
+                                                            <a class="dropdown-item" href="{{ route('koor.jadwalSidangS2.resend', $item->encrypt_id) }}"><i
+                                                                    class="dw dw-share"></i>
                                                                 Kirim Kembali</a>
                                                         @else
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalKompreS2.create', $item->encrypt_id) }}"><i
-                                                                    class="bi bi-calendar-plus-fill"></i>
-                                                                Jadwalkan</a>
+                                                            <a class="dropdown-item" href="{{ route('koor.jadwalKompreS2.create', $item->encrypt_id) }}"><i
+                                                                    class="dw dw-calendar-1"></i> Jadwalkan</a>
                                                         @endif
-
-
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                     @endif
                                 @endforeach
-
-
 
                             </tbody>
                         </table>
