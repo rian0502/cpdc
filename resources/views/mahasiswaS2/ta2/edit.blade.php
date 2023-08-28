@@ -169,12 +169,11 @@
                                     {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null), ['new', null]) ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama Pembimbing 2</label>
-                                        <input autofocus name="pembimbing_external_2"
-                                            class="form-control @error('pembimbing_external_2') form-control-danger @enderror"
-                                            type="text"
-                                            value="{{ old('pembimbing_external_2', $seminar->pbl2_nama) }}"
+                                        <input autofocus name="pbl2_nama"
+                                            class="form-control @error('pbl2_nama') form-control-danger @enderror"
+                                            type="text" value="{{ old('pbl2_nama', $seminar->pbl2_nama) }}"
                                             placeholder="Masukkan Nama Pembimbing 2">
-                                        @error('pembimbing_external_2')
+                                        @error('pbl2_nama')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -420,7 +419,7 @@
         @endif
     </script>
     <script>
-        @if (old('pembimbing_external_2', $seminar->pbl2_nama))
+        @if (old('pbl2_nama', $seminar->pbl2_nama))
             toggleInput(document.getElementById('id_pembimbing_2'), 'Pembimbing2')
         @endif
     </script>
