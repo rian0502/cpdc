@@ -153,7 +153,6 @@ class ControllerMahasiswaS2SidangKompre extends Controller
             'seminar' => $seminar,
             'dosens' => Dosen::where('status', 'Aktif')->get(),
         ];
-        return dd($data['seminar']);
         return view("mahasiswaS2.kompre.edit", $data);
     }
 
