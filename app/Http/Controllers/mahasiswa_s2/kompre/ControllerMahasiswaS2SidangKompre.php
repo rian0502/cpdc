@@ -180,6 +180,17 @@ class ControllerMahasiswaS2SidangKompre extends Controller
             $seminar->pbl2_nama = null;
             $seminar->pbl2_nip = null;
         } else {
+            $request->validate([
+                'pbl2_nama' => 'required|string|max:255',
+                'pbl2_nip' => 'required|string|max:255',
+            ], [
+                'pbl2_nama.required' => 'Nama Pembimbing 2 harus diisi',
+                'pbl2_nama.string' => 'Nama Pembimbing 2 harus berupa kata',
+                'pbl2_nama.max' => 'Nama Pembimbing 2 maksimal 255 karakter',
+                'pbl2_nip.required' => 'NIP Pembimbing 2 harus diisi',
+                'pbl2_nip.string' => 'NIP Pembimbing 2 harus berupa kata',
+                'pbl2_nip.max' => 'NIP Pembimbing 2 maksimal 255 karakter'
+            ]);
             $seminar->id_pembimbing_2 = null;
             $seminar->pbl2_nama = $request->pbl2_nama;
             $seminar->pbl2_nip = $request->pbl2_nip;
