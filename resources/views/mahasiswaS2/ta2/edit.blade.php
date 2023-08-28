@@ -248,6 +248,7 @@
                                         @enderror
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label>Pembahas 2</label>
                                     <select
@@ -272,7 +273,6 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
                                 <div id="pembahas_external_2"
                                     style="display: {{ in_array(old('id_pembahas_2', $seminar->pembahasDua->encrypt_id ?? null), ['new', null]) ? 'block' : 'none' }};"
                                     {{ in_array(old('id_pembahas_2', $seminar->pembahasDua->encrypt_id ?? null), ['new', null]) ? '' : 'hidden' }}>
@@ -303,6 +303,7 @@
                                         @enderror
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label>Pembahas 3</label>
                                     <select
@@ -324,7 +325,6 @@
                                         </optgroup>
                                     </select>
                                 </div>
-
                                 <div id="pembahas_external_3"
                                     style="display: {{ in_array(old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id ?? null), ['new', null]) ? 'block' : 'none' }};"
                                     {{ in_array(old('id_pembahas_3', $seminar->pembahasTiga->encrypt_id ?? null), ['new', null]) ? '' : 'hidden' }}>
@@ -355,6 +355,7 @@
                                         @enderror
                                     </div>
                                 </div>
+
                                 <div class="form-group" id="form-mobile">
                                     <label class="weight-600">Persetujuan</label>
                                     <div class="custom-control custom-checkbox mb-5">
