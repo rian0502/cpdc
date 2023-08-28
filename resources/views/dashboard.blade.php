@@ -527,7 +527,7 @@
             @role('ta2')
                 <div class="row pb-10">
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <a href="{{route('koor.jadwalTA2.index')}}"></a>
+                        <a href="{{ route('koor.jadwalTA2.index') }}"></a>
                         <div class="card-box height-100-p widget-style3">
                             <div class="d-flex flex-wrap" style="width: -300px">
                                 <div class="widget-data">
@@ -549,23 +549,23 @@
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                         <a href="{{ route('koor.validasiBaTA2.index') }}">
-                        <div class="card-box height-100-p widget-style3 ">
-                            <div class="d-flex flex-wrap">
-                                <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark">
-                                        {{ $invalid_berkas }}
+                            <div class="card-box height-100-p widget-style3 ">
+                                <div class="d-flex flex-wrap">
+                                    <div class="widget-data">
+                                        <div class="weight-700 font-24 text-dark">
+                                            {{ $invalid_berkas }}
+                                        </div>
+                                        <div class="font-14 text-secondary weight-500">
+                                            Belum Valid
+                                        </div>
                                     </div>
-                                    <div class="font-14 text-secondary weight-500">
-                                        Belum Valid
-                                    </div>
-                                </div>
-                                <div class="widget-icon ">
-                                    <div class="icon">
-                                        <i class="fas fa-tasks"></i>
+                                    <div class="widget-icon ">
+                                        <div class="icon">
+                                            <i class="fas fa-tasks"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         </a>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
@@ -628,7 +628,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <a href="{{route('koor.validasiBaKompre.index')}}"></a>
+                        <a href="{{ route('koor.validasiBaKompre.index') }}"></a>
                         <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
@@ -768,7 +768,7 @@
             @role('ta2S2')
                 <div class="row pb-10">
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <a href="{{route('koor.jadwalTA2S2.index')}}"></a>
+                        <a href="{{ route('koor.jadwalTA2S2.index') }}"></a>
                         <div class="card-box height-100-p widget-style3">
                             <div class="d-flex flex-wrap" style="width: -300px">
                                 <div class="widget-data">
@@ -790,23 +790,23 @@
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                         <a href="{{ route('koor.ValidasiBaTa2S2.index') }}">
-                        <div class="card-box height-100-p widget-style3 ">
-                            <div class="d-flex flex-wrap">
-                                <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark">
-                                        {{ $invalid_berkas_s2_ta2 }}
+                            <div class="card-box height-100-p widget-style3 ">
+                                <div class="d-flex flex-wrap">
+                                    <div class="widget-data">
+                                        <div class="weight-700 font-24 text-dark">
+                                            {{ $invalid_berkas_s2_ta2 }}
+                                        </div>
+                                        <div class="font-14 text-secondary weight-500">
+                                            Belum Valid
+                                        </div>
                                     </div>
-                                    <div class="font-14 text-secondary weight-500">
-                                        Belum Valid
-                                    </div>
-                                </div>
-                                <div class="widget-icon ">
-                                    <div class="icon">
-                                        <i class="fas fa-tasks"></i>
+                                    <div class="widget-icon ">
+                                        <div class="icon">
+                                            <i class="fas fa-tasks"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         </a>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
@@ -869,7 +869,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <a href="{{route('koor.ValidasiBaKompreS2.index')}}"></a>
+                        <a href="{{ route('koor.ValidasiBaKompreS2.index') }}"></a>
                         <div class="card-box height-100-p widget-style3 ">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
@@ -1086,7 +1086,78 @@
                     <div id="chart_seminar2S2"></div>
                 </div>
             @endrole
-
+            @role(['alumniS2', 'mahasiswaS2'])
+                <div class="row pb-10">
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <div class="d-flex flex-wrap" style="width: -300px">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $jumlah_prestasi_s2 }}</div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Prestasi
+                                    </div>
+                                </div>
+                                <div class="widget-icon">
+                                    <div class="icon" data-color="#fff">
+                                        <i class="icon-copy dw dw-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ $jumlah_aktivitas_s2 }}</div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Kegiatan Tambahan
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon">
+                                        <i class="icon-copy ion ion-ribbon-b" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ Auth::user()->mahasiswa->semester }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">
+                                        Semester
+                                    </div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <span class="icon-copy fa-solid fa-bookmark"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3 ">
+                            <div class="d-flex flex-wrap">
+                                <div class="widget-data">
+                                    <div class="weight-700 font-24 text-dark">{{ Auth::user()->mahasiswa->status }}
+                                    </div>
+                                    <div class="font-14 text-secondary weight-500">Status</div>
+                                </div>
+                                <div class="widget-icon ">
+                                    <div class="icon" data-color="#fffff">
+                                        <i class="icon-copy fa-solid fa-user" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endrole
             @role(['alumni', 'mahasiswa'])
                 <div class="row pb-10">
                     <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
@@ -1537,8 +1608,8 @@
                         data; // Tambahkan variabel chartData untuk menyimpan data yang diterima dari respons
 
                     var options = {
-                        credits:{
-                            enabled:false
+                        credits: {
+                            enabled: false
                         },
                         chart: {
                             type: 'pie',
@@ -1594,8 +1665,8 @@
                     dataType: "json",
                     success: function(data) {
                         var options = {
-                            credits:{
-                                enabled:false
+                            credits: {
+                                enabled: false
                             },
                             chart: {
                                 type: 'pie',
@@ -1652,8 +1723,8 @@
                     dataType: "json",
                     success: function(data) {
                         var options = {
-                            credits:{
-                                enabled:false
+                            credits: {
+                                enabled: false
                             },
                             chart: {
                                 type: 'pie',
@@ -1734,8 +1805,8 @@
 
                         // console.log(data);
                         var options = {
-                            credits:{
-                                enabled:false
+                            credits: {
+                                enabled: false
                             },
                             chart: {
                                 type: 'column'
@@ -1964,8 +2035,8 @@
                     }];
 
                     var options = {
-                        credits:{
-                            enabled:false
+                        credits: {
+                            enabled: false
                         },
                         chart: {
                             type: 'column'
@@ -2061,8 +2132,8 @@
                     }];
 
                     var options = {
-                        credits:{
-                            enabled:false
+                        credits: {
+                            enabled: false
                         },
                         chart: {
                             type: 'column'
