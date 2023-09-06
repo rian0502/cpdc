@@ -117,7 +117,7 @@ class AkunAdminController extends Controller
             $account->password = bcrypt($request->password);
         }
         $admin->status = $request->status;
-        $account->syncRoles = $request->role;
+        $account->syncRoles($request->role);
         $admin->save();
         $account->save();
         return redirect()->route('sudo.akun_admin.index')->with('success', 'Akun Admin berhasil diubah');
