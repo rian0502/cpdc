@@ -78,7 +78,6 @@ class MahasiswaTaSatuController extends Controller
             'id_pembimbing_satu' => Crypt::decrypt($request->id_pembimbing_satu),
             'id_pembahas' => Crypt::decrypt($request->pembahas),
             'id_mahasiswa' => Auth::user()->mahasiswa->id,
-            'status_admin' => 'Valid',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
@@ -113,19 +112,6 @@ class MahasiswaTaSatuController extends Controller
         $update = ModelSeminarTaSatu::find($store_id);
         $update->encrypt_id = Crypt::encrypt($store_id);
         $update->save();
-        //untuk mahasiswa 19
-        $faker = \Faker\Factory::create('id_ID');
-        $jadwal = ModelJadwalSeminarTaSatu::create([
-            'tanggal_seminar_ta_satu' => date('Y-m-d'),
-            'jam_mulai_seminar_ta_satu' => date('H:i'),
-            'jam_selesai_seminar_ta_satu' => date('H:i'),
-            'id_lokasi' => $faker->numberBetween(1, 5),
-            'id_seminar' => $store_id,
-        ]);
-        $jadwal_id = $jadwal->id;
-        $update_jadwal = ModelJadwalSeminarTaSatu::find($jadwal_id);
-        $update_jadwal->encrypt_id = Crypt::encrypt($jadwal_id);
-        $update_jadwal->save();
         return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('success', 'Berhasil Mendaftar Seminar Tugas Akhir 1');
     }
 

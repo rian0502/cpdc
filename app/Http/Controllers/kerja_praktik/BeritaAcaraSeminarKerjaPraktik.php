@@ -31,9 +31,6 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
         $replace_akd = str_replace(',', '.', $request->nilai_akd);
         $replace_akhir = str_replace(',', '.', $request->nilai_akhir);
         $skp = ModelSeminarKP::where('id_mahasiswa', Auth::user()->mahasiswa->id)->first();
-        //kode untuk mahasiswa 2019
-        $skp->status_seminar = 'Selesai';
-        $skp->save();
         $file_ba = $request->file('berkas_ba_seminar_kp');
         $file_laporan = $request->file('laporan_kp');
         $nama_file_ba = $file_ba->hashName();

@@ -49,16 +49,12 @@ class MahasiswaBaTaDua extends Controller
             return redirect()->back();
         } else {
             $seminar = Auth::user()->mahasiswa->ta_dua;
-            $ta2 = ModelSeminarTaDua::where('id_mahasiswa', Auth::user()->mahasiswa->id)->first();
-            $ta2->status_koor = 'Selesai';
-            $ta2->save();
             $ba = $request->file('berkas_ba_seminar_ta_dua');
             $file_ba = $ba->hashName();
             $nilai = $request->file('berkas_nilai_seminar_ta_dua');
             $file_nilai = $nilai->hashName();
             $ba->move(('uploads/ba_seminar_ta_dua/'), $file_ba);
             $nilai->move(('uploads/nilai_seminar_ta_dua/'), $file_nilai);
-
             $data = [
                 'no_berkas_ba_seminar_ta_dua' => $request->no_berkas_ba_seminar_ta_dua,
                 'berkas_ba_seminar_ta_dua' => $file_ba,

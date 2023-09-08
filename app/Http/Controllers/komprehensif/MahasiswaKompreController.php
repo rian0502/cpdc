@@ -97,7 +97,6 @@ class MahasiswaKompreController extends Controller
             'id_pembimbing_satu' => $seminar->id_pembimbing_satu,
             'id_pembahas' => $seminar->id_pembahas,
             'id_mahasiswa' => $seminar->id_mahasiswa,
-            'status_admin' => 'Valid',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
@@ -112,19 +111,6 @@ class MahasiswaKompreController extends Controller
         $update = ModelSeminarKompre::find($id);
         $update->encrypt_id = Crypt::encrypt($id);
         $update->save();
-        //khusus mahasiswa 19
-        $faker = \Faker\Factory::create('id_ID');
-        $jadwal = ModelJadwalSeminarKompre::create([
-            'tanggal_komprehensif' => date('Y-m-d'),
-            'jam_mulai_komprehensif' => date('H:i'),
-            'jam_selesai_komprehensif' => date('H:i', strtotime('+2 hours')),
-            'id_lokasi' => $faker->randomElement([1, 2, 3, 4, 5]),
-            'id_seminar' => $id,
-        ]);
-        $jadwal_id = $jadwal->id;
-        $update_jadwal = ModelJadwalSeminarKompre::find($jadwal_id);
-        $update_jadwal->encrypt_id = Crypt::encrypt($jadwal_id);
-        $update_jadwal->save();
         return redirect()->route('mahasiswa.sidang.kompre.index')->with('success', 'Berhasil mengajukan seminar komprehensif');
     }
 

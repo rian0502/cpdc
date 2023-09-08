@@ -48,9 +48,6 @@ class MahasiswaBaKompre extends Controller
             return redirect()->back();
         } else {
             $seminar = Auth::user()->mahasiswa->komprehensif;
-            $kompre = ModelSeminarKompre::where('id_mahasiswa', Auth::user()->mahasiswa->id)->first();
-            $kompre->status_koor = 'Selesai';
-            $kompre->save();
             $ba = $request->file('ba_seminar_komprehensif');
             $file_ba = $ba->hashName();
             $nilai = $request->file('berkas_nilai_kompre');
@@ -162,16 +159,5 @@ class MahasiswaBaKompre extends Controller
         $jadwal->save();
 
         return redirect()->route('mahasiswa.sidang.kompre.index')->with('success', 'Berhasil mengubah berita acara sidang komprehensif');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
