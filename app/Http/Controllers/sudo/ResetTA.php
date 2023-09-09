@@ -15,7 +15,17 @@ class ResetTA extends Controller
     {
         if ($request->ajax()) {
             $data = ModelSeminarTaSatu::query()->with('mahasiswa');
-            return DataTables::of($data)->toJson();
+            return DataTables::of($data)
+            ->addIndexColumn()->editColumn('mahasiswa.nama', function ($data) {
+                return $data->mahasiswa->nama;
+            })
+            ->addIndexColumn()->editColumn('mahasiswa.npm', function ($data) {
+                return $data->mahasiswa->npm;
+            })
+            ->addIndexColumn()->editColumn('mahasiswa.angkatan', function ($data) {
+                return $data->mahasiswa->angkatan;
+            })
+            ->toJson();
         }
         return view('sudo.reset_ta.index');
     }
