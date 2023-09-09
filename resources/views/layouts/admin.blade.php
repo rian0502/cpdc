@@ -485,14 +485,14 @@
                         </li>
                         <li>
                             <a href="{{ route('sudo.reset.seminar.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/resetSeminar') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/resetSeminar') && !Request::is('sudo/resetSeminarS2') ? 'active' : '' }}">
                                 <span class="micon bi bi-arrow-counterclockwise"></span><span class="mtext">Reset
                                     TA S1</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('sudo.reset.seminarS2.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/resetSeminarS2*') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/resetSeminarS2') ? 'active' : '' }}">
                                 <span class="micon bi bi-arrow-counterclockwise"></span><span class="mtext">Reset
                                     TA S2</span>
                             </a>
