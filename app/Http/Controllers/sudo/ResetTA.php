@@ -32,14 +32,13 @@ class ResetTA extends Controller
 
     public function destroy($id)
     {
-        //
         $mahasiswa = Mahasiswa::where('npm', $id)->first();
         if ($mahasiswa->ta_satu) {
             $ta_satu = $mahasiswa->ta_satu;
             unlink('uploads/syarat_seminar_ta1/' . $ta_satu->berkas_ta_satu);
             if ($ta_satu->ba_seminar) {
-                unlink('uploads/ba_seminar_ta_satu' . $ta_satu->ba_seminar->berkas_ba_seminar_ta_satu);
-                unlink('uploads/nilai_seminar_ta_satu' . $ta_satu->ba_seminar->berkas_nilai_seminar_ta_satu);
+                unlink('uploads/ba_seminar_ta_satu/' . $ta_satu->ba_seminar->berkas_ba_seminar_ta_satu);
+                unlink('uploads/nilai_seminar_ta_satu/' . $ta_satu->ba_seminar->berkas_nilai_seminar_ta_satu);
             }
             $ta_satu->delete();
         }
