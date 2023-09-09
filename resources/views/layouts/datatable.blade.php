@@ -508,7 +508,7 @@
                         </li>
                         <li>
                             <a href="{{ route('sudo.reset.seminarS2.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('sudo/resetSeminars2*') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/resetSeminarS2*') ? 'active' : '' }}">
                                 <span class="micon bi bi-arrow-counterclockwise"></span><span class="mtext">Reset
                                     TA S2</span>
                             </a>
