@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\sudo;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreAkunDosenRequest;
 use App\Models\AnggotaLitabmas;
 use App\Models\AnggotaPublikasiDosen;
 use App\Models\Dosen;
@@ -51,27 +52,17 @@ class AkunDosenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAkunDosenRequest $request)
     {
         //
-        $validation = [
-            'nama' => 'required',
-            'email' => 'required|unique:users',
-            'password' => 'required',
-            'role' => 'required',
-        ];
-        if ($validation) {
-            $user = new User();
-            $user->email = $request->email;
-            $user->email_verified_at = now();
-            $user->name = $request->nama;
-            $user->password = bcrypt($request->password);
-            $user->save();
-            $user->assignRole($request->role);
-            return redirect()->route('sudo.akun_dosen.index')->with('success', 'Akun Dosen Berhasil Ditambahkan');
-        } else {
-            return redirect()->route('sudo.akun_dosen.index')->with('error', 'Akun Dosen Gagal Ditambahkan');
-        }
+        $user = new User();
+        $user->email = $request->email;
+        $user->email_verified_at = now();
+        $user->name = $request->nama;
+        $user->password = bcrypt($request->password);
+        $user->save();
+        $user->assignRole($request->role);
+        return redirect()->route('sudo.akun_dosen.index')->with('success', 'Akun Dosen Berhasil Ditambahkan');
     }
 
     /**
@@ -135,7 +126,7 @@ class AkunDosenController extends Controller
         $user->syncRoles($request->role);
         $user->save();
 
-        if($user->dosen){
+        if ($user->dosen) {
             $dosen->status = $request->status;
             $dosen->save();
         }
@@ -150,33 +141,32 @@ class AkunDosenController extends Controller
     public function chartUsiaDosen()
     {
         $query = DB::table('dosen')
-        ->select(DB::raw('FLOOR((TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) + 10) / 10) * 10 as usia_group, COUNT(*) as total'))
-        ->groupBy('usia_group')
-        ->orderBy('usia_group')
-        ->get();
+            ->select(DB::raw('FLOOR((TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) + 10) / 10) * 10 as usia_group, COUNT(*) as total'))
+            ->groupBy('usia_group')
+            ->orderBy('usia_group')
+            ->get();
 
-    $data = $query->map(function ($result) {
-        $usia_group = $result->usia_group;
-        if ($usia_group >= 20 && $usia_group < 35) {
-            $usia_group = '20++';
-        } elseif ($usia_group >= 35 && $usia_group < 45) {
-            $usia_group = '35++';
-        } elseif ($usia_group >= 45 && $usia_group < 55) {
-            $usia_group = '45++';
-        } elseif ($usia_group >= 55 && $usia_group < 65) {
-            $usia_group = '55++';
-        } elseif ($usia_group >= 65) {
-            $usia_group = '65++';
-        }
+        $data = $query->map(function ($result) {
+            $usia_group = $result->usia_group;
+            if ($usia_group >= 20 && $usia_group < 35) {
+                $usia_group = '20++';
+            } elseif ($usia_group >= 35 && $usia_group < 45) {
+                $usia_group = '35++';
+            } elseif ($usia_group >= 45 && $usia_group < 55) {
+                $usia_group = '45++';
+            } elseif ($usia_group >= 55 && $usia_group < 65) {
+                $usia_group = '55++';
+            } elseif ($usia_group >= 65) {
+                $usia_group = '65++';
+            }
 
-        return [
-            'usia_group' => $usia_group,
-            'total' => $result->total,
-        ];
-    });
+            return [
+                'usia_group' => $usia_group,
+                'total' => $result->total,
+            ];
+        });
 
-    return response()->json($data);
-
+        return response()->json($data);
     }
 
 
