@@ -8,11 +8,9 @@ use App\Models\LitabmasDosen;
 use App\Models\PublikasiDosen;
 use App\Models\AnggotaLitabmas;
 use App\Models\OrganisasiDosen;
-use App\Models\ModelSeminarDosen;
 use App\Models\HistoryJabatanDosen;
 use App\Models\HistoryPangkatDosen;
 use App\Models\AnggotaPublikasiDosen;
-use App\Models\ModelPenghargaanDosen;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
