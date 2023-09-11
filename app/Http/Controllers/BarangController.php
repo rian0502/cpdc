@@ -22,7 +22,11 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $barang = Barang::all();
+        $lokasi_user = Auth::user()->lokasi_id;
+        if(!$lokasi_user){
+            return redirect()->route('dashboard')->with('error', 'Anda Belum di Alokasikan oleh Ketua Jurusan!');
+        }
+        $barang = Barang::where('id_lokasi', $lokasi_user)->get();
         return view('admin.admin_lab.inventaris.barang.index', compact('barang'));
     }
 
@@ -33,6 +37,10 @@ class BarangController extends Controller
      */
     public function create()
     {
+        $lokasi_user = Auth::user()->lokasi_id;
+        if(!$lokasi_user){
+            return redirect()->route('dashboard')->with('error', 'Anda Belum di Alokasikan oleh Ketua Jurusan!');
+        }
         $data = [
             'models' => ModelBarang::all(),
             'categories' => Kategori::all(),

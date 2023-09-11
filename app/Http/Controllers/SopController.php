@@ -21,6 +21,10 @@ class SopController extends Controller
     public function index()
     {
         //
+        $lokasi_user = Auth::user()->lokasi_id;
+        if(!$lokasi_user){
+            return redirect()->route('dashboard')->with('error', 'Anda Belum di Alokasikan oleh Ketua Jurusan!');
+        }
         $data = [
             'sop' => SopLab::where('id_lokasi', Auth::user()->lokasi_id)->get()
         ];
@@ -35,6 +39,10 @@ class SopController extends Controller
     public function create()
     {
         //
+        $lokasi_user = Auth::user()->lokasi_id;
+        if(!$lokasi_user){
+            return redirect()->route('dashboard')->with('error', 'Anda Belum di Alokasikan oleh Ketua Jurusan!');
+        }
         $data = [
             'locations' => Auth::user()->lokasi,
         ];
