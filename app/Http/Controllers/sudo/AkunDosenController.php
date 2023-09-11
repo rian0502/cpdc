@@ -10,8 +10,7 @@ use App\Models\Dosen;
 use App\Models\HistoryJabatanDosen;
 use App\Models\HistoryPangkatDosen;
 use App\Models\ModelGelar;
-use App\Models\ModelPenghargaanDosen;
-use App\Models\ModelSeminarDosen;
+use App\Models\ModelSPDosen;
 use App\Models\OrganisasiDosen;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -82,8 +81,8 @@ class AkunDosenController extends Controller
             'litabmas' => AnggotaLitabmas::where('dosen_id', Crypt::decrypt($id))->get(),
             'publikasi' => AnggotaPublikasiDosen::where('id_dosen', Crypt::decrypt($id))->get(),
             'gelar' => ModelGelar::where('dosen_id', Crypt::decrypt($id))->get(),
-            'seminar' => ModelSeminarDosen::where('dosen_id', Crypt::decrypt($id))->get(),
-            'penghargaan' => ModelPenghargaanDosen::where('dosen_id', Crypt::decrypt($id))->get(),
+            'seminar' => ModelSPDosen::where('dosen_id', Crypt::decrypt($id))->get(),
+            'penghargaan' => ModelSPDosen::where('dosen_id', Crypt::decrypt($id))->get(),
         ];
         return view('akun.dosen.show', $data);
     }
@@ -136,6 +135,9 @@ class AkunDosenController extends Controller
 
     public function destroy($id)
     {
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('sudo.akun_dosen.index')->with('success', 'Akun Dosen Berhasil Dihapus');
     }
 
     public function chartUsiaDosen()
