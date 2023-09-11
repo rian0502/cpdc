@@ -81,8 +81,8 @@ class AkunDosenController extends Controller
             'litabmas' => AnggotaLitabmas::where('dosen_id', Crypt::decrypt($id))->get(),
             'publikasi' => AnggotaPublikasiDosen::where('id_dosen', Crypt::decrypt($id))->get(),
             'gelar' => ModelGelar::where('dosen_id', Crypt::decrypt($id))->get(),
-            'seminar' => ModelSPDosen::where('dosen_id', Crypt::decrypt($id))->get(),
-            'penghargaan' => ModelSPDosen::where('dosen_id', Crypt::decrypt($id))->get(),
+            'seminar' => ModelSPDosen::where('dosen_id', Crypt::decrypt($id))->where('jenis', 'Seminar')->get(),
+            'penghargaan' => ModelSPDosen::where('dosen_id', Crypt::decrypt($id))->where('jenis', 'Penghargaan')->get(),
         ];
         return view('akun.dosen.show', $data);
     }
@@ -136,6 +136,22 @@ class AkunDosenController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+        if($user->dosen){
+            $dosen = Dosen::find($user->dosen->id);
+            if($dosen->foto_profile){
+                unlink('uploads/profile/' . $dosen->foto_profile);
+            }
+            if($dosen->jabatan->count() > 0){
+                foreach($dosen->jabatan as $jabatan){
+                   unlink('uploads/sk_jabatan_dosen/'.$jabatan->file_sk);
+                }
+            }
+            if($dosen->pangkat->count() > 0){
+                foreach($dosen->pangkat as $pangkat){
+                   unlink('uploads/sk_pangkat_dosen/'.$pangkat->file_sk);
+                }
+            }
+        }
         $user->delete();
         return redirect()->route('sudo.akun_dosen.index')->with('success', 'Akun Dosen Berhasil Dihapus');
     }
