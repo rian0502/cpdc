@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="/Assets/src/lib/toastify/src/toastify.css" />
     <link rel="stylesheet" type="text/css"
         href="/Assets/admin/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" />
-        <link rel="stylesheet" type="text/css" href="/Assets/admin/src/plugins/sweetalert2/sweetalert2.css" />
+    <link rel="stylesheet" type="text/css" href="/Assets/admin/src/plugins/sweetalert2/sweetalert2.css" />
     <!-- FontAwesome -->
     <link href="/Assets/FontAwesome/css/fontawesome.css" rel="stylesheet">
     <link href="/Assets/FontAwesome/css/brands.css" rel="stylesheet">
@@ -62,7 +62,7 @@
         })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
     </script>
     <style>
-        .photo-profil{
+        .photo-profil {
             width: 100%;
             height: 100%;
             border-radius: 50%;
@@ -177,9 +177,8 @@
                     <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                         <span class="user-icon">
                             {{-- <img src="/Assets/images/profile_picture/default.png" alt="" /> --}}
-                            <img src="/uploads/profile/{{ Auth::user()->profile_picture}}"
-                            onerror="this.src='/uploads/profile/default.png'"
-                                alt="" class="photo-profil"/>
+                            <img src="/uploads/profile/{{ Auth::user()->profile_picture }}"
+                                onerror="this.src='/uploads/profile/default.png'" alt="" class="photo-profil" />
                         </span>
                         <span class="user-name">{{ Auth::user()->name }}</span>
                     </a>
@@ -367,42 +366,42 @@
         const inputs = document.querySelectorAll('input');
         inputs.forEach(input => input.setAttribute('autocomplete', 'off'));
     </script>
-<script>
-    function showConfirmationForm() {
-        swal({
-            title: 'Apakah Anda yakin ingin submit data ini ?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonClass: 'btn btn-success',
-            cancelButtonClass: 'btn btn-danger',
-            confirmButtonText: 'Ya',
-            cancelButtonText: 'Tidak'
-        }).then((result) => {
-            if (result.value) {
-                document.getElementById('formStatus').submit();
-            }
-        })
-    }
+    <script>
+        function showConfirmationForm() {
+            swal({
+                title: 'Apakah Anda yakin ingin submit data ini ?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
+            }).then((result) => {
+                if (result.value) {
+                    document.getElementById('formStatus').submit();
+                }
+            })
+        }
 
-    // Mengambil elemen tombol submit
-    const submitButton = document.getElementById('submitButton');
+        // Mengambil elemen tombol submit
+        const submitButton = document.getElementById('submitButton');
 
-    // Menangani klik tombol submit
-    submitButton.addEventListener('click', function(e) {
-        e.preventDefault(); // Mencegah pengiriman form secara langsung
+        // Menangani klik tombol submit
+        submitButton.addEventListener('click', function(e) {
+            e.preventDefault(); // Mencegah pengiriman form secara langsung
 
-        // Panggil fungsi untuk menampilkan konfirmasi
-        showConfirmationForm();
-    });
-</script>
+            // Panggil fungsi untuk menampilkan konfirmasi
+            showConfirmationForm();
+        });
+    </script>
     <!-- End Google Tag Manager (noscript) -->
 
 
     <script>
         function toggleInput(selectElement, targetId, targetId2) {
             var selectedValue = selectElement.value;
-           var targetElement2 = document.getElementById(targetId2);
-           var targetElement = document.getElementById(targetId);
+            var targetElement2 = document.getElementById(targetId2);
+            var targetElement = document.getElementById(targetId);
             if (selectedValue === "new") {
                 targetElement.style.display = "block";
                 targetElement2.style.display = "block";
@@ -417,60 +416,66 @@
         }
     </script>
     @role('kompre|ta2|ta1|pkl')
-    <script>
-        $(document).ready(function() {
-            $('#formJadwal').submit(function(e) {
-                e.preventDefault();
-                var request = new FormData(this);
-                var endpoint = '/api/check-jadwal';
-                $.ajax({
-                    url: endpoint,
-                    method: "POST",
-                    data: request,
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(data) {
-                        if (data['message'] == 'Valid') {
-                            swal({
-                                title: "Berhasil",
-                                text: "Jadwal Bisa digunakan",
-                                type: "question",
-                                showCancelButton: true,
-                                confirmButtonText: "Ya, Buat Jadwal",
-                            }).then(function(result) {
-                                if (result.value) {
-                                    $('#formJadwal').unbind('submit').submit();
-                                }
-                            });
-                        } else {
-                            swal({
-                                title: "Gagal",
-                                text: "Jadwal yang anda masukkan sudah terdaftar",
-                                type: "error",
-                                button: "Ok",
-                            });
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(xhr.responseText);
-                        var error_data = JSON.parse(xhr.responseText)['errors'];
+        <script>
+            $(document).ready(function() {
+                $('#formJadwal').submit(function(e) {
+                    e.preventDefault();
+                    var request = new FormData(this);
+                    var endpoint = '/api/check-jadwal';
+                    $.ajax({
+                        url: endpoint,
+                        method: "POST",
+                        data: request,
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: function(data) {
+                            if (data['message'] == 'Valid') {
+                                swal({
+                                    title: "Berhasil",
+                                    text: "Jadwal Bisa digunakan",
+                                    type: "question",
+                                    showCancelButton: true,
+                                    confirmButtonText: "Ya, Buat Jadwal",
+                                }).then(function(result) {
+                                    if (result.value) {
+                                        $('#formJadwal').unbind('submit').submit();
+                                    }
+                                });
+                            } else {
+                                swal({
+                                    title: "Gagal",
+                                    text: "Jadwal yang anda masukkan sudah terdaftar",
+                                    type: "error",
+                                    button: "Ok",
+                                });
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            if (xhr.status >= 500) {
+                                swal({
+                                    title: "Gagal",
+                                    text: "Sistem Error",
+                                    type: "error",
 
-                        var error_msg = "";
-                        for (var key in error_data) {
-                            error_msg += error_data[key] + ",";
-                        }
-                        swal({
-                            title: "Gagal",
-                            text: error_msg,
-                            type: "error",
-                            button: "Ok",
-                        });
-                    },
+                                });
+                            } else {
+                                var error_data = JSON.parse(xhr.responseText)['errors'];
+                                var error_msg = "";
+                                for (var key in error_data) {
+                                    error_msg += error_data[key] + ",";
+                                }
+                                swal({
+                                    title: "Gagal",
+                                    text: error_msg,
+                                    type: "error",
+                                });
+                            }
+                        },
+                    });
                 });
             });
-        });
-    </script>
+        </script>
     @endrole
 
 </body>
