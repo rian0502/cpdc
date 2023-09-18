@@ -92,12 +92,12 @@ class CekJadwalController extends Controller
             'id_lokasi',
             '=',
             Crypt::decrypt($id_lokasi)
-        )->whereBetween(
+        )->where(
             'jam_mulai_skp',
-            [$jam_mulai_skp, $jam_selesai_skp]
-        )->orWhereBetween(
+            $jam_mulai_skp,
+        )->Where(
             'jam_selesai_skp',
-            [$jam_mulai_skp, $jam_selesai_skp]
+            $jam_selesai_skp
         )->count();
     }
     public function ta1($jam_mulai_seminar_ta_satu, $jam_selesai_seminar_ta_satu, $tanggal_seminar_ta_satu, $id_lokasi)
@@ -110,12 +110,12 @@ class CekJadwalController extends Controller
             'id_lokasi',
             '=',
             Crypt::decrypt($id_lokasi)
-        )->whereBetween(
+        )->where(
             'jam_mulai_seminar_ta_satu',
-            [$jam_mulai_seminar_ta_satu, $jam_selesai_seminar_ta_satu]
-        )->orWhereBetween(
+            $jam_mulai_seminar_ta_satu
+        )->Where(
             'jam_selesai_seminar_ta_satu',
-            [$jam_mulai_seminar_ta_satu, $jam_selesai_seminar_ta_satu]
+            $jam_selesai_seminar_ta_satu
         )->count();
     }
     public function ta2($jam_mulai_seminar_ta_dua, $jam_selesai_seminar_ta_dua, $tanggal_seminar_ta_dua, $id_lokasi)
@@ -126,12 +126,12 @@ class CekJadwalController extends Controller
         )->where(
             'id_lokasi',
             Crypt::decrypt($id_lokasi)
-        )->whereBetween(
+        )->where(
             'jam_mulai_seminar_ta_dua',
-            [$jam_mulai_seminar_ta_dua, $jam_selesai_seminar_ta_dua]
-        )->orWhereBetween(
+            $jam_mulai_seminar_ta_dua
+        )->Where(
             'jam_selesai_seminar_ta_dua',
-            [$jam_mulai_seminar_ta_dua, $jam_selesai_seminar_ta_dua]
+            $jam_selesai_seminar_ta_dua
         )->count();
     }
     public function kompre($jam_mulai_komprehensif, $jam_selesai_komprehensif, $tanggal_komprehensif, $id_lokasi)
@@ -142,12 +142,12 @@ class CekJadwalController extends Controller
         )->where(
             'id_lokasi',
             Crypt::decrypt($id_lokasi)
-        )->whereBetween(
+        )->where(
             'jam_mulai_komprehensif',
-            [$jam_mulai_komprehensif, $jam_selesai_komprehensif]
-        )->orWhereBetween(
+            $jam_mulai_komprehensif
+        )->Where(
             'jam_selesai_komprehensif',
-            [$jam_mulai_komprehensif, $jam_selesai_komprehensif]
+            $jam_selesai_komprehensif
         )->count();
     }
 
@@ -159,10 +159,10 @@ class CekJadwalController extends Controller
         )->where(
             'id_lokasi',
             Crypt::decrypt($id_lokasi)
-        )->whereBetween(
+        )->where(
             'jam_mulai',
-            [$jam_mulai, $jam_selesai]
-        )->orWhereBetween(
+            $jam_mulai
+        )->Where(
             'jam_selesai',
             $jam_selesai
         )->count();
@@ -175,12 +175,12 @@ class CekJadwalController extends Controller
         )->where(
             'id_lokasi',
             Crypt::decrypt($id_lokasi)
-        )->whereBetween(
+        )->where(
             'jam_mulai',
-            [$jam_mulai, $jam_selesai]
-        )->orWhereBetween(
+            $jam_mulai
+        )->Where(
             'jam_selesai',
-            [$jam_mulai, $jam_selesai]
+            $jam_selesai
         )->count();
     }
     public function sidangTesis($jam_mulai, $jam_selesai, $tanggal, $id_lokasi)
@@ -191,12 +191,12 @@ class CekJadwalController extends Controller
         )->where(
             'id_lokasi',
             Crypt::decrypt($id_lokasi)
-        )->whereBetween(
+        )->where(
             'jam_mulai',
-            [$jam_mulai, $jam_selesai]
-        )->orWhereBetween(
+            $jam_mulai
+        )->Where(
             'jam_selesai',
-            [$jam_mulai, $jam_selesai]
+            $jam_selesai
         )->count();
     }
 }
