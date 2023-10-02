@@ -75,7 +75,7 @@
                                             <th scope="col">{{ $loop->iteration }}</th>
                                             <th scope="col">{{ $item->nama_kegiatan }}</th>
                                             <th scope="col">{{ $item->lokasi->nama_lokasi }}</th>
-                                            <th scope="col">{{ $item->jumlah_mahasiswa }}Peserta</th>
+                                            <th scope="col">{{ $item->jumlah_mahasiswa }}</th>
                                             <th scope="col">{{ $carbon::parse($item->tanggal_kegiatan)->format('d F Y') }}</th>
                                             <th scope="col">{{ $carbon::parse($item->jam_mulai)->format('h:i') }} - {{ $carbon::parse($item->jam_selesai)->format('h:i') }}</th>
                                             <th scope="col">{{ $item->keterangan }}</th>
