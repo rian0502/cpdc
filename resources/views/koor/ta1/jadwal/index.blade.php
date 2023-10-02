@@ -9,7 +9,7 @@
                     </div>
                     <div class="pb-20 m-3">
                         <div class="ml-3">
-                            <form action="{{-- route('jurusan.unduh.mahasiswa.seminar') --}}" method="POST">
+                            <form action="{{route('koor.jadwalTA1.download')}}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="weight-500 col-md-3">
