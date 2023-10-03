@@ -99,7 +99,7 @@
                                         </optgroup>
                                     </select>
                                 </div>
-                                <div id="Pembimbing2"
+                                <div id="pbl2_nama"
                                     style="display: {{ in_array(old('id_pembimbing_dua', $seminar->id_pembimbing_dua), ['new', null]) ? 'block' : 'none' }};"
                                     {{ in_array(old('id_pembimbing_dua', $seminar->id_pembimbing_dua), ['new', null]) ? '' : 'hidden' }}>
                                     <div class="form-group">
