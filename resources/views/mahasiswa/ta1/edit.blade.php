@@ -77,18 +77,21 @@
                                         </optgroup>
                                     </select>
                                 </div>
+
                                 <div class="form-group">
                                     <label>Pembimbing 2</label>
-                                    <select class="custom-select2 form-control" name="id_pembimbing_dua"
-                                        id="id_pembimbing_dua" style="width: 100%; height: 38px"
-                                        onchange="toggleInput(this, 'Pembimbing2', 'pbl2_nama')">
-                                        <optgroup label="Pembimbing 2">
+                                    <select
+                                        class="custom-select2 form-control @error('id_pembimbing_dua') form-control-danger @enderror"
+                                        name="id_pembimbing_dua" id="id_pembimbing_dua" style="width: 100%; height: 38px"
+                                        onchange="toggleInput(this, 'Pembimbing2', 'pembimbimng_external_2')">
+                                        <optgroup label="Pembahas 1">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (old('id_pembimbing_dua') == 'new' || $errors->has('pbl2_nama') || $seminar->pbl2_nama != null)
+                                            @if (in_array(old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id), ['new', null]) ||
+                                                    $errors->has('pembimbimng_external_2'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
@@ -96,32 +99,35 @@
                                         </optgroup>
                                     </select>
                                 </div>
-                                <div id="pbl2_nama"
-                                    style="display: {{ old('id_pembimbing_dua') == 'new' || $seminar->pbl2_nama != null ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_dua') == 'new' || $seminar->pbl2_nama != null ? '' : 'hidden' }}>
+                                <div id="pembimbimng_external_2"
+                                    style="display: {{ in_array(old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id), ['new', null]) ? 'block' : 'none' }};"
+                                    {{ in_array(old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id), ['new', null]) ? '' : 'hidden' }}>
                                     <div class="form-group">
-                                        <label>Dosen Pembimbing 2</label>
-                                        <input autofocus name="pbl2_nama" class="form-control" type="text"
-                                            value="{{ old('pbl2_nama', $seminar->pbl2_nama) }}"
-                                            placeholder="Masukkan Nama Dosen Pembimbing 2">
+                                        <label>Nama Pembimbing 2</label>
+                                        <input autofocus name="pbl2_nama"
+                                            class="form-control @error('pbl2_nama') form-control-danger @enderror"
+                                            type="text" value="{{ old('pbl2_nama', $seminar->pbl2_nama) }}"
+                                            placeholder="Masukkan Nama Pembimbing 2">
                                         @error('pbl2_nama')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div id="Pembimbing2"
-                                    style="display: {{ old('id_pembimbing_dua') == 'new' || $seminar->pbl2_nip != null ? 'block' : 'none' }};"
-                                    {{ old('id_pembimbing_dua') == 'new' || $seminar->pbl2_nip != null ? '' : 'hidden' }}>
+                                    style="display: {{ in_array(old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id ?? null), ['new', null]) ? 'block' : 'none' }};"
+                                    {{ in_array(old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id ?? null), ['new', null]) ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP Pembimbing 2</label>
-                                        <input autofocus name="pbl2_nip" class="form-control" type="text"
-                                            value="{{ old('pbl2_nip', $seminar->pbl2_nip) }}"
-                                            placeholder="Masukkan NIP Dosen Pembimbing 2">
+                                        <input autofocus name="pbl2_nip"
+                                            class="form-control @error('pbl2_nip') form-control-danger @enderror"
+                                            type="text" value="{{ old('pbl2_nip', $seminar->pbl2_nip) }}"
+                                            placeholder="Masukkan NIP Pembimbing 2">
                                         @error('pbl2_nip')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
+
 
                             </div>
 
