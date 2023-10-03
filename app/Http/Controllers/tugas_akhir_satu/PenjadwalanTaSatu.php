@@ -278,7 +278,8 @@ class PenjadwalanTaSatu extends Controller
         return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar Tugas Akhir 1');
     }
 
-    public function downloadJadwal(Request $request){
+    public function downloadJadwal(Request $request)
+    {
         $angkatan = 2020;
         $mahasiswa = Mahasiswa::whereHas('ta_satu')->where('angkatan', $angkatan)->get();
         $spredsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
@@ -290,26 +291,24 @@ class PenjadwalanTaSatu extends Controller
         $sheet->setCellValue('D1', 'Judul TA');
         $sheet->setCellValue('E1', 'Pembimbing 1');
         $sheet->setCellValue('F1', 'Pembimbing 2');
-        $sheet->setCellValue('G1', 'Pembahas');
-        if($mahasiswa->count() > 0){
+        if ($mahasiswa->count() > 0) {
             foreach ($mahasiswa as $key => $value) {
                 $sheet->setCellValue('A' . ($key + 2), $key + 1);
                 $sheet->setCellValue('B' . ($key + 2), $value->nama_mahasiswa);
                 $sheet->setCellValue('C' . ($key + 2), $value->npm);
                 $sheet->setCellValue('D' . ($key + 2), $value->ta_satu->judul_ta);
                 $sheet->setCellValue('E' . ($key + 2), $value->ta_satu->pembimbing_satu->nama_dosen);
-                if($value->ta_satu->id_pembimbing_dua){
+                if ($value->ta_satu->id_pembimbing_dua) {
                     $sheet->setCellValue('F' . ($key + 2), $value->ta_satu->pembimbing_dua->nama_dosen);
-                }else{
+                } else {
                     $sheet->setCellValue('F' . ($key + 2), $value->ta_satu->pbl2_nama);
                 }
-                $sheet->setCellValue('G' . ($key + 2), $value->ta_satu->pembahas->nama_dosen);
             }
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
             $filename = 'Daftar Seminar TA 1 S1 Angkatan ' . $angkatan . '.xlsx';
             $writer->save($filename);
             return response()->download($filename)->deleteFileAfterSend(true);
-        }else{
+        } else {
             return redirect()->back()->with('error', 'Belum Ada Mahasiswa yang Mendaftar Seminar TA 1');
         }
     }
