@@ -83,15 +83,15 @@
                                     <select
                                         class="custom-select2 form-control @error('id_pembimbing_dua') form-control-danger @enderror"
                                         name="id_pembimbing_dua" id="id_pembimbing_dua" style="width: 100%; height: 38px"
-                                        onchange="toggleInput(this, 'Pembimbing2', 'pembimbimng_external_2')">
-                                        <optgroup label="Pembahas 1">
+                                        onchange="toggleInput(this, 'Pembimbing2', 'pbl2_nama')">
+                                        <optgroup label="Pembimbing 2">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
                                                     {{ old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (in_array(old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id), ['new', null]) ||
-                                                    $errors->has('pembimbimng_external_2'))
+                                            @if (in_array(old('id_pembimbing_dua', $seminar->id_pembimbing_dua), ['new', null]) ||
+                                                    $errors->has('pbl2_nama'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
                                                 <option value="new">Tidak Ada di Daftar Ini</option>
@@ -99,9 +99,9 @@
                                         </optgroup>
                                     </select>
                                 </div>
-                                <div id="pembimbimng_external_2"
-                                    style="display: {{ in_array(old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id), ['new', null]) ? 'block' : 'none' }};"
-                                    {{ in_array(old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id), ['new', null]) ? '' : 'hidden' }}>
+                                <div id="Pembimbing2"
+                                    style="display: {{ in_array(old('id_pembimbing_dua', $seminar->id_pembimbing_dua), ['new', null]) ? 'block' : 'none' }};"
+                                    {{ in_array(old('id_pembimbing_dua', $seminar->id_pembimbing_dua), ['new', null]) ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama Pembimbing 2</label>
                                         <input autofocus name="pbl2_nama"
@@ -114,8 +114,8 @@
                                     </div>
                                 </div>
                                 <div id="Pembimbing2"
-                                    style="display: {{ in_array(old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id ?? null), ['new', null]) ? 'block' : 'none' }};"
-                                    {{ in_array(old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id ?? null), ['new', null]) ? '' : 'hidden' }}>
+                                    style="display: {{ in_array(old('id_pembimbing_dua', $seminar->id_pembimbing_dua ?? null), ['new', null]) ? 'block' : 'none' }};"
+                                    {{ in_array(old('id_pembimbing_dua', $seminar->id_pembimbing_dua ?? null), ['new', null]) ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP Pembimbing 2</label>
                                         <input autofocus name="pbl2_nip"
@@ -127,8 +127,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
-
                             </div>
 
                             {{-- form untuk sebelah kanan --}}
