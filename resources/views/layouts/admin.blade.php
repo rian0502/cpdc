@@ -909,7 +909,9 @@
         function toggleInput(selectElement, targetId, targetId2) {
             var selectedValue = selectElement.value;
             var targetElement2 = document.getElementById(targetId2);
+            var inputElement2 = targetElement2.querySelectorAll('input');
             var targetElement = document.getElementById(targetId);
+            var inputElement = targetElement.querySelectorAll('input');
             if (selectedValue === "new") {
                 targetElement.style.display = "block";
                 targetElement2.style.display = "block";
@@ -920,6 +922,12 @@
                 targetElement2.style.display = "none";
                 targetElement.hidden = true;
                 targetElement2.hidden = true;
+                inputElement2.forEach(function(input) {
+                    input.value = ""; // Ganti dengan nilai yang sesuai
+                });
+                inputElement.forEach(function(input) {
+                    input.value = ""; // Ganti dengan nilai yang sesuai
+                });
             }
         }
     </script>
