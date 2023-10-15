@@ -76,9 +76,9 @@
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>PowerPoint</strong></label>
+                                <label class="col-md-3 bold"> <strong>Pengesahan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a target="_blank" href="{{ $seminar->beritaAcara->ppt }}">Lihat</a>
+                                    <a target="_blank" href="{{ $seminar->beritaAcara->pengesahan }}">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Nilai</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
