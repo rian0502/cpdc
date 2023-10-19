@@ -1,0 +1,17 @@
+ .numbered-list {
+            counter-reset: list-counter;
+            list-style-type: none;
+        }
+
+        .numbered-list-item::before {
+            counter-increment: list-counter;
+            content: counter(list-counter) ". ";
+        }
+
+        .numbered-list-item {
+            margin-bottom: 5px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
