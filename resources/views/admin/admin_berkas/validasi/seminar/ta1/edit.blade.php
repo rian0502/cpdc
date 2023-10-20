@@ -87,7 +87,7 @@
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->pembahas->nama_dosen }}
+                                    {{ $seminar->pembahas->nama_dosen }}`
                                 </div>
                             </div>
 
