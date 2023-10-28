@@ -76,15 +76,15 @@
                         autoWidth: false,
                         ajax: '{{ route('jurusan.alumni.index') }}',
                         columns: [{
-                                data: 'name',
-                                name: 'name',
+                                data: 'mahasiswa.nama_mahasiswa',
+                                name: 'mahasiswa.nama_mahasiswa',
                                 render: function(data, type, row, meta) {
                                     return meta.row + meta.settings._iDisplayStart + 1;
                                 }
                             },
                             {
-                                data: 'name',
-                                name: 'name',
+                                data: 'mahasiswa.nama_mahasiswa',
+                                name: 'mahasiswa.nama_mahasiswa',
                                 orderable: true
                             },
                             {
@@ -94,26 +94,27 @@
                             {
                                 data: 'mahasiswa.pendataanAlumni.masa_studi',
                                 name: 'mahasiswa.pendataanAlumni.masa_studi',
+                                orderable : true,
                             },
                             {
-                                data: 'mahasiswa.kegiatan_terakhir.jabatan',
+                                data: 'mahasiswa.kegiatanTerakhir.jabatan',
                                 name: 'mahasiswa.kegiatanTerakhir.jabatan',
-                                orderable: false,
+                                orderable: true,
                             },
                             {
-                                data: 'mahasiswa.kegiatan_terakhir.tempat',
+                                data: 'mahasiswa.kegiatanTerakhir.tempat',
                                 name: 'mahasiswa.kegiatanTerakhir.tempat',
-                                orderable: false,
+                                orderable: true,
                             },
                             {
-                                data: 'mahasiswa.kegiatan_terakhir.status',
+                                data: 'mahasiswa.kegiatanTerakhir.status',
                                 name: 'mahasiswa.kegiatanTerakhir.status',
-                                orderable: false,
+                                orderable: true,
                             },
                             {
-                                data: 'mahasiswa.kegiatan_terakhir.tahun_masuk',
+                                data: 'mahasiswa.kegiatanTerakhir.tahun_masuk',
                                 name: 'mahasiswa.kegiatanTerakhir.tahun_masuk',
-                                orderable: false,
+                                orderable: true,
                                 render: function(data) {
                                     var date = new Date(data);
                                     var formattedDate = date.toISOString().slice(0, 10);
