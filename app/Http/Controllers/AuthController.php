@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Dosen;
+use App\Models\BaseNPM;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Password;
 use App\Http\Requests\SendEmailResetRequest;
 use App\Http\Requests\UpdateResetPasswordRequest;
-use App\Models\BaseNPM;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -97,39 +99,45 @@ class AuthController extends Controller
     }
     public function attemptRegister(RegisterRequest $request)
     {
-        $user = User::create([
-            'name' => Str::title($request->nama_lengkap),
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
-        $aktifkan = BaseNPM::where('npm', $request->npm)->first();
-        $aktifkan->status = 'aktif';
-        $aktifkan->save();
-        $mhs = [
-            'npm' => $request->npm,
-            'nama_mahasiswa' => Str::title($request->nama_lengkap),
-            'angkatan' => $request->angkatan,
-            'jenis_kelamin' => $request->gender,
-            'user_id' => $user->id,
-        ];
-        if ($request->id_dosen != null) {
-            $mhs['id_dosen'] = Crypt::decrypt($request->id_dosen);
-        }
-        if ($request->jenis_akun == 'mahasiswa') {
-            $user->assignRole('mahasiswa');
-            $mhs['status'] = 'Aktif';
-        }elseif ($request->jenis_akun == 'mahasiswaS2') {
-            $user->assignRole('mahasiswaS2');
-            $mhs['status'] = 'Aktif';
-        } 
-        else {
-            $user->assignRole('alumni');
-            $mhs['status'] = 'Alumni';
-        }
-        $mahasiswa = Mahasiswa::create($mhs);
-        event(new Registered($user));
-        $user->sendEmailVerificationNotification();
-        auth()->login($user);
+        DB::transaction(function () use ($request) {
+            $user = User::create([
+                'name' => Str::title($request->nama_lengkap),
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
+        
+            $aktifkan = BaseNPM::where('npm', $request->npm)->first();
+            $aktifkan->status = 'aktif';
+            $aktifkan->save();
+        
+            $mhs = [
+                'npm' => $request->npm,
+                'nama_mahasiswa' => Str::title($request->nama_lengkap),
+                'angkatan' => $request->angkatan,
+                'jenis_kelamin' => $request->gender,
+                'user_id' => $user->id,
+            ];
+        
+            if ($request->id_dosen != null) {
+                $mhs['id_dosen'] = Crypt::decrypt($request->id_dosen);
+            }
+        
+            if ($request->jenis_akun == 'mahasiswa') {
+                $user->assignRole('mahasiswa');
+                $mhs['status'] = 'Aktif';
+            } elseif ($request->jenis_akun == 'mahasiswaS2') {
+                $user->assignRole('mahasiswaS2');
+                $mhs['status'] = 'Aktif';
+            } else {
+                $user->assignRole('alumni');
+                $mhs['status'] = 'Alumni';
+            }
+            Mahasiswa::create($mhs);
+            event(new Registered($user));
+            $user->sendEmailVerificationNotification();
+            auth()->login($user);
+        });
+        
         return redirect()->route('verification.notice')->with(
             'registered',
             'Pendaftaran berhasil, silahkan cek email untuk melakukan verifikasi, Jika Vertifikasi tidak ada di kotak masuk, silahkan cek di kotak spam, atau klik tombol Kirim Kembali'
