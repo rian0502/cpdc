@@ -10,6 +10,7 @@ use App\Models\Administrasi;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarTaDua;
 use App\Http\Controllers\Controller;
+use App\Jobs\SendEmailTugasAkhir2;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
@@ -25,9 +26,10 @@ class PenjadwalanTaDua extends Controller
      */
     private $ba;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->ba = TemplateBeritaAcara::find(3);
-    } 
+    }
     public function index()
     {
         $now = date('Y-m-d');
@@ -137,12 +139,7 @@ class PenjadwalanTaDua extends Controller
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
-            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 2');
-            $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach(('uploads/print_ba_ta2/') . $namafile);
-        });
-        unlink(('uploads/print_ba_ta2/' . $namafile));
+        dispatch(new SendEmailTugasAkhir2($data, $to_name, $to_email, $namafile));
         return redirect()->route('koor.jadwalTA2.index')->with('success', 'Berhasil Menjadwalkan Seminar Tugas Akhir 2');
     }
 
@@ -232,7 +229,7 @@ class PenjadwalanTaDua extends Controller
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
         $namafile = $mahasiswa->npm . '_ba_ta2.docx';
-        $template->saveAs('uploads/print_ba_ta2/' . $namafile);
+        $template->saveAs('uploads/print_ba_ta2/'. $namafile);
         $to_name = $mahasiswa->nama_mahasiswa;
         $to_email = $mahasiswa->user->email;
         $data = [
@@ -244,12 +241,7 @@ class PenjadwalanTaDua extends Controller
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
-            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 2');
-            $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach('uploads/print_ba_ta2/' . $namafile);
-        });
-        unlink(('uploads/print_ba_ta2/' . $namafile));
+        dispatch(new SendEmailTugasAkhir2($data, $to_name, $to_email, $namafile));
         return redirect()->route('koor.jadwalTA2.index')->with('success', 'Berhasil Memperbarui Jadwal Seminar Tugas Akhir 2');
     }
 
@@ -304,12 +296,7 @@ class PenjadwalanTaDua extends Controller
             'jam_selesai' => $jadwal_seminar->jam_selesai_seminar_ta_dua,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
-            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 2');
-            $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach('uploads/template_ba_ta2/' . $namafile);
-        });
-        unlink('uploads/template_ba_ta2/' . $namafile);
+        dispatch(new SendEmailTugasAkhir2($data, $to_name, $to_email, $namafile));
         return redirect()->route('koor.jadwalTA2.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar TA 2');
     }
 }
