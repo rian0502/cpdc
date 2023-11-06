@@ -57,7 +57,7 @@
                                 <label class="col-md-3 bold"> <strong>Berita Acara Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/ba_seminar_tesis_2/{{ $seminar->beritaAcara->file_ba }}">Lihat</a>
+                                        href="/uploads/ba_sidang_tesis/{{ $seminar->beritaAcara->file_ba }}">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Nomor Berita Acara Seminar</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -68,7 +68,7 @@
                                 <label class="col-md-3 bold"> <strong>Bukti Nilai Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/nilai_seminar_tesis_2/{{ $seminar->beritaAcara->file_nilai }}">Lihat</a>
+                                        href="/uploads/nilai_sidang_tesis/{{ $seminar->beritaAcara->file_nilai }}">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Huruf Mutu</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -76,9 +76,9 @@
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
-                                <label class="col-md-3 bold"> <strong>PowerPoint</strong></label>
+                                <label class="col-md-3 bold"> <strong>Pengesahan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    <a target="_blank" href="{{ $seminar->beritaAcara->ppt }}">Lihat</a>
+                                    <a target="_blank" href="{{ $seminar->beritaAcara->pengesahan }}">Lihat</a>
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Nilai</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">

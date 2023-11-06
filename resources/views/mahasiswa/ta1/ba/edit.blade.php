@@ -52,56 +52,56 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Pilih Huruf Mutu</label>
-                                    <select class="custom-select2 form-control @error('nilai_mutu') form-control-danger @enderror" name="nilai_mutu"
+                                    <select class="custom-select2 form-control @error('huruf_mutu') form-control-danger @enderror" name="huruf_mutu"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Huruf Mutu">
                                             <option
-                                                value="A"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'A' ? 'selected' : '' }}>
+                                                value="A"{{ old('huruf_mutu', $seminar->huruf_mutu) == 'A' ? 'selected' : '' }}>
                                                 A
                                             </option>
                                             <option
-                                                value="A-"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'A-' ? 'selected' : '' }}>
+                                                value="A-"{{ old('huruf_mutu', $seminar->huruf_mutu) == 'A-' ? 'selected' : '' }}>
                                                 A-
                                             </option>
                                             <option
-                                                value="AB"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'AB' ? 'selected' : '' }}B>
+                                                value="AB"{{ old('huruf_mutu', $seminar->huruf_mutu) == 'AB' ? 'selected' : '' }}B>
                                                 AB
                                             </option>
                                             <option
-                                                value="B+"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'B+' ? 'selected' : '' }}>
+                                                value="B+"{{ old('huruf_mutu', $seminar->huruf_mutu) == 'B+' ? 'selected' : '' }}>
                                                 B+
                                             </option>
                                             <option
-                                                value="B"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'B' ? 'selected' : '' }}>
+                                                value="B"{{ old('huruf_mutu', $seminar->huruf_mutu) == 'B' ? 'selected' : '' }}>
                                                 B
                                             </option>
                                             <option
-                                                value="B-"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'B-' ? 'selected' : '' }}>
+                                                value="B-"{{ old('huruf_mutu', $seminar->huruf_mutu) == 'B-' ? 'selected' : '' }}>
                                                 B-
                                             </option>
                                             <option
-                                                value="BC"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'BC' ? 'selected' : '' }}C>
+                                                value="BC"{{ old('huruf_mutu', $seminar->huruf_mutu) == 'BC' ? 'selected' : '' }}C>
                                                 BC
                                             </option>
                                             <option
-                                                value="C+"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'C+' ? 'selected' : '' }}>
+                                                value="C+"{{ old('huruf_mutu', $seminar->huruf_mutu) == 'C+' ? 'selected' : '' }}>
                                                 C+
                                             </option>
                                             <option
-                                                value="C"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'C' ? 'selected' : '' }}>
+                                                value="C"{{ old('huruf_mutu', $seminar->huruf_mutu) == 'C' ? 'selected' : '' }}>
                                                 C
                                             </option>
                                             <option
-                                                value="D"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'D' ? 'selected' : '' }}>
+                                                value="D"{{ old('huruf_mutu', $seminar->huruf_mutu) == 'D' ? 'selected' : '' }}>
                                                 D+
                                             </option>
                                             <option
-                                                value="E"{{ old('nilai_mutu', $seminar->huruf_mutu) == 'E' ? 'selected' : '' }}>
+                                                value="E"{{ old('huruf_mutu', $seminar->huruf_mutu) == 'E' ? 'selected' : '' }}>
                                                 E
                                             </option>
                                         </optgroup>
                                     </select>
-                                    @error('nilai_mutu')
+                                    @error('huruf_mutu')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>

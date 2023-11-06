@@ -150,6 +150,7 @@ class MahasiswaTaSatuController extends Controller
             ]);
             $seminar->pbl2_nama = Str::title($request->pbl2_nama);
             $seminar->pbl2_nip = $request->pbl2_nip;
+            $seminar->id_pembimbing_dua = null;
         } else {
             $validation = $request->validate([
                 'id_pembimbing_dua' => 'required|exists:dosen,encrypt_id',
@@ -158,6 +159,8 @@ class MahasiswaTaSatuController extends Controller
                 'id_pembimbing_dua.exists' => 'Dosen Pembimbing 2 tidak ditemukan',
             ]);
             $seminar->id_pembimbing_dua = Crypt::decrypt($request->id_pembimbing_dua);
+            $seminar->pbl2_nama = null;
+            $seminar->pbl2_nip = null;
         }
 
         if ($request->file('berkas_seminar_ta_satu')) {

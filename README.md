@@ -6,7 +6,14 @@ Website ini digunakan untuk melakukan pendataan terhadap Dosen, Mahasiswa, Aktiv
 -------------------------------------------
 
 ## Fitur
-
+- Seminar Kerja Praktik
+- Seminar Tugas Akhir S1
+- Seminar Tesis S2
+- Penelitian dan Pengabdian Dosen
+- Publikasi Dosen
+- Aktivitas Laboratorium
+- Pendataan Aset Laboratorium
+- Visualisasi Data
 
 -------------------------------------------
 
@@ -26,4 +33,7 @@ MIT License
 -------------------------------------------
 ## Dokumentasi
 
+
+## Versi
+- 1.0.0
 
