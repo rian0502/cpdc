@@ -18,6 +18,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Password;
 use App\Http\Requests\SendEmailResetRequest;
 use App\Http\Requests\UpdateResetPasswordRequest;
+use App\Jobs\SendEmailVertification;
 
 class AuthController extends Controller
 {
@@ -134,7 +135,7 @@ class AuthController extends Controller
             }
             Mahasiswa::create($mhs);
             event(new Registered($user));
-            $user->sendEmailVerificationNotification();
+            dispatch(new SendEmailVertification($user));
             auth()->login($user);
         });
         
