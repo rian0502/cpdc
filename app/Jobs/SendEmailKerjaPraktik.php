@@ -41,8 +41,8 @@ class SendEmailKerjaPraktik implements ShouldQueue
         Mail::send('email.jadwal_seminar', $this->data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach('/uploads/print_ba_kp/'.$namafile);
+            $message->attach('uploads/print_ba_kp/'.$namafile);
         });
-        unlink(('/uploads/print_ba_kp/'.$namafile));
+        unlink(('uploads/print_ba_kp/'.$namafile));
     }
 }
