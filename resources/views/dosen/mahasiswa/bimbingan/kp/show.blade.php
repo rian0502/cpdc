@@ -1,18 +1,41 @@
 @extends('layouts.admin')
 @section('admin')
-    <style>
-        .rounded-div {
-            border-radius: 10px;
-            border: 1px solid #e5e5e5;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
+<style>
+    .rounded-div {
+        border-radius: 10px;
+        border: 1px solid #e5e5e5;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
 
-        .right-button {
-            float: right;
-            margin-top: -25px;
-        }
-    </style>
+    .rounded-circle {
+        border-radius: 50%;
+    }
+
+    .circle-wrapper {
+        width: 150px;
+        /* Sesuaikan dengan ukuran yang diinginkan */
+        height: 150px;
+        /* Sesuaikan dengan ukuran yang diinginkan */
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .foto {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    a:hover {
+        cursor: pointer;
+    }
+
+    .right-button {
+        float: right;
+        margin-top: -25px;
+    }
+</style>
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
@@ -27,9 +50,11 @@
                     <div class="mb-3 pb-2">
                         <div class="form-group">
                             <div class="profile-photo">
-                                <img id="preview-image" src="/uploads/profile/{{-- $mahasiswa->profile_picture --}}" alt="Foto Profile"
-                                    onerror="this.src='/uploads/profile/default.png'" class="foto">
-                            </div>
+                                <div class="circle-wrapper">
+                                    <img id="preview-image" src="/uploads/profile/{{ $mahasiswa->user->profile_picture }}"
+                                        alt="Foto Profile" onerror="this.src='/uploads/profile/default.png'" class="foto">
+                                </div>
+
                         </div>
                     </div>
                     <div class="p-md-4">

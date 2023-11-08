@@ -261,7 +261,7 @@
                         </div>
                     </form>
                 </div>
-               
+
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
                         <div class="h5 mb-0">Mahasiswa</div>
