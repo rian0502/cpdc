@@ -8,7 +8,6 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 
 class SendEmailKerjaPraktik implements ShouldQueue
 {
@@ -41,8 +40,8 @@ class SendEmailKerjaPraktik implements ShouldQueue
         Mail::send('email.jadwal_seminar', $this->data, function ($message) use ($to_name, $to_email, $namafile) {
             $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach('uploads/print_ba_kp/'.$namafile);
+            $message->attach('public/uploads/print_ba_kp/'.$namafile);
         });
-        unlink(('uploads/print_ba_kp/'.$namafile));
+        unlink(('public/uploads/print_ba_kp/'.$namafile));
     }
 }
