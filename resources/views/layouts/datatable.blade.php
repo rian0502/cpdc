@@ -533,6 +533,13 @@
                                 <span class="micon fas fa-user-shield"></span><span class="mtext">Admin Jurusan</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('sudo.import.mahasiswa.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/impormahasiswa') ? 'active' : '' }}">
+                                <span class="micon bi bi-cloud-arrow-up"></span><span class="mtext"> Import
+                                    Mahasiswa</span>
+                            </a>
+                        </li>
                     @endrole
                     @role('mahasiswaS2')
                         <li

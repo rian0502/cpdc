@@ -106,6 +106,7 @@ use App\Http\Controllers\mahasiswa_s2\ta1\ControllerKoorS2PenjadwalanTaSatu;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerMahasiswaS2SeminarTaDua;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
+use App\Http\Controllers\sudo\ImportMahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -425,6 +426,8 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::get('resetSeminarS2', [ResetTAS2::class, 'index'])->name('reset.seminarS2.index');
     Route::delete('resetSeminar/delete/{id}', [ResetTA::class, 'destroy'])->name('reset.seminar.destroy');
     Route::delete('resetSeminarS2/delete/{id}', [ResetTAS2::class, 'destroy'])->name('reset.seminarS2.destroy');
+    Route::get('impormahasiswa', [ImportMahasiswaController::class, 'index'])->name('import.mahasiswa.index');
+    Route::post('impormahasiswa', [ImportMahasiswaController::class, 'store'])->name('import.mahasiswa.store');
 });
 
 Route::get('/', function () {
