@@ -203,10 +203,10 @@ class MahasiswaTaDuaController extends Controller
             ]);
             $file = $request->file('berkas_seminar_ta_dua');
             $file_name = $file->hashName();
-            if (file_exists(('uploads/syarat_seminar_ta2/' . $seminar->berkas_seminar_ta_dua))) {
-                unlink(('uploads/syarat_seminar_ta2/' . $seminar->berkas_seminar_ta_dua));
+            if (file_exists('uploads/syarat_seminar_ta2/' . $seminar->berkas_ta_dua)) {
+                unlink('uploads/syarat_seminar_ta2/' . $seminar->berkas_ta_dua);
             }
-            $seminar->berkas_seminar_ta_dua = $file_name;
+            $seminar->berkas_ta_dua = $file_name;
             $file->move(('uploads/syarat_seminar_ta2'), $file_name);
         }
         $seminar->updated_at = date('Y-m-d H:i:s');
