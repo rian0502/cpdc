@@ -9,7 +9,6 @@ use App\Models\ModelSeminarTaDua;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
-use App\Models\ModelJadwalSeminarTaDua;
 use App\Models\BerkasPersyaratanSeminar;
 
 class MahasiswaTaDuaController extends Controller
