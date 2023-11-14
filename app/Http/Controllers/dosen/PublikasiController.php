@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\dosen;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StorePublikasiRequest;
-use App\Models\AnggotaPublikasiDosen;
-use App\Models\Dosen;
-use App\Models\PublikasiDosen;
 use Carbon\Carbon;
+use App\Models\Dosen;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\PublikasiDosen;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\AnggotaPublikasiDosen;
 use Illuminate\Support\Facades\Crypt;
+use App\Http\Requests\StorePublikasiRequest;
+
 
 class PublikasiController extends Controller
 {
@@ -51,7 +53,7 @@ class PublikasiController extends Controller
         // dd($request->all());
         $data = [
             'judul' => $request->judul,
-            'nama_publikasi' => $request->nama_publikasi,
+            'nama_publikasi' => Str::title($request->nama_publikasi),
             'vol' => $request->vol,
             'halaman' => $request->halaman,
             'tahun' => $request->tahun,
@@ -143,7 +145,7 @@ class PublikasiController extends Controller
 
         if ($jumlah[0]->id_dosen == Auth::user()->dosen->id) {
             $publikasi = PublikasiDosen::find(Crypt::decrypt($id));
-            $publikasi->nama_publikasi = $request->nama_publikasi;
+            $publikasi->nama_publikasi = Str::title($request->nama_publikasi);
             $publikasi->judul = $request->judul;
             $publikasi->vol = $request->vol;
             $publikasi->halaman = $request->halaman;
@@ -188,48 +190,87 @@ class PublikasiController extends Controller
     public function import(Request $request)
     {
         try {
-            $validasi = $this->validate($request, [
+            $this->validate($request, [
                 'publikasi' => 'required|mimes:xls,xlsx|max:2048'
-            ],[
+            ], [
                 'publikasi.required' => 'File tidak boleh kosong',
                 'publikasi.mimes' => 'File harus berupa excel',
                 'publikasi.max' => 'File maksimal 2MB'
-
             ]);
+
             $file = $request->file('publikasi');
             $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
             $spreadsheet = $reader->load($file);
             $sheet = $spreadsheet->getActiveSheet()->toArray();
 
+            $userDosenId = Auth::user()->dosen->id;
+
             foreach ($sheet as $key => $value) {
-                if ($key == 0) {
-                    continue;
+                if ($key === 0) {
+                    continue; // Skip header
                 }
-                $data = [
-                    'nama_publikasi' => $value[0],
-                    'judul' => $value[1],
-                    'tahun' => $value[2],
-                    'vol' => $value[3],
-                    'halaman' => $value[4],
-                    'scala' => $value[5],
-                    'kategori' => $value[6],
-                    'kategori_litabmas' => $value[7],
-                    'url' => $value[8],
-                    'anggota_external' => $value[9],
-                ];
-                $insert = PublikasiDosen::create($data);
-                $id = $insert->id;
-                $update = PublikasiDosen::find($id)->update(['encrypt_id' => Crypt::encrypt($id)]);
-                $data = [
-                    'posisi' => 'Ketua',
+
+                $judul = Str::title($value[1]);
+
+                $existingPublikasi = PublikasiDosen::where('judul', $judul)->first();
+
+                $posisi = 'Ketua'; // Default position for new publikasi
+
+                if ($existingPublikasi) {
+                    $isAnggotaOrKetua = AnggotaPublikasiDosen::where('id_publikasi', $existingPublikasi->id)
+                        ->where('id_dosen', $userDosenId)
+                        ->whereIn('posisi', ['Ketua', 'Anggota'])
+                        ->exists();
+
+                    if ($isAnggotaOrKetua) {
+                        continue; // If already an Anggota or Ketua, skip insertion
+                    }
+
+                    $isKetua = AnggotaPublikasiDosen::where('id_publikasi', $existingPublikasi->id)
+                        ->where('id_dosen', $userDosenId)
+                        ->where('posisi', 'Ketua')
+                        ->exists();
+
+                    if (!$isKetua) {
+                        $posisi = 'Anggota';
+                    }
+                }
+
+                if (!$existingPublikasi) {
+                    $publikasiData = [
+                        'nama_publikasi' => $value[0],
+                        'judul' => $judul,
+                        'tahun' => $value[2],
+                        'vol' => $value[3],
+                        'halaman' => $value[4],
+                        'scala' => $value[5],
+                        'kategori' => $value[6],
+                        'kategori_litabmas' => $value[7],
+                        'url' => $value[8],
+                        'anggota_external' => $value[9],
+                    ];
+
+                    $insertedPublikasi = PublikasiDosen::create($publikasiData);
+                    $id = $insertedPublikasi->id;
+
+                    $insertedPublikasi->update(['encrypt_id' => Crypt::encrypt($id)]);
+                } else {
+                    $id = $existingPublikasi->id;
+                }
+
+                $anggotaData = [
+                    'posisi' => $posisi,
                     'id_publikasi' => $id,
-                    'id_dosen' => Auth::user()->dosen->id,
+                    'id_dosen' => $userDosenId,
                 ];
-                AnggotaPublikasiDosen::create($data);
+                AnggotaPublikasiDosen::create($anggotaData);
             }
+
             return redirect()->route('dosen.publikasi.index')->with('success', 'Data Berhasil Diupload');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return redirect()->route('dosen.publikasi.index')->withErrors($e->errors());
         }
     }
+
+
 }
