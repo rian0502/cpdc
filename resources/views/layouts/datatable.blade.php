@@ -298,11 +298,19 @@
                                     S1</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('jurusan.unduh.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
-                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data S1</span>
+                        <li
+                            class="dropdown {{ Request::is('jurusan/unduh_data_s1*') || Request::is('jurusan/unduh_data_s2*') || Request::is('jurusan/unduh_aktivitas_dosen*') ? 'show' : '' }}">
+                            {{-- Routenya nanti --}}
+                            <a href="javascript:;" class="dropdown-toggle">
+                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
                             </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('jurusan.unduh.index') }}"
+                                        class="{{ Request::is('jurusan/unduh_data_s1*') ? 'active' : '' }}">S1</a></li>
+                                <li><a href="{{ route('jurusan.unduh.dosen.index') }}"
+                                        class="{{ Request::is('jurusan/unduh_aktivitas_dosen*') ? 'active' : '' }}">Aktivitas
+                                        Dosen</a></li>
+                            </ul>
                         </li>
                         <li>
                             <a href="{{ route('jurusan.mahasiswa.index') }}"
@@ -338,12 +346,22 @@
                                 <span class="micon bi bi-journal-text"></span><span class="mtext">PUBLIKASI</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('jurusan.unduhs2.index') }}" {{-- Routenya nanti --}}
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
-                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data S2</span>
+                        <li
+                            class="dropdown {{ Request::is('jurusan/unduh_data_s1*') || Request::is('jurusan/unduh_data_s2*') || Request::is('jurusan/unduh_aktivitas_dosen*') ? 'show' : '' }}">
+                            {{-- Routenya nanti --}}
+                            <a href="javascript:;" class="dropdown-toggle">
+                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
                             </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('jurusan.unduhs2.index') }}"
+                                        class="{{ Request::is('jurusan/unduh_data_s2*') ? 'active' : '' }}">S2</a></li>
+                                <li>
+                                <li><a href="{{ route('jurusan.unduh.dosen.index') }}"
+                                        class="{{ Request::is('jurusan/unduh_aktivitas_dosen*') ? 'active' : '' }}">Aktivitas
+                                        Dosen</a></li>
+                            </ul>
                         </li>
+
                         <li>
                             <a href="{{ route('jurusan.mahasiswaS2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/mahasiswaS2*') ? 'active' : '' }}">
@@ -428,7 +446,7 @@
                             </a>
                         </li>
                         <li
-                            class="dropdown {{ Request::is('jurusan/unduh_data_s1*') || Request::is('jurusan/unduh_data_s2*') ? 'show' : '' }}">
+                            class="dropdown {{ Request::is('jurusan/unduh_data_s1*') || Request::is('jurusan/unduh_data_s2*') || Request::is('jurusan/unduh_aktivitas_dosen*') ? 'show' : '' }}">
                             {{-- Routenya nanti --}}
                             <a href="javascript:;" class="dropdown-toggle">
                                 <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
@@ -438,6 +456,9 @@
                                         class="{{ Request::is('jurusan/unduh_data_s1*') ? 'active' : '' }}">S1</a></li>
                                 <li><a href="{{ route('jurusan.unduhs2.index') }}"
                                         class="{{ Request::is('jurusan/unduh_data_s2*') ? 'active' : '' }}">S2</a></li>
+                                <li><a href="{{ route('jurusan.unduh.dosen.index') }}"
+                                        class="{{ Request::is('jurusan/unduh_aktivitas_dosen*') ? 'active' : '' }}">Aktivitas
+                                        Dosen</a></li>
                             </ul>
                         </li>
                     @endrole
@@ -628,7 +649,6 @@
                             </a>
                         </li>
                     @endrole
-
                     @role('admin berkas')
                         <li>
                             <a href="{{ route('berkas.berkas_persyaratan.index') }}"
@@ -696,6 +716,8 @@
                             </a>
                         </li>
                     @endrole
+
+
                     @role('jurusan|kaprodiS1|kaprodiS2')
                         <li
                             class="dropdown {{ Request::is('koor/jadwalPKL*') || Request::is('koor/jadwalTA1*') || Request::is('koor/jadwalTA2*') || Request::is('koor/jadwalKompre*') || Request::is('koor/jadwal/TA1/S2*') || Request::is('koor/jadwal/TA2/S2*') || Request::is('koor/jadwal/Kompre/S2*') ? 'show' : '' }}">
@@ -905,8 +927,9 @@
                                 </a>
                             </li>
                         @endrole
-                        @endunless
-                    </ul>
+                    @endunless
+
+                </ul>
 
             </div>
         </div>
