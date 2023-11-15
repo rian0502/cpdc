@@ -223,6 +223,7 @@
                     </div>
                 </div>
             @endrole
+ @unless (auth()->user()->hasRole('jurusan|kaprodiS1|kaprodiS1'))
 
             @role('admin berkas')
                 <div class="row pb-10">
@@ -926,6 +927,8 @@
                     </div>
                 </div>
             @endrole
+ @endunless
+
             @role('jurusan')
                 <div class="row">
 

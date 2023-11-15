@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <label>Tanggal Realisasi Seminar</label>
                                     <input autofocus name="tgl_realisasi_seminar" id="tgl_realisasi_seminar" class="form-control @error('tgl_realisasi_seminar') form-control-danger @enderror"
-                                        type="date" value="{{ old('tgl_realisasi_seminar',$seminar->tgl_realisasi_seminar) }}" >
+                                        type="date" value="{{ old('tgl_realisasi_seminar',$berkas->seminar->jadwal->tanggal_komprehensif) }}" >
                                     @error('tgl_realisasi_seminar')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
