@@ -97,6 +97,7 @@ class MahasiswaBaKompre extends Controller
     public function edit($id)
     {
         $berkas = ModelBaSeminarKompre::with('seminar')->where('id', Crypt::decrypt($id))->first();
+
         if ($berkas->seminar->id_mahasiswa !=  Auth::user()->mahasiswa->id) {
             return redirect()->back();
         }

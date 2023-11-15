@@ -91,7 +91,6 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
         $update = BaSKP::find(Crypt::decrypt($id));
         $file_ba = $request->file('berkas_ba_seminar_kp');
         $file_laporan = $request->file('laporan_kp');
-
         $replace_lapangan = str_replace(',', '.', $request->nilai_lapangan);
         $replace_akd = str_replace(',', '.', $request->nilai_akd);
         $replace_akhir = str_replace(',', '.', $request->nilai_akhir);

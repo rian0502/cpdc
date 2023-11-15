@@ -43,7 +43,11 @@
                                     <td scope="col">{{ $publikasi->scala }}</td>
                                     <td scope="col">{{ $publikasi->kategori }}</td>
                                     <td scope="col">{{ $publikasi->kategori_litabmas }}</td>
-                                    <td scope="col"><a href="{{ $publikasi->url }}" target="_blank" class="text-primary">Lihat</a></td>
+                                    <td scope="col">
+                                        <a href="{{ $publikasi->url ? $publikasi->url : '#' }}" target="_blank" class="text-primary">
+                                            {{ $publikasi->url ? 'Lihat' : 'Tidak Tersedia' }}
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
