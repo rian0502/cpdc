@@ -28,6 +28,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\dosen\GelarController;
+use App\Http\Controllers\Kajur\ExportDataDosen;
 use App\Http\Controllers\alumni\PendataanAlumni;
 use App\Http\Controllers\Kajur\LokasiController;
 use App\Http\Controllers\PangkatAdminController;
@@ -264,9 +265,6 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     //unduh data
     Route::get('unduh_data_s1', [ExportData::class, 'index'])->name('unduh.index');
     Route::post('unduh/mahasiswa/seminar', [ExportData::class, 'mahasiswaSeminar'])->name('unduh.mahasiswa.seminar');
-    Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
-    Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
-    Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
     Route::post('unduh/prestasi', [ExportData::class, 'prestasi'])->name('unduh.prestasi');
     Route::post('unduh/aktivitas', [ExportData::class, 'aktivitas'])->name('unduh.aktivitas');
     Route::post('unduh/mahasiswa', [ExportData::class, 'mahasiswa'])->name('unduh.mahasiswa');
@@ -275,19 +273,13 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::post('unduh/ta1', [ExportData::class, 'ta1'])->name('unduh.ta1');
     Route::post('unduh/ta2', [ExportData::class, 'ta2'])->name('unduh.ta2');
     Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
-    Route::post('unduh/seminar', [ExportData::class, 'seminar'])->name('unduh.seminar');
-    Route::post('unduh/penghargaan', [ExportData::class, 'penghargaan'])->name('unduh.penghargaan');
     Route::resource('mahasiswa', DataMahasiswaAllController::class);
 });
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|kaprodiS2|tpmpsS2')->group(function () {
     Route::get('unduh_data_s2', [ExportDataS2::class, 'index'])->name('unduhs2.index');
     Route::post('unduh/prestasiS2', [ExportDataS2::class, 'prestasiS2'])->name('unduh.prestasiS2');
     Route::post('unduh/aktivitasS2', [ExportDataS2::class, 'aktivitasS2'])->name('unduh.aktivitasS2');
-    Route::post('unduh/penelitian', [ExportData::class, 'penelitian'])->name('unduh.penelitian');
-    Route::post('unduh/pengabdian', [ExportData::class, 'pengabdian'])->name('unduh.pengabdian');
-    Route::post('unduh/publikasi', [ExportData::class, 'publikasi'])->name('unduh.publikasi');
-    Route::post('unduh/seminar', [ExportData::class, 'seminar'])->name('unduh.seminar');
-    Route::post('unduh/penghargaan', [ExportData::class, 'penghargaan'])->name('unduh.penghargaan');
+
     Route::post('unduh/mahasiswaS2/seminar', [ExportDataS2::class, 'mahasiswaS2Seminar'])->name('unduh.mahasiswaS2.seminar');
     Route::post('unduh/tesis1', [ExportDataS2::class, 'tesis1'])->name('unduh.tesis1');
     Route::post('unduh/tesis2', [ExportDataS2::class, 'tesis2'])->name('unduh.tesis2');
@@ -305,6 +297,19 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
 
     Route::resource('mahasiswaS2', DataMahasiswaAllS2Controller::class);
 });
+Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|kaprodiS1|kaprodiS2|tpmpsS2|tpmpsS1')->group(function () {
+    Route::get('unduh_aktivitas_dosen', [ExportDataDosen::class, 'index'])->name('unduh.dosen.index');
+    Route::post('unduh/penelitian', [ExportDataDosen::class, 'penelitian'])->name('unduh.penelitian');
+    Route::post('unduh/pengabdian', [ExportDataDosen::class, 'pengabdian'])->name('unduh.pengabdian');
+    Route::post('unduh/publikasi', [ExportDataDosen::class, 'publikasi'])->name('unduh.publikasi');
+    Route::post('unduh/seminar', [ExportDataDosen::class, 'seminar'])->name('unduh.seminar');
+    Route::post('unduh/penghargaan', [ExportDataDosen::class, 'penghargaan'])->name('unduh.penghargaan');
+
+
+
+});
+
+
 
 
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan')->group(function () {

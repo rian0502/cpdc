@@ -298,11 +298,19 @@
                                     S1</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('jurusan.unduh.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
-                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data S1</span>
+                        <li
+                            class="dropdown {{ Request::is('jurusan/unduh_data_s1*') || Request::is('jurusan/unduh_data_s2*') || Request::is('jurusan/unduh_aktivitas_dosen*') ? 'show' : '' }}">
+                            {{-- Routenya nanti --}}
+                            <a href="javascript:;" class="dropdown-toggle">
+                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
                             </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('jurusan.unduh.index') }}"
+                                        class="{{ Request::is('jurusan/unduh_data_s1*') ? 'active' : '' }}">S1</a></li>
+                                <li><a href="{{ route('jurusan.unduh.dosen.index') }}"
+                                        class="{{ Request::is('jurusan/unduh_aktivitas_dosen*') ? 'active' : '' }}">Aktivitas
+                                        Dosen</a></li>
+                            </ul>
                         </li>
                         <li>
                             <a href="{{ route('jurusan.mahasiswa.index') }}"
@@ -338,12 +346,22 @@
                                 <span class="micon bi bi-journal-text"></span><span class="mtext">PUBLIKASI</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('jurusan.unduhs2.index') }}" {{-- Routenya nanti --}}
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/unduh*') ? 'active' : '' }}">
-                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data S2</span>
+                        <li
+                            class="dropdown {{ Request::is('jurusan/unduh_data_s1*') || Request::is('jurusan/unduh_data_s2*') || Request::is('jurusan/unduh_aktivitas_dosen*') ? 'show' : '' }}">
+                            {{-- Routenya nanti --}}
+                            <a href="javascript:;" class="dropdown-toggle">
+                                <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
                             </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('jurusan.unduhs2.index') }}"
+                                        class="{{ Request::is('jurusan/unduh_data_s2*') ? 'active' : '' }}">S2</a></li>
+                                <li>
+                                <li><a href="{{ route('jurusan.unduh.dosen.index') }}"
+                                        class="{{ Request::is('jurusan/unduh_aktivitas_dosen*') ? 'active' : '' }}">Aktivitas
+                                        Dosen</a></li>
+                            </ul>
                         </li>
+
                         <li>
                             <a href="{{ route('jurusan.mahasiswaS2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/mahasiswaS2*') ? 'active' : '' }}">
@@ -428,7 +446,7 @@
                             </a>
                         </li>
                         <li
-                            class="dropdown {{ Request::is('jurusan/unduh_data_s1*') || Request::is('jurusan/unduh_data_s2*') ? 'show' : '' }}">
+                            class="dropdown {{ Request::is('jurusan/unduh_data_s1*') || Request::is('jurusan/unduh_data_s2*') || Request::is('jurusan/unduh_aktivitas_dosen*') ? 'show' : '' }}">
                             {{-- Routenya nanti --}}
                             <a href="javascript:;" class="dropdown-toggle">
                                 <span class="micon bi bi-download"></span><span class="mtext">Unduh Data</span>
@@ -438,6 +456,9 @@
                                         class="{{ Request::is('jurusan/unduh_data_s1*') ? 'active' : '' }}">S1</a></li>
                                 <li><a href="{{ route('jurusan.unduhs2.index') }}"
                                         class="{{ Request::is('jurusan/unduh_data_s2*') ? 'active' : '' }}">S2</a></li>
+                                <li><a href="{{ route('jurusan.unduh.dosen.index') }}"
+                                        class="{{ Request::is('jurusan/unduh_aktivitas_dosen*') ? 'active' : '' }}">Aktivitas
+                                        Dosen</a></li>
                             </ul>
                         </li>
                     @endrole
@@ -628,7 +649,6 @@
                             </a>
                         </li>
                     @endrole
-
                     @role('admin berkas')
                         <li>
                             <a href="{{ route('berkas.berkas_persyaratan.index') }}"
@@ -698,119 +718,219 @@
                     @endrole
 
 
-                    @role('pkl')
-                        <li>
-                            <a href="{{ route('koor.jadwalPKL.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalPKL*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan
-                                    PKL/KP</span>
+                    @role('jurusan|kaprodiS1|kaprodiS2')
+                        <li
+                            class="dropdown {{ Request::is('koor/jadwalPKL*') || Request::is('koor/jadwalTA1*') || Request::is('koor/jadwalTA2*') || Request::is('koor/jadwalKompre*') || Request::is('koor/jadwal/TA1/S2*') || Request::is('koor/jadwal/TA2/S2*') || Request::is('koor/jadwal/Kompre/S2*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle"
+                                data-option="{{ Request::is('koor/jadwalPKL*') || Request::is('koor/jadwalTA1*') || Request::is('koor/jadwalTA2*') || Request::is('koor/jadwalKompre*') || Request::is('koor/jadwal/TA1/S2*') || Request::is('koor/jadwal/TA2/S2*') || Request::is('koor/jadwal/Kompre/S2*') ? 'on' : '' }}">
+                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan</span>
                             </a>
+                            <ul class="submenu">
+                                @role('pkl')
+                                    <li><a href="{{ route('koor.jadwalPKL.index') }}"
+                                            class="{{ Request::is('koor/jadwalPKL*') ? 'active' : '' }}">
+                                            PKL/KP</a>
+                                    </li>
+                                @endrole
+                                @role('ta1')
+                                    <li><a href="{{ route('koor.jadwalTA1.index') }}"
+                                            class="{{ Request::is('koor/jadwalTA1*') ? 'active' : '' }}">TA 1 S1</a>
+                                    </li>
+                                @endrole
+                                @role('ta1')
+                                    <li><a href="{{ route('koor.jadwalTA2.index') }}"
+                                            class="{{ Request::is('koor/jadwalTA2*') ? 'active' : '' }}">TA 2 S1</a>
+                                    </li>
+                                @endrole
+                                @role('kompre')
+                                    <li><a href="{{ route('koor.jadwalKompre.index') }}"
+                                            class="{{ Request::is('koor/jadwalKompre*') ? 'active' : '' }}">Kompre S1</a>
+                                    </li>
+                                @endrole
+                                @role('ta1S2')
+                                    <li><a href="{{ route('koor.jadwalTA1S2.index') }}"
+                                            class="{{ Request::is('koor/jadwal/TA1/S2*') ? 'active' : '' }}">TA 1 S2</a>
+                                    </li>
+                                @endrole
+                                @role('ta2S2')
+                                    <li><a href="{{ route('koor.jadwalTA2S2.index') }}"
+                                            class="{{ Request::is('koor/jadwal/TA2/S2*') ? 'active' : '' }}">TA 2 S2</a>
+                                    </li>
+                                @endrole
+                                @role('kompreS2')
+                                    <li><a href="{{ route('koor.jadwalKompreS2.index') }}"
+                                            class="{{ Request::is('koor/jadwal/Kompre/S2*') ? 'active' : '' }}">Kompre S2</a>
+                                    </li>
+                                @endrole
+
+                            </ul>
                         </li>
-                        <li>
-                            <a href="{{ route('koor.validasiBaPKL.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
-                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti
-                                    PKL/KP</span>
+                        <li
+                            class="dropdown {{ Request::is('koor/validasiBaPKL*') || Request::is('koor/validasiBaTA1*') || Request::is('koor/validasiBaTA2*') || Request::is('koor/validasiBaKompre*') || Request::is('koor/validasi/Ba/TA1/S2*') || Request::is('koor/validasi/Ba/TA2/S2*') || Request::is('koor/validasi/Ba/Kompre/S2*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle"
+                                data-option="{{ Request::is('koor/validasiBaPKL*') || Request::is('koor/validasiBaTA1*') || Request::is('koor/validasiBaTA2*') || Request::is('koor/validasiBaKompre*') || Request::is('koor/validasi/Ba/TA1/S2*') || Request::is('koor/validasi/Ba/TA2/S2*') || Request::is('koor/validasi/Ba/Kompre/S2*') ? 'on' : '' }}">
+                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi</span>
                             </a>
-                        </li>
-                    @endrole
-                    @role('ta1')
-                        <li>
-                            <a href="{{ route('koor.jadwalTA1.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalTA1*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
-                                    1 S1</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('koor.validasiBaTA1.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaTA1*') ? 'active' : '' }}">
-                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
-                                    1 S1</span>
-                            </a>
-                        </li>
-                    @endrole
-                    @role('ta1S2')
-                        <li>
-                            <a href="{{ route('koor.jadwalTA1S2.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwal/TA1/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan Tesis
-                                    1</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('koor.ValidasiBaTa1S2.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasi/Ba/TA1/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA Tesis
-                                    1</span>
-                            </a>
-                        </li>
-                    @endrole
-                    @role('ta2')
-                        <li>
-                            <a href="{{ route('koor.jadwalTA2.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalTA2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
-                                    2 S1</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('koor.validasiBaTA2.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaTA2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
-                                    2 S1</span>
-                            </a>
-                        </li>
-                    @endrole
-                    @role('ta2S2')
-                        <li>
-                            <a href="{{ route('koor.jadwalTA2S2.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwal/TA2/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan Tesis
-                                    2</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('koor.ValidasiBaTa2S2.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor//Ba/TA2/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA Tesis
-                                    2</span>
-                            </a>
-                        </li>
-                    @endrole
-                    @role('kompre')
-                        <li>
-                            <a href="{{ route('koor.jadwalKompre.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalKompre*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan
-                                    Kompre S1</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('koor.validasiBaKompre.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaKompre*') ? 'active' : '' }}">
-                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti
-                                    Kompre S1</span>
-                            </a>
-                        </li>
-                    @endrole
-                    @role('kompreS2')
-                        <li>
-                            <a href="{{ route('koor.jadwalKompreS2.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/jadwal/Kompre/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan
-                                    Sidang Tesis</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('koor.ValidasiBaKompreS2.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('koor/validasi/Ba/Kompre/S2*') ? 'active' : '' }}">
-                                <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA
-                                    Sidang Tesis</span>
-                            </a>
+                            <ul class="submenu">
+                                @role('pkl')
+                                    <li><a href="{{ route('koor.validasiBaPKL.index') }}"
+                                            class="{{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
+                                            PKL/KP</a>
+                                    </li>
+                                @endrole
+                                @role('ta1')
+                                    <li><a href="{{ route('koor.validasiBaTA1.index') }}"
+                                            class="{{ Request::is('koor/validasiBaTA1*') ? 'active' : '' }}">TA 1 S1</a>
+                                    </li>
+                                @endrole
+                                @role('ta2')
+                                    <li><a href="{{ route('koor.validasiBaTA2.index') }}"
+                                            class="{{ Request::is('koor/validasiBaTA2*') ? 'active' : '' }}">TA 2 S1</a>
+                                    </li>
+                                @endrole
+                                @role('kompre')
+                                    <li><a href="{{ route('koor.validasiBaKompre.index') }}"
+                                            class="{{ Request::is('koor/validasiBaKompre*') ? 'active' : '' }}">Kompre S1</a>
+                                    </li>
+                                @endrole
+                                @role('ta1S2')
+                                    <li><a href="{{ route('koor.ValidasiBaTa1S2.index') }}"
+                                            class="{{ Request::is('koor/validasi/Ba/TA1/S2*') ? 'active' : '' }}">TA 1 S2</a>
+                                    </li>
+                                @endrole
+                                @role('ta2S2')
+                                    <li>
+                                        <a href="{{ route('koor.ValidasiBaTa2S2.index') }}"
+                                            class="{{ Request::is('koor/validasi/Ba/TA2/S2*') ? 'active' : '' }}">TA 2 S2</a>
+                                    </li>
+                                @endrole
+                                @role('kompreS2')
+                                    <li><a href="{{ route('koor.ValidasiBaKompreS2.index') }}"
+                                            class="{{ Request::is('koor/validasi/Ba/Kompre/S2*') ? 'active' : '' }}">Kompre
+                                            S2</a>
+                                    </li>
+                                @endrole
+                            </ul>
                         </li>
                     @endrole
+                    @unless (auth()->user()->hasRole('jurusan|kaprodiS1|kaprodiS2'))
+                        @role('pkl')
+                            <li>
+                                <a href="{{ route('koor.jadwalPKL.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalPKL*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan
+                                        PKL/KP</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('koor.validasiBaPKL.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti
+                                        PKL/KP</span>
+                                </a>
+                            </li>
+                        @endrole
+
+                        @role('ta1')
+                            <li>
+                                <a href="{{ route('koor.jadwalTA1.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalTA1*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
+                                        1 S1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('koor.validasiBaTA1.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaTA1*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
+                                        1 S1</span>
+                                </a>
+                            </li>
+                        @endrole
+                        @role('ta1S2')
+                            <li>
+                                <a href="{{ route('koor.jadwalTA1S2.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/jadwal/TA1/S2*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan Tesis
+                                        1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('koor.ValidasiBaTa1S2.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/validasi/Ba/TA1/S2*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA Tesis
+                                        1</span>
+                                </a>
+                            </li>
+                        @endrole
+                        @role('ta2')
+                            <li>
+                                <a href="{{ route('koor.jadwalTA2.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalTA2*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan TA
+                                        2 S1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('koor.validasiBaTA2.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaTA2*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti TA
+                                        2 S1</span>
+                                </a>
+                            </li>
+                        @endrole
+                        @role('ta2S2')
+                            <li>
+                                <a href="{{ route('koor.jadwalTA2S2.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/jadwal/TA2/S2*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan Tesis
+                                        2</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('koor.ValidasiBaTa2S2.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor//Ba/TA2/S2*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA Tesis
+                                        2</span>
+                                </a>
+                            </li>
+                        @endrole
+                        @role('kompre')
+                            <li>
+                                <a href="{{ route('koor.jadwalKompre.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalKompre*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan
+                                        Kompre S1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('koor.validasiBaKompre.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaKompre*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti
+                                        Kompre S1</span>
+                                </a>
+                            </li>
+                        @endrole
+                        @role('kompreS2')
+                            <li>
+                                <a href="{{ route('koor.jadwalKompreS2.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/jadwal/Kompre/S2*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan
+                                        Sidang Tesis</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('koor.ValidasiBaKompreS2.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/validasi/Ba/Kompre/S2*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA
+                                        Sidang Tesis</span>
+                                </a>
+                            </li>
+                        @endrole
+                    @endunless
+
                 </ul>
+
             </div>
         </div>
     </div>
