@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\komprehensif;
 
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBaKompre;
 use App\Http\Requests\UpdateBaKompre;
@@ -96,14 +96,11 @@ class MahasiswaBaKompre extends Controller
      */
     public function edit($id)
     {
-        $seminar = ModelSeminarKompre::with(['jadwal', 'beritaAcara'])->find(Crypt::decrypt($id));
-        if ($seminar->id_mahasiswa !=  Auth::user()->mahasiswa->id) {
+        $berkas = ModelBaSeminarKompre::with('seminar')->where('id', Crypt::decrypt($id))->first();
+        if ($berkas->seminar->id_mahasiswa !=  Auth::user()->mahasiswa->id) {
             return redirect()->back();
         }
-        $data = [
-            'seminar' => ModelSeminarKompre::find(Crypt::decrypt($id)),
-        ];
-        return view('mahasiswa.kompre.ba.edit', $data);
+        return view('mahasiswa.kompre.ba.edit', compact('berkas'));
     }
 
     /**
