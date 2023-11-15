@@ -100,7 +100,11 @@ class MahasiswaBaKompre extends Controller
         if ($berkas->seminar->id_mahasiswa !=  Auth::user()->mahasiswa->id) {
             return redirect()->back();
         }
-        return view('mahasiswa.kompre.ba.edit', compact('berkas'));
+        $data = [
+            'berkas' => $berkas,
+            'seminar' => ModelJadwalSeminarKompre::where('id_seminar', $id)->first(),
+        ];
+        return view('mahasiswa.kompre.ba.edit', $data);
     }
 
     /**
