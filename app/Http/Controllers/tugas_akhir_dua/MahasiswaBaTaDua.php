@@ -98,7 +98,7 @@ class MahasiswaBaTaDua extends Controller
     {
 
         $data = [
-            'seminar' => ModelBaSeminarTaDua::find(Crypt::decrypt($id)),
+            'seminar' => ModelBaSeminarTaDua::with(['seminar', 'seminar.jadwal'])->find(Crypt::decrypt($id)),
         ];
 
         return view('mahasiswa.ta2.ba.edit', $data);
@@ -153,17 +153,12 @@ class MahasiswaBaTaDua extends Controller
         $jadwal->tanggal_seminar_ta_dua = $request->tgl_realisasi_seminar;
         $jadwal->updated_at = now();
         $jadwal->save();
+        $seminar = ModelSeminarTaDua::find($ba->id_seminar);
+        $seminar->komentar = null;
+        $seminar->status_koor = 'Belum Selesai';
+        $seminar->save();
         return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('success', 'Berhasil mengubah berita acara seminar TA 2');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+
 }

@@ -152,6 +152,10 @@ class MahasiswaBaTaSatu extends Controller
         $jadwal->tanggal_seminar_ta_satu = $request->tgl_realisasi_seminar;
         $jadwal->updated_at = now();
         $jadwal->save();
+        $seminar = ModelSeminarTaSatu::find($ba->id_seminar);
+        $seminar->komentar = null;
+        $seminar->status_koor = 'Belum Selesai';
+        $seminar->save();
         return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('success', 'Berhasil mengubah berita acara seminar TA 1');
     }
 
