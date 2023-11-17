@@ -253,7 +253,7 @@ class ExportData extends Controller
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('seminar_komprehensif' . $request->akt_kompre . '.xlsx');
+        $writer->save('seminar_komprehensif_' . $request->akt_kompre . '.xlsx');
         return response()->download('seminar_komprehensif_' . $request->akt_kompre . '.xlsx')->deleteFileAfterSend(true);
     }
 
@@ -307,7 +307,7 @@ class ExportData extends Controller
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('seminar_ta_2' . $request->akt_ta2 . '.xlsx');
+        $writer->save('seminar_ta_2_' . $request->akt_ta2 . '.xlsx');
         return response()->download('seminar_ta_2_' . $request->akt_ta2 . '.xlsx')->deleteFileAfterSend(true);
     }
 
@@ -363,7 +363,7 @@ class ExportData extends Controller
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('seminar_ta_1' . $request->akt_kp . '.xlsx');
+        $writer->save('seminar_ta_1_' . $request->akt_kp . '.xlsx');
         return response()->download('seminar_ta_1_' . $request->akt_kp . '.xlsx')->deleteFileAfterSend(true);
     }
 
@@ -419,7 +419,7 @@ class ExportData extends Controller
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('kerja_praktik' . $request->akt_kp . '.xlsx');
+        $writer->save('kerja_praktik_' . $request->akt_kp . '.xlsx');
         return response()->download('kerja_praktik_' . $request->akt_kp . '.xlsx')->deleteFileAfterSend(true);
     }
 

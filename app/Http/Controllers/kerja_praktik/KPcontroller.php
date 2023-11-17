@@ -116,8 +116,8 @@ class KPcontroller extends Controller
     {
         //
         $syarat = BerkasPersyaratanSeminar::find(1);
-        $seminar = ModelSeminarKP::select('id', 'id_mahasiswa')->where('id', Crypt::decrypt($id))->first();
-        if ($seminar->id_mahasiswa != auth()->user()->mahasiswa->id) {
+        $seminar = ModelSeminarKP::select('id', 'id_mahasiswa', 'proses_admin')->where('id', Crypt::decrypt($id))->first();
+        if ($seminar->id_mahasiswa != auth()->user()->mahasiswa->id || $seminar->proses_admin == 'Valid') {
             return redirect()->back();
         }
         $data = [

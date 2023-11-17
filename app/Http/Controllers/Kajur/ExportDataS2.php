@@ -277,6 +277,7 @@ class ExportDataS2 extends Controller
         $sheet->setCellValue('N1', 'Nilai');
         $sheet->setCellValue('O1', 'No BA');
         $sheet->setCellValue('P1', 'URL');
+        $sheet->setCellValue('Q1', 'Tanggal Sidang');
 
         foreach ($mahasiswa as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
@@ -284,7 +285,7 @@ class ExportDataS2 extends Controller
             $sheet->setCellValue('C' . ($key + 2), $value->nama_mahasiswa);
             $sheet->setCellValue('D' . ($key + 2), $value->status);
             $sheet->setCellValue('E' . ($key + 2), $value->komprehensifS2->judul_ta);
-            $sheet->setCellValue('F' . ($key + 2), $value->komprehensifS2->pembahasSatu->nama_dosen);
+            $sheet->setCellValue('F' . ($key + 2), $value->komprehensifS2->pembimbingSatu->nama_dosen);
             if ($value->komprehensifS2->id_pembimbing_2 != null) {
                 $sheet->setCellValue('G' . ($key + 2), $value->komprehensifS2->pembimbingDua->nama_dosen);
             } else {
@@ -301,15 +302,17 @@ class ExportDataS2 extends Controller
                 $sheet->setCellValue('N' . ($key + 2), $value->komprehensifS2->beritaAcara->nilai);
                 $sheet->setCellValue('O' . ($key + 2), $value->komprehensifS2->beritaAcara->no_ba);
                 $sheet->setCellValue('P' . ($key + 2), url('/uploads/ba_sidang_tesis/' . $value->taDuaS2->beritaAcara->file_ba));
+                $sheet->setCellValue('Q' . ($key + 2), $value->komprehensifS2->jadwal->tanggal);
             } else {
                 $sheet->setCellValue('M' . ($key + 2), '-');
                 $sheet->setCellValue('N' . ($key + 2), '-');
                 $sheet->setCellValue('O' . ($key + 2), '-');
                 $sheet->setCellValue('P' . ($key + 2), '-');
+                $sheet->setCellValue('Q' . ($key + 2), '-');
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('sidang_tesis_' . $request->akt_sidang     . '.xlsx');
+        $writer->save('sidang_tesis_' . $request->akt_sidang. '.xlsx');
         return response()->download('sidang_tesis_' . $request->akt_sidang   . '.xlsx')->deleteFileAfterSend(true);
     }
 
@@ -335,6 +338,7 @@ class ExportDataS2 extends Controller
         $sheet->setCellValue('N1', 'Nilai');
         $sheet->setCellValue('O1', 'No BA');
         $sheet->setCellValue('P1', 'URL');
+        $sheet->setCellValue('Q1', 'Tanggal Seminar');
 
         foreach ($mahasiswa as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
@@ -342,7 +346,7 @@ class ExportDataS2 extends Controller
             $sheet->setCellValue('C' . ($key + 2), $value->nama_mahasiswa);
             $sheet->setCellValue('D' . ($key + 2), $value->status);
             $sheet->setCellValue('E' . ($key + 2), $value->taDuaS2->judul_ta);
-            $sheet->setCellValue('F' . ($key + 2), $value->taDuaS2->pembahasSatu->nama_dosen);
+            $sheet->setCellValue('F' . ($key + 2), $value->taDuaS2->pembimbingSatu->nama_dosen);
             if ($value->taDuaS2->id_pembimbing_2 != null) {
                 $sheet->setCellValue('G' . ($key + 2), $value->taDuaS2->pembimbingDua->nama_dosen);
             } else {
@@ -359,11 +363,13 @@ class ExportDataS2 extends Controller
                 $sheet->setCellValue('N' . ($key + 2), $value->taDuaS2->beritaAcara->nilai);
                 $sheet->setCellValue('O' . ($key + 2), $value->taDuaS2->beritaAcara->no_ba);
                 $sheet->setCellValue('P' . ($key + 2), url('/uploads/ba_seminar_tesis_2/' . $value->taDuaS2->beritaAcara->file_ba));
+                $sheet->setCellValue('Q' . ($key + 2), $value->taDuaS2->jadwal->tanggal);
             } else {
                 $sheet->setCellValue('M' . ($key + 2), '-');
                 $sheet->setCellValue('N' . ($key + 2), '-');
                 $sheet->setCellValue('O' . ($key + 2), '-');
                 $sheet->setCellValue('P' . ($key + 2), '-');
+                $sheet->setCellValue('Q' . ($key + 2), '-');
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
@@ -392,6 +398,7 @@ class ExportDataS2 extends Controller
         $sheet->setCellValue('N1', 'Nilai');
         $sheet->setCellValue('O1', 'No BA');
         $sheet->setCellValue('P1', 'URL');
+        $sheet->setCellValue('Q1', 'Tanggal Seminar');
 
         foreach ($mahasiswa as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
@@ -399,7 +406,7 @@ class ExportDataS2 extends Controller
             $sheet->setCellValue('C' . ($key + 2), $value->nama_mahasiswa);
             $sheet->setCellValue('D' . ($key + 2), $value->status);
             $sheet->setCellValue('E' . ($key + 2), $value->taSatuS2->judul_ta);
-            $sheet->setCellValue('F' . ($key + 2), $value->taSatuS2->pembahasSatu->nama_dosen);
+            $sheet->setCellValue('F' . ($key + 2), $value->taSatuS2->pembimbingSatu->nama_dosen);
             if ($value->taSatuS2->id_pembimbing_2 != null) {
                 $sheet->setCellValue('G' . ($key + 2), $value->taSatuS2->pembimbingDua->nama_dosen);
             } else {
@@ -416,11 +423,13 @@ class ExportDataS2 extends Controller
                 $sheet->setCellValue('N' . ($key + 2), $value->taSatuS2->beritaAcara->nilai);
                 $sheet->setCellValue('O' . ($key + 2), $value->taSatuS2->beritaAcara->no_ba);
                 $sheet->setCellValue('P' . ($key + 2), url('/uploads/ba_seminar_tesis_1/' . $value->taSatuS2->beritaAcara->file_ba));
+                $sheet->setCellValue('Q' . ($key + 2), $value->taSatuS2->jadwal->tanggal);
             } else {
                 $sheet->setCellValue('M' . ($key + 2), '-');
                 $sheet->setCellValue('N' . ($key + 2), '-');
                 $sheet->setCellValue('O' . ($key + 2), '-');
                 $sheet->setCellValue('P' . ($key + 2), '-');
+                $sheet->setCellValue('Q' . ($key + 2), '-');
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
