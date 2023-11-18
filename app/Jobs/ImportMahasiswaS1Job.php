@@ -3,10 +3,12 @@
 namespace App\Jobs;
 
 use App\Models\User;
-use App\Models\BaseNPM;
+
 use App\Models\BaSKP;
 use App\Models\JadwalSKP;
 use App\Models\Mahasiswa;
+use App\Models\ModelBaSeminarTaSatu;
+use App\Models\ModelJadwalSeminarTaSatu;
 use App\Models\ModelSeminarKP;
 use App\Models\ModelSeminarTaSatu;
 use Illuminate\Bus\Queueable;
@@ -16,7 +18,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Mail;
+
 
 class ImportMahasiswaS1Job implements ShouldQueue
 {
@@ -31,111 +33,151 @@ class ImportMahasiswaS1Job implements ShouldQueue
     private $sheet2;
     private $sheet3;
     private $sheet4;
-    public function __construct($sheet1, $sheet2, $sheet3, $sheet4)
+    private $sheet5;
+
+    public function __construct($sheet1, $sheet2, $sheet3, $sheet4, $sheet5)
     {
         $this->sheet1 = $sheet1;
         $this->sheet2 = $sheet2;
         $this->sheet3 = $sheet3;
         $this->sheet4 = $sheet4;
+        $this->sheet5 = $sheet5;
     }
- 
+
 
     public function handle()
     {
-        try{
-            $id_mahasiswa = [];
-            foreach ($this->sheet1 as $key => $value) {
-                if ($key > 0) {
-                    DB::transaction(function () use ($value) {
-                        BaseNPM::create([
-                            'npm' => $value[0],
-                            'status' => 'aktif',
-                            'created_at' => now(),
-                            'updated_at' => now(),
-                        ]);
+        try {
+            Db::transaction(function () {
+                foreach ($this->sheet1 as $key => $value) {
+                    if ($key > 0) {
                         $user = User::create([
                             'name' => $value[1],
                             'email' => $value[2],
-                            'password' => bcrypt($value[0]),
                             'email_verified_at' => now(),
-                            'created_at' => now(),
-                            'updated_at' => now(),
+                            'password' => bcrypt('cpdc'),
                         ]);
                         $user->assignRole(['mahasiswa', 'alumni']);
                         $mahasiswa = Mahasiswa::create([
                             'npm' => $value[0],
                             'nama_mahasiswa' => $value[1],
-                            'tanggal_lahir' => $value[4],
-                            'angkatan' => $value[5],
-                            'tanggal_masuk' => $value[3],
+                            'tanggal_lahir' => $value[3],
+                            'tempat_lahir' => 'dummy',
+                            'no_hp' => $value[5],
+                            'alamat' => $value[6],
                             'jenis_kelamin' => $value[6],
-                            'semester' => '1',
+                            'tanggal_masuk' => $value[8],
+                            'angkatan' => $value[9],
+                            'semester' => $value[10],
                             'status' => 'Alumni',
+                            'id_dosen' => $value[11],
                             'user_id' => $user->id,
-                            'id_dosen' => $value[7],
                             'created_at' => now(),
                             'updated_at' => now(),
                         ]);
-                        $id_mahasiswa[] = $mahasiswa->id;
-                    });
-                }
-            }
-            foreach($this->sheet2 as $key => $value){
-                if($key > 0){
-                    DB::transaction(function () use ($value, $id_mahasiswa, $key) {
-                        $kp = ModelSeminarKP::create([
-                            'judul_kp' => $value[1],
-                            'semester' => $value[2],
-                            'tahun_akademik' => $value[3],
-                            'mitra' => $value[4],   
-                            'region' => $value[5],
-                            'rencan_seminar' => $value[6],
-                            'pembimbing_lapangan' => $value[7],
-                            'ni_pemlap' => $value[8],   
-                            'toefl' => $value[9],
-                            'sks' => $value[10],
-                            'ipk' => $value[11],
-                            'berkas_seminar_pkl' => $value[12],
-                            'aggrement' => 1,
+                        $skp = ModelSeminarKP::create([
+                            'judul_kp' => $this->sheet2[$key][1],
+                            'semester' => $this->sheet2[$key][2],
+                            'tahun_akademik' => $this->sheet2[$key][3],
+                            'mitra' => $this->sheet2[$key][4],
+                            'region' => $this->sheet2[$key][5],
+                            'rencana_seminar' => $this->sheet2[$key][6],
+                            'pembimbing_lapangan' => $this->sheet2[$key][7],
+                            'ni_pemlap' => $this->sheet2[$key][8],
+                            'toefl' => $this->sheet2[$key][9],
+                            'sks' => $this->sheet2[$key][10],
+                            'ipk' => $this->sheet2[$key][11],
+                            'berkas_seminar_pkl' => $this->sheet2[$key][12],
+                            'agreement' => 1,
                             'status_seminar' => 'Selesai',
                             'proses_admin' => 'Valid',
-                            'id_dospemkp' => $value[13],
-                            'id_mahasiswa' => $id_mahasiswa[$key-1],
+                            'id_dospemkp' => $this->sheet2[$key][13],
+                            'id_mahasiswa' => $mahasiswa->id,
                             'created_at' => now(),
                             'updated_at' => now(),
                         ]);
-                        ModelSeminarKP::find($kp->id)->update([
-                            'encrypt_id' => Crypt::encrypt($kp->id),
+                        ModelSeminarKP::where('id', $skp->id)->update([
+                            'encrypt_id' => Crypt::encrypt($skp->id),
                         ]);
                         $jadwal = JadwalSKP::create([
-                            'id_skp' => $kp->id,
-                            'tanggal' => $value[14],
-                            'jam_mulai_skp' => $value[15],
-                            'jam_selesai_skp' => $value[16],
-                            'id_lokasi' => $value[17],
+                            'tanggal_skp' => $this->sheet2[$key][14],
+                            'jam_mulai_skp' => $this->sheet2[$key][15],
+                            'jam_selesai_skp' => $this->sheet2[$key][16],
+                            'id_lokasi' => $this->sheet2[$key][17],
+                            'id_skp' => $skp->id,
                             'created_at' => now(),
                             'updated_at' => now(),
                         ]);
-                        JadwalSKP::find($jadwal->id)->update([
+                        JadwalSKP::where('id', $jadwal->id)->update([
                             'encrypt_id' => Crypt::encrypt($jadwal->id),
                         ]);
-                        $ba = BaSKP::create([
-                            'no_ba_seminar_kp' => $value[18],
-                            'nilai_lapangan' => $value[19],
-                            'nilai_akd' => $value[20],  
-                            'nilai_akhir' => $value[21],
-                            'nilai_mutu' => $value[22],
-                            'berkas_ba_seminar_kp' => $value[23],
-                            'laporan_kp' => $value[24],
-                            'id_seminar' => $kp->id,
+                        BaSKP::create([
+                            'no_ba_seminar_kp' => $this->sheet2[$key][18],
+                            'nilai_lapangan' => $this->sheet2[$key][19],
+                            'nilai_akd' => $this->sheet2[$key][20],
+                            'nilai_akhir' => $this->sheet2[$key][21],
+                            'nilai_mutu' => $this->sheet2[$key][22],
+                            'berkas_ba_seminar_kp' => $this->sheet2[$key][23],
+                            'laporan_kp' => $this->sheet2[$key][24],
+                            'id_seminar' => $skp->id,
                             'created_at' => now(),
                             'updated_at' => now(),
                         ]);
-                    });
+                        //tugas akhir 1
+                        $data_ta1 = [
+                            'tahun_akademik' => $this->sheet3[$key][1],
+                            'semester' => $this->sheet3[$key][2],
+                            'sumber_penelitian' => 'Dosen',
+                            'periode_seminar' => $this->sheet3[$key][3],
+                            'judul_ta' => $this->sheet3[$key][4],
+                            'sks' => $this->sheet3[$key][5],
+                            'ipk' => $this->sheet3[$key][6],
+                            'toefl' => $this->sheet3[$key][7],
+                            'berkas_ta_satu' => $this->sheet3[$key][8],
+                            'agreement' => 1,
+                            'status_admin' => 'Valid',
+                            'status_koor' => 'Selesai',
+                            'id_pembimbing_satu' => $this->sheet3[$key][9],
+                            'id_pembimbing_dua' => ($this->sheet3[$key][10] ? $this->sheet3[$key][10] : null),
+                            'pbl2_nama' => ($this->sheet3[$key][11] ? $this->sheet3[$key][11] : null),
+                            'pbl2_nip' => ($this->sheet3[$key][12] ? $this->sheet3[$key][12] : null),
+                            'id_pembahas' => $this->sheet3[$key][13],
+                            'id_mahasiswa' => $mahasiswa->id,
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ];
+                        $ta1 = ModelSeminarTaSatu::create($data_ta1);
+                        ModelSeminarTaSatu::where('id', $ta1->id)->update([
+                            'encrypt_id' => Crypt::encrypt($ta1->id),
+                        ]);
+                        $jawdal_ta1 = ModelJadwalSeminarTaSatu::create([
+                            'tanggal_seminar_ta_satu' => $this->sheet3[$key][14],
+                            'jam_mulai_seminar_ta_satu' => $this->sheet3[$key][15],
+                            'jam_selesai_seminar_ta_satu' => $this->sheet3[$key][16],
+                            'id_lokasi' => $this->sheet3[$key][17],
+                            'id_seminar' => $ta1->id,
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ]);
+                        ModelJadwalSeminarTaSatu::where('id', $jawdal_ta1->id)->update([
+                            'encrypt_id' => Crypt::encrypt($jawdal_ta1->id),
+                        ]);
+                        $ba_ta1 = ModelBaSeminarTaSatu::create([
+                            'no_berkas_ba_seminar_ta_satu' => $this->sheet3[$key][18],
+                            'berkas_ba_seminar_ta_satu' => $this->sheet3[$key][19],
+                            'berkas_nilai_seminar_ta_satu' => $this->sheet3[$key][20],
+                            'berkas_ppt_seminar_ta_satu' => $this->sheet3[$key][21],
+                            'nilai' => $this->sheet3[$key][22],
+                            'huruf_mutu' => $this->sheet3[$key][23],
+                            'id_seminar' => $ta1->id,
+                        ]);
+                        ModelBaSeminarTaSatu::where('id', $ba_ta1->id)->update([
+                            'encrypt_id' => Crypt::encrypt($ba_ta1->id),
+                        ]); 
+                    }
                 }
-            }
-
-        }catch(\Exception $e){
+            });
+        } catch (\Exception $e) {
             User::whereHas('roles', function ($query) {
                 $query->where('name', 'kajur');
             })->first();

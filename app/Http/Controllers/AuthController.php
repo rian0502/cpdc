@@ -119,7 +119,6 @@ class AuthController extends Controller
                     'jenis_kelamin' => $request->gender,
                     'user_id' => $user->id,
                 ];
-
                 if ($request->id_dosen != null) {
                     $mhs['id_dosen'] = Crypt::decrypt($request->id_dosen);
                 }
