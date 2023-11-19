@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Mail\ErrorMailImport;
 use App\Models\User;
 
 use App\Models\BaSKP;
@@ -11,6 +12,7 @@ use App\Models\ModelBaSeminarTaSatu;
 use App\Models\ModelJadwalSeminarTaSatu;
 use App\Models\ModelSeminarKP;
 use App\Models\ModelSeminarTaSatu;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Queue\SerializesModels;
@@ -18,7 +20,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Crypt;
-
+use Illuminate\Support\Facades\Mail;
 
 class ImportMahasiswaS1Job implements ShouldQueue
 {
@@ -176,15 +178,22 @@ class ImportMahasiswaS1Job implements ShouldQueue
                         'id_seminar' => $ta1->id,
                     ]);
                     ModelBaSeminarTaSatu::where('id', $ba_ta1->id)->update([
-                        'encrypt_id' => Crypt::encrypt($ba_ta1->id),
+                        'encrypt_i' => Crypt::encrypt($ba_ta1->id),
                     ]);
                 }
             });
         } catch (\Exception $e) {
-            User::whereHas('roles', function ($query) {
-                $query->where('name', 'kajur');
+            $user = User::whereHas('roles', function ($query) {
+                $query->where('name', 'jurusan');
             })->first();
-            return dd($e->getMessage());
+            $data = [
+                'title' => 'Error Import Mahasiswa S1',
+                'messages' => $e->getMessage(),
+                'nama' => $user->name,
+            ];
+            $email = new ErrorMailImport($data);
+            Mail::to('zakimubarok551@gmail.com')->send($email);
+
         }
     }
 }
