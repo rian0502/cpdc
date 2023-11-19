@@ -305,9 +305,6 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::post('unduh/publikasi', [ExportDataDosen::class, 'publikasi'])->name('unduh.publikasi');
     Route::post('unduh/seminar', [ExportDataDosen::class, 'seminar'])->name('unduh.seminar');
     Route::post('unduh/penghargaan', [ExportDataDosen::class, 'penghargaan'])->name('unduh.penghargaan');
-
-
-
 });
 
 
@@ -433,6 +430,7 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::delete('resetSeminarS2/delete/{id}', [ResetTAS2::class, 'destroy'])->name('reset.seminarS2.destroy');
     Route::get('impormahasiswa', [ImportMahasiswaController::class, 'index'])->name('import.mahasiswa.index');
     Route::post('impormahasiswa', [ImportMahasiswaController::class, 'store'])->name('import.mahasiswa.store');
+    Route::get('unduhimportmahasiswa', [ImportMahasiswaController::class, 'unduh'])->name('import.mahasiswa.unduh');
 });
 
 Route::get('/', function () {

@@ -3,14 +3,21 @@
 namespace App\Jobs;
 
 use App\Mail\ErrorMailImport;
+use App\Models\BaseNPM;
 use App\Models\User;
 
 use App\Models\BaSKP;
 use App\Models\JadwalSKP;
 use App\Models\Mahasiswa;
+use App\Models\ModelBaSeminarKompre;
+use App\Models\ModelBaSeminarTaDua;
 use App\Models\ModelBaSeminarTaSatu;
+use App\Models\ModelJadwalSeminarKompre;
+use App\Models\ModelJadwalSeminarTaDua;
 use App\Models\ModelJadwalSeminarTaSatu;
+use App\Models\ModelSeminarKompre;
 use App\Models\ModelSeminarKP;
+use App\Models\ModelSeminarTaDua;
 use App\Models\ModelSeminarTaSatu;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
@@ -55,15 +62,19 @@ class ImportMahasiswaS1Job implements ShouldQueue
                     if ($key == 0) {
                         continue;
                     }
-
                     $user = new User();
                     $user->name = $value[1];
                     $user->email = $value[2];
                     $user->password = bcrypt('cpdc');
                     $user->email_verified_at = now();
                     $user->save();
-                    
                     $user->assignRole(['mahasiswa', 'alumni']);
+                    BaseNPM::create([
+                        'npm' => $value[0],
+                        'status' => 'Aktif',
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
                     $mahasiswa = Mahasiswa::create([
                         'npm' => $value[0],
                         'nama_mahasiswa' => $value[1],
@@ -178,7 +189,105 @@ class ImportMahasiswaS1Job implements ShouldQueue
                         'id_seminar' => $ta1->id,
                     ]);
                     ModelBaSeminarTaSatu::where('id', $ba_ta1->id)->update([
-                        'encrypt_i' => Crypt::encrypt($ba_ta1->id),
+                        'encrypt_id' => Crypt::encrypt($ba_ta1->id),
+                    ]);
+                    //tugas akhir 2
+                    $ta_2 = ModelSeminarTaDua::create([
+                        'tahun_akademik' => $this->sheet4[$key][1],
+                        'semester' => $this->sheet4[$key][2],
+                        'periode_seminar' => $this->sheet4[$key][3],
+                        'judul_ta' => $this->sheet4[$key][4],
+                        'sks' => $this->sheet4[$key][5],
+                        'ipk' => $this->sheet4[$key][6],
+                        'toefl' => $this->sheet4[$key][7],
+                        'berkas_ta_dua' => $this->sheet4[$key][8],
+                        'agreement' => 1,
+                        'status_admin' => 'Valid',
+                        'status_koor' => 'Selesai',
+                        'id_pembimbing_satu' => $this->sheet4[$key][9],
+                        'id_pembimbing_dua' => ($this->sheet4[$key][10] ? $this->sheet4[$key][10] : null),
+                        'pbl2_nama' => ($this->sheet4[$key][11] ? $this->sheet4[$key][11] : null),
+                        'pbl2_nip' => ($this->sheet4[$key][12] ? $this->sheet4[$key][12] : null),
+                        'id_pembahas' => $this->sheet4[$key][13],
+                        'id_mahasiswa' => $mahasiswa->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                    ModelSeminarTaDua::where('id', $ta_2->id)->update([
+                        'encrypt_id' => Crypt::encrypt($ta_2->id),
+                    ]);
+                    $jadwal_ta2 = ModelJadwalSeminarTaDua::create([
+                        'tanggal_seminar_ta_dua' => $this->sheet4[$key][14],
+                        'jam_mulai_seminar_ta_dua' => $this->sheet4[$key][15],
+                        'jam_selesai_seminar_ta_dua' => $this->sheet4[$key][16],
+                        'id_lokasi' => $this->sheet4[$key][17],
+                        'id_seminar' => $ta_2->id,
+                    ]);
+                    ModelJadwalSeminarTaDua::where('id', $jadwal_ta2->id)->update([
+                        'encrypt_id' => Crypt::encrypt($jadwal_ta2->id),
+                    ]);
+                    $ba_ta_2 = ModelBaSeminarTaDua::create([
+                        'no_berkas_ba_seminar_ta_dua' => $this->sheet4[$key][18],
+                        'berkas_ba_seminar_ta_dua' => $this->sheet4[$key][19],
+                        'berkas_nilai_seminar_ta_dua' => $this->sheet4[$key][20],
+                        'berkas_ppt_seminar_ta_dua' => $this->sheet4[$key][21],
+                        'nilai' => $this->sheet4[$key][22],
+                        'huruf_mutu' => $this->sheet4[$key][23],
+                        'id_seminar' => $ta_2->id,
+                    ]);
+                    ModelBaSeminarTaDua::where('id', $ba_ta_2->id)->update([
+                        'encrypt_id' => Crypt::encrypt($ba_ta_2->id),
+                    ]);
+                    //komprehensif
+                    $komprehensif = ModelSeminarKompre::create([
+                        'tahun_akademik' => $this->sheet5[$key][1],
+                        'semester' => $this->sheet5[$key][2],
+                        'periode_seminar' => $this->sheet5[$key][3],
+                        'judul_ta' => $this->sheet5[$key][4],
+                        'sks' => $this->sheet5[$key][5],
+                        'ipk' => $this->sheet5[$key][6],
+                        'toefl' => $this->sheet5[$key][7],
+                        'berkas_kompre' => $this->sheet5[$key][8],
+                        'agreement' => 1,
+                        'status_admin' => 'Valid',
+                        'status_koor' => 'Selesai',
+                        'id_pembimbing_satu' => $this->sheet5[$key][9],
+                        'id_pembimbing_dua' => ($this->sheet5[$key][10] ? $this->sheet5[$key][10] : null),
+                        'pbl2_nama' => ($this->sheet5[$key][11] ? $this->sheet5[$key][11] : null),
+                        'pbl2_nip' => ($this->sheet5[$key][12] ? $this->sheet5[$key][12] : null),
+                        'id_pembahas' => $this->sheet5[$key][13],
+                        'id_mahasiswa' => $mahasiswa->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                    ModelSeminarKompre::where('id', $komprehensif->id)->update([
+                        'encrypt_id' => Crypt::encrypt($komprehensif->id),
+                    ]);
+                    $jadwal_kompre = ModelJadwalSeminarKompre::create([
+                        'tanggal_komprehensif' => $this->sheet5[$key][14],
+                        'jam_mulai_komprehensif' => $this->sheet5[$key][15],
+                        'jam_selesai_komprehensif' => $this->sheet5[$key][16],
+                        'id_lokasi' => $this->sheet5[$key][17],
+                        'id_seminar' => $komprehensif->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                    ModelJadwalSeminarKompre::where('id', $jadwal_kompre->id)->update([
+                        'encrypt_id' => Crypt::encrypt($jadwal_kompre->id),
+                    ]);
+                    $ba_kompre = ModelBaSeminarKompre::create([
+                        'ba_seminar_komprehensif' => $this->sheet5[$key][18],
+                        'no_ba_berkas' => $this->sheet5[$key][19],
+                        'berkas_nilai_kompre' => $this->sheet5[$key][20],
+                        'laporan_ta' => $this->sheet5[$key][21],
+                        'nilai' => $this->sheet5[$key][22],
+                        'huruf_mutu' => $this->sheet5[$key][23],
+                        'id_seminar' => $komprehensif->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                    ModelBaSeminarKompre::where('id', $ba_kompre->id)->update([
+                        'encrypt_id' => Crypt::encrypt($ba_kompre->id),
                     ]);
                 }
             });
@@ -193,7 +302,6 @@ class ImportMahasiswaS1Job implements ShouldQueue
             ];
             $email = new ErrorMailImport($data);
             Mail::to('zakimubarok551@gmail.com')->send($email);
-
         }
     }
 }

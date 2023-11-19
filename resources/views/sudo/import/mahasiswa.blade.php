@@ -6,9 +6,11 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Unggah Data Mahasiswa</h4>
+                        <a href="{{ route('sudo.import.mahasiswa.unduh') }}" class="btn btn-success mt-4">Unduh Template Excel</a>
                     </div>
                     <div class="pb-20 m-3">
-                        <form action="{{ route('sudo.import.mahasiswa.store') }}" method="post" id="formStatus" enctype="multipart/form-data">
+                        <form action="{{ route('sudo.import.mahasiswa.store') }}" method="post" id="formStatus"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="custom-file mb-1">
                                 <label class="custom-file-label" for="link-data_mahasiswa" id="label-data_mahasiswa">Pilih
