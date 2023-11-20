@@ -4,6 +4,7 @@ namespace App\Http\Controllers\controller_seminar;
 
 use App\Models\BaSKP;
 use App\Models\Dosen;
+use App\Models\Lokasi;
 use App\Models\JadwalSKP;
 use App\Models\ModelSeminarKP;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +25,7 @@ class EditSeminarKerjPraktikController extends Controller
     {
         $seminar = ModelSeminarKP::with(['jadwal', 'berita_acara'])->where('id', Crypt::decrypt($id))->first();
         $dosen = Dosen::select('encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
+        $lokasi = Lokasi::select('encrypt_id', 'nama_lokasi')->where('jenis_ruangan', 'Kelas')->get();
     }
 
     public function update(UpdateSeminarPKLRequest $request, $id)

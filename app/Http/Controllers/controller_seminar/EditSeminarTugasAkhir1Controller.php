@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\controller_seminar;
 
 use App\Models\Dosen;
+use App\Models\Lokasi;
 use App\Models\ModelSeminarTaSatu;
 use Illuminate\Support\Facades\DB;
 use App\Models\ModelBaSeminarTaDua;
@@ -20,6 +21,7 @@ class EditSeminarTugasAkhir1Controller extends Controller
     public function edit($id){
         $seminar = ModelSeminarTaSatu::with(['jadwal', 'ba_seminar'])->where('id', Crypt::decrypt($id))->first();
         $dosen = Dosen::select('encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
+        $lokasi = Lokasi::select('encrypt_id', 'nama_lokasi')->where('jenis_ruangan', 'Kelas')->get();
     }
 
     public function update(UpdateSeminarTugasAkhir1Request $request, $id){
