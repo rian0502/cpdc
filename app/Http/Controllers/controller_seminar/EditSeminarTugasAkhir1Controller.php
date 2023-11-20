@@ -4,19 +4,31 @@ namespace App\Http\Controllers\controller_seminar;
 
 use App\Models\Dosen;
 use App\Models\Lokasi;
+use Illuminate\Http\Request;
 use App\Models\ModelSeminarTaSatu;
 use Illuminate\Support\Facades\DB;
 use App\Models\ModelBaSeminarTaDua;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaSatu;
+use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\UpdateSeminarTugasAkhir1Request;
 
 class EditSeminarTugasAkhir1Controller extends Controller
 {
     //
-    public function index(){
-
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $seminar = ModelSeminarTaSatu::query()->with('mahasiswa');
+            return DataTables::of($seminar)
+                ->addIndexColumn()->editColumn('mahasiswa.nama', function ($seminar) {
+                    return $seminar->mahasiswa->nama;
+                })
+                ->addIndexColumn()->editColumn('mahasiswa.npm', function ($seminar) {
+                    return $seminar->mahasiswa->npm;
+                })->toJson();
+        }
     }
     public function edit($id){
         $seminar = ModelSeminarTaSatu::with(['jadwal', 'ba_seminar'])->where('id', Crypt::decrypt($id))->first();
@@ -42,7 +54,7 @@ class EditSeminarTugasAkhir1Controller extends Controller
                 }
                 $file = $request->file('berkas_ta_satu');
                 $nama_file = $file->hashName();
-                $file->move('uploads/syarat_seminar_ta1/', $nama_file);
+                $file->move('uploads/syarat_seminar_ta1', $nama_file);
                 $seminar->berkas_ta_satu = $nama_file;
             }
             $seminar->status_admin = $request->status_admin;
@@ -80,7 +92,7 @@ class EditSeminarTugasAkhir1Controller extends Controller
                 }
                 $file = $request->file('berkas_ba_seminar_ta_satu');
                 $nama_file = $file->hashName();
-                $file->move('uploads/ba_seminar_ta_satu/', $nama_file);
+                $file->move('uploads/ba_seminar_ta_satu', $nama_file);
                 $ba->berkas_ba_seminar_ta_satu = $nama_file;
             }
             if($request->berkas_nilai_ta_satu){
@@ -89,7 +101,7 @@ class EditSeminarTugasAkhir1Controller extends Controller
                 }
                 $file = $request->file('berkas_nilai_ta_satu');
                 $nama_file = $file->hashName();
-                $file->move('uploads/nilai_seminar_ta_satu/', $nama_file);
+                $file->move('uploads/nilai_seminar_ta_satu', $nama_file);
                 $ba->berkas_nilai_ta_satu = $nama_file;
             }
             $ba->berkas_ppt_seminar_ta_satu = $request->berkas_ppt_seminar_ta_satu;

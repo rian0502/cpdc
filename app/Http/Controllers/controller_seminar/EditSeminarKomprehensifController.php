@@ -4,19 +4,31 @@ namespace App\Http\Controllers\controller_seminar;
 
 use App\Models\Dosen;
 use App\Models\Lokasi;
+use Illuminate\Http\Request;
 use App\Models\ModelSeminarKompre;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateSeminarKomprehensifRequest;
 use App\Models\ModelBaSeminarKompre;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarKompre;
+use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\UpdateSeminarKomprehensifRequest;
 
 class EditSeminarKomprehensifController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $seminar = ModelSeminarKompre::query()->with('mahasiswa');
+            return DataTables::of($seminar)
+                ->addIndexColumn()->editColumn('mahasiswa.nama', function ($seminar) {
+                    return $seminar->mahasiswa->nama;
+                })
+                ->addIndexColumn()->editColumn('mahasiswa.npm', function ($seminar) {
+                    return $seminar->mahasiswa->npm;
+                })->toJson();
+        }
     }
     public function edit($id)
     {
@@ -91,7 +103,7 @@ class EditSeminarKomprehensifController extends Controller
                 }
                 $file = $request->file('berkas_nilai_kompre');
                 $nama_file = $file->hashName();
-                $file->move('uploads/nilai_sidang_kompre/', $nama_file);
+                $file->move('uploads/nilai_sidang_kompre', $nama_file);
                 $ba->berkas_nilai_kompre = $nama_file;
             }
             $ba->laporan_ta = $request->laporan_ta;

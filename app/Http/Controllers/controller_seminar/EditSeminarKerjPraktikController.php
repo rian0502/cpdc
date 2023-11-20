@@ -6,18 +6,30 @@ use App\Models\BaSKP;
 use App\Models\Dosen;
 use App\Models\Lokasi;
 use App\Models\JadwalSKP;
+use Illuminate\Http\Request;
 use App\Models\ModelSeminarKP;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
+use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\UpdateSeminarPKLRequest;
 
 class EditSeminarKerjPraktikController extends Controller
 {
     //
 
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $seminar = ModelSeminarKP::query()->with('mahasiswa');
+            return DataTables::of($seminar)
+                ->addIndexColumn()->editColumn('mahasiswa.nama', function ($seminar) {
+                    return $seminar->mahasiswa->nama;
+                })
+                ->addIndexColumn()->editColumn('mahasiswa.npm', function ($seminar) {
+                    return $seminar->mahasiswa->npm;
+                })->toJson();
+        }
     }
 
 
@@ -52,7 +64,7 @@ class EditSeminarKerjPraktikController extends Controller
             if ($request->berkas_seminar_pkl) {
                 $file = $request->file('berkas_seminar_pkl');
                 $nama_file = $file->hashName();
-                $file->move('uploads/syarat_seminar_kp/', $nama_file);
+                $file->move('uploads/syarat_seminar_kp', $nama_file);
                 $seminar->berkas_seminar_pkl = $nama_file;
             }
             $seminar->updated_at = date('Y-m-d H:i:s');

@@ -4,20 +4,32 @@ namespace App\Http\Controllers\controller_seminar;
 
 use App\Models\Dosen;
 use App\Models\Lokasi;
+use Illuminate\Http\Request;
 use App\Models\ModelKompreS2;
 use App\Models\ModelBaKompreS2;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
-use App\Http\Requests\UpdateSidangTesisRequest;
+use Yajra\DataTables\Facades\DataTables;
 use App\Models\ModelJadwalSeminarKompreS2;
+use App\Http\Requests\UpdateSidangTesisRequest;
 
 class EditSidangTesisController extends Controller
 {
     //
 
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $seminar = ModelKompreS2::query()->with('mahasiswa');
+            return DataTables::of($seminar)
+                ->addIndexColumn()->editColumn('mahasiswa.nama', function ($seminar) {
+                    return $seminar->mahasiswa->nama;
+                })
+                ->addIndexColumn()->editColumn('mahasiswa.npm', function ($seminar) {
+                    return $seminar->mahasiswa->npm;
+                })->toJson();
+        }
     }
 
     public function edit($id)
@@ -44,14 +56,16 @@ class EditSidangTesisController extends Controller
             $seminar->sks = $request->sks;
             $seminar->ipk = $request->ipk;
             $seminar->toefl = $request->toefl;
-            if ($request->hasFile('berkas_ta_dua')) {
-                if (file_exists('uploads/syarat_seminar_ta_dua_s2/' . $seminar->berkas_ta_dua)) {
-                    unlink('uploads/syarat_seminar_ta_dua_s2/' . $seminar->berkas_ta_dua);
+            $seminar->draft_artikel = $request->draft_artikel;
+            $seminar->url_draft_artikel = $request->url_draft_artikel;
+            if ($request->hasFile('berkas_kompre')) {
+                if (file_exists('uploads/syarat_seminar_sidang_s2/' . $seminar->berkas_kompre)) {
+                    unlink('uploads/syarat_seminar_sidang_s2/' . $seminar->berkas_kompre);
                 }
-                $file = $request->file('berkas_ta_dua');
+                $file = $request->file('berkas_kompre');
                 $filename = $file->hashName();
-                $file->move('uploads/syarat_seminar_ta_dua_s2', $filename);
-                $seminar->berkas_ta_dua = $filename;
+                $file->move('uploads/syarat_seminar_sidang_s2', $filename);
+                $seminar->berkas_kompre = $filename;
             }
             $seminar->komentar = $request->komentar;
             $seminar->status_admin = $request->status_admin;
@@ -124,21 +138,21 @@ class EditSidangTesisController extends Controller
             $ba->nilai_mutu = $request->nilai_mutu;
             $ba->ppt = $request->ppt;
             if ($request->berkas_ba) {
-                if (file_exists('uploads/ba_seminar_tesis_2/' . $ba->berkas_ba)) {
-                    unlink('uploads/ba_seminar_tesis_2/' . $ba->berkas_ba);
+                if (file_exists('uploads/ba_sidang_tesis/' . $ba->berkas_ba)) {
+                    unlink('uploads/ba_sidang_tesis/' . $ba->berkas_ba);
                 }
                 $file = $request->file('berkas_ba');
                 $filename = $file->hashName();
-                $file->move('uploads/ba_seminar_tesis_2', $filename);
+                $file->move('uploads/ba_sidang_tesis', $filename);
                 $ba->berkas_ba = $filename;
             }
             if ($request->file_nilai) {
-                if (file_exists('uploads/nilai_seminar_tesis_2/' . $ba->file_nilai)) {
-                    unlink('uploads/nilai_seminar_tesis_2/' . $ba->file_nilai);
+                if (file_exists('uploads/nilai_sidang_tesis/' . $ba->file_nilai)) {
+                    unlink('uploads/nilai_sidang_tesis/' . $ba->file_nilai);
                 }
                 $file = $request->file('file_nilai');
                 $filename = $file->hashName();
-                $file->move('uploads/nilai_seminar_tesis_2', $filename);
+                $file->move('uploads/nilai_sidang_tesis', $filename);
                 $ba->file_nilai = $filename;
             }
             $ba->updated_at = date('Y-m-d H:i:s');

@@ -4,18 +4,30 @@ namespace App\Http\Controllers\controller_seminar;
 
 use App\Models\Dosen;
 use App\Models\Lokasi;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\ModelSeminarTaDuaS2;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateSeminarTesis2Request;
 use App\Models\ModelBaSeminarTaDuaS2;
 use Illuminate\Support\Facades\Crypt;
+use Yajra\DataTables\Facades\DataTables;
 use App\Models\ModelJadwalSeminarTaDuaS2;
+use App\Http\Requests\UpdateSeminarTesis2Request;
 
 class EditSeminarTesis2Controller extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $seminar = ModelSeminarTaDuaS2::query()->with('mahasiswa');
+            return DataTables::of($seminar)
+                ->addIndexColumn()->editColumn('mahasiswa.nama', function ($seminar) {
+                    return $seminar->mahasiswa->nama;
+                })
+                ->addIndexColumn()->editColumn('mahasiswa.npm', function ($seminar) {
+                    return $seminar->mahasiswa->npm;
+                })->toJson();
+        }
     }
 
     public function edit($id)
