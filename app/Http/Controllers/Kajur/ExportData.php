@@ -228,6 +228,7 @@ class ExportData extends Controller
         $sheet->setCellValue('L1', 'Nilai');
         $sheet->setCellValue('M1', 'No BA');
         $sheet->setCellValue('N1', 'URL');
+        $sheet->setCellValue('O1', 'Tanggal Realisasi');
         foreach ($mahasiswa as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->npm);
@@ -248,11 +249,12 @@ class ExportData extends Controller
                 $sheet->setCellValue('L' . ($key + 2), $value->komprehensif->beritaAcara->nilai);
                 $sheet->setCellValue('M' . ($key + 2), $value->komprehensif->beritaAcara->no_ba_berkas);
                 $sheet->setCellValue('N' . ($key + 2), url('/uploads/ba_sidang_kompre/' . $value->komprehensif->beritaAcara->ba_seminar_komprehensif));
+                $sheet->setCellValue('O' . ($key + 2), $value->komprehensif->jadwal->tanggal_komprehensif);
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('seminar_komprehensif' . $request->akt_kompre . '.xlsx');
-        return response()->download('seminar_komprehensif' . $request->akt_kompre . '.xlsx')->deleteFileAfterSend(true);
+        $writer->save('seminar_komprehensif_' . $request->akt_kompre . '.xlsx');
+        return response()->download('seminar_komprehensif_' . $request->akt_kompre . '.xlsx')->deleteFileAfterSend(true);
     }
 
     public function ta2(Request $request)
@@ -275,6 +277,7 @@ class ExportData extends Controller
         $sheet->setCellValue('L1', 'Nilai');
         $sheet->setCellValue('M1', 'No BA');
         $sheet->setCellValue('N1', 'URL');
+        $sheet->setCellValue('O1', 'Tanggal Realisasi');
         foreach ($mahasiswa as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->npm);
@@ -295,6 +298,7 @@ class ExportData extends Controller
                 $sheet->setCellValue('L' . ($key + 2), $value->ta_dua->ba_seminar->nilai);
                 $sheet->setCellValue('M' . ($key + 2), $value->ta_dua->ba_seminar->no_berkas_ba_seminar_ta_dua);
                 $sheet->setCellValue('N' . ($key + 2), url('/uploads/ba_seminar_ta_dua/' . $value->ta_dua->ba_seminar->berkas_ba_seminar_ta_dua));
+                $sheet->setCellValue('O' . ($key + 2), $value->ta_dua->jadwal->tanggal_seminar_ta_dua);
             } else {
                 $sheet->setCellValue('K' . ($key + 2), '-');
                 $sheet->setCellValue('L' . ($key + 2), '-');
@@ -303,8 +307,8 @@ class ExportData extends Controller
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('seminar_ta_2' . $request->akt_ta2 . '.xlsx');
-        return response()->download('seminar_ta_2' . $request->akt_ta2 . '.xlsx')->deleteFileAfterSend(true);
+        $writer->save('seminar_ta_2_' . $request->akt_ta2 . '.xlsx');
+        return response()->download('seminar_ta_2_' . $request->akt_ta2 . '.xlsx')->deleteFileAfterSend(true);
     }
 
 
@@ -329,6 +333,7 @@ class ExportData extends Controller
         $sheet->setCellValue('L1', 'Nilai');
         $sheet->setCellValue('M1', 'No BA');
         $sheet->setCellValue('N1', 'URL');
+        $sheet->setCellValue('O1', 'Tanggal Realisasi');
         foreach ($mahasiswa as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->npm);
@@ -349,6 +354,7 @@ class ExportData extends Controller
                 $sheet->setCellValue('L' . ($key + 2), $value->ta_satu->ba_seminar->nilai);
                 $sheet->setCellValue('M' . ($key + 2), $value->ta_satu->ba_seminar->no_berkas_ba_seminar_ta_satu);
                 $sheet->setCellValue('N' . ($key + 2), url('/uploads/ba_seminar_ta_satu/' . $value->ta_satu->ba_seminar->berkas_ba_seminar_ta_satu));
+                $sheet->setCellValue('O' . ($key + 2), $value->ta_satu->jadwal->tanggal_seminar_ta_satu);
             } else {
                 $sheet->setCellValue('K' . ($key + 2), '-');
                 $sheet->setCellValue('L' . ($key + 2), '-');
@@ -357,8 +363,8 @@ class ExportData extends Controller
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('seminar_ta_1' . $request->akt_kp . '.xlsx');
-        return response()->download('seminar_ta_1' . $request->akt_kp . '.xlsx')->deleteFileAfterSend(true);
+        $writer->save('seminar_ta_1_' . $request->akt_kp . '.xlsx');
+        return response()->download('seminar_ta_1_' . $request->akt_kp . '.xlsx')->deleteFileAfterSend(true);
     }
 
     public function kp(Request $request)
@@ -413,8 +419,8 @@ class ExportData extends Controller
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('kerja_praktik' . $request->akt_kp . '.xlsx');
-        return response()->download('kerja_praktik' . $request->akt_kp . '.xlsx')->deleteFileAfterSend(true);
+        $writer->save('kerja_praktik_' . $request->akt_kp . '.xlsx');
+        return response()->download('kerja_praktik_' . $request->akt_kp . '.xlsx')->deleteFileAfterSend(true);
     }
 
     public function alumni(Request $request)
@@ -535,7 +541,7 @@ class ExportData extends Controller
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('mahasiswa' . $request->tahun_mahasiswa . '.xlsx');
-        return response()->download('mahasiswa' . $request->tahun_mahasiswa . '.xlsx')->deleteFileAfterSend(true);
+        return response()->download('mahasiswa_' . $request->tahun_mahasiswa . '.xlsx')->deleteFileAfterSend(true);
     }
 
     public function aktivitas(Request $request)
@@ -562,7 +568,7 @@ class ExportData extends Controller
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('aktivitas' . $request->tahun_aktivitas . '.xlsx');
-        return response()->download('aktivitas' . $request->tahun_aktivitas . '.xlsx')->deleteFileAfterSend(true);
+        return response()->download('aktivitas_' . $request->tahun_aktivitas . '.xlsx')->deleteFileAfterSend(true);
     }
     public function prestasi(Request $request)
     {

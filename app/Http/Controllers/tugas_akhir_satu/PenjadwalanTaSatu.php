@@ -10,6 +10,7 @@ use App\Models\Administrasi;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarTaSatu;
 use App\Http\Controllers\Controller;
+use App\Jobs\SendEmailTugasAkhir1;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
@@ -126,18 +127,10 @@ class PenjadwalanTaSatu extends Controller
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
-            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 1');
-            $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach('uploads/print_ba_ta1/' . $namafile);
-        });
-        unlink('uploads/print_ba_ta1/' . $namafile);
+        dispatch(new SendEmailTugasAkhir1($data, $to_name, $to_email, $namafile));
         return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Menjadwalkan Seminar Tugas Akhir 1');
     }
 
-    public function show($id)
-    {
-    }
 
     public function edit($id)
     {
@@ -209,12 +202,7 @@ class PenjadwalanTaSatu extends Controller
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
-            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 1');
-            $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach('uploads/print_ba_ta1/' . $namafile);
-        });
-        unlink('uploads/print_ba_ta1/' . $namafile);
+        dispatch(new SendEmailTugasAkhir1($data, $to_name, $to_email, $namafile));
         return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Menjadwalkan Ulang Seminar Tugas Akhir 1');
     }
 
@@ -269,12 +257,7 @@ class PenjadwalanTaSatu extends Controller
             'jam_selesai' => $jadwal->jam_selesai_seminar_ta_satu,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
-            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 1');
-            $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach('uploads/print_ba_ta1/' . $namafile);
-        });
-        unlink(('uploads/print_ba_ta1/' . $namafile));
+        dispatch(new SendEmailTugasAkhir1($data, $to_name, $to_email, $namafile));
         return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar Tugas Akhir 1');
     }
 
