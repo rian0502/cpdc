@@ -4,7 +4,6 @@ namespace App\Http\Controllers\controller_seminar;
 
 use App\Models\Dosen;
 use App\Models\Lokasi;
-use Illuminate\Http\Request;
 use App\Models\ModelSeminarKompre;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
