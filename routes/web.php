@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Models\JadwalSKP;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
@@ -58,11 +59,13 @@ use App\Http\Controllers\Kajur\AktivitasDataController;
 use App\Http\Controllers\Kajur\PublikasiDataController;
 use App\Http\Controllers\Kajur\PrestasiDataS2Controller;
 use App\Http\Controllers\komprehensif\MahasiswaBaKompre;
+use App\Http\Controllers\sudo\ImportMahasiswaController;
 use App\Http\Controllers\Kajur\AktivitasDataS2Controller;
 use App\Http\Controllers\tugas_akhir_dua\ValidasiBaTaDua;
 use App\Http\Controllers\alumni\AktivitasAlumniController;
 use App\Http\Controllers\dosen\ControllerPenghargaanDosen;
 use App\Http\Controllers\Kajur\DataMahasiswaAllController;
+use App\Http\Controllers\sudo\ImportMahasiswaS2Controller;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaBaTaDua;
 use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
 use App\Http\Controllers\kerja_praktik\JadwalPKLController;
@@ -107,7 +110,6 @@ use App\Http\Controllers\mahasiswa_s2\ta1\ControllerKoorS2PenjadwalanTaSatu;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerMahasiswaS2SeminarTaDua;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
-use App\Http\Controllers\sudo\ImportMahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -428,9 +430,14 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::get('resetSeminarS2', [ResetTAS2::class, 'index'])->name('reset.seminarS2.index');
     Route::delete('resetSeminar/delete/{id}', [ResetTA::class, 'destroy'])->name('reset.seminar.destroy');
     Route::delete('resetSeminarS2/delete/{id}', [ResetTAS2::class, 'destroy'])->name('reset.seminarS2.destroy');
+
     Route::get('impormahasiswa', [ImportMahasiswaController::class, 'index'])->name('import.mahasiswa.index');
     Route::post('impormahasiswa', [ImportMahasiswaController::class, 'store'])->name('import.mahasiswa.store');
     Route::get('unduhimportmahasiswa', [ImportMahasiswaController::class, 'unduh'])->name('import.mahasiswa.unduh');
+
+    Route::get('impormahasiswas2', [ImportMahasiswaS2Controller::class, 'index'])->name('import.mahasiswas2.index');
+    Route::post('impormahasiswas2', [ImportMahasiswaS2Controller::class, 'store'])->name('import.mahasiswas2.store');
+    Route::get('unduhimportmahasiswas2', [ImportMahasiswaS2Controller::class, 'unduh'])->name('import.mahasiswas2.unduh');
 });
 
 Route::get('/', function () {

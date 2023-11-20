@@ -44,7 +44,7 @@ class UpdateSeminarTugasAkhir1Request extends FormRequest
             'no_berkas_ba_seminar_ta_satu' => 'required',
             'berkas_ba_seminar_ta_satu' => 'nullable|mimes:pdf|max:1024',
             'berkas_nilai_seminar_ta_satu' => 'nullable|mimes:pdf|max:1024',
-            'berkas_ppt_seminar_ta_satu' => 'nullable|mimes:pdf|max:1024',
+            'berkas_ppt_seminar_ta_satu' => 'required|url',
             'nilai' => 'required|numeric',
             'huruf_mutu' => 'required',
         ];
@@ -74,8 +74,8 @@ class UpdateSeminarTugasAkhir1Request extends FormRequest
             'berkas_ba_seminar_ta_satu.max' => 'Berkas BA seminar maksimal 1 MB',
             'berkas_nilai_seminar_ta_satu.mimes' => 'Berkas nilai seminar harus bertipe pdf',
             'berkas_nilai_seminar_ta_satu.max' => 'Berkas nilai seminar maksimal 1 MB',
-            'berkas_ppt_seminar_ta_satu.mimes' => 'Berkas PPT seminar harus bertipe pdf',
-            'berkas_ppt_seminar_ta_satu.max' => 'Berkas PPT seminar maksimal 1 MB',
+            'berkas_ppt_seminar_ta_dua.required' => 'Berkas PPT seminar harus diisi',
+            'berkas_ppt_seminar_ta_dua.url' => 'Berkas PPT seminar harus berupa URL',
             'nilai.required' => 'Nilai harus diisi',
             'huruf_mutu.required' => 'Huruf mutu harus diisi'
         ];

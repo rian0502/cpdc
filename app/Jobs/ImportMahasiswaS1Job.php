@@ -128,7 +128,7 @@ class ImportMahasiswaS1Job implements ShouldQueue
                     JadwalSKP::where('id', $jadwal->id)->update([
                         'encrypt_id' => Crypt::encrypt($jadwal->id),
                     ]);
-                    BaSKP::create([
+                    $ba_skp = BaSKP::create([
                         'no_ba_seminar_kp' => $this->sheet2[$key][18],
                         'nilai_lapangan' => $this->sheet2[$key][19],
                         'nilai_akd' => $this->sheet2[$key][20],
@@ -140,6 +140,10 @@ class ImportMahasiswaS1Job implements ShouldQueue
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
+                    BaSKP::where('id', $ba_skp->id)->update([
+                        'encrypt_id' => Crypt::encrypt($ba_skp->id),
+                    ]);
+
                     //tugas akhir 1
                     $data_ta1 = [
                         'tahun_akademik' => $this->sheet3[$key][1],
@@ -187,6 +191,8 @@ class ImportMahasiswaS1Job implements ShouldQueue
                         'nilai' => $this->sheet3[$key][22],
                         'huruf_mutu' => $this->sheet3[$key][23],
                         'id_seminar' => $ta1->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
                     ]);
                     ModelBaSeminarTaSatu::where('id', $ba_ta1->id)->update([
                         'encrypt_id' => Crypt::encrypt($ba_ta1->id),
@@ -222,6 +228,8 @@ class ImportMahasiswaS1Job implements ShouldQueue
                         'jam_selesai_seminar_ta_dua' => $this->sheet4[$key][16],
                         'id_lokasi' => $this->sheet4[$key][17],
                         'id_seminar' => $ta_2->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
                     ]);
                     ModelJadwalSeminarTaDua::where('id', $jadwal_ta2->id)->update([
                         'encrypt_id' => Crypt::encrypt($jadwal_ta2->id),
@@ -234,6 +242,8 @@ class ImportMahasiswaS1Job implements ShouldQueue
                         'nilai' => $this->sheet4[$key][22],
                         'huruf_mutu' => $this->sheet4[$key][23],
                         'id_seminar' => $ta_2->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
                     ]);
                     ModelBaSeminarTaDua::where('id', $ba_ta_2->id)->update([
                         'encrypt_id' => Crypt::encrypt($ba_ta_2->id),

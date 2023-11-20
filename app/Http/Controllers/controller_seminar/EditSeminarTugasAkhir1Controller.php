@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\controller_seminar;
 
-use Illuminate\Http\Request;
+use App\Models\Dosen;
 use App\Models\ModelSeminarTaSatu;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateSeminarTugasAkhir1Request;
-use App\Models\ModelBaSeminarTaDua;
-use App\Models\ModelJadwalSeminarTaSatu;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use App\Models\ModelBaSeminarTaDua;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Crypt;
+use App\Models\ModelJadwalSeminarTaSatu;
+use App\Http\Requests\UpdateSeminarTugasAkhir1Request;
 
 class EditSeminarTugasAkhir1Controller extends Controller
 {
@@ -19,6 +19,7 @@ class EditSeminarTugasAkhir1Controller extends Controller
     }
     public function edit($id){
         $seminar = ModelSeminarTaSatu::with(['jadwal', 'ba_seminar'])->where('id', Crypt::decrypt($id))->first();
+        $dosen = Dosen::select('encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
     }
 
     public function update(UpdateSeminarTugasAkhir1Request $request, $id){
