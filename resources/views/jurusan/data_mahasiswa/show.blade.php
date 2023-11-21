@@ -275,8 +275,7 @@
                                                                 Kelengkapan</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/syarat_seminar_kp/{{ $kp->berkas_seminar_pkl }}">Unduh
-                                                                Berkas</a>
+                                                                href="{{ Str::contains($kp->berkas_seminar_pkl, 'drive.google.com') ? $kp->berkas_seminar_pkl : '/uploads/syarat_seminar_kp/' . $kp->berkas_seminar_pkl }}">Lihat</a>
                                                         </div>
                                                     </div>
 
@@ -357,7 +356,7 @@
                                                                 Seminar</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/berita_acara_seminar_kp/{{ $kp->berita_acara->berkas_ba_seminar_kp }}">Lihat</a>
+                                                                href="{{ Str::contains($kp->berita_acara->berkas_ba_seminar_kp, 'drive.google.com') ? $kp->berita_acara->berkas_ba_seminar_kp : '/uploads/berita_acara_seminar_kp/' . $kp->berita_acara->berkas_ba_seminar_kp }}">Lihat</a>
                                                         </div>
                                                         <label class="col-md-3 bold mt-2"><b>Nomor Berita
                                                                 Seminar</b></label>
@@ -370,7 +369,8 @@
                                                                 PKL/KP</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/laporan_kp/{{ $kp->berita_acara->laporan_kp }}">Lihat</a>
+                                                                href="{{ Str::contains($kp->berita_acara->laporan_kp, 'drive.google.com') ? $kp->berita_acara->laporan_kp : '/uploads/laporan_kp/' . $kp->berita_acara->laporan_kp }}">Lihat
+                                                            </a>
                                                         </div>
                                                         <label class="col-md-3 bold mt-2"><strong>Status
                                                                 Seminar</strong></label>
@@ -489,8 +489,10 @@
                                                                 Kelengkapan</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/syarat_seminar_ta1/{{ $seminarTa1->berkas_ta_satu }}">Lihat
-                                                                Berkas</a>
+                                                                href="{{ Str::contains($seminarTa1->berkas_ta_satu, 'drive.google.com')
+                                                                    ? $seminarTa1->berkas_ta_satu
+                                                                    : '/uploads/syarat_seminar_ta1/' . $seminarTa1->berkas_ta_satu }}">Lihat
+                                                            </a>
                                                         </div>
                                                     </div>
 
@@ -590,7 +592,10 @@
                                                         <label class="col-md-3 bold"> <strong>Berita Acara</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/ba_seminar_ta_satu/{{ $ba_ta1->berkas_ba_seminar_ta_satu }}">Lihat</a>
+                                                                href="{{ Str::contains($ba_ta1->berkas_ba_seminar_ta_satu, 'drive.google.com')
+                                                                    ? $ba_ta1->berkas_ba_seminar_ta_satu
+                                                                    : '/uploads/ba_seminar_ta_satu/' . $ba_ta1->berkas_ba_seminar_ta_satu }}">Lihat
+                                                            </a>
                                                         </div>
                                                         <label class="col-md-3 bold mt-2"><b>Nomor Berita Acara
                                                                 Seminar</b></label>
@@ -606,7 +611,10 @@
                                                         <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/ta_satu/{{ $ba_ta1->ta_satu }}">Lihat</a>
+                                                                href="{{ Str::contains($ba_ta1->ta_satu, 'drive.google.com')
+                                                                    ? $ba_ta1->ta_satu
+                                                                    : '/uploads/nilai_seminar_ta_satu/' . $ba_ta1->ta_satu }}">Lihat
+                                                            </a>
                                                         </div>
 
                                                     </div>
@@ -730,8 +738,10 @@
                                                                 Kelengkapan</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/syarat_seminar_ta2/{{ $seminarTa2->berkas_ta_dua }}">Lihat
-                                                                Berkas</a>
+                                                                href="{{ Str::contains($seminarTa2->berkas_ta_dua, 'drive.google.com')
+                                                                    ? $seminarTa2->berkas_ta_dua
+                                                                    : '/uploads/syarat_seminar_ta2/' . $seminarTa2->berkas_ta_dua }}">Lihat
+                                                            </a>
                                                         </div>
                                                     </div>
 
@@ -828,7 +838,10 @@
                                                         <label class="col-md-3 bold"> <strong>Berita Acara</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/ba_seminar_ta_dua/{{ $ba_ta2->berkas_ba_seminar_ta_dua }}">Lihat</a>
+                                                                href="{{ Str::contains($ba_ta2->berkas_ba_seminar_ta_dua, 'drive.google.com')
+                                                                    ? $ba_ta2->berkas_ba_seminar_ta_dua
+                                                                    : '/uploads/ba_seminar_ta_dua/' . $ba_ta2->berkas_ba_seminar_ta_dua }}">Lihat
+                                                            </a>
                                                         </div>
                                                         <label class="col-md-3 bold mt-2"><b>Nomor Berita Acara
                                                                 Seminar</b></label>
@@ -845,7 +858,10 @@
                                                         <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/ta_dua/{{ $ba_ta2->berkas_nilai_seminar_ta_dua }}">Lihat</a>
+                                                                href="{{ Str::contains($ba_ta2->berkas_nilai_seminar_ta_dua, 'drive.google.com')
+                                                                    ? $ba_ta2->berkas_nilai_seminar_ta_dua
+                                                                    : '/uploads/nilai_seminar_ta_dua/' . $ba_ta2->berkas_nilai_seminar_ta_dua }}">Lihat
+                                                            </a>
                                                         </div>
                                                     </div>
                                                     <div class="row border-bottom mt-2">
@@ -966,8 +982,10 @@
                                                                 Kelengkapan</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/syarat_sidang_kompre/{{ $sidangKompre->berkas_kompre }}">Unduh
-                                                                Berkas</a>
+                                                                href="{{ Str::contains($sidangKompre->berkas_kompre, 'drive.google.com')
+                                                                    ? $sidangKompre->berkas_kompre
+                                                                    : '/uploads/syarat_sidang_kompre/' . $sidangKompre->berkas_kompre }}">Lihat
+                                                            </a>
                                                         </div>
                                                     </div>
 
@@ -1064,7 +1082,10 @@
                                                         <label class="col-md-3 bold"> <strong>Berita Acara</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/ba_sidang_kompre/{{ $ba_kompre->ba_seminar_komprehensif }}">Lihat</a>
+                                                                href="{{ Str::contains($ba_kompre->ba_seminar_komprehensif, 'drive.google.com')
+                                                                    ? $ba_kompre->ba_seminar_komprehensif
+                                                                    : '/uploads/ba_sidang_kompre/' . $ba_kompre->ba_seminar_komprehensif }}">Lihat
+                                                            </a>
                                                         </div>
                                                         <label class="col-md-3 bold mt-2"><b>Nomor Berita Acara
                                                                 Seminar</b></label>
@@ -1081,7 +1102,10 @@
                                                         <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/nilai_sidang_kompre/{{ $ba_kompre->berkas_nilai_kompre }}">Lihat</a>
+                                                                href="{{ Str::contains($ba_kompre->berkas_nilai_kompre, 'drive.google.com')
+                                                                    ? $ba_kompre->berkas_nilai_kompre
+                                                                    : '/uploads/nilai_sidang_kompre/' . $ba_kompre->berkas_nilai_kompre }}">Lihat
+                                                            </a>
                                                         </div>
                                                     </div>
                                                     <div class="row border-bottom mt-2">
