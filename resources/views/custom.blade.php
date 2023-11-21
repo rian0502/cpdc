@@ -41,62 +41,9 @@
                     </ul>
                 </div>
                 <div class="card mb-4">
-                    <h1 class="card-header mb-3 mt-3" style="font-size: 20px;">Ubah Kata Sandi </h1>
+                    <h1 class="card-header mb-3 mt-3" style="font-size: 20px;">Kustomisasi Tampilan</h1>
                     <div class="card-body">
-                        <form action="{{ route('auth.change.password') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
-                                <div class="mb-3 col-md-6">
-                                    <label for="current_password">Kata Sandi Lama</label>
-                                    <div class="input-group">
-                                        <input class="form-control" type="password" id="current_password"
-                                            name="current_password" value="{{ old('current_password') }}" autofocus />
-                                        <button class="btn btn-outline-secondary ms-3" type="button"
-                                            id="toggle_current_password">
-                                            <i class="fas fa-eye-slash"></i>
-                                        </button>
-                                        @error('mitra')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="new_password">Kata Sandi Baru</label>
-                                    <div class="input-group">
-                                        <input class="form-control" type="password" id="new_password" name="new_password"
-                                            value="{{ old('new_password') }}" />
-                                        <button class="btn btn-outline-secondary ms-3" type="button"
-                                            id="toggle_new_password">
-                                            <i class="fas fa-eye-slash"></i>
-                                        </button>
-                                    </div>
-                                    @error('new_password')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="confirm_new_password">Konfirmasi Kata Sandi
-                                        Baru</label>
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" id="confirm_new_password"
-                                            name="confirm_new_password" value="{{ old('confirm_new_password') }}" />
-                                        <button class="btn btn-outline-secondary ms-3" type="button"
-                                            id="toggle_confirm_new_password">
-                                            <i class="fas fa-eye-slash"></i>
-                                        </button>
-                                        @error('confirm_new_password')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <button id="myButton" type="submit" class="btn btn-primary me-2">Simpan</button>
-                            </div>
-                            {{-- <button type="reset" class="btn btn-outline-secondary">Cancel</button> --}}
-                        </form>
+                        
                     </div>
                 </div>
             </div>
