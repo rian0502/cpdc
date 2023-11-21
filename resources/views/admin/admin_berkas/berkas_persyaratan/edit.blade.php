@@ -13,7 +13,8 @@
                         </div>
 
                     </div>
-                    <form action="{{ route('berkas.berkas_persyaratan.update', $file->encrypt_id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('berkas.berkas_persyaratan.update', $file->encrypt_id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="profile-edit-list row">
@@ -21,10 +22,9 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Nama File</label>
-                                        <input value="{{$file->nama_file}}" autofocus
-                                            name="nama_file" readonly
-                                            class="form-control @error('nama_file') form-control-danger @enderror"
-                                            type="text">
+                                    <input value="{{ $file->nama_file }}" autofocus name="nama_file" readonly
+                                        class="form-control @error('nama_file') form-control-danger @enderror"
+                                        type="text">
 
                                     @error('nama_file')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
@@ -33,13 +33,16 @@
 
                                 <div class="form-group">
                                     <label>File Persyaratan<small> <a id="link-file_persyaratan" href="#"
-                                        target="_blank" style="display: none;">Lihat File</a> </small></label>
+                                                target="_blank" style="display: none;">Lihat File</a> </small></label>
                                     <div class=" custom-file">
-                                        <label class="custom-file-label" for="file_persyaratan" id="label-file_persyaratan">Pilih File</label>
+                                        <label class="custom-file-label" for="file_persyaratan"
+                                            id="label-file_persyaratan">Pilih File</label>
 
-                                        <input accept=".pdf" value="{{old('file_persyaratan')}}" autofocus name="file_persyaratan" id="file_persyaratan"
+                                        <input accept=".pdf" value="{{ old('file_persyaratan') }}" autofocus
+                                            name="file_persyaratan" id="file_persyaratan"
                                             class="custom-file-input form-control @error('file_persyaratan') form-control-danger @enderror"
-                                            type="file" placeholder="FILE PERSYARATAN" onchange="updateFileNameAndLink('file_persyaratan','label-file_persyaratan','link-file_persyaratan')">
+                                            type="file" placeholder="FILE PERSYARATAN"
+                                            onchange="updateFileNameAndLink('file_persyaratan','label-file_persyaratan','link-file_persyaratan')">
                                     </div>
                                     @error('file_persyaratan')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
@@ -65,7 +68,6 @@
             </div>
         </div>
         <!-- Input Validation End -->
-
 
     </div>
 @endsection
