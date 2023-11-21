@@ -17,6 +17,8 @@
     <link href="/Assets/FontAwesome/css/solid.css" rel="stylesheet">
     <!-- FontAwesome -->
 
+    <link rel="stylesheet" type="text/css" href="Assets/src/plugins/jquery-asColorPicker/dist/css/asColorPicker.css" />
+
     <!-- Helpers -->
     <script src="/Assets/setting/assets/vendor/js/helpers.js"></script>
 
@@ -43,13 +45,34 @@
                 <div class="card mb-4">
                     <h1 class="card-header mb-3 mt-3" style="font-size: 20px;">Kustomisasi Tampilan</h1>
                     <div class="card-body">
-                        
+                        <div class="row">
+
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label>
+                                        Warna
+                                        {{-- <div class="font-14">
+                                            use <code>.complex-colorpicker</code> in your input
+                                            element.
+                                        </div> --}}
+                                    </label>
+                                    <input type="text" class="complex-colorpicker form-control" value="#7ab2fa" />
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     </div>
+
+    <script src="Assets/vendors/scripts/core.js"></script>
+    <script src="Assets/src/plugins/jquery-asColor/dist/jquery-asColor.js"></script>
+    <script src="Assets/src/plugins/jquery-asGradient/dist/jquery-asGradient.js"></script>
+    <script src="Assets/src/plugins/jquery-asColorPicker/jquery-asColorPicker.js"></script>
+    <script src="Assets/vendors/scripts/colorpicker.js"></script>
     <script>
         // Toggle current password visibility
         const toggleCurrentPasswordBtn = document.getElementById('toggle_current_password');
