@@ -258,9 +258,9 @@
                                 <form class="deleteForm2" action="${deleteUrl}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" class="dropdown-item text-danger deleteBtn2" onclick="showDeleteConfirmation(event)>
-                                        <i class="dw dw-delete-3"></i> Hapus
-                                    </button>
+                                    <button type="submit" id="deleteBtn"
+                                                                    class="dropdown-item text-danger"><i class="dw dw-delete-3"></i>
+                                                                    Hapus</button>
                                 </form>
                             </div>
                         </div>`;

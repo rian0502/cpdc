@@ -486,6 +486,9 @@ Route::get('/help', function () {
 Route::get('/helps', function () {
     return view('helps');
 });
+Route::get('/custom', function () {
+    return view('custom');
+});
 Route::get('/contact', function () {
     return view('contact');
 });

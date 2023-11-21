@@ -27,12 +27,12 @@
                 <div class="col-md-12">
                     <ul class="nav nav-pills flex-column flex-md-row mb-4">
                         <li class="nav-item">
-                            <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-lock me-1"></i>
+                            <a class="nav-link" href="/settings"><i class="bx bx-lock me-1"></i>
                                 Kata Sandi</a>
                         </li>
                         @role('sudo')
                             <li class="nav-item">
-                                <a class="nav-link" href="/custom"><i class="bx bx-customize me-1"></i> Kustomisasi</a>
+                                <a class="nav-link active" href="#"><i class="bx bx-customize me-1"></i> Kustomisasi</a>
                             </li>
                             {{-- <li class="nav-item">
                                 <a class="nav-link" href=""><i class="bx bx-link-alt me-1"></i> Koneksi</a>
