@@ -68,11 +68,11 @@
     </div>
     </div>
 
-    <script src="Assets/vendors/scripts/core.js"></script>
-    <script src="Assets/src/plugins/jquery-asColor/dist/jquery-asColor.js"></script>
-    <script src="Assets/src/plugins/jquery-asGradient/dist/jquery-asGradient.js"></script>
-    <script src="Assets/src/plugins/jquery-asColorPicker/jquery-asColorPicker.js"></script>
-    <script src="Assets/vendors/scripts/colorpicker.js"></script>
+    {{-- <script src="Assets/admin/vendors/scripts/core.js"></script> --}}
+    <script src="Assets/admin/src/plugins/jquery-asColor/dist/jquery-asColor.js"></script>
+    <script src="Assets/admin/src/plugins/jquery-asGradient/dist/jquery-asGradient.js"></script>
+    <script src="Assets/admin/src/plugins/jquery-asColorPicker/jquery-asColorPicker.js"></script>
+    <script src="Assets/admin/vendors/scripts/colorpicker.js"></script>
     <script>
         // Toggle current password visibility
         const toggleCurrentPasswordBtn = document.getElementById('toggle_current_password');
