@@ -29,14 +29,23 @@ class EditSeminarTugasAkhir2Controller extends Controller
                 ->addIndexColumn()->editColumn('mahasiswa.npm', function ($seminar) {
                     return $seminar->mahasiswa->npm;
                 })->toJson();
+
         }
+        return view('koor.ta2.arsip.index');
     }
     public function edit($id)
     {
         $seminar = ModelSeminarTaDua::with(['jadwal', 'ba_seminar'])->where('id', Crypt::decrypt($id))->first();
         $dosen = Dosen::select('encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
         $lokasi = Lokasi::select('encrypt_id', 'nama_lokasi')->where('jenis_ruangan', 'Kelas')->get();
-        
+
+        $data = [
+            'seminar' => $seminar,
+            'dosen' => $dosen,
+            'lokasi' => $lokasi,
+        ];
+        // return response()->json($seminar);
+        return view('koor.ta2.arsip.edit', $data);
     }
 
     public function update(UpdateSeminarTugasAkhir2Request $request, $id)
@@ -113,9 +122,11 @@ class EditSeminarTugasAkhir2Controller extends Controller
             $ba->updated_at = date('Y-m-d H:i:s');
             $ba->save();
             DB::commit();
+            return redirect()->route('koor.arsip.ta2.index')->with('success', 'Berhasil mengubah data seminar TA 2 S1');
+
         } catch (\Exception $e) {
             DB::rollback();
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->route('koor.arsip.ta2.index')->with('error', $e->getMessage());
         }
     }
 }

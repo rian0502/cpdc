@@ -164,11 +164,11 @@
                                         <select name="status_seminar" id="status" class="selectpicker form-control"
                                             data-size="5">
                                             <option value="Belum Selesai"
-                                                {{ old('status_seminar'),$seminar->status_seminar == 'Belum Selesai' ? 'selected' : '' }}>Belum
+                                                {{$seminar->status_seminar == 'Belum Selesai' ? 'selected' : '' }}>Belum
                                                 Selesai
                                             </option>
                                             <option value="Selesai"
-                                                {{ old('status_seminar'),$seminar->status_seminar == 'Selesai' ? 'selected' : '' }}>Selesai</option>
+                                                {{$seminar->status_seminar == 'Selesai' ? 'selected' : '' }}>Selesai</option>
                                         </select>
                                         @error('status_seminar')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -178,11 +178,11 @@
                                         <label><b>Status Administratif</b></label>
                                         <select onchange="toggleCatatan()" name="proses_admin" id="status"
                                             class="selectpicker form-control" data-size="5">
-                                            <option value="proses" {{ old('proses_admin'),$seminar->proses_admin == 'Proses' ? 'selected' : '' }}>
+                                            <option value="Proses" {{$seminar->proses_admin == 'Proses' ? 'selected' : '' }}>
                                                 Diproses</option>
-                                            <option value="Valid" {{ old('proses_admin'),$seminar->proses_admin == 'Valid' ? 'selected' : '' }}>
+                                            <option value="Valid" {{$seminar->proses_admin == 'Valid' ? 'selected' : '' }}>
                                                 Valid</option>
-                                            <option value="Invalid" {{ old('proses_admin'),$seminar->proses_admin == 'Invalid' ? 'selected' : '' }}>
+                                            <option value="Invalid" {{$seminar->proses_admin == 'Invalid' ? 'selected' : '' }}>
                                                 Invalid</option>
                                         </select>
                                         @error('proses_admin')
@@ -399,7 +399,7 @@
                                 <button id="submitButton" type="submit" class="submit btn btn-primary">Kirim</button>
                             </div>
                         </form>
-                        <a href="{{ route('koor.jadwalPKL.index') }}">
+                        <a href="{{ route('koor.arsip.pkl.index') }}">
                             <button class="batal btn btn-secondary">Batal</button>
                         </a>
                     </div>
