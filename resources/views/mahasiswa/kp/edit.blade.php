@@ -146,7 +146,7 @@
                                         <optgroup label="Dosen Pembimbing PKL/KP">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_dospemkp', $seminar->id_dospemkp) == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_dospemkp', $seminar->id_dospemkp) == $item->id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
                                         </optgroup>

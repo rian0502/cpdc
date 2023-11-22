@@ -826,6 +826,53 @@
                                 @endrole
                             </ul>
                         </li>
+                        <li
+                            class="dropdown {{ Request::is('koor/arsip*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle"
+                                data-option="{{ Request::is('koor/arsip*') ? 'on' : '' }}">
+                                <span class="micon bi bi-archive-fill"></span><span class="mtext">Arsip</span>
+                            </a>
+                            <ul class="submenu">
+                                @role('pkl')
+                                    <li><a href="{{ route('koor.arsip.pkl.index') }}"
+                                            class="{{ Request::is('koor/arsip/pkl*') ? 'active' : '' }}">
+                                            PKL/KP</a>
+                                    </li>
+                                @endrole
+                                @role('ta1')
+                                    <li><a href="{{ route('koor.arsip.ta1.index') }}"
+                                            class="{{ Request::is('koor/arsip/ta1*') ? 'active' : '' }}">TA 1 S1</a>
+                                    </li>
+                                @endrole
+                                @role('ta2')
+                                    <li><a href="{{ route('koor.arsip.ta2.index') }}"
+                                            class="{{ Request::is('koor/arsip/ta2*') ? 'active' : '' }}">TA 2 S1</a>
+                                    </li>
+                                @endrole
+                                @role('kompre')
+                                    <li><a href="{{ route('koor.arsip.kompre.index') }}"
+                                            class="{{ Request::is('koor/arsip/kompre*') ? 'active' : '' }}">Kompre S1</a>
+                                    </li>
+                                @endrole
+                                @role('ta1S2')
+                                    <li><a href="{{ route('koor.arsip.tesis1.index') }}"
+                                            class="{{ Request::is('koor/arsip/tesis1*') ? 'active' : '' }}">TA 1 S2</a>
+                                    </li>
+                                @endrole
+                                @role('ta2S2')
+                                    <li>
+                                        <a href="{{ route('koor.arsip.tesis2.index') }}"
+                                            class="{{ Request::is('koor/arsip/tesis2*') ? 'active' : '' }}">TA 2 S2</a>
+                                    </li>
+                                @endrole
+                                @role('kompreS2')
+                                    <li><a href="{{ route('koor.arsip.sidang_tesis.index') }}"
+                                            class="{{ Request::is('koor/arsip/sidang_tesis*') ? 'active' : '' }}">Kompre
+                                            S2</a>
+                                    </li>
+                                @endrole
+                            </ul>
+                        </li>
                     @endrole
                     @unless (auth()->user()->hasRole('jurusan|kaprodiS1|kaprodiS2'))
                         @role('pkl')
@@ -840,6 +887,13 @@
                                 <a href="{{ route('koor.validasiBaPKL.index') }}"
                                     class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
                                     <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti
+                                        PKL/KP</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('koor.arsip.pkl.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/arsip/pkl*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-archive-fill"></span><span class="mtext">Arsip
                                         PKL/KP</span>
                                 </a>
                             </li>
@@ -860,6 +914,13 @@
                                         1 S1</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('koor.arsip.ta1.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/arsip/ta1*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-archive-fill"></span><span class="mtext">Arsip
+                                        TA 1 S1</span>
+                                </a>
+                            </li>
                         @endrole
                         @role('ta1S2')
                             <li>
@@ -874,6 +935,13 @@
                                     class="dropdown-toggle no-arrow {{ Request::is('koor/validasi/Ba/TA1/S2*') ? 'active' : '' }}">
                                     <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA Tesis
                                         1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('koor.arsip.tesis1.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/arsip/tesis1*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-archive-fill"></span><span class="mtext">Arsip
+                                        Tesis 1 S2</span>
                                 </a>
                             </li>
                         @endrole
@@ -892,6 +960,13 @@
                                         2 S1</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('koor.arsip.ta2.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/arsip/ta2*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-archive-fill"></span><span class="mtext">Arsip
+                                        TA 2 S1</span>
+                                </a>
+                            </li>
                         @endrole
                         @role('ta2S2')
                             <li>
@@ -906,6 +981,13 @@
                                     class="dropdown-toggle no-arrow {{ Request::is('koor//Ba/TA2/S2*') ? 'active' : '' }}">
                                     <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA Tesis
                                         2</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('koor.arsip.tesis2.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/arsip/tesis2*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-archive-fill"></span><span class="mtext">Arsip
+                                        Tesis 2 S2</span>
                                 </a>
                             </li>
                         @endrole
@@ -924,6 +1006,13 @@
                                         Kompre S1</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('koor.arsip.kompre.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/arsip/kompre*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-archive-fill"></span><span class="mtext">Arsip
+                                        Kompre S1</span>
+                                </a>
+                            </li>
                         @endrole
                         @role('kompreS2')
                             <li>
@@ -937,6 +1026,13 @@
                                 <a href="{{ route('koor.ValidasiBaKompreS2.index') }}"
                                     class="dropdown-toggle no-arrow {{ Request::is('koor/validasi/Ba/Kompre/S2*') ? 'active' : '' }}">
                                     <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi BA
+                                        Sidang Tesis</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('koor.arsip.sidang_tesis.index') }}"
+                                    class="dropdown-toggle no-arrow {{ Request::is('koor/arsip/sidang_tesis*') ? 'active' : '' }}">
+                                    <span class="micon bi bi-archive-fill"></span><span class="mtext">Arsip
                                         Sidang Tesis</span>
                                 </a>
                             </li>
