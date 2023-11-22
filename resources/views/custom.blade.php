@@ -47,19 +47,26 @@
                     <div class="card-body">
                         <div class="row">
 
-                            <div class="col-md-4 col-sm-12">
+                            {{-- <div class="col-md-4 col-sm-12"> --}}
+                            <div class="">
                                 <div class="form-group">
-                                    <label>
+                                    {{-- <label>
                                         Warna
-                                        {{-- <div class="font-14">
+                                        <div class="font-14">
                                             use <code>.complex-colorpicker</code> in your input
                                             element.
-                                        </div> --}}
+                                        </div>
                                     </label>
-                                    <input type="text" class="complex-colorpicker form-control" value="#7ab2fa" />
+                                    <input type="text" class="complex-colorpicker form-control" value="#7ab2fa" /> --}}
+                                </div>
+                                <div class="form-group">
+                                    <label>Logo</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input">
+                                        <label class="custom-file-label">Pilih Gambar</label>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -68,7 +75,7 @@
     </div>
     </div>
 
-    {{-- <script src="Assets/admin/vendors/scripts/core.js"></script> --}}
+    {{-- <script src="Assets/admin/vendors/scripts/cores.js"></script> --}}
     <script src="Assets/admin/src/plugins/jquery-asColor/dist/jquery-asColor.js"></script>
     <script src="Assets/admin/src/plugins/jquery-asGradient/dist/jquery-asGradient.js"></script>
     <script src="Assets/admin/src/plugins/jquery-asColorPicker/jquery-asColorPicker.js"></script>
