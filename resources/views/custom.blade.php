@@ -43,31 +43,50 @@
                     </ul>
                 </div>
                 <div class="card mb-4">
-                    <h1 class="card-header mb-3 mt-3" style="font-size: 20px;">Kustomisasi Tampilan</h1>
+                    <h1 class="card-header mb-3 mt-3" style="font-size: 20px;">Gambar</h1>
                     <div class="card-body">
-                        <div class="row">
+                        <form id="formStatus" action="" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="profile-edit-list row">
+                                {{-- form untuk sebelah kiri --}}
+                                <div class="weight-500 col-md-6">
 
-                            {{-- <div class="col-md-4 col-sm-12"> --}}
-                            <div class="">
-                                <div class="form-group">
-                                    {{-- <label>
-                                        Warna
-                                        <div class="font-14">
-                                            use <code>.complex-colorpicker</code> in your input
-                                            element.
+                                    <div class="form-group">
+                                        <label>Logo Beranda</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" accept="image/*">
+                                            <label class="custom-file-label">Pilih Gambar</label>
                                         </div>
-                                    </label>
-                                    <input type="text" class="complex-colorpicker form-control" value="#7ab2fa" /> --}}
-                                </div>
-                                <div class="form-group">
-                                    <label>Logo</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input">
-                                        <label class="custom-file-label">Pilih Gambar</label>
                                     </div>
+                                    <div class="form-group">
+                                        <label>Carousel</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" multiple accept="image/*">
+                                            <label class="custom-file-label">Pilih Gambar</label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                {{-- form untuk sebelah kanan --}}
+                                <div class="kanan weight-500 col-md-6">
+                                    <div class="form-group">
+                                        <label>Logo Dashboard</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" accept="image/*">
+                                            <label class="custom-file-label">Pilih Gambar</label>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-                        </div>
+
+                            <div class="mt-5">
+                                <button id="myButton" type="submit" class="btn btn-primary me-2">Simpan</button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
