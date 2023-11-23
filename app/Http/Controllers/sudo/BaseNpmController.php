@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\sudo;
 
-use App\Http\Controllers\Controller;
 use App\Models\BaseNPM;
 use Illuminate\Http\Request;
-use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use Yajra\DataTables\DataTables;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class BaseNpmController extends Controller
 {
@@ -45,9 +46,14 @@ class BaseNpmController extends Controller
         //
 
         foreach ($request->npm as $npm) {
-            $data = new BaseNPM();
-            $data->npm = $npm;
-            $data->save();
+            $validator = Validator::make(['npm' => $npm], [
+                'npm' => 'required|unique:base_n_p_m,npm',
+            ]);
+            if (!$validator->fails()) {
+                $data = new BaseNPM();
+                $data->npm = $npm;
+                $data->save();
+            }
         }
         return redirect()->route('sudo.base_npm.index')->with('success', 'Data Berhasil Diupload');
     }
@@ -64,12 +70,17 @@ class BaseNpmController extends Controller
             if ($key == 0) {
                 continue;
             }
-            $baseNPM = new BaseNPM();
-            $baseNPM->npm = $row[0];
-            $baseNPM->status = $row[1];
-            $baseNPM->created_at = now();
-            $baseNPM->updated_at = now();
-            $baseNPM->save();
+            $validator = Validator::make(['npm' => $row[0]], [
+                'npm' => 'required|unique:base_n_p_m,npm',
+            ]);
+            if (!$validator->fails()) {
+                $baseNPM = new BaseNPM();
+                $baseNPM->npm = $row[0];
+                $baseNPM->status = $row[1];
+                $baseNPM->created_at = now();
+                $baseNPM->updated_at = now();
+                $baseNPM->save();
+            }
         }
         return redirect()->route('sudo.base_npm.index')->with('success', 'Data Berhasil Diupload');
     }
