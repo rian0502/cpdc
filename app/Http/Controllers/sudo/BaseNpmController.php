@@ -47,7 +47,7 @@ class BaseNpmController extends Controller
 
         foreach ($request->npm as $npm) {
             $validator = Validator::make(['npm' => $npm], [
-                'npm' => 'required|unique:base_n_p_m,npm',
+                'npm' => 'required|unique:base_npm,npm',
             ]);
             if (!$validator->fails()) {
                 $data = new BaseNPM();
@@ -71,7 +71,7 @@ class BaseNpmController extends Controller
                 continue;
             }
             $validator = Validator::make(['npm' => $row[0]], [
-                'npm' => 'required|unique:base_n_p_m,npm',
+                'npm' => 'required|unique:base_npm,npm',
             ]);
             if (!$validator->fails()) {
                 $baseNPM = new BaseNPM();
