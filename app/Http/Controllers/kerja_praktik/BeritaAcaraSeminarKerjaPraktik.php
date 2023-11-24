@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMahasiswaBaKpRequest;
 use App\Http\Requests\UpdateMahasiswaBaKpRequest;
 use App\Models\BaSKP;
+use App\Models\Mahasiswa;
 use App\Models\ModelSeminarKP;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -15,6 +16,13 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
     public function create()
     {
         //
+        $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
+        $seminar = ModelSeminarKP::where('id_mahasiswa', $mahasiswa->id)->first();
+
+        if($seminar->berita_acara){
+            return redirect()->route('mahasiswa.seminar.kp.index')->with('error', 'Anda Sudah Mengupload Berita Acara Seminar Kerja Praktik');
+        }
+
         return view('mahasiswa.kp.ba.create');
     }
 
