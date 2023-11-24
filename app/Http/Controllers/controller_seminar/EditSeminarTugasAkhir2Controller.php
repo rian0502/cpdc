@@ -73,7 +73,7 @@ class EditSeminarTugasAkhir2Controller extends Controller
             $seminar->status_admin = $request->status_admin;
             $seminar->status_koor = $request->status_koor;
             $seminar->id_pembimbing_satu = Crypt::decrypt($request->id_pembimbing_satu);
-            if ($request->id_pembimbing_dua) {
+            if ($request->id_pembimbing_dua != 'new') {
                 $seminar->id_pembimbing_dua = Crypt::decrypt($request->id_pembimbing_dua);
                 $seminar->pbl2_nama = null;
                 $seminar->pbl2_nip = null;
@@ -126,7 +126,7 @@ class EditSeminarTugasAkhir2Controller extends Controller
 
         } catch (\Exception $e) {
             DB::rollback();
-            return redirect()->route('koor.arsip.ta2.index')->with('error', $e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 }
