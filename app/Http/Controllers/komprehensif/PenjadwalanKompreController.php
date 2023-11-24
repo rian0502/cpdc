@@ -164,6 +164,7 @@ class PenjadwalanKompreController extends Controller
             'locations' => Lokasi::all(),
             'seminar' => $seminar,
             'mahasiswa' => $seminar->mahasiswa,
+            'jadwal' => $seminar->jadwal
         ];
         return view('koor.kompre.jadwal.edit', $data);
     }

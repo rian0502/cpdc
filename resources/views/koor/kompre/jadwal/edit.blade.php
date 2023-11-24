@@ -155,7 +155,7 @@
                                 <div class="weight-500 col-md-6">
                                     <div class="form-group">
                                         <label>Tanggal Seminar</label>
-                                        <input value="{{ old('tanggal_skp', $jadwal->tanggal_seminar_ta_dua) }}" autofocus
+                                        <input value="{{ old('tanggal_skp', $jadwal->tanggal_komprehensif) }}" autofocus
                                             name="tanggal_skp" id="tanggal_skp"
                                             class="form-control @error('tanggal_skp') form-control-danger @enderror"
                                             type="date" placeholder="Nama Barang">
@@ -184,7 +184,7 @@
                                     <div class="form-group">
                                         <label>Jam Mulai</label>
                                         <input type="time"
-                                            value="{{ old('jam_mulai_skp', $jadwal->jam_mulai_seminar_ta_dua) }}"
+                                            value="{{ old('jam_mulai_skp', $jadwal->jam_mulai_komprehensif) }}"
                                             name="jam_mulai_skp"
                                             class="form-control @error('jam_mulai_skp') form-control-danger @enderror">
                                         @error('jam_mulai_skp')
@@ -194,7 +194,7 @@
                                     <div class="form-group">
                                         <label>Jam Selesai</label>
                                         <input type="time" name="jam_selesai_skp"
-                                            value="{{ old('jam_selesai_skp', $jadwal->jam_selesai_seminar_ta_dua) }}"
+                                            value="{{ old('jam_selesai_skp', $jadwal->jam_selesai_komprehensif) }}"
                                             class="form-control @error('jam_selesai_skp') form-control-danger @enderror">
                                         @error('jam_selesai_skp')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
