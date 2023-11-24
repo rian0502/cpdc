@@ -123,7 +123,7 @@ class EditSeminarKomprehensifController extends Controller
             return redirect()->route('koor.arsip.kompre.index')->with('success', 'Data berhasil diubah');
         } catch (\Exception $e) {
             DB::rollback();
-            return redirect()->route('koor.arsip.kompre.index')->with('error', $e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 }

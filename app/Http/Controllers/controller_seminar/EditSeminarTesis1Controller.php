@@ -30,13 +30,20 @@ class EditSeminarTesis1Controller extends Controller
                     return $seminar->mahasiswa->npm;
                 })->toJson();
         }
+        return view('koorS2.tesis1.arsip.index');
     }
 
     public function edit($id)
     {
         $seminar = ModelSeminarTaSatuS2::find(Crypt::decrypt($id));
-        $dosen = Dosen::select('encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
+        $dosen = Dosen::select('id','encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
         $lokasi = Lokasi::select('encrypt_id', 'nama_lokasi')->where('jenis_ruangan', 'Kelas')->get();
+        $data = [
+            'seminar' => $seminar,
+            'dosen' => $dosen,
+            'lokasi' => $lokasi,
+        ];
+        return view('koorS2.tesis1.arsip.edit', $data);
     }
 
     public function update(UpdateSeminarTesis1Request $request, $id)
@@ -131,7 +138,7 @@ class EditSeminarTesis1Controller extends Controller
             $jadwal->updated_at = date('Y-m-d H:i:s');
             $jadwal->save();
 
-            $ba->no_ba_berkas = $request->no_ba_berkas;
+            $ba->no_ba = $request->no_ba;
             $ba->nilai = $request->nilai;
             $ba->nilai_mutu = $request->nilai_mutu;
             $ba->ppt = $request->ppt;
@@ -156,6 +163,7 @@ class EditSeminarTesis1Controller extends Controller
             $ba->updated_at = date('Y-m-d H:i:s');
             $ba->save();
             DB::commit();
+            return redirect()->route('koorS2.arsip.tesis1.index')->with('success', 'Data berhasil diubah');
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->back()->with('error', $th->getMessage());
