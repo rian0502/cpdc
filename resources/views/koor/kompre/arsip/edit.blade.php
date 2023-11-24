@@ -30,7 +30,7 @@
 
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
-            {{-- @if ($errors->any())
+            @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -38,7 +38,7 @@
             @endforeach
         </ul>
     </div>
-@endif --}}
+@endif
 
             <div class="min-height-200px">
 
@@ -46,11 +46,11 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
                         <div class="pull-left">
-                            <h4 class="text-dark h4" style="margin-left: 10px">Jadwalkan Seminar TA 1 S1 </h4>
+                            <h4 class="text-dark h4" style="margin-left: 10px">Jadwalkan Seminar TA 2 S1 </h4>
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
-                        <form id="formStatus" action="{{ route('koor.arsip.ta1.update', $seminar->encrypt_id) }}"
+                        <form id="formStatus" action="{{ route('koor.arsip.kompre.update', $seminar->encrypt_id) }}"
                             method="POST" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
@@ -103,7 +103,7 @@
                                             <optgroup label="Pembimbing 1">
                                                 @foreach ($dosen as $item)
                                                     <option value="{{ $item->encrypt_id }}"
-                                                        {{ old('id_pembimbing_satu', $seminar->pembimbing_satu->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
+                                                        {{ old('id_pembimbing_satu', $seminar->id_pembimbing_satu) == $item->id ? 'selected' : '' }}>
                                                         {{ $item->nama_dosen }}</option>
                                                 @endforeach
                                             </optgroup>
@@ -119,7 +119,7 @@
                                             <optgroup label="Pembimbing 2">
                                                 @foreach ($dosen as $item)
                                                     <option value="{{ $item->encrypt_id }}"
-                                                        {{ old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
+                                                        {{ old('id_pembimbing_dua', $seminar->id_pembimbing_dua ?? null) == $item->id ? 'selected' : '' }}>
                                                         {{ $item->nama_dosen }}</option>
                                                 @endforeach
                                                 @if (in_array(old('id_pembimbing_dua', $seminar->id_pembimbing_dua), ['new', null]) ||
@@ -167,7 +167,7 @@
                                             <optgroup label="id_pembahas">
                                                 @foreach ($dosen as $item)
                                                     <option value="{{ $item->encrypt_id }}"
-                                                        {{ old('pembahas', $seminar->pembahas->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
+                                                        {{ old('id_pembahas', $seminar->id_pembahas) == $item->id ? 'selected' : '' }}>
                                                         {{ $item->nama_dosen }}
                                                     </option>
                                                 @endforeach
@@ -210,24 +210,24 @@
                                         @enderror
                                     </div>
 
-                                    @if ($seminar->ba_seminar)
+                                    @if ($seminar->beritaAcara)
 
 
                                     <div class="form-group">
                                         <label>Nilai</label>
                                         <input autofocus name="nilai" id="nilai" class="form-control @error('nilai') form-control-danger @enderror" type="text"
-                                            value="{{ old('nilai', $seminar->ba_seminar->nilai) }}" placeholder="Contoh : 89.87">
+                                            value="{{ old('nilai', $seminar->beritaAcara->nilai) }}" placeholder="Contoh : 89.87">
                                         @error('nilai')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>Nomor Berita Acara Seminar Tugas Akhir 1</label>
-                                        <input autofocus name="no_berkas_ba_seminar_ta_satu" id="no_berkas_ba_seminar_ta_satu"
-                                            class="form-control @error('no_berkas_ba_seminar_ta_satu') form-control-danger @enderror" type="text"
-                                            value="{{ old('no_berkas_ba_seminar_ta_satu', $seminar->ba_seminar->no_berkas_ba_seminar_ta_satu) }}"
+                                        <label>Nomor Berita Acara Seminar Komprehensif</label>
+                                        <input autofocus name="no_ba_berkas" id="no_ba_berkas"
+                                            class="form-control @error('no_ba_berkas') form-control-danger @enderror" type="text"
+                                            value="{{ old('no_ba_berkas', $seminar->beritaAcara->no_ba_berkas) }}"
                                             placeholder="Contoh : 986/UN26.17.03/DT/2022">
-                                        @error('no_berkas_ba_seminar_ta_satu')
+                                        @error('no_ba_berkas')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -237,93 +237,93 @@
                                             style="width: 100%; height: 38px">
                                             <optgroup label="Huruf Mutu">
                                                 <option
-                                                    value="A"{{ old('huruf_mutu', $seminar->ba_seminar->huruf_mutu) == 'A' ? 'selected' : '' }}>
+                                                    value="A"{{ old('huruf_mutu', $seminar->beritaAcara->huruf_mutu) == 'A' ? 'selected' : '' }}>
                                                     A
                                                 </option>
                                                 <option
-                                                    value="A-"{{ old('huruf_mutu', $seminar->ba_seminar->huruf_mutu) == 'A-' ? 'selected' : '' }}>
+                                                    value="A-"{{ old('huruf_mutu', $seminar->beritaAcara->huruf_mutu) == 'A-' ? 'selected' : '' }}>
                                                     A-
                                                 </option>
                                                 <option
-                                                    value="AB"{{ old('huruf_mutu', $seminar->ba_seminar->huruf_mutu) == 'AB' ? 'selected' : '' }}B>
+                                                    value="AB"{{ old('huruf_mutu', $seminar->beritaAcara->huruf_mutu) == 'AB' ? 'selected' : '' }}B>
                                                     AB
                                                 </option>
                                                 <option
-                                                    value="B+"{{ old('huruf_mutu', $seminar->ba_seminar->huruf_mutu) == 'B+' ? 'selected' : '' }}>
+                                                    value="B+"{{ old('huruf_mutu', $seminar->beritaAcara->huruf_mutu) == 'B+' ? 'selected' : '' }}>
                                                     B+
                                                 </option>
                                                 <option
-                                                    value="B"{{ old('huruf_mutu', $seminar->ba_seminar->huruf_mutu) == 'B' ? 'selected' : '' }}>
+                                                    value="B"{{ old('huruf_mutu', $seminar->beritaAcara->huruf_mutu) == 'B' ? 'selected' : '' }}>
                                                     B
                                                 </option>
                                                 <option
-                                                    value="B-"{{ old('huruf_mutu', $seminar->ba_seminar->huruf_mutu) == 'B-' ? 'selected' : '' }}>
+                                                    value="B-"{{ old('huruf_mutu', $seminar->beritaAcara->huruf_mutu) == 'B-' ? 'selected' : '' }}>
                                                     B-
                                                 </option>
                                                 <option
-                                                    value="BC"{{ old('huruf_mutu', $seminar->ba_seminar->huruf_mutu) == 'BC' ? 'selected' : '' }}C>
+                                                    value="BC"{{ old('huruf_mutu', $seminar->beritaAcara->huruf_mutu) == 'BC' ? 'selected' : '' }}C>
                                                     BC
                                                 </option>
                                                 <option
-                                                    value="C+"{{ old('huruf_mutu', $seminar->ba_seminar->huruf_mutu) == 'C+' ? 'selected' : '' }}>
+                                                    value="C+"{{ old('huruf_mutu', $seminar->beritaAcara->huruf_mutu) == 'C+' ? 'selected' : '' }}>
                                                     C+
                                                 </option>
                                                 <option
-                                                    value="C"{{ old('huruf_mutu', $seminar->ba_seminar->huruf_mutu) == 'C' ? 'selected' : '' }}>
+                                                    value="C"{{ old('huruf_mutu', $seminar->beritaAcara->huruf_mutu) == 'C' ? 'selected' : '' }}>
                                                     C
                                                 </option>
                                                 <option
-                                                    value="D"{{ old('huruf_mutu', $seminar->ba_seminar->huruf_mutu) == 'D' ? 'selected' : '' }}>
+                                                    value="D"{{ old('huruf_mutu', $seminar->beritaAcara->huruf_mutu) == 'D' ? 'selected' : '' }}>
                                                     D+
                                                 </option>
                                                 <option
-                                                    value="E"{{ old('huruf_mutu', $seminar->ba_seminar->huruf_mutu) == 'E' ? 'selected' : '' }}>
+                                                    value="E"{{ old('huruf_mutu', $seminar->beritaAcara->huruf_mutu) == 'E' ? 'selected' : '' }}>
                                                     E
                                                 </option>
                                             </optgroup>
                                         </select>
                                         <div class="form-group">
-                                            <label> Berkas Berita Acara<small> <a id="link-berkas_ba_seminar_ta_satu" href="#"
+                                            <label> Berkas Berita Acara<small> <a id="link-berkas_beritaAcara_komprehensif" href="#"
                                                         target="_blank" style="display: none;">Lihat File</a> </small></label>
                                             <div class="custom-file">
-                                                <label class="custom-file-label" for="link-berkas_ba_seminar_ta_satu"
-                                                    id="label-berkas_ba_seminar_ta_satu">Pilih File</label>
-                                                <input value="{{ old('berkas_ba_seminar_ta_satu') }}" accept=".pdf" autofocus
-                                                    name="berkas_ba_seminar_ta_satu" id="file-berkas_ba_seminar_ta_satu"
-                                                    class="custom-file-input form-control @error('berkas_ba_seminar_ta_satu') form-control-danger @enderror"
+                                                <label class="custom-file-label" for="link-berkas_beritaAcara_komprehensif"
+                                                    id="label-berkas_beritaAcara_komprehensif">Pilih File</label>
+                                                <input value="{{ old('berkas_beritaAcara_komprehensif') }}" accept=".pdf" autofocus
+                                                    name="berkas_beritaAcara_komprehensif" id="file-berkas_beritaAcara_komprehensif"
+                                                    class="custom-file-input form-control @error('berkas_beritaAcara_komprehensif') form-control-danger @enderror"
                                                     type="file" placeholder="FILE SK"
-                                                    onchange="updateFileNameAndLink('file-berkas_ba_seminar_ta_satu','label-berkas_ba_seminar_ta_satu','link-berkas_ba_seminar_ta_satu')">
+                                                    onchange="updateFileNameAndLink('file-berkas_beritaAcara_komprehensif','label-berkas_beritaAcara_komprehensif','link-berkas_beritaAcara_komprehensif')">
                                             </div>
-                                            @error('berkas_ba_seminar_ta_satu')
+                                            @error('berkas_beritaAcara_komprehensif')
                                                 <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label class="mt-2"> Berkas Nilai Tugas Akhir 1 <small> <a
-                                                        id="link-berkas_nilai_seminar_ta_satu" href="#" target="_blank"
+                                            <label class="mt-2"> Berkas Nilai Komprehensif <small> <a
+                                                        id="link-berkas_nilai_seminar_komprehensif" href="#" target="_blank"
                                                         style="display: none;">Lihat File</a>
                                                 </small></label>
                                             <div class="custom-file">
-                                                <label class="custom-file-label" for="link-berkas_nilai_seminar_ta_satu"
-                                                    id="label-berkas_nilai_seminar_ta_satu">Pilih
+                                                <label class="custom-file-label" for="link-berkas_nilai_seminar_komprehensif"
+                                                    id="label-berkas_nilai_seminar_komprehensif">Pilih
                                                     File</label>
-                                                <input value="{{ old('berkas_nilai_seminar_ta_satu') }}" accept=".pdf" autofocus
-                                                    name="berkas_nilai_seminar_ta_satu" id="file-berkas_nilai_seminar_ta_satu"
-                                                    class="custom-file-input form-control @error('berkas_nilai_seminar_ta_satu') form-control-danger @enderror"
+                                                <input value="{{ old('berkas_nilai_seminar_komprehensif') }}" accept=".pdf" autofocus
+                                                    name="berkas_nilai_seminar_komprehensif" id="file-berkas_nilai_seminar_komprehensif"
+                                                    class="custom-file-input form-control @error('berkas_nilai_seminar_komprehensif') form-control-danger @enderror"
                                                     type="file" placeholder="FILE SK"
-                                                    onchange="updateFileNameAndLink('file-berkas_nilai_seminar_ta_satu','label-berkas_nilai_seminar_ta_satu','link-berkas_nilai_seminar_ta_satu')">
+                                                    onchange="updateFileNameAndLink('file-berkas_nilai_seminar_komprehensif','label-berkas_nilai_seminar_komprehensif','link-berkas_nilai_seminar_komprehensif')">
                                             </div>
-                                            @error('berkas_nilai_seminar_ta_satu')
+                                            @error('berkas_nilai_seminar_komprehensif')
                                                 <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label>Power Point Bahasa Inggris</label>
-                                            <input autofocus name="berkas_ppt_seminar_ta_satu" id="berkas_ppt_seminar_ta_satu"
-                                                class="form-control @error('berkas_ppt_seminar_ta_satu') form-control-danger @enderror" type="text"
-                                                value="{{ old('berkas_ppt_seminar_ta_satu', $seminar->ba_seminar->berkas_ppt_seminar_ta_satu) }}"
+                                            <input autofocus name="laporan_ta" id="laporan_ta"
+                                                class="form-control @error('laporan_ta') form-control-danger @enderror" type="text"
+                                                value="{{ old('laporan_ta', $seminar->beritaAcara->laporan_ta) }}"
                                                 placeholder="Link Gdrive / Penyimpanan Cloud Power Point">
-                                            @error('berkas_ppt_seminar_ta_satu')
+                                            @error('laporan_ta')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -352,11 +352,11 @@
 
                                         <div class="form-group">
                                             <label>Tanggal Seminar</label>
-                                            <input value="{{ $seminar->jadwal->tanggal_seminar_ta_satu }}" autofocus name="tanggal_seminar_ta_satu"
-                                                id="tanggal_seminar_ta_satu"
-                                                class="form-control @error('tanggal_seminar_ta_satu') form-control-danger @enderror"
+                                            <input value="{{ $seminar->jadwal->tanggal_komprehensif }}" autofocus name="tanggal_komprehensif"
+                                                id="tanggal_komprehensif"
+                                                class="form-control @error('tanggal_komprehensif') form-control-danger @enderror"
                                                 type="date" placeholder="Nama Barang">
-                                            @error('tanggal_seminar_ta_satu')
+                                            @error('tanggal_komprehensif')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -376,19 +376,19 @@
 
                                         <div class="form-group">
                                             <label>Jam Mulai</label>
-                                            <input type="time" value="{{ $seminar->jadwal->jam_mulai_seminar_ta_satu }}"
-                                                name="jam_mulai_seminar_ta_satu"
-                                                class="form-control @error('jam_mulai_seminar_ta_satu') form-control-danger @enderror">
-                                            @error('jam_mulai_seminar_ta_satu')
+                                            <input type="time" value="{{ $seminar->jadwal->jam_mulai_komprehensif }}"
+                                                name="jam_mulai_komprehensif"
+                                                class="form-control @error('jam_mulai_komprehensif') form-control-danger @enderror">
+                                            @error('jam_mulai_komprehensif')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label>Jam Selesai</label>
-                                            <input type="time" name="jam_selesai_seminar_ta_satu"
-                                                value="{{ $seminar->jadwal->jam_selesai_seminar_ta_satu }}"
-                                                class="form-control @error('jam_selesai_seminar_ta_satu') form-control-danger @enderror">
-                                            @error('jam_selesai_seminar_ta_satu')
+                                            <input type="time" name="jam_selesai_komprehensif"
+                                                value="{{ $seminar->jadwal->jam_selesai_komprehensif }}"
+                                                class="form-control @error('jam_selesai_komprehensif') form-control-danger @enderror">
+                                            @error('jam_selesai_komprehensif')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -417,17 +417,17 @@
                                             </small>
                                         </label>
                                         <div class="custom-file mb-1">
-                                            <label class="custom-file-label" for="link-berkas_ta_satu"
-                                                id="label-berkas_ta_satu">Pilih File</label>
-                                            <input value="{{ old('berkas_ta_satu') }}" accept=".pdf" autofocus
-                                                name="berkas_ta_satu" id="file-berkas_ta_satu"
-                                                class="custom-file-input form-control @error('berkas_ta_satu') form-control-danger @enderror"
+                                            <label class="custom-file-label" for="link-berkas_komprehensif"
+                                                id="label-berkas_komprehensif">Pilih File</label>
+                                            <input value="{{ old('berkas_komprehensif') }}" accept=".pdf" autofocus
+                                                name="berkas_komprehensif" id="file-berkas_komprehensif"
+                                                class="custom-file-input form-control @error('berkas_komprehensif') form-control-danger @enderror"
                                                 type="file" placeholder="FILE SK"
-                                                onchange="updateFileNameAndLink('file-berkas_ta_satu','label-berkas_ta_satu','link-berkas_ta_satu')">
+                                                onchange="updateFileNameAndLink('file-berkas_komprehensif','label-berkas_komprehensif','link-berkas_komprehensif')">
                                         </div>
-                                        <small class="mt-2"> <a id="link-berkas_ta_satu" href="#"
+                                        <small class="mt-2"> <a id="link-berkas_komprehensif" href="#"
                                                 target="_blank" style="display: none;">Lihat File</a> </small>
-                                        @error('berkas_ta_satu')
+                                        @error('berkas_komprehensif')
                                             <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -469,7 +469,7 @@
                                 <button id="submitButton" type="submit" class="submit btn btn-primary">Kirim</button>
                             </div>
                         </form>
-                        <a href="{{ route('koor.arsip.ta1.index') }}">
+                        <a href="{{ route('koor.arsip.kompre.index') }}">
                             <button class="batal btn btn-secondary">Batal</button>
                         </a>
                     </div>
