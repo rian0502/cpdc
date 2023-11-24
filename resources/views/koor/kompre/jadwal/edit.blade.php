@@ -48,7 +48,7 @@
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->pembimbing_satu->nama_dosen }}
+                                    {{ $seminar->pembimbingSatu->nama_dosen }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
@@ -58,8 +58,8 @@
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Pembimbing 2</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    @if ($seminar->pembimbing_dua)
-                                        {{ $seminar->pembimbing_dua->nama_dosen }}
+                                    @if ($seminar->pembimbingDua)
+                                        {{ $seminar->pembimbingDua->nama_dosen }}
                                     @else
                                         {{ $seminar->pbl2_nama }}
                                     @endif
