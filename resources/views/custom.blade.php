@@ -17,6 +17,8 @@
     <link href="/Assets/FontAwesome/css/solid.css" rel="stylesheet">
     <!-- FontAwesome -->
 
+    <link rel="stylesheet" type="text/css" href="Assets/src/plugins/jquery-asColorPicker/dist/css/asColorPicker.css" />
+
     <!-- Helpers -->
     <script src="/Assets/setting/assets/vendor/js/helpers.js"></script>
 
@@ -27,12 +29,12 @@
                 <div class="col-md-12">
                     <ul class="nav nav-pills flex-column flex-md-row mb-4">
                         <li class="nav-item">
-                            <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-lock me-1"></i>
+                            <a class="nav-link" href="/settings"><i class="bx bx-lock me-1"></i>
                                 Kata Sandi</a>
                         </li>
                         @role('sudo')
                             <li class="nav-item">
-                                <a class="nav-link" href="/custom"><i class="bx bx-customize me-1"></i> Kustomisasi</a>
+                                <a class="nav-link active" href="#"><i class="bx bx-customize me-1"></i> Kustomisasi</a>
                             </li>
                             {{-- <li class="nav-item">
                                 <a class="nav-link" href=""><i class="bx bx-link-alt me-1"></i> Koneksi</a>
@@ -41,68 +43,36 @@
                     </ul>
                 </div>
                 <div class="card mb-4">
-                    <h1 class="card-header mb-3 mt-3" style="font-size: 20px;">Ubah Kata Sandi </h1>
+                    <h1 class="card-header mb-3 mt-3" style="font-size: 20px;">Kustomisasi Tampilan</h1>
                     <div class="card-body">
-                        <form action="{{ route('auth.change.password') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
-                                <div class="mb-3 col-md-6">
-                                    <label for="current_password">Kata Sandi Lama</label>
-                                    <div class="input-group">
-                                        <input class="form-control" type="password" id="current_password"
-                                            name="current_password" value="{{ old('current_password') }}" autofocus />
-                                        <button class="btn btn-outline-secondary ms-3" type="button"
-                                            id="toggle_current_password">
-                                            <i class="fas fa-eye-slash"></i>
-                                        </button>
-                                        @error('mitra')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="new_password">Kata Sandi Baru</label>
-                                    <div class="input-group">
-                                        <input class="form-control" type="password" id="new_password" name="new_password"
-                                            value="{{ old('new_password') }}" />
-                                        <button class="btn btn-outline-secondary ms-3" type="button"
-                                            id="toggle_new_password">
-                                            <i class="fas fa-eye-slash"></i>
-                                        </button>
-                                    </div>
-                                    @error('new_password')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="confirm_new_password">Konfirmasi Kata Sandi
-                                        Baru</label>
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" id="confirm_new_password"
-                                            name="confirm_new_password" value="{{ old('confirm_new_password') }}" />
-                                        <button class="btn btn-outline-secondary ms-3" type="button"
-                                            id="toggle_confirm_new_password">
-                                            <i class="fas fa-eye-slash"></i>
-                                        </button>
-                                        @error('confirm_new_password')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                        <div class="row">
+
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label>
+                                        Warna
+                                        {{-- <div class="font-14">
+                                            use <code>.complex-colorpicker</code> in your input
+                                            element.
+                                        </div> --}}
+                                    </label>
+                                    <input type="text" class="complex-colorpicker form-control" value="#7ab2fa" />
                                 </div>
                             </div>
-                            <div class="mt-2">
-                                <button id="myButton" type="submit" class="btn btn-primary me-2">Simpan</button>
-                            </div>
-                            {{-- <button type="reset" class="btn btn-outline-secondary">Cancel</button> --}}
-                        </form>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     </div>
+
+    <script src="Assets/vendors/scripts/core.js"></script>
+    <script src="Assets/src/plugins/jquery-asColor/dist/jquery-asColor.js"></script>
+    <script src="Assets/src/plugins/jquery-asGradient/dist/jquery-asGradient.js"></script>
+    <script src="Assets/src/plugins/jquery-asColorPicker/jquery-asColorPicker.js"></script>
+    <script src="Assets/vendors/scripts/colorpicker.js"></script>
     <script>
         // Toggle current password visibility
         const toggleCurrentPasswordBtn = document.getElementById('toggle_current_password');

@@ -45,8 +45,10 @@ class StoreSeminarDosenRequest extends FormRequest
             'scala.in' => 'Scala seminar harus salah satu dari: Nasional,Internasional,Provinsi,Kabupaten/Kota,Universitas',
             'uraian.required' => 'Uraian seminar harus diisi',
             'uraian.min' => 'Uraian seminar minimal 3 karakter',
-            'uraian.max' => 'Uraian seminar maksimal 1255 karakter',    
+            'uraian.max' => 'Uraian seminar maksimal 1255 karakter',
             'url.required' => 'URL seminar harus diisi',
+            'url.url' => 'URL seminar harus berupa URL',
+
         ];
     }
 }

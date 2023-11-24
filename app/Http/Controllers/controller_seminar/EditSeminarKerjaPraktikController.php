@@ -11,10 +11,11 @@ use App\Models\ModelSeminarKP;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\BerkasPersyaratanSeminar;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\UpdateSeminarPKLRequest;
 
-class EditSeminarKerjPraktikController extends Controller
+class EditSeminarKerjaPraktikController extends Controller
 {
     //
 
@@ -30,14 +31,24 @@ class EditSeminarKerjPraktikController extends Controller
                     return $seminar->mahasiswa->npm;
                 })->toJson();
         }
+        return view('koor.pkl.arsip.index');
     }
 
 
     public function edit($id)
     {
+        $syarat = BerkasPersyaratanSeminar::find(1);
         $seminar = ModelSeminarKP::with(['jadwal', 'berita_acara'])->where('id', Crypt::decrypt($id))->first();
-        $dosen = Dosen::select('encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
+        $dosen = Dosen::select('id','encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
         $lokasi = Lokasi::select('encrypt_id', 'nama_lokasi')->where('jenis_ruangan', 'Kelas')->get();
+
+
+        $data = [
+            'seminar' => $seminar,
+            'dosen' => $dosen,
+            'lokasi' => $lokasi,
+        ];
+        return view('koor.pkl.arsip.edit', $data);
     }
 
     public function update(UpdateSeminarPKLRequest $request, $id)
@@ -60,7 +71,7 @@ class EditSeminarKerjPraktikController extends Controller
             $seminar->ipk = $request->ipk;
             $seminar->status_seminar = $request->status_seminar;
             $seminar->proses_admin = $request->proses_admin;
-            $seminar->id_dospemkp = $request->id_dospemkp;
+            $seminar->id_dospemkp = Crypt::decrypt($request->id_dospemkp);
             if ($request->berkas_seminar_pkl) {
                 $file = $request->file('berkas_seminar_pkl');
                 $nama_file = $file->hashName();
@@ -102,10 +113,10 @@ class EditSeminarKerjPraktikController extends Controller
             $ba_pkl->updated_at = date('Y-m-d H:i:s');
             $ba_pkl->save();
             DB::commit();
-            return redirect()->route('seminar_kp.index')->with('success', 'Berhasil mengubah data seminar KP');
+            return redirect()->route('koor.arsip.pkl.index')->with('success', 'Berhasil mengubah data seminar KP');
         } catch (\Exception $e) {
             DB::rollback();
-            return redirect()->route('seminar_kp.index')->with('error', $e->getMessage());
+            return redirect()->route('koor.arsip.pkl.index')->with('error', $e->getMessage());
         }
     }
 }

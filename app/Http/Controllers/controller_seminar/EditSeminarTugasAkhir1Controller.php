@@ -7,7 +7,7 @@ use App\Models\Lokasi;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarTaSatu;
 use Illuminate\Support\Facades\DB;
-use App\Models\ModelBaSeminarTaDua;
+use App\Models\ModelBaSeminarTaSatu;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaSatu;
@@ -29,18 +29,26 @@ class EditSeminarTugasAkhir1Controller extends Controller
                     return $seminar->mahasiswa->npm;
                 })->toJson();
         }
+        return view('koor.ta1.arsip.index');
     }
     public function edit($id){
         $seminar = ModelSeminarTaSatu::with(['jadwal', 'ba_seminar'])->where('id', Crypt::decrypt($id))->first();
-        $dosen = Dosen::select('encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
+        $dosen = Dosen::select('id', 'encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
         $lokasi = Lokasi::select('encrypt_id', 'nama_lokasi')->where('jenis_ruangan', 'Kelas')->get();
+        $data = [
+            'seminar' => $seminar,
+            'dosen' => $dosen,
+            'lokasi' => $lokasi,
+        ];
+        // return response()->json($seminar);
+        return view('koor.ta1.arsip.edit', $data);
     }
 
     public function update(UpdateSeminarTugasAkhir1Request $request, $id){
         try{
             $seminar = ModelSeminarTaSatu::find(Crypt::decrypt($id));
             $jadwal = ModelJadwalSeminarTaSatu::where('id_seminar', $seminar->id)->first();
-            $ba = ModelBaSeminarTaDua::where('id_seminar', $seminar->id)->first();
+            $ba = ModelBaSeminarTaSatu::where('id_seminar', $seminar->id)->first();
             DB::beginTransaction();
             $seminar->tahun_akademik = $request->tahun_akademik;
             $seminar->semester = $request->semester;
@@ -72,7 +80,7 @@ class EditSeminarTugasAkhir1Controller extends Controller
                 $seminar->id_pembimbing_dua = null;
                 $seminar->pbl2_nama = $request->pbl2_nama;
                 $seminar->pbl2_nip = $request->pbl2_nip;
-                
+
             }
             $seminar->id_pembahas = Crypt::decrypt($request->id_pembahas);
             $seminar->updated_at = date('Y-m-d H:i:s');
@@ -110,9 +118,12 @@ class EditSeminarTugasAkhir1Controller extends Controller
             $ba->updated_at = date('Y-m-d H:i:s');
             $ba->save();
             DB::commit();
+            return redirect()->route('koor.arsip.ta1.index')->with('success', 'Berhasil mengubah data seminar TA 1 S1');
+
         }catch(\Exception $e){
             DB::rollback();
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->route('koor.arsip.ta1.index')->with('error', $e->getMessage());
         }
+
     }
 }

@@ -110,7 +110,13 @@ use App\Http\Controllers\mahasiswa_s2\ta1\ControllerKoorS2PenjadwalanTaSatu;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerMahasiswaS2SeminarTaDua;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
-use App\Http\Controllers\sudo\FailedJobsController;
+use App\Http\Controllers\controller_seminar\EditSeminarKerjaPraktikController;
+use App\Http\Controllers\controller_seminar\EditSeminarTugasAkhir1Controller;
+use App\Http\Controllers\controller_seminar\EditSeminarTugasAkhir2Controller;
+use App\Http\Controllers\controller_seminar\EditSeminarKomprehensifController;
+use App\Http\Controllers\controller_seminar\EditSeminarTesis1Controller;
+use App\Http\Controllers\controller_seminar\EditSeminarTesis2Controller;
+use App\Http\Controllers\controller_seminar\EditSidangTesisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -212,6 +218,7 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
 //end dosen
 
 Route::prefix('koor')->name('koor.')->group(function () {
+    //koor S1
     Route::resource('jadwalPKL', JadwalPKLController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('jadwalPKL');
     Route::resource('jadwalTA1', PenjadwalanTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('jadwalTA1');
     Route::resource('jadwalTA2', PenjadwalanTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('jadwalTA2');
@@ -222,21 +229,34 @@ Route::prefix('koor')->name('koor.')->group(function () {
     Route::get('/jadwalTA2/resend/{id}', [PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('jadwalTA2.resend');
     Route::get('/jadwalKompre/resend/{id}', [PenjadwalanKompreController::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('jadwalKompre.resend');
     Route::post('/download/jadwal', [PenjadwalanTaSatu::class, 'downloadJadwal'])->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1.download');
-    Route::get('/jadwalTA1S2/resend/{id}', [ControllerKoorS2PenjadwalanTaSatu::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->name('jadwalTA1S2.resend');
-    Route::get('/jadwalTA2S2/resend/{id}', [ControllerKoorS2PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->name('jadwalTA2S2.resend');
-    Route::get('/jadwalSidangS2/resend/{id}', [ControllerKoorS2JadwalKompre::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->name('jadwalSidangS2.resend');
 
     Route::resource('validasiBaPKL', ValidasiBaPKLController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('validasiBaPKL');
     Route::resource('validasiBaTA1', ValidasiBaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('validasiBaTA1');
     Route::resource('validasiBaTA2', ValidasiBaTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('validasiBaTA2');
     Route::resource('validasiBaKompre', ValidasiBaKompreController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('validasiBaKompre');
+
+    Route::resource('arsip/pkl', EditSeminarKerjaPraktikController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('arsip.pkl');
+    Route::resource('arsip/ta1', EditSeminarTugasAkhir1Controller::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('arsip.ta1');
+    Route::resource('arsip/ta2', EditSeminarTugasAkhir2Controller::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('arsip.ta2');
+    Route::resource('arsip/kompre', EditSeminarKomprehensifController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('arsip.kompre');
+
+
+
     //koor S2
+    Route::get('/jadwalTA1S2/resend/{id}', [ControllerKoorS2PenjadwalanTaSatu::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->name('jadwalTA1S2.resend');
+    Route::get('/jadwalTA2S2/resend/{id}', [ControllerKoorS2PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->name('jadwalTA2S2.resend');
+    Route::get('/jadwalSidangS2/resend/{id}', [ControllerKoorS2JadwalKompre::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->name('jadwalSidangS2.resend');
+
     Route::resource('jadwal/TA1/S2', ControllerKoorS2PenjadwalanTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('jadwalTA1S2');
     Route::resource('jadwal/TA2/S2', ControllerKoorS2PenjadwalanTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('jadwalTA2S2');
     Route::resource('jadwal/Kompre/S2', ControllerKoorS2JadwalKompre::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('jadwalKompreS2');
     Route::resource('validasi/Ba/TA1/S2', ControllerKoorS2BaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('ValidasiBaTa1S2');
     Route::resource('validasi/Ba/TA2/S2', ControllerKoorS2BaTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('ValidasiBaTa2S2');
     Route::resource('validasi/Ba/Kompre/S2', ControllerKoorS2BaKompre::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('ValidasiBaKompreS2');
+
+    Route::resource('arsip/tesis1', EditSeminarTesis1Controller::class)->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('arsip.tesis1');
+    Route::resource('arsip/tesis2', EditSeminarTesis2Controller::class)->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('arsip.tesis2');
+    Route::resource('arsip/sidang_tesis', EditSidangTesisController::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('arsip.sidang_tesis');
 });
 
 
@@ -493,6 +513,9 @@ Route::get('/help', function () {
 });
 Route::get('/helps', function () {
     return view('helps');
+});
+Route::get('/custom', function () {
+    return view('custom');
 });
 Route::get('/contact', function () {
     return view('contact');

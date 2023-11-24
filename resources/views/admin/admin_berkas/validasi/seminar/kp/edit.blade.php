@@ -129,7 +129,7 @@
                                 <label><b>Status</b></label>
                                 <select onchange="toggleCatatan()" name="proses_admin" id="status"
                                     class="selectpicker form-control" data-size="5">
-                                    <option value="proses" {{ $seminar->proses_admin == 'Proses' ? 'selected' : '' }}>
+                                    <option value="Proses" {{ $seminar->proses_admin == 'Proses' ? 'selected' : '' }}>
                                         Diproses</option>
                                     <option value="Valid" {{ $seminar->proses_admin == 'Valid' ? 'selected' : '' }}>
                                         Valid</option>
