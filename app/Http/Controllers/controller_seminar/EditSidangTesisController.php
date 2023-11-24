@@ -71,7 +71,7 @@ class EditSidangTesisController extends Controller
             $seminar->status_admin = $request->status_admin;
             $seminar->status_koor = $request->status_koor;
             $seminar->id_pembimbing_1 = Crypt::decrypt($request->id_pembimbing_1);
-            if ($request->id_pembimbing_2) {
+            if ($request->id_pembimbing_2 != 'new') {
                 $seminar->id_pembimbing_2 = Crypt::decrypt($request->id_pembimbing_2);
                 $seminar->pbl2_nama = null;
                 $seminar->pbl2_nip = null;

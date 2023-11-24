@@ -30,7 +30,7 @@
 
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
-            @if ($errors->any())
+            {{-- @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -38,7 +38,7 @@
             @endforeach
         </ul>
     </div>
-@endif
+@endif --}}
 
             <div class="min-height-200px">
 
@@ -222,20 +222,12 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>Nomor Berita Acara Seminar Tugas Akhir 1</label>
+                                        <label>Nomor Berita Acara Seminar Tugas Akhir 2</label>
                                         <input autofocus name="no_berkas_ba_seminar_ta_dua" id="no_berkas_ba_seminar_ta_dua"
                                             class="form-control @error('no_berkas_ba_seminar_ta_dua') form-control-danger @enderror" type="text"
                                             value="{{ old('no_berkas_ba_seminar_ta_dua', $seminar->ba_seminar->no_berkas_ba_seminar_ta_dua) }}"
                                             placeholder="Contoh : 986/UN26.17.03/DT/2022">
                                         @error('no_berkas_ba_seminar_ta_dua')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tanggal Realisasi Seminar</label>
-                                        <input autofocus name="tanggal_seminar_ta_dua" id="tanggal_seminar_ta_dua" class="form-control @error('tanggal_seminar_ta_dua') form-control-danger @enderror"
-                                            type="date" value="{{ old('tanggal_seminar_ta_dua',$seminar->ba_seminar->seminar->jadwal->tanggal_seminar_ta_dua) }}" >
-                                        @error('tanggal_seminar_ta_dua')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -307,7 +299,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label class="mt-2"> Berkas Nilai Tugas Akhir 1 <small> <a
+                                            <label class="mt-2"> Berkas Nilai Tugas Akhir 2 <small> <a
                                                         id="link-berkas_nilai_seminar_ta_dua" href="#" target="_blank"
                                                         style="display: none;">Lihat File</a>
                                                 </small></label>

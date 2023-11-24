@@ -69,7 +69,7 @@ class EditSeminarTesis1Controller extends Controller
             $seminar->status_admin = $request->status_admin;
             $seminar->status_koor = $request->status_koor;
             $seminar->id_pembimbing_1 = Crypt::decrypt($request->id_pembimbing_1);
-            if ($request->id_pembimbing_2) {
+            if ($request->id_pembimbing_2 != 'new' ) {
                 $seminar->id_pembimbing_2 = Crypt::decrypt($request->id_pembimbing_2);
                 $seminar->pbl2_nama = null;
                 $seminar->pbl2_nip = null;
@@ -82,7 +82,7 @@ class EditSeminarTesis1Controller extends Controller
                 $seminar->pbl2_nama = $request->pbl2_nama;
                 $seminar->pbl2_nip = $request->pbl2_nip;
             }
-            if ($request->id_pembahas_1) {
+            if ($request->id_pembahas_1 != 'new') {
                 $seminar->id_pembahas_1 = Crypt::decrypt($request->id_pembahas_1);
                 $seminar->pembahas_external_1 = null;
                 $seminar->nip_pembahas_external_1 = null;
@@ -95,7 +95,7 @@ class EditSeminarTesis1Controller extends Controller
                 $seminar->pembahas_external_1 = $request->pembahas_external_1;
                 $seminar->nip_pembahas_external_1 = $request->nip_pembahas_external_1;
             }
-            if ($request->id_pembahas_2) {
+            if ($request->id_pembahas_2 != 'new') {
                 $seminar->id_pembahas_2 = Crypt::decrypt($request->id_pembahas_2);
                 $seminar->pembahas_external_2 = null;
                 $seminar->nip_pembahas_external_2 = null;
@@ -108,7 +108,7 @@ class EditSeminarTesis1Controller extends Controller
                 $seminar->pembahas_external_2 = $request->pembahas_external_2;
                 $seminar->nip_pembahas_external_2 = $request->nip_pembahas_external_2;
             }
-            if ($request->id_pembahas_3) {
+            if ($request->id_pembahas_3 != 'new') {
                 $seminar->id_pembahas_3 = Crypt::decrypt($request->id_pembahas_3);
                 $seminar->pembahas_external_3 = null;
                 $seminar->nip_pembahas_external_3 = null;

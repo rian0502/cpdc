@@ -5,11 +5,11 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Arsip Seminar TA 1 S1</h4>
+                        <h4 class="text-blue h4">Arsip Seminar Komprehensif</h4>
                     </div>
                     <div class="pb-20 m-3">
 
-                        <table id="data-ta1" class="data-ta1 table table-hover data-table-responsive stripe wrap">
+                        <table id="data-kompre" class="data-kompre table table-hover data-table-responsive stripe wrap">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -33,13 +33,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(function() {
-            var dataNpm = $('.data-ta1').DataTable({
+            var dataNpm = $('.data-kompre').DataTable({
                 processing: true,
                 serverSide: true,
                 responsive: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('koor.arsip.ta1.index') }}',
+                    url: '{{ route('koor.arsip.kompre.index') }}',
                     type: 'GET',
                 },
                 columns: [{
@@ -88,7 +88,7 @@
                         exportable: false,
                         render: function(data, type, row) {
 
-                            var editUrl = "{{ route('koor.arsip.ta1.edit', ':id') }}".replace(
+                            var editUrl = "{{ route('koor.arsip.kompre.edit', ':id') }}".replace(
                                 ':id', row.encrypt_id);
                             return `
                         <a class="btn btn-warning "
