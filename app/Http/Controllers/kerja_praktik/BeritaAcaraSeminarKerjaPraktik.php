@@ -18,7 +18,7 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
         //
         $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
         $seminar = ModelSeminarKP::where('id_mahasiswa', $mahasiswa->id)->first();
-
+        //cek apakah sudah upload ba
         if($seminar->berita_acara){
             return redirect()->route('mahasiswa.seminar.kp.index')->with('error', 'Anda Sudah Mengupload Berita Acara Seminar Kerja Praktik');
         }
