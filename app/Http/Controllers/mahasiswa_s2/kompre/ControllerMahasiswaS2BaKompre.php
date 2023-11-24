@@ -2,20 +2,25 @@
 
 namespace App\Http\Controllers\mahasiswa_s2\kompre;
 
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use App\Models\ModelKompreS2;
 use App\Models\ModelBaKompreS2;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\ModelJadwalSeminarKompreS2;
 use App\Http\Requests\StoreBaTaTesisRequest;
 use App\Http\Requests\UpdateBaSidangTesisRequest;
-use App\Models\ModelJadwalSeminarKompreS2;
-use App\Models\ModelKompreS2;
-use Illuminate\Support\Facades\Auth;
 
 class ControllerMahasiswaS2BaKompre extends Controller
 {
     public function create()
     {
+        $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
+        if ($mahasiswa->komprehensif->beritaAcara) {
+            return redirect()->back();
+        }
         return view("mahasiswaS2.kompre.ba.create");
     }
 
