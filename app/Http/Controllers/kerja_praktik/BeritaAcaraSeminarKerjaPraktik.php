@@ -20,7 +20,7 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
         $seminar = ModelSeminarKP::where('id_mahasiswa', $mahasiswa->id)->first();
         //cek apakah sudah upload ba
         if($seminar->berita_acara){
-            return redirect()->route('mahasiswa.seminar.kp.index')->with('error', 'Anda Sudah Mengupload Berita Acara Seminar Kerja Praktik');
+            return redirect()->back();
         }
 
         return view('mahasiswa.kp.ba.create');
@@ -62,17 +62,7 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
         return redirect()->route('mahasiswa.seminar.kp.index')->with('success', 'Berhasil Upload Berita Acara Seminar Kerja Praktik');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-        // return view('mahasiswa.kp.ba.show',);
-    }
+  
 
     /**
      * Show the form for editing the specified resource.
@@ -161,17 +151,5 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
         $seminar->keterangan = '';
         $seminar->save();
         return redirect()->route('mahasiswa.seminar.kp.index')->with('success', 'Data Berhasil Diupdate');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-        return redirect()->route('mahasiswa.seminar.kp.index')->with('success', 'Data Berhasil Dihapus');
     }
 }

@@ -2,26 +2,19 @@
 
 namespace App\Http\Controllers\mahasiswa_s2\ta1;
 
+use App\Models\Mahasiswa;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreBaTaSatuS2Request;
-use App\Http\Requests\UpdateBaTaSatuS2Request;
-use App\Models\ModelBaSeminarTaSatuS2;
-use App\Models\ModelJadwalSeminarTaSatuS2;
 use App\Models\ModelSeminarTaSatuS2;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\ModelBaSeminarTaSatuS2;
+use App\Models\ModelJadwalSeminarTaSatuS2;
+use App\Http\Requests\StoreBaTaSatuS2Request;
+use App\Http\Requests\UpdateBaTaSatuS2Request;
 
 class ControllerMahasiswaS2BaTaSatu extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -30,6 +23,10 @@ class ControllerMahasiswaS2BaTaSatu extends Controller
      */
     public function create()
     {
+        $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
+        if ($mahasiswa->taSatuS2->beritaAcara) {
+            return redirect()->back();
+        }
         return view("mahasiswaS2.ta1.ba.create");
     }
 
@@ -68,16 +65,6 @@ class ControllerMahasiswaS2BaTaSatu extends Controller
         return redirect()->route('mahasiswa.seminarta1s2.index')->with('success', 'Berhasil menambahkan berita acara seminar tesis 1');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
