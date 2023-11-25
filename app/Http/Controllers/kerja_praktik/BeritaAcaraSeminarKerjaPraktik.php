@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMahasiswaBaKpRequest;
 use App\Http\Requests\UpdateMahasiswaBaKpRequest;
 use App\Models\BaSKP;
+use App\Models\Mahasiswa;
 use App\Models\ModelSeminarKP;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -15,6 +16,13 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
     public function create()
     {
         //
+        $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
+        $seminar = ModelSeminarKP::where('id_mahasiswa', $mahasiswa->id)->first();
+        //cek apakah sudah upload ba
+        if($seminar->berita_acara){
+            return redirect()->back();
+        }
+
         return view('mahasiswa.kp.ba.create');
     }
 
@@ -54,17 +62,7 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
         return redirect()->route('mahasiswa.seminar.kp.index')->with('success', 'Berhasil Upload Berita Acara Seminar Kerja Praktik');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-        // return view('mahasiswa.kp.ba.show',);
-    }
+  
 
     /**
      * Show the form for editing the specified resource.
@@ -153,17 +151,5 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
         $seminar->keterangan = '';
         $seminar->save();
         return redirect()->route('mahasiswa.seminar.kp.index')->with('success', 'Data Berhasil Diupdate');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-        return redirect()->route('mahasiswa.seminar.kp.index')->with('success', 'Data Berhasil Dihapus');
     }
 }
