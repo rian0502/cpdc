@@ -47,7 +47,7 @@
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->pembimbing_satu->nama_dosen }}
+                                    {{ $seminar->pembimbingSatu->nama_dosen }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
@@ -57,8 +57,8 @@
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Pembimbing 2</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    @if ($seminar->pembimbing_dua)
-                                        {{ $seminar->pembimbing_dua->nama_dosen }}
+                                    @if ($seminar->id_pembimbing_2)
+                                        {{ $seminar->pembimbingDua->nama_dosen }}
                                     @else
                                         {{ $seminar->pbl2_nama }}
                                     @endif
@@ -70,12 +70,12 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->tahun_akademik }}
                                 </div>
-                                <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
+                                <label class="col-md-3 bold mt-2"> <strong>Pembahas 1</strong></label>
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    @if ($seminar->pbl2_nip)
-                                        {{ $seminar->pbl2_nip }}
+                                    @if ($seminar->id_pembahas_1)
+                                        {{ $seminar->pembahasSatu->nama_dosen }}
                                     @else
-                                        -
+                                        {{ $seminar->pembahas_external_1 }}
                                     @endif
                                 </div>
                             </div>
@@ -85,9 +85,13 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $mahasiswa->semester }}
                                 </div>
-                                <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
+                                <label class="col-md-3 bold"> <strong>Pembahas 2</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->pembahas->nama_dosen }}
+                                    @if ($seminar->id_pembahas_2)
+                                        {{ $seminar->pembahasDua->nama_dosen }}
+                                    @else
+                                        {{ $seminar->pembahas_external_2 }}
+                                    @endif
                                 </div>
                             </div>
 
@@ -96,9 +100,13 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->sks }}
                                 </div>
-                                <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
+                                <label class="col-md-3 bold"> <strong>Pembahas 3</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->periode_seminar }}
+                                    @if ($seminar->id_pembahas_3)
+                                        {{ $seminar->pembahasTiga->nama_dosen }}
+                                    @else
+                                        {{ $seminar->pembahas_external_3 }}
+                                    @endif
                                 </div>
                             </div>
 
@@ -110,7 +118,7 @@
                                 <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/syarat_seminar_ta1/{{ $seminar->berkas_ta_satu }}">Lihat
+                                        href="/uploads/syarat_seminar_sidang_s2/{{ $seminar->berkas_kompre }}">Lihat
                                         Berkas</a>
                                 </div>
                             </div>
@@ -121,9 +129,23 @@
                                     {{ $seminar->toefl }}
                                 </div>
 
-                                <label class="col-md-3 bold"> <strong>Status</strong></label>
+                                <label class="col-md-3 bold"> <strong>Rencana Seminar</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->status_seminar }}
+                                    {{ $seminar->periode_seminar }}
+                                </div>
+                            </div>
+                            <div class="row border-bottom mt-2">
+                                <label class="col-md-3 bold mt-2"> <strong>Draft Artikel</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    <a target="_blank"
+                                        href="/uploads/draft_artikel_s2/{{$seminar->draft_artikel}}">Lihat
+                                        Berkas</a>
+                                </div>
+
+                                <label class="col-md-3 bold"> <strong>Link Artikel</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    <a target="_blank"
+                                        href="{{ $seminar->url_draft_artikel }}">Lihat</a>
                                 </div>
                             </div>
 
@@ -134,16 +156,14 @@
                                 </div>
                             </div>
 
-                            <form action="{{ route('berkas.validasi.seminar.ta1.update', $seminar->encrypt_id) }}" method="post" id="formStatus">
+                            <form action="{{ route('berkas.arsip_validasi.s2.tesis3.update', $seminar->encrypt_id) }}"
+                                method="post" id="formStatus">
                                 @method('put')
                                 @csrf
                                 <div class="form-group" style="margin-top: 20px">
                                     <label><b>Status</b></label>
                                     <select onchange="toggleCatatan()" name="status_admin" id="status"
                                         class="selectpicker form-control" data-size="5">
-                                        <option value="Process"
-                                            {{ $seminar->status_admin == 'Process' ? 'selected' : '' }}>
-                                            Diproses</option>
                                         <option value="Valid" {{ $seminar->status_admin == 'Valid' ? 'selected' : '' }}>
                                             Valid</option>
                                         <option value="Invalid"
@@ -164,7 +184,7 @@
                                     <button class="submit btn btn-primary" value="submit" id="submitButton">Submit</button>
                                 </div>
                             </form>
-                            <a href="{{ route('berkas.validasi.seminar.ta1.index') }}">
+                            <a href="{{ route('berkas.arsip_validasi.s2.tesis3.index') }}">
                                 <button class="batal btn btn-secondary">Batal</button>
                             </a>
                         </div>
