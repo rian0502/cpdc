@@ -37,9 +37,11 @@
                         <div class="pull-left">
                             <h4 class="text-dark h4" style="margin-left: 10px">Data Registrasi</h4>
                         </div>
+
                     </div>
                     <div class="">
                         <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+
                             <div class="row border-bottom">
                                 <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -47,7 +49,7 @@
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $seminar->pembimbing_satu->nama_dosen }}
+                                    {{ $seminar->pembimbingSatu->nama_dosen }}
                                 </div>
                             </div>
                             <div class="row border-bottom mt-2">
@@ -57,8 +59,8 @@
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Pembimbing 2</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    @if ($seminar->pembimbing_dua)
-                                        {{ $seminar->pembimbing_dua->nama_dosen }}
+                                    @if ($seminar->pembimbingDua)
+                                        {{ $seminar->pembimbingDua->nama_dosen }}
                                     @else
                                         {{ $seminar->pbl2_nama }}
                                     @endif
@@ -110,7 +112,7 @@
                                 <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/syarat_seminar_ta1/{{ $seminar->berkas_ta_satu }}">Lihat
+                                        href="/uploads/syarat_sidang_kompre/{{ $seminar->berkas_kompre }}">Lihat
                                         Berkas</a>
                                 </div>
                             </div>
@@ -134,7 +136,9 @@
                                 </div>
                             </div>
 
-                            <form action="{{ route('berkas.validasi.seminar.ta1.update', $seminar->encrypt_id) }}" method="post" id="formStatus">
+
+                            <form action="{{ route('berkas.arsip_validasi.sidang.kompre.update', $seminar->encrypt_id) }}"
+                                method="post" id="formStatus">
                                 @method('put')
                                 @csrf
                                 <div class="form-group" style="margin-top: 20px">
@@ -161,10 +165,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <button class="submit btn btn-primary" value="submit" id="submitButton">Submit</button>
+                                    <button class="submit btn btn-primary" value="submit" id="submitButton">Kirim</button>
                                 </div>
                             </form>
-                            <a href="{{ route('berkas.validasi.seminar.ta1.index') }}">
+                            <a href="{{ route('berkas.arsip_validasi.sidang.kompre.index') }}">
                                 <button class="batal btn btn-secondary">Batal</button>
                             </a>
                         </div>

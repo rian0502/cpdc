@@ -706,6 +706,43 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="dropdown {{ Request::is('admin/berkas/arsip_validasi*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle"
+                                data-option="{{ Request::is('admin/berkas/arsip_validasi*') ? 'on' : '' }}">
+                                <span class="micon bi bi-archive-fill"></span><span class="mtext">Arsip Validasi
+                                </span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('berkas.arsip_validasi.seminar.kp.index') }}"
+                                        class="{{ Request::is('admin/berkas/arsip_validasi/seminar/kp*') ? 'active' : '' }}">Kerja
+                                        Praktik S1</a>
+                                </li>
+                                <li><a href="{{ route('berkas.arsip_validasi.seminar.ta1.index') }}"
+                                        class="{{ Request::is('admin/berkas/arsip_validasi/seminar/ta1*') ? 'active' : '' }}">Tugas
+                                        Akhir 1 S1</a>
+                                </li>
+                                <li><a href="{{ route('berkas.arsip_validasi.seminar.ta2.index') }}"
+                                        class="{{ Request::is('admin/berkas/arsip_validasi/seminar/ta2*') ? 'active' : '' }}">Tugas
+                                        Akhir 2 S1</a>
+                                </li>
+                                <li><a href="{{ route('berkas.arsip_validasi.sidang.kompre.index') }}"
+                                        class="{{ Request::is('admin/berkas/arsip_validasi/sidang/kompre*') ? 'active' : '' }}">Komprehensif S1</a>
+                                </li>
+
+                                <li><a href="{{ route('berkas.arsip_validasi.s2.tesis1.index') }}"
+                                        class="{{ Request::is('admin/berkas/arsip_validasi/s2/tesis1*') ? 'active' : '' }}">Tesis
+                                        1 S2</a>
+                                </li>
+                                <li><a href="{{ route('berkas.arsip_validasi.s2.tesis2.index') }}"
+                                        class="{{ Request::is('admin/berkas/arsip_validasi/s2/tesis2*') ? 'active' : '' }}">Tesis
+                                        2 S2</a>
+                                </li>
+                                <li><a href="{{ route('berkas.arsip_validasi.s2.tesis3.index') }}"
+                                        class="{{ Request::is('admin/berkas/arsip_validasi/s2/sidang_tesis*') ? 'active' : '' }}">Sidang
+                                        Tesis S2</a>
+                                </li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="{{ route('berkas.validasi.pendataan_alumni.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('admin/berkas/validasi/pendataan_alumni*') ? 'active' : '' }}">
@@ -810,8 +847,7 @@
                                 @endrole
                             </ul>
                         </li>
-                        <li
-                            class="dropdown {{ Request::is('koor/arsip*') ? 'show' : '' }}">
+                        <li class="dropdown {{ Request::is('koor/arsip*') ? 'show' : '' }}">
                             <a href="javascript:;" class="dropdown-toggle"
                                 data-option="{{ Request::is('koor/arsip*') ? 'on' : '' }}">
                                 <span class="micon bi bi-archive-fill"></span><span class="mtext">Arsip</span>
