@@ -34,15 +34,7 @@
 
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+
 
             <div class="min-height-200px">
 
