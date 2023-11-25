@@ -2,28 +2,20 @@
 
 namespace App\Http\Controllers\komprehensif;
 
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use App\Models\ModelSeminarKompre;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBaKompre;
-use App\Http\Requests\UpdateBaKompre;
 use App\Models\ModelBaSeminarKompre;
-use App\Models\ModelJadwalSeminarKompre;
-use App\Models\ModelSeminarKompre;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UpdateBaKompre;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\ModelJadwalSeminarKompre;
 
 class MahasiswaBaKompre extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-        return view('mahasiswa.kompre.ba.index');
-    }
+   
 
     /**
      * Show the form for creating a new resource.
@@ -33,6 +25,10 @@ class MahasiswaBaKompre extends Controller
     public function create()
     {
         //
+        $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
+        if ($mahasiswa->komprehensif->beritaAcara) {
+            return redirect()->back();
+        }
         return view('mahasiswa.kompre.ba.create');
     }
 
@@ -77,17 +73,7 @@ class MahasiswaBaKompre extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      *

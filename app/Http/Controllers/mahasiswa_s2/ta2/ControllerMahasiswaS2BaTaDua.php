@@ -2,27 +2,19 @@
 
 namespace App\Http\Controllers\mahasiswa_s2\ta2;
 
-use Illuminate\Http\Request;
+use App\Models\Mahasiswa;
 use App\Models\ModelSeminarTaDuaS2;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ModelBaSeminarTaDuaS2;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\ModelJadwalSeminarTaDuaS2;
 use App\Http\Requests\StoreBaTaDuaS2Request;
 use App\Http\Requests\UpdateBaTaSatuS2Request;
-use App\Models\ModelJadwalSeminarTaDuaS2;
 
 class ControllerMahasiswaS2BaTaDua extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+  
 
     /**
      * Show the form for creating a new resource.
@@ -31,6 +23,10 @@ class ControllerMahasiswaS2BaTaDua extends Controller
      */
     public function create()
     {
+        $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
+        if ($mahasiswa->komprehensifS2->beritaAcara) {
+            return redirect()->back();
+        }
         return view("mahasiswaS2.ta2.ba.create");
     }
 
@@ -68,17 +64,7 @@ class ControllerMahasiswaS2BaTaDua extends Controller
         return redirect()->route('mahasiswa.seminarta2s2.index')->with(['success' => 'Berhasil mengunggah berita acara seminar tesis 2']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
+  
     /**
      * Show the form for editing the specified resource.
      *
@@ -135,14 +121,4 @@ class ControllerMahasiswaS2BaTaDua extends Controller
         return redirect()->route('mahasiswa.seminarta2s2.index')->with('success', 'Berhasil mengubah berita acara seminar tesis 2');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
