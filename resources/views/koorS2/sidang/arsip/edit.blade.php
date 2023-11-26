@@ -490,11 +490,11 @@
 
                                         <div class="form-group">
                                             <label>Tanggal Seminar</label>
-                                            <input value="{{ $seminar->jadwal->tanggal_seminar_ta_dua }}" autofocus name="tanggal_seminar_ta_dua"
-                                                id="tanggal_seminar_ta_dua"
-                                                class="form-control @error('tanggal_seminar_ta_dua') form-control-danger @enderror"
+                                            <input value="{{ $seminar->jadwal->tanggal }}" autofocus name="tanggal"
+                                                id="tanggal"
+                                                class="form-control @error('tanggal') form-control-danger @enderror"
                                                 type="date" placeholder="Nama Barang">
-                                            @error('tanggal_seminar_ta_dua')
+                                            @error('tanggal')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -552,17 +552,17 @@
 
                                         </label>
                                         <div class="custom-file mb-1">
-                                            <label class="custom-file-label" for="link-berkas_ta_dua"
-                                                id="label-berkas_ta_dua">Pilih File</label>
-                                            <input value="{{ old('berkas_ta_dua') }}" accept=".pdf" autofocus
-                                                name="berkas_ta_dua" id="file-berkas_ta_dua"
-                                                class="custom-file-input form-control @error('berkas_ta_dua') form-control-danger @enderror"
+                                            <label class="custom-file-label" for="link-berkas_kompre"
+                                                id="label-berkas_kompre">Pilih File</label>
+                                            <input value="{{ old('berkas_kompre') }}" accept=".pdf" autofocus
+                                                name="berkas_kompre" id="file-berkas_kompre"
+                                                class="custom-file-input form-control @error('berkas_kompre') form-control-danger @enderror"
                                                 type="file" placeholder="FILE SK"
-                                                onchange="updateFileNameAndLink('file-berkas_ta_dua','label-berkas_ta_dua','link-berkas_ta_dua')">
+                                                onchange="updateFileNameAndLink('file-berkas_kompre','label-berkas_kompre','link-berkas_kompre')">
                                         </div>
-                                        <small class="mt-2"> <a id="link-berkas_ta_dua" href="#"
+                                        <small class="mt-2"> <a id="link-berkas_kompre" href="#"
                                                 target="_blank" style="display: none;">Lihat File</a> </small>
-                                        @error('berkas_ta_dua')
+                                        @error('berkas_kompre')
                                             <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                         @enderror
                                     </div>
