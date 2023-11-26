@@ -26,16 +26,16 @@ class StoreTaSatuS2Request extends FormRequest
     {
         if ($this->id_pembimbing_2 != 'new') {
             return [
-                'semester' => ['required', 'in:Ganjil,Genap'],
                 'tahun_akademik' => ['required'],
+                'semester' => ['required', 'in:Ganjil,Genap'],
+                'sumber_penelitian' => ['required', 'in:Mahasiswa,Dosen'],
+                'periode_seminar' => ['required', 'string'],
+                'judul_ta' => ['required', 'string', 'max:255'],
                 'sks' => ['required', 'numeric', 'min:1'],
                 'ipk' => ['required', 'numeric', 'min:1'],
-                'periode_seminar' => ['required', 'string'],
                 'toefl' => ['required', 'numeric', 'min:1'],
-                'sumber_penelitian' => ['required', 'in:Mahasiswa,Dosen'],
-                'judul_ta' => ['required', 'string', 'max:255'],
-                'agreement' => ['required', 'in:on'],
                 'berkas_seminar_ta_satu' => ['required', 'file', 'mimes:pdf', 'max:1048'],
+                'agreement' => ['required', 'in:on'],
                 'id_pembimbing_1' => ['required', 'exists:dosen,encrypt_id'],
                 'id_pembimbing_2' => ['required', 'exists:dosen,encrypt_id'],
             ];
