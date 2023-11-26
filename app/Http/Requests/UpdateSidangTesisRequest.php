@@ -20,7 +20,7 @@ class UpdateSidangTesisRequest extends FormRequest
             'judul_ta' => 'required',
             'sks' => 'required|numeric',
             'ipk' => 'required',
-            'draft_artikel' => 'nullable|url',
+            'draft_artikel' => 'nullable',
             'url_draft_artikel' => 'required|url',
             'toefl' => 'required|numeric',
             'berkas_ta_dua' => 'nullable|mimes:pdf|max:1024',
