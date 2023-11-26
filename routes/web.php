@@ -83,7 +83,9 @@ use App\Http\Controllers\kerja_praktik\ValidasiBaPKLController;
 use App\Http\Controllers\mahasiswa\KegiatanMahasiswaController;
 use App\Http\Controllers\mahasiswa\PrestasiMahasiswaController;
 use App\Http\Controllers\komprehensif\MahasiswaKompreController;
+use App\Http\Controllers\komprehensif\ArsipAdminKompreController;
 use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
+use App\Http\Controllers\tugas_akhir_dua\ArsipValidasiAdminTaDua;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganKPController;
 use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerKoorS2BaTaDua;
@@ -91,32 +93,37 @@ use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\kerja_praktik\ValidasiSeminarKPController;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerKoorS2BaTaSatu;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerAdminS2BpTaDua;
+use App\Http\Controllers\tugas_akhir_satu\ArsipValidasiAdminTaSatu;
 use App\Http\Controllers\mahasiswa_s2\KegiatanMahasiswaControllerS2;
 use App\Http\Controllers\mahasiswa_s2\PrestasiMahasiswaControllerS2;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerAdminS2BpTaSatu;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganTesisController;
+use App\Http\Controllers\controller_seminar\EditSidangTesisController;
 use App\Http\Controllers\kerja_praktik\BeritaAcaraSeminarKerjaPraktik;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerKoorS2BaKompre;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerAdminS2BpKompre;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerMahasiswaS2BaTaDua;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganAkademikController;
+use App\Http\Controllers\controller_seminar\EditSeminarTesis1Controller;
+use App\Http\Controllers\controller_seminar\EditSeminarTesis2Controller;
+use App\Http\Controllers\kerja_praktik\ArsipValidasiSeminarKPController;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2BaTaSatu;
+use App\Http\Controllers\mahasiswa_s2\ta2\ControllerArsipAdminS2BpTaDua;
+use App\Http\Controllers\mahasiswa_s2\ta1\ControllerArsipAdminS2BpTaSatu;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganTugasAkhirController;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerKoorS2JadwalKompre;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2BaKompre;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerKoorS2PenjadwalanTaDua;
+use App\Http\Controllers\mahasiswa_s2\kompre\ControllerArsipAdminS2BpKompre;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerKoorS2PenjadwalanTaSatu;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerMahasiswaS2SeminarTaDua;
-use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
-use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
-use App\Http\Controllers\controller_seminar\EditSeminarKerjaPraktikController;
 use App\Http\Controllers\controller_seminar\EditSeminarTugasAkhir1Controller;
 use App\Http\Controllers\controller_seminar\EditSeminarTugasAkhir2Controller;
+use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
+use App\Http\Controllers\controller_seminar\EditSeminarKerjaPraktikController;
 use App\Http\Controllers\controller_seminar\EditSeminarKomprehensifController;
-use App\Http\Controllers\controller_seminar\EditSeminarTesis1Controller;
-use App\Http\Controllers\controller_seminar\EditSeminarTesis2Controller;
-use App\Http\Controllers\controller_seminar\EditSidangTesisController;
+use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
 
 /*
 |--------------------------------------------------------------------------
@@ -188,6 +195,21 @@ Route::prefix('admin/berkas')->name('berkas.')->middleware(['auth', 'profile', '
     Route::resource('validasi/seminar/ta2', ValidasiAdminTaDua::class)->names('validasi.seminar.ta2');
     Route::resource('validasi/sidang/kompre', AdminKompreController::class)->names('validasi.sidang.kompre');
     Route::resource('validasi/pendataan_alumni', ValidasiPendataanAlumni::class)->names('validasi.pendataan_alumni');
+
+
+    Route::resource('arsip_validasi/s2/tesis1', ControllerArsipAdminS2BpTaSatu::class)->names('arsip_validasi.s2.tesis1');
+    Route::resource('arsip_validasi/s2/tesis2', ControllerArsipAdminS2BpTaDua::class)->names('arsip_validasi.s2.tesis2');
+    Route::resource('arsip_validasi/s2/sidang_tesis', ControllerArsipAdminS2BpKompre::class)->names('arsip_validasi.s2.tesis3');
+
+    Route::resource('arsip_validasi/seminar/kp', ArsipValidasiSeminarKPController::class)->names('arsip_validasi.seminar.kp');
+    Route::resource('arsip_validasi/seminar/ta1', ArsipValidasiAdminTaSatu::class)->names('arsip_validasi.seminar.ta1');
+    Route::resource('arsip_validasi/seminar/ta2',ArsipValidasiAdminTaDua::class)->names('arsip_validasi.seminar.ta2');
+    Route::resource('arsip_validasi/sidang/kompre', ArsipAdminKompreController::class)->names('arsip_validasi.sidang.kompre');
+
+
+
+
+
 });
 //end admin berkas
 
@@ -298,7 +320,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::post('unduh/ta2', [ExportData::class, 'ta2'])->name('unduh.ta2');
     Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
     Route::resource('mahasiswa', DataMahasiswaAllController::class);
-    
+
 });
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|kaprodiS2|tpmpsS2')->group(function () {
     Route::get('unduh_data_s2', [ExportDataS2::class, 'index'])->name('unduhs2.index');

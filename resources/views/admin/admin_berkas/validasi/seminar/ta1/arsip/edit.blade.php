@@ -134,7 +134,7 @@
                                 </div>
                             </div>
 
-                            <form action="{{ route('berkas.validasi.seminar.ta1.update', $seminar->encrypt_id) }}" method="post" id="formStatus">
+                            <form action="{{ route('berkas.arsip_validasi.seminar.ta1.update', $seminar->encrypt_id) }}" method="post" id="formStatus">
                                 @method('put')
                                 @csrf
                                 <div class="form-group" style="margin-top: 20px">
@@ -164,7 +164,7 @@
                                     <button class="submit btn btn-primary" value="submit" id="submitButton">Submit</button>
                                 </div>
                             </form>
-                            <a href="{{ route('berkas.validasi.seminar.ta1.index') }}">
+                            <a href="{{ route('berkas.arsip_validasi.seminar.ta1.index') }}">
                                 <button class="batal btn btn-secondary">Batal</button>
                             </a>
                         </div>

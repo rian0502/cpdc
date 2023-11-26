@@ -184,7 +184,7 @@
                                     <button class="submit btn btn-primary" value="submit" id="submitButton">Submit</button>
                                 </div>
                             </form>
-                            <a href="{{ route('berkas.validasi.sidang.kompre.index') }}">
+                            <a href="{{ route('berkas.validasi.s2.tesis3.update') }}">
                                 <button class="batal btn btn-secondary">Batal</button>
                             </a>
                         </div>
