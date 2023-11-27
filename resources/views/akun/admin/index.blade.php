@@ -95,19 +95,19 @@
                                                             Lihat</a>
                                                     @endrole
                                                     @role('sudo')
-                                                        <a class="dropdown-item" href="{{ route('sudo.akun_admin.edit', $item->id) }}"><i class="dw dw-edit2"></i>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('sudo.akun_admin.edit', $item->id) }}"><i
+                                                                class="dw dw-edit2"></i>
                                                             Edit</a>
                                                         <form id="delete"
-                                                        action="
-                                                    {{ route('sudo.akun_admin.destroy', $item->id) }}
-                                                    "
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" id="deleteBtn"
-                                                            class="dropdown-item text-danger"><i class="dw dw-delete-3"></i>
-                                                            Hapus</button>
-                                                    </form>
+                                                            action="{{ route('sudo.akun_admin.destroy', $item->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" id="deleteBtn"
+                                                                class="dropdown-item text-danger"><i class="dw dw-delete-3"></i>
+                                                                Hapus</button>
+                                                        </form>
                                                     @endrole
                                                 </div>
                                             </div>
