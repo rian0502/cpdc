@@ -41,15 +41,24 @@ class SendEmailTugasAkhir2 implements ShouldQueue
     public function handle()
     {
         //
+        $prefix = '';
+        $urlpref = '';
+        if ((config('app.env') == 'local')) {
+            $prefix = 'public/';
+            $urlpref = 'http://localhost:8000/';
+        } else {
+            $prefix = '../../public_html/';
+            $urlpref = 'https://data-kimia.fmipa.unila.ac.id/';
+        }
         $to_name = $this->to_name;
         $to_email = $this->to_email;
         $namafile = $this->namafile;
 
-        Mail::send('email.jadwal_seminar', $this->data, function ($message) use ($to_name, $to_email, $namafile) {
+        Mail::send('email.jadwal_seminar', $this->data, function ($message) use ($to_name, $to_email, $namafile, $urlpref) {
             $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 2');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach('public/uploads/print_ba_ta2/' . $namafile);
+            $message->attach($urlpref . 'uploads/print_ba_ta2/' . $namafile);
         });
-        unlink('public/uploads/print_ba_ta2/' . $namafile);
+        unlink(base_path($prefix . 'uploads/print_ba_ta2/' . $namafile));
     }
 }
