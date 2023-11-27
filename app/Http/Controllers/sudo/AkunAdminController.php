@@ -136,8 +136,8 @@ class AkunAdminController extends Controller
         $admin = Administrasi::find($id);
         $id_user = $admin->user_id;
         $user = User::find($id_user);
-        $user->delete();
         $admin->delete();
+        $user->delete();
         return redirect()->route('sudo.akun_admin.index');
     }
 }
