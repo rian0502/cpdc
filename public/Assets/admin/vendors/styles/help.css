@@ -1,0 +1,92 @@
+.bold {
+    font-weight: bold;
+}
+
+.btn {
+    font-family: "Inter", sans-serif;
+    letter-spacing: 0;
+    font-weight: 500;
+    padding: 0.719rem 1rem;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 8px;
+}
+.btn.focus,
+.btn:focus {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.faq-wrap .card {
+    margin-bottom: 20px;
+    border: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    -webkit-box-shadow: 0 0 28px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 28px rgba(0, 0, 0, 0.08);
+}
+.faq-wrap .card-header {
+    background: #fff;
+    text-align: left;
+    border: 0;
+    padding: 0;
+}
+.faq-wrap .card-header .btn {
+    background: 0 0;
+    border-radius: 0;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px 40px 16px 16px;
+    position: relative;
+    white-space: normal;
+    color: #1b00ff;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.faq-wrap .card-header .btn.collapsed {
+    color: #222;
+}
+.faq-wrap .card-header .btn:after {
+    content: "\f209";
+    font-family: "Ionicons";
+    position: absolute;
+    right: 10px;
+    color: #1b00ff;
+    top: 16px;
+}
+.faq-wrap .card-header .btn.collapsed:after {
+    content: "\f218";
+}
+.faq-wrap .card-body {
+    padding-top: 0;
+}
+
+/*!
+  Ionicons, v2.0.1
+  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
+  https://twitter.com/benjsperry  https://twitter.com/ionicframework
+  MIT License: https://github.com/driftyco/ionicons
+
+  Android-style icons originally built by Google’s
+  Material Design Icons: https://github.com/google/material-design-icons
+  used under CC BY http://creativecommons.org/licenses/by/4.0/
+  Modified icons to fit ionicon’s grid from original.
+*/
+@font-face {
+    font-family: "Ionicons";
+    src: url(../fonts/ionicons.eot?v=2.0.1);
+    src: url(../fonts/ionicons.eot?v=2.0.1#iefix) format("embedded-opentype"),
+        url(../fonts/ionicons.ttf?v=2.0.1) format("truetype"),
+        url(../fonts/ionicons.woff?v=2.0.1) format("woff"),
+        url(../fonts/ionicons.svg?v=2.0.1#Ionicons) format("svg");
+    font-weight: 400;
+    font-style: normal;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+.btn-block + .btn-block {
+    margin-top: 0.5rem;
+}

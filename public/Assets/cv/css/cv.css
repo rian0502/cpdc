@@ -1,0 +1,220 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+#header {
+    background-color: #333f50;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.back-button,
+.export-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333f50;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.back-button:hover,
+.export-button:hover {
+    background-color: #ddd;
+}
+
+#main {
+    border-radius: 50px;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-main {
+    margin-top: 60px;
+    padding-bottom: 100px;
+    padding-right: 100px;
+    padding-left: 100px;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    border-bottom: 3px solid #ccc;
+    padding-bottom: 5px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.section ul li {
+    margin-bottom: 15px;
+}
+
+.section ul li h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.section ul li p {
+    margin-bottom: 5px;
+}
+
+.section ul li .date {
+    color: #777;
+    font-size: 14px;
+}
+
+.biodata-section {
+    color: #fff;
+    padding: 15px;
+}
+
+.biodata-section p {
+    margin-bottom: 10px;
+}
+
+.color {
+    background-color: #333f50;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    padding-right: 100px;
+    padding-left: 100px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.research-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 10px;
+}
+
+.research-item div:nth-child(1) {
+    justify-self: start;
+}
+
+.research-item div:nth-child(2) {
+    justify-self: end;
+}
+
+.biodata-section p {
+    margin-bottom: 10px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    align-items: center;
+}
+
+#grid-container {
+    padding-left: 30px;
+    margin-top: 20px;
+}
+
+.year {
+    margin-top: 25px;
+}
+
+.nama {
+    font-size: 30px;
+    margin-top: 80px;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 768px) {
+    .header-main {
+        padding: 50px;
+    }
+    .email {
+        margin-top: -5px;
+    }
+
+    .color {
+        padding: 50px;
+    }
+
+    .biodata-section {
+        padding: 10000px;
+    }
+    /* .section.biodata-section.color {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    } */
+    .year {
+        margin-left: -20px;
+    }
+    .content {
+        margin-left: 15px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .header-main {
+        padding: 20px;
+    }
+    .email {
+        margin-top: -5px;
+    }
+
+    .color {
+        padding: 20px;
+    }
+    .content {
+        margin-left: 15px;
+    }
+    .biodata-section {
+        padding-top: 20px;
+        padding-bottom: 50px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+    /* .section.biodata-section.color {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    } */
+    .year {
+        margin-left: -20px;
+    }
+}

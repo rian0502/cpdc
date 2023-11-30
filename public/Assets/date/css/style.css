@@ -1,0 +1,28 @@
+.card-date {
+    width: 150px;
+    height: 170px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dates {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.days {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.month-years {
+    font-size: 14px;
+    color: #888;
+}
