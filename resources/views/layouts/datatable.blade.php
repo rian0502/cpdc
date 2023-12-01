@@ -568,6 +568,12 @@
                                     Mahasiswa S2</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="/horizon"
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/admin_jurusan*') ? 'active' : '' }}">
+                                <span class="micon fas fa-user-shield"></span><span class="mtext">Monitoring Jobs</span>
+                            </a>
+                        </li>
                     @endrole
                     @role('mahasiswaS2')
                         <li
@@ -742,7 +748,8 @@
                                         Akhir 2 S1</a>
                                 </li>
                                 <li><a href="{{ route('berkas.arsip_validasi.sidang.kompre.index') }}"
-                                        class="{{ Request::is('admin/berkas/arsip_validasi/sidang/kompre*') ? 'active' : '' }}">Komprehensif S1</a>
+                                        class="{{ Request::is('admin/berkas/arsip_validasi/sidang/kompre*') ? 'active' : '' }}">Komprehensif
+                                        S1</a>
                                 </li>
 
                                 <li><a href="{{ route('berkas.arsip_validasi.s2.tesis1.index') }}"
@@ -863,8 +870,7 @@
                                 @endrole
                             </ul>
                         </li>
-                        <li
-                            class="dropdown {{ Request::is('koor/arsip*') ? 'show' : '' }}">
+                        <li class="dropdown {{ Request::is('koor/arsip*') ? 'show' : '' }}">
                             <a href="javascript:;" class="dropdown-toggle"
                                 data-option="{{ Request::is('koor/arsip*') ? 'on' : '' }}">
                                 <span class="micon bi bi-archive-fill"></span><span class="mtext">Arsip</span>

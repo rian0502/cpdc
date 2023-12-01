@@ -552,6 +552,12 @@
                                     Mahasiswa S2</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="/horizon"
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/admin_jurusan*') ? 'active' : '' }}">
+                                <span class="micon fas fa-user-shield"></span><span class="mtext">Monitoring Jobs</span>
+                            </a>
+                        </li>
                     @endrole
                     @role('mahasiswaS2')
                         <li

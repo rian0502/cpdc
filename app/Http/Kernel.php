@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'unverified' => \App\Http\Middleware\UnverifiedUserMiddleware::class,
         'profile' => \App\Http\Middleware\ProfileMiddleware::class,
+        'horizon.auth' => \App\Http\Middleware\HorizonAuth::class
     ];
 }

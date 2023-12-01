@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Jobs\TestingJob;
 use App\Models\JadwalSKP;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
@@ -42,6 +43,7 @@ use App\Http\Controllers\sudo\AkunAdminController;
 use App\Http\Controllers\sudo\AkunDosenController;
 use App\Http\Controllers\dosen\PublikasiController;
 use App\Http\Controllers\mahasiswa\LabTAController;
+use App\Http\Controllers\sudo\FailedJobsController;
 use App\Http\Controllers\TemplateSeminarController;
 use App\Http\Controllers\dosen\OrganisasiController;
 use App\Http\Controllers\kerja_praktik\KPcontroller;
@@ -135,6 +137,11 @@ use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('test', function(){
+    dispatch(new TestingJob());
+    return dd('JOb Masuk');
+});
+
 // Admin Keseluruhan
 Route::get('admin/profile/create', [ProfileAdminController::class, 'create'])->name('admin.profile.create')->middleware('auth', 'verified', 'role:admin lab|admin berkas');
 Route::post('admin/profile/store', [ProfileAdminController::class, 'store'])->name('admin.profile.store')->middleware('auth', 'verified', 'role:admin lab|admin berkas');
