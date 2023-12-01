@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Mail\ErrorMailImport;
 use App\Models\BaseNPM;
 use App\Models\User;
-
 use App\Models\BaSKP;
 use App\Models\JadwalSKP;
 use App\Models\Mahasiswa;
@@ -28,6 +27,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
+use Predis\Client;
 
 class ImportMahasiswaS1Job implements ShouldQueue
 {
@@ -56,6 +56,7 @@ class ImportMahasiswaS1Job implements ShouldQueue
 
     public function handle()
     {
+
         try {
             Db::transaction(function () {
                 foreach ($this->sheet1 as $key => $value) {
