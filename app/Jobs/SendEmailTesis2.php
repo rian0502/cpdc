@@ -46,8 +46,8 @@ class SendEmailTesis2 implements ShouldQueue
             $prefix = 'public/';
             $urlpref = 'http://localhost:8000/';
         } else {
-            $prefix = '../../public_html/';
-            $urlpref = 'https://data-kimia.fmipa.unila.ac.id/';
+            $prefix = '../../public_html/demo.hasibuanapp.site/';
+            $urlpref = 'http://demo.hasibuanapp.site/';
         }
         $to_name = $this->to_name;
         $to_email = $this->to_email;
@@ -55,8 +55,8 @@ class SendEmailTesis2 implements ShouldQueue
         Mail::send('email.jadwal_seminar', $this->data, function ($message) use ($to_name, $to_email, $namafile, $urlpref) {
             $message->to($to_email, $to_name)->subject('Jadwal Seminar Tesis 2');
             $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach($urlpref . 'uploads/print_ba_tesis_2/' . $namafile);
+            $message->attach($urlpref.'uploads/print_ba_tesis_2/' . $namafile);
         });
-        unlink(base_path($prefix . 'uploads/print_ba_tesis_2/' . $namafile));
+        unlink(base_path($prefix.'uploads/print_ba_tesis_2/' . $namafile));
     }
 }
