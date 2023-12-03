@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\tugas_akhir_dua;
 
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use App\Models\ModelSeminarTaDua;
 use App\Models\ModelBaSeminarTaDua;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreBaTaDuaRequest;
-use App\Http\Requests\UpdateBaTaDuaRequest;
-use App\Models\ModelJadwalSeminarTaDua;
-use App\Models\ModelSeminarTaDua;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\ModelJadwalSeminarTaDua;
+use App\Http\Requests\StoreBaTaDuaRequest;
+use App\Http\Requests\UpdateBaTaDuaRequest;
 
 class MahasiswaBaTaDua extends Controller
 {
@@ -22,6 +23,7 @@ class MahasiswaBaTaDua extends Controller
     public function index()
     {
         //
+
         return view('mahasiswa.ta2.ba.index');
     }
 
@@ -33,6 +35,10 @@ class MahasiswaBaTaDua extends Controller
     public function create()
     {
         //
+        $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
+        if($mahasiswa->ta_dua->ba_seminar){
+            return redirect()->back();
+        }
         return view('mahasiswa.ta2.ba.create');
     }
 

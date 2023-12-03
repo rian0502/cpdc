@@ -27,7 +27,7 @@ class UpdateSeminarPKLRequest extends FormRequest
         return [
             'judul_kp' => 'required',
             'semester' => 'in:Ganjil,Genap',
-            'tahun_ajaran' => 'required',
+            'tahun_akademik' => 'required',
             'mitra' => 'required',
             'region' => 'required|in:Unila,Dalam Lampung,Luar Lampung',
             'pembimbing_lapangan' => 'required',
@@ -57,7 +57,7 @@ class UpdateSeminarPKLRequest extends FormRequest
         return [
             'judul_kp.required' => 'Judul Kerja Praktik harus diisi',
             'semester.in' => 'Semester harus diisi',
-            'tahun_ajaran.required' => 'Tahun Ajaran harus diisi',
+            'tahun_akademik.required' => 'Tahun Ajaran harus diisi',
             'mitra.required' => 'Mitra harus diisi',
             'region.required' => 'Region harus diisi',
             'region.in' => 'Region harus diisi',

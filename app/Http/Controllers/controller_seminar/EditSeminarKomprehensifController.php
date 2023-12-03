@@ -29,12 +29,20 @@ class EditSeminarKomprehensifController extends Controller
                     return $seminar->mahasiswa->npm;
                 })->toJson();
         }
+        return view('koor.kompre.arsip.index');
     }
     public function edit($id)
     {
         $seminar = ModelSeminarKompre::with(['jadwal', 'beritaAcara'])->where('id', Crypt::decrypt($id))->first();
-        $dosen = Dosen::select('encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
+        $dosen = Dosen::select('id','encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
         $lokasi = Lokasi::select('encrypt_id', 'nama_lokasi')->where('jenis_ruangan', 'Kelas')->get();
+
+        $data = [
+            'seminar' => $seminar,
+            'dosen' => $dosen,
+            'lokasi' => $lokasi,
+        ];
+        return view('koor.kompre.arsip.edit', $data);
     }
 
 
@@ -112,6 +120,7 @@ class EditSeminarKomprehensifController extends Controller
             $ba->updated_at = date('Y-m-d H:i:s');
             $ba->save();
             DB::commit();
+            return redirect()->route('koor.arsip.kompre.index')->with('success', 'Data berhasil diubah');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->with('error', $e->getMessage());

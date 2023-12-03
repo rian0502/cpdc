@@ -170,6 +170,7 @@ class ImportMahasiswaController extends Controller
     public function store(Request $request)
     {
         //show data from excel
+        
         $fileXl = $request->file('data_mahasiswa');
         $reader = new Xlsx();
         $spreadsheet = $reader->load($fileXl);
@@ -180,6 +181,5 @@ class ImportMahasiswaController extends Controller
         $sheet5 = $spreadsheet->getSheet(4)->toArray();
         return dd(count($sheet1), count($sheet2), count($sheet3), count($sheet4), count($sheet5));
         dispatch(new \App\Jobs\ImportMahasiswaS1Job($sheet1, $sheet2, $sheet3, $sheet4, $sheet5));
-        return dd($sheet1);
     }
 }

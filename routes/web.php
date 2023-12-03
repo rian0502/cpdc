@@ -83,7 +83,9 @@ use App\Http\Controllers\kerja_praktik\ValidasiBaPKLController;
 use App\Http\Controllers\mahasiswa\KegiatanMahasiswaController;
 use App\Http\Controllers\mahasiswa\PrestasiMahasiswaController;
 use App\Http\Controllers\komprehensif\MahasiswaKompreController;
+use App\Http\Controllers\komprehensif\ArsipAdminKompreController;
 use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
+use App\Http\Controllers\tugas_akhir_dua\ArsipValidasiAdminTaDua;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganKPController;
 use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerKoorS2BaTaDua;
@@ -91,24 +93,36 @@ use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
 use App\Http\Controllers\kerja_praktik\ValidasiSeminarKPController;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerKoorS2BaTaSatu;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerAdminS2BpTaDua;
+use App\Http\Controllers\tugas_akhir_satu\ArsipValidasiAdminTaSatu;
 use App\Http\Controllers\mahasiswa_s2\KegiatanMahasiswaControllerS2;
 use App\Http\Controllers\mahasiswa_s2\PrestasiMahasiswaControllerS2;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerAdminS2BpTaSatu;
 use App\Http\Controllers\tugas_akhir_satu\MahasiswaTaSatuController;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganTesisController;
+use App\Http\Controllers\controller_seminar\EditSidangTesisController;
 use App\Http\Controllers\kerja_praktik\BeritaAcaraSeminarKerjaPraktik;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerKoorS2BaKompre;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerAdminS2BpKompre;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerMahasiswaS2BaTaDua;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganAkademikController;
+use App\Http\Controllers\controller_seminar\EditSeminarTesis1Controller;
+use App\Http\Controllers\controller_seminar\EditSeminarTesis2Controller;
+use App\Http\Controllers\kerja_praktik\ArsipValidasiSeminarKPController;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2BaTaSatu;
+use App\Http\Controllers\mahasiswa_s2\ta2\ControllerArsipAdminS2BpTaDua;
+use App\Http\Controllers\mahasiswa_s2\ta1\ControllerArsipAdminS2BpTaSatu;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganTugasAkhirController;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerKoorS2JadwalKompre;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2BaKompre;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerKoorS2PenjadwalanTaDua;
+use App\Http\Controllers\mahasiswa_s2\kompre\ControllerArsipAdminS2BpKompre;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerKoorS2PenjadwalanTaSatu;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerMahasiswaS2SeminarTaDua;
+use App\Http\Controllers\controller_seminar\EditSeminarTugasAkhir1Controller;
+use App\Http\Controllers\controller_seminar\EditSeminarTugasAkhir2Controller;
 use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
+use App\Http\Controllers\controller_seminar\EditSeminarKerjaPraktikController;
+use App\Http\Controllers\controller_seminar\EditSeminarKomprehensifController;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
 
 /*
@@ -181,6 +195,21 @@ Route::prefix('admin/berkas')->name('berkas.')->middleware(['auth', 'profile', '
     Route::resource('validasi/seminar/ta2', ValidasiAdminTaDua::class)->names('validasi.seminar.ta2');
     Route::resource('validasi/sidang/kompre', AdminKompreController::class)->names('validasi.sidang.kompre');
     Route::resource('validasi/pendataan_alumni', ValidasiPendataanAlumni::class)->names('validasi.pendataan_alumni');
+
+
+    Route::resource('arsip_validasi/s2/tesis1', ControllerArsipAdminS2BpTaSatu::class)->names('arsip_validasi.s2.tesis1');
+    Route::resource('arsip_validasi/s2/tesis2', ControllerArsipAdminS2BpTaDua::class)->names('arsip_validasi.s2.tesis2');
+    Route::resource('arsip_validasi/s2/sidang_tesis', ControllerArsipAdminS2BpKompre::class)->names('arsip_validasi.s2.tesis3');
+
+    Route::resource('arsip_validasi/seminar/kp', ArsipValidasiSeminarKPController::class)->names('arsip_validasi.seminar.kp');
+    Route::resource('arsip_validasi/seminar/ta1', ArsipValidasiAdminTaSatu::class)->names('arsip_validasi.seminar.ta1');
+    Route::resource('arsip_validasi/seminar/ta2',ArsipValidasiAdminTaDua::class)->names('arsip_validasi.seminar.ta2');
+    Route::resource('arsip_validasi/sidang/kompre', ArsipAdminKompreController::class)->names('arsip_validasi.sidang.kompre');
+
+
+
+
+
 });
 //end admin berkas
 
@@ -211,6 +240,7 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
 //end dosen
 
 Route::prefix('koor')->name('koor.')->group(function () {
+    //koor S1
     Route::resource('jadwalPKL', JadwalPKLController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('jadwalPKL');
     Route::resource('jadwalTA1', PenjadwalanTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('jadwalTA1');
     Route::resource('jadwalTA2', PenjadwalanTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('jadwalTA2');
@@ -221,21 +251,34 @@ Route::prefix('koor')->name('koor.')->group(function () {
     Route::get('/jadwalTA2/resend/{id}', [PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('jadwalTA2.resend');
     Route::get('/jadwalKompre/resend/{id}', [PenjadwalanKompreController::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('jadwalKompre.resend');
     Route::post('/download/jadwal', [PenjadwalanTaSatu::class, 'downloadJadwal'])->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1.download');
-    Route::get('/jadwalTA1S2/resend/{id}', [ControllerKoorS2PenjadwalanTaSatu::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->name('jadwalTA1S2.resend');
-    Route::get('/jadwalTA2S2/resend/{id}', [ControllerKoorS2PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->name('jadwalTA2S2.resend');
-    Route::get('/jadwalSidangS2/resend/{id}', [ControllerKoorS2JadwalKompre::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->name('jadwalSidangS2.resend');
 
     Route::resource('validasiBaPKL', ValidasiBaPKLController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('validasiBaPKL');
     Route::resource('validasiBaTA1', ValidasiBaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('validasiBaTA1');
     Route::resource('validasiBaTA2', ValidasiBaTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('validasiBaTA2');
     Route::resource('validasiBaKompre', ValidasiBaKompreController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('validasiBaKompre');
+
+    Route::resource('arsip/pkl', EditSeminarKerjaPraktikController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('arsip.pkl');
+    Route::resource('arsip/ta1', EditSeminarTugasAkhir1Controller::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('arsip.ta1');
+    Route::resource('arsip/ta2', EditSeminarTugasAkhir2Controller::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('arsip.ta2');
+    Route::resource('arsip/kompre', EditSeminarKomprehensifController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('arsip.kompre');
+
+
+
     //koor S2
+    Route::get('/jadwalTA1S2/resend/{id}', [ControllerKoorS2PenjadwalanTaSatu::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->name('jadwalTA1S2.resend');
+    Route::get('/jadwalTA2S2/resend/{id}', [ControllerKoorS2PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->name('jadwalTA2S2.resend');
+    Route::get('/jadwalSidangS2/resend/{id}', [ControllerKoorS2JadwalKompre::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->name('jadwalSidangS2.resend');
+
     Route::resource('jadwal/TA1/S2', ControllerKoorS2PenjadwalanTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('jadwalTA1S2');
     Route::resource('jadwal/TA2/S2', ControllerKoorS2PenjadwalanTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('jadwalTA2S2');
     Route::resource('jadwal/Kompre/S2', ControllerKoorS2JadwalKompre::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('jadwalKompreS2');
     Route::resource('validasi/Ba/TA1/S2', ControllerKoorS2BaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('ValidasiBaTa1S2');
     Route::resource('validasi/Ba/TA2/S2', ControllerKoorS2BaTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('ValidasiBaTa2S2');
     Route::resource('validasi/Ba/Kompre/S2', ControllerKoorS2BaKompre::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('ValidasiBaKompreS2');
+
+    Route::resource('arsip/tesis1', EditSeminarTesis1Controller::class)->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('arsip.tesis1');
+    Route::resource('arsip/tesis2', EditSeminarTesis2Controller::class)->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('arsip.tesis2');
+    Route::resource('arsip/sidang_tesis', EditSidangTesisController::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('arsip.sidang_tesis');
 });
 
 
@@ -277,6 +320,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::post('unduh/ta2', [ExportData::class, 'ta2'])->name('unduh.ta2');
     Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
     Route::resource('mahasiswa', DataMahasiswaAllController::class);
+
 });
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|kaprodiS2|tpmpsS2')->group(function () {
     Route::get('unduh_data_s2', [ExportDataS2::class, 'index'])->name('unduhs2.index');
@@ -438,6 +482,13 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::get('impormahasiswas2', [ImportMahasiswaS2Controller::class, 'index'])->name('import.mahasiswas2.index');
     Route::post('impormahasiswas2', [ImportMahasiswaS2Controller::class, 'store'])->name('import.mahasiswas2.store');
     Route::get('unduhimportmahasiswas2', [ImportMahasiswaS2Controller::class, 'unduh'])->name('import.mahasiswas2.unduh');
+
+
+    Route::get('failed_jobs', [FailedJobsController::class, 'index'])->name('failed_jobs.index');
+    Route::get('failed_jobs/{id}/show', [FailedJobsController::class, 'retry'])->name('failed_jobs.show');
+    Route::get('failed_jobs/{id}/retry', [FailedJobsController::class, 'retry'])->name('failed_jobs.retry');
+    Route::delete('failed_jobs/{id}/delete', [FailedJobsController::class, 'destroy'])->name('failed_jobs.destroy');
+
 });
 
 Route::get('/', function () {

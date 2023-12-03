@@ -122,7 +122,7 @@ class KPcontroller extends Controller
         }
         $data = [
             'seminar' => ModelSeminarKP::find(Crypt::decrypt($id)),
-            'dosens' => Dosen::select('encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get(),
+            'dosens' => Dosen::select('id','encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get(),
             'syarat' => $syarat,
         ];
 
