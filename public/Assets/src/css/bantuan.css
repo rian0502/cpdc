@@ -16811,7 +16811,7 @@ tr {
 body {
     margin: 0;
     padding: 0;
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
     font-weight: 400;
     min-height: 100%;
     color: #031e23;
@@ -16839,7 +16839,7 @@ input,
 select,
 textarea {
     resize: none;
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
 }
 select,
 textarea {
@@ -16864,7 +16864,7 @@ h6 {
     padding: 0;
     font-weight: 700;
     color: #202342;
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
 }
 ol,
 p,
@@ -17089,7 +17089,7 @@ p {
 .h2,
 .h3 {
     color: #1b3133;
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
 }
 .h2 {
     font-size: 28px;
@@ -17110,7 +17110,7 @@ p {
     font-size: 20px;
     line-height: 1.35;
     color: #1b3133;
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
 }
 .h5 {
     font-size: 18px;
@@ -17333,7 +17333,7 @@ p {
     box-shadow: none;
 }
 .highcharts-root {
-    font-family: "Inter", sans-serif !important;
+    font-family: Poppins, sans-serif !important;
 }
 .bootstrap-select .dropdown-toggle {
     height: 45px;
@@ -17389,7 +17389,7 @@ p {
     padding: 0.657rem 1rem;
     letter-spacing: 0;
     color: #444;
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
@@ -17409,7 +17409,7 @@ p {
 .custom-file-label,
 .custom-select,
 .form-control {
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
     color: #131e22;
     font-weight: 400;
     height: 45px;
@@ -17550,7 +17550,7 @@ textarea.form-control {
     box-shadow: 0 0 0 1px #dc3545;
 }
 .btn {
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
     letter-spacing: 0;
     font-weight: 500;
     padding: 0.719rem 1rem;
@@ -17775,7 +17775,7 @@ table.dataTable > tbody > tr.child ul.dtr-details .dtr-title {
     font-weight: 400;
     padding: 0.55rem 1rem;
     color: #667f87;
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
@@ -17967,7 +17967,7 @@ div.dataTables_wrapper div.dataTables_paginate {
     max-width: 100%;
 }
 .apexcharts-svg * {
-    font-family: "Inter", sans-serif !important;
+    font-family: Poppins, sans-serif !important;
 }
 table.dataTable.dtr-inline.collapsed
     > tbody
@@ -18138,7 +18138,7 @@ table.dataTable.dtr-inline.collapsed
     vertical-align: middle;
     margin-left: 5px;
     color: #131e22;
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
 }
 .user-info-dropdown .dropdown-menu {
     min-width: 185px;
@@ -18188,7 +18188,7 @@ table.dataTable.dtr-inline.collapsed
     color: #666;
     font-size: 14px;
     font-weight: 500;
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
     border-radius: 5px;
 }
 .notification-list ul li a img {
@@ -18206,7 +18206,7 @@ table.dataTable.dtr-inline.collapsed
     color: #202342;
     font-weight: 700;
     text-transform: capitalize;
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
     padding-bottom: 5px;
 }
 .notification-list ul li a h3 span {
@@ -18314,7 +18314,7 @@ table.dataTable.dtr-inline.collapsed
     letter-spacing: 0.05em;
     font-weight: 500;
     line-height: 45px;
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
     padding: 0 20px;
 }
 .brand-logo a .light-logo,
@@ -18391,7 +18391,7 @@ table.dataTable.dtr-inline.collapsed
     font-weight: 500;
     position: relative;
     border-radius: 8px;
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
@@ -18545,7 +18545,7 @@ table.dataTable.dtr-inline.collapsed
     font-weight: 400;
     border-radius: 8px;
     position: relative;
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
 }
 .chat-box
     .chat-desc
@@ -19017,7 +19017,7 @@ body.IE .register-page-wrap .container {
     font-weight: 400;
     padding: 0.55rem 1rem;
     color: #667f87;
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, sans-serif;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
