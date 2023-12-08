@@ -159,7 +159,7 @@ class AkunDosenController extends Controller
     public function chartUsiaDosen()
     {
         $query = DB::table('dosen')
-            ->select(DB::raw('FLOOR((TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) + 10) / 10) * 10 as usia_group, COUNT(*) as total'))
+            ->select(DB::raw('FLOOR((TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) + 10) / 10) * 10 as usia_group, COUNT(*) as total'))->where('status', 'Aktif')
             ->groupBy('usia_group')
             ->orderBy('usia_group')
             ->get();
