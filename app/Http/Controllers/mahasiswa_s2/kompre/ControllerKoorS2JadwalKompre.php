@@ -9,7 +9,6 @@ use App\Models\Administrasi;
 use Illuminate\Http\Request;
 use App\Models\ModelKompreS2;
 use App\Http\Controllers\Controller;
-use App\Jobs\SendEmailSidangTesis;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
@@ -151,7 +150,12 @@ class ControllerKoorS2JadwalKompre extends Controller
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        dispatch(new SendEmailSidangTesis($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Sidang Tesis');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_sidang_tesis/' . $namafile);
+        });
+        unlink('uploads/print_ba_sidang_tesis/' . $namafile);
         return redirect()->route('koor.jadwalKompreS2.index')->with('success', 'Berhasil Menjadwalkan Sidang Tesis');
     }
 
@@ -229,7 +233,12 @@ class ControllerKoorS2JadwalKompre extends Controller
             'jam_selesai' => $jadwal->jam_selesai,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        dispatch(new SendEmailSidangTesis($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Sidang Tesis');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_sidang_tesis/' . $namafile);
+        });
+        unlink('uploads/print_ba_sidang_tesis/' . $namafile);
         return redirect()->route('koor.jadwalKompreS2.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Sidang Tesis');
     }
 
@@ -337,7 +346,12 @@ class ControllerKoorS2JadwalKompre extends Controller
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        dispatch(new SendEmailSidangTesis($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Sidang Tesis');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_sidang_tesis/' . $namafile);
+        });
+        unlink('uploads/print_ba_sidang_tesis/' . $namafile);
         return redirect()->route('koor.jadwalKompreS2.index')->with('success', 'Berhasil Menjadwalkan Ulang Sidang Tesis');
     }
 }

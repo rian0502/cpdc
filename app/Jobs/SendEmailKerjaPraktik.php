@@ -53,8 +53,9 @@ class SendEmailKerjaPraktik implements ShouldQueue
         });
         unlink(base_path($prefix.'uploads/print_ba_kp/'.$namafile));
     }
-    public function retry(){
-        if($this->attempts() < 3){
+    public function retry()
+    {
+        if ($this->attempts() < 3) {
             return $this->release(10);
         }
     }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use App\Models\JadwalSKP;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
@@ -196,20 +195,14 @@ Route::prefix('admin/berkas')->name('berkas.')->middleware(['auth', 'profile', '
     Route::resource('validasi/sidang/kompre', AdminKompreController::class)->names('validasi.sidang.kompre');
     Route::resource('validasi/pendataan_alumni', ValidasiPendataanAlumni::class)->names('validasi.pendataan_alumni');
 
-
     Route::resource('arsip_validasi/s2/tesis1', ControllerArsipAdminS2BpTaSatu::class)->names('arsip_validasi.s2.tesis1');
     Route::resource('arsip_validasi/s2/tesis2', ControllerArsipAdminS2BpTaDua::class)->names('arsip_validasi.s2.tesis2');
     Route::resource('arsip_validasi/s2/sidang_tesis', ControllerArsipAdminS2BpKompre::class)->names('arsip_validasi.s2.tesis3');
 
     Route::resource('arsip_validasi/seminar/kp', ArsipValidasiSeminarKPController::class)->names('arsip_validasi.seminar.kp');
     Route::resource('arsip_validasi/seminar/ta1', ArsipValidasiAdminTaSatu::class)->names('arsip_validasi.seminar.ta1');
-    Route::resource('arsip_validasi/seminar/ta2',ArsipValidasiAdminTaDua::class)->names('arsip_validasi.seminar.ta2');
+    Route::resource('arsip_validasi/seminar/ta2', ArsipValidasiAdminTaDua::class)->names('arsip_validasi.seminar.ta2');
     Route::resource('arsip_validasi/sidang/kompre', ArsipAdminKompreController::class)->names('arsip_validasi.sidang.kompre');
-
-
-
-
-
 });
 //end admin berkas
 
@@ -250,7 +243,9 @@ Route::prefix('koor')->name('koor.')->group(function () {
     Route::get('/jadwalTA1/resend/{id}', [PenjadwalanTaSatu::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1.resend');
     Route::get('/jadwalTA2/resend/{id}', [PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('jadwalTA2.resend');
     Route::get('/jadwalKompre/resend/{id}', [PenjadwalanKompreController::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('jadwalKompre.resend');
-    Route::post('/download/jadwal', [PenjadwalanTaSatu::class, 'downloadJadwal'])->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1.download');
+    Route::post('/download/jadwalta1', [PenjadwalanTaSatu::class, 'downloadJadwal'])->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1.download');
+    Route::post('/download/jadwalkompre', [PenjadwalanKompreController::class, 'downloadJadwal'])->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('jadwalKompre.download');
+
 
     Route::resource('validasiBaPKL', ValidasiBaPKLController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('validasiBaPKL');
     Route::resource('validasiBaTA1', ValidasiBaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('validasiBaTA1');
@@ -261,8 +256,6 @@ Route::prefix('koor')->name('koor.')->group(function () {
     Route::resource('arsip/ta1', EditSeminarTugasAkhir1Controller::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('arsip.ta1');
     Route::resource('arsip/ta2', EditSeminarTugasAkhir2Controller::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('arsip.ta2');
     Route::resource('arsip/kompre', EditSeminarKomprehensifController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('arsip.kompre');
-
-
 
     //koor S2
     Route::get('/jadwalTA1S2/resend/{id}', [ControllerKoorS2PenjadwalanTaSatu::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->name('jadwalTA1S2.resend');
@@ -320,7 +313,6 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::post('unduh/ta2', [ExportData::class, 'ta2'])->name('unduh.ta2');
     Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
     Route::resource('mahasiswa', DataMahasiswaAllController::class);
-
 });
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|kaprodiS2|tpmpsS2')->group(function () {
     Route::get('unduh_data_s2', [ExportDataS2::class, 'index'])->name('unduhs2.index');
@@ -352,9 +344,6 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::post('unduh/seminar', [ExportDataDosen::class, 'seminar'])->name('unduh.seminar');
     Route::post('unduh/penghargaan', [ExportDataDosen::class, 'penghargaan'])->name('unduh.penghargaan');
 });
-
-
-
 
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan')->group(function () {
     Route::resource('lokasi', LokasiController::class);
@@ -436,14 +425,11 @@ Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
     if (!$user || !hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
         return redirect('/login')->with('error', 'Invalid verification link.');
     }
-
     if ($user->hasVerifiedEmail()) {
         return redirect('/dashboard')->with('success', 'Akun anda sudah terverivikasi.');
     }
-
     $user->markEmailAsVerified();
     event(new Verified($user));
-
     return redirect('/dashboard')->with('success', 'Akun anda berhasil terverivikasi!');
 })->middleware('signed')->name('verification.verify');
 
@@ -483,12 +469,10 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::post('impormahasiswas2', [ImportMahasiswaS2Controller::class, 'store'])->name('import.mahasiswas2.store');
     Route::get('unduhimportmahasiswas2', [ImportMahasiswaS2Controller::class, 'unduh'])->name('import.mahasiswas2.unduh');
 
-
     Route::get('failed_jobs', [FailedJobsController::class, 'index'])->name('failed_jobs.index');
     Route::get('failed_jobs/{id}/show', [FailedJobsController::class, 'retry'])->name('failed_jobs.show');
     Route::get('failed_jobs/{id}/retry', [FailedJobsController::class, 'retry'])->name('failed_jobs.retry');
     Route::delete('failed_jobs/{id}/delete', [FailedJobsController::class, 'destroy'])->name('failed_jobs.destroy');
-
 });
 
 Route::get('/', function () {
