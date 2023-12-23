@@ -15,7 +15,7 @@ use App\Models\ModelJadwalSeminarKompre;
 
 class MahasiswaBaKompre extends Controller
 {
-   
+
 
     /**
      * Show the form for creating a new resource.
@@ -69,11 +69,12 @@ class MahasiswaBaKompre extends Controller
             $jadwal->tanggal_komprehensif = $request->tgl_realisasi_seminar;
             $jadwal->updated_at = now();
             $jadwal->save();
-            return redirect()->route('mahasiswa.sidang.kompre.index')->with('success', 'Berhasil mengunggah berita acara sidang komprehensif');
+            return redirect()->route('mahasiswa.sidang.kompre.index')
+                ->with('success', 'Berhasil mengunggah berita acara sidang komprehensif');
         }
     }
 
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -145,6 +146,7 @@ class MahasiswaBaKompre extends Controller
         $jadwal->updated_at = now();
         $jadwal->save();
 
-        return redirect()->route('mahasiswa.sidang.kompre.index')->with('success', 'Berhasil mengubah berita acara sidang komprehensif');
+        return redirect()->route('mahasiswa.sidang.kompre.index')
+            ->with('success', 'Berhasil mengubah berita acara sidang komprehensif');
     }
 }

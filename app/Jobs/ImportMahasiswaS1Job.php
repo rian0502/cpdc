@@ -77,7 +77,7 @@ class ImportMahasiswaS1Job implements ShouldQueue
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
-                    $mahasiswa = Mahasiswa::create([
+                    Mahasiswa::create([
                         'npm' => $value[0],
                         'nama_mahasiswa' => $value[1],
                         'tanggal_lahir' => $value[5],
@@ -99,7 +99,6 @@ class ImportMahasiswaS1Job implements ShouldQueue
                     if ($key == 0) {
                         continue;
                     }
-                    //cari mahasiswa berdasarkan npm 
                     $mahasiswa = Mahasiswa::with('seminar_kp')->where('npm', $value[0])->first();
                     if ($mahasiswa == null) {
                         continue;
@@ -158,7 +157,6 @@ class ImportMahasiswaS1Job implements ShouldQueue
                     if ($key == 0) {
                         continue;
                     }
-                    //cari mahasiswa berdasarkan npm 
                     $mahasiswa = Mahasiswa::with('ta_satu')->where('npm', $value[0])->first();
                     if ($mahasiswa == null) {
                         continue;
@@ -215,7 +213,6 @@ class ImportMahasiswaS1Job implements ShouldQueue
                     if ($key == 0) {
                         continue;
                     }
-                    //cari mahasiswa berdasarkan npm 
                     $mahasiswa = Mahasiswa::with(['ta_dua', 'ta_satu'])->where('npm', $value[0])->first();
                     if ($mahasiswa == null) {
                         continue;

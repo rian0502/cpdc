@@ -32,7 +32,10 @@ class KPcontroller extends Controller
             $data = [
                 'mahasiswa' => $mahasiswa,
                 'seminar' => ModelSeminarKP::where('id_mahasiswa', $mahasiswa->id)->first(),
-                'berita_acara' => BaSKP::where('id_seminar', ModelSeminarKP::where('id_mahasiswa', $mahasiswa->id)->first()->id)->first(),
+                'berita_acara' => BaSKP::where(
+                    'id_seminar',
+                    ModelSeminarKP::where('id_mahasiswa', $mahasiswa->id)->first()->id
+                )->first(),
             ];
             return view('mahasiswa.kp.index', $data);
         }
@@ -122,7 +125,7 @@ class KPcontroller extends Controller
         }
         $data = [
             'seminar' => ModelSeminarKP::find(Crypt::decrypt($id)),
-            'dosens' => Dosen::select('id','encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get(),
+            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get(),
             'syarat' => $syarat,
         ];
 

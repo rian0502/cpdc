@@ -34,7 +34,13 @@ class DataMahasiswaAllController extends Controller
             $data = User::whereHas('roles', function ($query) {
                 $query->where('name', 'mahasiswa');
             })
-                ->with('mahasiswa', 'mahasiswa.seminar_kp', 'mahasiswa.ta_satu', 'mahasiswa.ta_dua', 'mahasiswa.komprehensif')
+                ->with(
+                    'mahasiswa',
+                    'mahasiswa.seminar_kp',
+                    'mahasiswa.ta_satu',
+                    'mahasiswa.ta_dua',
+                    'mahasiswa.komprehensif'
+                )
                 ->select('users.*');
 
             if ($status_kp != 'null' && $status_kp != '1') {

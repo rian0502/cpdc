@@ -137,23 +137,37 @@ use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('test', function(){
+
+Route::get('test', function () {
     dispatch(new TestingJob());
     return dd('JOb Masuk');
 });
 
 // Admin Keseluruhan
-Route::get('admin/profile/create', [ProfileAdminController::class, 'create'])->name('admin.profile.create')->middleware('auth', 'verified', 'role:admin lab|admin berkas');
-Route::post('admin/profile/store', [ProfileAdminController::class, 'store'])->name('admin.profile.store')->middleware('auth', 'verified', 'role:admin lab|admin berkas');
-Route::prefix('admin/')->name('admin.')->middleware(['auth', 'profile', 'verified', 'role:admin lab|admin berkas'])->group(function () {
-    Route::resource('profile', ProfileAdminController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
-    Route::resource('profile/pangkat', PangkatAdminController::class)->names('pangkat');
-});
+Route::get('admin/profile/create', [ProfileAdminController::class, 'create'])
+    ->name('admin.profile.create')->middleware('auth', 'verified', 'role:admin lab|admin berkas');
+Route::post('admin/profile/store', [ProfileAdminController::class, 'store'])
+    ->name('admin.profile.store')->middleware('auth', 'verified', 'role:admin lab|admin berkas');
+Route::prefix('admin/')->name('admin.')
+    ->middleware(['auth', 'profile', 'verified', 'role:admin lab|admin berkas'])->group(function () {
+        Route::resource(
+            'profile',
+            ProfileAdminController::class,
+            ['only' => ['index', 'edit', 'update']]
+        )->names('profile');
+        Route::resource(
+            'profile/pangkat',
+            PangkatAdminController::class
+        )->names('pangkat');
+    });
 // end Admin Keseluruhan
 
 // ADMIN LAB
-Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verified', 'role:admin lab|kalab'])->group(function () {
-
+Route::prefix('admin/lab')->name('lab.')->middleware([
+    'auth',
+    'profile',
+    'verified', 'role:admin lab|kalab'
+])->group(function () {
     Route::resource('barang', BarangController::class);
     Route::resource('ruang', LabController::class);
     Route::resource('sop', SopController::class);
@@ -173,20 +187,33 @@ Route::prefix('admin/lab')->name('lab.')->middleware(['auth', 'profile', 'verifi
     Route::get('dataAktivitas', [LabController::class, 'dataLaboratorium'])->name('data.ajax');
 });
 //chart line aktivitas lab
-Route::get('chart/aktivitas', [LabController::class, 'chartAktivitasLab'])->name('chart.aktivitas.lab')->middleware('auth', 'verified', 'role:admin lab|jurusan|kalab');
-Route::get('chart/seminar', [ChartSeminarController::class, 'ChartSeminar'])->name('chart.seminar.all')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|kaprodiS1');
-Route::get('chart/seminarS2', [ChartSeminarController::class, 'ChartSeminarS2'])->name('chart.seminarS2.all')->middleware('auth', 'verified', 'role:jurusan|tpmpsS2|kaprodiS2');
-Route::get('chart/usiadosen', [AkunDosenController::class, 'chartUsiaDosen'])->name('chart.usia.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
-Route::get('chart/jabatandosen', [AkunDosenController::class, 'chartJabatanDosen'])->name('chart.jabatan.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
-Route::get('chart/aktivitasalumni', [AktivitasAlumniController::class, 'chartAktivitasAlumni'])->name('chart.aktivitas.alumni')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
-Route::get('chart/seminardosen', [ControllerSeminarDosen::class, 'chartSeminarDosen'])->name('chart.seminar.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
-Route::get('chart/tahunseminardosen', [ControllerSeminarDosen::class, 'chartTahunSeminarDosen'])->name('chart.tahunseminar.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
-Route::get('chart/Penghargaandosen', [ControllerPenghargaanDosen::class, 'chartPenghargaanDosen'])->name('chart.Penghargaan.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
-Route::get('chart/tahunPenghargaandosen', [ControllerPenghargaanDosen::class, 'chartTahunPenghargaanDosen'])->name('chart.tahunPenghargaan.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
+Route::get('chart/aktivitas', [LabController::class, 'chartAktivitasLab'])
+    ->name('chart.aktivitas.lab')->middleware('auth', 'verified', 'role:admin lab|jurusan|kalab');
+Route::get('chart/seminar', [ChartSeminarController::class, 'ChartSeminar'])
+    ->name('chart.seminar.all')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|kaprodiS1');
+Route::get('chart/seminarS2', [ChartSeminarController::class, 'ChartSeminarS2'])
+    ->name('chart.seminarS2.all')->middleware('auth', 'verified', 'role:jurusan|tpmpsS2|kaprodiS2');
+Route::get('chart/usiadosen', [AkunDosenController::class, 'chartUsiaDosen'])
+    ->name('chart.usia.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
+Route::get('chart/jabatandosen', [AkunDosenController::class, 'chartJabatanDosen'])
+    ->name('chart.jabatan.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
+Route::get('chart/aktivitasalumni', [AktivitasAlumniController::class, 'chartAktivitasAlumni'])
+    ->name('chart.aktivitas.alumni')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
+Route::get('chart/seminardosen', [ControllerSeminarDosen::class, 'chartSeminarDosen'])
+    ->name('chart.seminar.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
+Route::get('chart/tahunseminardosen', [ControllerSeminarDosen::class, 'chartTahunSeminarDosen'])
+    ->name('chart.tahunseminar.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
+Route::get('chart/Penghargaandosen', [ControllerPenghargaanDosen::class, 'chartPenghargaanDosen'])
+    ->name('chart.Penghargaan.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
+Route::get('chart/tahunPenghargaandosen', [ControllerPenghargaanDosen::class, 'chartTahunPenghargaanDosen'])
+    ->name('chart.tahunPenghargaan.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
 // end ADMIN LAB
 
 //admin berkas
-Route::prefix('admin/berkas')->name('berkas.')->middleware(['auth', 'profile', 'verified', 'role:admin berkas'])->group(function () {
+Route::prefix('admin/berkas')->name('berkas.')->middleware([
+    'auth', 'profile',
+    'verified', 'role:admin berkas'
+])->group(function () {
     Route::resource('berkas_persyaratan', BerkasPersyaratanController::class)->except([
         'create', 'store', 'show', 'destroy'
     ]);
@@ -204,25 +231,28 @@ Route::prefix('admin/berkas')->name('berkas.')->middleware(['auth', 'profile', '
     Route::resource('validasi/pendataan_alumni', ValidasiPendataanAlumni::class)->names('validasi.pendataan_alumni');
 
 
-    Route::resource('arsip_validasi/s2/tesis1', ControllerArsipAdminS2BpTaSatu::class)->names('arsip_validasi.s2.tesis1');
-    Route::resource('arsip_validasi/s2/tesis2', ControllerArsipAdminS2BpTaDua::class)->names('arsip_validasi.s2.tesis2');
-    Route::resource('arsip_validasi/s2/sidang_tesis', ControllerArsipAdminS2BpKompre::class)->names('arsip_validasi.s2.tesis3');
-
-    Route::resource('arsip_validasi/seminar/kp', ArsipValidasiSeminarKPController::class)->names('arsip_validasi.seminar.kp');
-    Route::resource('arsip_validasi/seminar/ta1', ArsipValidasiAdminTaSatu::class)->names('arsip_validasi.seminar.ta1');
-    Route::resource('arsip_validasi/seminar/ta2',ArsipValidasiAdminTaDua::class)->names('arsip_validasi.seminar.ta2');
-    Route::resource('arsip_validasi/sidang/kompre', ArsipAdminKompreController::class)->names('arsip_validasi.sidang.kompre');
-
-
-
-
-
+    Route::resource('arsip_validasi/s2/tesis1', ControllerArsipAdminS2BpTaSatu::class)
+        ->names('arsip_validasi.s2.tesis1');
+    Route::resource('arsip_validasi/s2/tesis2', ControllerArsipAdminS2BpTaDua::class)
+        ->names('arsip_validasi.s2.tesis2');
+    Route::resource('arsip_validasi/s2/sidang_tesis', ControllerArsipAdminS2BpKompre::class)
+        ->names('arsip_validasi.s2.tesis3');
+    Route::resource('arsip_validasi/seminar/kp', ArsipValidasiSeminarKPController::class)
+        ->names('arsip_validasi.seminar.kp');
+    Route::resource('arsip_validasi/seminar/ta1', ArsipValidasiAdminTaSatu::class)
+        ->names('arsip_validasi.seminar.ta1');
+    Route::resource('arsip_validasi/seminar/ta2', ArsipValidasiAdminTaDua::class)
+        ->names('arsip_validasi.seminar.ta2');
+    Route::resource('arsip_validasi/sidang/kompre', ArsipAdminKompreController::class)
+        ->names('arsip_validasi.sidang.kompre');
 });
 //end admin berkas
 
 //dosen
-Route::get('dosen/profile/create', [ProfileDosenController::class, 'create'])->name('dosen.profile.create')->middleware('auth', 'verified', 'role:dosen');
-Route::post('dosen/profile/store', [ProfileDosenController::class, 'store'])->name('dosen.profile.store')->middleware('auth', 'verified', 'role:dosen');
+Route::get('dosen/profile/create', [ProfileDosenController::class, 'create'])->name('dosen.profile.create')
+    ->middleware('auth', 'verified', 'role:dosen');
+Route::post('dosen/profile/store', [ProfileDosenController::class, 'store'])->name('dosen.profile.store')
+    ->middleware('auth', 'verified', 'role:dosen');
 
 route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verified', 'role:dosen'])->group(function () {
     Route::resource('litabmas', LitabmasController::class);
@@ -235,74 +265,127 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::resource('profile', ProfileDosenController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
     Route::resource('jabatan', JabatanController::class);
     Route::resource('pangkat', PangkatDosenController::class);
-    Route::resource('mahasiswa/bimbingan/akademik', MahasiswaBimbinganAkademikController::class)->names('mahasiswa.bimbingan.akademik');
-    Route::resource('mahasiswa/bimbingan/kp', MahasiswaBimbinganKPController::class)->names('mahasiswa.bimbingan.kp');
-    Route::post('mahasiswa/bimbingan/kp/export', [MahasiswaBimbinganKPController::class, 'export'])->name('mahasiswa.bimbingan.kp.export');
-    Route::post('mahasiswa/bimbingan/ta/export', [MahasiswaBimbinganTugasAkhirController::class, 'export'])->name('mahasiswa.bimbingan.ta.export');
-    Route::resource('mahasiswa/bimbingan/kompre', MahasiswaBimbinganTugasAkhirController::class)->names('mahasiswa.bimbingan.kompre');
-    Route::post('mahasiswa/bimbingan/tesis/export', [MahasiswaBimbinganTesisController::class, 'export'])->name('mahasiswa.bimbingan.tesis.export');
-    Route::resource('mahasiswa/bimbingan/tesis', MahasiswaBimbinganTesisController::class)->names('mahasiswa.bimbingan.tesis');
+    Route::resource('mahasiswa/bimbingan/akademik', MahasiswaBimbinganAkademikController::class)
+        ->names('mahasiswa.bimbingan.akademik');
+    Route::resource('mahasiswa/bimbingan/kp', MahasiswaBimbinganKPController::class)
+        ->names('mahasiswa.bimbingan.kp');
+    Route::post(
+        'mahasiswa/bimbingan/kp/export',
+        [MahasiswaBimbinganKPController::class, 'export']
+    )->name('mahasiswa.bimbingan.kp.export');
+    Route::post(
+        'mahasiswa/bimbingan/ta/export',
+        [MahasiswaBimbinganTugasAkhirController::class, 'export']
+    )->name('mahasiswa.bimbingan.ta.export');
+    Route::resource('mahasiswa/bimbingan/kompre', MahasiswaBimbinganTugasAkhirController::class)
+        ->names('mahasiswa.bimbingan.kompre');
+    Route::post(
+        'mahasiswa/bimbingan/tesis/export',
+        [MahasiswaBimbinganTesisController::class, 'export']
+    )->name('mahasiswa.bimbingan.tesis.export');
+    Route::resource('mahasiswa/bimbingan/tesis', MahasiswaBimbinganTesisController::class)
+        ->names('mahasiswa.bimbingan.tesis');
     Route::get('cv', [ProfileDosenController::class, 'export']);
 });
 //end dosen
 
 Route::prefix('koor')->name('koor.')->group(function () {
     //koor S1
-    Route::resource('jadwalPKL', JadwalPKLController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('jadwalPKL');
-    Route::resource('jadwalTA1', PenjadwalanTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('jadwalTA1');
-    Route::resource('jadwalTA2', PenjadwalanTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('jadwalTA2');
-    Route::resource('jadwalKompre', PenjadwalanKompreController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('jadwalKompre');
+    Route::resource('jadwalPKL', JadwalPKLController::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('jadwalPKL');
+    Route::resource('jadwalTA1', PenjadwalanTaSatu::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('jadwalTA1');
+    Route::resource('jadwalTA2', PenjadwalanTaDua::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('jadwalTA2');
+    Route::resource('jadwalKompre', PenjadwalanKompreController::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('jadwalKompre');
 
-    Route::get('/jadwalPPKL/resend/{id}', [JadwalPKLController::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:pkl'])->name('jadwalPKL.resend');
-    Route::get('/jadwalTA1/resend/{id}', [PenjadwalanTaSatu::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1.resend');
-    Route::get('/jadwalTA2/resend/{id}', [PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('jadwalTA2.resend');
-    Route::get('/jadwalKompre/resend/{id}', [PenjadwalanKompreController::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('jadwalKompre.resend');
-    Route::post('/download/jadwal', [PenjadwalanTaSatu::class, 'downloadJadwal'])->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1.download');
+    Route::get('/jadwalPPKL/resend/{id}', [JadwalPKLController::class, 'resend'])
+        ->middleware(['auth', 'profile', 'verified', 'role:pkl'])->name('jadwalPKL.resend');
+    Route::get('/jadwalTA1/resend/{id}', [PenjadwalanTaSatu::class, 'resend'])
+        ->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1.resend');
+    Route::get('/jadwalTA2/resend/{id}', [PenjadwalanTaDua::class, 'resend'])
+        ->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('jadwalTA2.resend');
+    Route::get('/jadwalKompre/resend/{id}', [PenjadwalanKompreController::class, 'resend'])
+        ->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('jadwalKompre.resend');
+    Route::post('/download/jadwal', [PenjadwalanTaSatu::class, 'downloadJadwal'])
+        ->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1.download');
 
-    Route::resource('validasiBaPKL', ValidasiBaPKLController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('validasiBaPKL');
-    Route::resource('validasiBaTA1', ValidasiBaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('validasiBaTA1');
-    Route::resource('validasiBaTA2', ValidasiBaTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('validasiBaTA2');
-    Route::resource('validasiBaKompre', ValidasiBaKompreController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('validasiBaKompre');
+    Route::resource('validasiBaPKL', ValidasiBaPKLController::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('validasiBaPKL');
+    Route::resource('validasiBaTA1', ValidasiBaTaSatu::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('validasiBaTA1');
+    Route::resource('validasiBaTA2', ValidasiBaTaDua::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('validasiBaTA2');
+    Route::resource('validasiBaKompre', ValidasiBaKompreController::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('validasiBaKompre');
 
-    Route::resource('arsip/pkl', EditSeminarKerjaPraktikController::class)->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('arsip.pkl');
-    Route::resource('arsip/ta1', EditSeminarTugasAkhir1Controller::class)->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('arsip.ta1');
-    Route::resource('arsip/ta2', EditSeminarTugasAkhir2Controller::class)->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('arsip.ta2');
-    Route::resource('arsip/kompre', EditSeminarKomprehensifController::class)->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('arsip.kompre');
+    Route::resource('arsip/pkl', EditSeminarKerjaPraktikController::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('arsip.pkl');
+    Route::resource('arsip/ta1', EditSeminarTugasAkhir1Controller::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:ta1'])->names('arsip.ta1');
+    Route::resource('arsip/ta2', EditSeminarTugasAkhir2Controller::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:ta2'])->names('arsip.ta2');
+    Route::resource('arsip/kompre', EditSeminarKomprehensifController::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('arsip.kompre');
 
 
 
     //koor S2
-    Route::get('/jadwalTA1S2/resend/{id}', [ControllerKoorS2PenjadwalanTaSatu::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->name('jadwalTA1S2.resend');
-    Route::get('/jadwalTA2S2/resend/{id}', [ControllerKoorS2PenjadwalanTaDua::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->name('jadwalTA2S2.resend');
-    Route::get('/jadwalSidangS2/resend/{id}', [ControllerKoorS2JadwalKompre::class, 'resend'])->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->name('jadwalSidangS2.resend');
+    Route::get('/jadwalTA1S2/resend/{id}', [ControllerKoorS2PenjadwalanTaSatu::class, 'resend'])
+        ->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->name('jadwalTA1S2.resend');
+    Route::get('/jadwalTA2S2/resend/{id}', [ControllerKoorS2PenjadwalanTaDua::class, 'resend'])
+        ->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->name('jadwalTA2S2.resend');
+    Route::get('/jadwalSidangS2/resend/{id}', [ControllerKoorS2JadwalKompre::class, 'resend'])
+        ->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->name('jadwalSidangS2.resend');
 
-    Route::resource('jadwal/TA1/S2', ControllerKoorS2PenjadwalanTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('jadwalTA1S2');
-    Route::resource('jadwal/TA2/S2', ControllerKoorS2PenjadwalanTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('jadwalTA2S2');
-    Route::resource('jadwal/Kompre/S2', ControllerKoorS2JadwalKompre::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('jadwalKompreS2');
-    Route::resource('validasi/Ba/TA1/S2', ControllerKoorS2BaTaSatu::class)->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('ValidasiBaTa1S2');
-    Route::resource('validasi/Ba/TA2/S2', ControllerKoorS2BaTaDua::class)->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('ValidasiBaTa2S2');
-    Route::resource('validasi/Ba/Kompre/S2', ControllerKoorS2BaKompre::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('ValidasiBaKompreS2');
+    Route::resource('jadwal/TA1/S2', ControllerKoorS2PenjadwalanTaSatu::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('jadwalTA1S2');
+    Route::resource('jadwal/TA2/S2', ControllerKoorS2PenjadwalanTaDua::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('jadwalTA2S2');
+    Route::resource('jadwal/Kompre/S2', ControllerKoorS2JadwalKompre::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('jadwalKompreS2');
+    Route::resource('validasi/Ba/TA1/S2', ControllerKoorS2BaTaSatu::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('ValidasiBaTa1S2');
+    Route::resource('validasi/Ba/TA2/S2', ControllerKoorS2BaTaDua::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('ValidasiBaTa2S2');
+    Route::resource('validasi/Ba/Kompre/S2', ControllerKoorS2BaKompre::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('ValidasiBaKompreS2');
 
-    Route::resource('arsip/tesis1', EditSeminarTesis1Controller::class)->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('arsip.tesis1');
-    Route::resource('arsip/tesis2', EditSeminarTesis2Controller::class)->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('arsip.tesis2');
-    Route::resource('arsip/sidang_tesis', EditSidangTesisController::class)->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('arsip.sidang_tesis');
+    Route::resource('arsip/tesis1', EditSeminarTesis1Controller::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('arsip.tesis1');
+    Route::resource('arsip/tesis2', EditSeminarTesis2Controller::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('arsip.tesis2');
+    Route::resource('arsip/sidang_tesis', EditSidangTesisController::class)
+        ->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('arsip.sidang_tesis');
 });
 
 
 //jurusan
-Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2')->group(function () {
+Route::prefix('jurusan')->name('jurusan.')->middleware(
+    'auth',
+    'profile',
+    'verified',
+    'role:jurusan|tpmpsS1|tpmpsS2'
+)->group(function () {
 
     //prestasi
     Route::resource('publikasi', PublikasiDataController::class);
     Route::resource('litabmas', LitabmasDataController::class);
     Route::resource('penghargaan', Penghargaan::class);
     Route::resource('seminar', Seminar::class);
-    Route::get('pieChartScalaPublikasi', [PublikasiDataController::class, 'pieChartScala'])->name('publikasi.pieChartScala');
-    Route::get('pieChartKategoriPublikasi', [PublikasiDataController::class, 'pieChartKategori'])->name('publikasi.pieChartKategori');
-    Route::get('pieChartKategoriLitabmasPublikasi', [PublikasiDataController::class, 'pieChartKategoriLitabmas'])->name('publikasi.pieChartKategoriLitabmas');
-    Route::get('barChartTahunPublikasi', [PublikasiDataController::class, 'barChartTahun'])->name('publikasi.barChartTahun');
-    Route::get('barChartTahunLitabmas', [LitabmasDataController::class, 'barChartTahun'])->name('litabmas.barChartTahun');
-    Route::get('pieChartKategoriLitabmas', [LitabmasDataController::class, 'pieChartKategoriLitabmas'])->name('litabmas.pieChartKategoriLitabmas');
+    Route::get('pieChartScalaPublikasi', [PublikasiDataController::class, 'pieChartScala'])
+        ->name('publikasi.pieChartScala');
+    Route::get('pieChartKategoriPublikasi', [PublikasiDataController::class, 'pieChartKategori'])
+        ->name('publikasi.pieChartKategori');
+    Route::get('pieChartKategoriLitabmasPublikasi', [PublikasiDataController::class, 'pieChartKategoriLitabmas'])
+        ->name('publikasi.pieChartKategoriLitabmas');
+    Route::get('barChartTahunPublikasi', [PublikasiDataController::class, 'barChartTahun'])
+        ->name('publikasi.barChartTahun');
+    Route::get('barChartTahunLitabmas', [LitabmasDataController::class, 'barChartTahun'])
+        ->name('litabmas.barChartTahun');
+    Route::get('pieChartKategoriLitabmas', [LitabmasDataController::class, 'pieChartKategoriLitabmas'])
+        ->name('litabmas.pieChartKategoriLitabmas');
 });
 
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|kaprodiS1|tpmpsS1')->group(function () {
@@ -327,7 +410,6 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::post('unduh/ta2', [ExportData::class, 'ta2'])->name('unduh.ta2');
     Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
     Route::resource('mahasiswa', DataMahasiswaAllController::class);
-
 });
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan|kaprodiS2|tpmpsS2')->group(function () {
     Route::get('unduh_data_s2', [ExportDataS2::class, 'index'])->name('unduhs2.index');
@@ -433,7 +515,8 @@ Route::name('auth.')->middleware('guest')->group(function () {
 });
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('auth.logout');
 Route::get('/settings', [AuthController::class, 'settings'])->middleware('auth')->name('auth.settings');
-Route::post('/change-password', [AuthController::class, 'changePassword'])->middleware('auth')->name('auth.change.password');
+Route::post('/change-password', [AuthController::class, 'changePassword'])
+    ->middleware('auth')->name('auth.change.password');
 //end AUTH
 
 //routing untuk aktivasi email
@@ -488,14 +571,15 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
 
     Route::get('impormahasiswas2', [ImportMahasiswaS2Controller::class, 'index'])->name('import.mahasiswas2.index');
     Route::post('impormahasiswas2', [ImportMahasiswaS2Controller::class, 'store'])->name('import.mahasiswas2.store');
-    Route::get('unduhimportmahasiswas2', [ImportMahasiswaS2Controller::class, 'unduh'])->name('import.mahasiswas2.unduh');
-
+    Route::get(
+        'unduhimportmahasiswas2',
+        [ImportMahasiswaS2Controller::class, 'unduh']
+    )->name('import.mahasiswas2.unduh');
 
     Route::get('failed_jobs', [FailedJobsController::class, 'index'])->name('failed_jobs.index');
     Route::get('failed_jobs/{id}/show', [FailedJobsController::class, 'retry'])->name('failed_jobs.show');
     Route::get('failed_jobs/{id}/retry', [FailedJobsController::class, 'retry'])->name('failed_jobs.retry');
     Route::delete('failed_jobs/{id}/delete', [FailedJobsController::class, 'destroy'])->name('failed_jobs.destroy');
-
 });
 
 Route::get('/', function () {
@@ -550,7 +634,8 @@ Route::get('/custom', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'profile', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'profile', 'verified'])->name('dashboard');
 
 Route::get('/reset-password', function () {
     return view('auth.reset');

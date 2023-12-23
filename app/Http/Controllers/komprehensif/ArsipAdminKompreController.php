@@ -31,38 +31,6 @@ class ArsipAdminKompreController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -92,9 +60,9 @@ class ArsipAdminKompreController extends Controller
 
         if ($request->status_admin == 'Process') {
             return redirect()->back()->with('error', 'Status Admin Harus Valid atau Invalid');
-        } else if ($request->status_admin == 'Invalid') {
+        } elseif ($request->status_admin == 'Invalid') {
             $status = ['Valid', 'Invalid', 'Process'];
-            $validate = $request->validate(
+            $request->validate(
                 [
                     'status_admin' => ['required', 'string', 'in:' . implode(',', $status)],
                     'komentar' => ['required', 'string'],
@@ -112,7 +80,7 @@ class ArsipAdminKompreController extends Controller
             $seminar->save();
         } else {
             $status = ['Valid', 'Invalid', 'Process'];
-            $validate = $request->validate(
+            $request->validate(
                 [
                     'status_admin' => ['required', 'string', 'in:' . implode(',', $status)],
                 ],
@@ -126,7 +94,8 @@ class ArsipAdminKompreController extends Controller
             $seminar->komentar = null;
             $seminar->save();
         }
-        return redirect()->route('berkas.arsip_validasi.sidang.kompre.index')->with('success', 'Berhasil Mengubah Data Seminar');
+        return redirect()->route('berkas.arsip_validasi.sidang.kompre.index')
+            ->with('success', 'Berhasil Mengubah Data Seminar');
     }
 
     /**

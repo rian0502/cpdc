@@ -17,7 +17,8 @@ class AktivitasDataController extends Controller
         $endDate = $request->input('endDate', null);
 
         if ($startDate && $endDate) {
-            $data = AktivitasMahasiswa::with('mahasiswa')->whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc');
+            $data = AktivitasMahasiswa::with('mahasiswa')
+                ->whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc');
             return DataTables::of($data)
                 ->addIndexColumn()->editColumn('mahasiswa.nama_mahasiswa', function ($row) {
                     return $row->mahasiswa->nama_mahasiswa;
@@ -26,7 +27,7 @@ class AktivitasDataController extends Controller
                     return $row->mahasiswa->npm;
                 })
                 ->toJson();
-        }  else if ($request->ajax()&& $startDate == null && $endDate == null) {
+        } elseif ($request->ajax() && $startDate == null && $endDate == null) {
             $data = AktivitasMahasiswa::with('mahasiswa')->orderBy('tanggal', 'desc');
             return DataTables::of($data)
                 ->addIndexColumn()->editColumn('mahasiswa.nama_mahasiswa', function ($row) {
@@ -55,7 +56,6 @@ class AktivitasDataController extends Controller
                 ->get();
             return response()->json($data);
         }
-
     }
     public function  barChartAktivitas(Request $request)
     {
