@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Mail\ErrorMailImport;
 use App\Models\BaseNPM;
 use App\Models\User;
-
 use App\Models\BaSKP;
 use App\Models\JadwalSKP;
 use App\Models\Mahasiswa;
@@ -19,7 +18,6 @@ use App\Models\ModelSeminarKompre;
 use App\Models\ModelSeminarKP;
 use App\Models\ModelSeminarTaDua;
 use App\Models\ModelSeminarTaSatu;
-use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Queue\SerializesModels;
@@ -212,6 +210,123 @@ class ImportMahasiswaS1Job implements ShouldQueue
                     ]);
                     $ba_ta1->encrypt_id = Crypt::encrypt($ba_ta1->id);
                     $ba_ta1->save();
+                }
+                foreach ($this->sheet4 as $key => $value) {
+                    if ($key == 0) {
+                        continue;
+                    }
+                    //cari mahasiswa berdasarkan npm 
+                    $mahasiswa = Mahasiswa::with(['ta_dua', 'ta_satu'])->where('npm', $value[0])->first();
+                    if ($mahasiswa == null) {
+                        continue;
+                    }
+                    if ($mahasiswa->ta_dua != null || $mahasiswa->ta_satu == null) {
+                        continue;
+                    }
+                    $semianrTA2 = ModelSeminarTaDua::create([
+                        'tahun_akademik' => $value[1] ?? '2023/2024',
+                        'semester' => $value[2] ?? 'Genap',
+                        'periode_seminar' => $value[3] ?? '-',
+                        'judul_ta' => $value[4] ?? '-',
+                        'sks' => $value[5] ?? 0,
+                        'ipk' => $value[6] ?? 0,
+                        'toefl' => $value[7] ?? 0,
+                        'berkas_ta_dua' => $value[8],
+                        'agreement' => 1,
+                        'status_admin' => 'Valid',
+                        'status_koor' => 'Selesai',
+                        'id_pembimbing_satu' => $value[9] ?? 1,
+                        'id_pembimbing_dua' => ($value[10] == null) ? null : $value[10],
+                        'pbl2_nama' => ($value[10] == null) ? null : $value[11],
+                        'pbl2_nip' => ($value[10] == null) ? null : $value[12],
+                        'id_pembahas' => $value[13] ?? 1,
+                        'id_mahasiswa' => $mahasiswa->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                    $semianrTA2->encrypt_id = Crypt::encrypt($semianrTA2->id);
+                    $semianrTA2->save();
+                    $jadwalSeminarTA2 = ModelJadwalSeminarTaDua::create([
+                        'tanggal_seminar_ta_dua' => $value[14],
+                        'jam_mulai_seminar_ta_dua' => $value[15],
+                        'jam_selesai_seminar_ta_dua' => $value[16],
+                        'id_lokasi' => $value[17],
+                        'id_seminar' => $semianrTA2->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                    $jadwalSeminarTA2->encrypt_id = Crypt::encrypt($jadwalSeminarTA2->id);
+                    $jadwalSeminarTA2->save();
+                    $ba_ta2 = ModelBaSeminarTaDua::create([
+                        'no_berkas_ba_seminar_ta_dua' => $value[18],
+                        'berkas_ba_seminar_ta_dua' => $value[19],
+                        'berkas_nilai_seminar_ta_dua' => $value[20],
+                        'berkas_ppt_seminar_ta_dua' => $value[21],
+                        'nilai' => $value[22],
+                        'huruf_mutu' => $value[23],
+                        'id_seminar' => $semianrTA2->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                    $ba_ta2->encrypt_id = Crypt::encrypt($ba_ta2->id);
+                    $ba_ta2->save();
+                }
+                foreach ($this->sheet5 as $key => $value) {
+                    if ($key == 0) {
+                        continue;
+                    }
+                    $mahasiswa = Mahasiswa::with(['komprehensif', 'ta_dua'])->where('npm', $value[0])->first();
+                    if ($mahasiswa == null) {
+                        continue;
+                    }
+                    if ($mahasiswa->ta_dua == null || $mahasiswa->komprehensif != null) {
+                        continue;
+                    }
+                    $kompre = ModelSeminarKompre::create([
+                        'tahun_akademik' => $value[1],
+                        'semester' => $value[2],
+                        'periode_seminar' => $value[3],
+                        'judul_ta' => $value[4],
+                        'sks' => $value[5],
+                        'ipk' => $value[6],
+                        'toefl' => $value[7],
+                        'berkas_kompre' => $value[8],
+                        'agreement' => 1,
+                        'status_admin' => 'Valid',
+                        'status_koor' => 'Selesai',
+                        'id_pembimbing_satu' => $value[9],
+                        'id_pembimbing_dua' => ($value[10] == null) ? null : $value[10],
+                        'pbl2_nama' => ($value[10] == null) ? null : $value[11],
+                        'pbl2_nip' => ($value[10] == null) ? null : $value[12],
+                        'id_pembahas' => $value[13],
+                        'id_mahasiswa' => $mahasiswa->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                    $kompre->encrypt_id = Crypt::encrypt($kompre->id);
+                    $kompre->save();
+                    $jadwalKompre = ModelJadwalSeminarKompre::create([
+                        'tanggal_komprehensif' => $value[14],
+                        'jam_mulai_komprehensif' => $value[15],
+                        'jam_selesai_komprehensif' => $value[16],
+                        'id_lokasi' => $value[17],
+                        'id_seminar' => $kompre->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                    $jadwalKompre->encrypt_id = Crypt::encrypt($jadwalKompre->id);
+                    $jadwalKompre->save();
+                    $baKompre = ModelBaSeminarKompre::create([
+                        'ba_seminar_komprehensif' => $value[18],
+                        'no_ba_berkas' => $value[19],
+                        'berkas_nilai_kompre' => $value[20],
+                        'laporan_ta' => $value[21],
+                        'nilai' => $value[22],
+                        'huruf_mutu' => $value[23],
+                        'id_seminar' => $kompre->id,
+                    ]);
+                    $baKompre->encrypt_id = Crypt::encrypt($baKompre->id);
+                    $baKompre->save();
                 }
             });
         } catch (\Exception $e) {
