@@ -126,6 +126,7 @@ use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
 use App\Http\Controllers\controller_seminar\EditSeminarKerjaPraktikController;
 use App\Http\Controllers\controller_seminar\EditSeminarKomprehensifController;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
+use App\Http\Controllers\sudo\ValidasiMahasiswa;
 
 /*
 |--------------------------------------------------------------------------
@@ -575,11 +576,8 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
         'unduhimportmahasiswas2',
         [ImportMahasiswaS2Controller::class, 'unduh']
     )->name('import.mahasiswas2.unduh');
-
-    Route::get('failed_jobs', [FailedJobsController::class, 'index'])->name('failed_jobs.index');
-    Route::get('failed_jobs/{id}/show', [FailedJobsController::class, 'retry'])->name('failed_jobs.show');
-    Route::get('failed_jobs/{id}/retry', [FailedJobsController::class, 'retry'])->name('failed_jobs.retry');
-    Route::delete('failed_jobs/{id}/delete', [FailedJobsController::class, 'destroy'])->name('failed_jobs.destroy');
+    Route::get('validasi/mahasiswa', [ValidasiMahasiswa::class, 'index'])->name('validasi.mahasiswa.index');
+    
 });
 
 Route::get('/', function () {

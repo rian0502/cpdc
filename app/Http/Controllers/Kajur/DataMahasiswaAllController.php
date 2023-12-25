@@ -96,11 +96,12 @@ class DataMahasiswaAllController extends Controller
         }
         $mahasiswa = [
 
-            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()->where('status', 'Aktif')->whereHas('user', function ($query) {
-                $query->whereHas('roles', function ($query) {
-                    $query->where('name', 'mahasiswa');
-                });
-            })->orderBy('angkatan', 'desc')
+            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()
+                ->where('status', 'Aktif')->whereHas('user', function ($query) {
+                    $query->whereHas('roles', function ($query) {
+                        $query->where('name', 'mahasiswa');
+                    });
+                })->orderBy('angkatan', 'desc')
                 ->get(),
 
         ];
@@ -156,7 +157,10 @@ class DataMahasiswaAllController extends Controller
             'presentsi' => Laboratorium::where('user_id', $mahasiswa->user->id)->get(),
         ];
         if ($mahasiswa->user->hasRole('alumni')) {
-            $data['alumni'] = AktivitasAlumni::where('mahasiswa_id', $mahasiswa->id)->orderBy('tahun_masuk', 'desc')->get();
+            $data['alumni'] = AktivitasAlumni::where(
+                'mahasiswa_id',
+                $mahasiswa->id
+            )->orderBy('tahun_masuk', 'desc')->get();
         }
 
 

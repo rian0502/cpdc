@@ -574,6 +574,14 @@
                                 <span class="micon fas fa-user-shield"></span><span class="mtext">Monitoring Jobs</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('sudo.validasi.mahasiswa.index') }}"
+                                class="dropdown-toggle no-arrow 
+                                {{ Request::is('sudo/validasi/mahasiswa*') ? 'active' : '' }}">
+                                <span class="micon fas fa-user-shield"></span><span class="mtext">Validasi
+                                    Mahasiswa</span>
+                            </a>
+                        </li>
                     @endrole
                     @role('mahasiswaS2')
                         <li
