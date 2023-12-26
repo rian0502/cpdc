@@ -577,7 +577,11 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
         [ImportMahasiswaS2Controller::class, 'unduh']
     )->name('import.mahasiswas2.unduh');
     Route::get('validasi/mahasiswa', [ValidasiMahasiswa::class, 'index'])->name('validasi.mahasiswa.index');
-    
+    Route::get('validasi/mahasiswa/edit/{id}', [ValidasiMahasiswa::class, 'edit'])->name('validasi.mahasiswa.edit');
+    Route::put('validasi/mahasiswa/update/{id}', [
+        ValidasiMahasiswa::class,
+        'update'
+    ])->name('validasi.mahasiswa.update');
 });
 
 Route::get('/', function () {

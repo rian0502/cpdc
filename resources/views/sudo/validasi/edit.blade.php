@@ -44,36 +44,62 @@
                             <div class="row border-bottom">
                                 <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-
+                                    {{ $mahasiswa->npm }}
                                 </div>
-                                
+
                                 <label class="col-md-3 bold mt-2"><b>Nama Mahasiswa</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-
+                                    {{ $mahasiswa->nama_mahasiswa }}
                                 </div>
                             </div>
+                            <div class="row border-bottom">
+                                <label class="col-md-3 bold mt-2"> <strong>Email</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    {{ $mahasiswa->user->email }}
+                                </div>
 
+                                <label class="col-md-3 bold mt-2"><b>Angkatan</b></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    {{ $mahasiswa->angkatan }}
+                                </div>
+                            </div>
+                            <div class="row border-bottom">
+                                <label class="col-md-3 bold mt-2"> <strong>Berkas Pendaftaran</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    <a href="{{ asset('uploads/syarat/' . $mahasiswa->berkas_upload) }}" target="_blank">
+                                        Lihat
+                                    </a>
+                                </div>
 
-
+                                <label class="col-md-3 bold mt-2"><b>Vertifikasi</b></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    {{ $mahasiswa->user->email_verified_at ? 'Terverifikasi' : 'Belum Terverifikasi' }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
                         <div class="pull-left">
-                            <h4 class="text-dark h4" style="margin-left: 10px">Jadwalkan Seminar Tugas Akhir 1</h4>
+                            <h4 class="text-dark h4" style="margin-left: 10px">Validasi Pendaftaran Mahasiswa</h4>
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
-                        <form id="formJadwalUpdate" action="" method="POST">
+                        <form id="formJadwalUpdate" action="{{ route('sudo.validasi.mahasiswa.update', $mahasiswa->id) }}"
+                            method="POST">
                             @method('PUT')
                             @csrf
-                            <div class="profile-edit-list row">
-                                {{-- form untuk sebelah kiri --}}
-                                <div class="weight-500 col-md-6">
-
-                                </div>
-
+                            <div class="form-group" style="margin-top: 20px">
+                                <label><b>Status</b></label>
+                                <select onchange="toggleCatatan()" name="status" id="status"
+                                    class="selectpicker form-control" data-size="5">
+                                    <option value="1">Diterima</option>
+                                    <option value="0">Ditolak</option>
+                                </select>
+                                @error('status')
+                                    <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="submit btn btn-primary">Kirim</button>

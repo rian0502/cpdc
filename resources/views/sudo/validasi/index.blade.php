@@ -35,13 +35,31 @@
                                             {{ $item->user->email }}
                                         </td>
                                         <td>
-                                            @if ($item->user->email_verified_at == null)
+                                            @if ($item->status_register == 0)
                                                 <span class="badge badge-danger">Belum Terverifikasi</span>
                                             @else
                                                 <span class="badge badge-success">Terverifikasi</span>
                                             @endif
                                         </td>
-                                        <td></td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
+                                                    role="button" data-toggle="dropdown">
+                                                    <i class="fa fa-ellipsis-h"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('sudo.validasi.mahasiswa.edit', $item->npm) }}"><i
+                                                            class="fa fa-pencil"></i> Edit</a>
+                                                    <form action="" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="dropdown-item" type="submit"><i
+                                                                class="fa fa-trash"></i> Hapus</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
 
