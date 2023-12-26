@@ -451,18 +451,22 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
 });
 
 //end jurusan
-Route::get('mahasiswa/profile/create', [ProfileMahasiswaController::class, 'create'])->name('mahasiswa.profile.create')->middleware('auth', 'verified', 'role:mahasiswa|mahasiswaS2');
-Route::post('mahasiswa/profile/store', [ProfileMahasiswaController::class, 'store'])->name('mahasiswa.profile.store')->middleware('auth', 'verified', 'role:mahasiswa|mahasiswaS2');
+Route::get('mahasiswa/profile/create', [ProfileMahasiswaController::class, 'create'])
+    ->name('mahasiswa.profile.create')->middleware('auth', 'mahasiswa', 'verified', 'role:mahasiswa|mahasiswaS2');
+Route::post('mahasiswa/profile/store', [ProfileMahasiswaController::class, 'store'])
+    ->name('mahasiswa.profile.store')->middleware('auth', 'mahasiswa', 'verified', 'role:mahasiswa|mahasiswaS2');
 Route::resource('survey', SuggestionController::class)->names('mahasiswa.survey');
 
+Route::get('unvalidasi', [AkunMahasiswaController::class, 'unvalidasi'])->name('mahasiswa.unvalidasi')->middleware('auth', 'verified', 'role:mahasiswa|mahasiswaS2');
 
-Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswa|alumni|mahasiswaS2')->group(function () {
+
+Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'mahasiswa', 'profile', 'verified', 'role:mahasiswa|alumni|mahasiswaS2')->group(function () {
     Route::resource('profile', ProfileMahasiswaController::class, ['only' => ['index', 'edit', 'update']])->names('profile');
     Route::resource('aktivitas_alumni', AktivitasAlumniController::class)->names('aktivitas_alumni');
     Route::resource('pendataan_alumni', PendataanAlumni::class)->names('pendataan_alumni');
 });
 
-Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswaS2|mahasiswaS2&alumni')->group(function () {
+Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'mahasiswa', 'profile', 'verified', 'role:mahasiswaS2|mahasiswaS2&alumni')->group(function () {
     Route::resource('seminar/ta1/S2', ControllerMahasiswaS2SeminarTaSatu::class)->names('seminarta1s2');
     Route::resource('seminar/ta2/S2', ControllerMahasiswaS2SeminarTaDua::class)->names('seminarta2s2');
     Route::resource('ba/ta1/S2', ControllerMahasiswaS2BaTaSatu::class)->names('bata1s2');
@@ -478,7 +482,7 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'v
     });
 });
 
-Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'profile', 'verified', 'role:mahasiswa|alumni&mahasiswa')->group(function () {
+Route::prefix('mahasiswa')->name('mahasiswa.')->middleware('auth', 'mahasiswa', 'profile', 'verified', 'role:mahasiswa|alumni&mahasiswa')->group(function () {
     Route::resource('prestasi', PrestasiMahasiswaController::class)->names('prestasi');
     Route::resource('kegiatan', KegiatanMahasiswaController::class)->names('kegiatan');
     Route::resource('bakerjapraktik', BeritaAcaraSeminarKerjaPraktik::class)->names('bakerjapraktik');

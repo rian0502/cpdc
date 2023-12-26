@@ -17,7 +17,7 @@ class VertifikasiMahasiswa
     public function handle(Request $request, Closure $next)
     {
         if ($request->user()->mahasiswa->status_register == 0) {
-            return redirect()->route('mahasiswa.verifikasi');
+            return redirect()->route('mahasiswa.unvalidasi');
         }
         return $next($request);
     }
