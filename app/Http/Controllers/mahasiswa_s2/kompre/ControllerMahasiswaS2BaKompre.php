@@ -18,7 +18,7 @@ class ControllerMahasiswaS2BaKompre extends Controller
     public function create()
     {
         $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
-        if ($mahasiswa->komprehensif->beritaAcara) {
+        if ($mahasiswa->komprehensifS2->beritaAcara) {
             return redirect()->back();
         }
         return view("mahasiswaS2.kompre.ba.create");
