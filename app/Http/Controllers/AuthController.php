@@ -98,6 +98,7 @@ class AuthController extends Controller
         ];
         return view('auth.register', $data);
     }
+    
     public function attemptRegister(RegisterRequest $request)
     {
         try {
@@ -107,11 +108,9 @@ class AuthController extends Controller
                     'email' => $request->email,
                     'password' => bcrypt($request->password),
                 ]);
-
                 $aktifkan = BaseNPM::where('npm', $request->npm)->first();
                 $aktifkan->status = 'aktif';
                 $aktifkan->save();
-
                 $mhs = [
                     'npm' => $request->npm,
                     'nama_mahasiswa' => Str::title($request->nama_lengkap),
@@ -135,7 +134,7 @@ class AuthController extends Controller
                 }
                 Mahasiswa::create($mhs);
                 event(new Registered($user));
-                dispatch(new SendEmailVertification($user));
+                $user->sendEmailVerificationNotification();
                 auth()->login($user);
             });
 

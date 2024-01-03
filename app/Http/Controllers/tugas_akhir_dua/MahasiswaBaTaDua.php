@@ -36,7 +36,7 @@ class MahasiswaBaTaDua extends Controller
     {
         //
         $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
-        if($mahasiswa->ta_dua->ba_seminar){
+        if($mahasiswa->taDuaS2->ba_seminar){
             return redirect()->back();
         }
         return view('mahasiswa.ta2.ba.create');
