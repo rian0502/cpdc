@@ -128,7 +128,10 @@ class PenjadwalanTaSatu extends Controller
             'lokasi' => $lokasi->nama_lokasi,
         ];
         dispatch(new SendEmailTugasAkhir1($data, $to_name, $to_email, $namafile));
-        return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Menjadwalkan Seminar Tugas Akhir 1');
+        return redirect()->route('koor.jadwalTA1.index')->with(
+            'success',
+            'Berhasil Menjadwalkan Seminar Tugas Akhir 1'
+        );
     }
 
 
