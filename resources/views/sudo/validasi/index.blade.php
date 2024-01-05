@@ -29,7 +29,7 @@
                                             {{ $item->npm }}
                                         </td>
                                         <td>
-                                            {{ $item->nama }}
+                                            {{ $item->user->name }}
                                         </td>
                                         <td>
                                             {{ $item->user->email }}
