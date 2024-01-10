@@ -28,6 +28,20 @@ class MahasiswaTaSatuController extends Controller
     }
 
 
+    public function edit($id)
+    {
+        if (Auth::user()->mahasiswa->ta_satu->id != Crypt::decrypt($id) && Auth::user()->mahasiswa->ta_satu) {
+            return redirect()->back();
+        }
+        $data = [
+            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
+                ->where('status', 'Aktif')
+                ->get(),
+            'seminar' => ModelSeminarTaSatu::find(Crypt::decrypt($id)),
+        ];
+        return view('mahasiswa.ta1.edit', $data);
+    }
+    
     public function create()
     {
         if (Auth::user()->mahasiswa->ta_satu) {
@@ -43,19 +57,6 @@ class MahasiswaTaSatuController extends Controller
     }
 
 
-    public function edit($id)
-    {
-        if (Auth::user()->mahasiswa->ta_satu->id != Crypt::decrypt($id) && Auth::user()->mahasiswa->ta_satu) {
-            return redirect()->back();
-        }
-        $data = [
-            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
-                ->where('status', 'Aktif')
-                ->get(),
-            'seminar' => ModelSeminarTaSatu::find(Crypt::decrypt($id)),
-        ];
-        return view('mahasiswa.ta1.edit', $data);
-    }
 
     public function store(StoreTugasAkhirSatuRequest $request)
     {
