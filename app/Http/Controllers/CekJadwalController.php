@@ -33,15 +33,53 @@ class CekJadwalController extends Controller
             'id_lokasi.exists' => 'Lokasi tidak ditemukan',
             'jam_selesai_skp.after' => 'Jam selesai harus lebih besar dari jam mulai',
         ]);
-        $cekJadwalPkl = $this->kp($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
-        $cekJadwalTa1 = $this->ta1($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
-        $cekJadwalTa2 = $this->ta2($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
-        $cekJadwalKompre = $this->kompre($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
-        $cekJadwalTesis1 = $this->tesis1($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
-        $cekJadwalTesis2 = $this->tesis2($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
-        $cekJadwalSidangTesis = $this->sidangTesis($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
+        $cekJadwalPkl = $this->kp(
+            $request->jam_mulai_skp,
+            $request->jam_selesai_skp,
+            $request->tanggal_skp,
+            $request->id_lokasi
+        );
+        $cekJadwalTa1 = $this->ta1(
+            $request->jam_mulai_skp,
+            $request->jam_selesai_skp,
+            $request->tanggal_skp,
+            $request->id_lokasi
+        );
+        $cekJadwalTa2 = $this->ta2(
+            $request->jam_mulai_skp,
+            $request->jam_selesai_skp,
+            $request->tanggal_skp,
+            $request->id_lokasi
+        );
+        $cekJadwalKompre = $this->kompre(
+            $request->jam_mulai_skp,
+            $request->jam_selesai_skp,
+            $request->tanggal_skp,
+            $request->id_lokasi
+        );
+        $cekJadwalTesis1 = $this->tesis1(
+            $request->jam_mulai_skp,
+            $request->jam_selesai_skp,
+            $request->tanggal_skp,
+            $request->id_lokasi
+        );
+        $cekJadwalTesis2 = $this->tesis2(
+            $request->jam_mulai_skp,
+            $request->jam_selesai_skp,
+            $request->tanggal_skp,
+            $request->id_lokasi
+        );
+        $cekJadwalSidangTesis = $this->sidangTesis(
+            $request->jam_mulai_skp,
+            $request->jam_selesai_skp,
+            $request->tanggal_skp,
+            $request->id_lokasi
+        );
 
-        if ($cekJadwalPkl || $cekJadwalTa1 || $cekJadwalTa2 || $cekJadwalKompre || $cekJadwalTesis1 || $cekJadwalTesis2 || $cekJadwalSidangTesis) {
+        if (
+            $cekJadwalPkl || $cekJadwalTa1 || $cekJadwalTa2 || $cekJadwalKompre ||
+            $cekJadwalTesis1 || $cekJadwalTesis2 || $cekJadwalSidangTesis
+        ) {
             return response()->json(['message' => 'Failed']);
         } else {
             return response()->json(['message' => 'Valid']);
@@ -66,20 +104,57 @@ class CekJadwalController extends Controller
             'jam_selesai_skp.after' => 'Jam selesai harus lebih besar dari jam mulai',
         ]);
 
-        $cekJadwalPkl = $this->kp($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
-        $cekJadwalTa1 = $this->ta1($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
-        $cekJadwalTa2 = $this->ta2($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
-        $cekJadwalKompre = $this->kompre($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
-        $cekJadwalTesis1 = $this->tesis1($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
-        $cekJadwalTesis2 = $this->tesis2($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
-        $cekJadwalSidangTesis = $this->sidangTesis($request->jam_mulai_skp, $request->jam_selesai_skp, $request->tanggal_skp, $request->id_lokasi);
+        $cekJadwalPkl = $this->kp(
+            $request->jam_mulai_skp,
+            $request->jam_selesai_skp,
+            $request->tanggal_skp,
+            $request->id_lokasi
+        );
+        $cekJadwalTa1 = $this->ta1(
+            $request->jam_mulai_skp,
+            $request->jam_selesai_skp,
+            $request->tanggal_skp,
+            $request->id_lokasi
+        );
+        $cekJadwalTa2 = $this->ta2(
+            $request->jam_mulai_skp,
+            $request->jam_selesai_skp,
+            $request->tanggal_skp,
+            $request->id_lokasi
+        );
+        $cekJadwalKompre = $this->kompre(
+            $request->jam_mulai_skp,
+            $request->jam_selesai_skp,
+            $request->tanggal_skp,
+            $request->id_lokasi
+        );
+        $cekJadwalTesis1 = $this->tesis1(
+            $request->jam_mulai_skp,
+            $request->jam_selesai_skp,
+            $request->tanggal_skp,
+            $request->id_lokasi
+        );
+        $cekJadwalTesis2 = $this->tesis2(
+            $request->jam_mulai_skp,
+            $request->jam_selesai_skp,
+            $request->tanggal_skp,
+            $request->id_lokasi
+        );
+        $cekJadwalSidangTesis = $this->sidangTesis(
+            $request->jam_mulai_skp,
+            $request->jam_selesai_skp,
+            $request->tanggal_skp,
+            $request->id_lokasi
+        );
 
-        if ($cekJadwalPkl || $cekJadwalTa1 || $cekJadwalTa2 || $cekJadwalKompre || $cekJadwalTesis1 || $cekJadwalTesis2 || $cekJadwalSidangTesis) {
+        if (
+            $cekJadwalPkl || $cekJadwalTa1 || $cekJadwalTa2 || $cekJadwalKompre ||
+            $cekJadwalTesis1 || $cekJadwalTesis2 || $cekJadwalSidangTesis
+        ) {
             return response()->json(['message' => 'Failed']);
         } else {
             return response()->json(['message' => 'Valid']);
         }
-        return $request->all();
     }
 
     public function kp($jam_mulai_skp, $jam_selesai_skp, $tanggal_skp, $id_lokasi)

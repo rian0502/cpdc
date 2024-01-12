@@ -80,10 +80,15 @@ class PenjadwalanTaDua extends Controller
     {
         $id = Crypt::decrypt(array_key_last($request->except('_token')));
         $seminar = ModelSeminarTaDua::find($id);
-        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $admin = Administrasi::select('nama_administrasi', 'nip')
+            ->where('status', 'Aktif')->first();
         $kajur = User::role('jurusan')->with('dosen')->first();
-        $hari =  $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
-        $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
+        $hari =  $hari = Carbon::parse($request->tanggal_skp)
+            ->locale('id_ID')->isoFormat('dddd');
+        $lokasi = Lokasi::select('id', 'nama_lokasi')->where(
+            'id',
+            Crypt::decrypt($request->id_lokasi)
+        )->first();
         $data = [
             'tanggal_seminar_ta_dua' => $request->tanggal_skp,
             'jam_mulai_seminar_ta_dua' => $request->jam_mulai_skp,
@@ -122,7 +127,8 @@ class PenjadwalanTaDua extends Controller
         $template->setValue('koor_acc', Auth::user()->name);
         $template->setValue('nip_koor_acc', Auth::user()->dosen->nip);
         $template->setValue('hari', $hari);
-        $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'));
+        $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)
+            ->locale('id_ID')->isoFormat('D MMMM YYYY'));
         $template->setValue('jam_mulai', $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
@@ -134,13 +140,17 @@ class PenjadwalanTaDua extends Controller
             'name' => $seminar->mahasiswa->nama_mahasiswa,
             'body' => 'Berikut adalah jadwal Seminar Tugas Akhir 2 Anda',
             'seminar' => $seminar->judul_ta,
-            'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'),
+            'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)
+                ->locale('id_ID')->isoFormat('D MMMM YYYY'),
             'jam_mulai' => $request->jam_mulai_skp,
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
         dispatch(new SendEmailTugasAkhir2($data, $to_name, $to_email, $namafile));
-        return redirect()->route('koor.jadwalTA2.index')->with('success', 'Berhasil Menjadwalkan Seminar Tugas Akhir 2');
+        return redirect()->route('koor.jadwalTA2.index')->with(
+            'success',
+            'Berhasil Menjadwalkan Seminar Tugas Akhir 2'
+        );
     }
 
     /**
@@ -229,7 +239,7 @@ class PenjadwalanTaDua extends Controller
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
         $namafile = $mahasiswa->npm . '_ba_ta2.docx';
-        $template->saveAs('uploads/print_ba_ta2/'. $namafile);
+        $template->saveAs('uploads/print_ba_ta2/' . $namafile);
         $to_name = $mahasiswa->nama_mahasiswa;
         $to_email = $mahasiswa->user->email;
         $data = [

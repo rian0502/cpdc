@@ -68,7 +68,7 @@ class MahasiswaKompreController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = $request->validate([
+        $request->validate([
             'periode_seminar' => ['required'],
             'agreement' => ['required'],
             'berkas_kompre' => ['required', 'mimes:pdf', 'max:2048', 'file', 'mimetypes:application/pdf'],
