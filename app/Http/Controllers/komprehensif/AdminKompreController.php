@@ -81,9 +81,8 @@ class AdminKompreController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->status_admin == 'Process') {
-            return redirect()->back()
-                ->with('error', 'Status Admin Harus Valid atau Invalid');
-        } else if ($request->status_admin == 'Invalid') {
+            return redirect()->back()->with('error', 'Status Admin Harus Valid atau Invalid');
+        } elseif ($request->status_admin == 'Invalid') {
             $status = ['Valid', 'Invalid', 'Process'];
             $request->validate(
                 [

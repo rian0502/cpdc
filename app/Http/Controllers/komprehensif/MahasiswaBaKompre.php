@@ -154,6 +154,7 @@ class MahasiswaBaKompre extends Controller
         $jadwal->updated_at = now();
         $jadwal->save();
 
-        return redirect()->route('mahasiswa.sidang.kompre.index')->with('success', 'Berhasil mengubah berita acara sidang komprehensif');
+        return redirect()->route('mahasiswa.sidang.kompre.index')
+            ->with('success', 'Berhasil mengubah berita acara sidang komprehensif');
     }
 }

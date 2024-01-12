@@ -179,7 +179,8 @@ class ImportMahasiswaController extends Controller
         $sheet3 = $spreadsheet->getSheet(2)->toArray();
         $sheet4 = $spreadsheet->getSheet(3)->toArray();
         $sheet5 = $spreadsheet->getSheet(4)->toArray();
-        return dd(count($sheet1), count($sheet2), count($sheet3), count($sheet4), count($sheet5));
+
         dispatch(new \App\Jobs\ImportMahasiswaS1Job($sheet1, $sheet2, $sheet3, $sheet4, $sheet5));
+        return redirect()->route('sudo.import.mahasiswa.index')->with('success', 'Data Mahasiswa Berhasil Diimport');
     }
 }

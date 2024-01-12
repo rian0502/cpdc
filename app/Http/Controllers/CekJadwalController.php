@@ -18,7 +18,7 @@ class CekJadwalController extends Controller
     //
     public function checkJadwal(Request $request)
     {
-        $validation = $request->validate([
+        $request->validate([
             'tanggal_skp' => 'required|date|after_or_equal:tomorrow',
             'jam_mulai_skp' => 'required',
             'jam_selesai_skp' => 'required|after:jam_mulai_skp',
@@ -84,11 +84,10 @@ class CekJadwalController extends Controller
         } else {
             return response()->json(['message' => 'Valid']);
         }
-        return $request->all();
     }
     public function checkUpdate(Request $request)
     {
-        $validation = $request->validate([
+        $request->validate([
             'tanggal_skp' => 'required|date|after_or_equal:tomorrow',
             'jam_mulai_skp' => 'required',
             'jam_selesai_skp' => 'required|after:jam_mulai_skp',
@@ -175,8 +174,14 @@ class CekJadwalController extends Controller
             ->where('id_lokasi', Crypt::decrypt($id_lokasi))
             ->where(function ($query) use ($jam_mulai_seminar_ta_satu, $jam_selesai_seminar_ta_satu) {
                 $query->where(function ($query) use ($jam_mulai_seminar_ta_satu, $jam_selesai_seminar_ta_satu) {
-                    $query->whereBetween('jam_mulai_seminar_ta_satu', [$jam_mulai_seminar_ta_satu, $jam_selesai_seminar_ta_satu])
-                        ->orWhereBetween('jam_selesai_seminar_ta_satu', [$jam_mulai_seminar_ta_satu, $jam_selesai_seminar_ta_satu]);
+                    $query->whereBetween(
+                        'jam_mulai_seminar_ta_satu',
+                        [$jam_mulai_seminar_ta_satu, $jam_selesai_seminar_ta_satu]
+                    )
+                        ->orWhereBetween(
+                            'jam_selesai_seminar_ta_satu',
+                            [$jam_mulai_seminar_ta_satu, $jam_selesai_seminar_ta_satu]
+                        );
                 });
             })->exists();
     }
@@ -186,8 +191,14 @@ class CekJadwalController extends Controller
             ->where('id_lokasi', Crypt::decrypt($id_lokasi))
             ->where(function ($query) use ($jam_mulai_seminar_ta_dua, $jam_selesai_seminar_ta_dua) {
                 $query->where(function ($query) use ($jam_mulai_seminar_ta_dua, $jam_selesai_seminar_ta_dua) {
-                    $query->whereBetween('jam_mulai_seminar_ta_dua', [$jam_mulai_seminar_ta_dua, $jam_selesai_seminar_ta_dua])
-                        ->orWhereBetween('jam_selesai_seminar_ta_dua', [$jam_mulai_seminar_ta_dua, $jam_selesai_seminar_ta_dua]);
+                    $query->whereBetween(
+                        'jam_mulai_seminar_ta_dua',
+                        [$jam_mulai_seminar_ta_dua, $jam_selesai_seminar_ta_dua]
+                    )
+                        ->orWhereBetween(
+                            'jam_selesai_seminar_ta_dua',
+                            [$jam_mulai_seminar_ta_dua, $jam_selesai_seminar_ta_dua]
+                        );
                 });
             })->exists();
     }
@@ -199,7 +210,10 @@ class CekJadwalController extends Controller
             ->where(function ($query) use ($jam_mulai_komprehensif, $jam_selesai_komprehensif) {
                 $query->where(function ($query) use ($jam_mulai_komprehensif, $jam_selesai_komprehensif) {
                     $query->whereBetween('jam_mulai_komprehensif', [$jam_mulai_komprehensif, $jam_selesai_komprehensif])
-                        ->orWhereBetween('jam_selesai_komprehensif', [$jam_mulai_komprehensif, $jam_selesai_komprehensif]);
+                        ->orWhereBetween(
+                            'jam_selesai_komprehensif',
+                            [$jam_mulai_komprehensif, $jam_selesai_komprehensif]
+                        );
                 });
             })->exists();
     }

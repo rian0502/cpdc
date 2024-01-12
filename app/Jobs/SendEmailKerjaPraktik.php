@@ -46,15 +46,20 @@ class SendEmailKerjaPraktik implements ShouldQueue
         $to_name = $this->to_name;
         $to_email = $this->to_email;
         $namafile = $this->namafile;
-        Mail::send('email.jadwal_seminar', $this->data, function ($message) use ($to_name, $to_email, $namafile, $urlpref) {
-            $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
-            $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach($urlpref.'uploads/print_ba_kp/'.$namafile);
-        });
-        unlink(base_path($prefix.'uploads/print_ba_kp/'.$namafile));
+        Mail::send(
+            'email.jadwal_seminar',
+            $this->data,
+            function ($message) use ($to_name, $to_email, $namafile, $urlpref) {
+                $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
+                $message->from('chemistryprogramdatacenter@gmail.com');
+                $message->attach($urlpref . 'uploads/print_ba_kp/' . $namafile);
+            }
+        );
+        unlink(base_path($prefix . 'uploads/print_ba_kp/' . $namafile));
     }
-    public function retry(){
-        if($this->attempts() < 3){
+    public function retry()
+    {
+        if ($this->attempts() < 3) {
             return $this->release(10);
         }
     }

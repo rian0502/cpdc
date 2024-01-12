@@ -18,7 +18,12 @@ class ValidasiSeminarKPController extends Controller
     {
         //
         $data = [
-            'seminar' => ModelSeminarKP::select('encrypt_id', 'proses_admin', 'mitra', 'id_mahasiswa')->where('proses_admin', '!=', 'Valid')->get()
+            'seminar' => ModelSeminarKP::select(
+                'encrypt_id',
+                'proses_admin',
+                'mitra',
+                'id_mahasiswa'
+            )->where('proses_admin', '!=', 'Valid')->get()
         ];
         return view('admin.admin_berkas.validasi.seminar.kp.index', $data);
     }
@@ -69,6 +74,7 @@ class ValidasiSeminarKPController extends Controller
      */
     public function edit($id)
     {
+        //
         $data = [
             'seminar' => ModelSeminarKP::find(Crypt::decrypt($id)),
         ];
@@ -89,7 +95,7 @@ class ValidasiSeminarKPController extends Controller
         if ($request->proses_admin != 'Valid') {
             $this->validate($request, [
                 'keterangan' => 'required'
-            ],[
+            ], [
                 'keterangan.required' => 'Berikan Pesan Jika Data Masih terdapat Kesalahan.'
 
             ]);
