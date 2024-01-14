@@ -169,8 +169,6 @@ class ImportMahasiswaController extends Controller
 
     public function store(Request $request)
     {
-        //show data from excel
-        
         $fileXl = $request->file('data_mahasiswa');
         $reader = new Xlsx();
         $spreadsheet = $reader->load($fileXl);
@@ -180,7 +178,14 @@ class ImportMahasiswaController extends Controller
         $sheet4 = $spreadsheet->getSheet(3)->toArray();
         $sheet5 = $spreadsheet->getSheet(4)->toArray();
 
-        dispatch(new \App\Jobs\ImportMahasiswaS1Job($sheet1, $sheet2, $sheet3, $sheet4, $sheet5));
-        return redirect()->route('sudo.import.mahasiswa.index')->with('success', 'Data Mahasiswa Berhasil Diimport');
+        dispatch(new \App\Jobs\ImportMahasiswaS1Job(
+            $sheet1,
+            $sheet2,
+            $sheet3,
+            $sheet4,
+            $sheet5
+        ));
+        return redirect()->route('sudo.import.mahasiswa.index')
+            ->with('success', 'Data Mahasiswa Berhasil Diimport');
     }
 }
