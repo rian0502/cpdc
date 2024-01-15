@@ -78,6 +78,8 @@ class JadwalPKLController extends Controller
      */
     public function store(Request $request)
     {
+        // start time excetuion
+        $start = microtime(true);
         $id_seminar = array_key_last($request->all());
         $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
@@ -146,8 +148,13 @@ class JadwalPKLController extends Controller
             $message->attach(('uploads/print_ba_kp/') . $namafile);
         });
         unlink(('uploads/print_ba_kp/' . $namafile));
-
-        return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Ditambahkan');
+        //end time execution
+        $end = microtime(true);
+        $final = $end - $start;
+        // return $final;
+        return dd($final);
+        return redirect()->route('koor.jadwalPKL.index')
+            ->with('success', 'Jadwal Seminar KP Berhasil Ditambahkan');
     }
 
     /**
