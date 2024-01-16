@@ -90,7 +90,6 @@ class JadwalPKLController extends Controller
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
         $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
         $kajur = User::role('jurusan')->with('dosen')->first();
-
         $insert = JadwalSKP::create([
             'tanggal_skp' => $request->tanggal_skp,
             'jam_mulai_skp' => $request->jam_mulai_skp,
@@ -149,8 +148,8 @@ class JadwalPKLController extends Controller
         );
 
         dispatch(new SendEmailKerjaPraktik($data, $to_name, $to_email, $namafile));
-
-        return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Ditambahkan');
+        return redirect()->route('koor.jadwalPKL.index')
+            ->with('success', 'Jadwal Seminar KP Berhasil Ditambahkan');
     }
 
     /**
