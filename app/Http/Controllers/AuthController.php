@@ -128,9 +128,6 @@ class AuthController extends Controller
                 } elseif ($request->jenis_akun == 'mahasiswaS2') {
                     $user->assignRole('mahasiswaS2');
                     $mhs['status'] = 'Aktif';
-                } else {
-                    $user->assignRole('alumni');
-                    $mhs['status'] = 'Alumni';
                 }
                 Mahasiswa::create($mhs);
                 event(new Registered($user));

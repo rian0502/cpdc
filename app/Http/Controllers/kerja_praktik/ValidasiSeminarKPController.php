@@ -89,7 +89,7 @@ class ValidasiSeminarKPController extends Controller
         if ($request->proses_admin != 'Valid') {
             $this->validate($request, [
                 'keterangan' => 'required'
-            ],[
+            ], [
                 'keterangan.required' => 'Berikan Pesan Jika Data Masih terdapat Kesalahan.'
 
             ]);
