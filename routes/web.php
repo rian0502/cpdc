@@ -309,8 +309,16 @@ Route::prefix('koor')->name('koor.')->group(function () {
         ->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('jadwalTA2.resend');
     Route::get('/jadwalKompre/resend/{id}', [PenjadwalanKompreController::class, 'resend'])
         ->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('jadwalKompre.resend');
+
     Route::post('/download/jadwal', [PenjadwalanTaSatu::class, 'downloadJadwal'])
         ->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('jadwalTA1.download');
+
+    Route::post('/download/jadwalTa2', [PenjadwalanTaDua::class, 'downloadJadwal'])
+        ->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('jadwalTA2.download');
+
+    Route::post('/download/jadwalkompre', [PenjadwalanKompreController::class, 'downloadJadwal'])
+        ->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('jadwalKompre.download');
+
 
     Route::resource('validasiBaPKL', ValidasiBaPKLController::class)
         ->middleware(['auth', 'profile', 'verified', 'role:pkl'])->names('validasiBaPKL');

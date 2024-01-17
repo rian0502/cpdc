@@ -42,7 +42,15 @@ class PenjadwalanKompreController extends Controller
 
     public function downloadJadwal(Request $request)
     {
-        $seminar = ModelSeminarKompre::doesntHave('jadwal')->where('status_admin', 'Valid')->get();
+        $seminar = ModelSeminarKompre::with(
+            'mahasiswa',
+            'pembimbingSatu',
+            'pembimbingDua',
+            'pembahas'
+        )->whereDoesntHave('jadwal')->where('status_admin', 'Valid')
+            ->orderBy('updated_at', 'ASC')
+            ->get();
+
         $spredsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $sheet = $spredsheet->getActiveSheet();
         $sheet->setTitle('Daftar Seminar TA 1 S1');
@@ -68,11 +76,11 @@ class PenjadwalanKompreController extends Controller
                 $sheet->setCellValue('G' . ($key + 2), $value->pembahas->nama_dosen);
             }
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
-            $filename = 'Daftar Seminar Kompre.xlsx';
+            $filename = 'Daftar Sidang Komprehensif S1.xlsx';
             $writer->save($filename);
             return response()->download($filename)->deleteFileAfterSend(true);
         } else {
-            return redirect()->back()->with('error', 'Belum Seminar Komprehensif');
+            return redirect()->back()->with('error', 'Belum Sidang Komprehensif yang dapat dijadwalkan');
         }
     }
 

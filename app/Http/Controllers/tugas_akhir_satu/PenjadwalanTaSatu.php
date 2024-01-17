@@ -312,12 +312,12 @@ class PenjadwalanTaSatu extends Controller
                 $sheet->setCellValue('H' . ($key + 2), $value->updated_at->isoFormat('D MMMM Y'));
             }
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
-            $filename = 'Daftar Seminar TA 1 S1 Angkatan .xlsx';
+            $filename = 'Daftar Seminar TA 1 S1.xlsx';
             $writer->save($filename);
             return response()->download($filename)->deleteFileAfterSend(true);
         } else {
             return redirect()->back()
-                ->with('error', 'Belum Ada Mahasiswa yang Mendaftar Seminar TA 1');
+                ->with('error', 'Belum Seminar TA 1 yang dapat dijadwalkan');
         }
     }
 }
