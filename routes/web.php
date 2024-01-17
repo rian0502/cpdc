@@ -127,6 +127,7 @@ use App\Http\Controllers\controller_seminar\EditSeminarKerjaPraktikController;
 use App\Http\Controllers\controller_seminar\EditSeminarKomprehensifController;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
 use App\Http\Controllers\sudo\ValidasiMahasiswa;
+use Illuminate\Support\Facades\Redis;
 
 /*
 |--------------------------------------------------------------------------
@@ -646,3 +647,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 Route::get('/reset-password', function () {
     return view('auth.reset');
 })->name('reset');
+
+
+Route::get('ping-redis', function () {
+    $koneksi = Redis::connection()->ping();
+    return dd($koneksi);
+});
