@@ -7,15 +7,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            @if($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                           
                             <h4 class="text-dark h4">Tambah Data Prestasi</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>

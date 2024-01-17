@@ -25,7 +25,7 @@ class PrestasiDataS2Controller extends Controller
         $endDate = $request->input('endDate', null);
 
         if ($startDate && $endDate) {
-            $data = PrestasiMahasiswaS2::with('mahasiswa')->whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc');
+            $data = PrestasiMahasiswaS2::with('mahasiswa','dosen')->whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc');
             return DataTables::of($data)
                 ->addIndexColumn()->editColumn('mahasiswa.nama_mahasiswa', function ($row) {
                     return $row->mahasiswa->nama_mahasiswa;
@@ -41,8 +41,7 @@ class PrestasiDataS2Controller extends Controller
                 })
                 ->toJson();
         } else if ($request->ajax() && $startDate == null && $endDate == null) {
-            $data = PrestasiMahasiswaS2::with('mahasiswa')->orderBy('tanggal', 'desc');
-
+            $data = PrestasiMahasiswaS2::with('mahasiswa','dosen')->orderBy('tanggal', 'desc');
             return DataTables::of($data)
                 ->addIndexColumn()->editColumn('mahasiswa.nama_mahasiswa', function ($row) {
                     return $row->mahasiswa->nama_mahasiswa;

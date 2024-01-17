@@ -17,7 +17,7 @@ class AktivitasDataS2Controller extends Controller
         $endDate = $request->input('endDate', null);
 
         if ($startDate && $endDate) {
-            $data = AktivitasMahasiswaS2::with('mahasiswa')
+            $data = AktivitasMahasiswaS2::with('mahasiswa', 'dosen')
                 ->whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc');
             return DataTables::of($data)
                 ->addIndexColumn()->editColumn('mahasiswa.nama_mahasiswa', function ($row) {
@@ -26,15 +26,27 @@ class AktivitasDataS2Controller extends Controller
                 ->addIndexColumn()->editColumn('mahasiswa.npm', function ($row) {
                     return $row->mahasiswa->npm;
                 })
+                ->addIndexColumn()->editColumn('dosen.nama_dosen', function ($row) {
+                    return $row->dosen->nama_dosen??$row->nama_pembimbing;
+                })
+                ->addIndexColumn()->editColumn('dosen.nip', function ($row) {
+                    return $row->dosen->nip??$row->nip_pembimbing;
+                })
                 ->toJson();
         } else if ($request->ajax() && $startDate == null && $endDate == null) {
-            $data = AktivitasMahasiswaS2::with('mahasiswa')->orderBy('tanggal', 'desc');
+            $data = AktivitasMahasiswaS2::with('mahasiswa', 'dosen')->orderBy('tanggal', 'desc');
             return DataTables::of($data)
                 ->addIndexColumn()->editColumn('mahasiswa.nama_mahasiswa', function ($row) {
                     return $row->mahasiswa->nama_mahasiswa;
                 })
                 ->addIndexColumn()->editColumn('mahasiswa.npm', function ($row) {
                     return $row->mahasiswa->npm;
+                })
+                ->addIndexColumn()->editColumn('dosen.nama_dosen', function ($row) {
+                    return $row->dosen->nama_dosen??$row->nama_pembimbing;
+                })
+                ->addIndexColumn()->editColumn('dosen.nip', function ($row) {
+                    return $row->dosen->nip??$row->nip_pembimbing;
                 })
                 ->toJson();
         }

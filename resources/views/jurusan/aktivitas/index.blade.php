@@ -62,12 +62,16 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Mahasiswa</th>
+                                    <th>Nama</th>
                                     <th>NPM</th>
-                                    <th>Aktivitas</th>
+                                    <th>Judul</th>
                                     <th>Peran</th>
-                                    <th>SKS Konversi</th>
+                                    <th>Tingkatan</th>
+                                    <th>Jenis</th>
+                                    <th>Kategori</th>
+                                    <th>Pembimbing</th>
                                     <th>Tanggal</th>
+                                    <th>SKS Konversi</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
                                 </tr>
                             </thead>
@@ -145,12 +149,28 @@
                             name: 'peran'
                         },
                         {
-                            data: 'sks_konversi',
-                            name: 'sks_konversi'
+                            data: 'skala',
+                            name: 'skala'
+                        },
+                        {
+                            data: 'jenis',
+                            name: 'jenis'
+                        },
+                        {
+                            data: 'kategori',
+                            name: 'kategori'
+                        },
+                        {
+                            data: 'dosen.nama_dosen',
+                            name: 'dosen.nama_dosen'
                         },
                         {
                             data: 'tanggal',
                             name: 'tanggal'
+                        },
+                        {
+                            data: 'sks_konversi',
+                            name: 'sks_konversi'
                         },
                         {
                             data: null,
@@ -381,12 +401,28 @@
                             name: 'peran'
                         },
                         {
-                            data: 'sks_konversi',
-                            name: 'sks_konversi'
+                            data: 'skala',
+                            name: 'skala'
+                        },
+                        {
+                            data: 'jenis',
+                            name: 'jenis'
+                        },
+                        {
+                            data: 'kategori',
+                            name: 'kategori'
+                        },
+                        {
+                            data: 'dosen.nama_dosen',
+                            name: 'dosen.nama_dosen'
                         },
                         {
                             data: 'tanggal',
                             name: 'tanggal'
+                        },
+                        {
+                            data: 'sks_konversi',
+                            name: 'sks_konversi'
                         },
                         {
                             data: null,

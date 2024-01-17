@@ -7,6 +7,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
+                          
                             <h4 class="text-dark h4">Edit Data Prestasi</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
@@ -62,7 +63,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Pembimbing</label>
-                                    
+
                                     <select
                                         class="custom-select2 form-control @error('id_pembimbing') form-control-danger @enderror"
                                         name="id_pembimbing" id="id_pembimbing" style="width: 100%; height: 38px"

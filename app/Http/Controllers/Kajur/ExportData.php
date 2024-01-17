@@ -591,7 +591,13 @@ class ExportData extends Controller
         $sheet->setCellValue('D1', 'SKS');
         $sheet->setCellValue('E1', 'Tanggal');
         $sheet->setCellValue('F1', 'URL');
-        $sheet->setCellValue('G1', 'Mahasiswa');
+        $sheet->setCellValue('G1', 'Tingkatan');
+        $sheet->setCellValue('H1', 'Jenis');
+        $sheet->setCellValue('I1', 'Kategori');
+        $sheet->setCellValue('J1', 'Mahasiswa');
+        $sheet->setCellValue('K1', 'NPM');
+        $sheet->setCellValue('L1', 'Nama Pembimbing');
+        $sheet->setCellValue('M1', 'NIP Pembimbing');
         foreach ($aktivitas as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->nama_aktivitas);
@@ -599,10 +605,16 @@ class ExportData extends Controller
             $sheet->setCellValue('D' . ($key + 2), $value->sks_konversi);
             $sheet->setCellValue('E' . ($key + 2), $value->tanggal);
             $sheet->setCellValue('F' . ($key + 2), url('/uploads/file_act_mhs/' . $value->file_aktivitas));
-            $sheet->setCellValue('G' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+            $sheet->setCellValue('G' . ($key + 2), $value->skala);
+            $sheet->setCellValue('H' . ($key + 2), $value->jenis);
+            $sheet->setCellValue('I' . ($key + 2), $value->kategori);
+            $sheet->setCellValue('J' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+            $sheet->setCellValue('K' . ($key + 2), $value->mahasiswa->npm);
+            $sheet->setCellValue('L' . ($key + 2), ($value->dosen->nama_dosen)??$value->nama_pembimbing);
+            $sheet->setCellValue('M' . ($key + 2), ($value->dosen->nip)??$value->nip_pembimbing);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('aktivitas' . $request->tahun_aktivitas . '.xlsx');
+        $writer->save('aktivitas_' . $request->tahun_aktivitas . '.xlsx');
         return response()->download('aktivitas_' . $request->tahun_aktivitas . '.xlsx')->deleteFileAfterSend(true);
     }
     public function prestasi(Request $request)

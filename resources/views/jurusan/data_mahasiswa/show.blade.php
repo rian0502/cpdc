@@ -1169,7 +1169,7 @@
                                                         <td>{{ $item->tanggal }}</td>
                                                         <td>{{ $item->capaian }}</td>
                                                         <td>{{ $item->jenis }}</td>
-                                                        <td>{{ ($item->dosen->nama_dosen)??$item->nama_pembimbing }}</td>
+                                                        <td>{{ $item->dosen->nama_dosen ?? $item->nama_pembimbing }}</td>
                                                         <td>
                                                             <a target="_blank"
                                                                 href="/uploads/file_prestasi/{{ $item->file_prestasi }}">Lihat</a>
@@ -1192,9 +1192,13 @@
                                                     <th>No</th>
                                                     <th>Judul Kegiatan</th>
                                                     <th>Peran</th>
+                                                    <th>Tingkatan</th>
+                                                    <th>Jenis</th>
+                                                    <th>Kategori</th>
+                                                    <th>Pembimbing</th>
                                                     <th>Tanggal</th>
                                                     <th>SKS Konversi</th>
-                                                    <th>File</th>
+                                                    <th>Dokumen</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1209,6 +1213,10 @@
                                                         <td>
                                                             {{ $item->peran }}
                                                         </td>
+                                                        <td>{{ $item->skala }}</td>
+                                                        <td>{{ $item->jenis }}</td>
+                                                        <td>{{ $item->kategori }}</td>
+                                                        <td>{{ $item->dosen->nama_dosen ?? $item->nama_pembimbing }}</td>
                                                         <td>
                                                             {{ $item->tanggal }}
                                                         </td>
