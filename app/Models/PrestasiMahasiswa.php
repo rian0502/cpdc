@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,6 +20,10 @@ class PrestasiMahasiswa extends Model
         'file_prestasi',
         'tanggal',
         'mahasiswa_id',
+        'jenis',
+        'id_pembimbing',
+        'nama_pembimbing',
+        'nip_pembimbing',
         'created_at',
         'updated_at',
     ];
@@ -29,6 +34,10 @@ class PrestasiMahasiswa extends Model
     public function mahasiswa()
     {
         return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id');
+    }
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'id_pembimbing');
     }
     public function getTahunAttribute()
     {

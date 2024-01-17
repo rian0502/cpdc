@@ -115,8 +115,10 @@
                                                                     <th>No</th>
                                                                     <th>Nama Prestasi</th>
                                                                     <th>Tingkat</th>
-                                                                    <th>Tanggal</th>
                                                                     <th>Capaian</th>
+                                                                    <th>Jenis</th>
+                                                                    <th>Dosen Pembimbing</th>
+                                                                    <th>Tanggal</th>
                                                                     <th class="table-plus datatable-nosort">Aksi</th>
                                                                 </tr>
                                                             </thead>
@@ -127,6 +129,8 @@
                                                                         <td>{{ $item->nama_prestasi }}</td>
                                                                         <td>{{ $item->scala }}</td>
                                                                         <td>{{ $item->capaian }}</td>
+                                                                        <td>{{ $item->jenis }}</td>
+                                                                        <td>{{ ($item->dosen->nama_dosen)??$item->nama_pembimbing }}</td>
                                                                         <td>{{ $item->tanggal }}</td>
                                                                         <td>
                                                                             <div class="dropdown">

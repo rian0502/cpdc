@@ -33,6 +33,12 @@ class PrestasiDataS2Controller extends Controller
                 ->addIndexColumn()->editColumn('mahasiswa.npm', function ($row) {
                     return $row->mahasiswa->npm;
                 })
+                ->addIndexColumn()->editColumn('dosen.nama_dosen', function ($row) {
+                    return $row->dosen->nama_dosen??$row->nama_pembimbing;
+                })
+                ->addIndexColumn()->editColumn('dosen.nip', function ($row) {
+                    return $row->dosen->nip??$row->nip_pembimbing;
+                })
                 ->toJson();
         } else if ($request->ajax() && $startDate == null && $endDate == null) {
             $data = PrestasiMahasiswaS2::with('mahasiswa')->orderBy('tanggal', 'desc');
@@ -43,6 +49,12 @@ class PrestasiDataS2Controller extends Controller
                 })
                 ->addIndexColumn()->editColumn('mahasiswa.npm', function ($row) {
                     return $row->mahasiswa->npm;
+                })
+                ->addIndexColumn()->editColumn('dosen.nama_dosen', function ($row) {
+                    return $row->dosen->nama_dosen??$row->nama_pembimbing;
+                })
+                ->addIndexColumn()->editColumn('dosen.nip', function ($row) {
+                    return $row->dosen->nip??$row->nip_pembimbing;
                 })
                 ->toJson();
 

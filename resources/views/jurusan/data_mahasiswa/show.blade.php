@@ -1154,6 +1154,8 @@
                                                     <th>Scala</th>
                                                     <th>Tanggal</th>
                                                     <th>Capaian</th>
+                                                    <th>Jenis</th>
+                                                    <th>Pembimbing</th>
                                                     <th>File</th>
 
                                                 </tr>
@@ -1166,6 +1168,8 @@
                                                         <td>{{ $item->scala }}</td>
                                                         <td>{{ $item->tanggal }}</td>
                                                         <td>{{ $item->capaian }}</td>
+                                                        <td>{{ $item->jenis }}</td>
+                                                        <td>{{ ($item->dosen->nama_dosen)??$item->nama_pembimbing }}</td>
                                                         <td>
                                                             <a target="_blank"
                                                                 href="/uploads/file_prestasi/{{ $item->file_prestasi }}">Lihat</a>

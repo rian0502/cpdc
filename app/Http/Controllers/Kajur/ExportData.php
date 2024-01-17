@@ -618,6 +618,9 @@ class ExportData extends Controller
         $sheet->setCellValue('E1', 'Tanggal');
         $sheet->setCellValue('F1', 'URL');
         $sheet->setCellValue('G1', 'Mahasiswa');
+        $sheet->setCellValue('H1', 'Jenis');
+        $sheet->setCellValue('I1', 'Nama Pembimbing');
+        $sheet->setCellValue('J1', 'NIP Pembimbing');
         foreach ($prestasi as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->nama_prestasi);
@@ -626,6 +629,9 @@ class ExportData extends Controller
             $sheet->setCellValue('E' . ($key + 2), $value->tanggal);
             $sheet->setCellValue('F' . ($key + 2), url('/uploads/file_prestasi/' . $value->file_prestasi));
             $sheet->setCellValue('G' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+            $sheet->setCellValue('H' . ($key + 2), $value->jenis);
+            $sheet->setCellValue('I' . ($key + 2), ($value->dosen->nama_dosen)??$value->nama_pembimbing);
+            $sheet->setCellValue('J' . ($key + 2), ($value->dosen->nip)??$value->nip_pembimbing);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('prestasi' . $request->tahun_prestasi . '.xlsx');
