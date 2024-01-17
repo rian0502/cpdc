@@ -80,7 +80,7 @@ class PenjadwalanKompreController extends Controller
             $writer->save($filename);
             return response()->download($filename)->deleteFileAfterSend(true);
         } else {
-            return redirect()->back()->with('error', 'Belum Sidang Komprehensif yang dapat dijadwalkan');
+            return redirect()->back()->with('error', 'Belum ada Sidang Komprehensif yang dapat dijadwalkan');
         }
     }
 

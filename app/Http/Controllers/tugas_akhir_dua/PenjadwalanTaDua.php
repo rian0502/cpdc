@@ -363,7 +363,7 @@ class PenjadwalanTaDua extends Controller
             return response()->download($filename)->deleteFileAfterSend(true);
         } else {
             return redirect()->back()
-                ->with('error', 'Belum Seminar TA 2 yang dapat dijadwalkan');
+                ->with('error', 'Belum ada Seminar TA 2 yang dapat dijadwalkan');
         }
     }
 }
