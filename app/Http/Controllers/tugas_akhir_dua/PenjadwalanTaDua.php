@@ -25,9 +25,10 @@ class PenjadwalanTaDua extends Controller
      */
     private $ba;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->ba = TemplateBeritaAcara::find(3);
-    } 
+    }
     public function index()
     {
         $now = date('Y-m-d');
@@ -250,7 +251,10 @@ class PenjadwalanTaDua extends Controller
             $message->attach('uploads/print_ba_ta2/' . $namafile);
         });
         unlink(('uploads/print_ba_ta2/' . $namafile));
-        return redirect()->route('koor.jadwalTA2.index')->with('success', 'Berhasil Memperbarui Jadwal Seminar Tugas Akhir 2');
+        return redirect()->route('koor.jadwalTA2.index')->with(
+            'success',
+            'Berhasil Memperbarui Jadwal Seminar Tugas Akhir 2'
+        );
     }
 
 
@@ -287,7 +291,8 @@ class PenjadwalanTaDua extends Controller
         $template->setValue('koor_acc', Auth::user()->name);
         $template->setValue('nip_koor_acc', Auth::user()->dosen->nip);
         $template->setValue('hari', $hari);
-        $template->setValue('tanggal', Carbon::parse($jadwal_seminar->tanggal_seminar_ta_dua)->locale('id_ID')->isoFormat('D MMMM YYYY'));
+        $template->setValue('tanggal', Carbon::parse($jadwal_seminar->tanggal_seminar_ta_dua)
+            ->locale('id_ID')->isoFormat('D MMMM YYYY'));
         $template->setValue('jam_mulai', $jadwal_seminar->jam_mulai_seminar_ta_dua);
         $template->setValue('jam_selesai', $jadwal_seminar->jam_selesai_seminar_ta_dua);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
@@ -299,7 +304,8 @@ class PenjadwalanTaDua extends Controller
             'name' => $seminar->mahasiswa->nama_mahasiswa,
             'body' => 'Berikut adalah jadwal Seminar Tugas Akhir 2 Anda',
             'seminar' => $seminar->judul_ta,
-            'tanggal' => $hari . ', ' . Carbon::parse($jadwal_seminar->tanggal_seminar_ta_dua)->locale('id_ID')->isoFormat('D MMMM YYYY'),
+            'tanggal' => $hari . ', ' . Carbon::parse($jadwal_seminar->tanggal_seminar_ta_dua)
+                ->locale('id_ID')->isoFormat('D MMMM YYYY'),
             'jam_mulai' => $jadwal_seminar->jam_mulai_seminar_ta_dua,
             'jam_selesai' => $jadwal_seminar->jam_selesai_seminar_ta_dua,
             'lokasi' => $lokasi->nama_lokasi,
@@ -310,6 +316,7 @@ class PenjadwalanTaDua extends Controller
             $message->attach('uploads/template_ba_ta2/' . $namafile);
         });
         unlink('uploads/template_ba_ta2/' . $namafile);
-        return redirect()->route('koor.jadwalTA2.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar TA 2');
+        return redirect()->route('koor.jadwalTA2.index')
+            ->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar TA 2');
     }
 }
