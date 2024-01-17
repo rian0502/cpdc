@@ -103,6 +103,9 @@ class AuthController extends Controller
     {
         try {
             DB::transaction(function () use ($request) {
+                $file = $request->file('berkas_upload');
+                $nama_file = $file->hashName();
+                $file->move('uploads/syarat', $nama_file);
                 $user = User::create([
                     'name' => Str::title($request->nama_lengkap),
                     'email' => $request->email,
@@ -117,6 +120,8 @@ class AuthController extends Controller
                     'angkatan' => $request->angkatan,
                     'jenis_kelamin' => $request->gender,
                     'user_id' => $user->id,
+                    'status_register' => 0,
+                    'berkas_upload' => $nama_file,
                 ];
                 if ($request->id_dosen != null) {
                     $mhs['id_dosen'] = Crypt::decrypt($request->id_dosen);
@@ -128,16 +133,12 @@ class AuthController extends Controller
                 } elseif ($request->jenis_akun == 'mahasiswaS2') {
                     $user->assignRole('mahasiswaS2');
                     $mhs['status'] = 'Aktif';
-                } else {
-                    $user->assignRole('alumni');
-                    $mhs['status'] = 'Alumni';
                 }
                 Mahasiswa::create($mhs);
                 event(new Registered($user));
                 $user->sendEmailVerificationNotification();
                 auth()->login($user);
             });
-
             return redirect()->route('verification.notice')->with(
                 'registered',
                 'Pendaftaran berhasil, silahkan cek email untuk melakukan verifikasi, Jika Vertifikasi tidak ada di kotak masuk, silahkan cek di kotak spam, atau klik tombol Kirim Kembali'

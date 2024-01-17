@@ -19,7 +19,7 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
         $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
         $seminar = ModelSeminarKP::where('id_mahasiswa', $mahasiswa->id)->first();
         //cek apakah sudah upload ba
-        if($seminar->berita_acara){
+        if ($seminar->berita_acara) {
             return redirect()->back();
         }
 
@@ -59,10 +59,11 @@ class BeritaAcaraSeminarKerjaPraktik extends Controller
         $update = BaSKP::find($inser_id);
         $update->encrypt_id = Crypt::encrypt($inser_id);
         $update->save();
-        return redirect()->route('mahasiswa.seminar.kp.index')->with('success', 'Berhasil Upload Berita Acara Seminar Kerja Praktik');
+        return redirect()->route('mahasiswa.seminar.kp.index')
+            ->with('success', 'Berhasil Upload Berita Acara Seminar Kerja Praktik');
     }
 
-  
+
 
     /**
      * Show the form for editing the specified resource.

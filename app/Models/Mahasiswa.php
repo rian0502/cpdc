@@ -40,6 +40,8 @@ class Mahasiswa extends Model
         'status',
         'id_dosen',
         'user_id',
+        'status_register',
+        'berkas_upload',
         'created_at',
         'updated_at'
     ];

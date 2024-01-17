@@ -60,7 +60,12 @@ class ModelSeminarKompre extends Model
 
     public function getJadwalDosenDate($id_dosen)
     {
-        return $this->join('jadwal_seminar_komprehensif', 'seminar_komprehensif.id', '=', 'jadwal_seminar_komprehensif.id_seminar')
+        return $this->join(
+            'jadwal_seminar_komprehensif',
+            'seminar_komprehensif.id',
+            '=',
+            'jadwal_seminar_komprehensif.id_seminar'
+        )
             ->where(function ($query) use ($id_dosen) {
                 $query->where('seminar_komprehensif.id_pembimbing_satu', $id_dosen)
                     ->orWhere('seminar_komprehensif.id_pembimbing_dua', $id_dosen)
