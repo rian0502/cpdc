@@ -115,8 +115,10 @@
                                                                     <th>No</th>
                                                                     <th>Nama Prestasi</th>
                                                                     <th>Tingkat</th>
-                                                                    <th>Tanggal</th>
                                                                     <th>Capaian</th>
+                                                                    <th>Jenis</th>
+                                                                    <th>Dosen Pembimbing</th>
+                                                                    <th>Tanggal</th>
                                                                     <th class="table-plus datatable-nosort">Aksi</th>
                                                                 </tr>
                                                             </thead>
@@ -127,6 +129,8 @@
                                                                         <td>{{ $item->nama_prestasi }}</td>
                                                                         <td>{{ $item->scala }}</td>
                                                                         <td>{{ $item->capaian }}</td>
+                                                                        <td>{{ $item->jenis }}</td>
+                                                                        <td>{{ ($item->dosen->nama_dosen)??$item->nama_pembimbing }}</td>
                                                                         <td>{{ $item->tanggal }}</td>
                                                                         <td>
                                                                             <div class="dropdown">
@@ -192,6 +196,9 @@
                                                                     <th>No</th>
                                                                     <th>Judul Kegiatan</th>
                                                                     <th>Peran</th>
+                                                                    <th>Tingkatan</th>
+                                                                    <th>Jenis</th>
+                                                                    <th>Kategori</th>
                                                                     <th>Tanggal</th>
                                                                     <th>SKS Konversi</th>
                                                                     <th class="table-plus datatable-nosort">Aksi</th>
@@ -203,6 +210,9 @@
                                                                     <td>{{ $loop->iteration }}</td>
                                                                     <td>{{ $item->nama_aktivitas }}</td>
                                                                     <td>{{ $item->peran }}</td>
+                                                                    <td>{{ $item->skala }}</td>
+                                                                    <td>{{ $item->jenis }}</td>
+                                                                    <td>{{ $item->kategori }}</td>
                                                                     <td>{{ $item->tanggal }}</td>
                                                                     <td>{{ $item->sks_konversi }} SKS</td>
                                                                     <td>
