@@ -10,13 +10,10 @@ use Illuminate\Http\Request;
 use App\Models\ModelSeminarTaDuaS2;
 use App\Models\TemplateBeritaAcara;
 use App\Http\Controllers\Controller;
-use App\Jobs\SendEmailTesis2;
 use App\Models\ModelJadwalSeminarTaDuaS2;
-use App\Models\ModelSeminarTaSatuS2;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
-use App\Models\ModelJadwalSeminarTaSatuS2;
 
 class ControllerKoorS2PenjadwalanTaDua extends Controller
 {
@@ -135,7 +132,12 @@ class ControllerKoorS2PenjadwalanTaDua extends Controller
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        dispatch(new SendEmailTesis2($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tesis 2');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_tesis_2/' . $namafile);
+        });
+        unlink('uploads/print_ba_tesis_2/' . $namafile);
         return redirect()->route('koor.jadwalTA2S2.index')->with('success', 'Berhasil Menjadwalkan Seminar Tesis 2');
     }
 
@@ -207,7 +209,12 @@ class ControllerKoorS2PenjadwalanTaDua extends Controller
             'jam_selesai' => $jadwal->jam_selesai,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        dispatch(new SendEmailTesis2($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tesis 2');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_tesis_2/' . $namafile);
+        });
+        unlink('uploads/print_ba_tesis_2/' . $namafile);
         return redirect()->route('koor.jadwalTA2S2.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar Tesis 2');
     }
 
@@ -299,7 +306,12 @@ class ControllerKoorS2PenjadwalanTaDua extends Controller
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        dispatch(new SendEmailTesis2($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tesis 2');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_tesis_2/' . $namafile);
+        });
+        unlink('uploads/print_ba_tesis_2/' . $namafile);
         return redirect()->route('koor.jadwalTA2S2.index')->with('success', 'Berhasil Menjadwalkan Ulang Seminar Tesis 2');
     }
 }

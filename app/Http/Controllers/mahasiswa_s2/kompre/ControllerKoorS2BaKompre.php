@@ -46,13 +46,12 @@ class ControllerKoorS2BaKompre extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $seminar = ModelKompreS2::find(Crypt::decrypt($id));
         if ($request->_token != csrf_token()) {
             return redirect()->back();
         } else {
             if ($request->status_koor == 'Perbaikan' || $request->status_koor == 'Tidak Lulus') {
-                $validated = $request->validate([
+                $request->validate([
                     'keterangan' => 'required|min:3|max:255',
                 ], [
                     'keterangan.required' => 'Keterangan harus diisi',
@@ -69,6 +68,7 @@ class ControllerKoorS2BaKompre extends Controller
                 $seminar->save();
             }
         }
-        return redirect()->route('koor.ValidasiBaKompreS2.index')->with('success', 'Berhasil mengubah status berkas sidang komprehensif mahasiswa');
+        return redirect()->route('koor.ValidasiBaKompreS2.index')
+            ->with('success', 'Berhasil mengubah status berkas sidang komprehensif mahasiswa');
     }
 }

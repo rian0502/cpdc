@@ -38,8 +38,16 @@ class ProfileDosenController extends Controller
             $umur = $tgl_lahir->diffInYears($now);
             $data = [
 
-                'gelar' => ModelGelar::select('encrypt_id', 'instansi_pendidikan', 'jurusan', 'tahun_lulus', 'nama_gelar', 'singkatan_gelar')->where('dosen_id', Auth::user()->dosen->id)->get(),
-                'kepangkatan' => HistoryPangkatDosen::where('dosen_id', Auth::user()->dosen->id)->orderBy('id', 'desc')->get(),
+                'gelar' => ModelGelar::select(
+                    'encrypt_id',
+                    'instansi_pendidikan',
+                    'jurusan',
+                    'tahun_lulus',
+                    'nama_gelar',
+                    'singkatan_gelar'
+                )->where('dosen_id', Auth::user()->dosen->id)->get(),
+                'kepangkatan' => HistoryPangkatDosen::where('dosen_id', Auth::user()->dosen->id)
+                    ->orderBy('id', 'desc')->get(),
                 'jabatan' => HistoryJabatanDosen::where('dosen_id', Auth::user()->dosen->id)->get(),
                 'umur' => $umur,
             ];
@@ -93,7 +101,7 @@ class ProfileDosenController extends Controller
 
         $insertProfile = Dosen::create($profileDosen);
         $idProfileDosen = $insertProfile->id;
-        $insertEncypToProfile = Dosen::find($idProfileDosen)->update([
+        Dosen::find($idProfileDosen)->update([
             'encrypt_id' => Crypt::encrypt($idProfileDosen)
         ]);
 
@@ -109,7 +117,7 @@ class ProfileDosenController extends Controller
         ];
         $insertJabatan = HistoryJabatanDosen::create($dataJabatan);
         $idJabatan = $insertJabatan->id;
-        $insertEncypToJabatan = HistoryJabatanDosen::find($idJabatan)->update([
+        HistoryJabatanDosen::find($idJabatan)->update([
             'encrypted_id' => Crypt::encrypt($idJabatan)
         ]);
         //end insert data ketable jabatan dosen
@@ -125,23 +133,14 @@ class ProfileDosenController extends Controller
         ];
         $insertPangkat = HistoryPangkatDosen::create($dataPangkat);
         $idPangkat = $insertPangkat->id;
-        $insertEncypToPangkat = HistoryPangkatDosen::find($idPangkat)->update([
+        HistoryPangkatDosen::find($idPangkat)->update([
             'encrypted_id' => Crypt::encrypt($idPangkat)
         ]);
         //end insert data ketable pangkat dosen
         return redirect()->route('dosen.profile.index')->with('success', 'Profile Berhasil Disimpan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.

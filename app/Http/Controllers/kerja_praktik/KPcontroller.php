@@ -32,7 +32,10 @@ class KPcontroller extends Controller
             $data = [
                 'mahasiswa' => $mahasiswa,
                 'seminar' => ModelSeminarKP::where('id_mahasiswa', $mahasiswa->id)->first(),
-                'berita_acara' => BaSKP::where('id_seminar', ModelSeminarKP::where('id_mahasiswa', $mahasiswa->id)->first()->id)->first(),
+                'berita_acara' => BaSKP::where(
+                    'id_seminar',
+                    ModelSeminarKP::where('id_mahasiswa', $mahasiswa->id)->first()->id
+                )->first(),
             ];
             return view('mahasiswa.kp.index', $data);
         }
@@ -47,15 +50,16 @@ class KPcontroller extends Controller
     {
         $mahasiswa = Mahasiswa::select('id')->where('user_id', auth()->user()->id)->first();
         $seminarKp = ModelSeminarKP::where('id_mahasiswa', $mahasiswa->id)->count();
-        $syarat = BerkasPersyaratanSeminar::find(1);
         if ($seminarKp >= 1) {
             return redirect()->route('mahasiswa.seminar.kp.index');
+        } else {
+            $syarat = BerkasPersyaratanSeminar::find(1);
+            $data = [
+                'dosens' => Dosen::select('encrypt_id', 'nama_dosen')->where('status', 'Aktif')
+                    ->get(),
+                'syarat' => $syarat,
+            ];
         }
-        $data = [
-            'dosens' => Dosen::select('encrypt_id', 'nama_dosen')->where('status', 'Aktif')
-                ->get(),
-            'syarat' => $syarat,
-        ];
         return view('mahasiswa.kp.create', $data);
     }
 
@@ -122,7 +126,7 @@ class KPcontroller extends Controller
         }
         $data = [
             'seminar' => ModelSeminarKP::find(Crypt::decrypt($id)),
-            'dosens' => Dosen::select('id','encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get(),
+            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get(),
             'syarat' => $syarat,
         ];
 

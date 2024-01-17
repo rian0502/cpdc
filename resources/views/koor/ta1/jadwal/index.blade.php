@@ -9,7 +9,7 @@
                     </div>
                     <div class="pb-20 m-3">
                         <div class="ml-3">
-                            <form action="{{route('koor.jadwalTA1.download')}}" method="POST">
+                            <form action="{{ route('koor.jadwalTA1.download') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="weight-500 col-md-3">
@@ -29,6 +29,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>NPM</th>
+                                    <th>Nama</th>
                                     <th>Judul</th>
                                     <th>Pengajuan</th>
                                     <th>Lokasi</th>
@@ -47,6 +48,9 @@
                                             </td>
                                             <td>
                                                 {{ $item->mahasiswa->npm }}
+                                            </td>
+                                            <td>
+                                                {{ $item->mahasiswa->nama_mahasiswa }}
                                             </td>
                                             <td>
                                                 {{ \Illuminate\Support\Str::limit($item->judul_ta, $limit = 40, $end = '...') }}

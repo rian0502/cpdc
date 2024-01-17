@@ -71,21 +71,16 @@ class ControllerKoorS2BaTaSatu extends Controller
         return View('koorS2.tesis1.validasi_ba.edit', compact('seminar'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
         $seminar = ModelSeminarTaSatuS2::find(Crypt::decrypt($id));
         if ($request->_token != csrf_token()) {
             return redirect()->back();
         } else {
-            if ($request->status_koor == 'Perbaikan' || $request->status_koor == 'Tidak Lulus') {
+            if (
+                $request->status_koor == 'Perbaikan' ||
+                $request->status_koor == 'Tidak Lulus'
+            ) {
                 $validated = $request->validate([
                     'keterangan' => 'required|min:3|max:255',
                 ], [
@@ -103,7 +98,8 @@ class ControllerKoorS2BaTaSatu extends Controller
                 $seminar->save();
             }
         }
-        return redirect()->route('koor.ValidasiBaTa1S2.index')->with('success', "Berita acara seminar berhasil diperbarui");
+        return redirect()->route('koor.ValidasiBaTa1S2.index')
+            ->with('success', "Berita acara seminar berhasil diperbarui");
     }
 
     /**

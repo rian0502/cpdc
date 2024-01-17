@@ -12,13 +12,14 @@ use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarKompreS2;
 use App\Http\Requests\StoreBaTaTesisRequest;
 use App\Http\Requests\UpdateBaSidangTesisRequest;
+use Illuminate\Support\Facades\DB;
 
 class ControllerMahasiswaS2BaKompre extends Controller
 {
     public function create()
     {
         $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
-        if ($mahasiswa->komprehensif->beritaAcara) {
+        if ($mahasiswa->komprehensifS2->beritaAcara) {
             return redirect()->back();
         }
         return view("mahasiswaS2.kompre.ba.create");
@@ -32,30 +33,46 @@ class ControllerMahasiswaS2BaKompre extends Controller
      */
     public function store(StoreBaTaTesisRequest $request)
     {
-        $file_ba = $request->file('file_ba');
-        $nama_ba = $file_ba->hashName();
-        $file_nilai = $request->file('file_nilai');
-        $nama_nilai = $file_nilai->hashName();
-        $data = [
-            'nilai' => $request->nilai,
-            'no_ba' => $request->no_ba,
-            'nilai_mutu' => $request->nilai_mutu,
-            'pengesahan' => $request->pengesahan,
-            'file_ba' => $nama_ba,
-            'file_nilai' => $nama_nilai,
-            'id_seminar' => Auth::user()->mahasiswa->komprehensifS2->id,
-        ];
-        $insert = ModelBaKompreS2::create($data);
-        $update = ModelBaKompreS2::find($insert->id);
-        $update->encrypt_id = Crypt::encrypt($insert->id);
-        $update->save();
-        $file_ba->move('uploads/ba_sidang_tesis', $nama_ba);
-        $file_nilai->move('uploads/nilai_sidang_tesis', $nama_nilai);
-        $jadwal = ModelJadwalSeminarKompreS2::where('id_seminar', Auth::user()->mahasiswa->komprehensifS2->id)->first();
-        $jadwal->tanggal = $request->tgl_realisasi_seminar;
-        $jadwal->updated_at = now();
-        $jadwal->save();
-        return redirect()->route('mahasiswa.sidang.kompres2.index')->with('success', 'Berita Acara Sidang Tesis berhasil ditambahkan!');
+        if ($request->_token != csrf_token()) {
+            return redirect()->back();
+        } else {
+            try {
+                DB::beginTransaction();
+                $file_ba = $request->file('file_ba');
+                $nama_ba = $file_ba->hashName();
+                $file_nilai = $request->file('file_nilai');
+                $nama_nilai = $file_nilai->hashName();
+                $data = [
+                    'nilai' => $request->nilai,
+                    'no_ba' => $request->no_ba,
+                    'nilai_mutu' => $request->nilai_mutu,
+                    'pengesahan' => $request->pengesahan,
+                    'file_ba' => $nama_ba,
+                    'file_nilai' => $nama_nilai,
+                    'id_seminar' => Auth::user()->mahasiswa->komprehensifS2->id,
+                ];
+                $insert = ModelBaKompreS2::create($data);
+                $update = ModelBaKompreS2::find($insert->id);
+                $update->encrypt_id = Crypt::encrypt($insert->id);
+                $update->save();
+                $file_ba->move('uploads/ba_sidang_tesis', $nama_ba);
+                $file_nilai->move('uploads/nilai_sidang_tesis', $nama_nilai);
+                $jadwal = ModelJadwalSeminarKompreS2::where(
+                    'id_seminar',
+                    Auth::user()->mahasiswa->komprehensifS2->id
+                )->first();
+                $jadwal->tanggal = $request->tgl_realisasi_seminar;
+                $jadwal->updated_at = now();
+                $jadwal->save();
+                DB::commit();
+                return redirect()->route('mahasiswa.sidang.kompres2.index')
+                    ->with('success', 'Berita Acara Sidang Tesis berhasil ditambahkan!');
+            } catch (\Throwable $th) {
+                DB::rollback();
+                return redirect()->route('mahasiswa.sidang.kompres2.index')
+                    ->with('error', $th->getMessage());
+            }
+        }
     }
 
 

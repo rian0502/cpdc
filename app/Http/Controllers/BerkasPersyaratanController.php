@@ -35,28 +35,6 @@ class BerkasPersyaratanController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -65,8 +43,10 @@ class BerkasPersyaratanController extends Controller
     public function edit($id)
     {
         //
+        $berkas = BerkasPersyaratanSeminar::select('encrypt_id', 'nama_file', 'path_file')
+            ->where('id', Crypt::decrypt($id))->first();
         $data = [
-            'file' => BerkasPersyaratanSeminar::select('encrypt_id', 'nama_file', 'path_file')->where('id', Crypt::decrypt($id))->first()
+            'file' => $berkas
         ];
         return view('admin.admin_berkas.berkas_persyaratan.edit', $data);
     }
@@ -80,7 +60,7 @@ class BerkasPersyaratanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validation = $request->validate([
+        $request->validate([
             'file_persyaratan' => 'required|mimes:pdf|max:2048'
         ], [
             'file_persyaratan.required' => 'File persyaratan seminar tidak boleh kosong',
@@ -98,18 +78,7 @@ class BerkasPersyaratanController extends Controller
         if (file_exists(('uploads/syarat_seminar/' . $old_file))) {
             unlink(('uploads/syarat_seminar/' . $old_file));
         }
-        return redirect()->route('berkas.berkas_persyaratan.index')->with('success', 'File persyaratan seminar berhasil diubah');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-
+        return redirect()->route('berkas.berkas_persyaratan.index')
+            ->with('success', 'File persyaratan seminar berhasil diubah');
     }
 }

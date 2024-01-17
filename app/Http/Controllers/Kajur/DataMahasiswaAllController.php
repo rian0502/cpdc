@@ -34,7 +34,13 @@ class DataMahasiswaAllController extends Controller
             $data = User::whereHas('roles', function ($query) {
                 $query->where('name', 'mahasiswa');
             })
-                ->with('mahasiswa', 'mahasiswa.seminar_kp', 'mahasiswa.ta_satu', 'mahasiswa.ta_dua', 'mahasiswa.komprehensif')
+                ->with(
+                    'mahasiswa',
+                    'mahasiswa.seminar_kp',
+                    'mahasiswa.ta_satu',
+                    'mahasiswa.ta_dua',
+                    'mahasiswa.komprehensif'
+                )
                 ->select('users.*');
 
             if ($status_kp != 'null' && $status_kp != '1') {
@@ -90,11 +96,12 @@ class DataMahasiswaAllController extends Controller
         }
         $mahasiswa = [
 
-            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()->where('status', 'Aktif')->whereHas('user', function ($query) {
-                $query->whereHas('roles', function ($query) {
-                    $query->where('name', 'mahasiswa');
-                });
-            })->orderBy('angkatan', 'desc')
+            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()
+                ->where('status', 'Aktif')->whereHas('user', function ($query) {
+                    $query->whereHas('roles', function ($query) {
+                        $query->where('name', 'mahasiswa');
+                    });
+                })->orderBy('angkatan', 'desc')
                 ->get(),
 
         ];
@@ -150,7 +157,10 @@ class DataMahasiswaAllController extends Controller
             'presentsi' => Laboratorium::where('user_id', $mahasiswa->user->id)->get(),
         ];
         if ($mahasiswa->user->hasRole('alumni')) {
-            $data['alumni'] = AktivitasAlumni::where('mahasiswa_id', $mahasiswa->id)->orderBy('tahun_masuk', 'desc')->get();
+            $data['alumni'] = AktivitasAlumni::where(
+                'mahasiswa_id',
+                $mahasiswa->id
+            )->orderBy('tahun_masuk', 'desc')->get();
         }
 
 
