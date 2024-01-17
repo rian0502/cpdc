@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 use App\Models\ModelSeminarKompre;
 use App\Models\TemplateBeritaAcara;
 use App\Http\Controllers\Controller;
-use App\Jobs\SendEmailKomprehensif;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarKompre;
 
@@ -37,6 +37,42 @@ class PenjadwalanKompreController extends Controller
                 ->where('status_admin', 'Valid')->get(),
         ];
         return view('koor.kompre.jadwal.index', $data);
+    }
+
+    public function downloadJadwal(Request $request)
+    {
+        $seminar = ModelSeminarKompre::doesntHave('jadwal')->where('status_admin', 'Valid')->get();
+        $spredsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spredsheet->getActiveSheet();
+        $sheet->setTitle('Daftar Seminar TA 1 S1');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Nama Mahasiswa');
+        $sheet->setCellValue('C1', 'NPM');
+        $sheet->setCellValue('D1', 'Judul TA');
+        $sheet->setCellValue('E1', 'Pembimbing 1');
+        $sheet->setCellValue('F1', 'Pembimbing 2');
+        $sheet->setCellValue('G1', 'Pembahas');
+        if ($seminar->count() > -0) {
+            foreach ($seminar as $key => $value) {
+                $sheet->setCellValue('A' . ($key + 2), $key + 1);
+                $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+                $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->npm);
+                $sheet->setCellValue('D' . ($key + 2), $value->judul_ta);
+                $sheet->setCellValue('E' . ($key + 2), $value->pembimbingSatu->nama_dosen);
+                if ($value->id_pembimbing_dua) {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pembimbingDua->nama_dosen);
+                } else {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pbl2_nama);
+                }
+                $sheet->setCellValue('G' . ($key + 2), $value->pembahas->nama_dosen);
+            }
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
+            $filename = 'Daftar Seminar Kompre.xlsx';
+            $writer->save($filename);
+            return response()->download($filename)->deleteFileAfterSend(true);
+        } else {
+            return redirect()->back()->with('error', 'Belum Seminar Komprehensif');
+        }
     }
 
     /**
@@ -130,7 +166,12 @@ class PenjadwalanKompreController extends Controller
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        dispatch(new SendEmailKomprehensif($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Sidang Komprehensif');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_kompre/' . $namafile);
+        });
+        unlink('uploads/print_ba_kompre/' . $namafile);
         return redirect()->route('koor.jadwalKompre.index')->with('success', 'Berhasil Menjadwalkan Sidang Komprehensif');
     }
 
@@ -159,7 +200,7 @@ class PenjadwalanKompreController extends Controller
             'locations' => Lokasi::all(),
             'seminar' => $seminar,
             'mahasiswa' => $seminar->mahasiswa,
-            'jadwal' => $seminar->jadwal
+            'jadwal' => $seminar->jadwal,
         ];
         return view('koor.kompre.jadwal.edit', $data);
     }
@@ -231,7 +272,12 @@ class PenjadwalanKompreController extends Controller
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        dispatch(new SendEmailKomprehensif($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Sidang Komprehensif');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_kompre/' . $namafile);
+        });
+        unlink('uploads/print_ba_kompre/' . $namafile);
         return redirect()->route('koor.jadwalKompre.index')->with('success', 'Berhasil Merubah Jadwal Sidang Komprehensif');
     }
 
@@ -286,7 +332,12 @@ class PenjadwalanKompreController extends Controller
             'jam_selesai' => $jadwal_semianr->jam_selesai_komprehensif,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        dispatch(new SendEmailKomprehensif($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Sidang Komprehensif');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_kompre/' . $namafile);
+        });
+        unlink('uploads/print_ba_kompre/' . $namafile);
         return redirect()->route('koor.jadwalKompre.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Sidang Komprehensif');
     }
     /**

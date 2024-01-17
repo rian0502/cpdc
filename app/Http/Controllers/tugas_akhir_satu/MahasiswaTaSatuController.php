@@ -42,24 +42,8 @@ class MahasiswaTaSatuController extends Controller
         return view('mahasiswa.ta1.create', $data);
     }
 
-
-    public function edit($id)
-    {
-        if (Auth::user()->mahasiswa->ta_satu->id != Crypt::decrypt($id) && Auth::user()->mahasiswa->ta_satu) {
-            return redirect()->back();
-        }
-        $data = [
-            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
-                ->where('status', 'Aktif')
-                ->get(),
-            'seminar' => ModelSeminarTaSatu::find(Crypt::decrypt($id)),
-        ];
-        return view('mahasiswa.ta1.edit', $data);
-    }
-
     public function store(StoreTugasAkhirSatuRequest $request)
     {
-
         $file = $request->file('berkas_seminar_ta_satu');
         $file_name = $file->hashName();
         $file->move(('uploads/syarat_seminar_ta1'), $file_name);
@@ -81,7 +65,6 @@ class MahasiswaTaSatuController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
-
         if ($request->id_pembimbing_dua == 'new') {
             $validation = $request->validate([
                 'pbl2_nama' => 'required|string|max:255|min:3',
@@ -113,6 +96,20 @@ class MahasiswaTaSatuController extends Controller
         $update->encrypt_id = Crypt::encrypt($store_id);
         $update->save();
         return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('success', 'Berhasil Mendaftar Seminar Tugas Akhir 1');
+    }
+
+    public function edit($id)
+    {
+        if (Auth::user()->mahasiswa->ta_satu->id != Crypt::decrypt($id) && Auth::user()->mahasiswa->ta_satu) {
+            return redirect()->back();
+        }
+        $data = [
+            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
+                ->where('status', 'Aktif')
+                ->get(),
+            'seminar' => ModelSeminarTaSatu::find(Crypt::decrypt($id)),
+        ];
+        return view('mahasiswa.ta1.edit', $data);
     }
 
     public function update(UpdateSeminarTaSatuRequest $request, $id)

@@ -33,7 +33,7 @@ class AkunDosenController extends Controller
         ];
         return view('akun.dosen.index', $data);
     }
-
+        
     /**
      * Show the form for creating a new resource.
      *

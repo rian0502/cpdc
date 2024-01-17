@@ -46,7 +46,6 @@ class CekJadwalController extends Controller
         } else {
             return response()->json(['message' => 'Valid']);
         }
-        return $request->all();
     }
     public function checkUpdate(Request $request)
     {
@@ -79,7 +78,6 @@ class CekJadwalController extends Controller
         } else {
             return response()->json(['message' => 'Valid']);
         }
-        return $request->all();
     }
 
     public function kp($jam_mulai_skp, $jam_selesai_skp, $tanggal_skp, $id_lokasi)

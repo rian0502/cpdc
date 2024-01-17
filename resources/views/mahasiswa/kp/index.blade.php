@@ -58,7 +58,7 @@
                     <div class="pd-20 card-box mb-30 bg-warning">
                         <div class="clearfix">
                             <div class="pull-left">
-                                <h4 class="text-dark h4">Pesan</h4>
+                                <h4 class="text-dark h4">Pemberitahuan</h4>
                                 <small>
 
                                     <p class="mb-30"></p>

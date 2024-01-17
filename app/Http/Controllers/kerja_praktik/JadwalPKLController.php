@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\kerja_praktik;
 
-use App\Jobs\SendEmailKerjaPraktik;
 use App\Models\Administrasi;
 use App\Models\JadwalSKP;
 use App\Models\Lokasi;
@@ -11,8 +10,8 @@ use App\Models\ModelJadwalSeminarTaDua;
 use App\Models\ModelJadwalSeminarTaSatu;
 use App\Models\ModelSeminarKP;
 use App\Models\TemplateBeritaAcara;
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Crypt;
@@ -79,21 +78,8 @@ class JadwalPKLController extends Controller
      */
     public function store(Request $request)
     {
-        $validasi = $request->validate([
-            'tanggal_skp' => 'required|date|after_or_equal:tomorrow',
-            'jam_mulai_skp' => 'required',
-            'jam_selesai_skp' => 'required',
-            'id_lokasi' => 'required|exists:lokasi,encrypt_id',
-        ], [
-            'tanggal_skp.required' => 'Tanggal tidak boleh kosong',
-            'tanggal_skp.date' => 'Tanggal harus berupa tanggal',
-            'tanggal_skp.after_or_equal' => 'Tanggal Minimal Besok',
-            'jam_mulai_skp.required' => 'Jam mulai tidak boleh kosong',
-            'jam_selesai_skp.required' => 'Jam selesai tidak boleh kosong',
-            'id_lokasi.required' => 'Lokasi tidak boleh kosong',
-            'id_lokasi.exists' => 'Lokasi tidak ditemukan',
-        ]);
-
+        // start time excetuion
+        $start = microtime(true);
         $id_seminar = array_key_last($request->all());
         $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
@@ -141,6 +127,8 @@ class JadwalPKLController extends Controller
         //send email
         $to_name = $seminar->mahasiswa->nama_mahasiswa;
         $to_email = $seminar->mahasiswa->user->email;
+
+
         $data = array(
             'name' => $seminar->mahasiswa->nama_mahasiswa,
             'body' => 'Berikut adalah jadwal seminar kerja praktik anda',
@@ -149,14 +137,24 @@ class JadwalPKLController extends Controller
             'jam_mulai' => $request->jam_mulai_skp,
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
-            'pembimbing_lapangan' => $seminar->pembimbing_lapangan,
-            'ni_pemlap' => $seminar->ni_pemlap,
+            'pembimbing_lapangan' => $request->pembimbing_lapangan,
+            'ni_pemlap' => $request->ni_pemlap,
 
         );
-
-        dispatch(new SendEmailKerjaPraktik($data, $to_name, $to_email, $namafile));
-
-        return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Ditambahkan');
+        //send email to mahasiswa
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach(('uploads/print_ba_kp/') . $namafile);
+        });
+        unlink(('uploads/print_ba_kp/' . $namafile));
+        //end time execution
+        $end = microtime(true);
+        $final = $end - $start;
+        // return $final;
+        return dd($final);
+        return redirect()->route('koor.jadwalPKL.index')
+            ->with('success', 'Jadwal Seminar KP Berhasil Ditambahkan');
     }
 
     /**
@@ -269,7 +267,12 @@ class JadwalPKLController extends Controller
 
         );
         //send email to mahasiswa
-        dispatch(new SendEmailKerjaPraktik($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach(('uploads/print_ba_kp/') . $namafile);
+        });
+        unlink(('uploads/print_ba_kp/' . $namafile));
         return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Diubah');
     }
 
@@ -324,7 +327,12 @@ class JadwalPKLController extends Controller
             'ni_pemlap' => $jadwal_skp->ni_pemlap,
         ];
         //send email to mahasiswa
-        dispatch(new SendEmailKerjaPraktik($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach(('uploads/print_ba_kp/') . $namafile);
+        });
+        unlink(('uploads/print_ba_kp/' . $namafile));
         return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Dikirim Ulang');
     }
 
