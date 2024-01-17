@@ -90,7 +90,7 @@ class ArsipValidasiAdminTaSatu extends Controller
             return redirect()->back()->with('error', 'Status Admin Harus Valid atau Invalid');
         } else if ($request->status_admin == 'Invalid') {
             $status = ['Valid', 'Invalid', 'Process'];
-            $validate = $request->validate(
+            $request->validate(
                 [
                     'status_admin' => ['required', 'string', 'in:' . implode(',', $status)],
                     'komentar' => ['required', 'string'],
