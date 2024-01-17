@@ -82,11 +82,12 @@ class DataMahasiswaAllS2Controller extends Controller
         }
         $mahasiswa = [
 
-            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()->where('status', 'Aktif')->whereHas('user', function ($query) {
-                $query->whereHas('roles', function ($query) {
-                    $query->where('name', 'mahasiswaS2');
-                });
-            })->orderBy('angkatan', 'desc')
+            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()
+                ->where('status', 'Aktif')->whereHas('user', function ($query) {
+                    $query->whereHas('roles', function ($query) {
+                        $query->where('name', 'mahasiswaS2');
+                    });
+                })->orderBy('angkatan', 'desc')
                 ->get(),
 
         ];

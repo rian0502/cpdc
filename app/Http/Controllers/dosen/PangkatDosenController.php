@@ -110,7 +110,8 @@ class PangkatDosenController extends Controller
             $pangkat->save();
             return redirect()->route('dosen.profile.index')->with('success', 'Data Kepangkatan Berhasil diubah');
         } else {
-            return redirect()->route('dosen.profile.index')->with('error', 'Anda tidak memiliki akses untuk mengubah data ini');
+            return redirect()->route('dosen.profile.index')
+                ->with('error', 'Anda tidak memiliki akses untuk mengubah data ini');
         }
     }
 

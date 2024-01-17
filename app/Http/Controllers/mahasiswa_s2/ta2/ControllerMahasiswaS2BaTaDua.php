@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\mahasiswa_s2\ta2;
 
 use App\Models\Mahasiswa;
+use Illuminate\Support\Facades\DB;
 use App\Models\ModelSeminarTaDuaS2;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -11,10 +12,11 @@ use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaDuaS2;
 use App\Http\Requests\StoreBaTaDuaS2Request;
 use App\Http\Requests\UpdateBaTaSatuS2Request;
+use Exception;
 
 class ControllerMahasiswaS2BaTaDua extends Controller
 {
-  
+
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +26,7 @@ class ControllerMahasiswaS2BaTaDua extends Controller
     public function create()
     {
         $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
-        if ($mahasiswa->komprehensifS2->beritaAcara) {
+        if ($mahasiswa->taDuaS2->beritaAcara) {
             return redirect()->back();
         }
         return view("mahasiswaS2.ta2.ba.create");
@@ -38,33 +40,48 @@ class ControllerMahasiswaS2BaTaDua extends Controller
      */
     public function store(StoreBaTaDuaS2Request $request)
     {
-        $ba = $request->file('file_ba');
-        $nama_ba = $ba->hashName();
-        $ba->move('uploads/ba_seminar_tesis_2', $nama_ba);
-        $nilai = $request->file('file_nilai');
-        $nama_nilai = $nilai->hashName();
-        $nilai->move('uploads/nilai_seminar_tesis_2', $nama_nilai);
-        $data = [
-            'nilai' => $request->nilai,
-            'no_ba' => $request->no_ba,
-            'nilai_mutu' => $request->nilai_mutu,
-            'ppt' => $request->ppt,
-            'file_ba' => $nama_ba,
-            'file_nilai' => $nama_nilai,
-            'id_seminar' => Auth::user()->mahasiswa->taDuaS2->id
-        ];
-        $insert = ModelBaSeminarTaDuaS2::create($data);
-        $update = ModelBaSeminarTaDuaS2::find($insert->id);
-        $update->encrypt_id = Crypt::encrypt($insert->id);
-        $update->save();
-        $jadwal = ModelJadwalSeminarTaDuaS2::where('id_seminar', Auth::user()->mahasiswa->taDuaS2->id)->first();
-        $jadwal->tanggal = $request->tgl_realisasi_seminar;
-        $jadwal->updated_at = now();
-        $jadwal->save();
-        return redirect()->route('mahasiswa.seminarta2s2.index')->with(['success' => 'Berhasil mengunggah berita acara seminar tesis 2']);
+        if ($request->_token != csrf_token()) {
+            return redirect()->back();
+        } else {
+            try {
+                DB::beginTransaction();
+                $ba = $request->file('file_ba');
+                $nama_ba = $ba->hashName();
+                $ba->move('uploads/ba_seminar_tesis_2', $nama_ba);
+                $nilai = $request->file('file_nilai');
+                $nama_nilai = $nilai->hashName();
+                $nilai->move('uploads/nilai_seminar_tesis_2', $nama_nilai);
+                $data = [
+                    'nilai' => $request->nilai,
+                    'no_ba' => $request->no_ba,
+                    'nilai_mutu' => $request->nilai_mutu,
+                    'ppt' => $request->ppt,
+                    'file_ba' => $nama_ba,
+                    'file_nilai' => $nama_nilai,
+                    'id_seminar' => Auth::user()->mahasiswa->taDuaS2->id
+                ];
+                $insert = ModelBaSeminarTaDuaS2::create($data);
+                $update = ModelBaSeminarTaDuaS2::find($insert->id);
+                $update->encrypt_id = Crypt::encrypt($insert->id);
+                $update->save();
+                $jadwal = ModelJadwalSeminarTaDuaS2::where(
+                    'id_seminar',
+                    Auth::user()->mahasiswa->taDuaS2->id
+                )->first();
+                $jadwal->tanggal = $request->tgl_realisasi_seminar;
+                $jadwal->updated_at = now();
+                $jadwal->save();
+                DB::commit();
+                return redirect()->route('mahasiswa.seminarta2s2.index')
+                    ->with(['success' => 'Berhasil mengunggah berita acara seminar tesis 2']);
+            } catch (Exception $e) {
+                DB::rollBack();
+                return redirect()->back()->with('error', $e->getMessage());
+            }
+        }
     }
 
-  
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -120,5 +137,4 @@ class ControllerMahasiswaS2BaTaDua extends Controller
         $jadwal->save();
         return redirect()->route('mahasiswa.seminarta2s2.index')->with('success', 'Berhasil mengubah berita acara seminar tesis 2');
     }
-
 }

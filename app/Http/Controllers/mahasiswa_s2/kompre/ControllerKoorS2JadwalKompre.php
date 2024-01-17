@@ -67,13 +67,18 @@ class ControllerKoorS2JadwalKompre extends Controller
      */
     public function store(Request $request)
     {
-        //
         $id = Crypt::decrypt(array_key_last($request->except('_token')));
-        $hari =  $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
-        $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
-        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
-        $kaprodi = User::role('kaprodiS2')->with('dosen')->first();
-        $kajur = User::role('jurusan')->with('dosen')->first();
+        $hari =  $hari = Carbon::parse($request->tanggal_skp)
+            ->locale('id_ID')->isoFormat('dddd');
+        $lokasi = Lokasi::select('id', 'nama_lokasi')
+            ->where('id', Crypt::decrypt($request->id_lokasi))
+            ->first();
+        $admin = Administrasi::select('nama_administrasi', 'nip')
+            ->where('status', 'Aktif')->first();
+        $kaprodi = User::role('kaprodiS2')
+            ->with('dosen')->first();
+        $kajur = User::role('jurusan')
+            ->with('dosen')->first();
         $data = [
             'tanggal' => $request->tanggal_skp,
             'jam_mulai' => $request->jam_mulai_skp,
@@ -133,7 +138,8 @@ class ControllerKoorS2JadwalKompre extends Controller
         $template->setValue('nama_koor_sidang', Auth::user()->name);
         $template->setValue('nip_koor_sidang', Auth::user()->dosen->nip);
         $template->setValue('hari', $hari);
-        $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'));
+        $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)
+            ->locale('id_ID')->isoFormat('D MMMM YYYY'));
         $template->setValue('jam_mulai', $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
@@ -145,18 +151,15 @@ class ControllerKoorS2JadwalKompre extends Controller
             'name' => $seminar->mahasiswa->nama_mahasiswa,
             'body' => 'Berikut adalah jadwal Sidang Tesis Anda',
             'seminar' => $seminar->judul_ta,
-            'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'),
+            'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)
+                ->locale('id_ID')->isoFormat('D MMMM YYYY'),
             'jam_mulai' => $request->jam_mulai_skp,
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
-            $message->to($to_email, $to_name)->subject('Jadwal Sidang Tesis');
-            $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach('uploads/print_ba_sidang_tesis/' . $namafile);
-        });
-        unlink('uploads/print_ba_sidang_tesis/' . $namafile);
-        return redirect()->route('koor.jadwalKompreS2.index')->with('success', 'Berhasil Menjadwalkan Sidang Tesis');
+        dispatch(new SendEmailSidangTesis($data, $to_name, $to_email, $namafile));
+        return redirect()->route('koor.jadwalKompreS2.index')
+            ->with('success', 'Berhasil Menjadwalkan Sidang Tesis');
     }
 
 

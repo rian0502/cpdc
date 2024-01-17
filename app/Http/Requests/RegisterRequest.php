@@ -35,6 +35,7 @@ class RegisterRequest extends FormRequest
                 'password' => 'required|string|min:8|max:255|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/',
                 'password_confirm' => 'required|same:password',
                 'jenis_akun' => 'required|in:mahasiswa,mahasiswaS2',
+                'berkas_upload' => 'required|mimes:pdf|max:1048',
             ];
         }
         return [
@@ -47,6 +48,7 @@ class RegisterRequest extends FormRequest
             'password' => 'required|string|min:8|max:255|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/',
             'password_confirm' => 'required|same:password',
             'jenis_akun' => 'required|in:alumni',
+            'berkas_upload' => 'required|mimes:pdf|max:1048',
         ];
     }
     public function messages()
@@ -81,6 +83,9 @@ class RegisterRequest extends FormRequest
                 'id_dosen.exists' => 'Dosen Pembimbing Akademik Tidak Terdaftar',
                 'jenis_akun.required' => 'Jenis Akun Harus dipilih',
                 'jenis_akun.in' => 'Jenis Akun Tidak Valid',
+                'berkas_upload.required' => 'Berkas Upload Harus diisi',
+                'berkas_upload.mimes' => 'Berkas Upload Harus Berupa PDF',
+                'berkas_upload.max' => 'Berkas Upload Maksimal 1 MB',
             ];
         }
         return [
@@ -111,6 +116,9 @@ class RegisterRequest extends FormRequest
             'id_dosen.exists' => 'Dosen Pembimbing Akademik Tidak Terdaftar',
             'jenis_akun.required' => 'Jenis Akun Harus dipilih',
             'jenis_akun.in' => 'Jenis Akun Tidak Valid',
+            'berkas_upload.required' => 'Berkas Upload Harus diisi',
+            'berkas_upload.mimes' => 'Berkas Upload Harus Berupa PDF',
+            'berkas_upload.max' => 'Berkas Upload Maksimal 1 MB',
         ];
     }
 

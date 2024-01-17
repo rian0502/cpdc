@@ -69,21 +69,16 @@ class ValidasiAdminTaDua extends Controller
         ];
         return view('admin.admin_berkas.validasi.seminar.ta2.edit', $data);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         if ($request->status_admin == 'Process') {
-            return redirect()->back()->with('error', 'Status Admin Harus Valid atau Invalid');
-        } else if ($request->status_admin == 'Invalid') {
+            return redirect()->back()->with(
+                'error',
+                'Status Admin Harus Valid atau Invalid'
+            );
+        } elseif ($request->status_admin == 'Invalid') {
             $status = ['Valid', 'Invalid', 'Process'];
-            $validate = $request->validate(
+            $request->validate(
                 [
                     'status_admin' => ['required', 'string', 'in:' . implode(',', $status)],
                     'komentar' => ['required', 'string'],
@@ -101,7 +96,7 @@ class ValidasiAdminTaDua extends Controller
             $seminar->save();
         } else {
             $status = ['Valid', 'Invalid', 'Process'];
-            $validate = $request->validate(
+            $request->validate(
                 [
                     'status_admin' => ['required', 'string', 'in:' . implode(',', $status)],
                 ],
@@ -115,7 +110,8 @@ class ValidasiAdminTaDua extends Controller
             $seminar->komentar = null;
             $seminar->save();
         }
-        return redirect()->route('berkas.validasi.seminar.ta2.index')->with('success', 'Berhasil Mengubah Data Seminar');
+        return redirect()->route('berkas.validasi.seminar.ta2.index')
+            ->with('success', 'Berhasil Mengubah Data Seminar');
     }
 
     /**
