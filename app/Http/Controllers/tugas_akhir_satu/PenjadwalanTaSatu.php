@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaSatu;
 use App\Models\TemplateBeritaAcara;
+use SeminarTaSatu;
 
 class PenjadwalanTaSatu extends Controller
 {
@@ -31,6 +32,7 @@ class PenjadwalanTaSatu extends Controller
         $now = date('Y-m-d');
         $data = [
             'seminar' => ModelSeminarTaSatu::select('id', 'encrypt_id', 'judul_ta', 'periode_seminar', 'id_mahasiswa')
+                ->with('mahasiswa', 'jadwal')
                 ->whereDoesntHave('ba_seminar')
                 ->where('status_admin', 'Valid')
                 ->where(function ($query) use ($now) {
@@ -280,8 +282,8 @@ class PenjadwalanTaSatu extends Controller
 
     public function downloadJadwal(Request $request)
     {
-        $angkatan = 2020;
-        $mahasiswa = Mahasiswa::whereHas('ta_satu')->where('angkatan', $angkatan)->get();
+        $seminar = ModelSeminarTaSatu::with('mahasiswa', 'pembimbing_satu', 'pembimbing_dua', 'pembahas')
+            ->whereDoesntHave('jadwal')->where('status_admin', 'Valid')->orderBy('updated_at', 'asc')->get();
         $spredsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $sheet = $spredsheet->getActiveSheet();
         $sheet->setTitle('Daftar Seminar TA 1 S1');
@@ -291,25 +293,30 @@ class PenjadwalanTaSatu extends Controller
         $sheet->setCellValue('D1', 'Judul TA');
         $sheet->setCellValue('E1', 'Pembimbing 1');
         $sheet->setCellValue('F1', 'Pembimbing 2');
-        if ($mahasiswa->count() > 0) {
-            foreach ($mahasiswa as $key => $value) {
+        $sheet->setCellValue('G1', 'Pembahas');
+        $sheet->setCellValue('H1', 'Tanggal Validasi');
+        if ($seminar->count() > 0) {
+            foreach ($seminar as $key => $value) {
                 $sheet->setCellValue('A' . ($key + 2), $key + 1);
-                $sheet->setCellValue('B' . ($key + 2), $value->nama_mahasiswa);
-                $sheet->setCellValue('C' . ($key + 2), $value->npm);
-                $sheet->setCellValue('D' . ($key + 2), $value->ta_satu->judul_ta);
-                $sheet->setCellValue('E' . ($key + 2), $value->ta_satu->pembimbing_satu->nama_dosen);
-                if ($value->ta_satu->id_pembimbing_dua) {
-                    $sheet->setCellValue('F' . ($key + 2), $value->ta_satu->pembimbing_dua->nama_dosen);
+                $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+                $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->npm);
+                $sheet->setCellValue('D' . ($key + 2), $value->judul_ta);
+                $sheet->setCellValue('E' . ($key + 2), $value->pembimbing_satu->nama_dosen);
+                if ($value->id_pembimbing_dua) {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pembimbing_dua->nama_dosen);
                 } else {
-                    $sheet->setCellValue('F' . ($key + 2), $value->ta_satu->pbl2_nama);
+                    $sheet->setCellValue('F' . ($key + 2), $value->pbl2_nama);
                 }
+                $sheet->setCellValue('G' . ($key + 2), $value->pembahas->nama_dosen);
+                $sheet->setCellValue('H' . ($key + 2), $value->updated_at->isoFormat('D MMMM Y'));
             }
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
-            $filename = 'Daftar Seminar TA 1 S1 Angkatan ' . $angkatan . '.xlsx';
+            $filename = 'Daftar Seminar TA 1 S1 Angkatan .xlsx';
             $writer->save($filename);
             return response()->download($filename)->deleteFileAfterSend(true);
         } else {
-            return redirect()->back()->with('error', 'Belum Ada Mahasiswa yang Mendaftar Seminar TA 1');
+            return redirect()->back()
+                ->with('error', 'Belum Ada Mahasiswa yang Mendaftar Seminar TA 1');
         }
     }
 }
