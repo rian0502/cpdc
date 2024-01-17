@@ -59,7 +59,7 @@
                                         <td>
                                             {{ $loop->iteration }}
                                         </td>
-                                        <td>
+                                        <td style="text-align: left;">
                                             {{ $item->nama_administrasi }}
                                         </td>
                                         <td>
@@ -71,7 +71,7 @@
                                                     \Carbon\Carbon::parse($item->tanggal_lahir)->age }}
                                             </td>
                                         @endrole
-                                        <td style="word-wrap: break-word;">
+                                        <td style="text-align: left; word-wrap: break-word;">
                                             {{ $item->user->email }}
                                         </td>
                                         <td>
