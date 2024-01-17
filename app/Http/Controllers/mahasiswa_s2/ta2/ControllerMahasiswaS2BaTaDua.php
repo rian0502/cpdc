@@ -26,7 +26,7 @@ class ControllerMahasiswaS2BaTaDua extends Controller
     public function create()
     {
         $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
-        if ($mahasiswa->komprehensifS2->beritaAcara) {
+        if ($mahasiswa->taDuaS2->beritaAcara) {
             return redirect()->back();
         }
         return view("mahasiswaS2.ta2.ba.create");

@@ -98,6 +98,7 @@ class AuthController extends Controller
         ];
         return view('auth.register', $data);
     }
+    
     public function attemptRegister(RegisterRequest $request)
     {
         try {
@@ -132,13 +133,10 @@ class AuthController extends Controller
                 } elseif ($request->jenis_akun == 'mahasiswaS2') {
                     $user->assignRole('mahasiswaS2');
                     $mhs['status'] = 'Aktif';
-                } else {
-                    $user->assignRole('alumni');
-                    $mhs['status'] = 'Alumni';
                 }
                 Mahasiswa::create($mhs);
                 event(new Registered($user));
-                dispatch(new SendEmailVertification($user));
+                $user->sendEmailVerificationNotification();
                 auth()->login($user);
             });
             return redirect()->route('verification.notice')->with(

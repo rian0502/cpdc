@@ -330,8 +330,6 @@ Route::prefix('koor')->name('koor.')->group(function () {
     Route::resource('arsip/kompre', EditSeminarKomprehensifController::class)
         ->middleware(['auth', 'profile', 'verified', 'role:kompre'])->names('arsip.kompre');
 
-
-
     //koor S2
     Route::get('/jadwalTA1S2/resend/{id}', [ControllerKoorS2PenjadwalanTaSatu::class, 'resend'])
         ->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->name('jadwalTA1S2.resend');
@@ -443,9 +441,6 @@ Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verif
     Route::post('unduh/penghargaan', [ExportDataDosen::class, 'penghargaan'])->name('unduh.penghargaan');
 });
 
-
-
-
 Route::prefix('jurusan')->name('jurusan.')->middleware('auth', 'profile', 'verified', 'role:jurusan')->group(function () {
     Route::resource('lokasi', LokasiController::class);
 });
@@ -531,14 +526,11 @@ Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
     if (!$user || !hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
         return redirect('/login')->with('error', 'Invalid verification link.');
     }
-
     if ($user->hasVerifiedEmail()) {
         return redirect('/dashboard')->with('success', 'Akun anda sudah terverivikasi.');
     }
-
     $user->markEmailAsVerified();
     event(new Verified($user));
-
     return redirect('/dashboard')->with('success', 'Akun anda berhasil terverivikasi!');
 })->middleware('signed')->name('verification.verify');
 

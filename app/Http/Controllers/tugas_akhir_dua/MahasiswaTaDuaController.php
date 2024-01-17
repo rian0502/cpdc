@@ -23,7 +23,10 @@ class MahasiswaTaDuaController extends Controller
 
         if (Auth::user()->mahasiswa->ta_dua) {
             $data = [
-                'seminar' => ModelSeminarTaDua::where('id_mahasiswa', Auth::user()->mahasiswa->id)->first(),
+                'seminar' => ModelSeminarTaDua::where(
+                    'id_mahasiswa',
+                    Auth::user()->mahasiswa->id
+                )->first(),
                 'mahasiswa' => Auth::user()->mahasiswa,
             ];
             return view('mahasiswa.ta2.index', $data);
@@ -47,16 +50,18 @@ class MahasiswaTaDuaController extends Controller
                 $syarat = BerkasPersyaratanSeminar::find(3);
                 return view('mahasiswa.ta2.create', compact(['syarat']));
             } else {
-                return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Anda belum menyelesaikan seminar tugas akhir 1');
+                return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')
+                    ->with('error', 'Anda belum menyelesaikan seminar tugas akhir 1');
             }
         } else {
-            return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Anda belum menyelesaikan seminar tugas akhir 1');
+            return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')
+                ->with('error', 'Anda belum menyelesaikan seminar tugas akhir 1');
         }
     }
 
     public function store(Request $request)
     {
-        $validation = $request->validate([
+        $request->validate([
             'periode_seminar' => ['required'],
             'agreement' => ['required'],
             'berkas_seminar_ta_dua' => ['required', 'mimes:pdf', 'max:2048', 'file', 'mimetypes:application/pdf'],
@@ -99,7 +104,8 @@ class MahasiswaTaDuaController extends Controller
         $update = ModelSeminarTaDua::find($id);
         $update->encrypt_id = Crypt::encrypt($id);
         $update->save();
-        return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('success', 'Berhasil mengajukan seminar tugas akhir 2');
+        return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')
+            ->with('success', 'Berhasil mengajukan seminar tugas akhir 2');
     }
 
     /**
@@ -206,7 +212,7 @@ class MahasiswaTaDuaController extends Controller
         $seminar->komentar = null;
         $seminar->status_admin = 'Process';
         $seminar->save();
-        return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('success', 'Berhasil Mengubah data Seminar Tugas Akhir 2');
+        return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')
+            ->with('success', 'Berhasil Mengubah data Seminar Tugas Akhir 2');
     }
-
 }

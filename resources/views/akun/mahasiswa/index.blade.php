@@ -40,6 +40,11 @@
                 </div>
             </div>
         </div>
+        <style>
+            .left-align {
+                text-align: left;
+            }
+        </style>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             $(document).ready(function() {
@@ -85,15 +90,22 @@
                         {
                             data: 'name',
                             name: 'name',
-                            orderable: true
+                            orderable: true,
+                            render: function(data, type, row, meta) {
+                                return '<div class="left-align">' + data + '</div>';
+                            }
                         },
                         {
                             data: 'email',
-                            name: 'email'
+                            name: 'email',
+                            render: function(data, type, row, meta) {
+                                return '<div class="left-align">' + data + '</div>';
+                            }
                         },
                         {
                             data: 'aktivasi',
                             name: 'aktivasi',
+                            
                         },
                         {
                             data: null,
