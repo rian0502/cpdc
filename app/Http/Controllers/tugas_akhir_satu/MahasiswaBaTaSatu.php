@@ -4,6 +4,7 @@ namespace App\Http\Controllers\tugas_akhir_satu;
 
 use App\Models\Mahasiswa;
 use App\Models\ModelSeminarTaSatu;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\ModelBaSeminarTaSatu;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ class MahasiswaBaTaSatu extends Controller
     {
         //
         $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
-        if($mahasiswa->ta_satu->ba_seminar){
+        if ($mahasiswa->ta_satu->ba_seminar) {
             return redirect()->back();
         }
         return view('mahasiswa.ta1.ba.index');
@@ -49,37 +50,48 @@ class MahasiswaBaTaSatu extends Controller
     public function store(StoreBaTaSatuRequest $request)
     {
         //
-        if($request->_token != csrf_token()){
+        if ($request->_token != csrf_token()) {
             return redirect()->back();
-        }else{
-            $seminar = Auth::user()->mahasiswa->ta_satu;
-            $ba = $request->file('berkas_ba_seminar_ta_satu');
-            $file_ba = $ba->hashName();
-            $nilai = $request->file('berkas_nilai_seminar_ta_satu');
-            $file_nilai = $nilai->hashName();
-            $ba->move(('uploads/ba_seminar_ta_satu'), $file_ba);
-            $nilai->move(('uploads/nilai_seminar_ta_satu'), $file_nilai);
+        } else {
 
-            $data = [
-                'no_berkas_ba_seminar_ta_satu' => $request->no_berkas_ba_seminar_ta_satu,
-                'berkas_ba_seminar_ta_satu' => $file_ba,
-                'berkas_nilai_seminar_ta_satu' => $file_nilai,
-                'berkas_ppt_seminar_ta_satu' => $request->berkas_ppt_seminar_ta_satu,
-                'nilai' => $request->nilai,
-                'huruf_mutu' => $request->huruf_mutu,
-                'id_seminar' => $seminar->id,
-            ];
-            $insBa = ModelBaSeminarTaSatu::create($data);
-            $ins_id = $insBa->id;
-            $update = ModelBaSeminarTaSatu::find($ins_id);
-            $update->encrypt_id = Crypt::encrypt($ins_id);
-            $update->save();
-            $jadwal = ModelJadwalSeminarTaSatu::where('id_seminar', $seminar->id)->first();
-            $jadwal->tanggal_seminar_ta_satu = $request->tgl_realisasi_seminar;
-            $jadwal->updated_at = now();
-            $jadwal->save();
+            try {
+                DB::beginTransaction();
 
-            return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('success', 'Berhasil mengunggah berita acara seminar TA 1');
+                $seminar = Auth::user()->mahasiswa->ta_satu;
+                $ba = $request->file('berkas_ba_seminar_ta_satu');
+                $file_ba = $ba->hashName();
+                $nilai = $request->file('berkas_nilai_seminar_ta_satu');
+                $file_nilai = $nilai->hashName();
+
+                $ba->move(('uploads/ba_seminar_ta_satu'), $file_ba);
+                $nilai->move(('uploads/nilai_seminar_ta_satu'), $file_nilai);
+
+                $data = [
+                    'no_berkas_ba_seminar_ta_satu' => $request->no_berkas_ba_seminar_ta_satu,
+                    'berkas_ba_seminar_ta_satu' => $file_ba,
+                    'berkas_nilai_seminar_ta_satu' => $file_nilai,
+                    'berkas_ppt_seminar_ta_satu' => $request->berkas_ppt_seminar_ta_satu,
+                    'nilai' => $request->nilai,
+                    'huruf_mutu' => $request->huruf_mutu,
+                    'id_seminar' => $seminar->id,
+                ];
+
+                $insBa = ModelBaSeminarTaSatu::create($data);
+                $ins_id = $insBa->id;
+                $update = ModelBaSeminarTaSatu::find($ins_id);
+                $update->encrypt_id = Crypt::encrypt($ins_id);
+                $update->save();
+
+                $jadwal = ModelJadwalSeminarTaSatu::where('id_seminar', $seminar->id)->first();
+                $jadwal->tanggal_seminar_ta_satu = $request->tgl_realisasi_seminar;
+                $jadwal->updated_at = now();
+                $jadwal->save();
+                DB::commit();
+                return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('success', 'Berhasil mengunggah berita acara seminar TA 1');
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('error', 'Gagal mengunggah berita acara seminar TA 1');
+            }
         }
     }
 
@@ -117,12 +129,12 @@ class MahasiswaBaTaSatu extends Controller
     public function update(UpdateBaTaSatuRequest $request, $id)
     {
         //validasi _token
-        if($request->_token != csrf_token()){
+        if ($request->_token != csrf_token()) {
             return redirect()->back();
         }
         //validasi user
         $ba = ModelBaSeminarTaSatu::find(Crypt::decrypt($id));
-        if(Auth::user()->mahasiswa->id != $ba->seminar->id_mahasiswa){
+        if (Auth::user()->mahasiswa->id != $ba->seminar->id_mahasiswa) {
             return redirect()->back();
         }
         $data = [
@@ -132,7 +144,7 @@ class MahasiswaBaTaSatu extends Controller
             'updated_at' => date('Y-m-d H:i:s'),
             'berkas_ppt_seminar_ta_satu' => $request->berkas_ppt_seminar_ta_satu,
         ];
-        if($request->file('berkas_ba_seminar_ta_satu')){
+        if ($request->file('berkas_ba_seminar_ta_satu')) {
             $oldFile = $ba->berkas_ba_seminar_ta_satu;
             if (file_exists(('uploads/ba_seminar_ta_satu/' . $oldFile))) {
                 unlink(('uploads/ba_seminar_ta_satu/' . $oldFile));
@@ -142,7 +154,7 @@ class MahasiswaBaTaSatu extends Controller
             $ba_file->move(('uploads/ba_seminar_ta_satu'), $file_ba);
             $data['berkas_ba_seminar_ta_satu'] = $file_ba;
         }
-        if($request->file('berkas_nilai_seminar_ta_satu')){
+        if ($request->file('berkas_nilai_seminar_ta_satu')) {
             $oldFile = $ba->berkas_nilai_seminar_ta_satu;
             if (file_exists(('uploads/nilai_seminar_ta_satu/' . $oldFile))) {
                 unlink(('uploads/nilai_seminar_ta_satu/' . $oldFile));

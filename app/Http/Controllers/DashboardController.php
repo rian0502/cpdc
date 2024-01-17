@@ -53,11 +53,13 @@ class DashboardController extends Controller
             }
 
             return view('dashboard');
-        } else if (Auth::user()->hasAnyRole(['mahasiswa', 'alumni', 'mahasiswaS2', 'alumniS2'])) {
+        } elseif (Auth::user()->hasAnyRole(['mahasiswa', 'alumni', 'mahasiswaS2', 'alumniS2'])) {
             if (Auth::user()->hasAnyRole(['mahasiswa', 'alumni'])) {
                 $data = [
-                    'jumlah_prestasi' => PrestasiMahasiswa::select('mahasiswa_id')->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
-                    'jumlah_aktivitas' => AktivitasMahasiswa::select('mahasiswa_id')->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
+                    'jumlah_prestasi' => PrestasiMahasiswa::select('mahasiswa_id')
+                        ->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
+                    'jumlah_aktivitas' => AktivitasMahasiswa::select('mahasiswa_id')
+                        ->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
                     'sop_kimdas' => SopLab::where('id_lokasi', 4)->get(),
                     'sop_organik' => SopLab::where('id_lokasi', 3)->get(),
                     'sop_analitik' => SopLab::where('id_lokasi', 1)->get(),
@@ -66,12 +68,14 @@ class DashboardController extends Controller
                 ];
             } else {
                 $data = [
-                    'jumlah_prestasi_s2' => ModelsPrestasiMahasiswaS2::select('mahasiswa_id')->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
-                    'jumlah_aktivitas_s2' => AktivitasMahasiswaS2::select('mahasiswa_id')->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
+                    'jumlah_prestasi_s2' => ModelsPrestasiMahasiswaS2::select('mahasiswa_id')
+                        ->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
+                    'jumlah_aktivitas_s2' => AktivitasMahasiswaS2::select('mahasiswa_id')
+                        ->where('mahasiswa_id', Auth::user()->mahasiswa->id)->count(),
                 ];
             }
             return view('dashboard', $data);
-        } else if (Auth::user()->hasRole('dosen')) {
+        } elseif (Auth::user()->hasRole('dosen')) {
             $data = [
                 'jadwalskp' => (new ModelSeminarKP())->getJadwalDosenDate(Auth::user()->dosen->id),
                 'jadwalta1' => (new ModelSeminarTaSatu())->getJadwalDosenDate(Auth::user()->dosen->id),
@@ -82,8 +86,14 @@ class DashboardController extends Controller
                 'jadwalSidangTesis' => (new ModelKompreS2())->getJadwalDosenDate(Auth::user()->dosen->id),
             ];
             if (Auth::user()->hasRole('pkl')) {
-                $data['invalid_kp'] = ModelSeminarKP::where('proses_admin', 'Valid')->where('status_seminar', '!=', 'Selesai')->count();
-                $data['jadwal_seminar'] = ModelSeminarKP::leftJoin('jadwal_skp', 'seminar_kp.id', '=', 'jadwal_skp.id_skp')->count();
+                $data['invalid_kp'] = ModelSeminarKP::where('proses_admin', 'Valid')
+                    ->where('status_seminar', '!=', 'Selesai')->count();
+                $data['jadwal_seminar'] = ModelSeminarKP::leftJoin(
+                    'jadwal_skp',
+                    'seminar_kp.id',
+                    '=',
+                    'jadwal_skp.id_skp'
+                )->count();
                 $data['total_berkas']  = BaSKP::count();
                 $data['jumlah_kp'] = ModelSeminarKP::count();
             }
@@ -141,7 +151,7 @@ class DashboardController extends Controller
         $nonMahasiswa = Mahasiswa::where('status', '!=', 'Aktif')->count();
         $role = DB::table('roles')->count();
         $nonAktif = $nonDosen + $nonAdmin + $nonMahasiswa;
-        $data = [
+        return [
             'npm' => BaseNPM::count(),
             'profile' => $dosen + $mahasiswa + $admin,
             'noVertif' => User::where('email_verified_at', null)->count(),
@@ -151,6 +161,5 @@ class DashboardController extends Controller
             'nonAcc' => $nonAktif,
             'role' => $role
         ];
-        return $data;
     }
 }

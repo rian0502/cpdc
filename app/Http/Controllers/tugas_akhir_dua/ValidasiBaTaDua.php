@@ -80,34 +80,7 @@ class ValidasiBaTaDua extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $seminar = ModelSeminarTaDua::find(Crypt::decrypt($id));
-
-        if ($request->_token != csrf_token()) {
-            return redirect()->back();
-        } else {
-            if ($request->status_koor == 'Perbaikan' || $request->status_koor == 'Tidak Lulus') {
-                $validated = $request->validate([
-                    'keterangan' => 'required|min:3|max:255',
-                ], [
-                    'keterangan.required' => 'Keterangan harus diisi',
-                    'keterangan.min' => 'Keterangan minimal 3 karakter',
-                    'keterangan.max' => 'Keterangan maksimal 255 karakter',
-                ]);
-                $seminar->status_koor = $request->status_koor;
-                $seminar->komentar = $request->keterangan;
-                $seminar->updated_at = date('Y-m-d H:i:s');
-                $seminar->save();
-            } else {
-                $seminar->status_koor = $request->status_koor;
-                $seminar->updated_at = date('Y-m-d H:i:s');
-                $seminar->save();
-            }
-
-            return redirect()->route('koor.validasiBaTA2.index')->with('success', 'Berhasil memvalidasi berita acara seminar');
-        }
-    }
+    
 
     /**
      * Remove the specified resource from storage.

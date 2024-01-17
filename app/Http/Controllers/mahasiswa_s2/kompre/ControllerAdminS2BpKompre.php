@@ -63,7 +63,8 @@ class ControllerAdminS2BpKompre extends Controller
             $seminar->updated_at = date('Y-m-d H:i:s');
             $seminar->save();
         }
-        return redirect()->route('berkas.validasi.s2.tesis3.index')->with('success', 'Berhasil Mengubah data');
+        return redirect()->route('berkas.validasi.s2.tesis3.index')
+        ->with('success', 'Berhasil Mengubah data');
     }
 
     /**

@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\kerja_praktik;
 
-use App\Jobs\SendEmailKerjaPraktik;
-use App\Models\Administrasi;
-use App\Models\JadwalSKP;
-use App\Models\Lokasi;
-use App\Models\ModelJadwalSeminarKompre;
-use App\Models\ModelJadwalSeminarTaDua;
-use App\Models\ModelJadwalSeminarTaSatu;
-use App\Models\ModelSeminarKP;
-use App\Models\TemplateBeritaAcara;
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Lokasi;
+use App\Models\JadwalSKP;
+use App\Models\Administrasi;
 use Illuminate\Http\Request;
+use App\Models\ModelSeminarKP;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Crypt;
+use App\Jobs\SendEmailKerjaPraktik;
+use App\Models\TemplateBeritaAcara;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Crypt;
+use App\Models\ModelJadwalSeminarTaDua;
+use App\Models\ModelJadwalSeminarKompre;
+use App\Models\ModelJadwalSeminarTaSatu;
 use PhpOffice\PhpWord\TemplateProcessor;
 
 class JadwalPKLController extends Controller
@@ -40,7 +40,14 @@ class JadwalPKLController extends Controller
         //
         $now = date('Y-m-d');
         $data = [
-            'seminar' => ModelSeminarKP::select('id', 'encrypt_id', 'judul_kp', 'mitra', 'rencana_seminar', 'id_mahasiswa')
+            'seminar' => ModelSeminarKP::select(
+                'id',
+                'encrypt_id',
+                'judul_kp',
+                'mitra',
+                'rencana_seminar',
+                'id_mahasiswa'
+            )
                 ->whereDoesntHave('berita_acara')
                 ->where('proses_admin', '=', 'Valid')
                 ->where(function ($query) use ($now) {
@@ -79,27 +86,11 @@ class JadwalPKLController extends Controller
      */
     public function store(Request $request)
     {
-        $validasi = $request->validate([
-            'tanggal_skp' => 'required|date|after_or_equal:tomorrow',
-            'jam_mulai_skp' => 'required',
-            'jam_selesai_skp' => 'required',
-            'id_lokasi' => 'required|exists:lokasi,encrypt_id',
-        ], [
-            'tanggal_skp.required' => 'Tanggal tidak boleh kosong',
-            'tanggal_skp.date' => 'Tanggal harus berupa tanggal',
-            'tanggal_skp.after_or_equal' => 'Tanggal Minimal Besok',
-            'jam_mulai_skp.required' => 'Jam mulai tidak boleh kosong',
-            'jam_selesai_skp.required' => 'Jam selesai tidak boleh kosong',
-            'id_lokasi.required' => 'Lokasi tidak boleh kosong',
-            'id_lokasi.exists' => 'Lokasi tidak ditemukan',
-        ]);
-
         $id_seminar = array_key_last($request->all());
         $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
         $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
         $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
         $kajur = User::role('jurusan')->with('dosen')->first();
-
         $insert = JadwalSKP::create([
             'tanggal_skp' => $request->tanggal_skp,
             'jam_mulai_skp' => $request->jam_mulai_skp,
@@ -131,7 +122,10 @@ class JadwalPKLController extends Controller
         $template->setValue('jam_mulai',  $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('hari', $hari);
-        $template->setValue('tgl_seminar_kp', Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'));
+        $template->setValue(
+            'tgl_seminar_kp',
+            Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY')
+        );
         $template->setValue('mitra', $request->mitra);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
         $template->setValue('pembimbing_lapangan', $request->pembimbing_lapangan);
@@ -141,6 +135,8 @@ class JadwalPKLController extends Controller
         //send email
         $to_name = $seminar->mahasiswa->nama_mahasiswa;
         $to_email = $seminar->mahasiswa->user->email;
+
+
         $data = array(
             'name' => $seminar->mahasiswa->nama_mahasiswa,
             'body' => 'Berikut adalah jadwal seminar kerja praktik anda',
@@ -149,14 +145,14 @@ class JadwalPKLController extends Controller
             'jam_mulai' => $request->jam_mulai_skp,
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
-            'pembimbing_lapangan' => $seminar->pembimbing_lapangan,
-            'ni_pemlap' => $seminar->ni_pemlap,
+            'pembimbing_lapangan' => $request->pembimbing_lapangan,
+            'ni_pemlap' => $request->ni_pemlap,
 
         );
 
         dispatch(new SendEmailKerjaPraktik($data, $to_name, $to_email, $namafile));
-
-        return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Ditambahkan');
+        return redirect()->route('koor.jadwalPKL.index')
+            ->with('success', 'Jadwal Seminar KP Berhasil Ditambahkan');
     }
 
     /**
@@ -197,7 +193,7 @@ class JadwalPKLController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validasi = $request->validate([
+        $request->validate([
             'tanggal_skp' => 'required|date|after_or_equal:tomorrow',
             'jam_mulai_skp' => 'required',
             'jam_selesai_skp' => 'required',
@@ -212,7 +208,11 @@ class JadwalPKLController extends Controller
             'id_lokasi.exists' => 'Lokasi tidak ditemukan',
         ]);
 
-        $cekJadwal = JadwalSKP::where('tanggal_skp', '=', $request->tanggal_skp)->where('jam_mulai_skp', '=', $request->jam_mulai_skp)->where('jam_selesai_skp', '=', $request->jam_selesai_skp)->where('id_lokasi', '=', Crypt::decrypt($request->id_lokasi))->first();
+        $cekJadwal = JadwalSKP::where('tanggal_skp', '=', $request->tanggal_skp)
+            ->where('jam_mulai_skp', '=', $request->jam_mulai_skp)
+            ->where('jam_selesai_skp', '=', $request->jam_selesai_skp)
+            ->where('id_lokasi', '=', Crypt::decrypt($request->id_lokasi))
+            ->first();
         if ($cekJadwal) {
             return redirect()->back()->with('error', 'Jadwal Sudah Terdaftar');
         }
@@ -244,7 +244,10 @@ class JadwalPKLController extends Controller
         $template->setValue('jam_mulai',  $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('hari', $hari);
-        $template->setValue('tgl_seminar_kp', Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'));
+        $template->setValue(
+            'tgl_seminar_kp',
+            Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY')
+        );
         $template->setValue('mitra', $request->mitra);
         $template->setValue('lokasi', $jadwal_skp->lokasi->nama_lokasi);
         $template->setValue('pembimbing_lapangan', $request->pembimbing_lapangan);
@@ -269,7 +272,12 @@ class JadwalPKLController extends Controller
 
         );
         //send email to mahasiswa
-        dispatch(new SendEmailKerjaPraktik($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach(('uploads/print_ba_kp/') . $namafile);
+        });
+        unlink(('uploads/print_ba_kp/' . $namafile));
         return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Diubah');
     }
 
@@ -299,7 +307,10 @@ class JadwalPKLController extends Controller
         $template->setValue('jam_mulai',  $jadwal_skp->jam_mulai_skp);
         $template->setValue('jam_selesai', $jadwal_skp->jam_selesai_skp);
         $template->setValue('hari', $hari);
-        $template->setValue('tgl_seminar_kp', Carbon::parse($jadwal_skp->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'));
+        $template->setValue(
+            'tgl_seminar_kp',
+            Carbon::parse($jadwal_skp->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY')
+        );
         $template->setValue('mitra', $seminar->mitra);
         $template->setValue('lokasi', $jadwal_skp->lokasi->nama_lokasi);
         $template->setValue('pembimbing_lapangan', $jadwal_skp->pembimbing_lapangan);
@@ -316,7 +327,8 @@ class JadwalPKLController extends Controller
             'body' => 'Berikut adalah jadwal seminar kerja praktik anda',
             'seminar' => $seminar->judul_kp,
             'seminar' => $seminar->judul_kp,
-            'tanggal' => $hari . ', ' . Carbon::parse($jadwal_skp->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'),
+            'tanggal' => $hari . ', ' .
+                Carbon::parse($jadwal_skp->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'),
             'jam_mulai' => $jadwal_skp->jam_mulai_skp,
             'jam_selesai' => $jadwal_skp->jam_selesai_skp,
             'lokasi' => $jadwal_skp->lokasi->nama_lokasi,
@@ -324,7 +336,12 @@ class JadwalPKLController extends Controller
             'ni_pemlap' => $jadwal_skp->ni_pemlap,
         ];
         //send email to mahasiswa
-        dispatch(new SendEmailKerjaPraktik($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Kerja Praktik');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach(('uploads/print_ba_kp/') . $namafile);
+        });
+        unlink(('uploads/print_ba_kp/' . $namafile));
         return redirect()->route('koor.jadwalPKL.index')->with('success', 'Jadwal Seminar KP Berhasil Dikirim Ulang');
     }
 
@@ -343,7 +360,7 @@ class JadwalPKLController extends Controller
 
     public function checkJadwal(Request $request)
     {
-        $validation = $request->validate([
+        $request->validate([
             'tanggal_skp' => 'required|date|after_or_equal:tomorrow',
             'jam_mulai_skp' => 'required',
             'jam_selesai_skp' => 'required|after:jam_mulai_skp',
@@ -426,7 +443,6 @@ class JadwalPKLController extends Controller
         } else {
             return response()->json(['message' => 'Valid']);
         }
-        return $request->all();
     }
 
 
@@ -434,7 +450,7 @@ class JadwalPKLController extends Controller
     public function checkUpdate(Request $request)
     {
 
-        $validation = $request->validate([
+        $request->validate([
             'tanggal_skp' => 'required|date|after_or_equal:tomorrow',
             'jam_mulai_skp' => 'required',
             'jam_selesai_skp' => 'required|after:jam_mulai_skp',
@@ -517,6 +533,5 @@ class JadwalPKLController extends Controller
         } else {
             return response()->json(['message' => 'Valid']);
         }
-        return $request->all();
     }
 }

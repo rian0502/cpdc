@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateBaKompre;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarKompre;
+use Illuminate\Support\Facades\DB;
 
 class MahasiswaBaKompre extends Controller
 {
-   
+
 
     /**
      * Show the form for creating a new resource.
@@ -43,37 +44,45 @@ class MahasiswaBaKompre extends Controller
         if ($request->_token != csrf_token()) {
             return redirect()->back();
         } else {
-            $seminar = Auth::user()->mahasiswa->komprehensif;
-            $ba = $request->file('ba_seminar_komprehensif');
-            $file_ba = $ba->hashName();
-            $nilai = $request->file('berkas_nilai_kompre');
-            $file_nilai = $nilai->hashName();
-            $ba->move(('uploads/ba_sidang_kompre/'), $file_ba);
-            $nilai->move(('uploads/nilai_sidang_kompre/'), $file_nilai);
+            try {
+                DB::beginTransaction();
+                $seminar = Auth::user()->mahasiswa->komprehensif;
+                $ba = $request->file('ba_seminar_komprehensif');
+                $file_ba = $ba->hashName();
+                $nilai = $request->file('berkas_nilai_kompre');
+                $file_nilai = $nilai->hashName();
+                $ba->move(('uploads/ba_sidang_kompre/'), $file_ba);
+                $nilai->move(('uploads/nilai_sidang_kompre/'), $file_nilai);
 
-            $data = [
-                'no_ba_berkas' => $request->no_ba_berkas,
-                'ba_seminar_komprehensif' => $file_ba,
-                'berkas_nilai_kompre' => $file_nilai,
-                'laporan_ta' => $request->laporan_ta,
-                'nilai' => $request->nilai,
-                'huruf_mutu' => $request->huruf_mutu,
-                'id_seminar' => $seminar->id,
-            ];
-            $insBa = ModelBaSeminarKompre::create($data);
-            $ins_id = $insBa->id;
-            $update = ModelBaSeminarKompre::find($ins_id);
-            $update->encrypt_id = Crypt::encrypt($ins_id);
-            $update->save();
-            $jadwal = ModelJadwalSeminarKompre::where('id_seminar', $seminar->id)->first();
-            $jadwal->tanggal_komprehensif = $request->tgl_realisasi_seminar;
-            $jadwal->updated_at = now();
-            $jadwal->save();
-            return redirect()->route('mahasiswa.sidang.kompre.index')->with('success', 'Berhasil mengunggah berita acara sidang komprehensif');
+                $data = [
+                    'no_ba_berkas' => $request->no_ba_berkas,
+                    'ba_seminar_komprehensif' => $file_ba,
+                    'berkas_nilai_kompre' => $file_nilai,
+                    'laporan_ta' => $request->laporan_ta,
+                    'nilai' => $request->nilai,
+                    'huruf_mutu' => $request->huruf_mutu,
+                    'id_seminar' => $seminar->id,
+                ];
+                $insBa = ModelBaSeminarKompre::create($data);
+                $ins_id = $insBa->id;
+                $update = ModelBaSeminarKompre::find($ins_id);
+                $update->encrypt_id = Crypt::encrypt($ins_id);
+                $update->save();
+                $jadwal = ModelJadwalSeminarKompre::where('id_seminar', $seminar->id)->first();
+                $jadwal->tanggal_komprehensif = $request->tgl_realisasi_seminar;
+                $jadwal->updated_at = now();
+                $jadwal->save();
+                DB::commit();
+                return redirect()->route('mahasiswa.sidang.kompre.index')
+                    ->with('success', 'Berhasil mengunggah berita acara sidang komprehensif');
+            } catch (\Exception $e) {
+                DB::rollback();
+                return redirect()->back()->with('error', $e->getMessage());
+            }
         }
     }
 
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -145,6 +154,7 @@ class MahasiswaBaKompre extends Controller
         $jadwal->updated_at = now();
         $jadwal->save();
 
-        return redirect()->route('mahasiswa.sidang.kompre.index')->with('success', 'Berhasil mengubah berita acara sidang komprehensif');
+        return redirect()->route('mahasiswa.sidang.kompre.index')
+            ->with('success', 'Berhasil mengubah berita acara sidang komprehensif');
     }
 }

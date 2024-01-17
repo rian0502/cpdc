@@ -37,11 +37,11 @@
                                             <td>
                                                 {{ $loop->iteration }}
                                             </td>
-                                            <td>
+                                            <td style="text-align: left;">
                                                 {{ $item->name }}
                                             </td>
 
-                                            <td style="word-wrap: break-word;">
+                                            <td style="text-align: left; word-wrap: break-word;">
                                                 {{ $item->email }}
                                             </td>
                                             <td>

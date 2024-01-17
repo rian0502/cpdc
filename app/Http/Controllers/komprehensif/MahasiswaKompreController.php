@@ -53,10 +53,12 @@ class MahasiswaKompreController extends Controller
                 ];
                 return view('mahasiswa.kompre.create', $data);
             } else {
-                return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('error', 'Anda belum menyelesaikan seminar tugas akhir 2');
+                return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')
+                    ->with('error', 'Anda belum menyelesaikan seminar tugas akhir 2');
             }
         } else {
-            return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('error', 'Anda belum menyelesaikan seminar tugas akhir 2');
+            return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')
+                ->with('error', 'Anda belum menyelesaikan seminar tugas akhir 2');
         }
     }
 
@@ -68,7 +70,7 @@ class MahasiswaKompreController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = $request->validate([
+        $request->validate([
             'periode_seminar' => ['required'],
             'agreement' => ['required'],
             'berkas_kompre' => ['required', 'mimes:pdf', 'max:2048', 'file', 'mimetypes:application/pdf'],
@@ -111,7 +113,8 @@ class MahasiswaKompreController extends Controller
         $update = ModelSeminarKompre::find($id);
         $update->encrypt_id = Crypt::encrypt($id);
         $update->save();
-        return redirect()->route('mahasiswa.sidang.kompre.index')->with('success', 'Berhasil mengajukan seminar komprehensif');
+        return redirect()->route('mahasiswa.sidang.kompre.index')
+            ->with('success', 'Berhasil mengajukan seminar komprehensif');
     }
 
     /**
@@ -171,7 +174,7 @@ class MahasiswaKompreController extends Controller
 
         //melakukan cek apakah menggunakan dosen 2 dari external atau bukan
         if ($request->id_pembimbing_dua == 'new') {
-            $validation = $request->validate([
+            $request->validate([
                 'pbl2_nama' => 'required|string|max:255|min:3',
                 'pbl2_nip' => 'required|numeric|digits:18',
             ], [
@@ -187,7 +190,7 @@ class MahasiswaKompreController extends Controller
             $seminar->pbl2_nip = $request->pbl2_nip;
             $seminar->id_pembimbing_dua = null;
         } else {
-            $validation = $request->validate([
+            $request->validate([
                 'id_pembimbing_dua' => 'required|exists:dosen,encrypt_id',
             ], [
                 'id_pembimbing_dua.required' => 'Dosen Pembimbing 2 Harus dipilih',
@@ -211,6 +214,7 @@ class MahasiswaKompreController extends Controller
         $seminar->komentar = null;
         $seminar->status_admin = 'Process';
         $seminar->save();
-        return redirect()->route('mahasiswa.sidang.kompre.index')->with('success', 'Berhasil Mengubah data Sidang Komprehensif');
+        return redirect()->route('mahasiswa.sidang.kompre.index')
+            ->with('success', 'Berhasil Mengubah data Sidang Komprehensif');
     }
 }

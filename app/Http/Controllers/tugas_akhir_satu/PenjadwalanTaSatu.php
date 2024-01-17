@@ -8,14 +8,14 @@ use App\Models\Lokasi;
 use App\Models\Mahasiswa;
 use App\Models\Administrasi;
 use Illuminate\Http\Request;
-use App\Models\ModelSeminarTaSatu;
-use App\Http\Controllers\Controller;
 use App\Jobs\SendEmailTugasAkhir1;
+use App\Models\ModelSeminarTaSatu;
+use App\Models\TemplateBeritaAcara;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaSatu;
-use App\Models\TemplateBeritaAcara;
 
 class PenjadwalanTaSatu extends Controller
 {
@@ -32,6 +32,7 @@ class PenjadwalanTaSatu extends Controller
         $now = date('Y-m-d');
         $data = [
             'seminar' => ModelSeminarTaSatu::select('id', 'encrypt_id', 'judul_ta', 'periode_seminar', 'id_mahasiswa')
+                ->with('mahasiswa', 'jadwal')
                 ->whereDoesntHave('ba_seminar')
                 ->where('status_admin', 'Valid')
                 ->where(function ($query) use ($now) {
@@ -133,8 +134,6 @@ class PenjadwalanTaSatu extends Controller
             'Berhasil Menjadwalkan Seminar Tugas Akhir 1'
         );
     }
-
-
     public function edit($id)
     {
         $seminar = ModelSeminarTaSatu::find(Crypt::decrypt($id));
@@ -152,18 +151,20 @@ class PenjadwalanTaSatu extends Controller
     {
         $seminar = ModelSeminarTaSatu::find(Crypt::decrypt($id));
         $mahasiswa = $seminar->mahasiswa;
-        $hari =  $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
-        $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
-        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $hari =  $hari = Carbon::parse($request->tanggal_skp)
+            ->locale('id_ID')->isoFormat('dddd');
+        $lokasi = Lokasi::select('id', 'nama_lokasi')
+            ->where('id', Crypt::decrypt($request->id_lokasi))->first();
+        $admin = Administrasi::select('nama_administrasi', 'nip')
+            ->where('status', 'Aktif')->first();
         $kajur = User::role('jurusan')->with('dosen')->first();
-
         $data = [
             'tanggal_seminar_ta_satu' => $request->tanggal_skp,
             'jam_mulai_seminar_ta_satu' => $request->jam_mulai_skp,
             'jam_selesai_seminar_ta_satu' => $request->jam_selesai_skp,
             'id_lokasi' => Crypt::decrypt($request->id_lokasi),
         ];
-        $updateJadwal = ModelJadwalSeminarTaSatu::where('id_seminar', $seminar->id)->update($data);
+        ModelJadwalSeminarTaSatu::where('id_seminar', $seminar->id)->update($data);
         $template = new \PhpOffice\PhpWord\TemplateProcessor($this->ba->path);
         $template->setValue('nama_admin', $admin->nama_administrasi);
         $template->setValue('nip_admin', $admin->nip);
@@ -188,7 +189,8 @@ class PenjadwalanTaSatu extends Controller
         $template->setValue('koor_acc', Auth::user()->name);
         $template->setValue('nip_koor_acc', Auth::user()->dosen->nip);
         $template->setValue('hari', $hari);
-        $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'));
+        $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)
+            ->locale('id_ID')->isoFormat('D MMMM YYYY'));
         $template->setValue('jam_mulai', $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
@@ -200,13 +202,20 @@ class PenjadwalanTaSatu extends Controller
             'name' => $seminar->mahasiswa->nama_mahasiswa,
             'body' => 'Berikut adalah jadwal Seminar Tugas Akhir 1 Anda',
             'seminar' => $seminar->judul_ta,
-            'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'),
+            'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)
+                ->locale('id_ID')->isoFormat('D MMMM YYYY'),
             'jam_mulai' => $request->jam_mulai_skp,
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        dispatch(new SendEmailTugasAkhir1($data, $to_name, $to_email, $namafile));
-        return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Menjadwalkan Ulang Seminar Tugas Akhir 1');
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 1');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_ta1/' . $namafile);
+        });
+        unlink('uploads/print_ba_ta1/' . $namafile);
+        return redirect()->route('koor.jadwalTA1.index')
+            ->with('success', 'Berhasil Menjadwalkan Ulang Seminar Tugas Akhir 1');
     }
 
     public function resend($id)
@@ -243,7 +252,8 @@ class PenjadwalanTaSatu extends Controller
         $template->setValue('koor_acc', Auth::user()->name);
         $template->setValue('nip_koor_acc', Auth::user()->dosen->nip);
         $template->setValue('hari', $hari);
-        $template->setValue('tanggal', Carbon::parse($jadwal->tanggal_seminar_ta_satu)->locale('id_ID')->isoFormat('D MMMM YYYY'));
+        $template->setValue('tanggal', Carbon::parse($jadwal->tanggal_seminar_ta_satu)
+            ->locale('id_ID')->isoFormat('D MMMM YYYY'));
         $template->setValue('jam_mulai', $jadwal->jam_mulai_seminar_ta_satu);
         $template->setValue('jam_selesai', $jadwal->jam_selesai_seminar_ta_satu);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
@@ -255,19 +265,26 @@ class PenjadwalanTaSatu extends Controller
             'name' => $seminar->mahasiswa->nama_mahasiswa,
             'body' => 'Berikut adalah jadwal Seminar Tugas Akhir 1 Anda',
             'seminar' => $seminar->judul_ta,
-            'tanggal' => $hari . ', ' . Carbon::parse($jadwal->tanggal_seminar_ta_satu)->locale('id_ID')->isoFormat('D MMMM YYYY'),
+            'tanggal' => $hari . ', ' . Carbon::parse($jadwal->tanggal_seminar_ta_satu)
+                ->locale('id_ID')->isoFormat('D MMMM YYYY'),
             'jam_mulai' => $jadwal->jam_mulai_seminar_ta_satu,
             'jam_selesai' => $jadwal->jam_selesai_seminar_ta_satu,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        dispatch(new SendEmailTugasAkhir1($data, $to_name, $to_email, $namafile));
-        return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar Tugas Akhir 1');
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 1');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_ta1/' . $namafile);
+        });
+        unlink(('uploads/print_ba_ta1/' . $namafile));
+        return redirect()->route('koor.jadwalTA1.index')
+            ->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar Tugas Akhir 1');
     }
 
     public function downloadJadwal(Request $request)
     {
-        $angkatan = 2020;
-        $mahasiswa = Mahasiswa::whereHas('ta_satu')->where('angkatan', $angkatan)->get();
+        $seminar = ModelSeminarTaSatu::with('mahasiswa', 'pembimbing_satu', 'pembimbing_dua', 'pembahas')
+            ->whereDoesntHave('jadwal')->where('status_admin', 'Valid')->orderBy('updated_at', 'asc')->get();
         $spredsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $sheet = $spredsheet->getActiveSheet();
         $sheet->setTitle('Daftar Seminar TA 1 S1');
@@ -277,25 +294,30 @@ class PenjadwalanTaSatu extends Controller
         $sheet->setCellValue('D1', 'Judul TA');
         $sheet->setCellValue('E1', 'Pembimbing 1');
         $sheet->setCellValue('F1', 'Pembimbing 2');
-        if ($mahasiswa->count() > 0) {
-            foreach ($mahasiswa as $key => $value) {
+        $sheet->setCellValue('G1', 'Pembahas');
+        $sheet->setCellValue('H1', 'Tanggal Validasi');
+        if ($seminar->count() > 0) {
+            foreach ($seminar as $key => $value) {
                 $sheet->setCellValue('A' . ($key + 2), $key + 1);
-                $sheet->setCellValue('B' . ($key + 2), $value->nama_mahasiswa);
-                $sheet->setCellValue('C' . ($key + 2), $value->npm);
-                $sheet->setCellValue('D' . ($key + 2), $value->ta_satu->judul_ta);
-                $sheet->setCellValue('E' . ($key + 2), $value->ta_satu->pembimbing_satu->nama_dosen);
-                if ($value->ta_satu->id_pembimbing_dua) {
-                    $sheet->setCellValue('F' . ($key + 2), $value->ta_satu->pembimbing_dua->nama_dosen);
+                $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+                $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->npm);
+                $sheet->setCellValue('D' . ($key + 2), $value->judul_ta);
+                $sheet->setCellValue('E' . ($key + 2), $value->pembimbing_satu->nama_dosen);
+                if ($value->id_pembimbing_dua) {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pembimbing_dua->nama_dosen);
                 } else {
-                    $sheet->setCellValue('F' . ($key + 2), $value->ta_satu->pbl2_nama);
+                    $sheet->setCellValue('F' . ($key + 2), $value->pbl2_nama);
                 }
+                $sheet->setCellValue('G' . ($key + 2), $value->pembahas->nama_dosen);
+                $sheet->setCellValue('H' . ($key + 2), $value->updated_at->isoFormat('D MMMM Y'));
             }
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
-            $filename = 'Daftar Seminar TA 1 S1 Angkatan ' . $angkatan . '.xlsx';
+            $filename = 'Daftar Seminar TA 1 S1 Angkatan .xlsx';
             $writer->save($filename);
             return response()->download($filename)->deleteFileAfterSend(true);
         } else {
-            return redirect()->back()->with('error', 'Belum Ada Mahasiswa yang Mendaftar Seminar TA 1');
+            return redirect()->back()
+                ->with('error', 'Belum Ada Mahasiswa yang Mendaftar Seminar TA 1');
         }
     }
 }

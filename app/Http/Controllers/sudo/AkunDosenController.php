@@ -159,7 +159,7 @@ class AkunDosenController extends Controller
     public function chartUsiaDosen()
     {
         $query = DB::table('dosen')
-            ->select(DB::raw('FLOOR((TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) + 10) / 10) * 10 as usia_group, COUNT(*) as total'))
+            ->select(DB::raw('FLOOR((TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) + 10) / 10) * 10 as usia_group, COUNT(*) as total'))->where('status', 'Aktif')
             ->groupBy('usia_group')
             ->orderBy('usia_group')
             ->get();
@@ -191,7 +191,7 @@ class AkunDosenController extends Controller
     public function chartJabatanDosen()
     {
         $results = DB::table('dosen')
-            ->select('jabatan', DB::raw('COUNT(*) as jumlah_dosen'))
+            ->select('jabatan', DB::raw('COUNT(*) as jumlah_dosen'))->where('status', 'Aktif')
             ->join('history_jabatan_dosen', function ($join) {
                 $join->on('dosen.id', '=', 'history_jabatan_dosen.dosen_id')
                     ->whereRaw('history_jabatan_dosen.tgl_sk = (SELECT MAX(tgl_sk) FROM history_jabatan_dosen WHERE dosen_id = dosen.id)');

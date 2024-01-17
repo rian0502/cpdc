@@ -170,7 +170,8 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
         $update = ModelSeminarTaSatuS2::find($insert->id);
         $update->encrypt_id = Crypt::encrypt($insert->id);
         $update->save();
-        return redirect()->route('mahasiswa.seminarta1s2.index')->with('success', 'Data Seminar TA 1 berhasil ditambahkan');
+        return redirect()->route('mahasiswa.seminarta1s2.index')
+        ->with('success', 'Data Seminar TA 1 berhasil ditambahkan');
     }
 
     /**

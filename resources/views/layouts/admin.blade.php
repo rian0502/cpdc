@@ -552,6 +552,20 @@
                                     Mahasiswa S2</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="/horizon"
+                                class="dropdown-toggle no-arrow {{ Request::is('sudo/admin_jurusan*') ? 'active' : '' }}">
+                                <span class="micon fas fa-user-shield"></span><span class="mtext">Monitoring Jobs</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('sudo.validasi.mahasiswa.index') }}"
+                                class="dropdown-toggle no-arrow 
+                                {{ Request::is('sudo/validasi/mahasiswa*') ? 'active' : '' }}">
+                                <span class="micon fas fa-user-shield"></span><span class="mtext">Validasi
+                                    Mahasiswa</span>
+                            </a>
+                        </li>
                     @endrole
                     @role('mahasiswaS2')
                         <li
@@ -726,7 +740,8 @@
                                         Akhir 2 S1</a>
                                 </li>
                                 <li><a href="{{ route('berkas.arsip_validasi.sidang.kompre.index') }}"
-                                        class="{{ Request::is('admin/berkas/arsip_validasi/sidang/kompre*') ? 'active' : '' }}">Komprehensif S1</a>
+                                        class="{{ Request::is('admin/berkas/arsip_validasi/sidang/kompre*') ? 'active' : '' }}">Komprehensif
+                                        S1</a>
                                 </li>
 
                                 <li><a href="{{ route('berkas.arsip_validasi.s2.tesis1.index') }}"

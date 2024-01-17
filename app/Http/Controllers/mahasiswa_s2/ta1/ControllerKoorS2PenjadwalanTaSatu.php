@@ -7,11 +7,12 @@ use App\Models\User;
 use App\Models\Lokasi;
 use App\Models\Administrasi;
 use Illuminate\Http\Request;
+use App\Jobs\SendEmailTesis1;
 use App\Models\TemplateBeritaAcara;
 use App\Http\Controllers\Controller;
-use App\Jobs\SendEmailTesis1;
 use App\Models\ModelSeminarTaSatuS2;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaSatuS2;
 
@@ -72,9 +73,12 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
     public function store(Request $request)
     {
         $id = Crypt::decrypt(array_key_last($request->except('_token')));
-        $hari =  $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
-        $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
-        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $hari =  $hari = Carbon::parse($request->tanggal_skp)
+            ->locale('id_ID')->isoFormat('dddd');
+        $lokasi = Lokasi::select('id', 'nama_lokasi')
+            ->where('id', Crypt::decrypt($request->id_lokasi))->first();
+        $admin = Administrasi::select('nama_administrasi', 'nip')
+            ->where('status', 'Aktif')->first();
         $kajur = User::role('kaprodiS2')->with('dosen')->first();
         $data = [
             'tanggal' => $request->tanggal_skp,
@@ -131,7 +135,8 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
         $template->setValue('nama_koor_ta1', Auth::user()->name);
         $template->setValue('nip_koor_ta1', Auth::user()->dosen->nip);
         $template->setValue('hari', $hari);
-        $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'));
+        $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)
+            ->locale('id_ID')->isoFormat('D MMMM YYYY'));
         $template->setValue('jam_mulai', $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('nama_lokasi', $lokasi->nama_lokasi);
@@ -143,13 +148,15 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
             'name' => $seminar->mahasiswa->nama_mahasiswa,
             'body' => 'Berikut adalah jadwal Seminar Tesis 1 Anda',
             'seminar' => $seminar->judul_ta,
-            'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'),
+            'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)
+                ->locale('id_ID')->isoFormat('D MMMM YYYY'),
             'jam_mulai' => $request->jam_mulai_skp,
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
         dispatch(new SendEmailTesis1($data, $to_name, $to_email, $namafile));
-        return redirect()->route('koor.jadwalTA1S2.index')->with('success', 'Berhasil Menjadwalkan Seminar Tesis 1');
+        return redirect()->route('koor.jadwalTA1S2.index')
+            ->with('success', 'Berhasil Menjadwalkan Seminar Tesis 1');
     }
 
     public function resend($id)
@@ -219,7 +226,12 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
             'jam_selesai' => $jadwal->jam_selesai,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        dispatch(new SendEmailTesis1($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tesis 1');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_tesis_1/' . $namafile);
+        });
+        unlink('uploads/print_ba_tesis_1/' . $namafile);
         return redirect()->route('koor.jadwalTA1S2.index')->with('success', 'Berhasil Mengirim Kembali Berita Acara Seminar Tesis 1');
     }
 
@@ -322,7 +334,12 @@ class ControllerKoorS2PenjadwalanTaSatu extends Controller
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        dispatch(new SendEmailTesis1($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tesis 1');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_tesis_1/' . $namafile);
+        });
+        unlink('uploads/print_ba_tesis_1/' . $namafile);
         return redirect()->route('koor.jadwalTA1S2.index')->with('success', 'Berhasil Menjadwalkan Ulang Seminar Tesis 1');
     }
 }

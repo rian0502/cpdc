@@ -18,6 +18,11 @@ class AkunMahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function unvalidasi()
+    {
+        return view('layouts.blank');
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax()) {
