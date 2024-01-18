@@ -19,6 +19,10 @@ class PrestasiMahasiswaS2 extends Model
         'file_prestasi',
         'tanggal',
         'mahasiswa_id',
+        'jenis',
+        'id_pembimbing',
+        'nama_pembimbing',
+        'nip_pembimbing',
         'created_at',
         'updated_at',
     ];
@@ -29,6 +33,10 @@ class PrestasiMahasiswaS2 extends Model
     public function mahasiswa()
     {
         return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id');
+    }
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'id_pembimbing');
     }
     public function getTahunAttribute()
     {

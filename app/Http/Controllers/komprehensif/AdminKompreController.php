@@ -62,7 +62,6 @@ class AdminKompreController extends Controller
      */
     public function edit($id)
     {
-        //
         $seminar = ModelSeminarKompre::find(Crypt::decrypt($id));
         $mahasisswa = $seminar->mahasiswa;
         $data = [
@@ -81,12 +80,11 @@ class AdminKompreController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         if ($request->status_admin == 'Process') {
             return redirect()->back()->with('error', 'Status Admin Harus Valid atau Invalid');
-        } else if ($request->status_admin == 'Invalid') {
+        } elseif ($request->status_admin == 'Invalid') {
             $status = ['Valid', 'Invalid', 'Process'];
-            $validate = $request->validate(
+            $request->validate(
                 [
                     'status_admin' => ['required', 'string', 'in:' . implode(',', $status)],
                     'komentar' => ['required', 'string'],
@@ -104,7 +102,7 @@ class AdminKompreController extends Controller
             $seminar->save();
         } else {
             $status = ['Valid', 'Invalid', 'Process'];
-            $validate = $request->validate(
+            $request->validate(
                 [
                     'status_admin' => ['required', 'string', 'in:' . implode(',', $status)],
                 ],
@@ -118,7 +116,8 @@ class AdminKompreController extends Controller
             $seminar->komentar = null;
             $seminar->save();
         }
-        return redirect()->route('berkas.validasi.sidang.kompre.index')->with('success', 'Berhasil Mengubah Data Seminar');
+        return redirect()->route('berkas.validasi.sidang.kompre.index')
+            ->with('success', 'Berhasil Mengubah Data Seminar');
     }
 
     /**

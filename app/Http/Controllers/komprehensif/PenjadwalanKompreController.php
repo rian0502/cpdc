@@ -8,10 +8,11 @@ use App\Models\Lokasi;
 use App\Models\Administrasi;
 use Illuminate\Http\Request;
 use App\Models\ModelSeminarKompre;
+use App\Jobs\SendEmailKomprehensif;
 use App\Models\TemplateBeritaAcara;
 use App\Http\Controllers\Controller;
-use App\Jobs\SendEmailKomprehensif;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarKompre;
 
@@ -37,6 +38,42 @@ class PenjadwalanKompreController extends Controller
                 ->where('status_admin', 'Valid')->get(),
         ];
         return view('koor.kompre.jadwal.index', $data);
+    }
+
+    public function downloadJadwal(Request $request)
+    {
+        $seminar = ModelSeminarKompre::doesntHave('jadwal')->where('status_admin', 'Valid')->get();
+        $spredsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spredsheet->getActiveSheet();
+        $sheet->setTitle('Daftar Seminar TA 1 S1');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Nama Mahasiswa');
+        $sheet->setCellValue('C1', 'NPM');
+        $sheet->setCellValue('D1', 'Judul TA');
+        $sheet->setCellValue('E1', 'Pembimbing 1');
+        $sheet->setCellValue('F1', 'Pembimbing 2');
+        $sheet->setCellValue('G1', 'Pembahas');
+        if ($seminar->count() > -0) {
+            foreach ($seminar as $key => $value) {
+                $sheet->setCellValue('A' . ($key + 2), $key + 1);
+                $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+                $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->npm);
+                $sheet->setCellValue('D' . ($key + 2), $value->judul_ta);
+                $sheet->setCellValue('E' . ($key + 2), $value->pembimbingSatu->nama_dosen);
+                if ($value->id_pembimbing_dua) {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pembimbingDua->nama_dosen);
+                } else {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pbl2_nama);
+                }
+                $sheet->setCellValue('G' . ($key + 2), $value->pembahas->nama_dosen);
+            }
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
+            $filename = 'Daftar Seminar Kompre.xlsx';
+            $writer->save($filename);
+            return response()->download($filename)->deleteFileAfterSend(true);
+        } else {
+            return redirect()->back()->with('error', 'Belum Seminar Komprehensif');
+        }
     }
 
     /**
@@ -69,12 +106,14 @@ class PenjadwalanKompreController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $id = Crypt::decrypt(array_key_last($request->except('_token')));
         $seminar = ModelSeminarKompre::find($id);
-        $hari =  $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
-        $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
-        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $hari =  $hari = Carbon::parse($request->tanggal_skp)
+            ->locale('id_ID')->isoFormat('dddd');
+        $lokasi = Lokasi::select('id', 'nama_lokasi')
+            ->where('id', Crypt::decrypt($request->id_lokasi))->first();
+        $admin = Administrasi::select('nama_administrasi', 'nip')
+            ->where('status', 'Aktif')->first();
         $kajur = User::role('jurusan')->with('dosen')->first();
         $data = [
             'tanggal_komprehensif' => $request->tanggal_skp,
@@ -113,7 +152,8 @@ class PenjadwalanKompreController extends Controller
         $template->setValue('koor_acc', Auth::user()->name);
         $template->setValue('nip_koor_acc', Auth::user()->dosen->nip);
         $template->setValue('hari', $hari);
-        $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'));
+        $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)
+            ->locale('id_ID')->isoFormat('D MMMM YYYY'));
         $template->setValue('jam_mulai', $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
@@ -125,13 +165,15 @@ class PenjadwalanKompreController extends Controller
             'name' => $seminar->mahasiswa->nama_mahasiswa,
             'body' => 'Berikut adalah jadwal Sidang Komprehensif Anda',
             'seminar' => $seminar->judul_ta,
-            'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'),
+            'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)
+                ->locale('id_ID')->isoFormat('D MMMM YYYY'),
             'jam_mulai' => $request->jam_mulai_skp,
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
         dispatch(new SendEmailKomprehensif($data, $to_name, $to_email, $namafile));
-        return redirect()->route('koor.jadwalKompre.index')->with('success', 'Berhasil Menjadwalkan Sidang Komprehensif');
+        return redirect()->route('koor.jadwalKompre.index')
+            ->with('success', 'Berhasil Menjadwalkan Sidang Komprehensif');
     }
 
     /**
@@ -159,7 +201,7 @@ class PenjadwalanKompreController extends Controller
             'locations' => Lokasi::all(),
             'seminar' => $seminar,
             'mahasiswa' => $seminar->mahasiswa,
-            'jadwal' => $seminar->jadwal
+            'jadwal' => $seminar->jadwal,
         ];
         return view('koor.kompre.jadwal.edit', $data);
     }
@@ -173,13 +215,15 @@ class PenjadwalanKompreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $seminar = ModelSeminarKompre::find(Crypt::decrypt($id));
         $mahasiswa = $seminar->mahasiswa;
-        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $admin = Administrasi::select('nama_administrasi', 'nip')
+            ->where('status', 'Aktif')->first();
         $kajur = User::role('jurusan')->with('dosen')->first();
-        $hari =  $hari = Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('dddd');
-        $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', Crypt::decrypt($request->id_lokasi))->first();
+        $hari =  $hari = Carbon::parse($request->tanggal_skp)
+            ->locale('id_ID')->isoFormat('dddd');
+        $lokasi = Lokasi::select('id', 'nama_lokasi')
+            ->where('id', Crypt::decrypt($request->id_lokasi))->first();
         $data = [
             'tanggal_komprehensif' => $request->tanggal_skp,
             'jam_mulai_komprehensif' => $request->jam_mulai_skp,
@@ -187,7 +231,10 @@ class PenjadwalanKompreController extends Controller
             'id_lokasi' => Crypt::decrypt($request->id_lokasi),
             'id_seminar' => Crypt::decrypt($id)
         ];
-        $update = ModelJadwalSeminarKompre::where('id_seminar', Crypt::decrypt($id))->first();
+        $update = ModelJadwalSeminarKompre::where(
+            'id_seminar',
+            Crypt::decrypt($id)
+        )->first();
         $update->update($data);
         $template = new \PhpOffice\PhpWord\TemplateProcessor($this->ba->path);
         $template->setValue('nama_admin', $admin->nama_administrasi);
@@ -213,7 +260,8 @@ class PenjadwalanKompreController extends Controller
         $template->setValue('koor_acc', Auth::user()->name);
         $template->setValue('nip_koor_acc', Auth::user()->dosen->nip);
         $template->setValue('hari', $hari);
-        $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'));
+        $template->setValue('tanggal', Carbon::parse($request->tanggal_skp)
+            ->locale('id_ID')->isoFormat('D MMMM YYYY'));
         $template->setValue('jam_mulai', $request->jam_mulai_skp);
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
@@ -226,13 +274,15 @@ class PenjadwalanKompreController extends Controller
             'name' => $seminar->mahasiswa->nama_mahasiswa,
             'body' => 'Berikut adalah jadwal Sidang Komprehensif Anda',
             'seminar' => $seminar->judul_ta,
-            'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY'),
+            'tanggal' => $hari . ', ' . Carbon::parse($request->tanggal_skp)
+                ->locale('id_ID')->isoFormat('D MMMM YYYY'),
             'jam_mulai' => $request->jam_mulai_skp,
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
         dispatch(new SendEmailKomprehensif($data, $to_name, $to_email, $namafile));
-        return redirect()->route('koor.jadwalKompre.index')->with('success', 'Berhasil Merubah Jadwal Sidang Komprehensif');
+        return redirect()->route('koor.jadwalKompre.index')
+            ->with('success', 'Berhasil Merubah Jadwal Sidang Komprehensif');
     }
 
     public function resend($id)
@@ -240,10 +290,13 @@ class PenjadwalanKompreController extends Controller
         $seminar =  ModelSeminarKompre::find(Crypt::decrypt($id));
         $mahasiswa = $seminar->mahasiswa;
         $jadwal_semianr = $seminar->jadwal;
-        $admin = Administrasi::select('nama_administrasi', 'nip')->where('status', 'Aktif')->first();
+        $admin = Administrasi::select('nama_administrasi', 'nip')
+            ->where('status', 'Aktif')->first();
         $kajur = User::role('jurusan')->with('dosen')->first();
-        $hari =  $hari = Carbon::parse($jadwal_semianr->tanggal_komprehensif)->locale('id_ID')->isoFormat('dddd');
-        $lokasi = Lokasi::select('id', 'nama_lokasi')->where('id', $jadwal_semianr->id_lokasi)->first();
+        $hari =  $hari = Carbon::parse($jadwal_semianr->tanggal_komprehensif)
+            ->locale('id_ID')->isoFormat('dddd');
+        $lokasi = Lokasi::select('id', 'nama_lokasi')
+            ->where('id', $jadwal_semianr->id_lokasi)->first();
         $template = new \PhpOffice\PhpWord\TemplateProcessor($this->ba->path);
         $template->setValue('nama_admin', $admin->nama_administrasi);
         $template->setValue('nip_admin', $admin->nip);
@@ -286,7 +339,12 @@ class PenjadwalanKompreController extends Controller
             'jam_selesai' => $jadwal_semianr->jam_selesai_komprehensif,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        dispatch(new SendEmailKomprehensif($data, $to_name, $to_email, $namafile));
+        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
+            $message->to($to_email, $to_name)->subject('Jadwal Sidang Komprehensif');
+            $message->from('chemistryprogramdatacenter@gmail.com');
+            $message->attach('uploads/print_ba_kompre/' . $namafile);
+        });
+        unlink('uploads/print_ba_kompre/' . $namafile);
         return redirect()->route('koor.jadwalKompre.index')->with('success', 'Berhasil Mengirim Ulang Jadwal Sidang Komprehensif');
     }
     /**

@@ -25,9 +25,9 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->dosen->nip }}</td>
-                                        <td>{{ $item->dosen->nama_dosen }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        <td>{{ $item->lokasi_id ? $item->lokasi->nama_lokasi : 'Belum Terlokasi' }}</td>
+                                        <td style="text-align: left;">{{ $item->dosen->nama_dosen }}</td>
+                                        <td style="text-align: left;">{{ $item->email }}</td>
+                                        <td style="text-align: left;">{{ $item->lokasi_id ? $item->lokasi->nama_lokasi : 'Belum Terlokasi' }}</td>
                                         <td>
                                             <div class="dropdown">
                                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"

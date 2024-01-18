@@ -25,7 +25,10 @@ class PrestasiDataController extends Controller
         $endDate = $request->input('endDate', null);
 
         if ($startDate && $endDate) {
-            $data = PrestasiMahasiswa::with('mahasiswa')->whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc');
+            $data = PrestasiMahasiswa::with('mahasiswa','dosen')->whereBetween(
+                'tanggal',
+                [$startDate, $endDate]
+            )->orderBy('tanggal', 'desc');
             return DataTables::of($data)
                 ->addIndexColumn()->editColumn('mahasiswa.nama_mahasiswa', function ($row) {
                     return $row->mahasiswa->nama_mahasiswa;
@@ -33,9 +36,15 @@ class PrestasiDataController extends Controller
                 ->addIndexColumn()->editColumn('mahasiswa.npm', function ($row) {
                     return $row->mahasiswa->npm;
                 })
+                ->addIndexColumn()->editColumn('dosen.nama_dosen', function ($row) {
+                    return $row->dosen->nama_dosen??$row->nama_pembimbing;
+                })
+                ->addIndexColumn()->editColumn('dosen.nip', function ($row) {
+                    return $row->dosen->nip??$row->nip_pembimbing;
+                })
                 ->toJson();
-        } else if ($request->ajax() && $startDate == null && $endDate == null) {
-            $data = PrestasiMahasiswa::with('mahasiswa')->orderBy('tanggal', 'desc');
+        } elseif ($request->ajax() && $startDate == null && $endDate == null) {
+            $data = PrestasiMahasiswa::with('mahasiswa','dosen')->orderBy('tanggal', 'desc');
 
             return DataTables::of($data)
                 ->addIndexColumn()->editColumn('mahasiswa.nama_mahasiswa', function ($row) {
@@ -44,9 +53,13 @@ class PrestasiDataController extends Controller
                 ->addIndexColumn()->editColumn('mahasiswa.npm', function ($row) {
                     return $row->mahasiswa->npm;
                 })
+                ->addIndexColumn()->editColumn('dosen.nama_dosen', function ($row) {
+                    return $row->dosen->nama_dosen??$row->nama_pembimbing;
+                })
+                ->addIndexColumn()->editColumn('dosen.nip', function ($row) {
+                    return $row->dosen->nip??$row->nip_pembimbing;
+                })
                 ->toJson();
-
-            // dd($data);
         }
         return view('jurusan.prestasi.index');
     }

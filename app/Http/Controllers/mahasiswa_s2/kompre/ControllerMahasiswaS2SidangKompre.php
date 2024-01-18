@@ -57,12 +57,6 @@ class ControllerMahasiswaS2SidangKompre extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
@@ -135,7 +129,8 @@ class ControllerMahasiswaS2SidangKompre extends Controller
         $update = ModelKompreS2::find($insert->id);
         $update->encrypt_id = Crypt::encrypt($insert->id);
         $update->save();
-        return redirect()->route('mahasiswa.sidang.kompres2.index')->with('success', 'Berhasil mengajukan Sidang Tesis');
+        return redirect()->route('mahasiswa.sidang.kompres2.index')
+        ->with('success', 'Berhasil mengajukan Sidang Tesis');
     }
 
 

@@ -11,10 +11,12 @@ use App\Models\ModelBaSeminarTaSatuS2;
 use App\Models\ModelJadwalSeminarTaSatuS2;
 use App\Http\Requests\StoreBaTaSatuS2Request;
 use App\Http\Requests\UpdateBaTaSatuS2Request;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class ControllerMahasiswaS2BaTaSatu extends Controller
 {
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,31 +40,44 @@ class ControllerMahasiswaS2BaTaSatu extends Controller
      */
     public function store(StoreBaTaSatuS2Request $request)
     {
-        $id_seminar = Auth::user()->mahasiswa->taSatuS2->id;
-        $file_ba = $request->file('file_ba');
-        $name_file_ba = $file_ba->hashName();
-        $file_ba->move('uploads/ba_seminar_tesis_1', $name_file_ba);
-        $file_nilai = $request->file('file_nilai');
-        $name_file_nilai = $file_nilai->hashName();
-        $file_nilai->move('uploads/nilai_seminar_tesis_1', $name_file_nilai);
-        $insert = ModelBaSeminarTaSatuS2::create([
-            'no_ba' => $request->no_ba,
-            'nilai' => $request->nilai,
-            'nilai_mutu' => $request->nilai_mutu,
-            'ppt' => $request->ppt,
-            'file_ba' => $name_file_ba,
-            'file_nilai' => $name_file_nilai,
-            'id_seminar' => $id_seminar,
-        ]);
-        $insert_id = $insert->id;
-        $update = ModelBaSeminarTaSatuS2::find($insert_id);
-        $update->encrypt_id = Crypt::encrypt($insert_id);
-        $update->save();
-        $jadwal = ModelJadwalSeminarTaSatuS2::where('id_seminar', $id_seminar)->first();
-        $jadwal->tanggal = $request->tgl_realisasi_seminar;
-        $jadwal->updated_at = now();
-        $jadwal->save();
-        return redirect()->route('mahasiswa.seminarta1s2.index')->with('success', 'Berhasil menambahkan berita acara seminar tesis 1');
+        if (csrf_token() != $request->_token) {
+            return redirect()->back();
+        } else {
+            try {
+                DB::beginTransaction();
+                $id_seminar = Auth::user()->mahasiswa->taSatuS2->id;
+                $file_ba = $request->file('file_ba');
+                $name_file_ba = $file_ba->hashName();
+                $file_ba->move('uploads/ba_seminar_tesis_1', $name_file_ba);
+                $file_nilai = $request->file('file_nilai');
+                $name_file_nilai = $file_nilai->hashName();
+                $file_nilai->move('uploads/nilai_seminar_tesis_1', $name_file_nilai);
+                $insert = ModelBaSeminarTaSatuS2::create([
+                    'no_ba' => $request->no_ba,
+                    'nilai' => $request->nilai,
+                    'nilai_mutu' => $request->nilai_mutu,
+                    'ppt' => $request->ppt,
+                    'file_ba' => $name_file_ba,
+                    'file_nilai' => $name_file_nilai,
+                    'id_seminar' => $id_seminar,
+                ]);
+                $insert_id = $insert->id;
+                $update = ModelBaSeminarTaSatuS2::find($insert_id);
+                $update->encrypt_id = Crypt::encrypt($insert_id);
+                $update->save();
+                $jadwal = ModelJadwalSeminarTaSatuS2::where('id_seminar', $id_seminar)->first();
+                $jadwal->tanggal = $request->tgl_realisasi_seminar;
+                $jadwal->updated_at = now();
+                $jadwal->save();
+                DB::commit();
+                return redirect()->route('mahasiswa.seminarta1s2.index')
+                    ->with('success', 'Berhasil menambahkan berita acara seminar tesis 1');
+            } catch (Exception $e) {
+                DB::rollback();
+                return redirect()->route('mahasiswa.seminarta1s2.index')
+                    ->with('error', $e->getMessage());
+            }
+        }
     }
 
 

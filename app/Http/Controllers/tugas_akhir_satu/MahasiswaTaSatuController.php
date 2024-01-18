@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTugasAkhirSatuRequest;
 use App\Http\Requests\UpdateSeminarTaSatuRequest;
 use App\Models\BerkasPersyaratanSeminar;
-use App\Models\ModelJadwalSeminarTaSatu;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ModelSeminarTaSatu;
 use Illuminate\Support\Facades\Crypt;
@@ -19,7 +18,8 @@ class MahasiswaTaSatuController extends Controller
     public function index()
     {
         if (Auth::user()->mahasiswa->ta_satu) {
-            $seminar = ModelSeminarTaSatu::where('id_mahasiswa', Auth::user()->mahasiswa->id)->first();
+            $seminar = ModelSeminarTaSatu::where('id_mahasiswa', Auth::user()
+                ->mahasiswa->id)->first();
 
             $mahasiswa = Auth::user()->mahasiswa;
             return view('mahasiswa.ta1.index', compact(['seminar', 'mahasiswa']));
@@ -27,6 +27,23 @@ class MahasiswaTaSatuController extends Controller
         return redirect()->route('mahasiswa.seminar.tugas_akhir_1.create');
     }
 
+
+    public function edit($id)
+    {
+        if (
+            Auth::user()->mahasiswa->ta_satu->id != Crypt::decrypt($id)
+            && Auth::user()->mahasiswa->ta_satu
+        ) {
+            return redirect()->back();
+        }
+        $data = [
+            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
+                ->where('status', 'Aktif')
+                ->get(),
+            'seminar' => ModelSeminarTaSatu::find(Crypt::decrypt($id)),
+        ];
+        return view('mahasiswa.ta1.edit', $data);
+    }
 
     public function create()
     {
@@ -42,24 +59,8 @@ class MahasiswaTaSatuController extends Controller
         return view('mahasiswa.ta1.create', $data);
     }
 
-
-    public function edit($id)
-    {
-        if (Auth::user()->mahasiswa->ta_satu->id != Crypt::decrypt($id) && Auth::user()->mahasiswa->ta_satu) {
-            return redirect()->back();
-        }
-        $data = [
-            'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
-                ->where('status', 'Aktif')
-                ->get(),
-            'seminar' => ModelSeminarTaSatu::find(Crypt::decrypt($id)),
-        ];
-        return view('mahasiswa.ta1.edit', $data);
-    }
-
     public function store(StoreTugasAkhirSatuRequest $request)
     {
-
         $file = $request->file('berkas_seminar_ta_satu');
         $file_name = $file->hashName();
         $file->move(('uploads/syarat_seminar_ta1'), $file_name);
@@ -81,9 +82,8 @@ class MahasiswaTaSatuController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
-
         if ($request->id_pembimbing_dua == 'new') {
-            $validation = $request->validate([
+            $request->validate([
                 'pbl2_nama' => 'required|string|max:255|min:3',
                 'pbl2_nip' => 'required|numeric|digits:18',
             ], [
@@ -98,7 +98,7 @@ class MahasiswaTaSatuController extends Controller
             $data['pbl2_nama'] = Str::title($request->pbl2_nama);
             $data['pbl2_nip'] = $request->pbl2_nip;
         } else {
-            $validation = $request->validate([
+            $request->validate([
                 'id_pembimbing_dua' => 'required|exists:dosen,encrypt_id',
             ], [
                 'id_pembimbing_dua.required' => 'Dosen Pembimbing 2 Harus dipilih',
@@ -112,8 +112,10 @@ class MahasiswaTaSatuController extends Controller
         $update = ModelSeminarTaSatu::find($store_id);
         $update->encrypt_id = Crypt::encrypt($store_id);
         $update->save();
-        return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('success', 'Berhasil Mendaftar Seminar Tugas Akhir 1');
+        return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')
+            ->with('success', 'Berhasil Mendaftar Seminar Tugas Akhir 1');
     }
+
 
     public function update(UpdateSeminarTaSatuRequest $request, $id)
     {
@@ -136,7 +138,7 @@ class MahasiswaTaSatuController extends Controller
 
         //melakukan cek apakah menggunakan dosen 2 dari external atau bukan
         if ($request->id_pembimbing_dua == 'new') {
-            $validation = $request->validate([
+            $request->validate([
                 'pbl2_nama' => 'required|string|max:255|min:3',
                 'pbl2_nip' => 'required|numeric|digits:18',
             ], [
@@ -152,7 +154,7 @@ class MahasiswaTaSatuController extends Controller
             $seminar->pbl2_nip = $request->pbl2_nip;
             $seminar->id_pembimbing_dua = null;
         } else {
-            $validation = $request->validate([
+            $request->validate([
                 'id_pembimbing_dua' => 'required|exists:dosen,encrypt_id',
             ], [
                 'id_pembimbing_dua.required' => 'Dosen Pembimbing 2 Harus dipilih',
@@ -176,6 +178,7 @@ class MahasiswaTaSatuController extends Controller
         $seminar->komentar = null;
         $seminar->status_admin = 'Process';
         $seminar->save();
-        return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')->with('success', 'Berhasil Mengubah data Seminar Tugas Akhir 1');
+        return redirect()->route('mahasiswa.seminar.tugas_akhir_1.index')
+            ->with('success', 'Berhasil Mengubah data Seminar Tugas Akhir 1');
     }
 }

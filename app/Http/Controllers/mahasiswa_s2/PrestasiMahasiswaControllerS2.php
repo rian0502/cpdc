@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\mahasiswa_s2;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StorePrestasiMahasiswaRequest;
-use App\Http\Requests\UpdatePrestasiMahasiswaRequest;
+use App\Models\Dosen;
+use Illuminate\Support\Str;
 use App\Models\PrestasiMahasiswaS2;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use App\Http\Requests\StorePrestasiMahasiswaRequest;
+use App\Http\Requests\UpdatePrestasiMahasiswaRequest;
 
 class PrestasiMahasiswaControllerS2 extends Controller
 {
@@ -32,7 +34,9 @@ class PrestasiMahasiswaControllerS2 extends Controller
     public function create()
     {
         //
-        return view('mahasiswa.prestasi.create');
+        $data = ['dosen' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
+            ->where('status', 'Aktif')->get()];
+        return view('mahasiswa.prestasi.create', $data);
     }
 
     /**
@@ -51,8 +55,34 @@ class PrestasiMahasiswaControllerS2 extends Controller
             'capaian' => $request->capaian,
             'file_prestasi' => $nama_file,
             'mahasiswa_id' => Auth::user()->mahasiswa->id,
+            'jenis' => $request->jenis,
             'tanggal' => $request->tanggal,
         ];
+        if ($request->id_pembimbing == 'new') {
+            $request->validate([
+                'nama_pembimbing' => 'required|string|max:255|min:3',
+                'nip_pembimbing' => 'required|numeric|digits:18',
+            ], [
+                'nama_pembimbing.required' => 'Nama Dosen Pembimbing tidak boleh kosong',
+                'nama_pembimbing.string' => 'Nama Dosen Pembimbing harus berupa string',
+                'nama_pembimbing.max' => 'Nama Dosen Pembimbing maksimal 255 karakter',
+                'nama_pembimbing.min' => 'Nama Dosen Pembimbing minimal 3 karakter',
+                'nip_pembimbing.required' => 'NIP Dosen Pembimbing tidak boleh kosong',
+                'nip_pembimbing.numeric' => 'NIP Dosen Pembimbing harus berupa angka',
+                'nip_pembimbing.digits' => 'NIP Dosen Pembimbing harus 18 digit',
+            ]);
+            $data['nama_pembimbing'] = Str::title($request->nama_pembimbing);
+            $data['nip_pembimbing'] = $request->nip_pembimbing;
+        } else{
+            $request->validate([
+                'id_pembimbing' => 'required|exists:dosen,id',
+            ], [
+                'id_pembimbing.required' => 'Dosen Pembimbing tidak boleh kosong',
+                'id_pembimbing.exists' => 'Dosen Pembimbing tidak ditemukan',
+            ]);
+            $data['id_pembimbing'] = $request->id_pembimbing;
+        }
+
         $insert_data = PrestasiMahasiswaS2::create($data);
         $id_insert = $insert_data->id;
         $file_prestasi->move('uploads/file_prestasi', $nama_file);
@@ -85,11 +115,13 @@ class PrestasiMahasiswaControllerS2 extends Controller
     {
         //
         $prestasi = PrestasiMahasiswaS2::find(Crypt::decrypt($id));
+        $dosen = Dosen::select('id', 'encrypt_id', 'nama_dosen')
+            ->where('status', 'Aktif')->get();
         if ($prestasi->mahasiswa_id != Auth::user()->mahasiswa->id) {
             return redirect()->back();
         }
 
-        return view('mahasiswa.prestasi.edit', compact('prestasi'));
+        return view('mahasiswa.prestasi.edit', compact('prestasi', 'dosen'));
     }
 
     /**
@@ -116,8 +148,36 @@ class PrestasiMahasiswaControllerS2 extends Controller
                 'capaian' => $request->capaian,
                 'file_prestasi' => $nama_file,
                 'tanggal' => $request->tanggal,
+                'jenis'=>$request->jenis,
                 'updated_at' => date('Y-m-d H:i:s'),
             ];
+            if ($request->id_pembimbing == 'new') {
+                $request->validate([
+                    'nama_pembimbing' => 'required|string|max:255|min:3',
+                    'nip_pembimbing' => 'required|numeric|digits:18',
+                ], [
+                    'nama_pembimbing.required' => 'Nama Dosen Pembimbing tidak boleh kosong',
+                    'nama_pembimbing.string' => 'Nama Dosen Pembimbing harus berupa string',
+                    'nama_pembimbing.max' => 'Nama Dosen Pembimbing maksimal 255 karakter',
+                    'nama_pembimbing.min' => 'Nama Dosen Pembimbing minimal 3 karakter',
+                    'nip_pembimbing.required' => 'NIP Dosen Pembimbing tidak boleh kosong',
+                    'nip_pembimbing.numeric' => 'NIP Dosen Pembimbing harus berupa angka',
+                    'nip_pembimbing.digits' => 'NIP Dosen Pembimbing harus 18 digit',
+                ]);
+                $data['nama_pembimbing'] = Str::title($request->nama_pembimbing);
+                $data['nip_pembimbing'] = $request->nip_pembimbing;
+                $data['id_pembimbing'] = null;
+            } else{
+                $request->validate([
+                    'id_pembimbing' => 'required|exists:dosen,id',
+                ], [
+                    'id_pembimbing.required' => 'Dosen Pembimbing tidak boleh kosong',
+                    'id_pembimbing.exists' => 'Dosen Pembimbing tidak ditemukan',
+                ]);
+                $data['nama_pembimbing'] = null;
+                $data['nip_pembimbing'] = null;
+                $data['id_pembimbing'] = $request->id_pembimbing;
+            }
             if ($prestasi->file_prestasi != null) {
                 unlink(('uploads/file_prestasi/' . $prestasi->file_prestasi));
             }
@@ -127,8 +187,36 @@ class PrestasiMahasiswaControllerS2 extends Controller
                 'scala' => $request->scala,
                 'capaian' => $request->capaian,
                 'tanggal' => $request->tanggal,
+                'jenis'=>$request->jenis,
                 'updated_at' => date('Y-m-d H:i:s'),
             ];
+            if ($request->id_pembimbing == 'new') {
+                $request->validate([
+                    'nama_pembimbing' => 'required|string|max:255|min:3',
+                    'nip_pembimbing' => 'required|numeric|digits:18',
+                ], [
+                    'nama_pembimbing.required' => 'Nama Dosen Pembimbing tidak boleh kosong',
+                    'nama_pembimbing.string' => 'Nama Dosen Pembimbing harus berupa string',
+                    'nama_pembimbing.max' => 'Nama Dosen Pembimbing maksimal 255 karakter',
+                    'nama_pembimbing.min' => 'Nama Dosen Pembimbing minimal 3 karakter',
+                    'nip_pembimbing.required' => 'NIP Dosen Pembimbing tidak boleh kosong',
+                    'nip_pembimbing.numeric' => 'NIP Dosen Pembimbing harus berupa angka',
+                    'nip_pembimbing.digits' => 'NIP Dosen Pembimbing harus 18 digit',
+                ]);
+                $data['nama_pembimbing'] = Str::title($request->nama_pembimbing);
+                $data['nip_pembimbing'] = $request->nip_pembimbing;
+                $data['id_pembimbing'] = null;
+            } else{
+                $request->validate([
+                    'id_pembimbing' => 'required|exists:dosen,id',
+                ], [
+                    'id_pembimbing.required' => 'Dosen Pembimbing tidak boleh kosong',
+                    'id_pembimbing.exists' => 'Dosen Pembimbing tidak ditemukan',
+                ]);
+                $data['nama_pembimbing'] = null;
+                $data['nip_pembimbing'] = null;
+                $data['id_pembimbing'] = $request->id_pembimbing;
+            }
         }
         $update = PrestasiMahasiswaS2::where('id', Crypt::decrypt($id))->update($data);
         return redirect()->route('mahasiswa.profile.index')->with('success', 'Data Prestasi berhasil diubah');

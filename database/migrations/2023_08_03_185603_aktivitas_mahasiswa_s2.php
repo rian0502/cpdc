@@ -19,11 +19,17 @@ class AktivitasMahasiswaS2 extends Migration
             $table->string('encrypt_id')->nullable();
             $table->string('nama_aktivitas');
             $table->enum('peran', ['Ketua', 'Anggota', 'Peserta']);
+            $table->enum('skala', ['Universitas', 'Regional', 'Nasional', 'Internasional']);
             $table->string('sks_konversi');
             $table->date('tanggal');
             $table->string('file_aktivitas');
-            $table->enum('kategori', ['Internasional', 'Nasional']);
+            $table->enum('jenis', ['MBKM', 'PKM', 'HIMA', 'UKM', 'Lainnya']);
+            $table->string('kategori');
+            $table->string('nama_pembimbing')->nullable();
+            $table->string('nip_pembimbing')->nullable();
             $table->foreignId('mahasiswa_id')->index()->constrained('mahasiswa')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_pembimbing')->nullable()->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

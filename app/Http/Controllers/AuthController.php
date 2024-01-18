@@ -98,26 +98,30 @@ class AuthController extends Controller
         ];
         return view('auth.register', $data);
     }
+    
     public function attemptRegister(RegisterRequest $request)
     {
         try {
             DB::transaction(function () use ($request) {
+                $file = $request->file('berkas_upload');
+                $nama_file = $file->hashName();
+                $file->move('uploads/syarat', $nama_file);
                 $user = User::create([
                     'name' => Str::title($request->nama_lengkap),
                     'email' => $request->email,
                     'password' => bcrypt($request->password),
                 ]);
-
                 $aktifkan = BaseNPM::where('npm', $request->npm)->first();
                 $aktifkan->status = 'aktif';
                 $aktifkan->save();
-
                 $mhs = [
                     'npm' => $request->npm,
                     'nama_mahasiswa' => Str::title($request->nama_lengkap),
                     'angkatan' => $request->angkatan,
                     'jenis_kelamin' => $request->gender,
                     'user_id' => $user->id,
+                    'status_register' => 0,
+                    'berkas_upload' => $nama_file,
                 ];
                 if ($request->id_dosen != null) {
                     $mhs['id_dosen'] = Crypt::decrypt($request->id_dosen);
@@ -129,16 +133,12 @@ class AuthController extends Controller
                 } elseif ($request->jenis_akun == 'mahasiswaS2') {
                     $user->assignRole('mahasiswaS2');
                     $mhs['status'] = 'Aktif';
-                } else {
-                    $user->assignRole('alumni');
-                    $mhs['status'] = 'Alumni';
                 }
                 Mahasiswa::create($mhs);
                 event(new Registered($user));
-                dispatch(new SendEmailVertification($user));
+                $user->sendEmailVerificationNotification();
                 auth()->login($user);
             });
-
             return redirect()->route('verification.notice')->with(
                 'registered',
                 'Pendaftaran berhasil, silahkan cek email untuk melakukan verifikasi, Jika Vertifikasi tidak ada di kotak masuk, silahkan cek di kotak spam, atau klik tombol Kirim Kembali'

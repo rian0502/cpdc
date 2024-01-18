@@ -59,7 +59,7 @@
                                         <td>
                                             {{ $loop->iteration }}
                                         </td>
-                                        <td>
+                                        <td style="text-align: left;">
                                             {{ $item->nama_administrasi }}
                                         </td>
                                         <td>
@@ -71,7 +71,7 @@
                                                     \Carbon\Carbon::parse($item->tanggal_lahir)->age }}
                                             </td>
                                         @endrole
-                                        <td style="word-wrap: break-word;">
+                                        <td style="text-align: left; word-wrap: break-word;">
                                             {{ $item->user->email }}
                                         </td>
                                         <td>
@@ -95,19 +95,19 @@
                                                             Lihat</a>
                                                     @endrole
                                                     @role('sudo')
-                                                        <a class="dropdown-item" href="{{ route('sudo.akun_admin.edit', $item->id) }}"><i class="dw dw-edit2"></i>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('sudo.akun_admin.edit', $item->id) }}"><i
+                                                                class="dw dw-edit2"></i>
                                                             Edit</a>
                                                         <form id="delete"
-                                                        action="
-                                                    {{ route('sudo.akun_admin.destroy', $item->id) }}
-                                                    "
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" id="deleteBtn"
-                                                            class="dropdown-item text-danger"><i class="dw dw-delete-3"></i>
-                                                            Hapus</button>
-                                                    </form>
+                                                            action="{{ route('sudo.akun_admin.destroy', $item->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" id="deleteBtn"
+                                                                class="dropdown-item text-danger"><i class="dw dw-delete-3"></i>
+                                                                Hapus</button>
+                                                        </form>
                                                     @endrole
                                                 </div>
                                             </div>

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaDua;
 use App\Http\Requests\StoreBaTaDuaRequest;
 use App\Http\Requests\UpdateBaTaDuaRequest;
+use Illuminate\Support\Facades\DB;
 
 class MahasiswaBaTaDua extends Controller
 {
@@ -36,7 +37,7 @@ class MahasiswaBaTaDua extends Controller
     {
         //
         $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
-        if($mahasiswa->ta_dua->ba_seminar){
+        if ($mahasiswa->ta_dua->ba_seminar) {
             return redirect()->back();
         }
         return view('mahasiswa.ta2.ba.create');
@@ -54,32 +55,41 @@ class MahasiswaBaTaDua extends Controller
         if ($request->_token != csrf_token()) {
             return redirect()->back();
         } else {
-            $seminar = Auth::user()->mahasiswa->ta_dua;
-            $ba = $request->file('berkas_ba_seminar_ta_dua');
-            $file_ba = $ba->hashName();
-            $nilai = $request->file('berkas_nilai_seminar_ta_dua');
-            $file_nilai = $nilai->hashName();
-            $ba->move(('uploads/ba_seminar_ta_dua/'), $file_ba);
-            $nilai->move(('uploads/nilai_seminar_ta_dua/'), $file_nilai);
-            $data = [
-                'no_berkas_ba_seminar_ta_dua' => $request->no_berkas_ba_seminar_ta_dua,
-                'berkas_ba_seminar_ta_dua' => $file_ba,
-                'berkas_nilai_seminar_ta_dua' => $file_nilai,
-                'berkas_ppt_seminar_ta_dua' => $request->berkas_ppt_seminar_ta_dua,
-                'nilai' => $request->nilai,
-                'huruf_mutu' => $request->huruf_mutu,
-                'id_seminar' => $seminar->id,
-            ];
-            $insBa = ModelBaSeminarTaDua::create($data);
-            $ins_id = $insBa->id;
-            $update = ModelBaSeminarTaDua::find($ins_id);
-            $update->encrypt_id = Crypt::encrypt($ins_id);
-            $update->save();
-            $jadwal = ModelJadwalSeminarTaDua::where('id_seminar', $seminar->id)->first();
-            $jadwal->tanggal_seminar_ta_dua = $request->tgl_realisasi_seminar;
-            $jadwal->updated_at = now();
-            $jadwal->save();
-            return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('success', 'Berhasil mengunggah berita acara seminar TA 2');
+            try {
+                DB::beginTransaction();
+                $seminar = Auth::user()->mahasiswa->ta_dua;
+                $ba = $request->file('berkas_ba_seminar_ta_dua');
+                $file_ba = $ba->hashName();
+                $nilai = $request->file('berkas_nilai_seminar_ta_dua');
+                $file_nilai = $nilai->hashName();
+                $ba->move(('uploads/ba_seminar_ta_dua/'), $file_ba);
+                $nilai->move(('uploads/nilai_seminar_ta_dua/'), $file_nilai);
+                $data = [
+                    'no_berkas_ba_seminar_ta_dua' => $request->no_berkas_ba_seminar_ta_dua,
+                    'berkas_ba_seminar_ta_dua' => $file_ba,
+                    'berkas_nilai_seminar_ta_dua' => $file_nilai,
+                    'berkas_ppt_seminar_ta_dua' => $request->berkas_ppt_seminar_ta_dua,
+                    'nilai' => $request->nilai,
+                    'huruf_mutu' => $request->huruf_mutu,
+                    'id_seminar' => $seminar->id,
+                ];
+                $insBa = ModelBaSeminarTaDua::create($data);
+                $ins_id = $insBa->id;
+                $update = ModelBaSeminarTaDua::find($ins_id);
+                $update->encrypt_id = Crypt::encrypt($ins_id);
+                $update->save();
+                $jadwal = ModelJadwalSeminarTaDua::where('id_seminar', $seminar->id)
+                    ->first();
+                $jadwal->tanggal_seminar_ta_dua = $request->tgl_realisasi_seminar;
+                $jadwal->updated_at = now();
+                $jadwal->save();
+                DB::commit();
+                return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')
+                    ->with('success', 'Berhasil mengunggah berita acara seminar TA 2');
+            } catch (\Exception $e) {
+                DB::rollback();
+                return redirect()->back()->with('error', $e->getMessage());
+            }
         }
     }
 
@@ -165,6 +175,4 @@ class MahasiswaBaTaDua extends Controller
         $seminar->save();
         return redirect()->route('mahasiswa.seminar.tugas_akhir_2.index')->with('success', 'Berhasil mengubah berita acara seminar TA 2');
     }
-
-
 }

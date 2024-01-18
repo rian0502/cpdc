@@ -55,12 +55,6 @@ class ControllerMahasiswaS2SeminarTaDua extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *ErrorException
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
@@ -119,7 +113,8 @@ class ControllerMahasiswaS2SeminarTaDua extends Controller
         $update = ModelSeminarTaDuaS2::find($insert->id);
         $update->encrypt_id = Crypt::encrypt($insert->id);
         $update->save();
-        return redirect()->route('mahasiswa.seminarta2s2.index')->with('success', 'Berhasil mengajukan seminar Tesis 2');
+        return redirect()->route('mahasiswa.seminarta2s2.index')
+            ->with('success', 'Berhasil mengajukan seminar Tesis 2');
     }
 
     /**

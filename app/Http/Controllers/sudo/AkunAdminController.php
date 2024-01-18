@@ -4,6 +4,7 @@ namespace App\Http\Controllers\sudo;
 
 use App\Http\Controllers\Controller;
 use App\Models\Administrasi;
+use App\Models\AdminLab;
 use App\Models\HistoryPangkatAdmin;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -78,7 +79,7 @@ class AkunAdminController extends Controller
         $data = [
             'admin' => $admin,
             'account' => User::find($admin->user_id),
-            'pangkat' => HistoryPangkatAdmin::where('administrasi_id', $id)->orderBy('tgl_sk','desc')->get()
+            'pangkat' => HistoryPangkatAdmin::where('administrasi_id', $id)->orderBy('tgl_sk', 'desc')->get()
         ];
         return view('akun.admin.show', $data);
     }
@@ -132,8 +133,11 @@ class AkunAdminController extends Controller
     public function destroy($id)
     {
         //
+        $admin = Administrasi::find($id);
+        $id_user = $admin->user_id;
+        $user = User::find($id_user);
+        $admin->delete();
+        $user->delete();
         return redirect()->route('sudo.akun_admin.index');
     }
-
-
 }

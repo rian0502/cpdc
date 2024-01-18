@@ -168,29 +168,6 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="">Pembimbing Akademik</label>
-                                                <select class="custom-select2 form-control "
-                                                    value="{{ old('id_dosen') }}" name="id_dosen"
-                                                    style="width: 100%; height: 38px">
-                                                    <optgroup label="Pembimbing Akademik">
-                                                        //tidak ada di daftar
-                                                        <option value=""
-                                                            {{ old('id_dosen') == '' ? 'selected' : '' }}>Tidak ada di
-                                                            daftar</option>
-                                                        @foreach ($dosen as $PA)
-                                                            <option value="{{ $PA->encrypt_id }}"
-                                                                {{ old('id_dosen') == $PA->encrypt_id ? 'selected' : '' }}>
-                                                                {{ $PA->nama_dosen }}
-                                                            </option>
-                                                        @endforeach
-                                                    </optgroup>
-
-                                                </select>
-                                                @error('id_dosen')
-                                                    <small class="text-danger">{{ $message }}</small>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group">
                                                 <label for="">Jenis Akun</label>
                                                 <div class="@error('jenis_akun') form-control-danger @enderror">
                                                     <select name="jenis_akun" id="jenis_akun"
@@ -201,9 +178,6 @@
                                                         <option value="mahasiswaS2"
                                                             {{ old('jenis_akun') == 'mahasiswaS2' ? 'selected' : '' }}>
                                                             Mahasiswa S2</option>
-                                                        <option value="alumni"
-                                                            {{ old('jenis_akun') == 'alumni' ? 'selected' : '' }}>
-                                                            Alumni</option>
                                                     </select>
                                                 </div>
                                                 @error('jenis_akun')
@@ -278,7 +252,39 @@
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
+                                           
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="">Pembimbing Akademik</label>
+                                                <select class="custom-select2 form-control "
+                                                    value="{{ old('id_dosen') }}" name="id_dosen"
+                                                    style="width: 100%; height: 38px">
+                                                    <optgroup label="Pembimbing Akademik">
+                                                        <option value=""
+                                                            {{ old('id_dosen') == '' ? 'selected' : '' }}>Tidak ada di daftar</option>
+                                                        @foreach ($dosen as $PA)
+                                                            <option value="{{ $PA->encrypt_id }}"
+                                                                {{ old('id_dosen') == $PA->encrypt_id ? 'selected' : '' }}>
+                                                                {{ $PA->nama_dosen }}
+                                                            </option>
+                                                        @endforeach
+                                                    </optgroup>
 
+                                                </select>
+                                                @error('id_dosen')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Berkas</label>
+                                                <input type="file" accept=".pdf" name="berkas_upload"
+                                                    value="{{ old('berkas_upload') }}"
+                                                    class="form-control @error('berkas_upload') form-control-danger @enderror" />
+                                                @error('berkas_upload')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3">

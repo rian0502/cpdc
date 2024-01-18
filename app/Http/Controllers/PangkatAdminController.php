@@ -51,7 +51,7 @@ class PangkatAdminController extends Controller
         ];
         $insert = HistoryPangkatAdmin::create($data);
         $id_insert = $insert->id;
-        $update = HistoryPangkatAdmin::where('id', $id_insert)->update(['encrypt_id' => Crypt::encrypt($id_insert)]);
+        HistoryPangkatAdmin::where('id', $id_insert)->update(['encrypt_id' => Crypt::encrypt($id_insert)]);
         $file->move(('uploads/sk_pangkat_admin'), $nama_file);
         return redirect()->route('admin.profile.index')->with('success', 'Data berhasil ditambahkan');
     }

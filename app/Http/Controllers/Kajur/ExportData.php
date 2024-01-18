@@ -23,41 +23,54 @@ class ExportData extends Controller
     public function index()
     {
         $data = [
-            'pengabdian' => LitabmasDosen::select('tahun_penelitian')->distinct()->orderBy('tahun_penelitian', 'desc')
+            'pengabdian' => LitabmasDosen::select('tahun_penelitian')
+                ->distinct()->orderBy('tahun_penelitian', 'desc')
                 ->where('kategori', 'Pengabdian')
                 ->get(),
-            'penelitian' => LitabmasDosen::select('tahun_penelitian')->distinct()->orderBy('tahun_penelitian', 'desc')
+            'penelitian' => LitabmasDosen::select('tahun_penelitian')
+                ->distinct()->orderBy('tahun_penelitian', 'desc')
                 ->where('kategori', 'Penelitian')
                 ->get(),
-            'publikasi' => PublikasiDosen::select('tahun')->distinct()->orderBy('tahun', 'desc')
+            'publikasi' => PublikasiDosen::select('tahun')
+                ->distinct()->orderBy('tahun', 'desc')
                 ->get(),
-            'prestasi' => PrestasiMahasiswa::selectRaw('YEAR(tanggal) as year')->distinct()->orderBy('year', 'desc')
+            'prestasi' => PrestasiMahasiswa::selectRaw('YEAR(tanggal) as year')
+                ->distinct()->orderBy('year', 'desc')
                 ->get(),
-            'aktivitas' => AktivitasMahasiswa::selectRaw('YEAR(tanggal) as year')->distinct()->orderBy('year', 'desc')
+            'aktivitas' => AktivitasMahasiswa::selectRaw('YEAR(tanggal) as year')
+                ->distinct()->orderBy('year', 'desc')
                 ->get(),
-            'mahasiswa' => Mahasiswa::select('angkatan')->distinct()->whereHas('user', function ($query) {
-                $query->whereHas('roles', function ($query) {
-                    $query->where('name', 'mahasiswa');
-                });
-            })->orderBy('angkatan', 'desc')
+            'mahasiswa' => Mahasiswa::select('angkatan')
+                ->distinct()->whereHas('user', function ($query) {
+                    $query->whereHas('roles', function ($query) {
+                        $query->where('name', 'mahasiswa');
+                    });
+                })->orderBy('angkatan', 'desc')
                 ->get(),
-            'alumni' => Mahasiswa::select('angkatan')->distinct()->where('status', 'Alumni')->whereHas('user', function ($query) {
-                $query->whereHas('roles', function ($query) {
-                    $query->where('name', 'mahasiswa');
-                });
-            })->orderBy('angkatan', 'desc')
+            'alumni' => Mahasiswa::select('angkatan')
+                ->distinct()->where('status', 'Alumni')->whereHas('user', function ($query) {
+                    $query->whereHas('roles', function ($query) {
+                        $query->where('name', 'mahasiswa');
+                    });
+                })->orderBy('angkatan', 'desc')
                 ->get(),
-            'kp' => Mahasiswa::select('angkatan')->distinct()->whereHas('seminar_kp')->orderBy('angkatan', 'desc')
+            'kp' => Mahasiswa::select('angkatan')
+                ->distinct()->whereHas('seminar_kp')->orderBy('angkatan', 'desc')
                 ->get(),
-            'ta1' => Mahasiswa::select('angkatan')->distinct()->whereHas('ta_satu')->orderBy('angkatan', 'desc')
+            'ta1' => Mahasiswa::select('angkatan')
+                ->distinct()->whereHas('ta_satu')->orderBy('angkatan', 'desc')
                 ->get(),
-            'ta2' => Mahasiswa::select('angkatan')->distinct()->whereHas('ta_dua')->orderBy('angkatan', 'desc')
+            'ta2' => Mahasiswa::select('angkatan')
+                ->distinct()->whereHas('ta_dua')->orderBy('angkatan', 'desc')
                 ->get(),
-            'kompre' => Mahasiswa::select('angkatan')->distinct()->whereHas('komprehensif')->orderBy('angkatan', 'desc')
+            'kompre' => Mahasiswa::select('angkatan')
+                ->distinct()->whereHas('komprehensif')->orderBy('angkatan', 'desc')
                 ->get(),
-            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->where('jenis', 'Seminar')->orderBy('tahun', 'desc')
+            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')
+                ->distinct()->where('jenis', 'Seminar')->orderBy('tahun', 'desc')
                 ->get(),
-            'penghargaan_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->where('jenis', 'Penghargaan')->orderBy('tahun', 'desc')
+            'penghargaan_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')
+                ->distinct()->where('jenis', 'Penghargaan')->orderBy('tahun', 'desc')
                 ->get(),
         ];
         return view('jurusan.export.index', $data);
@@ -80,7 +93,7 @@ class ExportData extends Controller
                     $query->where('status_seminar', $request->status_kp);
                 });
             });
-        } else if ($request->status_kp == 'null') {
+        } elseif ($request->status_kp == 'null') {
             $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
                 $query->whereDoesntHave('seminar_kp');
             });
@@ -92,7 +105,7 @@ class ExportData extends Controller
                     $query->where('status_koor', $request->status_ta1);
                 });
             });
-        } else if ($request->status_ta1 == 'null') {
+        } elseif ($request->status_ta1 == 'null') {
             $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
                 $query->whereDoesntHave('ta_satu');
             });
@@ -104,7 +117,7 @@ class ExportData extends Controller
                     $query->where('status_koor', $request->status_ta2);
                 });
             });
-        } else if ($request->status_ta2 == 'null') {
+        } elseif ($request->status_ta2 == 'null') {
             $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
                 $query->whereDoesntHave('ta_dua');
             });
@@ -116,7 +129,7 @@ class ExportData extends Controller
                     $query->where('status_koor', $request->status_kompre);
                 });
             });
-        } else if ($request->status_kompre == 'null') {
+        } elseif ($request->status_kompre == 'null') {
             $mahasiswa->whereHas('mahasiswa', function ($query) use ($request) {
                 $query->whereDoesntHave('komprehensif');
             });
@@ -142,10 +155,22 @@ class ExportData extends Controller
             $sheet->setCellValue('D' . ($key + 2), $item->mahasiswa->status);
             $sheet->setCellValue('E' . ($key + 2), $item->mahasiswa->angkatan);
             $sheet->setCellValue('F' . ($key + 2), $item->mahasiswa->dosen->nama_dosen ?? '-');
-            $sheet->setCellValue('G' . ($key + 2), $item->mahasiswa->seminar_kp ?  $item->mahasiswa->seminar_kp->status_seminar : '-');
-            $sheet->setCellValue('H' . ($key + 2), $item->mahasiswa->ta_satu ?  $item->mahasiswa->ta_satu->status_koor : '-');
-            $sheet->setCellValue('I' . ($key + 2), $item->mahasiswa->ta_dua ?  $item->mahasiswa->ta_dua->status_koor : '-');
-            $sheet->setCellValue('J' . ($key + 2), $item->mahasiswa->komprehensif ?  $item->mahasiswa->komprehensif->status_koor : '-');
+            $sheet->setCellValue(
+                'G' . ($key + 2),
+                $item->mahasiswa->seminar_kp ?  $item->mahasiswa->seminar_kp->status_seminar : '-'
+            );
+            $sheet->setCellValue(
+                'H' . ($key + 2),
+                $item->mahasiswa->ta_satu ?  $item->mahasiswa->ta_satu->status_koor : '-'
+            );
+            $sheet->setCellValue(
+                'I' . ($key + 2),
+                $item->mahasiswa->ta_dua ?  $item->mahasiswa->ta_dua->status_koor : '-'
+            );
+            $sheet->setCellValue(
+                'J' . ($key + 2),
+                $item->mahasiswa->komprehensif ?  $item->mahasiswa->komprehensif->status_koor : '-'
+            );
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('data_mahasiswa_seminar.xlsx');
@@ -156,7 +181,8 @@ class ExportData extends Controller
 
     public function seminar(Request $request)
     {
-        $seminar = ModelSPDosen::with('dosen')->where('jenis', 'Seminar')->whereYear('tahun', $request->tahun_seminar)->get();
+        $seminar = ModelSPDosen::with('dosen')->where('jenis', 'Seminar')
+            ->whereYear('tahun', $request->tahun_seminar)->get();
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Seminar Dosen');
@@ -183,7 +209,8 @@ class ExportData extends Controller
 
     public function penghargaan(Request $request)
     {
-        $penghargaan = ModelSPDosen::with('dosen')->where('jenis', 'Penghargaan')->whereYear('tahun', $request->tahun_penghargaan)->get();
+        $penghargaan = ModelSPDosen::with('dosen')->where('jenis', 'Penghargaan')
+            ->whereYear('tahun', $request->tahun_penghargaan)->get();
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Penghargaan Dosen');
@@ -205,7 +232,8 @@ class ExportData extends Controller
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('penghargaan_dosen-' . $request->tahun_penghargaan . '.xlsx');
-        return response()->download('penghargaan_dosen-' . $request->tahun_penghargaan . '.xlsx')->deleteFileAfterSend(true);
+        return response()->download('penghargaan_dosen-' .
+            $request->tahun_penghargaan . '.xlsx')->deleteFileAfterSend(true);
     }
 
     public function kompre(Request $request)
@@ -248,13 +276,17 @@ class ExportData extends Controller
                 $sheet->setCellValue('K' . ($key + 2), $value->komprehensif->beritaAcara->huruf_mutu);
                 $sheet->setCellValue('L' . ($key + 2), $value->komprehensif->beritaAcara->nilai);
                 $sheet->setCellValue('M' . ($key + 2), $value->komprehensif->beritaAcara->no_ba_berkas);
-                $sheet->setCellValue('N' . ($key + 2), url('/uploads/ba_sidang_kompre/' . $value->komprehensif->beritaAcara->ba_seminar_komprehensif));
+                $sheet->setCellValue(
+                    'N' . ($key + 2),
+                    url('/uploads/ba_sidang_kompre/' . $value->komprehensif->beritaAcara->ba_seminar_komprehensif)
+                );
                 $sheet->setCellValue('O' . ($key + 2), $value->komprehensif->jadwal->tanggal_komprehensif);
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('seminar_komprehensif_' . $request->akt_kompre . '.xlsx');
-        return response()->download('seminar_komprehensif_' . $request->akt_kompre . '.xlsx')->deleteFileAfterSend(true);
+        return response()->download('seminar_komprehensif_' .
+            $request->akt_kompre . '.xlsx')->deleteFileAfterSend(true);
     }
 
     public function ta2(Request $request)
@@ -297,7 +329,10 @@ class ExportData extends Controller
                 $sheet->setCellValue('K' . ($key + 2), $value->ta_dua->ba_seminar->huruf_mutu);
                 $sheet->setCellValue('L' . ($key + 2), $value->ta_dua->ba_seminar->nilai);
                 $sheet->setCellValue('M' . ($key + 2), $value->ta_dua->ba_seminar->no_berkas_ba_seminar_ta_dua);
-                $sheet->setCellValue('N' . ($key + 2), url('/uploads/ba_seminar_ta_dua/' . $value->ta_dua->ba_seminar->berkas_ba_seminar_ta_dua));
+                $sheet->setCellValue(
+                    'N' . ($key + 2),
+                    url('/uploads/ba_seminar_ta_dua/' . $value->ta_dua->ba_seminar->berkas_ba_seminar_ta_dua)
+                );
                 $sheet->setCellValue('O' . ($key + 2), $value->ta_dua->jadwal->tanggal_seminar_ta_dua);
             } else {
                 $sheet->setCellValue('K' . ($key + 2), '-');
@@ -556,7 +591,13 @@ class ExportData extends Controller
         $sheet->setCellValue('D1', 'SKS');
         $sheet->setCellValue('E1', 'Tanggal');
         $sheet->setCellValue('F1', 'URL');
-        $sheet->setCellValue('G1', 'Mahasiswa');
+        $sheet->setCellValue('G1', 'Tingkatan');
+        $sheet->setCellValue('H1', 'Jenis');
+        $sheet->setCellValue('I1', 'Kategori');
+        $sheet->setCellValue('J1', 'Mahasiswa');
+        $sheet->setCellValue('K1', 'NPM');
+        $sheet->setCellValue('L1', 'Nama Pembimbing');
+        $sheet->setCellValue('M1', 'NIP Pembimbing');
         foreach ($aktivitas as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->nama_aktivitas);
@@ -564,10 +605,16 @@ class ExportData extends Controller
             $sheet->setCellValue('D' . ($key + 2), $value->sks_konversi);
             $sheet->setCellValue('E' . ($key + 2), $value->tanggal);
             $sheet->setCellValue('F' . ($key + 2), url('/uploads/file_act_mhs/' . $value->file_aktivitas));
-            $sheet->setCellValue('G' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+            $sheet->setCellValue('G' . ($key + 2), $value->skala);
+            $sheet->setCellValue('H' . ($key + 2), $value->jenis);
+            $sheet->setCellValue('I' . ($key + 2), $value->kategori);
+            $sheet->setCellValue('J' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+            $sheet->setCellValue('K' . ($key + 2), $value->mahasiswa->npm);
+            $sheet->setCellValue('L' . ($key + 2), ($value->dosen->nama_dosen)??$value->nama_pembimbing);
+            $sheet->setCellValue('M' . ($key + 2), ($value->dosen->nip)??$value->nip_pembimbing);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('aktivitas' . $request->tahun_aktivitas . '.xlsx');
+        $writer->save('aktivitas_' . $request->tahun_aktivitas . '.xlsx');
         return response()->download('aktivitas_' . $request->tahun_aktivitas . '.xlsx')->deleteFileAfterSend(true);
     }
     public function prestasi(Request $request)
@@ -583,6 +630,9 @@ class ExportData extends Controller
         $sheet->setCellValue('E1', 'Tanggal');
         $sheet->setCellValue('F1', 'URL');
         $sheet->setCellValue('G1', 'Mahasiswa');
+        $sheet->setCellValue('H1', 'Jenis');
+        $sheet->setCellValue('I1', 'Nama Pembimbing');
+        $sheet->setCellValue('J1', 'NIP Pembimbing');
         foreach ($prestasi as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->nama_prestasi);
@@ -591,6 +641,9 @@ class ExportData extends Controller
             $sheet->setCellValue('E' . ($key + 2), $value->tanggal);
             $sheet->setCellValue('F' . ($key + 2), url('/uploads/file_prestasi/' . $value->file_prestasi));
             $sheet->setCellValue('G' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+            $sheet->setCellValue('H' . ($key + 2), $value->jenis);
+            $sheet->setCellValue('I' . ($key + 2), ($value->dosen->nama_dosen)??$value->nama_pembimbing);
+            $sheet->setCellValue('J' . ($key + 2), ($value->dosen->nip)??$value->nip_pembimbing);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('prestasi' . $request->tahun_prestasi . '.xlsx');

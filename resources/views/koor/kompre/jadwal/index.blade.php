@@ -6,7 +6,22 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4">Penjadwalan Sidang Komprehensif</h4>
+                        <form action="{{ route('koor.jadwalKompre.download') }}" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="weight-500 col-md-3">
+                                    <div class="form-group">
+                                        <div class="cta  d-flex align-items-center justify-content-start"
+                                            style="margin-top: 34px">
+                                            <button class="btn btn-sm btn-success"><i class="fa fa-download"></i>
+                                                Unduh Detail Data</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
+
                     <div class="pb-20 m-3">
 
                         <table class="table data-table-responsive stripe data-table-export">
