@@ -355,9 +355,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #FFFFFF;
-    box-shadow: 0 0 45px rgba(0, 0, 0, .07);
-    transition: .5s;
+    background: #ffffff;
+    box-shadow: 0 0 45px rgba(0, 0, 0, 0.07);
+    transition: 0.5s;
     z-index: 1;
 }
 

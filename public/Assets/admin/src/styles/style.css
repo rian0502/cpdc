@@ -29,17 +29,17 @@ input[type="submit"] {
     padding: 0;
 }
 body {
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    width: 100%;
-    min-height: 100%;
-    color: #031e23;
-    width: 100%;
-    height: 100%;
-    background: #ecf0f4;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+  width: 100%;
+  min-height: 100%;
+  color: #031e23;
+  width: 100%;
+  height: 100%;
+  background: #ecf0f4;
 }
 a {
     outline: none;
@@ -60,9 +60,9 @@ img {
 input,
 textarea,
 select {
-    outline: none;
-    resize: none;
-    font-family: "Inter", sans-serif;
+  outline: none;
+  resize: none;
+  font-family: Poppins, sans-serif;
 }
 a,
 input,
@@ -78,11 +78,11 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0;
-    padding: 0;
-    font-weight: 700;
-    color: #202342;
-    font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+  color: #202342;
+  font-family: Poppins, sans-serif;
 }
 img {
     border: 0;
@@ -303,40 +303,40 @@ p {
 }
 
 .h1 {
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 1.3;
-    font-family: "Inter", sans-serif;
-    color: #1b3133;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.3;
+  font-family: Poppins, sans-serif;
+  color: #1b3133;
 }
 .h2 {
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1.35;
-    font-family: "Inter", sans-serif;
-    color: #1b3133;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.35;
+  font-family: Poppins, sans-serif;
+  color: #1b3133;
 }
 .h3 {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.5;
-    color: #1b3133;
-    font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #1b3133;
+  font-family: Poppins, sans-serif;
 }
 .h4,
 .page-header h4 {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.35;
-    color: #1b3133;
-    font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #1b3133;
+  font-family: Poppins, sans-serif;
 }
 .h5 {
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.35;
-    color: #1b3133;
-    font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #1b3133;
+  font-family: Poppins, sans-serif;
 }
 
 .line-height-1 {
@@ -586,7 +586,7 @@ p {
 }
 
 .highcharts-root {
-    font-family: "Inter", sans-serif !important;
+  font-family: Poppins, sans-serif !important;
 }
 .bootstrap-select .dropdown-toggle {
     height: 45px;
@@ -641,16 +641,16 @@ p {
     box-shadow: 0px 0px 28px rgba(0, 0, 0, 0.1);
 }
 .dropdown-item {
-    font-size: 15px;
-    font-weight: 400;
-    padding: 0.657rem 1rem;
-    letter-spacing: 0;
-    color: #444444;
-    font-family: "Inter", sans-serif;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 0.657rem 1rem;
+  letter-spacing: 0;
+  color: #444444;
+  font-family: Poppins, sans-serif;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .dropdown-item:hover,
 .dropdown-item:focus {
@@ -667,17 +667,17 @@ p {
 .form-control,
 .custom-select,
 .custom-file-input {
-    font-family: "Inter", sans-serif;
-    color: #131e22;
-    font-weight: 400;
-    font-size: 14px;
-    height: 45px;
-    border-color: #d4d4d4;
-    border-radius: 8px;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+  font-family: Poppins, sans-serif;
+  color: #131e22;
+  font-weight: 400;
+  font-size: 14px;
+  height: 45px;
+  border-color: #d4d4d4;
+  border-radius: 8px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .form-control.form-control-sm {
     height: 38px;
@@ -689,17 +689,17 @@ p {
     border-radius: 0;
 }
 .custom-file-label {
-    font-family: "Inter", sans-serif;
-    color: #131e22;
-    font-weight: 400;
-    height: 45px;
-    padding-top: 0.475rem;
-    border-color: #d4d4d4;
-    letter-spacing: 0.035em;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+  font-family: Poppins, sans-serif;
+  color: #131e22;
+  font-weight: 400;
+  height: 45px;
+  padding-top: 0.475rem;
+  border-color: #d4d4d4;
+  letter-spacing: 0.035em;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .custom-file-label::after {
     height: 100%;
@@ -829,13 +829,13 @@ textarea.form-control {
 /* ---------------- form validation class -------------*/
 
 .btn {
-    font-family: "Inter", sans-serif;
-    letter-spacing: 0;
-    font-weight: 500;
-    padding: 0.719rem 1rem;
-    font-size: 14px;
-    line-height: 20px;
-    border-radius: 8px;
+  font-family: Poppins, sans-serif;
+  letter-spacing: 0;
+  font-weight: 500;
+  padding: 0.719rem 1rem;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 8px;
 }
 .btn-lg {
     padding: 0.657rem 1rem;
@@ -1074,14 +1074,14 @@ textarea.form-control {
     border: 0 !important;
 }
 .bootstrap-select.btn-group .dropdown-menu li a {
-    display: block;
-    font-size: 15px;
-    font-weight: 400;
-    padding: 0.55rem 1rem;
-    color: #667f87;
-    font-family: "Inter", sans-serif;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+  display: block;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 0.55rem 1rem;
+  color: #667f87;
+  font-family: Poppins, sans-serif;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .bootstrap-select.btn-group .dropdown-menu li.divider {
     border: 1px solid #eaeaea;
@@ -1299,7 +1299,7 @@ div.dataTables_wrapper div.dataTables_filter,
 }
 
 .apexcharts-svg * {
-    font-family: "Inter", sans-serif !important;
+  font-family: Poppins, sans-serif !important;
 }
 
 table.dataTable.dtr-inline.collapsed
@@ -1480,12 +1480,12 @@ table.dataTable.dtr-inline.collapsed
     border-radius: 100%;
 }
 .user-info-dropdown .dropdown-toggle .user-name {
-    font-weight: 500;
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 5px;
-    color: #131e22;
-    font-family: "Inter", sans-serif;
+  font-weight: 500;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  color: #131e22;
+  font-family: Poppins, sans-serif;
 }
 .user-info-dropdown .dropdown-menu {
     min-width: 185px;
@@ -1533,17 +1533,17 @@ table.dataTable.dtr-inline.collapsed
     padding: 20px 10px;
 }
 .notification-list ul li a {
-    display: block;
-    position: relative;
-    padding: 10px 15px 10px 75px;
-    min-height: 75px;
-    color: #666666;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: "Inter", sans-serif;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+  display: block;
+  position: relative;
+  padding: 10px 15px 10px 75px;
+  min-height: 75px;
+  color: #666666;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: Poppins, sans-serif;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 .notification-list ul li a img {
     width: 50px;
@@ -1559,12 +1559,12 @@ table.dataTable.dtr-inline.collapsed
     box-shadow: 1px 2px 13px rgba(0, 0, 0, 0.2);
 }
 .notification-list ul li a h3 {
-    font-size: 16px;
-    color: #202342;
-    font-weight: 700;
-    text-transform: capitalize;
-    font-family: "Inter", sans-serif;
-    padding-bottom: 5px;
+  font-size: 16px;
+  color: #202342;
+  font-weight: 700;
+  text-transform: capitalize;
+  font-family: Poppins, sans-serif;
+  padding-bottom: 5px;
 }
 .notification-list ul li a h3 span {
     float: right;
@@ -1677,18 +1677,18 @@ table.dataTable.dtr-inline.collapsed
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .brand-logo a {
-    display: flex;
-    vertical-align: middle;
-    align-items: center;
-    position: relative;
-    height: 100%;
-    font-size: 22px;
-    color: #ffffff;
-    letter-spacing: 0.05em;
-    font-weight: 500;
-    line-height: 45px;
-    font-family: "Inter", sans-serif;
-    padding: 0px 20px 0px;
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  font-size: 22px;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  line-height: 45px;
+  font-family: Poppins, sans-serif;
+  padding: 0px 20px 0px;
 }
 .brand-logo a .dark-logo,
 .sidebar-light .brand-logo a .light-logo {
@@ -1765,18 +1765,18 @@ table.dataTable.dtr-inline.collapsed
     padding: 2px 12px;
 }
 .sidebar-menu .dropdown-toggle {
-    display: block;
-    padding: 14px 15px 14px 67px;
-    font-size: 15px;
-    color: #ffffff;
-    font-weight: 500;
-    position: relative;
-    border-radius: 8px;
-    font-family: "Inter", sans-serif;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+  display: block;
+  padding: 14px 15px 14px 67px;
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 500;
+  position: relative;
+  border-radius: 8px;
+  font-family: Poppins, sans-serif;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .sidebar-menu .dropdown-toggle:after {
     content: "\F282";
@@ -1926,18 +1926,18 @@ table.dataTable.dtr-inline.collapsed
     display: none;
 }
 .sidebar-menu .submenu li a {
-    display: block;
-    padding: 14px 15px 14px 60px;
-    font-size: 14px;
-    color: #ffffff;
-    font-weight: 400;
-    border-radius: 8px;
-    position: relative;
-    font-family: "Inter", sans-serif;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+  display: block;
+  padding: 14px 15px 14px 60px;
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 400;
+  border-radius: 8px;
+  position: relative;
+  font-family: Poppins, sans-serif;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .sidebar-menu .submenu li.dropdown > a:before {
     display: none;
@@ -2453,16 +2453,16 @@ body.IE .register-page-wrap .container {
 }
 
 .wysihtml5-toolbar .dropdown-menu a {
-    display: block;
-    font-size: 15px;
-    font-weight: 400;
-    padding: 0.55rem 1rem;
-    color: #667f87;
-    font-family: "Inter", sans-serif;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+  display: block;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 0.55rem 1rem;
+  color: #667f87;
+  font-family: Poppins, sans-serif;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .html-editor textarea.form-control {
