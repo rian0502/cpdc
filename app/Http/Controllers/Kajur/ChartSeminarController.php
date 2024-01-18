@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Kajur;
 
-use App\Models\Mahasiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -35,12 +34,14 @@ class ChartSeminarController extends Controller
                     }
                 });
             });
-
             $mahasiswaNonAktifQuery = User::whereHas('roles', function ($query) {
                 $query->where('name', 'mahasiswa');
-            })->where(function ($query) {
-                $query->whereHas('mahasiswa', function ($query) {
+            })->where(function ($query)use ($angkatan)  {
+                $query->whereHas('mahasiswa', function ($query) use ($angkatan) {
                     $query->whereIn('status', ['Drop Out', 'Cuti']);
+                    if ($angkatan != null && $angkatan != 'all') {
+                        $query->where('angkatan', $angkatan);
+                    }
                 });
             });
 
@@ -64,8 +65,6 @@ class ChartSeminarController extends Controller
             });
             $SudahSeminarKP = $SudahSeminarKP->count();
 
-
-            // ...
 
             $SudahSeminarTA1 = User::whereHas('roles', function ($query) {
                 $query->where('name', 'mahasiswa');
@@ -171,9 +170,12 @@ class ChartSeminarController extends Controller
 
             $mahasiswaNonAktifQuery = User::whereHas('roles', function ($query) {
                 $query->where('name', 'mahasiswaS2');
-            })->where(function ($query) {
-                $query->whereHas('mahasiswa', function ($query) {
+            })->where(function ($query)use ($angkatan)  {
+                $query->whereHas('mahasiswa', function ($query) use ($angkatan) {
                     $query->whereIn('status', ['Drop Out', 'Cuti']);
+                    if ($angkatan != null && $angkatan != 'all') {
+                        $query->where('angkatan', $angkatan);
+                    }
                 });
             });
 

@@ -22,39 +22,6 @@ class ControllerAdminS2BpTaDua extends Controller
         ];
         return view('admin.admin_berkas.validasi.seminarS2.ta2.index', $data);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -95,14 +62,5 @@ class ControllerAdminS2BpTaDua extends Controller
         return redirect()->route('berkas.validasi.s2.tesis2.index')->with('success', 'Berhasil Mengubah data');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+
 }
