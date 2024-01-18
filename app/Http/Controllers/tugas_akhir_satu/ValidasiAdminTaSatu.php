@@ -92,6 +92,7 @@ class ValidasiAdminTaSatu extends Controller
             $seminar = ModelSeminarTaSatu::find(Crypt::decrypt($id));
             $seminar->status_admin = $request->status_admin;
             $seminar->komentar = $request->komentar;
+            $seminar->updated_at = now();
             $seminar->save();
         } else {
             $status = ['Valid', 'Invalid', 'Process'];
@@ -107,9 +108,11 @@ class ValidasiAdminTaSatu extends Controller
             $seminar = ModelSeminarTaSatu::find(Crypt::decrypt($id));
             $seminar->status_admin = $request->status_admin;
             $seminar->komentar = null;
+            $seminar->updated_at = now();
             $seminar->save();
         }
-        return redirect()->route('berkas.validasi.seminar.ta1.index')->with('success', 'Berhasil Mengubah Data Seminar');
+        return redirect()->route('berkas.validasi.seminar.ta1.index')
+            ->with('success', 'Berhasil Mengubah Data Seminar');
     }
 
     /**

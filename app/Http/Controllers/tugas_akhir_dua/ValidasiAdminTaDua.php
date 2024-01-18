@@ -21,38 +21,6 @@ class ValidasiAdminTaDua extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -93,6 +61,7 @@ class ValidasiAdminTaDua extends Controller
             $seminar = ModelSeminarTaDua::find(Crypt::decrypt($id));
             $seminar->status_admin = $request->status_admin;
             $seminar->komentar = $request->komentar;
+            $seminar->updated_at = now();
             $seminar->save();
         } else {
             $status = ['Valid', 'Invalid', 'Process'];
@@ -108,20 +77,10 @@ class ValidasiAdminTaDua extends Controller
             $seminar = ModelSeminarTaDua::find(Crypt::decrypt($id));
             $seminar->status_admin = $request->status_admin;
             $seminar->komentar = null;
+            $seminar->updated_at = now();
             $seminar->save();
         }
         return redirect()->route('berkas.validasi.seminar.ta2.index')
             ->with('success', 'Berhasil Mengubah Data Seminar');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

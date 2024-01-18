@@ -8,14 +8,14 @@ use App\Models\Lokasi;
 use App\Models\Mahasiswa;
 use App\Models\Administrasi;
 use Illuminate\Http\Request;
+use App\Jobs\SendEmailTugasAkhir1;
 use App\Models\ModelSeminarTaSatu;
+use App\Models\TemplateBeritaAcara;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaSatu;
-use App\Models\TemplateBeritaAcara;
-use SeminarTaSatu;
 
 class PenjadwalanTaSatu extends Controller
 {
@@ -128,19 +128,12 @@ class PenjadwalanTaSatu extends Controller
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
-            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 1');
-            $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach('uploads/print_ba_ta1/' . $namafile);
-        });
-        unlink('uploads/print_ba_ta1/' . $namafile);
-        return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Menjadwalkan Seminar Tugas Akhir 1');
+        dispatch(new SendEmailTugasAkhir1($data, $to_name, $to_email, $namafile));
+        return redirect()->route('koor.jadwalTA1.index')->with(
+            'success',
+            'Berhasil Menjadwalkan Seminar Tugas Akhir 1'
+        );
     }
-
-    public function show($id)
-    {
-    }
-
     public function edit($id)
     {
         $seminar = ModelSeminarTaSatu::find(Crypt::decrypt($id));
@@ -319,12 +312,12 @@ class PenjadwalanTaSatu extends Controller
                 $sheet->setCellValue('H' . ($key + 2), $value->updated_at->isoFormat('D MMMM Y'));
             }
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
-            $filename = 'Daftar Seminar TA 1 S1 Angkatan .xlsx';
+            $filename = 'Daftar Seminar TA 1 S1.xlsx';
             $writer->save($filename);
             return response()->download($filename)->deleteFileAfterSend(true);
         } else {
             return redirect()->back()
-                ->with('error', 'Belum Ada Mahasiswa yang Mendaftar Seminar TA 1');
+                ->with('error', 'Belum ada Seminar TA 1 yang dapat dijadwalkan');
         }
     }
 }

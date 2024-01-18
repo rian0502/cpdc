@@ -99,6 +99,7 @@ class AdminKompreController extends Controller
             $seminar = ModelSeminarKompre::find(Crypt::decrypt($id));
             $seminar->status_admin = $request->status_admin;
             $seminar->komentar = $request->komentar;
+            $seminar->updated_at = now();
             $seminar->save();
         } else {
             $status = ['Valid', 'Invalid', 'Process'];
@@ -114,6 +115,7 @@ class AdminKompreController extends Controller
             $seminar = ModelSeminarKompre::find(Crypt::decrypt($id));
             $seminar->status_admin = $request->status_admin;
             $seminar->komentar = null;
+            $seminar->updated_at = now();
             $seminar->save();
         }
         return redirect()->route('berkas.validasi.sidang.kompre.index')

@@ -325,4 +325,45 @@ class PenjadwalanTaDua extends Controller
         return redirect()->route('koor.jadwalTA2.index')
             ->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar TA 2');
     }
+
+
+    public function downloadJadwal(Request $request)
+    {
+        $seminar = ModelSeminarTaDua::with('mahasiswa', 'pembimbing_satu', 'pembimbing_dua', 'pembahas')
+            ->whereDoesntHave('jadwal')->where('status_admin', 'Valid')->orderBy('updated_at', 'asc')->get();
+        $spredsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spredsheet->getActiveSheet();
+        $sheet->setTitle('Daftar Seminar TA 2 S1');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Nama Mahasiswa');
+        $sheet->setCellValue('C1', 'NPM');
+        $sheet->setCellValue('D1', 'Judul TA');
+        $sheet->setCellValue('E1', 'Pembimbing 1');
+        $sheet->setCellValue('F1', 'Pembimbing 2');
+        $sheet->setCellValue('G1', 'Pembahas');
+        $sheet->setCellValue('H1', 'Tanggal Validasi');
+        if ($seminar->count() > 0) {
+            foreach ($seminar as $key => $value) {
+                $sheet->setCellValue('A' . ($key + 2), $key + 1);
+                $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+                $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->npm);
+                $sheet->setCellValue('D' . ($key + 2), $value->judul_ta);
+                $sheet->setCellValue('E' . ($key + 2), $value->pembimbing_satu->nama_dosen);
+                if ($value->id_pembimbing_dua) {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pembimbing_dua->nama_dosen);
+                } else {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pbl2_nama);
+                }
+                $sheet->setCellValue('G' . ($key + 2), $value->pembahas->nama_dosen);
+                $sheet->setCellValue('H' . ($key + 2), $value->updated_at->isoFormat('D MMMM Y'));
+            }
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
+            $filename = 'Daftar Seminar TA 2 S1.xlsx';
+            $writer->save($filename);
+            return response()->download($filename)->deleteFileAfterSend(true);
+        } else {
+            return redirect()->back()
+                ->with('error', 'Belum ada Seminar TA 2 yang dapat dijadwalkan');
+        }
+    }
 }
