@@ -1865,7 +1865,7 @@ table.dataTable.dtr-inline.collapsed
     background-color: var(--primary);
 }
 
-//scroll atas bawah
+/* scroll atas bawah */
 .sidebar-light .menu-block .mCS-dark-2.mCSB_scrollTools .mCSB_draggerRail {
     background-color: #b2b8d3;
 }

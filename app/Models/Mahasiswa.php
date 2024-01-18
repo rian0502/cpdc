@@ -101,6 +101,10 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(AktivitasAlumni::class, 'mahasiswa_id');
     }
+    public function presetasi()
+    {
+        return $this->hasMany(PrestasiMahasiswa::class);
+    }
     public function kegiatanTerakhir()
     {
         return $this->hasOne(AktivitasAlumni::class, 'mahasiswa_id')->latest('tahun_masuk')

@@ -9,6 +9,7 @@ use App\Models\AktivitasMahasiswa;
 use App\Models\AktivitasMahasiswaS2;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
+use App\Models\ModelPublikasiMahasiswa;
 use App\Models\PrestasiMahasiswa;
 use App\Models\PrestasiMahasiswaS2;
 use App\Models\User;
@@ -24,17 +25,18 @@ class ProfileMahasiswaController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->hasRole('mahasiswaS2')){
+        if (Auth::user()->hasRole('mahasiswaS2')) {
             $data = [
                 'prestasi' => PrestasiMahasiswaS2::where('mahasiswa_id', Auth::user()->mahasiswa->id)->get(),
                 'aktivitas' => AktivitasMahasiswaS2::where('mahasiswa_id', Auth::user()->mahasiswa->id)->get(),
             ];
-        }else{
+        } else {
             $data = [
                 'prestasi' => PrestasiMahasiswa::where('mahasiswa_id', Auth::user()->mahasiswa->id)->get(),
                 'aktivitas' => AktivitasMahasiswa::where('mahasiswa_id', Auth::user()->mahasiswa->id)->get(),
             ];
         }
+        $data['publikasi'] = ModelPublikasiMahasiswa::where('mahasiswa_id', Auth::user()->mahasiswa->id)->get();
         return view('mahasiswa.profile.index', $data);
     }
 
@@ -45,7 +47,7 @@ class ProfileMahasiswaController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->mahasiswa->tanggal_masuk != null){
+        if (Auth::user()->mahasiswa->tanggal_masuk != null) {
             return redirect()->back();
         }
         $data = [
@@ -77,7 +79,6 @@ class ProfileMahasiswaController extends Controller
         $user->save();
         $foto_profile->move('uploads/profile', $nama_foto);
         return redirect()->route('dashboard')->with('success', 'Profile Berhasil Diperbarui');
-
     }
 
     /**
@@ -100,7 +101,7 @@ class ProfileMahasiswaController extends Controller
     public function edit($npm)
     {
 
-        if(Auth::user()->mahasiswa->npm != $npm){
+        if (Auth::user()->mahasiswa->npm != $npm) {
             return redirect()->back();
         }
         $data = [
@@ -122,14 +123,14 @@ class ProfileMahasiswaController extends Controller
     {
         $mahasiswa = Mahasiswa::where('npm', $id)->first();
         $user = User::find($mahasiswa->user_id);
-        if(Auth::user()->id != $mahasiswa->user_id){
+        if (Auth::user()->id != $mahasiswa->user_id) {
             return redirect()->back();
         }
-        if($request->file('foto_profile') != null){
+        if ($request->file('foto_profile') != null) {
             $foto_profile = $request->file('foto_profile');
             $nama_foto = $foto_profile->hashName();
-            if($user->profile_picture != 'default.png'){
-                unlink('uploads/profile/'.$user->profile_picture);
+            if ($user->profile_picture != 'default.png') {
+                unlink('uploads/profile/' . $user->profile_picture);
             }
             $foto_profile->move('uploads/profile', $nama_foto);
             $user->profile_picture = $nama_foto;

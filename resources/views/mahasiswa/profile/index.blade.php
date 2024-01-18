@@ -90,6 +90,10 @@
                                             <a class="nav-link" data-toggle="tab" href="#extra" role="tab">Kegiatan
                                                 Lainnya</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#publikasi"
+                                                role="tab">Publikasi</a>
+                                        </li>
                                     </ul>
                                     <div class="tab-content">
                                         <!-- Prestasi Tab start -->
@@ -102,7 +106,7 @@
                                                             <h5>Data Prestasi</h5>
                                                         </div>
                                                         <div class="col-md-4 col-sm-12 text-right">
-                                                            <a href="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.prestasiS2.create':'mahasiswa.prestasi.create')}}"
+                                                            <a href="{{ route(Auth::user()->hasRole('mahasiswaS2') ? 'mahasiswa.prestasiS2.create' : 'mahasiswa.prestasi.create') }}"
                                                                 class="bg-light-blue btn text-blue weight-500"><i
                                                                     class="ion-plus-round"></i> Tambah</a>
                                                         </div>
@@ -130,7 +134,8 @@
                                                                         <td>{{ $item->scala }}</td>
                                                                         <td>{{ $item->capaian }}</td>
                                                                         <td>{{ $item->jenis }}</td>
-                                                                        <td>{{ ($item->dosen->nama_dosen)??$item->nama_pembimbing }}</td>
+                                                                        <td>{{ $item->dosen->nama_dosen ?? $item->nama_pembimbing }}
+                                                                        </td>
                                                                         <td>{{ $item->tanggal }}</td>
                                                                         <td>
                                                                             <div class="dropdown">
@@ -146,11 +151,11 @@
                                                                                             class="dw dw-file"></i> Lihat
                                                                                         File</a>
                                                                                     <a class="dropdown-item"
-                                                                                        href="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.prestasiS2.edit':'mahasiswa.prestasi.edit', $item->encrypt_id)}}"><i
+                                                                                        href="{{ route(Auth::user()->hasRole('mahasiswaS2') ? 'mahasiswa.prestasiS2.edit' : 'mahasiswa.prestasi.edit', $item->encrypt_id) }}"><i
                                                                                             class="dw dw-edit2"></i>
                                                                                         Edit</a>
                                                                                     <form class="deleteForm2"
-                                                                                        action="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.prestasiS2.destroy':'mahasiswa.prestasi.destroy', $item->encrypt_id)}}"
+                                                                                        action="{{ route(Auth::user()->hasRole('mahasiswaS2') ? 'mahasiswa.prestasiS2.destroy' : 'mahasiswa.prestasi.destroy', $item->encrypt_id) }}"
                                                                                         method="POST">
                                                                                         @csrf
                                                                                         @method('DELETE')
@@ -183,7 +188,7 @@
                                                             <h5>Data Kegiatan Lainnya</h5>
                                                         </div>
                                                         <div class="col-md-4 col-sm-12 text-right">
-                                                            <a href="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.kegiatanS2.create':'mahasiswa.kegiatan.create')}}"
+                                                            <a href="{{ route(Auth::user()->hasRole('mahasiswaS2') ? 'mahasiswa.kegiatanS2.create' : 'mahasiswa.kegiatan.create') }}"
                                                                 class="bg-light-blue btn text-blue weight-500"><i
                                                                     class="ion-plus-round"></i> Tambah</a>
                                                         </div>
@@ -206,48 +211,49 @@
                                                             </thead>
                                                             <tbody>
                                                                 @foreach ($aktivitas as $item)
-                                                                <tr>
-                                                                    <td>{{ $loop->iteration }}</td>
-                                                                    <td>{{ $item->nama_aktivitas }}</td>
-                                                                    <td>{{ $item->peran }}</td>
-                                                                    <td>{{ $item->skala }}</td>
-                                                                    <td>{{ $item->jenis }}</td>
-                                                                    <td>{{ $item->kategori }}</td>
-                                                                    <td>{{ $item->tanggal }}</td>
-                                                                    <td>{{ $item->sks_konversi }} SKS</td>
-                                                                    <td>
+                                                                    <tr>
+                                                                        <td>{{ $loop->iteration }}</td>
+                                                                        <td>{{ $item->nama_aktivitas }}</td>
+                                                                        <td>{{ $item->peran }}</td>
+                                                                        <td>{{ $item->skala }}</td>
+                                                                        <td>{{ $item->jenis }}</td>
+                                                                        <td>{{ $item->kategori }}</td>
+                                                                        <td>{{ $item->tanggal }}</td>
+                                                                        <td>{{ $item->sks_konversi }} SKS</td>
+                                                                        <td>
 
-                                                                        <div class="dropdown">
-                                                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                                                                data-color="#1b3133" href="#"
-                                                                                role="button" data-toggle="dropdown">
-                                                                                <i class="dw dw-more"></i>
-                                                                            </a>
-                                                                            <div
-                                                                                class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                                                <a class="dropdown-item" target="_blank"
-                                                                                    href="/uploads/file_act_mhs/{{ $item->file_aktivitas }}"><i
-                                                                                        class="dw dw-file"></i> Lihat
-                                                                                    File</a>
-                                                                                <a class="dropdown-item"
-                                                                                    href="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.kegiatanS2.edit':'mahasiswa.kegiatan.edit', $item->encrypt_id)}}"><i
-                                                                                        class="dw dw-edit2"></i> Edit</a>
-                                                                                <form class="deleteForm2"
-                                                                                    action="{{route((Auth::user()->hasRole('mahasiswaS2'))?'mahasiswa.kegiatanS2.destroy':'mahasiswa.kegiatan.destroy', $item->encrypt_id)}}"
-                                                                                    method="POST">
-                                                                                    @csrf
-                                                                                    @method('DELETE')
-                                                                                    <button type="button"
-                                                                                        class="dropdown-item text-danger deleteBtn2"
-                                                                                        onclick="showDeleteConfirmation(event)"><i
-                                                                                            class="dw dw-trash"></i>
-                                                                                        Hapus</button>
-                                                                                </form>
+                                                                            <div class="dropdown">
+                                                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                                                    data-color="#1b3133" href="#"
+                                                                                    role="button" data-toggle="dropdown">
+                                                                                    <i class="dw dw-more"></i>
+                                                                                </a>
+                                                                                <div
+                                                                                    class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                                                    <a class="dropdown-item" target="_blank"
+                                                                                        href="/uploads/file_act_mhs/{{ $item->file_aktivitas }}"><i
+                                                                                            class="dw dw-file"></i> Lihat
+                                                                                        File</a>
+                                                                                    <a class="dropdown-item"
+                                                                                        href="{{ route(Auth::user()->hasRole('mahasiswaS2') ? 'mahasiswa.kegiatanS2.edit' : 'mahasiswa.kegiatan.edit', $item->encrypt_id) }}"><i
+                                                                                            class="dw dw-edit2"></i>
+                                                                                        Edit</a>
+                                                                                    <form class="deleteForm2"
+                                                                                        action="{{ route(Auth::user()->hasRole('mahasiswaS2') ? 'mahasiswa.kegiatanS2.destroy' : 'mahasiswa.kegiatan.destroy', $item->encrypt_id) }}"
+                                                                                        method="POST">
+                                                                                        @csrf
+                                                                                        @method('DELETE')
+                                                                                        <button type="button"
+                                                                                            class="dropdown-item text-danger deleteBtn2"
+                                                                                            onclick="showDeleteConfirmation(event)"><i
+                                                                                                class="dw dw-trash"></i>
+                                                                                            Hapus</button>
+                                                                                    </form>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -255,6 +261,99 @@
                                             </div>
                                         </div>
                                         <!-- Extra Activity Tab End -->
+
+                                        <!-- publikasi Tab start -->
+                                        <div class="tab-pane fade show" id="publikasi" role="tabpanel">
+                                            <div class="pd-20">
+                                                <div class="">
+                                                    <!-- Open Task start -->
+                                                    <div class="task-title row align-items-center">
+                                                        <div class="col-md-8 col-sm-12">
+                                                            <h5>Data Publikasi</h5>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-12 text-right">
+                                                            <a href="{{ route('mahasiswa.publikasi.create') }}"
+                                                                class="bg-light-blue btn text-blue weight-500"><i
+                                                                    class="ion-plus-round"></i> Tambah</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="profile-task-list  table-responsive">
+                                                        <table
+                                                            class="table data-table-responsive stripe data-table-noexport">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>No</th>
+                                                                    <th>Judul</th>
+                                                                    <th>Tahun</th>
+                                                                    <th>Kategori</th>
+                                                                    <th>Scala</th>
+                                                                    <th>Tautan</th>
+                                                                    <th class="table-plus datatable-nosort">Aksi</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($publikasi as $item)
+                                                                    <tr>
+                                                                        <td>
+                                                                            {{ $loop->iteration }}
+                                                                        </td>
+                                                                        <td>
+                                                                            {{ $item->judul }}
+                                                                        </td>
+                                                                        <td>
+                                                                            {{ $item->tahun }}
+                                                                        </td>
+                                                                        <td>
+                                                                            {{ $item->kategori }}
+                                                                        </td>
+                                                                        <td>
+                                                                            {{ $item->scala }}
+                                                                        </td>
+                                                                        <td>
+                                                                            <a target="_blank"
+                                                                                href="{{ $item->url }}">Klik</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="dropdown">
+                                                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                                                    data-color="#1b3133" href="#"
+                                                                                    role="button" data-toggle="dropdown">
+                                                                                    <i class="dw dw-more"></i>
+                                                                                </a>
+                                                                                <div
+                                                                                    class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                                                    <a class="dropdown-item"
+                                                                                        target="_blank"
+                                                                                        href="/uploads/file_act_mhs/{{ $item->file_aktivitas }}"><i
+                                                                                            class="dw dw-file"></i> Lihat
+                                                                                        File</a>
+                                                                                    <a class="dropdown-item"
+                                                                                        href="{{ route(Auth::user()->hasRole('mahasiswaS2') ? 'mahasiswa.kegiatanS2.edit' : 'mahasiswa.kegiatan.edit', $item->encrypt_id) }}"><i
+                                                                                            class="dw dw-edit2"></i>
+                                                                                        Edit</a>
+                                                                                    <form class="deleteForm2"
+                                                                                        action="{{ route(Auth::user()->hasRole('mahasiswaS2') ? 'mahasiswa.kegiatanS2.destroy' : 'mahasiswa.kegiatan.destroy', $item->encrypt_id) }}"
+                                                                                        method="POST">
+                                                                                        @csrf
+                                                                                        @method('DELETE')
+                                                                                        <button type="button"
+                                                                                            class="dropdown-item text-danger deleteBtn2"
+                                                                                            onclick="showDeleteConfirmation(event)"><i
+                                                                                                class="dw dw-trash"></i>
+                                                                                            Hapus</button>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- publikasi Tab End -->
                                     </div>
                                 </div>
                             </div>

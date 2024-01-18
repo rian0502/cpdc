@@ -94,11 +94,12 @@ class AuthController extends Controller
     public function register()
     {
         $data = [
-            'dosen' => Dosen::where('status', 'Aktif')->get(),
+            'dosen' => Dosen::where('status', 'Aktif')
+                ->orderBy('nama_dosen', 'asc')->get(),
         ];
         return view('auth.register', $data);
     }
-    
+
     public function attemptRegister(RegisterRequest $request)
     {
         try {
