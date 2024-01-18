@@ -7,6 +7,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
+                          
                             <h4 class="text-dark h4">Edit Data Prestasi</h4>
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
@@ -60,9 +61,44 @@
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label>Pembimbing</label>
+
+                                    <select
+                                        class="custom-select2 form-control @error('id_pembimbing') form-control-danger @enderror"
+                                        name="id_pembimbing" id="id_pembimbing" style="width: 100%; height: 38px"
+                                        onchange="toggleInput(this, 'pembimbing', 'nama_pembimbing')">
+                                        <optgroup label="Pembimbing">
+                                            @foreach ($dosen as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ old('id_pembimbing', $prestasi->id_pembimbing ?? null) == $item->id ? 'selected' : '' }}>
+                                                    {{ $item->nama_dosen }}</option>
+                                            @endforeach
+                                            @if (in_array(old('id_pembimbing', $prestasi->id_pembimbing), ['new', null]) ||
+                                                    $errors->has('nama_pembimbing'))
+                                                <option value="new" selected>Tidak Ada di Daftar Ini</option>
+                                            @else
+                                                <option value="new">Tidak Ada di Daftar Ini</option>
+                                            @endif
+                                        </optgroup>
+                                    </select>
+                                </div>
+
                             </div>
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
+                                <div class="form-group">
+                                    <label>Jenis</label>
+                                    <select class="selectpicker form-control @error('jenis') form-control-danger @enderror" data-size="5" name="jenis">
+                                        <option value="Akademik" {{ old('jenis', $prestasi->jenis) == 'Akademik' ? 'selected' : '' }}>Akademik
+                                        </option>
+                                        <option value="Non Akademik" {{ old('jenis', $prestasi->jenis) == 'Non Akademik' ? 'selected' : '' }}>Non Akademik
+                                        </option>
+                                    </select>
+                                    @error('jenis')
+                                    <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                @enderror
+                                </div>
                                 <div class="form-group">
                                     <label>Capaian</label>
                                     <select class="selectpicker form-control @error('capaian') form-control-danger @enderror" data-size="5" name="capaian">
@@ -108,6 +144,34 @@
                                     @enderror
 
                                 </div>
+                                <div id="nama_pembimbing"
+                                    style="display: {{ in_array(old('id_pembimbing', $prestasi->id_pembimbing), ['new', null]) ? 'block' : 'none' }};"
+                                    {{ in_array(old('id_pembimbing', $prestasi->id_pembimbing), ['new', null]) ? '' : 'hidden' }}>
+                                    <div class="form-group">
+                                        <label>Nama Pembimbing</label>
+                                        <input autofocus name="nama_pembimbing"
+                                            class="form-control @error('nama_pembimbing') form-control-danger @enderror"
+                                            type="text" value="{{ old('nama_pembimbing', $prestasi->nama_pembimbing) }}"
+                                            placeholder="Masukkan Nama Pembimbing">
+                                        @error('nama_pembimbing')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div id="pembimbing"
+                                    style="display: {{ in_array(old('id_pembimbing', $prestasi->id_pembimbing ?? null), ['new', null]) ? 'block' : 'none' }};"
+                                    {{ in_array(old('id_pembimbing', $prestasi->id_pembimbing ?? null), ['new', null]) ? '' : 'hidden' }}>
+                                    <div class="form-group">
+                                        <label>NIP Pembimbing</label>
+                                        <input autofocus name="nip_pembimbing"
+                                            class="form-control @error('nip_pembimbing') form-control-danger @enderror"
+                                            type="text" value="{{ old('nip_pembimbing', $prestasi->nip_pembimbing) }}"
+                                            placeholder="Masukkan NIP Pembimbing">
+                                        @error('nip_pembimbing')
+                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -124,4 +188,9 @@
         </div>
         <!-- Input Validation End -->
     </div>
+    <script>
+        @if (old('nama_pembimbing', $prestasi->nama_pembimbing))
+            toggleInput(document.getElementById('id_pembimbing'), 'pembimbing')
+        @endif
+    </script>
 @endsection

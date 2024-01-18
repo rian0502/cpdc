@@ -20,9 +20,13 @@ return new class extends Migration
             $table->string('nama_prestasi');
             $table->enum('scala', ['Nasional', 'Internasional', 'Provinsi', 'Kabupaten/Kota', 'Universitas']);
             $table->enum('capaian', ['Juara 1', 'Juara 2', 'Juara 3', 'Harapan 1', 'Harapan 2', 'Harapan 3', 'Peserta']);
+            $table->enum('jenis', ['Akademik', 'Non Akademik']);
+            $table->string('nama_pembimbing')->nullable();
+            $table->string('nip_pembimbing')->nullable();
             $table->date('tanggal');
             $table->string('file_prestasi');
             $table->foreignId('mahasiswa_id')->constrained('mahasiswa')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_pembimbing')->nullable()->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

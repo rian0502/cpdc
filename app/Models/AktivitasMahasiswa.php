@@ -18,7 +18,13 @@ class AktivitasMahasiswa extends Model
         "sks_konversi",
         "tanggal",
         "file_aktivitas",
+        "skala",
+        "jenis",
+        "kategori",
         "mahasiswa_id",
+        "id_pembimbing",
+        "nama_pembimbing",
+        "nip_pembimbing",
         "created_at",
         "updated_at",
     ];
@@ -26,5 +32,9 @@ class AktivitasMahasiswa extends Model
     public function mahasiswa()
     {
         return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id');
+    }
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'id_pembimbing');
     }
 }

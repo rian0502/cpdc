@@ -26,10 +26,13 @@ class StorePrestasiMahasiswaRequest extends FormRequest
     {
         $capaian = ['Juara 1', 'Juara 2', 'Juara 3', 'Harapan 1', 'Harapan 2', 'Harapan 3', 'Peserta'];
         $scala = ['Nasional', 'Internasional', 'Provinsi', 'Kabupaten/Kota', 'Universitas'];
+        $jenis = ['Akademik', 'Non Akademik'];
+
         return [
             'nama_prestasi' => 'required|string|max:255',
             'scala' => 'required|in:' . implode(',', $scala),
             'capaian' => 'required|in:' . implode(',', $capaian),
+            'jenis' => 'required|in:' . implode(',', $jenis),
             'tanggal' => 'required|date',
             'file_prestasi' => 'required|mimes:pdf|max:1048'
         ];
@@ -40,6 +43,8 @@ class StorePrestasiMahasiswaRequest extends FormRequest
             'nama_prestasi.required' => 'Nama Prestasi tidak boleh kosong',
             'nama_prestasi.string' => 'Nama Prestasi harus berupa huruf',
             'nama_prestasi.max' => 'Nama Prestasi maksimal 255 karakter',
+            'jenis.required' => 'Jenis tidak boleh kosong',
+            'jenis.in' => 'Jenis harus salah satu dari: Akademik, Non Akademik',
             'scala.required' => 'Scala tidak boleh kosong',
             'scala.in' => 'Scala harus salah satu dari: Nasional, Internasional, Provinsi, Kabupaten/Kota, Universitas',
             'capaian.required' => 'Capaian tidak boleh kosong',
