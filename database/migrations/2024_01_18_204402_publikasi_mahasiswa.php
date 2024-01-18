@@ -46,6 +46,7 @@ class PublikasiMahasiswa extends Migration
             ]);
             $table->string('url')->nullable();
             $table->text('anggota')->nullable();
+            $table->foreignId('mahasiswa_id')->constrained('mahasiswa')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

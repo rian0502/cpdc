@@ -19,7 +19,14 @@ class ModelPublikasiMahasiswa extends Model
         'scala',
         'kategori',
         'url',
-        'anggota'
+        'anggota',
+        'mahasiswa_id',
+        'created_at',
+        'updated_at'
     ];
-    
+
+    public function mahasiswa(){
+        return $this->belongsTo(Mahasiswa::class);
+    }
+
 }

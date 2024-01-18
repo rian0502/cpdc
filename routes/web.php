@@ -126,6 +126,7 @@ use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
 use App\Http\Controllers\controller_seminar\EditSeminarKerjaPraktikController;
 use App\Http\Controllers\controller_seminar\EditSeminarKomprehensifController;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
+use App\Http\Controllers\PublikasiMahasiswaController;
 use App\Http\Controllers\sudo\ValidasiMahasiswa;
 use Illuminate\Support\Facades\Redis;
 
@@ -562,6 +563,10 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware(
     });
 });
 
+
+Route::resource('publikasi_mahasiswa', PublikasiMahasiswaController::class)
+    ->names('mahasiswa.publikasi')->middleware('auth', 'verified', 'role:mahasiswa|mahasiswaS2|alumniS1|alumniS2');
+
 Route::prefix('mahasiswa')->name('mahasiswa.')->middleware(
     'auth',
     'mahasiswa',
@@ -594,6 +599,9 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware(
         'belumTaAlternativ'
     ])->name('lab.cekin.belum.ta.alternatif');
 });
+
+
+
 
 
 //AUTH
