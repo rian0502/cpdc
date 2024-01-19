@@ -21,6 +21,7 @@ use App\Models\ModelPendataanAlumni;
 use App\Models\ModelSeminarTaSatuS2;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use PublikasiMahasiswa;
 
 class Mahasiswa extends Model
 {
@@ -104,6 +105,10 @@ class Mahasiswa extends Model
     public function presetasi()
     {
         return $this->hasMany(PrestasiMahasiswa::class);
+    }
+    public function publikasi_mahasiswa()
+    {
+        return $this->hasMany(ModelPublikasiMahasiswa::class, 'mahasiswa_id');
     }
     public function kegiatanTerakhir()
     {
