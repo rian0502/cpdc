@@ -82,7 +82,18 @@ class PublikasiMahasiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $publikasi = ModelPublikasiMahasiswa::findOrFail(Crypt::decrypt($id));
+            if ($publikasi->mahasiswa_id != Auth::user()->mahasiswa->id) {
+                return redirect()->route('mahasiswa.profile.index')
+                    ->with('error', 'Publikasi tidak ditemukan');
+            } else {
+                return view('mahasiswa.publikasi.edit', compact('publikasi'));
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('mahasiswa.profile.index')
+                ->with('error', 'Publikasi tidak ditemukan');
+        }
     }
 
     /**
@@ -92,9 +103,31 @@ class PublikasiMahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePublikasiMahasiswa $request, $id)
     {
         //
+        try {
+            $publikasi = ModelPublikasiMahasiswa::findOrFail(Crypt::decrypt($id));
+            $publikasi->update(
+                [
+                    'nama_publikasi' => $request->nama_publikasi,
+                    'judul' => $request->judul,
+                    'tahun' => $request->tahun,
+                    'vol' => $request->vol,
+                    'halaman' => $request->halaman,
+                    'scala' => $request->scala,
+                    'kategori' => $request->kategori,
+                    'url' => $request->url,
+                    'anggota' => $request->anggota,
+                ]
+            );
+            $publikasi->save();
+            return redirect()->route('mahasiswa.profile.index')
+                ->with('success', 'Publikasi berhasil diperbarui');
+        } catch (\Exception $e) {
+            return redirect()->route('mahasiswa.profile.index')
+                ->with('error', 'Gagal Memperbarui Publikasi');
+        }
     }
 
     /**
@@ -106,5 +139,19 @@ class PublikasiMahasiswaController extends Controller
     public function destroy($id)
     {
         //
+        try {
+            $publikasi = ModelPublikasiMahasiswa::findOrFail(Crypt::decrypt($id));
+            if ($publikasi->mahasiswa_id != Auth::user()->mahasiswa->id) {
+                return redirect()->route('mahasiswa.profile.index')
+                    ->with('error', 'Publikasi tidak ditemukan');
+            } else {
+                $publikasi->delete();
+                return redirect()->route('mahasiswa.profile.index')
+                    ->with('success', 'Publikasi berhasil dihapus');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('mahasiswa.profile.index')
+                ->with('error', 'Publikasi tidak ditemukan');
+        }
     }
 }

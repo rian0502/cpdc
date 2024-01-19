@@ -323,16 +323,11 @@
                                                                                 <div
                                                                                     class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                                                     <a class="dropdown-item"
-                                                                                        target="_blank"
-                                                                                        href="/uploads/file_act_mhs/{{ $item->file_aktivitas }}"><i
-                                                                                            class="dw dw-file"></i> Lihat
-                                                                                        File</a>
-                                                                                    <a class="dropdown-item"
-                                                                                        href="{{ route(Auth::user()->hasRole('mahasiswaS2') ? 'mahasiswa.kegiatanS2.edit' : 'mahasiswa.kegiatan.edit', $item->encrypt_id) }}"><i
+                                                                                        href="{{ route('mahasiswa.publikasi.edit', $item->encrypt_id) }}"><i
                                                                                             class="dw dw-edit2"></i>
                                                                                         Edit</a>
                                                                                     <form class="deleteForm2"
-                                                                                        action="{{ route(Auth::user()->hasRole('mahasiswaS2') ? 'mahasiswa.kegiatanS2.destroy' : 'mahasiswa.kegiatan.destroy', $item->encrypt_id) }}"
+                                                                                        action="{{ route('mahasiswa.publikasi.destroy', $item->encrypt_id) }}"
                                                                                         method="POST">
                                                                                         @csrf
                                                                                         @method('DELETE')
