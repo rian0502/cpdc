@@ -8,15 +8,14 @@
                         <div class="row align-items-center justify-content-center">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="tanggal-awal">Tahun Awal</label>
-                                    <input type="date" class="form-control" placeholder="Tahun Awal"
-                                        id="tanggal-awal">
+                                    <label for="tanggal-awal">tanggal Awal</label>
+                                    <input type="date" class="form-control" placeholder="tanggal Awal" id="tanggal-awal">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="tanggal-akhir">Tahun Akhir</label>
-                                    <input type="date" class="form-control" placeholder="Tahun Akhir"
+                                    <label for="tanggal-akhir">tanggal Akhir</label>
+                                    <input type="date" class="form-control" placeholder="tanggal Akhir"
                                         id="tanggal-akhir">
                                 </div>
                             </div>
@@ -60,6 +59,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Judul</th>
                                     <th>Nama</th>
                                     <th>Tanggal</th>
                                     <th>Skala</th>
@@ -79,10 +79,10 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
 
     <script>
         var PieChart1;
@@ -127,8 +127,13 @@
                             orderable: true
                         },
                         {
-                            data: 'tahun',
-                            name: 'tahun',
+                            data: 'dosen.nama',
+                            name: 'dosen.nama',
+                            orderable: true
+                        },
+                        {
+                            data: 'tanggal',
+                            name: 'tanggal',
                             orderable: true
                         },
                         {
@@ -166,7 +171,7 @@
                     }
                 });
                 $.ajax({
-                    url: '{{ route('chart.tahunseminar.dosen') }}',
+                    url: '{{ route('chart.Tanggalseminar.dosen') }}',
                     type: 'GET',
                     dataType: 'json',
                     data: {
@@ -195,8 +200,8 @@
                 });
 
                 pieChart1 = Highcharts.chart('pieChart', {
-                    credits:{
-                        enabled:false
+                    credits: {
+                        enabled: false
                     },
                     chart: {
                         type: 'pie',
@@ -204,7 +209,7 @@
                         renderTo: 'pieChart'
                     },
                     title: {
-                        text: 'KATEGORI SEMINAR'
+                        text: 'SKALA SEMINAR'
                     },
                     tooltip: {
                         pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b> ({point.percentage:.1f}%)'
@@ -225,20 +230,22 @@
                 // Mengonversi data JSON ke format yang digunakan oleh Highcharts dengan persentase dan jumlah
                 var seriesData = chartData
                     .sort(function(a, b) {
-                        return a.tahun - b.tahun; // Mengurutkan tahun dari yang terkecil ke terbesar
+                        return a.tanggal - b.tanggal; // Mengurutkan tanggal dari yang terkecil ke terbesar
                     })
                     .map(function(item) {
                         return {
-                            name: item.tahun,
+                            name: item.tanggal,
                             y: item.total
                         };
                     });
 
 
+                // Mengambil tanggal terkecil untuk dimasukkan ke dalam sumbu X
+                var xAxisMin = seriesData.length > 10 ? seriesData.length - 5 : 0;
                 // Membangun chart
                 barChart = Highcharts.chart('barChart', {
-                    credits:{
-                        enabled:false
+                    credits: {
+                        enabled: false
                     },
                     chart: {
                         type: 'column'
@@ -248,6 +255,7 @@
                     },
                     xAxis: {
                         type: 'category',
+
                         labels: {
                             rotation: -45,
                             style: {
@@ -255,6 +263,9 @@
                                 fontFamily: 'Verdana, sans-serif'
                             }
                         }
+                    },
+                    scrollbar: {
+                        enabled: true
                     },
                     yAxis: {
                         min: 0,
@@ -285,6 +296,12 @@
                         }
                     }]
                 });
+                var categoriesLength = seriesData.length;
+                var visibleCategories = 10; // Jumlah kategori yang ingin ditampilkan
+                var minIndex = Math.max(0, categoriesLength - visibleCategories);
+                var maxIndex = categoriesLength - 1;
+
+                barChart.xAxis[0].setExtremes(minIndex, maxIndex);
             }
 
             // Fungsi untuk menangani klik tombol filter
@@ -295,5 +312,4 @@
             });
         });
     </script>
-
 @endsection

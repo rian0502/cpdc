@@ -204,12 +204,12 @@ Route::get('chart/aktivitasalumni', [AktivitasAlumniController::class, 'chartAkt
     ->name('chart.aktivitas.alumni')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
 Route::get('chart/seminardosen', [ControllerSeminarDosen::class, 'chartSeminarDosen'])
     ->name('chart.seminar.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
-Route::get('chart/tahunseminardosen', [ControllerSeminarDosen::class, 'chartTahunSeminarDosen'])
-    ->name('chart.tahunseminar.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
+Route::get('chart/Tanggalseminardosen', [ControllerSeminarDosen::class, 'chartTanggalSeminarDosen'])
+    ->name('chart.Tanggalseminar.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
 Route::get('chart/Penghargaandosen', [ControllerPenghargaanDosen::class, 'chartPenghargaanDosen'])
     ->name('chart.Penghargaan.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
-Route::get('chart/tahunPenghargaandosen', [ControllerPenghargaanDosen::class, 'chartTahunPenghargaanDosen'])
-    ->name('chart.tahunPenghargaan.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
+Route::get('chart/TanggalPenghargaandosen', [ControllerPenghargaanDosen::class, 'chartTanggalPenghargaanDosen'])
+    ->name('chart.TanggalPenghargaan.dosen')->middleware('auth', 'verified', 'role:jurusan|tpmpsS1|tpmpsS2');
 // end ADMIN LAB
 
 //admin berkas

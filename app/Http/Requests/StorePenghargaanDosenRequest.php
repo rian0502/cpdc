@@ -26,8 +26,9 @@ class StorePenghargaanDosenRequest extends FormRequest
     {
         return [
             'nama' => ['string', 'required', 'min:3', 'max:255'],
-            'tahun' => ['required', 'date'],
+            'tanggal' => ['required', 'date'],
             'scala' => ['required', 'string', 'in:Nasional,Internasional,Provinsi,Kabupaten/Kota,Universitas'],
+            'kategori'=>['required','string','in:Satya Lencana,Sertifikat Kopetensi,Piagam Penghargaan,Narasumber,Staff Ahli,Tenaga Ahli/Konsultan,Keynote Speaker,Invited Speaker,Visiting Lecturer,Visiting Researcher,Editor/Mitra Bestari'],
             'uraian' => ['required', 'string', 'min:3', 'max:1255'],
             'url' => ['required', 'url', 'min:3', 'max:255'],
         ];
@@ -39,10 +40,10 @@ class StorePenghargaanDosenRequest extends FormRequest
             'nama.string' => 'Nama penghargaan harus berupa Huruf',
             'nama.min' => 'Nama penghargaan minimal 3 karakter',
             'nama.max' => 'Nama penghargaan maksimal 255 karakter',
-            'tahun.required' => 'Tahun penghargaan harus diisi',
-            'tahun.date' => 'Tahun penghargaan harus berupa tanggal',
+            'tanggal.required' => 'Tanggal penghargaan harus diisi',
+            'tanggal.date' => 'Tanggal penghargaan harus berupa tanggal',
             'scala.required' => 'Scala penghargaan harus diisi',
-            'scala.in' => 'Scala penghargaan harus salah satu dari: Nasional,Internasional,Provinsi,Kabupaten/Kota,Universitas',
+            'scala.in' => 'Scala penghargaan harus salah satu Pilihan',
             'uraian.required' => 'Uraian penghargaan harus diisi',
             'uraian.min' => 'Uraian penghargaan minimal 3 karakter',
             'uraian.max' => 'Uraian penghargaan maksimal 1255 karakter',
@@ -50,6 +51,10 @@ class StorePenghargaanDosenRequest extends FormRequest
             'url.url' => 'URL penghargaan harus berupa URL',
             'url.min' => 'URL penghargaan minimal 3 karakter',
             'url.max' => 'URL penghargaan maksimal 255 karakter',
+            'kategori.required' => 'Kategori penghargaan harus diisi',
+            'kategori.string' => 'Kategori penghargaan harus berupa Huruf',
+            'kategori.in' => 'Kategori penghargaan harus salah satu dari Pilihan',
+
         ];
     }
 }

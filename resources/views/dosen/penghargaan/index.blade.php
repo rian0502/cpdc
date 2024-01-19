@@ -18,8 +18,8 @@
                         <div class="d-flex mt-4">
 
 
-                            <a href="{{ route('dosen.penghargaan.create') }}" class="bg-light-blue btn text-blue weight-500"><i
-                                    class="ion-plus-round"></i> Tambah</a>
+                            <a href="{{ route('dosen.penghargaan.create') }}"
+                                class="bg-light-blue btn text-blue weight-500"><i class="ion-plus-round"></i> Tambah</a>
                             {{-- <a href="#" class="btn" data-toggle="modal" data-target="#via-excel" type="button">
                                 <button class="btn btn-secondary mt-3">
                                     <i class="bi bi-file-earmark-spreadsheet-fill"></i>
@@ -36,7 +36,8 @@
                                     <td>No</td>
                                     <td class="max-w-md">Nama Penghargaan</td>
                                     <td>Skala</td>
-                                    <td>Tahun</td>
+                                    <td>Tanggal</td>
+                                    <td>Kategori</td>
                                     <td>Url Dokumen</td>
                                     <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">Uraian</td>
                                     <th class="table-plus datatable-nosort">Aksi</th>
@@ -49,9 +50,12 @@
                                         <td class="text-break max-w-md text-left">
                                             {{ $item->nama }}</td>
                                         <td>{{ $item->scala }}</td>
-                                        <td>{{ $item->tahun }}</td>
-                                        <td><a href="{{ $item->url }}" target="_blank" class="text-primary">Lihat</a></td>
-                                        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{ $item->uraian }}</td>
+                                        <td>{{ $item->tanggal }}</td>
+                                        <td>{{ $item->kategori }}</td>
+                                        <td><a href="{{ $item->url }}" target="_blank" class="text-primary">Lihat</a>
+                                        </td>
+                                        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">
+                                            {{ $item->uraian }}</td>
                                         </td>
                                         <td>
                                             <div class="dropdown">
@@ -63,21 +67,20 @@
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
 
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('dosen.penghargaan.edit', $item->encrypt_id) }}"><i
-                                                                class="dw dw-edit2"></i>
-                                                            Edit</a>
-                                                        <form class="deleteForm2"
-                                                            action="{{ route('dosen.penghargaan.destroy', $item->encrypt_id) }}"
-                                                            method="POST">
-                                                            @method('DELETE')
-                                                            @csrf
-                                                            <button type="button"
-                                                                class="dropdown-item text-danger deleteBtn2"
-                                                                onclick="showDeleteConfirmation(event)">
-                                                                <i class="dw dw-delete-3"></i>
-                                                                Hapus</button>
-                                                        </form>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('dosen.penghargaan.edit', $item->encrypt_id) }}"><i
+                                                            class="dw dw-edit2"></i>
+                                                        Edit</a>
+                                                    <form class="deleteForm2"
+                                                        action="{{ route('dosen.penghargaan.destroy', $item->encrypt_id) }}"
+                                                        method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="button" class="dropdown-item text-danger deleteBtn2"
+                                                            onclick="showDeleteConfirmation(event)">
+                                                            <i class="dw dw-delete-3"></i>
+                                                            Hapus</button>
+                                                    </form>
 
                                                 </div>
                                             </div>

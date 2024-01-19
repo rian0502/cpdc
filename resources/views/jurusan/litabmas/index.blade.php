@@ -80,11 +80,10 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
     <script>
         var PieChart1;
         var PieChart2;
@@ -216,8 +215,8 @@
                 });
 
                 pieChart1 = Highcharts.chart('pieChart', {
-                    credits:{
-                        enabled:false
+                    credits: {
+                        enabled: false
                     },
                     chart: {
                         type: 'pie',
@@ -250,16 +249,15 @@
                     })
                     .map(function(item) {
                         return {
-                            name: item.year,
+                            name: item.year.toString(), // Menggunakan tahun sebagai label
                             y: item.total
                         };
                     });
 
-
                 // Membangun chart
                 barChart = Highcharts.chart('barChart', {
-                    credits:{
-                        enabled:false
+                    credits: {
+                        enabled: false
                     },
                     chart: {
                         type: 'column'
@@ -272,14 +270,18 @@
                     },
                     xAxis: {
                         type: 'category',
+                        scrollbar: {
+                        enabled: true
+                    },
                         labels: {
                             rotation: -45,
                             style: {
                                 fontSize: '13px',
                                 fontFamily: 'Verdana, sans-serif'
                             }
-                        }
+                        },
                     },
+
                     yAxis: {
                         min: 0,
                         title: {
@@ -309,7 +311,14 @@
                         }
                     }]
                 });
+                var categoriesLength = seriesData.length;
+                var visibleCategories = 10; // Jumlah kategori yang ingin ditampilkan
+                var minIndex = Math.max(0, categoriesLength - visibleCategories);
+                var maxIndex = categoriesLength - 1;
+
+                barChart.xAxis[0].setExtremes(minIndex, maxIndex);
             }
+
 
             // Fungsi untuk menangani klik tombol filter
             $('#filter').on('click', function() {
@@ -319,5 +328,4 @@
             });
         });
     </script>
-
 @endsection

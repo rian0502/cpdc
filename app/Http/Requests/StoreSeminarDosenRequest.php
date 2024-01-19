@@ -26,7 +26,7 @@ class StoreSeminarDosenRequest extends FormRequest
     {
         return [
             'nama' => ['string', 'required', 'min:3', 'max:255'],
-            'tahun' => ['required', 'date'],
+            'tanggal' => ['required', 'date'],
             'scala' => ['required', 'string', 'in:Nasional,Internasional,Provinsi,Kabupaten/Kota,Universitas'],
             'uraian' => ['required', 'string', 'min:3', 'max:1255'],
             'url' => ['required', 'url', 'min:3', 'max:255'],
@@ -39,8 +39,8 @@ class StoreSeminarDosenRequest extends FormRequest
             'nama.min' => 'Nama seminar minimal 3 karakter',
             'nama.string' => 'Nama penghargaan harus berupa Huruf',
             'nama.max' => 'Nama seminar maksimal 255 karakter',
-            'tahun.required' => 'Tahun seminar harus diisi',
-            'tahun.date' => 'Tahun seminar harus berupa tanggal',
+            'tanggal.required' => 'Tanggal seminar harus diisi',
+            'tanggal.date' => 'Tanggal seminar harus berupa tanggal',
             'scala.required' => 'Scala seminar harus diisi',
             'scala.in' => 'Scala seminar harus salah satu dari: Nasional,Internasional,Provinsi,Kabupaten/Kota,Universitas',
             'uraian.required' => 'Uraian seminar harus diisi',
