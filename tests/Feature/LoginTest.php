@@ -16,7 +16,7 @@ class LoginTest extends TestCase
      */
     use RefreshDatabase;
 
-public function test_login_with_invalid_input()
+    public function test_login_with_invalid_input()
     {
         // Jalur Independen 1: Input tidak valid
         $response = $this->post('/login', [

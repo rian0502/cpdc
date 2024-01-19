@@ -91,6 +91,41 @@
                         </div>
                     </form>
                 </div>
+                <div class="card-box" style="height:256px;">
+                    <div class="pd-20">
+                        <div class="h5 mb-0">Publikasi Mahasiswa</div>
+                    </div>
+                    <form action="{{ route('jurusan.unduh.publikasi.mahasiswas2') }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
+                            <div class="weight-500 col-md-9" style="margin-left: 5px">
+                                <div class="form-group">
+                                    <label>Publikasi Mahasiswa</label>
+                                    <select class="custom-select2 form-control" name="tahun_publikasi_mahasiswa"
+                                        id="tahun_publikasi_mahasiswa" style="width: 100%; height: 38px">
+                                        <optgroup label="Tahun Publikasi">
+                                            @foreach ($publikasi_mahasiswa as $item)
+                                                <option value="{{ $item->tahun }}">{{ $item->tahun }}
+                                                </option>
+                                            @endforeach
+                                        </optgroup>
+                                    </select>
+                                    @error('tahun_publikasi_mahasiswa')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="weight-500 col-md-3">
+                                <div class="form-group">
+                                    <div class="cta  d-flex align-items-center justify-content-end mt-4">
+                                        <button class="btn btn-sm btn-outline-primary">Unduh</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
