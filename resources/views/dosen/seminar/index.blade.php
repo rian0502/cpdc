@@ -36,7 +36,7 @@
                                     <td>No</td>
                                     <td class="max-w-md">Nama Seminar</td>
                                     <td>Skala</td>
-                                    <td>Tahun</td>
+                                    <td>tanggal</td>
                                     <td>Url Dokumen</td>
                                     <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">Uraian</td>
                                     <th class="table-plus datatable-nosort">Aksi</th>
@@ -49,7 +49,7 @@
                                         <td class="text-break max-w-md text-left">
                                             {{ $item->nama }}</td>
                                         <td>{{ $item->scala }}</td>
-                                        <td>{{ $item->tahun }}</td>
+                                        <td>{{ $item->tanggal }}</td>
                                         <td><a href="{{ $item->url }}" target="_blank" class="text-primary">Lihat</a></td>
                                         <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{ $item->uraian }}</td>
                                         </td>

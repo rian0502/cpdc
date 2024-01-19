@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Kajur;
 
-use App\Http\Controllers\Controller;
-use App\Models\AktivitasMahasiswa;
-use App\Models\LitabmasDosen;
+use App\Models\User;
 use App\Models\Mahasiswa;
 use App\Models\ModelSPDosen;
-use App\Models\PrestasiMahasiswa;
-use App\Models\PublikasiDosen;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\LitabmasDosen;
+use App\Models\PublikasiDosen;
+use App\Models\PrestasiMahasiswa;
+use App\Models\AktivitasMahasiswa;
+use App\Http\Controllers\Controller;
+use App\Models\ModelPenghargaanDosen;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class ExportDataDosen extends Controller
@@ -31,9 +32,9 @@ class ExportDataDosen extends Controller
                 ->get(),
             'publikasi' => PublikasiDosen::select('tahun')->distinct()->orderBy('tahun', 'desc')
                 ->get(),
-            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->where('jenis', 'Seminar')->orderBy('tahun', 'desc')
+            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tanggal) as tahun')->distinct()->orderBy('tahun', 'desc')
                 ->get(),
-            'penghargaan_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->where('jenis', 'Penghargaan')->orderBy('tahun', 'desc')
+            'penghargaan_dosen' => ModelPenghargaanDosen::selectRaw('YEAR(tanggal) as tahun')->distinct()->orderBy('tahun', 'desc')
                 ->get(),
         ];
         return view('jurusan.exportDosen.index', $data);
@@ -41,7 +42,7 @@ class ExportDataDosen extends Controller
 
     public function seminar(Request $request)
     {
-        $seminar = ModelSPDosen::with('dosen')->where('jenis', 'Seminar')->whereYear('tahun', $request->tahun_seminar)->get();
+        $seminar = ModelSPDosen::with('dosen')->whereYear('tanggal', $request->tahun_seminar)->get();
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Seminar Dosen');
@@ -56,7 +57,7 @@ class ExportDataDosen extends Controller
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->dosen->nama_dosen);
             $sheet->setCellValue('C' . ($key + 2), $value->nama);
-            $sheet->setCellValue('D' . ($key + 2), $value->tahun);
+            $sheet->setCellValue('D' . ($key + 2), $value->tanggal);
             $sheet->setCellValue('E' . ($key + 2), $value->scala);
             $sheet->setCellValue('F' . ($key + 2), $value->uraian);
             $sheet->setCellValue('G' . ($key + 2), $value->url);
@@ -68,7 +69,7 @@ class ExportDataDosen extends Controller
 
     public function penghargaan(Request $request)
     {
-        $penghargaan = ModelSPDosen::with('dosen')->where('jenis', 'Penghargaan')->whereYear('tahun', $request->tahun_penghargaan)->get();
+        $penghargaan = ModelPenghargaanDosen::with('dosen')->whereYear('tanggal', $request->tahun_penghargaan)->get();
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Penghargaan Dosen');
@@ -79,14 +80,16 @@ class ExportDataDosen extends Controller
         $sheet->setCellValue('E1', 'Scala');
         $sheet->setCellValue('F1', 'Uraian');
         $sheet->setCellValue('G1', 'URL');
+        $sheet->setCellValue('H1', 'kategori');
         foreach ($penghargaan as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->dosen->nama_dosen);
             $sheet->setCellValue('C' . ($key + 2), $value->nama);
-            $sheet->setCellValue('D' . ($key + 2), $value->tahun);
+            $sheet->setCellValue('D' . ($key + 2), $value->tanggal);
             $sheet->setCellValue('E' . ($key + 2), $value->scala);
             $sheet->setCellValue('F' . ($key + 2), $value->uraian);
             $sheet->setCellValue('G' . ($key + 2), $value->url);
+            $sheet->setCellValue('H' . ($key + 2), $value->kategori);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('penghargaan_dosen-' . $request->tahun_penghargaan . '.xlsx');

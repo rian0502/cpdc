@@ -18,9 +18,8 @@
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
                                     <label>Nama Penghargaan/Prestasi</label>
-                                    <input autofocus name="nama" value="{{old('nama')}}" id="nama"
-                                        class="form-control @error('nama') form-control-danger @enderror"
-                                        type="text"
+                                    <input autofocus name="nama" value="{{ old('nama') }}" id="nama"
+                                        class="form-control @error('nama') form-control-danger @enderror" type="text"
                                         placeholder="Nama Penghargaan/Prestasi">
                                     @error('nama')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
@@ -28,7 +27,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Scala</label>
-                                    <select class="selectpicker form-control @error('scala') form-control-danger @enderror" data-size="5" name="scala">
+                                    <select class="selectpicker form-control @error('scala') form-control-danger @enderror"
+                                        data-size="5" name="scala">
                                         <option value="Universitas" {{ old('scala') == 'Universitas' ? 'selected' : '' }}>
                                             Universitas</option>
                                         <option value="Kabupaten/Kota"
@@ -42,15 +42,63 @@
                                     </select>
                                     @error('scala')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
-
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label>Kategori</label>
+                                    <select class="custom-select2 form-control"style="width: 100%"
+                                        name="kategori">
+                                        ['Satya Lencana', 'Sertifikat Kopetensi', 'Piagam Penghargaan', 'Narasumber', 'Staff
+                                        Ahli', 'Tenaga Ahli/Konsultan', 'Keynote Speaker', 'Invited Speaker', 'Visiting
+                                        Lecturer', 'Visiting Researcher', 'Editor/Mitra Bestari']
+                                        <optgroup label="Nama Dosen">
+                                            <option value="Satya Lencana"
+                                                {{ old('kategori') == 'Satya Lencana' ? 'selected' : '' }}>Satya Lencana
+                                            </option>
+                                            <option value="Sertifikat Kopetensi"
+                                                {{ old('kategori') == 'Sertifikat Kopetensi' ? 'selected' : '' }}>
+                                                Sertifikat
+                                                Kopetensi</option>
+                                            <option value="Piagam Penghargaan"
+                                                {{ old('kategori') == 'Piagam Penghargaan' ? 'selected' : '' }}>Piagam
+                                                Penghargaan</option>
+                                            <option value="Narasumber"
+                                                {{ old('kategori') == 'Narasumber' ? 'selected' : '' }}>
+                                                Narasumber</option>
+                                            <option value="Staff Ahli"
+                                                {{ old('kategori') == 'Staff Ahli' ? 'selected' : '' }}>
+                                                Staff Ahli</option>
+                                            <option value="Tenaga Ahli/Konsultan"
+                                                {{ old('kategori') == 'Tenaga Ahli/Konsultan' ? 'selected' : '' }}>Tenaga
+                                                Ahli/Konsultan</option>
+                                            <option value="Keynote Speaker"
+                                                {{ old('kategori') == 'Keynote Speaker' ? 'selected' : '' }}>Keynote
+                                                Speaker
+                                            </option>
+                                            <option value="Invited Speaker"
+                                                {{ old('kategori') == 'Invited Speaker' ? 'selected' : '' }}>Invited
+                                                Speaker
+                                            </option>
+                                            <option value="Visiting Lecturer"
+                                                {{ old('kategori') == 'Visiting Lecturer' ? 'selected' : '' }}>Visiting
+                                                Lecturer</option>
+                                            <option value="Visiting Researcher"
+                                                {{ old('kategori') == 'Visiting Researcher' ? 'selected' : '' }}>Visiting
+                                                Researcher</option>
+                                            <option value="Editor/Mitra Bestari"
+                                                {{ old('kategori') == 'Editor/Mitra Bestari' ? 'selected' : '' }}>
+                                                Editor/Mitra
+                                                Bestari</option>
+
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label>Tanggal Capaian </label>
-                                    <input autofocus name="tahun" value="{{old('tahun')}}" id="tahun"
-                                    class="form-control  @error('tahun') form-control-danger @enderror"
-                                    type="date" >
-                                    @error('tahun')
+                                    <input autofocus name="tanggal" value="{{ old('tanggal') }}" id="tanggal"
+                                        class="form-control  @error('tanggal') form-control-danger @enderror"
+                                        type="date">
+                                    @error('tanggal')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
