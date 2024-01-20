@@ -358,7 +358,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->tahun }}</td>
+                                        <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->scala }}</td>
                                         <td><a href="{{$item->url}}" class="text-primary">Klik</a></td>
                                         <td>{{ $item->uraian }}</td>
@@ -379,6 +379,7 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>Tanggal</th>
+                                    <th>Kategori</th>
                                     <th>Scala</th>
                                     <th>Dokumentasi</th>
                                     <th>Uraian</th>
@@ -389,7 +390,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->tahun }}</td>
+                                        <td>{{ $item->Kategori }}</td>
                                         <td>{{ $item->scala }}</td>
                                         <td><a href="{{$item->url}}" class="text-primary">Klik</a></td>
                                         <td>{{ $item->uraian }}</td>

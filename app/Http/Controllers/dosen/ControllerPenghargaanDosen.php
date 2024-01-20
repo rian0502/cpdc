@@ -4,7 +4,7 @@ namespace App\Http\Controllers\dosen;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePenghargaanDosenRequest;
-use App\Models\ModelSPDosen;
+use App\Models\ModelPenghargaanDosen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
@@ -23,11 +23,18 @@ class ControllerPenghargaanDosen extends Controller
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($startDate && $endDate) {
-            $data = ModelSPDosen::where('jenis', 'Penghargaan')->whereBetween('tahun', [$startDate, $endDate])->orderBy('tahun', 'desc');
-            return DataTables::of($data)->toJson();
+            $data = ModelPenghargaanDosen::with('dosen')->whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc');
+            return DataTables::of($data)
+            ->addIndexColumn()->editColumn('dosen.nama', function ($data) {
+                return $data->dosen->nama_dosen ?? '-';
+            })
+        ->toJson();
         } else if ($request->ajax() && $startDate == null && $endDate == null) {
-            $data = ModelSPDosen::where('jenis', 'Penghargaan')->orderBy('tahun', 'desc');
-            return DataTables::of($data)->toJson();
+            $data = ModelPenghargaanDosen::orderBy('tanggal', 'desc');
+            return DataTables::of($data)
+            ->addIndexColumn()->editColumn('dosen.nama', function ($data) {
+                return $data->dosen->nama_dosen ?? '-';
+            })->toJson();
         }
 
         return view('dosen.penghargaan.index');
@@ -53,18 +60,19 @@ class ControllerPenghargaanDosen extends Controller
     public function store(StorePenghargaanDosenRequest $request)
     {
         //
-        $insert = ModelSPDosen::create([
+        $insert = ModelPenghargaanDosen::create([
             'nama' => $request->nama,
-            'tahun' => $request->tahun,
+            'tanggal' => $request->tanggal,
             'scala' => $request->scala,
             'uraian' => $request->uraian,
             'url' => $request->url,
-            'jenis' => 'Penghargaan',
+            'kategori' => $request->kategori,
             'dosen_id' => auth()->user()->dosen->id,
         ]);
-        ModelSPDosen::find($insert->id)->update([
+        ModelPenghargaanDosen::find($insert->id)->update([
             'encrypt_id' => Crypt::encrypt($insert->id),
         ]);
+
         return redirect()->route('dosen.penghargaan.index')->with('success', 'Penghargaan berhasil ditambahkan');
     }
 
@@ -79,7 +87,7 @@ class ControllerPenghargaanDosen extends Controller
         //
         try {
             $data = [
-                'penghargaan' => ModelSPDosen::findOrFail(Crypt::decrypt($id)),
+                'penghargaan' => ModelPenghargaanDosen::findOrFail(Crypt::decrypt($id)),
             ];
             return view('dosen.penghargaan.show', $data);
         } catch (\Exception $e) {
@@ -97,7 +105,7 @@ class ControllerPenghargaanDosen extends Controller
     {
         //
         try {
-            $penghargaan = ModelSPDosen::findOrFail(Crypt::decrypt($id));
+            $penghargaan = ModelPenghargaanDosen::findOrFail(Crypt::decrypt($id));
             if ($penghargaan->dosen_id != auth()->user()->dosen->id) {
                 return redirect()->route('dosen.penghargaan.index')->with('error', 'Penghargaan tidak ditemukan');
             }
@@ -121,13 +129,14 @@ class ControllerPenghargaanDosen extends Controller
     {
         //
         try {
-            $penghargaan = ModelSPDosen::findOrFail(Crypt::decrypt($id));
+            $penghargaan = ModelPenghargaanDosen::findOrFail(Crypt::decrypt($id));
             $penghargaan->update([
                 'nama' => $request->nama,
-                'tahun' => $request->tahun,
+                'tanggal' => $request->tanggal,
                 'scala' => $request->scala,
                 'uraian' => $request->uraian,
                 'url' => $request->url,
+                'kategori' => $request->kategori,
             ]);
             return redirect()->route('dosen.penghargaan.index')->with('success', 'Penghargaan berhasil diperbarui');
         } catch (\Exception $e) {
@@ -145,7 +154,7 @@ class ControllerPenghargaanDosen extends Controller
     {
         //
         try {
-            $penghargaan = ModelSPDosen::findOrFail(Crypt::decrypt($id));
+            $penghargaan = ModelPenghargaanDosen::findOrFail(Crypt::decrypt($id));
             if ($penghargaan->dosen_id != auth()->user()->dosen->id) {
                 return redirect()->route('dosen.penghargaan.index')->with('error', 'Penghargaan tidak ditemukan');
             }
@@ -160,48 +169,46 @@ class ControllerPenghargaanDosen extends Controller
         $starDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($starDate && $endDate) {
-            $Penghargaan = ModelSPDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->where('jenis', 'Penghargaan')
-                ->whereBetween('tahun', [$starDate, $endDate])->groupBy('scala')->get();
+            $Penghargaan = ModelPenghargaanDosen::select('scala', DB::raw('COUNT(*) as scala_count'))
+                ->whereBetween('tanggal', [$starDate, $endDate])->groupBy('scala')->get();
         } else {
-            $Penghargaan = ModelSPDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->where('jenis', 'Penghargaan')
+            $Penghargaan = ModelPenghargaanDosen::select('scala', DB::raw('COUNT(*) as scala_count'))
                 ->groupBy('scala')->get();
         }
 
         return response()->json($Penghargaan);
     }
 
-    public function chartTahunPenghargaanDosen(Request $request)
+    public function chartTanggalPenghargaanDosen(Request $request)
     {
         $starDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($starDate && $endDate) {
-            $tahun = ModelSPDosen::select(DB::raw('YEAR(tahun) as year'), DB::raw('COUNT(*) as total'))
-                ->where('jenis', 'Penghargaan')
-                ->whereBetween(DB::raw('YEAR(tahun)'), [$starDate, $endDate])
-                ->groupBy(DB::raw('YEAR(tahun)'))
+            $tanggal = ModelPenghargaanDosen::select(DB::raw('YEAR(tanggal) as year'), DB::raw('COUNT(*) as total'))
+                ->whereBetween(DB::raw('tanggal'), [$starDate, $endDate])
+                ->groupBy(DB::raw('YEAR(tanggal)'))
                 ->get()
                 ->map(function ($item) {
                     return [
-                        'tahun' => $item->year,
+                        'tanggal' => $item->year,
                         'total' => $item->total
                     ];
                 })
                 ->values()
                 ->toArray();
         } else {
-            $tahun = ModelSPDosen::select(DB::raw('YEAR(tahun) as year'), DB::raw('COUNT(*) as total'))
-                ->where('jenis', 'Penghargaan')
-                ->groupBy(DB::raw('YEAR(tahun)'))
+            $tanggal = ModelPenghargaanDosen::select(DB::raw('YEAR(tanggal) as year'), DB::raw('COUNT(*) as total'))
+                ->groupBy(DB::raw('YEAR(tanggal)'))
                 ->get()
                 ->map(function ($item) {
                     return [
-                        'tahun' => $item->year,
+                        'tanggal' => $item->year,
                         'total' => $item->total
                     ];
                 })
                 ->values()
                 ->toArray();
         }
-        return response()->json($tahun);
+        return response()->json($tanggal);
     }
 }

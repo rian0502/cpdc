@@ -9,8 +9,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="tanggal-awal">Tanggal Awal</label>
-                                    <input type="date" class="form-control" placeholder="Tanggal Awal"
-                                        id="tanggal-awal">
+                                    <input type="date" class="form-control" placeholder="Tanggal Awal" id="tanggal-awal">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -60,9 +59,11 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Judul</th>
                                     <th>Nama</th>
                                     <th>Tanggal</th>
                                     <th>Scala</th>
+                                    <th>Kategori</th>
                                     <th>Uraian</th>
                                     <th>Dokumentasi</th>
                                 </tr>
@@ -79,10 +80,10 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
 
     <script>
         var PieChart1;
@@ -127,13 +128,22 @@
                             orderable: true
                         },
                         {
-                            data: 'tahun',
-                            name: 'tahun',
+                            data: 'dosen.nama',
+                            name: 'dosen.nama',
+                            orderable: true
+                        },
+                        {
+                            data: 'tanggal',
+                            name: 'tanggal',
                             orderable: true
                         },
                         {
                             data: 'scala',
                             name: 'scala'
+                        },
+                        {
+                            data: 'kategori',
+                            name: 'kategori'
                         },
                         {
                             data: 'uraian',
@@ -167,7 +177,7 @@
                     }
                 });
                 $.ajax({
-                    url: '{{ route('chart.tahunPenghargaan.dosen') }}',
+                    url: '{{ route('chart.TanggalPenghargaan.dosen') }}',
                     type: 'GET',
                     dataType: 'json',
                     data: {
@@ -196,8 +206,8 @@
                 });
 
                 pieChart1 = Highcharts.chart('pieChart', {
-                    credits:{
-                        enabled:false
+                    credits: {
+                        enabled: false
                     },
                     chart: {
                         type: 'pie',
@@ -205,7 +215,7 @@
                         renderTo: 'pieChart'
                     },
                     title: {
-                        text: 'KATEGORI Penghargaan'
+                        text: 'SKALA PENGHARGAAN'
                     },
                     tooltip: {
                         pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b> ({point.percentage:.1f}%)'
@@ -226,11 +236,11 @@
                 // Mengonversi data JSON ke format yang digunakan oleh Highcharts dengan persentase dan jumlah
                 var seriesData = chartData
                     .sort(function(a, b) {
-                        return a.tahun - b.tahun; // Mengurutkan tahun dari yang terkecil ke terbesar
+                        return a.tanggal - b.tanggal; // Mengurutkan tanggal dari yang terkecil ke terbesar
                     })
                     .map(function(item) {
                         return {
-                            name: item.tahun,
+                            name: item.tanggal,
                             y: item.total
                         };
                     });
@@ -238,8 +248,8 @@
 
                 // Membangun chart
                 barChart = Highcharts.chart('barChart', {
-                    credits:{
-                        enabled:false
+                    credits: {
+                        enabled: false
                     },
                     chart: {
                         type: 'column'
@@ -249,6 +259,10 @@
                     },
                     xAxis: {
                         type: 'category',
+                        scrollbar: {
+                            enabled: true
+                        },
+
                         labels: {
                             rotation: -45,
                             style: {
@@ -257,6 +271,7 @@
                             }
                         }
                     },
+
                     yAxis: {
                         min: 0,
                         title: {
@@ -286,6 +301,12 @@
                         }
                     }]
                 });
+                var categoriesLength = seriesData.length;
+                var visibleCategories = 10; // Jumlah kategori yang ingin ditampilkan
+                var minIndex = Math.max(0, categoriesLength - visibleCategories);
+                var maxIndex = categoriesLength - 1;
+
+                barChart.xAxis[0].setExtremes(minIndex, maxIndex);
             }
 
             // Fungsi untuk menangani klik tombol filter
@@ -296,5 +317,4 @@
             });
         });
     </script>
-
 @endsection

@@ -88,10 +88,10 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
     @if (Request::is('jurusan/aktivitas'))
     <script>
         var PieChart1;
@@ -297,6 +297,9 @@
                     },
                     xAxis: {
                         type: 'category',
+                        scrollbar: {
+                        enabled: true
+                    },
                         labels: {
                             rotation: -45,
                             style: {
@@ -334,6 +337,12 @@
                         }
                     }]
                 });
+                var categoriesLength = seriesData.length;
+                var visibleCategories = 10; // Jumlah kategori yang ingin ditampilkan
+                var minIndex = Math.max(0, categoriesLength - visibleCategories);
+                var maxIndex = categoriesLength - 1;
+
+                barChart.xAxis[0].setExtremes(minIndex, maxIndex);
             }
 
             // Fungsi untuk menangani klik tombol filter
@@ -344,6 +353,7 @@
             });
         });
     </script>
+
     @elseif (Request::is('jurusan/aktivitasS2'))
     <script>
         var PieChart1;
@@ -549,6 +559,9 @@
                     },
                     xAxis: {
                         type: 'category',
+                    scrollbar: {
+                        enabled: true
+                    },
                         labels: {
                             rotation: -45,
                             style: {
@@ -586,6 +599,12 @@
                         }
                     }]
                 });
+                var categoriesLength = seriesData.length;
+                var visibleCategories = 10; // Jumlah kategori yang ingin ditampilkan
+                var minIndex = Math.max(0, categoriesLength - visibleCategories);
+                var maxIndex = categoriesLength - 1;
+
+                barChart.xAxis[0].setExtremes(minIndex, maxIndex);
             }
 
             // Fungsi untuk menangani klik tombol filter
