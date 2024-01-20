@@ -29,4 +29,6 @@ class ModelPublikasiMahasiswa extends Model
         return $this->belongsTo(Mahasiswa::class);
     }
 
+
+
 }

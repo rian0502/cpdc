@@ -11,6 +11,7 @@ use App\Models\PublikasiDosen;
 use App\Models\PrestasiMahasiswaS2;
 use App\Http\Controllers\Controller;
 use App\Models\AktivitasMahasiswaS2;
+use App\Models\ModelPenghargaanDosen;
 use App\Models\ModelPublikasiMahasiswa;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
@@ -37,9 +38,9 @@ class ExportDataS2 extends Controller
                 ->get(),
             'aktivitas' => AktivitasMahasiswaS2::selectRaw('YEAR(tanggal) as year')->distinct()->orderBy('year', 'desc')
                 ->get(),
-            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->where('jenis', 'Seminar')->orderBy('tahun', 'desc')
+            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tanggal) as tahun')->distinct()->orderBy('tahun', 'desc')
                 ->get(),
-            'penghargaan_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->where('jenis', 'Penghargaan')->orderBy('tahun', 'desc')
+            'penghargaan_dosen' => ModelPenghargaanDosen::selectRaw('YEAR(tanggal) as tahun')->distinct()->orderBy('tahun', 'desc')
                 ->get(),
             'tesis_1' => Mahasiswa::select('angkatan')->distinct()->whereHas('taSatuS2')->orderBy('angkatan', 'desc')
                 ->get(),

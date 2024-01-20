@@ -59,7 +59,6 @@ use App\Http\Controllers\dosen\RekapKinerjaController;
 use App\Http\Controllers\Kajur\ChartSeminarController;
 use App\Http\Controllers\Kajur\LitabmasDataController;
 use App\Http\Controllers\Kajur\PrestasiDataController;
-use App\Http\Controllers\PublikasiMahasiswaController;
 use App\Http\Controllers\sudo\AkunMahasiswaController;
 use App\Http\Controllers\Kajur\AktivitasDataController;
 use App\Http\Controllers\Kajur\PublikasiDataController;
@@ -88,11 +87,14 @@ use App\Http\Controllers\tugas_akhir_satu\ValidasiAdminTaSatu;
 use App\Http\Controllers\kerja_praktik\ValidasiBaPKLController;
 use App\Http\Controllers\mahasiswa\KegiatanMahasiswaController;
 use App\Http\Controllers\mahasiswa\PrestasiMahasiswaController;
+use App\Http\Controllers\Kajur\PublikasiMahasiswaDataController;
 use App\Http\Controllers\komprehensif\MahasiswaKompreController;
+use App\Http\Controllers\mahasiswa\PublikasiMahasiswaController;
 use App\Http\Controllers\komprehensif\ArsipAdminKompreController;
 use App\Http\Controllers\komprehensif\ValidasiBaKompreController;
 use App\Http\Controllers\tugas_akhir_dua\ArsipValidasiAdminTaDua;
 use App\Http\Controllers\bimbingan\MahasiswaBimbinganKPController;
+use App\Http\Controllers\Kajur\PublikasiMahasiswaDataControllerS2;
 use App\Http\Controllers\komprehensif\PenjadwalanKompreController;
 use App\Http\Controllers\mahasiswa_s2\ta2\ControllerKoorS2BaTaDua;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaTaDuaController;
@@ -390,6 +392,8 @@ Route::prefix('jurusan')->name('jurusan.')->middleware(
 
     //prestasi
     Route::resource('publikasi', PublikasiDataController::class);
+    Route::resource('publikasiMahasiswa', PublikasiMahasiswaDataController::class);
+    Route::resource('publikasiMahasiswaS2', PublikasiMahasiswaDataControllerS2::class);
     Route::resource('litabmas', LitabmasDataController::class);
     Route::resource('penghargaan', Penghargaan::class);
     Route::resource('seminar', Seminar::class);
@@ -415,6 +419,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware(
 )->group(function () {
     Route::resource('alumni', DataAlumni::class);
     Route::resource('prestasi', PrestasiDataController::class);
+
     Route::get('chartScalaPrestasi', [
         PrestasiDataController::class,
         'pieChartScala'
@@ -427,6 +432,33 @@ Route::prefix('jurusan')->name('jurusan.')->middleware(
         PrestasiDataController::class,
         'pieChartCapaian'
     ])->name('prestasi.chartCapaian');
+
+    Route::get('publikasi_mahasiswa/pieChartPublikasiS2', [
+        PublikasiMahasiswaDataControllerS2::class,
+        'pieChartPublikasi'
+    ])->name('publikasiMahasiswaS2.pieChartPublikasi');
+    Route::get('publikasi_mahasiswa/barChartPublikasiS2', [
+        PublikasiMahasiswaDataControllerS2::class,
+        'barChartPublikasi'
+    ])->name('publikasiMahasiswaS2.barChartPublikasi');
+    Route::get('publikasi_mahasiswa/pieChartScalaS2', [
+        PublikasiMahasiswaDataControllerS2::class,
+        'pieChartScala'
+    ])->name('publikasiMahasiswaS2.pieChartScala');
+
+    Route::get('publikasi_mahasiswa/pieChartPublikasi', [
+        PublikasiMahasiswaDataController::class,
+        'pieChartPublikasi'
+    ])->name('publikasiMahasiswa.pieChartPublikasi');
+    Route::get('publikasi_mahasiswa/barChartPublikasi', [
+    PublikasiMahasiswaDataController::class,
+        'barChartPublikasi'
+    ])->name('publikasiMahasiswa.barChartPublikasi');
+    Route::get('publikasi_mahasiswa/pieChartScala', [
+        PublikasiMahasiswaDataController::class,
+        'pieChartScala'
+    ])->name('publikasiMahasiswa.pieChartScala');
+
     Route::resource('aktivitas', AktivitasDataController::class);
     Route::get('barChartAktivitas', [
         AktivitasDataController::class,
