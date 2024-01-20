@@ -5,6 +5,7 @@ use App\Jobs\TestingJob;
 use App\Models\JadwalSKP;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\sudo\ResetTA;
 use App\Http\Controllers\Kajur\Seminar;
@@ -36,6 +37,7 @@ use App\Http\Controllers\Kajur\LokasiController;
 use App\Http\Controllers\PangkatAdminController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\sudo\BaseNpmController;
+use App\Http\Controllers\sudo\ValidasiMahasiswa;
 use App\Http\Controllers\dosen\JabatanController;
 use App\Http\Controllers\ValidasiPendataanAlumni;
 use App\Http\Controllers\dosen\LitabmasController;
@@ -53,9 +55,11 @@ use App\Http\Controllers\BerkasPersyaratanController;
 use App\Http\Controllers\dosen\ControllerSeminarDosen;
 use App\Http\Controllers\dosen\PangkatDosenController;
 use App\Http\Controllers\dosen\ProfileDosenController;
+use App\Http\Controllers\dosen\RekapKinerjaController;
 use App\Http\Controllers\Kajur\ChartSeminarController;
 use App\Http\Controllers\Kajur\LitabmasDataController;
 use App\Http\Controllers\Kajur\PrestasiDataController;
+use App\Http\Controllers\PublikasiMahasiswaController;
 use App\Http\Controllers\sudo\AkunMahasiswaController;
 use App\Http\Controllers\Kajur\AktivitasDataController;
 use App\Http\Controllers\Kajur\PublikasiDataController;
@@ -126,9 +130,6 @@ use App\Http\Controllers\mahasiswa_s2\ta1\ControllerMahasiswaS2SeminarTaSatu;
 use App\Http\Controllers\controller_seminar\EditSeminarKerjaPraktikController;
 use App\Http\Controllers\controller_seminar\EditSeminarKomprehensifController;
 use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
-use App\Http\Controllers\PublikasiMahasiswaController;
-use App\Http\Controllers\sudo\ValidasiMahasiswa;
-use Illuminate\Support\Facades\Redis;
 
 /*
 |--------------------------------------------------------------------------
@@ -268,6 +269,8 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::resource('publikasi', PublikasiController::class);
     Route::post('import', [PublikasiController::class, 'import'])->name('publikasi.import');
     Route::resource('penghargaan', ControllerPenghargaanDosen::class);
+    Route::resource('kinerja', RekapKinerjaController::class);
+
     Route::resource('seminar', ControllerSeminarDosen::class);
     Route::resource('profile', ProfileDosenController::class, ['only' => [
         'index',

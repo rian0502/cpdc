@@ -198,6 +198,8 @@
                                     Dosen</span>
                             </a>
                             <ul class="submenu">
+                                <li><a href="{{ route('dosen.kinerja.index') }}"
+                                        class="{{ Request::is('dosen/kinerja*') ? 'active' : '' }}">Rekap Kinerja</a></li>
                                 <li><a href="{{ route('dosen.litabmas.index') }}"
                                         class="{{ Request::is('dosen/litabmas*') ? 'active' : '' }}">LITABMAS</a></li>
                                 <li><a href="{{ route('dosen.publikasi.index') }}"
@@ -560,7 +562,7 @@
                         </li>
                         <li>
                             <a href="{{ route('sudo.validasi.mahasiswa.index') }}"
-                                class="dropdown-toggle no-arrow 
+                                class="dropdown-toggle no-arrow
                                 {{ Request::is('sudo/validasi/mahasiswa*') ? 'active' : '' }}">
                                 <span class="micon fas fa-user-shield"></span><span class="mtext">Validasi
                                     Mahasiswa</span>
@@ -1363,7 +1365,7 @@
                 if (submitButton) {
                     submitButton.disabled = true;
                 }
-                
+
                 // Tambahkan indikator loading jika diperlukan
                 // Misalnya, tampilkan pesan loading atau animasi loading
 
