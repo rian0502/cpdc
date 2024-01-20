@@ -3,7 +3,7 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="row">
-                <div class="col-xl-12 mb-30">
+                <div class="col-xl-12 mb-10">
                     <div class="card-box height-100-p pd-20">
                         <div class="row align-items-center justify-content-center">
                             <div class="col-md-4">
@@ -29,7 +29,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-12 mb-30">
+                <div class="col-xl-12 mb-15">
                     <div class="card-box height-100-p pd-20">
                         <div id="barChart"></div>
                     </div>

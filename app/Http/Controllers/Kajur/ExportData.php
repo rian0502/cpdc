@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Kajur;
 
-use App\Http\Controllers\Controller;
-use App\Models\AktivitasMahasiswa;
-use App\Models\LitabmasDosen;
-use App\Models\Mahasiswa;
-use App\Models\ModelPublikasiMahasiswa;
-use App\Models\ModelSPDosen;
-use App\Models\PrestasiMahasiswa;
-use App\Models\PublikasiDosen;
 use App\Models\User;
+use App\Models\Mahasiswa;
+use App\Models\ModelSPDosen;
 use Illuminate\Http\Request;
+use App\Models\LitabmasDosen;
+use App\Models\PublikasiDosen;
+use App\Models\PrestasiMahasiswa;
+use App\Models\AktivitasMahasiswa;
+use App\Http\Controllers\Controller;
+use App\Models\ModelPenghargaanDosen;
+use App\Models\ModelPublikasiMahasiswa;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class ExportData extends Controller
@@ -67,11 +68,11 @@ class ExportData extends Controller
             'kompre' => Mahasiswa::select('angkatan')
                 ->distinct()->whereHas('komprehensif')->orderBy('angkatan', 'desc')
                 ->get(),
-            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')
-                ->distinct()->where('jenis', 'Seminar')->orderBy('tahun', 'desc')
+            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tanggal) as tahun')
+                ->distinct()->orderBy('tahun', 'desc')
                 ->get(),
-            'penghargaan_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')
-                ->distinct()->where('jenis', 'Penghargaan')->orderBy('tahun', 'desc')
+            'penghargaan_dosen' => ModelPenghargaanDosen::selectRaw('YEAR(tanggal) as tahun')
+                ->distinct()->orderBy('tahun', 'desc')
                 ->get(),
             'publikasi_mahasiswa' => ModelPublikasiMahasiswa::select('tahun')
                 ->distinct()->orderBy('tahun', 'desc')->whereHas(

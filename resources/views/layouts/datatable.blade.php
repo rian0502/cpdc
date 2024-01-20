@@ -215,7 +215,7 @@
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('dosen.kinerja.index') }}"
-                                    class="{{ Request::is('dosen/kinerja*') ? 'active' : '' }}">Rekap Kinerja</a></li>
+                                        class="{{ Request::is('dosen/kinerja*') ? 'active' : '' }}">Rekap Kinerja</a></li>
                                 <li><a href="{{ route('dosen.litabmas.index') }}"
                                         class="{{ Request::is('dosen/litabmas*') ? 'active' : '' }}">LITABMAS</a></li>
                                 <li><a href="{{ route('dosen.publikasi.index') }}"
@@ -385,6 +385,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ route('jurusan.kinerjaDosen.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/kinerjaDosen*') ? 'active' : '' }}">
+                                <span class="micon bi bi-clipboard2-data"></span><span class="mtext">Rekap Kinerja</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ route('jurusan.penghargaan.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/penghargaan*') ? 'active' : '' }}">
                                 <span class="micon bi bi-trophy"></span><span class="mtext">Penghargaan</span>
@@ -423,9 +429,30 @@
                                         class="{{ Request::is('jurusan/aktivitasS2') ? 'active' : '' }}">S2</a></li>
                             </ul>
                         </li>
+                        <li class="dropdown {{ request()->routeIs('jurusan.publikasiMahasiswa*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle">
+                                <span class="micon bi bi-journal-text"></span><span class="mtext">Publikasi
+                                    Mahasiswa</span>
+                            </a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href="{{ route('jurusan.publikasiMahasiswa.index') }}"
+                                        class="{{ request()->routeIs('jurusan.publikasiMahasiswa.index') ? 'active' : '' }}">
+                                        S1
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('jurusan.publikasiMahasiswaS2.index') }}"
+                                        class="{{ request()->routeIs('jurusan.publikasiMahasiswaS2.index') ? 'active' : '' }}">
+                                        S2
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li>
                             <a href="{{ route('jurusan.publikasi.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/publikasi*') ? 'active' : '' }}">
+                                class="dropdown-toggle no-arrow {{ Route::currentRouteName() === 'jurusan.publikasi.index' ? 'active' : '' }}">
                                 <span class="micon bi bi-journal-text"></span><span class="mtext">PUBLIKASI</span>
                             </a>
                         </li>
@@ -433,6 +460,12 @@
                             <a href="{{ route('jurusan.litabmas.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/litabmas*') ? 'active' : '' }}">
                                 <span class="micon bi bi-journal-richtext"></span><span class="mtext">LITABMAS</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jurusan.kinerjaDosen.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/kinerjaDosen*') ? 'active' : '' }}">
+                                <span class="micon bi bi-clipboard2-data"></span><span class="mtext">Rekap Kinerja</span>
                             </a>
                         </li>
                         <li>
@@ -1430,31 +1463,31 @@
         </script>
     @endrole
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Menangkap semua form di halaman
-        const forms = document.querySelectorAll('form');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menangkap semua form di halaman
+            const forms = document.querySelectorAll('form');
 
-        forms.forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                // Menonaktifkan tombol submit untuk mencegah pengiriman ganda
-                const submitButton = form.querySelector('button[type="submit"]');
-                if (submitButton) {
-                    submitButton.disabled = true;
-                }
-
-                // Tambahkan indikator loading jika diperlukan
-                // Misalnya, tampilkan pesan loading atau animasi loading
-
-                // Atur delay agar tombol submit tidak tetap dinonaktifkan selamanya
-                setTimeout(function () {
+            forms.forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    // Menonaktifkan tombol submit untuk mencegah pengiriman ganda
+                    const submitButton = form.querySelector('button[type="submit"]');
                     if (submitButton) {
-                        submitButton.disabled = false;
+                        submitButton.disabled = true;
                     }
-                }, 5000); // Ganti 5000 dengan waktu delay yang sesuai
+
+                    // Tambahkan indikator loading jika diperlukan
+                    // Misalnya, tampilkan pesan loading atau animasi loading
+
+                    // Atur delay agar tombol submit tidak tetap dinonaktifkan selamanya
+                    setTimeout(function() {
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                        }
+                    }, 5000); // Ganti 5000 dengan waktu delay yang sesuai
+                });
             });
         });
-    });
-</script>
+    </script>
 
 </body>
 

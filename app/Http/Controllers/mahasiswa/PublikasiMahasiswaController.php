@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\mahasiswa;
 
 use App\Http\Requests\StorePublikasiMahasiswa;
 use App\Models\ModelPublikasiMahasiswa;
