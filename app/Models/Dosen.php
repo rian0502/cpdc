@@ -97,6 +97,10 @@ class Dosen extends Model
             'id_publikasi'
         );
     }
+    public function kinerja_dosen()
+    {
+        return $this->hasMany(ModelKinerjaDosen::class, 'dosen_id');
+    }
     public function seminar()
     {
         return $this->hasMany(ModelSPDosen::class, 'dosen_id')
