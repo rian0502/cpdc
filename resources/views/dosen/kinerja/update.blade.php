@@ -11,51 +11,78 @@
                             <p class="mb-30">Isi data dengan benar</p>
                         </div>
                     </div>
-                    <form action="{{ route('dosen.organisasi.update', $organisasi->encrypt_id) }}" method="POST">
-                        @method('PUT')
+                    <form action="{{ route('dosen.kinerja.update', $kinerja->encrypted_id) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="profile-edit-list row">
                             {{-- form untuk sebelah kiri --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Nama Organisasi</label>
-                                    <input value="{{ $organisasi->nama_organisasi }}" autofocus name="nama_organisasi"
-                                        id="nama_organisasi"
-                                        class="form-control @error('nama_organisasi') form-control-danger @enderror"
-                                        type="text" placeholder="Nama Organisasi">
-                                    @error('nama_organisasi')
+                                    <label>Semester</label>
+                                    <select name="semester" id="semester" class="selectpicker form-control" data-size="5"
+                                        name="semester">
+                                        <option value="Ganjil"
+                                            {{ old('semester', $kinerja->semester) == 'Ganjil' ? 'selected' : '' }}>Ganjil
+                                        </option>
+                                        <option value="Genap"
+                                            {{ old('semester', $kinerja->semester) == 'Ganjil' ? '' : 'selected' }}>Genap
+                                        </option>
+                                    </select>
+                                    @error('semester')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Jabatan</label>
-                                    <input value="{{ $organisasi->jabatan }}" autofocus name="jabatan" id="jabatan"
-                                        class="form-control @error('jabatan') form-control-danger @enderror" type="text"
-                                        placeholder="jabatan">
-                                    @error('jabatan')
+                                    <label>Tahun Akademik</label>
+                                    <select id="tahunAkademik" class="selectpicker form-control" data-size="5"
+                                        name="tahun_akademik">
+                                    </select>
+                                    @error('tahun_akademik')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label>SKS Pendidikan</label>
+                                    <input value="{{ old('sks_pendidikan', $kinerja->sks_pendidikan) }}" autofocus
+                                        name="sks_pendidikan" id="sks_pendidikan"
+                                        class="form-control @error('sks_pendidikan') form-control-danger @enderror"
+                                        type="number" placeholder="SKS Pendidikan" min="0">
+                                    @error('sks_pendidikan')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+
                             </div>
                             {{-- form untuk sebelah kanan --}}
                             <div class="weight-500 col-md-6">
                                 <div class="form-group">
-                                    <label>Tahun Menjabat</label>
-                                    <input value="{{ old('tahun_menjabat', $organisasi->tahun_menjabat) }}" autofocus name="tahun_menjabat"
-                                        id="tahun_menjabat"
-                                        class="form-control year-picker @error('tahun_menjabat') form-control-danger @enderror"
-                                        type="year" placeholder="Tahun Menjabat">
-                                    @error('tahun_menjabat')
+                                    <label>SKS Penelitian</label>
+                                    <input value="{{ old('sks_penelitian', $kinerja->sks_penelitian) }}" autofocus
+                                        name="sks_penelitian" id="sks_penelitian"
+                                        class="form-control @error('sks_penelitian') form-control-danger @enderror"
+                                        type="number" placeholder="SKS Penelitian" min="0">
+                                    @error('sks_penelitian')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Tahun Berakhir</label>
-                                    <input value="{{ old('tahun_berakhir', $organisasi->tahun_berakhir) }}" autofocus name="tahun_berakhir"
-                                        id="tahun_berakhir"
-                                        class="form-control year-picker @error('tahun_berakhir') form-control-danger @enderror"
-                                        type="year" placeholder="Tahun Berakhir">
-                                    @error('tahun_berakhir')
+                                    <label>SKS Pengabdian</label>
+                                    <input value="{{ old('sks_penelitian', $kinerja->sks_penelitian) }}" autofocus
+                                        name="sks_pengabdian" id="sks_pengabdian"
+                                        class="form-control @error('sks_pengabdian') form-control-danger @enderror"
+                                        type="number" placeholder="SKS Pengabdian" min="0">
+                                    @error('sks_pengabdian')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>SKS Penunjang</label>
+                                    <input value="{{ old('sks_penelitian', $kinerja->sks_penelitian) }}" autofocus
+                                        name="sks_penunjang" id="sks_penunjang"
+                                        class="form-control @error('sks_penunjang') form-control-danger @enderror"
+                                        type="number" placeholder="SKS Pengabdian" min="0">
+                                    @error('sks_penunjang')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -66,7 +93,7 @@
                         </div>
 
                     </form>
-                    <a href="{{ route('dosen.organisasi.index') }}">
+                    <a href="{{ route('dosen.kinerja.index') }}">
                         <button class="batal btn btn-secondary">Batal</button>
                     </a>
                 </div>
@@ -76,4 +103,31 @@
 
 
     </div>
+    <script>
+        // Mendapatkan elemen select
+        var select = document.getElementById("tahunAkademik");
+
+        // Mendapatkan tahun saat ini
+        var tahunSekarang = new Date().getFullYear();
+
+        // Loop untuk menghasilkan 5 tahun ke belakang
+        for (var i = 0; i < 5; i++) {
+            var tahun = tahunSekarang - i;
+            var option = document.createElement("option");
+            option.value = tahun + "/" + (tahun + 1);
+            option.text = tahun + "/" + (tahun + 1);
+            select.add(option);
+        }
+
+
+        var myButton = document.getElementById("submitButton");
+
+        myButton.addEventListener("click", function() {
+            myButton.classList.add("btn-pulse");
+
+            setTimeout(function() {
+                myButton.classList.remove("btn-pulse");
+            }, 500);
+        });
+    </script>
 @endsection

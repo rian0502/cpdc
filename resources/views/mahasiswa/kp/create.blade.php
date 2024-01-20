@@ -76,7 +76,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Domisili PKL/KP</label>
+                                    <label>Lokasi PKL/KP</label>
                                     <select id="region" class="selectpicker form-control" data-size="5" name="region">
                                         <option value="Unila" {{ old('region') == 'Unila' ? 'selected' : '' }}>Universitas
                                             Lampung</option>
