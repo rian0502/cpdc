@@ -30,7 +30,7 @@ class ControllerPenghargaanDosen extends Controller
             })
         ->toJson();
         } else if ($request->ajax() && $startDate == null && $endDate == null) {
-            $data = ModelPenghargaanDosen::orderBy('tanggal', 'desc');
+            $data = ModelPenghargaanDosen::with('dosen')->orderBy('tanggal', 'desc');
             return DataTables::of($data)
             ->addIndexColumn()->editColumn('dosen.nama', function ($data) {
                 return $data->dosen->nama_dosen ?? '-';

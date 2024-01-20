@@ -28,18 +28,18 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-6 mb-30">
-                    <div class="card-box height-100-p pd-20">
+                <div class="col-xl-6 mb-10">
+                    <div class="card-box height-200-p pd-20">
                         <div id="barChart"></div>
                     </div>
                 </div>
                 <div class="col-xl-3 mb-30">
-                    <div class="card-box height-100-p pd-20">
+                    <div class="card-box height-200-p pd-20">
                         <div id="pieChart"></div>
                     </div>
                 </div>
                 <div class="col-xl-3 mb-30">
-                    <div class="card-box height-100-p pd-20">
+                    <div class="card-box height-200-p pd-20">
                         <div id="pieChart2"></div>
                     </div>
                 </div>

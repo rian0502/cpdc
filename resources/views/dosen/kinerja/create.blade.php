@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tahun Akademik</label>
-                                    <select id="tahunAkademik" class="selectpicker form-control" data-size="5"
+                                    <select id="tahunAkademik" class="custom-select2 form-control" data-size="5"
                                         name="tahun_akademik">
                                     </select>
                                     @error('tahun_akademik')
@@ -107,7 +107,7 @@
         var tahunSekarang = new Date().getFullYear();
 
         // Loop untuk menghasilkan 5 tahun ke belakang
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < 25; i++) {
             var tahun = tahunSekarang - i;
             var option = document.createElement("option");
             option.value = tahun + "/" + (tahun + 1);

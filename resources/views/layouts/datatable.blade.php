@@ -385,6 +385,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ route('jurusan.kinerjaDosen.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/kinerjaDosen*') ? 'active' : '' }}">
+                                <span class="micon bi bi-clipboard2-data"></span><span class="mtext">Rekap Kinerja</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ route('jurusan.penghargaan.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/penghargaan*') ? 'active' : '' }}">
                                 <span class="micon bi bi-trophy"></span><span class="mtext">Penghargaan</span>
@@ -454,6 +460,12 @@
                             <a href="{{ route('jurusan.litabmas.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/litabmas*') ? 'active' : '' }}">
                                 <span class="micon bi bi-journal-richtext"></span><span class="mtext">LITABMAS</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jurusan.kinerjaDosen.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/kinerjaDosen*') ? 'active' : '' }}">
+                                <span class="micon bi bi-clipboard2-data"></span><span class="mtext">Rekap Kinerja</span>
                             </a>
                         </li>
                         <li>

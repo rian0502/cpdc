@@ -70,6 +70,7 @@ use App\Http\Controllers\tugas_akhir_dua\ValidasiBaTaDua;
 use App\Http\Controllers\alumni\AktivitasAlumniController;
 use App\Http\Controllers\dosen\ControllerPenghargaanDosen;
 use App\Http\Controllers\Kajur\DataMahasiswaAllController;
+use App\Http\Controllers\kajur\KinerjaDosenDataController;
 use App\Http\Controllers\sudo\ImportMahasiswaS2Controller;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaBaTaDua;
 use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
@@ -397,6 +398,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware(
     Route::resource('litabmas', LitabmasDataController::class);
     Route::resource('penghargaan', Penghargaan::class);
     Route::resource('seminar', Seminar::class);
+    Route::resource('kinerjaDosen', KinerjaDosenDataController::class);
     Route::get('pieChartScalaPublikasi', [PublikasiDataController::class, 'pieChartScala'])
         ->name('publikasi.pieChartScala');
     Route::get('pieChartKategoriPublikasi', [PublikasiDataController::class, 'pieChartKategori'])
@@ -409,6 +411,10 @@ Route::prefix('jurusan')->name('jurusan.')->middleware(
         ->name('litabmas.barChartTahun');
     Route::get('pieChartKategoriLitabmas', [LitabmasDataController::class, 'pieChartKategoriLitabmas'])
         ->name('litabmas.pieChartKategoriLitabmas');
+    Route::get('chartAvarageKinerja', [KinerjaDosenDataController::class, 'chartAvarageKinerja'])
+        ->name('kinerjaDosen.chartAvarageKinerja');
+    Route::get('chartTotalKinerja', [KinerjaDosenDataController::class, 'chartTotalKinerja'])
+        ->name('kinerjaDosen.chartTotalKinerja');
 });
 
 Route::prefix('jurusan')->name('jurusan.')->middleware(
@@ -451,7 +457,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware(
         'pieChartPublikasi'
     ])->name('publikasiMahasiswa.pieChartPublikasi');
     Route::get('publikasi_mahasiswa/barChartPublikasi', [
-    PublikasiMahasiswaDataController::class,
+        PublikasiMahasiswaDataController::class,
         'barChartPublikasi'
     ])->name('publikasiMahasiswa.barChartPublikasi');
     Route::get('publikasi_mahasiswa/pieChartScala', [

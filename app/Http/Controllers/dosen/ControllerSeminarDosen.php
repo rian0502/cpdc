@@ -24,13 +24,13 @@ class ControllerSeminarDosen extends Controller
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($startDate && $endDate) {
-            $data = ModelSPDosen::whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc');
+            $data = ModelSPDosen::with('dosen')->whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc');
             return DataTables::of($data)
                 ->addIndexColumn()->editColumn('dosen.nama', function ($data) {
                     return $data->dosen->nama_dosen ?? '-';
                 })->toJson();
         } else if ($request->ajax() && $startDate == null && $endDate == null) {
-            $data = ModelSPDosen::orderBy('tanggal', 'desc');
+            $data = ModelSPDosen::with('dosen')->orderBy('tanggal', 'desc');
             return DataTables::of($data)
             ->addIndexColumn()->editColumn('dosen.nama', function ($data) {
                 return $data->dosen->nama_dosen ?? '-';
