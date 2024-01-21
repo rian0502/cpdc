@@ -52,11 +52,15 @@ class SendEmailTesis2 implements ShouldQueue
         $to_name = $this->to_name;
         $to_email = $this->to_email;
         $namafile = $this->namafile;
-        Mail::send('email.jadwal_seminar', $this->data, function ($message) use ($to_name, $to_email, $namafile, $urlpref) {
-            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tesis 2');
-            $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach($urlpref . 'uploads/print_ba_tesis_2/' . $namafile);
-        });
+        Mail::send(
+            'email.jadwal_seminar',
+            $this->data,
+            function ($message) use ($to_name, $to_email, $namafile, $prefix) {
+                $message->to($to_email, $to_name)->subject('Jadwal Seminar Tesis 2');
+                $message->from('chemistryprogramdatacenter@gmail.com');
+                $message->attach(base_path($prefix . 'uploads/print_ba_tesis_2/' . $namafile));
+            }
+        );
         unlink(base_path($prefix . 'uploads/print_ba_tesis_2/' . $namafile));
     }
 }

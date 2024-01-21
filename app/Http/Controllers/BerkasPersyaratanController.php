@@ -43,7 +43,11 @@ class BerkasPersyaratanController extends Controller
     public function edit($id)
     {
         //
-        $berkas = BerkasPersyaratanSeminar::select('encrypt_id', 'nama_file', 'path_file')
+        $berkas = BerkasPersyaratanSeminar::select(
+            'encrypt_id',
+            'nama_file',
+            'path_file'
+        )
             ->where('id', Crypt::decrypt($id))->first();
         $data = [
             'file' => $berkas

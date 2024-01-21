@@ -140,7 +140,8 @@ class ControllerMahasiswaS2SeminarTaDua extends Controller
             'seminar' => ModelSeminarTaDuaS2::find(Crypt::decrypt($id)),
             'mahasiswa' => Auth::user()->mahasiswa,
             'syarat' => BerkasPersyaratanSeminar::find(6),
-            'dosens' => Dosen::where('status', 'Aktif')->get(),
+            'dosens' => Dosen::where('status', 'Aktif')
+                ->orderBy('nama_dosen', 'asc')->get(),
         ];
         return view("mahasiswaS2.ta2.edit", $data);
     }

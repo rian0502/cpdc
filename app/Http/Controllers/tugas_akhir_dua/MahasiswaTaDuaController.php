@@ -130,7 +130,10 @@ class MahasiswaTaDuaController extends Controller
     {
         //
         $data = [
-            'dosens' => Dosen::select('encrypt_id', 'nama_dosen')->get(),
+            'dosens' => Dosen::select('encrypt_id', 'nama_dosen')
+                ->where('status', 'Aktif')
+                ->orderBy('nama_dosen', 'asc')
+                ->get(),
             'seminar' => ModelSeminarTaDua::find(Crypt::decrypt($id)),
             'syarat' => BerkasPersyaratanSeminar::find(3),
         ];
@@ -163,7 +166,7 @@ class MahasiswaTaDuaController extends Controller
         $seminar->id_pembahas = Crypt::decrypt($request->pembahas);
 
         if ($request->id_pembimbing_dua == 'new') {
-           $request->validate([
+            $request->validate([
                 'pbl2_nama' => 'required|string|max:255|min:3',
                 'pbl2_nip' => 'required|numeric|digits:18',
             ], [
@@ -179,7 +182,7 @@ class MahasiswaTaDuaController extends Controller
             $seminar->pbl2_nip = $request->pbl2_nip;
             $seminar->id_pembimbing_dua = null;
         } else {
-           $request->validate([
+            $request->validate([
                 'id_pembimbing_dua' => 'required|exists:dosen,encrypt_id',
             ], [
                 'id_pembimbing_dua.required' => 'Dosen Pembimbing 2 Harus dipilih',
@@ -190,7 +193,7 @@ class MahasiswaTaDuaController extends Controller
             $seminar->pbl2_nip = null;
         }
         if ($request->file('berkas_seminar_ta_dua')) {
-           $request->validate([
+            $request->validate([
                 'berkas_seminar_ta_dua' => ['required', 'mimes:pdf', 'max:2048', 'file', 'mimetypes:application/pdf'],
             ], [
                 'periode_seminar.required' => 'Periode seminar tidak boleh kosong',

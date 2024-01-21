@@ -140,7 +140,10 @@ class MahasiswaKompreController extends Controller
         //
         $mahasiswa = Auth::user()->mahasiswa;
         $data = [
-            'dosens' => Dosen::select('encrypt_id', 'nama_dosen')->get(),
+            'dosens' => Dosen::select('encrypt_id', 'nama_dosen')
+                ->where('status', 'Aktif')
+                ->orderBy('nama_dosen', 'asc')
+                ->get(),
             'seminar' => ModelSeminarKompre::find(Crypt::decrypt($id)),
             'mahasiswa' => $mahasiswa,
         ];
