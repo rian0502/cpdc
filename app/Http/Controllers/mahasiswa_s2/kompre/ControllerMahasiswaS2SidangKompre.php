@@ -130,7 +130,7 @@ class ControllerMahasiswaS2SidangKompre extends Controller
         $update->encrypt_id = Crypt::encrypt($insert->id);
         $update->save();
         return redirect()->route('mahasiswa.sidang.kompres2.index')
-        ->with('success', 'Berhasil mengajukan Sidang Tesis');
+            ->with('success', 'Berhasil mengajukan Sidang Tesis');
     }
 
 
@@ -146,7 +146,8 @@ class ControllerMahasiswaS2SidangKompre extends Controller
         $data = [
             'syarat' => BerkasPersyaratanSeminar::find(7),
             'seminar' => $seminar,
-            'dosens' => Dosen::where('status', 'Aktif')->get(),
+            'dosens' => Dosen::where('status', 'Aktif')
+                ->orderBy('nama_dosen', 'asc')->get(),
         ];
         return view("mahasiswaS2.kompre.edit", $data);
     }
