@@ -34,6 +34,7 @@ class UpdateProfileDosenRequest extends FormRequest
             'tanggal_lahir' => 'required|date',
             'gender' => 'required|in:Laki-laki,Perempuan',
             'foto_profile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1048',
+            'url_google_scholar'=> 'url|max:255'
         ];
     }
     public function messages()
@@ -66,6 +67,9 @@ class UpdateProfileDosenRequest extends FormRequest
             'foto_profile.image' => 'Foto profile harus berupa gambar',
             'foto_profile.mimes' => 'Foto profile harus berupa jpeg,png,jpg,gif,svg',
             'foto_profile.max' => 'Foto profile maksimal 1 MB',
+            'url_google_scholar.url' => 'Format URL salah',
+            'url_google_scholar.max' => 'Format URL salah',
+
         ];
     }
 }

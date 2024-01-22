@@ -188,6 +188,15 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label>Jumlah Sitasi</label>
+                                    <input value="{{ old('jumlah_kutipan', $publikasi->jumlah_kutipan) }}" autofocus name="jumlah_kutipan" id="jumlah_kutipan"
+                                        class="form-control @error('jumlah_kutipan') form-control-danger @enderror" type="number"
+                                        placeholder="Jumlah jumlah_kutipan publikasi">
+                                    @error('jumlah_kutipan')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
                             </div>
                         </div>

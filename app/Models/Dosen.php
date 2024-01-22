@@ -31,6 +31,7 @@ class Dosen extends Model
         'status',
         'user_id',
         'foto_profile',
+        'url_google_scholar',
         'created_at',
         'updated_at'
     ];
