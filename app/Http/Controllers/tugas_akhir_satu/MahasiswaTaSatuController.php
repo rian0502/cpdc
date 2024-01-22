@@ -39,6 +39,7 @@ class MahasiswaTaSatuController extends Controller
         $data = [
             'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
                 ->where('status', 'Aktif')
+                ->orderBy('nama_dosen', 'asc')
                 ->get(),
             'seminar' => ModelSeminarTaSatu::find(Crypt::decrypt($id)),
         ];
@@ -53,6 +54,7 @@ class MahasiswaTaSatuController extends Controller
         $data = [
             'dosens' => Dosen::select('id', 'encrypt_id', 'nama_dosen')
                 ->where('status', 'Aktif')
+                ->orderBy('nama_dosen', 'asc')
                 ->get(),
             'syarat' => BerkasPersyaratanSeminar::find(2),
         ];

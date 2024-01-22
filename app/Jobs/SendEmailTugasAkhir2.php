@@ -56,10 +56,10 @@ class SendEmailTugasAkhir2 implements ShouldQueue
         Mail::send(
             'email.jadwal_seminar',
             $this->data,
-            function ($message) use ($to_name, $to_email, $namafile, $urlpref) {
+            function ($message) use ($to_name, $to_email, $namafile, $prefix) {
                 $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 2');
                 $message->from('chemistryprogramdatacenter@gmail.com');
-                $message->attach($urlpref . 'uploads/print_ba_ta2/' . $namafile);
+                $message->attach(base_path($prefix . 'uploads/print_ba_ta2/' . $namafile));
             }
         );
         unlink(base_path($prefix . 'uploads/print_ba_ta2/' . $namafile));
