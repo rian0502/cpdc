@@ -46,7 +46,7 @@ class GoogleScholarSyncService
             $i++;
 
             $existingPublikasi = PublikasiDosen::where('judul', $publikasi['judul'])->first();
-            
+
             if ($existingPublikasi) {
                 $isAnggotaPublikasi = AnggotaPublikasiDosen::where('id_publikasi', $existingPublikasi->id)->where('id_dosen', $dosen->id)->first();
                 if (!$isAnggotaPublikasi) {
@@ -137,7 +137,7 @@ class GoogleScholarSyncService
             $cstart += $pagesize;
 
             // Sleep for a short time to avoid hitting the server too frequently
-            sleep(30);
+            sleep(5);
         } while (count($pagePublications) > 0);
 
         // Filter out publications with null values
