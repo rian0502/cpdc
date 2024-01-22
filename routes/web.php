@@ -547,6 +547,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware(
     Route::post('unduh/publikasi', [ExportDataDosen::class, 'publikasi'])->name('unduh.publikasi');
     Route::post('unduh/seminar', [ExportDataDosen::class, 'seminar'])->name('unduh.seminar');
     Route::post('unduh/penghargaan', [ExportDataDosen::class, 'penghargaan'])->name('unduh.penghargaan');
+    Route::post('unduh/kinerja_dosen', [ExportDataDosen::class, 'kinerja_dosen'])->name('unduh.kinerja_dosen');
 });
 
 Route::prefix('jurusan')->name('jurusan.')->middleware(

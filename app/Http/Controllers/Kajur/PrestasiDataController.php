@@ -25,7 +25,7 @@ class PrestasiDataController extends Controller
         $endDate = $request->input('endDate', null);
 
         if ($startDate && $endDate) {
-            $data = PrestasiMahasiswa::with('mahasiswa','dosen')->whereBetween(
+            $data = PrestasiMahasiswa::with('mahasiswa', 'dosen')->whereBetween(
                 'tanggal',
                 [$startDate, $endDate]
             )->orderBy('tanggal', 'desc');
@@ -37,14 +37,14 @@ class PrestasiDataController extends Controller
                     return $row->mahasiswa->npm;
                 })
                 ->addIndexColumn()->editColumn('dosen.nama_dosen', function ($row) {
-                    return $row->dosen->nama_dosen??$row->nama_pembimbing;
+                    return $row->id_pembimbing ? $row->dosen->nama_dosen : $row->nama_pembimbing;
                 })
                 ->addIndexColumn()->editColumn('dosen.nip', function ($row) {
-                    return $row->dosen->nip??$row->nip_pembimbing;
+                    return $row->id_pembimbing ? $row->dosen->nip : $row->nip_pembimbing;
                 })
                 ->toJson();
         } elseif ($request->ajax() && $startDate == null && $endDate == null) {
-            $data = PrestasiMahasiswa::with('mahasiswa','dosen')->orderBy('tanggal', 'desc');
+            $data = PrestasiMahasiswa::with('mahasiswa', 'dosen')->orderBy('tanggal', 'desc');
 
             return DataTables::of($data)
                 ->addIndexColumn()->editColumn('mahasiswa.nama_mahasiswa', function ($row) {
@@ -54,10 +54,10 @@ class PrestasiDataController extends Controller
                     return $row->mahasiswa->npm;
                 })
                 ->addIndexColumn()->editColumn('dosen.nama_dosen', function ($row) {
-                    return $row->dosen->nama_dosen??$row->nama_pembimbing;
+                    return $row->id_pembimbing ? $row->dosen->nama_dosen : $row->nama_pembimbing;
                 })
                 ->addIndexColumn()->editColumn('dosen.nip', function ($row) {
-                    return $row->dosen->nip??$row->nip_pembimbing;
+                    return $row->id_pembimbing ? $row->dosen->nip : $row->nip_pembimbing;
                 })
                 ->toJson();
         }

@@ -8,12 +8,13 @@ use App\Models\Lokasi;
 use App\Models\Administrasi;
 use Illuminate\Http\Request;
 use App\Models\ModelKompreS2;
+use App\Jobs\SendEmailSidangTesis;
+use App\Models\TemplateBeritaAcara;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarKompreS2;
-use App\Models\TemplateBeritaAcara;
 
 class ControllerKoorS2JadwalKompre extends Controller
 {
