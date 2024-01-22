@@ -23,6 +23,7 @@ class PublikasiDosen extends Model
         'kategori',
         'kategori_litabmas',
         'url',
+        'jumlah_kutipan',
         'anggota_external'
     ];
 
@@ -39,7 +40,15 @@ class PublikasiDosen extends Model
         );
     }
 
-    public function dosen(){
+    public function dosen()
+    {
         return $this->belongsToMany(Dosen::class, 'anggota_publikasi', 'id_publikasi', 'id_dosen')->withPivot('posisi');
     }
+
+    // public function KetuaPublikasi()
+    // {
+    //     return $this->belongsToMany(Dosen::class, 'anggota_publikasi', 'id_publikasi', 'id_dosen')
+    //         ->wherePivot('posisi', 'Ketua')
+    //         ->first();
+    // }
 }

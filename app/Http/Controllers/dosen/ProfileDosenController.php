@@ -85,7 +85,15 @@ class ProfileDosenController extends Controller
         $user = User::find(Auth::user()->id);
         $user->profile_picture = $nama_foto_profile;
         $user->name = $request->nama_dosen;
-        $user->save();
+        $url_google_scholar = $request->url_google_scholar ?? null;
+
+        if ($url_google_scholar !== null) {
+            $url_google_scholar = str_replace(' ', '', $url_google_scholar);
+        }
+
+        // Sekarang $url_google_scholar sudah dihilangkan spasi jika tidak null
+
+
 
         $profileDosen = [
             'nip' => $request->nip,
@@ -96,6 +104,7 @@ class ProfileDosenController extends Controller
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'status' => 'Aktif',
+            'url_google_scholar' => $url_google_scholar,
             'user_id' => Auth::user()->id,
         ];
 
@@ -166,6 +175,11 @@ class ProfileDosenController extends Controller
      */
     public function update(UpdateProfileDosenRequest $request, $id)
     {
+        $url_google_scholar = $request->url_google_scholar ?? null;
+
+        if ($url_google_scholar !== null) {
+            $url_google_scholar = str_replace(' ', '', $url_google_scholar);
+        }
         if (Auth::user()->dosen->nip != $id) {
             return redirect()->back();
         }
@@ -191,6 +205,7 @@ class ProfileDosenController extends Controller
         $dosen->tempat_lahir = $request->tempat_lahir;
         $dosen->alamat = $request->alamat;
         $dosen->jenis_kelamin = $request->gender;
+        $url_google_scholar = $request->url_google_scholar;
         $dosen->updated_at = date('Y-m-d H:i:s');
         $dosen->save();
         return redirect()->route('dosen.profile.index')->with('success', 'Profile Berhasil Diperbarui');

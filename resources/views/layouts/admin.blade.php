@@ -1223,6 +1223,34 @@
         });
     </script>
     <script>
+        function showConfirmationForm3() {
+            swal({
+                title: 'Jalankan singkronasi dengan Google Shcolar?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
+            }).then((result) => {
+                if (result.value) {
+                    document.getElementById('formStatus3').submit();
+                }
+            })
+        }
+
+        // Mengambil elemen tombol submit
+        const submitButton = document.getElementById('submitButton3');
+
+        // Menangani klik tombol submit
+        submitButton.addEventListener('click', function(e) {
+            e.preventDefault(); // Mencegah pengiriman form secara langsung
+
+            // Panggil fungsi untuk menampilkan konfirmasi
+            showConfirmationForm3();
+        });
+    </script>
+    <script>
         function toggleInput(selectElement, targetId, targetId2) {
             var selectedValue = selectElement.value;
             var targetElement2 = document.getElementById(targetId2);
