@@ -70,7 +70,7 @@ use App\Http\Controllers\tugas_akhir_dua\ValidasiBaTaDua;
 use App\Http\Controllers\alumni\AktivitasAlumniController;
 use App\Http\Controllers\dosen\ControllerPenghargaanDosen;
 use App\Http\Controllers\Kajur\DataMahasiswaAllController;
-use App\Http\Controllers\kajur\KinerjaDosenDataController;
+use App\Http\Controllers\Kajur\KinerjaDosenDataController;
 use App\Http\Controllers\sudo\ImportMahasiswaS2Controller;
 use App\Http\Controllers\tugas_akhir_dua\MahasiswaBaTaDua;
 use App\Http\Controllers\tugas_akhir_dua\PenjadwalanTaDua;
