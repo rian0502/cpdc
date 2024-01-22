@@ -370,7 +370,7 @@
                                                             <div class="col-md-3"
                                                                 style="display:block;word-wrap:break-word;">
                                                                 <a target="_blank"
-                                                                    href="{{  $ba_ta1->berkas_ppt_seminar_ta_satu }}">Lihat</a>
+                                                                    href="{{ $ba_ta1->berkas_ppt_seminar_ta_satu }}">Lihat</a>
                                                             </div>
                                                             <label class="col-md-3 bold"> <strong>Berkas
                                                                     Nilai</strong></label>
@@ -633,7 +633,7 @@
                                                             <div class="col-md-3"
                                                                 style="display:block;word-wrap:break-word;">
                                                                 <a target="_blank"
-                                                                    href="/uploads/ta_dua/{{ $ba_ta2->berkas_ppt_seminar_ta_dua }}">Lihat</a>
+                                                                    href="{{ $ba_ta2->berkas_ppt_seminar_ta_dua }}">Lihat</a>
                                                             </div>
                                                             <label class="col-md-3 bold"> <strong>Berkas
                                                                     Nilai</strong></label>
