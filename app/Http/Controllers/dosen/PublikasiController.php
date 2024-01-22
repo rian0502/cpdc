@@ -62,6 +62,7 @@ class PublikasiController extends Controller
             'scala' => $request->scala,
             'kategori' => $request->kategori,
             'anggota_external' => $request->anggota_external,
+            'jumlah_kutipan' => $request->jumlah_kutipan,
         ];
         $insert = PublikasiDosen::create($data);
         $id = $insert->id;
@@ -155,6 +156,7 @@ class PublikasiController extends Controller
             $publikasi->scala = $request->scala;
             $publikasi->kategori = $request->kategori;
             $publikasi->anggota_external = $request->anggota_external;
+            $publikasi->jumlah_kutipan = $request->jumlah_kutipan;
             $publikasi->save();
 
             if ($request->anggota) {
