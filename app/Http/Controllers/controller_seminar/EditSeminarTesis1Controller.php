@@ -162,10 +162,10 @@ class EditSeminarTesis1Controller extends Controller
                     $ba->file_nilai = $filename;
                 }
                 $ba->updated_at = date('Y-m-d H:i:s');
+                $ba->save();
             }
-            $ba->save();
             DB::commit();
-            return redirect()->route('koorS2.arsip.tesis1.index')->with('success', 'Data berhasil diubah');
+            return redirect()->route('koor.arsip.tesis1.index')->with('success', 'Data berhasil diubah');
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->back()->with('error', $th->getMessage());

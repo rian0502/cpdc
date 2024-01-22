@@ -88,9 +88,9 @@ class EditSeminarTugasAkhir1Controller extends Controller
             $seminar->save();
             //update jadwal
             if ($jadwal) {
-                $jadwal->tanggal = $request->tanggal;
-                $jadwal->jam_mulai = $request->jam_mulai;
-                $jadwal->jam_selesai = $request->jam_selesai;
+                $jadwal->tanggal_seminar_ta_satu = $request->tanggal_seminar_ta_satu;
+                $jadwal->jam_mulai_seminar_ta_satu = $request->jam_mulai_seminar_ta_satu;
+                $jadwal->jam_selesai_seminar_ta_satu = $request->jam_selesai_seminar_ta_satu;
                 $jadwal->id_lokasi = Crypt::decrypt($request->id_lokasi);
                 $jadwal->updated_at = date('Y-m-d H:i:s');
                 $jadwal->save();

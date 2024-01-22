@@ -168,6 +168,8 @@ class EditSidangTesisController extends Controller
                 $ba->save();
             }
             DB::commit();
+            return redirect()->route('koor.arsip.tesis2.index')->with('success', 'Data berhasil diubah');
+
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->back()->with('error', $th->getMessage());
