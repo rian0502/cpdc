@@ -155,7 +155,7 @@
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
-                                    <label>Data Seminar</label>
+                                    <label>Data Penghargaan</label>
                                     <select class="custom-select2 form-control" name="tahun_penghargaan"
                                         id="tahun_penghargaan" style="width: 100%; height: 38px">
                                         <optgroup label="Tahun">
@@ -168,6 +168,58 @@
                                     @error('tahun_penghargaan')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
+                                </div>
+                            </div>
+                            <div class="weight-500 col-md-3">
+                                <div class="form-group">
+                                    <div class="cta  d-flex align-items-center justify-content-end mt-4">
+                                        <button class="btn btn-sm btn-outline-primary">Unduh</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-box" style="height:256px;">
+                    <div class="pd-20">
+                        <div class="h5 mb-0">Kinerja Dosen</div>
+                    </div>
+                    <form action="{{ route('jurusan.unduh.kinerja_dosen') }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
+                            <div class="weight-500 col-md-9" style="margin-left: 5px">
+                                <div class="form-group">
+                                    <label>Tahun Ajaran</label>
+                                    <select class="custom-select2 form-control" name="tahun_ajaran" id="tahun_ajaran"
+                                        style="width: 100%; height: 38px">
+                                        <optgroup label="Tahun">
+                                            @foreach ($kinerja_dosen as $item)
+                                                <option value="{{ $item->tahun }}">{{ $item->tahun }}
+                                                </option>
+                                            @endforeach
+                                        </optgroup>
+                                    </select>
+                                    @error('tahun_ajaran')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Semester</label>
+                                    <select class="custom-select2 form-control" name="semester" id="semester"
+                                        style="width: 100%; height: 38px">
+                                        <optgroup label="Semester">
+                                            <option value="Genap">Genap
+                                            </option>
+                                            <option value="Ganjil">Ganjil
+                                            </option>
+                                        </optgroup>
+                                    </select>
+                                    @error('semester')
+                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
+                                    @enderror
+
                                 </div>
                             </div>
                             <div class="weight-500 col-md-3">

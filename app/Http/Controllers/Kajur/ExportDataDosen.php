@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers\Kajur;
 
-use App\Models\User;
-use App\Models\Mahasiswa;
 use App\Models\ModelSPDosen;
 use Illuminate\Http\Request;
 use App\Models\LitabmasDosen;
 use App\Models\PublikasiDosen;
-use App\Models\PrestasiMahasiswa;
-use App\Models\AktivitasMahasiswa;
 use App\Http\Controllers\Controller;
 use App\Models\ModelPenghargaanDosen;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -36,10 +32,16 @@ class ExportDataDosen extends Controller
                 ->get(),
             'penghargaan_dosen' => ModelPenghargaanDosen::selectRaw('YEAR(tanggal) as tahun')->distinct()->orderBy('tahun', 'desc')
                 ->get(),
+            'kinerja_dosen' => [],
         ];
         return view('jurusan.exportDosen.index', $data);
     }
 
+    public function kinerja_dosen(Request $request)
+    {
+
+        return;
+    }
     public function seminar(Request $request)
     {
         $seminar = ModelSPDosen::with('dosen')->whereYear('tanggal', $request->tahun_seminar)->get();

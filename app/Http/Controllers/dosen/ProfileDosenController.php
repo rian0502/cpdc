@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers\dosen;
 
-use App\Http\Requests\ProfileDosenRequest;
-use App\Http\Requests\UpdateProfileDosenRequest;
-use App\Models\Dosen;
-use App\Models\HistoryJabatanDosen;
-use App\Models\HistoryPangkatDosen;
-use App\Models\LitabmasDosen;
-use App\Models\ModelGelar;
-use App\Models\ModelSPDosen;
-use App\Models\PublikasiDosen;
-use App\Models\User;
+use PDF;
 use Carbon\Carbon;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
+use App\Models\User;
+use App\Models\Dosen;
+use App\Models\ModelGelar;
 use Illuminate\Support\Str;
-use PDF;
+use App\Models\ModelSPDosen;
+use App\Models\LitabmasDosen;
+use Illuminate\Http\Response;
+use App\Models\PublikasiDosen;
+use Illuminate\Routing\Controller;
+use App\Models\HistoryJabatanDosen;
+use App\Models\HistoryPangkatDosen;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ModelPenghargaanDosen;
+use Illuminate\Support\Facades\Crypt;
+use App\Http\Requests\ProfileDosenRequest;
+use App\Http\Requests\UpdateProfileDosenRequest;
 
 class ProfileDosenController extends Controller
 {
@@ -235,8 +236,8 @@ class ProfileDosenController extends Controller
             $q->where('dosen.id', Auth::user()->dosen->id);
         })->get();
         $gelar = ModelGelar::where('dosen_id', Auth::user()->dosen->id)->get();
-        $seminar = ModelSPDosen::where('jenis', 'Seminar')->where('dosen_id', Auth::user()->dosen->id)->get();
-        $penghargaan = ModelSPDosen::where('jenis', 'Penghargaan')->where('dosen_id', Auth::user()->dosen->id)->get();
+        $seminar = ModelSPDosen::where('dosen_id', Auth::user()->dosen->id)->get();
+        $penghargaan = ModelPenghargaanDosen::where('dosen_id', Auth::user()->dosen->id)->get();
         $gelar_pendidikan = [
             'S.Pd.',          // Sarjana Pendidikan
             'S.Kom.',         // Sarjana Komputer

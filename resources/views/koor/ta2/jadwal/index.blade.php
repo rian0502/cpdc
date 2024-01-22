@@ -41,7 +41,7 @@
                             <tbody>
                                 @foreach ($seminar as $item)
                                     {{-- LOKASI TANGGAL JAM MULAI SELESAI MISAL BLM TERJADWAL MAKA OUTPUTIN KONDISIIN TULUSANNYA BLM TERJADWAL --}}
-                                    @if ($item->ba_seminar == null)
+
                                         <tr>
                                             <td>
                                                 {{ $loop->iteration }}
@@ -111,7 +111,6 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
