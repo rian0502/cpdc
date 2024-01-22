@@ -487,7 +487,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware(
     Route::post('unduh/ta2', [ExportData::class, 'ta2'])->name('unduh.ta2');
     Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
     Route::post('unduh/publikasi_mahasiswa', [ExportData::class, 'publikasi_mahasiswa'])->name('unduh.publikasi.mahasiswa');
-    Route::post('unduh/publikasi_mahasiswa', [ExportDataS2::class, 'publikasi_mahasiswa'])->name('unduh.publikasi.mahasiswas2');
+    Route::post('unduh/publikasi_mahasiswaS2', [ExportDataS2::class, 'publikasi_mahasiswa'])->name('unduh.publikasi.mahasiswas2');
     Route::resource('mahasiswa', DataMahasiswaAllController::class);
 });
 Route::prefix('jurusan')->name('jurusan.')->middleware(
