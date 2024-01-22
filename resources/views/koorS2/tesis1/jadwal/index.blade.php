@@ -13,6 +13,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>NPM</th>
+                                    <th>Nama Mahasiswa</th>
                                     <th>Judul</th>
                                     <th>Pengajuan</th>
                                     <th>Lokasi</th>
@@ -29,6 +30,9 @@
                                         </td>
                                         <td>
                                             {{ $item->mahasiswa->npm }}
+                                        </td>
+                                        <td>
+                                            {{ $item->mahasiswa->nama_mahasiswa }}
                                         </td>
                                         <td>
                                             {{ \Illuminate\Support\Str::limit($item->judul_ta, $limit = 40, $end = '...') }}

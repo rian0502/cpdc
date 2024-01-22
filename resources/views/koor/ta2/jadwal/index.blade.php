@@ -17,7 +17,7 @@
                                             <div class="cta  d-flex align-items-center justify-content-start"
                                                 style="margin-top: 34px">
                                                 <button class="btn btn-sm btn-success"><i class="fa fa-download"></i>
-                                                    Unduh Detail Data</button>
+                                                    Unduh Data Penjadwalan</button>
                                             </div>
                                         </div>
                                     </div>
@@ -29,6 +29,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>NPM</th>
+                                    <th>Nama Mahasiswa</th>
                                     <th>Judul</th>
                                     <th>Pengajuan</th>
                                     <th>Lokasi</th>
@@ -47,6 +48,9 @@
                                             </td>
                                             <td>
                                                 {{ $item->mahasiswa->npm }}
+                                            </td>
+                                            <td>
+                                                {{ $item->mahasiswa->nama_mahasiswa }}
                                             </td>
                                             <td>
                                                 {{ \Illuminate\Support\Str::limit($item->judul_ta, $limit = 40, $end = '...') }}
