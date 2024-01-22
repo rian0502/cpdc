@@ -14,6 +14,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>NPM</th>
+                                    <th>Nama Mahasiswa</th>
                                     <th>Judul</th>
                                     <th>Pengajuan</th>
                                     <th>Lokasi</th>
@@ -32,6 +33,9 @@
                                             </td>
                                             <td>
                                                 {{ $item->mahasiswa->npm }}
+                                            </td>
+                                            <td>
+                                                {{ $item->mahasiswa->nama_mahasiswa }}
                                             </td>
                                             <td>
                                                 {{ \Illuminate\Support\Str::limit($item->judul_ta, $limit = 40, $end = '...') }}
@@ -70,14 +74,17 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                         @if ($item->jadwal)
-                                                            <a class="dropdown-item" href="{{ route('koor.jadwalKompreS2.edit', $item->encrypt_id) }}"><i
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('koor.jadwalKompreS2.edit', $item->encrypt_id) }}"><i
                                                                     class="dw dw-edit2"></i>
                                                                 Edit</a>
-                                                            <a class="dropdown-item" href="{{ route('koor.jadwalSidangS2.resend', $item->encrypt_id) }}"><i
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('koor.jadwalSidangS2.resend', $item->encrypt_id) }}"><i
                                                                     class="dw dw-share"></i>
                                                                 Kirim Kembali</a>
                                                         @else
-                                                            <a class="dropdown-item" href="{{ route('koor.jadwalKompreS2.create', $item->encrypt_id) }}"><i
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('koor.jadwalKompreS2.create', $item->encrypt_id) }}"><i
                                                                     class="dw dw-calendar-1"></i> Jadwalkan</a>
                                                         @endif
                                                     </div>

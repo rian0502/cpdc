@@ -34,7 +34,7 @@ class EditSeminarTesis2Controller extends Controller
     public function edit($id)
     {
         $seminar = ModelSeminarTaDuaS2::find(Crypt::decrypt($id));
-        $dosen = Dosen::select('id','encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
+        $dosen = Dosen::select('id', 'encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
         $lokasi = Lokasi::select('encrypt_id', 'nama_lokasi')->where('jenis_ruangan', 'Kelas')->get();
         $data = [
             'seminar' => $seminar,
@@ -44,7 +44,7 @@ class EditSeminarTesis2Controller extends Controller
         return view('koorS2.tesis2.arsip.edit', $data);
     }
 
-    public function update(UpdateSeminarTesis2Request $request, $id)
+    public function update(Request $request, $id)
     {
         try {
             $seminar = ModelSeminarTaDuaS2::find(Crypt::decrypt($id));
@@ -86,7 +86,7 @@ class EditSeminarTesis2Controller extends Controller
                 $seminar->pbl2_nama = $request->pbl2_nama;
                 $seminar->pbl2_nip = $request->pbl2_nip;
             }
-            if ($request->id_pembahas_1 !='new') {
+            if ($request->id_pembahas_1 != 'new') {
                 $seminar->id_pembahas_1 = Crypt::decrypt($request->id_pembahas_1);
                 $seminar->pembahas_external_1 = null;
                 $seminar->nip_pembahas_external_1 = null;
@@ -99,7 +99,7 @@ class EditSeminarTesis2Controller extends Controller
                 $seminar->pembahas_external_1 = $request->pembahas_external_1;
                 $seminar->nip_pembahas_external_1 = $request->nip_pembahas_external_1;
             }
-            if ($request->id_pembahas_2 !='new') {
+            if ($request->id_pembahas_2 != 'new') {
                 $seminar->id_pembahas_2 = Crypt::decrypt($request->id_pembahas_2);
                 $seminar->pembahas_external_2 = null;
                 $seminar->nip_pembahas_external_2 = null;
@@ -112,7 +112,7 @@ class EditSeminarTesis2Controller extends Controller
                 $seminar->pembahas_external_2 = $request->pembahas_external_2;
                 $seminar->nip_pembahas_external_2 = $request->nip_pembahas_external_2;
             }
-            if ($request->id_pembahas_3 !='new') {
+            if ($request->id_pembahas_3 != 'new') {
                 $seminar->id_pembahas_3 = Crypt::decrypt($request->id_pembahas_3);
                 $seminar->pembahas_external_3 = null;
                 $seminar->nip_pembahas_external_3 = null;
@@ -128,40 +128,43 @@ class EditSeminarTesis2Controller extends Controller
             $seminar->updated_at = date('Y-m-d H:i:s');
             $seminar->save();
 
-            $jadwal->tanggal = $request->tanggal;
-            $jadwal->jam_mulai = $request->jam_mulai;
-            $jadwal->jam_selesai = $request->jam_selesai;
-            $jadwal->id_lokasi = Crypt::decrypt($request->id_lokasi);
-            $jadwal->updated_at = date('Y-m-d H:i:s');
-            $jadwal->save();
+            if ($jadwal) {
+                $jadwal->tanggal = $request->tanggal;
+                $jadwal->jam_mulai = $request->jam_mulai;
+                $jadwal->jam_selesai = $request->jam_selesai;
+                $jadwal->id_lokasi = Crypt::decrypt($request->id_lokasi);
+                $jadwal->updated_at = date('Y-m-d H:i:s');
+                $jadwal->save();
+            }
 
-            $ba->no_ba = $request->no_ba;
-            $ba->nilai = $request->nilai;
-            $ba->nilai_mutu = $request->nilai_mutu;
-            $ba->ppt = $request->ppt;
-            if ($request->berkas_ba) {
-                if (file_exists('uploads/ba_seminar_tesis_2/' . $ba->berkas_ba)) {
-                    unlink('uploads/ba_seminar_tesis_2/' . $ba->berkas_ba);
+            if ($ba) {
+                $ba->no_ba = $request->no_ba;
+                $ba->nilai = $request->nilai;
+                $ba->nilai_mutu = $request->nilai_mutu;
+                $ba->ppt = $request->ppt;
+                if ($request->berkas_ba) {
+                    if (file_exists('uploads/ba_seminar_tesis_2/' . $ba->berkas_ba)) {
+                        unlink('uploads/ba_seminar_tesis_2/' . $ba->berkas_ba);
+                    }
+                    $file = $request->file('berkas_ba');
+                    $filename = $file->hashName();
+                    $file->move('uploads/ba_seminar_tesis_2', $filename);
+                    $ba->berkas_ba = $filename;
                 }
-                $file = $request->file('berkas_ba');
-                $filename = $file->hashName();
-                $file->move('uploads/ba_seminar_tesis_2', $filename);
-                $ba->berkas_ba = $filename;
-            }
-            if ($request->file_nilai) {
-                if (file_exists('uploads/nilai_seminar_tesis_2/' . $ba->file_nilai)) {
-                    unlink('uploads/nilai_seminar_tesis_2/' . $ba->file_nilai);
+                if ($request->file_nilai) {
+                    if (file_exists('uploads/nilai_seminar_tesis_2/' . $ba->file_nilai)) {
+                        unlink('uploads/nilai_seminar_tesis_2/' . $ba->file_nilai);
+                    }
+                    $file = $request->file('file_nilai');
+                    $filename = $file->hashName();
+                    $file->move('uploads/nilai_seminar_tesis_2', $filename);
+                    $ba->file_nilai = $filename;
                 }
-                $file = $request->file('file_nilai');
-                $filename = $file->hashName();
-                $file->move('uploads/nilai_seminar_tesis_2', $filename);
-                $ba->file_nilai = $filename;
+                $ba->updated_at = date('Y-m-d H:i:s');
+                $ba->save();
             }
-            $ba->updated_at = date('Y-m-d H:i:s');
-            $ba->save();
             DB::commit();
             return redirect()->route('koor.arsip.tesis2.index')->with('success', 'Data berhasil diubah');
-
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->back()->with('error', $th->getMessage());
