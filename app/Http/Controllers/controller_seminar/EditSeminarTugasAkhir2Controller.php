@@ -61,6 +61,9 @@ class EditSeminarTugasAkhir2Controller extends Controller
             $seminar->ipk = $request->ipk;
             $seminar->toefl = $request->toefl;
             if ($request->berkas_ta_dua) {
+                $request->validate([
+                    'berkas_ta_dua' => 'required|mimes:pdf|max:1024',
+                ]);
                 if (file_exists('uploads/syarat_seminar_ta2/' . $seminar->berkas_ta_dua)) {
                     unlink('uploads/syarat_seminar_ta2/' . $seminar->berkas_ta_dua);
                 }
@@ -101,6 +104,9 @@ class EditSeminarTugasAkhir2Controller extends Controller
             if ($ba) {
                 $ba->no_berkas_ba_seminar_ta_dua = $request->no_berkas_ba_seminar_ta_dua;
                 if ($request->berkas_ba_seminar_ta_dua) {
+                    $request->validate([
+                        'berkas_ba_seminar_ta_dua' => 'required|mimes:pdf|max:1024'
+                    ]);
                     if (file_exists('uploads/ba_seminar_ta_dua/' . $ba->berkas_ba_seminar_ta_dua)) {
                         unlink('uploads/ba_seminar_ta_dua/' . $ba->berkas_ba_seminar_ta_dua);
                     }
@@ -110,6 +116,9 @@ class EditSeminarTugasAkhir2Controller extends Controller
                     $ba->berkas_ba_seminar_ta_dua = $nama_file;
                 }
                 if ($request->berkas_nilai_seminar_ta_dua) {
+                    $request->validate([
+                        'berkas_nilai_seminar_ta_dua' => 'required|mimes:pdf|max:1024'
+                    ]);
                     if (file_exists('uploads/nilai_seminar_ta_dua/' . $ba->berkas_nilai_seminar_ta_dua)) {
                         unlink('uploads/nilai_seminar_ta_dua/' . $ba->berkas_nilai_seminar_ta_dua);
                     }

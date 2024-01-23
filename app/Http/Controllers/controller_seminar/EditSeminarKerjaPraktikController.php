@@ -72,6 +72,9 @@ class EditSeminarKerjaPraktikController extends Controller
             $seminar->proses_admin = $request->proses_admin;
             $seminar->id_dospemkp = Crypt::decrypt($request->id_dospemkp);
             if ($request->berkas_seminar_pkl) {
+                $request->validate([
+                    'berkas_seminar_pkl' => 'required|mimes:pdf|max:1024'
+                ]);
                 $file = $request->file('berkas_seminar_pkl');
                 $nama_file = $file->hashName();
                 $file->move('uploads/syarat_seminar_kp', $nama_file);
@@ -95,16 +98,21 @@ class EditSeminarKerjaPraktikController extends Controller
                 $ba_pkl->nilai_akhir = $request->nilai_akhir;
                 $ba_pkl->nilai_mutu = $request->nilai_mutu;
                 if ($request->berkas_ba_seminar_kp) {
+                    $request->validate([
+                        'berkas_ba_seminar_kp' => 'required|mimes:pdf|max:1024'
+                    ]);
                     if (file_exists('uploads/berita_acara_seminar_kp/' . $ba_pkl->berkas_ba_seminar_kp)) {
                         unlink('uploads/berita_acara_seminar_kp/' . $ba_pkl->berkas_ba_seminar_kp);
                     }
-
                     $file = $request->file('berkas_ba_seminar_kp');
                     $nama_file = $file->hashName();
                     $file->move('uploads/berita_acara_seminar_kp', $nama_file);
                     $ba_pkl->berkas_ba_seminar_kp = $nama_file;
                 }
                 if ($request->laporan_kp) {
+                    $request->validate([
+                        'laporan_kp' => 'required|mimes:pdf|max:1024'
+                    ]);
                     if (file_exists('uploads/laporan_kp/' . $ba_pkl->berkas_ba_seminar_kp)) {
                         unlink('uploads/laporan_kp/' . $ba_pkl->berkas_ba_seminar_kp);
                     }
@@ -116,8 +124,6 @@ class EditSeminarKerjaPraktikController extends Controller
                 $ba_pkl->updated_at = date('Y-m-d H:i:s');
                 $ba_pkl->save();
             }
-
-
             DB::commit();
             return redirect()->route('koor.arsip.pkl.index')->with('success', 'Berhasil mengubah data seminar KP');
         } catch (\Exception $e) {

@@ -61,6 +61,9 @@ class EditSeminarTesis2Controller extends Controller
             $seminar->ipk = $request->ipk;
             $seminar->toefl = $request->toefl;
             if ($request->hasFile('berkas_ta_dua')) {
+                $request->validate([
+                    'berkas_ta_dua' => 'required|mimes:pdf|max:1024'
+                ]);
                 if (file_exists('uploads/syarat_seminar_ta_dua_s2/' . $seminar->berkas_ta_dua)) {
                     unlink('uploads/syarat_seminar_ta_dua_s2/' . $seminar->berkas_ta_dua);
                 }
@@ -143,6 +146,9 @@ class EditSeminarTesis2Controller extends Controller
                 $ba->nilai_mutu = $request->nilai_mutu;
                 $ba->ppt = $request->ppt;
                 if ($request->berkas_ba) {
+                    $request->validate([
+                        'berkas_ba' => 'required|mimes:pdf|max:1024'
+                    ]);
                     if (file_exists('uploads/ba_seminar_tesis_2/' . $ba->berkas_ba)) {
                         unlink('uploads/ba_seminar_tesis_2/' . $ba->berkas_ba);
                     }
@@ -152,6 +158,9 @@ class EditSeminarTesis2Controller extends Controller
                     $ba->berkas_ba = $filename;
                 }
                 if ($request->file_nilai) {
+                    $request->validate([
+                        'file_nilai' => 'required|mimes:pdf|max:1024'
+                    ]);
                     if (file_exists('uploads/nilai_seminar_tesis_2/' . $ba->file_nilai)) {
                         unlink('uploads/nilai_seminar_tesis_2/' . $ba->file_nilai);
                     }

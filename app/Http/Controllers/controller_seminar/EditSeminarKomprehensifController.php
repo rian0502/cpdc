@@ -60,6 +60,9 @@ class EditSeminarKomprehensifController extends Controller
             $seminar->ipk = $request->ipk;
             $seminar->toefl = $request->toefl;
             if ($request->berkas_kompre) {
+                $request->validate([
+                    'berkas_kompre' => 'required|mimes:pdf|max:1024'
+                ]);
                 if (file_exists('uploads/syarat_sidang_kompre/' . $seminar->berkas_kompre)) {
                     unlink('uploads/syarat_sidang_kompre/' . $seminar->berkas_kompre);
                 }
@@ -100,6 +103,9 @@ class EditSeminarKomprehensifController extends Controller
             if ($ba) {
                 $ba->no_ba_berkas = $request->no_ba_berkas;
                 if ($request->ba_seminar_komprehensif) {
+                    $request->validate([
+                        'ba_seminar_komprehensif' => 'required|mimes:pdf|max:1024'
+                    ]);
                     if (file_exists('uploads/ba_sidang_kompre/' . $ba->ba_seminar_komprehensif)) {
                         unlink('uploads/ba_sidang_kompre/' . $ba->ba_seminar_komprehensif);
                     }
@@ -109,6 +115,9 @@ class EditSeminarKomprehensifController extends Controller
                     $ba->ba_seminar_komprehensif = $nama_file;
                 }
                 if ($request->berkas_nilai_kompre) {
+                    $request->validate([
+                        'berkas_nilai_kompre' => 'required|mimes:pdf|max:1024'
+                    ]);
                     if (file_exists('uploads/nilai_sidang_kompre/' . $ba->berkas_nilai_kompre)) {
                         unlink('uploads/nilai_sidang_kompre/' . $ba->berkas_nilai_kompre);
                     }

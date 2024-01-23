@@ -52,9 +52,7 @@ class EditSidangTesisController extends Controller
             $seminar = ModelKompreS2::find(Crypt::decrypt($id));
             $jadwal = ModelJadwalSeminarKompreS2::where('id_seminar', $seminar->id)->first();
             $ba = ModelBaKompreS2::where('id_seminar', $seminar->id)->first();
-
             DB::beginTransaction();
-
             $seminar->tahun_akademik = $request->tahun_akademik;
             $seminar->semester = $request->semester;
             $seminar->periode_seminar = $request->periode_seminar;
@@ -65,6 +63,9 @@ class EditSidangTesisController extends Controller
             $seminar->draft_artikel = $request->draft_artikel;
             $seminar->url_draft_artikel = $request->url_draft_artikel;
             if ($request->hasFile('berkas_kompre')) {
+                $request->validate([
+                    'berkas_kompre' => 'required|mimes:pdf|max:1024',
+                ]);
                 if (file_exists('uploads/syarat_seminar_sidang_s2/' . $seminar->berkas_kompre)) {
                     unlink('uploads/syarat_seminar_sidang_s2/' . $seminar->berkas_kompre);
                 }
@@ -147,6 +148,9 @@ class EditSidangTesisController extends Controller
                 $ba->nilai_mutu = $request->nilai_mutu;
                 $ba->ppt = $request->ppt;
                 if ($request->berkas_ba) {
+                    $request->validate([
+                        'berkas_ba' => 'required|mimes:pdf|max:1024'
+                    ]);
                     if (file_exists('uploads/ba_sidang_tesis/' . $ba->berkas_ba)) {
                         unlink('uploads/ba_sidang_tesis/' . $ba->berkas_ba);
                     }
@@ -156,6 +160,9 @@ class EditSidangTesisController extends Controller
                     $ba->berkas_ba = $filename;
                 }
                 if ($request->file_nilai) {
+                    $request->validate([
+                        'file_nilai' => 'required|mimes:pdf|max:1024'
+                    ]);
                     if (file_exists('uploads/nilai_sidang_tesis/' . $ba->file_nilai)) {
                         unlink('uploads/nilai_sidang_tesis/' . $ba->file_nilai);
                     }
