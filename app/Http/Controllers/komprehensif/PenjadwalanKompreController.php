@@ -35,54 +35,13 @@ class PenjadwalanKompreController extends Controller
     {
         $data = [
             'seminar' => ModelSeminarKompre::select('id', 'encrypt_id', 'judul_ta', 'periode_seminar', 'id_mahasiswa')
-                ->where('status_admin', 'Valid')->get(),
+                ->where('status_admin', 'Valid')
+                ->whereDoesntHave('beritaAcara')
+                ->get(),
         ];
         return view('koor.kompre.jadwal.index', $data);
     }
 
-    public function downloadJadwal(Request $request)
-    {
-        $seminar = ModelSeminarKompre::with(
-            'mahasiswa',
-            'pembimbingSatu',
-            'pembimbingDua',
-            'pembahas'
-        )->whereDoesntHave('jadwal')->where('status_admin', 'Valid')
-            ->orderBy('updated_at', 'ASC')
-            ->get();
-
-        $spredsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
-        $sheet = $spredsheet->getActiveSheet();
-        $sheet->setTitle('Daftar Seminar TA 1 S1');
-        $sheet->setCellValue('A1', 'No');
-        $sheet->setCellValue('B1', 'Nama Mahasiswa');
-        $sheet->setCellValue('C1', 'NPM');
-        $sheet->setCellValue('D1', 'Judul TA');
-        $sheet->setCellValue('E1', 'Pembimbing 1');
-        $sheet->setCellValue('F1', 'Pembimbing 2');
-        $sheet->setCellValue('G1', 'Pembahas');
-        if ($seminar->count() > -0) {
-            foreach ($seminar as $key => $value) {
-                $sheet->setCellValue('A' . ($key + 2), $key + 1);
-                $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
-                $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->npm);
-                $sheet->setCellValue('D' . ($key + 2), $value->judul_ta);
-                $sheet->setCellValue('E' . ($key + 2), $value->pembimbingSatu->nama_dosen);
-                if ($value->id_pembimbing_dua) {
-                    $sheet->setCellValue('F' . ($key + 2), $value->pembimbingDua->nama_dosen);
-                } else {
-                    $sheet->setCellValue('F' . ($key + 2), $value->pbl2_nama);
-                }
-                $sheet->setCellValue('G' . ($key + 2), $value->pembahas->nama_dosen);
-            }
-            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
-            $filename = 'Daftar Sidang Komprehensif S1.xlsx';
-            $writer->save($filename);
-            return response()->download($filename)->deleteFileAfterSend(true);
-        } else {
-            return redirect()->back()->with('error', 'Belum ada Sidang Komprehensif yang dapat dijadwalkan');
-        }
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -184,16 +143,7 @@ class PenjadwalanKompreController extends Controller
             ->with('success', 'Berhasil Menjadwalkan Sidang Komprehensif');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -365,5 +315,96 @@ class PenjadwalanKompreController extends Controller
     {
         //
         return redirect()->back();
+    }
+
+    public function downloadJadwal()
+    {
+        $seminar = ModelSeminarKompre::with(
+            'mahasiswa',
+            'pembimbingSatu',
+            'pembimbingDua',
+            'pembahas'
+        )->whereDoesntHave('jadwal')->where('status_admin', 'Valid')
+            ->orderBy('updated_at', 'ASC')
+            ->get();
+
+        $spredsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spredsheet->getActiveSheet();
+        $sheet->setTitle('Daftar Seminar TA 1 S1');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Nama Mahasiswa');
+        $sheet->setCellValue('C1', 'NPM');
+        $sheet->setCellValue('D1', 'Judul TA');
+        $sheet->setCellValue('E1', 'Pembimbing 1');
+        $sheet->setCellValue('F1', 'Pembimbing 2');
+        $sheet->setCellValue('G1', 'Pembahas');
+        if ($seminar->count() > -0) {
+            foreach ($seminar as $key => $value) {
+                $sheet->setCellValue('A' . ($key + 2), $key + 1);
+                $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+                $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->npm);
+                $sheet->setCellValue('D' . ($key + 2), $value->judul_ta);
+                $sheet->setCellValue('E' . ($key + 2), $value->pembimbingSatu->nama_dosen);
+                if ($value->id_pembimbing_dua) {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pembimbingDua->nama_dosen);
+                } else {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pbl2_nama);
+                }
+                $sheet->setCellValue('G' . ($key + 2), $value->pembahas->nama_dosen);
+            }
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
+            $filename = 'Daftar Pra-Penjadwalan Sidang Komprehensif S1.xlsx';
+            $writer->save($filename);
+            return response()->download($filename)->deleteFileAfterSend(true);
+        } else {
+            return redirect()->back()->with('error', 'Belum ada Sidang Komprehensif yang dapat dijadwalkan');
+        }
+    }
+
+    public function pascaDownloadJadwal()
+    {
+        $seminar = ModelSeminarKompre::with('mahasiswa', 'pembimbing_satu', 'pembimbing_dua', 'pembahas')
+            ->whereHas('jadwal', function ($query) {
+                $query->whereDate('tanggal_komprehensif', '>=', date('Y-m-d'));
+            })->where('status_admin', 'Valid')->orderBy('updated_at', 'asc')->get();
+        if ($seminar->count() > 0) {
+            $spredsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+            $sheet = $spredsheet->getActiveSheet();
+            $sheet->setTitle('Daftar Seminar TA 1 S1');
+            $sheet->setCellValue('A1', 'No');
+            $sheet->setCellValue('B1', 'Nama Mahasiswa');
+            $sheet->setCellValue('C1', 'NPM');
+            $sheet->setCellValue('D1', 'Judul TA');
+            $sheet->setCellValue('E1', 'Pembimbing 1');
+            $sheet->setCellValue('F1', 'Pembimbing 2');
+            $sheet->setCellValue('G1', 'Pembahas');
+            $sheet->setCellValue('H1', 'Tanggal Seminar');
+            $sheet->setCellValue('I1', 'Jam Mulai');
+            $sheet->setCellValue('J1', 'Jam Selesai');
+            $sheet->setCellValue('K1', 'Lokasi');
+            foreach ($seminar as $key => $value) {
+                $sheet->setCellValue('A' . ($key + 2), $key + 1);
+                $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+                $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->npm);
+                $sheet->setCellValue('D' . ($key + 2), $value->judul_ta);
+                $sheet->setCellValue('E' . ($key + 2), $value->pembimbing_satu->nama_dosen);
+                if ($value->id_pembimbing_dua) {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pembimbing_dua->nama_dosen);
+                } else {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pbl2_nama);
+                }
+                $sheet->setCellValue('G' . ($key + 2), $value->pembahas->nama_dosen);
+                $sheet->setCellValue('H' . ($key + 2), $value->jadwal->tanggal_seminar_ta_satu);
+                $sheet->setCellValue('I' . ($key + 2), $value->jadwal->jam_mulai_seminar_ta_satu);
+                $sheet->setCellValue('J' . ($key + 2), $value->jadwal->jam_selesai_seminar_ta_satu);
+                $sheet->setCellValue('K' . ($key + 2), $value->jadwal->lokasi->nama_lokasi);
+            }
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
+            $filename = 'Daftar Pasca-Penjadwalan Sidang S1.xlsx';
+            $writer->save($filename);
+            return response()->download($filename)->deleteFileAfterSend(true);
+        }else{
+            return redirect()->back()->with('error', 'Belum ada Sidang Komprehensif yang dijadwalkan');
+        }
     }
 }
