@@ -17,7 +17,7 @@
                                             <div class="cta  d-flex align-items-center justify-content-start"
                                                 style="margin-top: 34px">
                                                 <button class="btn btn-sm btn-success"><i class="fa fa-download"></i>
-                                                    Unduh Data Penjadwalan</button>
+                                                    Pra Penjadwalan</button>
                                             </div>
                                         </div>
                                     </div>
