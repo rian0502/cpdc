@@ -72,6 +72,14 @@
                                     {{ $lab->keterangan }}
                                 </div>
                             </div>
+                            @if ($lab->keperluan == 'Penelitian')
+                                <div class="row border-bottom">
+                                    <label class="col-md-3 bold"> <strong>Nama Mahasiswa</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        {{ $lab->user->name }}
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                         @if ($anggota)
                             <h4 class="mt-5">
