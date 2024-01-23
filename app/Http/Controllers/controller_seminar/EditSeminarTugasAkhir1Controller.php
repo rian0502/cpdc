@@ -59,6 +59,9 @@ class EditSeminarTugasAkhir1Controller extends Controller
             $seminar->ipk = $request->ipk;
             $seminar->toefl = $request->toefl;
             if ($request->berkas_ta_satu) {
+                $request->validate([
+                    'berkas_ta_satu' => 'required|mimes:pdf|max:10000',
+                ]);
                 if (file_exists('uploads/syarat_seminar_ta1/' . $seminar->berkas_ta_satu)) {
                     unlink('uploads/syarat_seminar_ta1/' . $seminar->berkas_ta_satu);
                 }
@@ -99,6 +102,9 @@ class EditSeminarTugasAkhir1Controller extends Controller
             if ($ba) {
                 $ba->no_berkas_ba_seminar_ta_satu = $request->no_berkas_ba_seminar_ta_satu;
                 if ($request->berkas_ba_seminar_ta_satu) {
+                    $request->validate([
+                        'berkas_ba_seminar_ta_satu' => 'required|mimes:pdf|max:1024'
+                    ]);
                     if (file_exists('uploads/ba_seminar_ta_satu/' . $ba->berkas_ba_seminar_ta_satu)) {
                         unlink('uploads/ba_seminar_ta_satu/' . $ba->berkas_ba_seminar_ta_satu);
                     }
@@ -108,6 +114,9 @@ class EditSeminarTugasAkhir1Controller extends Controller
                     $ba->berkas_ba_seminar_ta_satu = $nama_file;
                 }
                 if ($request->berkas_nilai_ta_satu) {
+                    $request->validate([
+                        'berkas_nilai_ta_satu' => 'required|mimes:pdf|max:1024'
+                    ]);
                     if (file_exists('uploads/nilai_seminar_ta_satu/' . $ba->berkas_nilai_ta_satu)) {
                         unlink('uploads/nilai_seminar_ta_satu/' . $ba->berkas_nilai_ta_satu);
                     }
