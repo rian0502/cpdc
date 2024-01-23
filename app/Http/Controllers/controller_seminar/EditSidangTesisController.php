@@ -12,7 +12,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\ModelJadwalSeminarKompreS2;
-use App\Http\Requests\UpdateSidangTesisRequest;
 
 class EditSidangTesisController extends Controller
 {

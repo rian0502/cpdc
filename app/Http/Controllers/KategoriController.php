@@ -59,18 +59,6 @@ class KategoriController extends Controller
             return redirect()->route('sudo.kategori.create')->with('error', 'Data gagal disimpan');
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
