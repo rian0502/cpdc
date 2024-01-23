@@ -28,7 +28,7 @@ class LabController extends Controller
     public function index()
     {
         $lokasi_user = Auth::user()->lokasi_id;
-        if(!$lokasi_user){
+        if (!$lokasi_user) {
             return redirect()->route('dashboard')->with('error', 'Anda Belum di Alokasikan oleh Ketua Jurusan!');
         }
         return view('admin.admin_lab.lab.index');
@@ -47,7 +47,11 @@ class LabController extends Controller
             return redirect()->route('dashboard')->with('error', 'Anda Belum di Alokasikan oleh Ketua Jurusan!');
         }
         $data = [
-            'mahasiswa' => Mahasiswa::select('id', 'npm', 'nama_mahasiswa')->where('status', 'Aktif')->get(),
+            'mahasiswa' => Mahasiswa::select(
+                'id',
+                'npm',
+                'nama_mahasiswa'
+            )->get(),
         ];
         return view('admin.admin_lab.lab.create', $data);
     }
