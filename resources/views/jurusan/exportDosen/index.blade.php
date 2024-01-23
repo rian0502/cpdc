@@ -190,12 +190,12 @@
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
-                                    <label>Tahun Ajaran</label>
-                                    <select class="custom-select2 form-control" name="tahun_ajaran" id="tahun_ajaran"
+                                    <label>Tahun Akademik</label>
+                                    <select class="custom-select2 form-control" name="tahun_akademik" id="tahun_akademik"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Tahun">
                                             @foreach ($kinerja_dosen as $item)
-                                                <option value="{{ $item->tahun }}">{{ $item->tahun }}
+                                                <option value="{{ $item->tahun_akademik }}">{{ $item->tahun_akademik }}
                                                 </option>
                                             @endforeach
                                         </optgroup>

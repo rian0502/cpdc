@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\LitabmasDosen;
 use App\Models\PublikasiDosen;
 use App\Http\Controllers\Controller;
+use App\Models\ModelKinerjaDosen;
 use App\Models\ModelPenghargaanDosen;
+use KinerjaDosen;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class ExportDataDosen extends Controller
@@ -30,17 +32,61 @@ class ExportDataDosen extends Controller
                 ->get(),
             'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tanggal) as tahun')->distinct()->orderBy('tahun', 'desc')
                 ->get(),
-            'penghargaan_dosen' => ModelPenghargaanDosen::selectRaw('YEAR(tanggal) as tahun')->distinct()->orderBy('tahun', 'desc')
+            'penghargaan_dosen' => ModelPenghargaanDosen::selectRaw('YEAR(tanggal) as tahun')
+                ->distinct()->orderBy('tahun', 'desc')
                 ->get(),
-            'kinerja_dosen' => [],
+            'kinerja_dosen' => ModelKinerjaDosen::select('tahun_akademik')->distinct()
+                ->orderBy('tahun_akademik', 'desc')->get(),
         ];
         return view('jurusan.exportDosen.index', $data);
     }
 
     public function kinerja_dosen(Request $request)
     {
+        $request->validate([
+            'tahun_akademik' => 'required',
+            'semester' => 'required',
+        ]);
+        $kinerja_dosen = ModelKinerjaDosen::with('dosen')->where(
+            'tahun_akademik',
+            $request->tahun_akademik
+        )->where(
+            'semester',
+            $request->semester
+        )
+            ->orderBy('created_at', 'asc')
+            ->get();
+        $spdsheet = new Spreadsheet();
+        $sheet = $spdsheet->getActiveSheet();
+        $sheet->setTitle('Kinerja Dosen' . $request->tahun_akademik . '-' . $request->semester);
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'NIP');
+        $sheet->setCellValue('C1', 'NIDN');
+        $sheet->setCellValue('D1', 'Nama Dosen');
+        $sheet->setCellValue('E1', 'Jenis Kinerja');
+        $sheet->setCellValue('F1', 'SKS Pendidikan');
+        $sheet->setCellValue('G1', 'SKS Penelitian');
+        $sheet->setCellValue('H1', 'SKS Pengabdian');
+        $sheet->setCellValue('I1', 'SKS Penunjang');
+        $sheet->setCellValue('J1', 'Total SKS');
 
-        return;
+        foreach ($kinerja_dosen as $key => $value) {
+            $total_sks = $value->sks_pendidikan + $value->sks_penelitian + $value->sks_pengabdian + $value->sks_penunjang;
+            $sheet->setCellValue('A' . ($key + 2), $key + 1);
+            $sheet->setCellValue('B' . ($key + 2), $value->dosen->nip);
+            $sheet->setCellValue('C' . ($key + 2), $value->dosen->nidn);
+            $sheet->setCellValue('D' . ($key + 2), $value->dosen->nama_dosen);
+            $sheet->setCellValue('E' . ($key + 2), $value->jenis_kinerja);
+            $sheet->setCellValue('F' . ($key + 2), $value->sks_pendidikan);
+            $sheet->setCellValue('G' . ($key + 2), $value->sks_penelitian);
+            $sheet->setCellValue('H' . ($key + 2), $value->sks_pengabdian);
+            $sheet->setCellValue('I' . ($key + 2), $value->sks_penunjang);
+            $sheet->setCellValue('J' . ($key + 2), $total_sks);
+        }
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('kinerja_dosen-' . $request->tahun_akademik . '-' . $request->semester . '.xlsx');
+        return response()->download('kinerja_dosen-' . $request->tahun_akademik . '-' . $request->semester . '.xlsx')
+            ->deleteFileAfterSend(true);
     }
     public function seminar(Request $request)
     {
