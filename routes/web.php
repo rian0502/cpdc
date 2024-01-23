@@ -337,17 +337,35 @@ Route::prefix('koor')->name('koor.')->group(function () {
     Route::post('/download/pasca/jadwal/ta1', [PenjadwalanTaSatu::class, 'pascaDownloadJadwal'])
         ->middleware(['auth', 'profile', 'verified', 'role:ta1'])->name('pasca.jadwalTA1.download');
 
-    Route::post('/download/pra/jadwalTa2', [PenjadwalanTaDua::class, 'downloadJadwal'])
+    Route::post('/download/pra/jadwal/ta2', [PenjadwalanTaDua::class, 'downloadJadwal'])
         ->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('pra.jadwalTA2.download');
 
-    Route::post('/download/pasca/jadwalTa2', [PenjadwalanTaDua::class, 'pascaDownloadJadwal'])
+    Route::post('/download/pasca/jadwal/ta2', [PenjadwalanTaDua::class, 'pascaDownloadJadwal'])
         ->middleware(['auth', 'profile', 'verified', 'role:ta2'])->name('pasca.jadwalTA2.download');
 
-    Route::post('/download/pra/jadwalkompre', [PenjadwalanKompreController::class, 'downloadJadwal'])
+    Route::post('/download/pra/jadwal/kompre', [PenjadwalanKompreController::class, 'downloadJadwal'])
         ->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('pra.jadwalKompre.download');
 
-    Route::post('/download/pasca/jadwalkompre', [PenjadwalanKompreController::class, 'pascaDownloadJadwal'])
+    Route::post('/download/pasca/jadwal/kompre', [PenjadwalanKompreController::class, 'pascaDownloadJadwal'])
         ->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('pasca.jadwalKompre.download');
+
+    Route::post('/download/pra/s2/jadwal/tesis1', [ControllerKoorS2PenjadwalanTaSatu::class, 'downloadJadwal'])
+        ->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->name('pra.jadwalTesis1.download');
+
+    Route::post('/download/pasca/s2/jadwal/tesis1', [ControllerKoorS2PenjadwalanTaSatu::class, 'pascaDownloadJadwal'])
+        ->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->name('pasca.jadwalTesis1.download');
+
+    Route::post('/download/pra/s2/jadwal/tesis2', [ControllerKoorS2PenjadwalanTaDua::class, 'downloadJadwal'])
+        ->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->name('pra.jadwalTesis2.download');
+
+    Route::post('/download/pasca/s2/jadwal/tesis2', [ControllerKoorS2PenjadwalanTaDua::class, 'pascaDownloadJadwal'])
+        ->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->name('pasca.jadwalTesis2.download');
+
+    Route::post('/download/pra/s2/jadwal/kompre', [ControllerKoorS2JadwalKompre::class, 'downloadJadwal'])
+        ->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('pra.jadwalKompreS2.download');
+
+    Route::post('/download/pasca/s2/jadwal/kompre', [ControllerKoorS2JadwalKompre::class, 'pascaDownloadJadwal'])
+        ->middleware(['auth', 'profile', 'verified', 'role:kompre'])->name('pasca.jadwalKompreS2.download');
 
 
     Route::resource('validasiBaPKL', ValidasiBaPKLController::class)
