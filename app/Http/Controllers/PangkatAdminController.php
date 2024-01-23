@@ -11,16 +11,7 @@ use App\Http\Requests\StorePangkatAdmin;
 
 class PangkatAdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
+   
     /**
      * Show the form for creating a new resource.
      *
@@ -54,17 +45,6 @@ class PangkatAdminController extends Controller
         HistoryPangkatAdmin::where('id', $id_insert)->update(['encrypt_id' => Crypt::encrypt($id_insert)]);
         $file->move(('uploads/sk_pangkat_admin'), $nama_file);
         return redirect()->route('admin.profile.index')->with('success', 'Data berhasil ditambahkan');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

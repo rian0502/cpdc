@@ -13,7 +13,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\BerkasPersyaratanSeminar;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\UpdateSeminarPKLRequest;
 
 class EditSeminarKerjaPraktikController extends Controller
 {
