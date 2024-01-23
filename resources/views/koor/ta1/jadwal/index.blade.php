@@ -9,22 +9,37 @@
                     </div>
                     <div class="pb-20 m-3">
                         <div class="ml-3">
-                            <form action="{{ route('koor.jadwalTA1.download') }}" method="POST">
+                            <form action="{{ route('koor.pra.jadwalTA1.download') }}" method="POST">
                                 @csrf
                                 <div class="row">
-                                    <div class="weight-500 col-md-3">
+                                    <div class="col-md-3">
                                         <div class="form-group">
-                                            <div class="cta  d-flex align-items-center justify-content-start"
+                                            <div class="cta d-flex align-items-center justify-content-start"
                                                 style="margin-top: 34px">
                                                 <button class="btn btn-sm btn-success"><i class="fa fa-download"></i>
-                                                    Unduh Detail Data</button>
+                                                    Pra Penjadwalan</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <form action="{{ route('koor.pasca.jadwalTA1.download') }}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="cta d-flex align-items-center justify-content-start">
+                                                <button class="btn btn-sm btn-primary"><i class="fa fa-download"></i>
+                                                    Pasca Penjadwalan</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <table class="table data-table-responsive stripe data-table-export">
+
+
+                        <table class="table data-table-responsive stripe data-table-noexport">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -40,79 +55,77 @@
                             </thead>
                             <tbody>
                                 @foreach ($seminar as $item)
-                                    {{-- LOKASI TANGGAL JAM MULAI SELESAI MISAL BLM TERJADWAL MAKA OUTPUTIN KONDISIIN TULUSANNYA BLM TERJADWAL --}}
-
-                                        <tr>
+                                    <tr>
+                                        <td>
+                                            {{ $loop->iteration }}
+                                        </td>
+                                        <td>
+                                            {{ $item->mahasiswa->npm }}
+                                        </td>
+                                        <td>
+                                            {{ $item->mahasiswa->nama_mahasiswa }}
+                                        </td>
+                                        <td>
+                                            {{ \Illuminate\Support\Str::limit($item->judul_ta, $limit = 40, $end = '...') }}
+                                        </td>
+                                        <td>
+                                            {{ $item->periode_seminar }}
+                                        </td>
+                                        @if ($item->jadwal)
                                             <td>
-                                                {{ $loop->iteration }}
+                                                {{ $item->jadwal->lokasi->nama_lokasi }}
                                             </td>
                                             <td>
-                                                {{ $item->mahasiswa->npm }}
+                                                {{ $carbon::parse($item->jadwal->tanggal_seminar_ta_satu)->format('d F Y') }}
                                             </td>
                                             <td>
-                                                {{ $item->mahasiswa->nama_mahasiswa }}
+                                                {{ $item->jadwal->jam_mulai_seminar_ta_satu . ' - ' . $item->jadwal->jam_selesai_seminar_ta_satu }}
+                                            </td>
+                                        @else
+                                            <td>
+                                                <span class="badge bg-warning">Belum Terjadwal</span>
                                             </td>
                                             <td>
-                                                {{ \Illuminate\Support\Str::limit($item->judul_ta, $limit = 40, $end = '...') }}
+                                                <span class="badge bg-warning">Belum Terjadwal</span>
                                             </td>
                                             <td>
-                                                {{ $item->periode_seminar }}
+                                                <span class="badge bg-warning">Belum Terjadwal</span>
                                             </td>
-                                            @if ($item->jadwal)
-                                                <td>
-                                                    {{ $item->jadwal->lokasi->nama_lokasi }}
-                                                </td>
-                                                <td>
-                                                    {{ $carbon::parse($item->jadwal->tanggal_seminar_ta_satu)->format('d F Y') }}
-                                                </td>
-                                                <td>
-                                                    {{ $item->jadwal->jam_mulai_seminar_ta_satu . ' - ' . $item->jadwal->jam_selesai_seminar_ta_satu }}
-                                                </td>
-                                            @else
-                                                <td>
-                                                    <span class="badge bg-warning">Belum Terjadwal</span>
-                                                </td>
-                                                <td>
-                                                    <span class="badge bg-warning">Belum Terjadwal</span>
-                                                </td>
-                                                <td>
-                                                    <span class="badge bg-warning">Belum Terjadwal</span>
-                                                </td>
-                                            @endif
+                                        @endif
 
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a class="btn btn-outline-primary dropdown-toggle" href="#"
-                                                        role="button" data-toggle="dropdown">
-                                                        <i class="fa fa-ellipsis-h"></i>
-                                                    </a>
+                                        <td>
+                                            <div class="dropdown">
+                                                <a class="btn btn-outline-primary dropdown-toggle" href="#"
+                                                    role="button" data-toggle="dropdown">
+                                                    <i class="fa fa-ellipsis-h"></i>
+                                                </a>
 
-                                                    {{-- DI KASIH KONDISI KLK UDAH TERJADWAL BAKAL MUNCUL EDIT JADWALKANNYA ILANG BEGITU JG SEBALIKNYA --}}
+                                                {{-- DI KASIH KONDISI KLK UDAH TERJADWAL BAKAL MUNCUL EDIT JADWALKANNYA ILANG BEGITU JG SEBALIKNYA --}}
 
 
-                                                    {{-- NANTI FITUR EDIT KLK MAU EDIT BERARTI DOKUMEN YANG TERGENERATE AKAN TERPEBAHARUI JUGA --}}
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        @if ($item->jadwal)
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalTA1.edit', $item->encrypt_id) }}"><i
-                                                                    class="fa fa-pencil"></i>
-                                                                Edit</a>
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalTA1.resend', $item->encrypt_id) }}"><i
-                                                                    class="fa fa-share"></i>
-                                                                Kirim Kembali</a>
-                                                        @else
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('koor.jadwalTA1.create', $item->encrypt_id) }}"><i
-                                                                    class="bi bi-calendar-plus-fill"></i>
-                                                                Jadwalkan</a>
-                                                        @endif
+                                                {{-- NANTI FITUR EDIT KLK MAU EDIT BERARTI DOKUMEN YANG TERGENERATE AKAN TERPEBAHARUI JUGA --}}
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    @if ($item->jadwal)
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('koor.jadwalTA1.edit', $item->encrypt_id) }}"><i
+                                                                class="fa fa-pencil"></i>
+                                                            Edit</a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('koor.jadwalTA1.resend', $item->encrypt_id) }}"><i
+                                                                class="fa fa-share"></i>
+                                                            Kirim Kembali</a>
+                                                    @else
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('koor.jadwalTA1.create', $item->encrypt_id) }}"><i
+                                                                class="bi bi-calendar-plus-fill"></i>
+                                                            Jadwalkan</a>
+                                                    @endif
 
 
-                                                    </div>
                                                 </div>
-                                            </td>
-                                        </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

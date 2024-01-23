@@ -8,7 +8,35 @@
                         <h4 class="text-blue h4">Penjadwalan Seminar Tesis 2</h4>
                     </div>
                     <div class="pb-20 m-3">
-
+                        <div class="ml-3">
+                            <form action="{{ route('koor.pra.jadwalTesis2.download') }}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="cta d-flex align-items-center justify-content-start"
+                                                style="margin-top: 34px">
+                                                <button class="btn btn-sm btn-success"><i class="fa fa-download"></i>
+                                                    Pra Penjadwalan</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <form action="{{ route('koor.pasca.jadwalTesis2.download') }}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="cta d-flex align-items-center justify-content-start">
+                                                <button class="btn btn-sm btn-primary"><i class="fa fa-download"></i>
+                                                    Pasca Penjadwalan</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                         <table class="table data-table-responsive stripe data-table-noexport">
                             <thead>
                                 <tr>

@@ -9,7 +9,7 @@
                     </div>
                     <div class="pb-20 m-3">
                         <div class="ml-3">
-                            <form action="{{ route('koor.jadwalTA2.download') }}" method="POST">
+                            <form action="{{ route('koor.pra.jadwalTA2.download') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="weight-500 col-md-3">
@@ -18,6 +18,19 @@
                                                 style="margin-top: 34px">
                                                 <button class="btn btn-sm btn-success"><i class="fa fa-download"></i>
                                                     Unduh Data Penjadwalan</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <form action="{{ route('koor.pasca.jadwalTA2.download') }}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="cta d-flex align-items-center justify-content-start">
+                                                <button class="btn btn-sm btn-primary"><i class="fa fa-download"></i>
+                                                    Pasca Penjadwalan</button>
                                             </div>
                                         </div>
                                     </div>

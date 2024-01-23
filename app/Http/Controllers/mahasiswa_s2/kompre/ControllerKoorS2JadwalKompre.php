@@ -358,4 +358,137 @@ class ControllerKoorS2JadwalKompre extends Controller
         unlink('uploads/print_ba_sidang_tesis/' . $namafile);
         return redirect()->route('koor.jadwalKompreS2.index')->with('success', 'Berhasil Menjadwalkan Ulang Sidang Tesis');
     }
+
+    public function downloadJadwal()
+    {
+        $seminar = ModelKompreS2::with(
+            'mahasiswa',
+            'pembimbingSatu',
+            'pembimbingDua',
+            'pembahasSatu',
+            'pembahasDua',
+            'pembahasTiga'
+        )->whereDoesntHave('jadwal')
+            ->where('status_admin', 'Valid')
+            ->orderBy('updated_at', 'asc')->get();
+
+        $spredsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spredsheet->getActiveSheet();
+        $sheet->setTitle('Daftar Sidang Tesis');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Nama Mahasiswa');
+        $sheet->setCellValue('C1', 'NPM');
+        $sheet->setCellValue('D1', 'Judul TA');
+        $sheet->setCellValue('E1', 'Pembimbing 1');
+        $sheet->setCellValue('F1', 'Pembimbing 2');
+        $sheet->setCellValue('G1', 'Pembahas 1');
+        $sheet->setCellValue('H1', 'Pembahas 2');
+        $sheet->setCellValue('I1', 'Pembahas 3');
+        if ($seminar->count() > 0) {
+            foreach ($seminar as $key => $value) {
+                $sheet->setCellValue('A' . ($key + 2), $key + 1);
+                $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+                $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->npm);
+                $sheet->setCellValue('D' . ($key + 2), $value->judul_ta);
+                $sheet->setCellValue('E' . ($key + 2), $value->pembimbingSatu->nama_dosen);
+                if ($value->id_pembimbing_2) {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pembimbingDua->nama_dosen);
+                } else {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pbl2_nama);
+                }
+                if ($value->id_pembahas_1) {
+                    $sheet->setCellValue('G' . ($key + 2), $value->pembahasSatu->nama_dosen);
+                } else {
+                    $sheet->setCellValue('G' . ($key + 2), $value->pembahas_external_1);
+                }
+                if ($value->id_pembahas_2) {
+                    $sheet->setCellValue('H' . ($key + 2), $value->pembahasDua->nama_dosen);
+                } else {
+                    $sheet->setCellValue('H' . ($key + 2), $value->pembahas_external_2);
+                }
+                if ($value->id_pembahas_3) {
+                    $sheet->setCellValue('I' . ($key + 2), $value->pembahasTiga->nama_dosen);
+                } else {
+                    $sheet->setCellValue('I' . ($key + 2), $value->pembahas_external_3);
+                }
+            }
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
+            $filename = 'Daftar Pra-Penjadwalan Sidang Tesis.xlsx';
+            $writer->save($filename);
+            return response()->download($filename)->deleteFileAfterSend(true);
+        } else {
+            return redirect()->back()
+                ->with('error', 'Belum ada Sidang Tesis yang dapat dijadwalkan');
+        }
+    }
+    public function pascaDownloadJadwal()
+    {
+        $seminar = ModelKompreS2::with(
+            'mahasiswa',
+            'pembimbingSatu',
+            'pembimbingDua',
+            'pembahasSatu',
+            'pembahasDua',
+            'pembahasTiga'
+        )
+            ->whereHas('jadwal', function ($query) {
+                $query->whereDate('tanggal', '>=', date('Y-m-d'));
+            })->where('status_admin', 'Valid')->orderBy('updated_at', 'asc')->get();
+        if ($seminar->count() > 0) {
+            $spredsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+            $sheet = $spredsheet->getActiveSheet();
+            $sheet->setTitle('Daftar Sidang Tesis');
+            $sheet->setCellValue('A1', 'No');
+            $sheet->setCellValue('B1', 'Nama Mahasiswa');
+            $sheet->setCellValue('C1', 'NPM');
+            $sheet->setCellValue('D1', 'Judul TA');
+            $sheet->setCellValue('E1', 'Pembimbing 1');
+            $sheet->setCellValue('F1', 'Pembimbing 2');
+            $sheet->setCellValue('G1', 'Pembahas 1');
+            $sheet->setCellValue('H1', 'Pembahas 2');
+            $sheet->setCellValue('I1', 'Pembahas 3');
+            $sheet->setCellValue('J1', 'Tanggal');
+            $sheet->setCellValue('K1', 'Jam Mulai');
+            $sheet->setCellValue('L1', 'Jam Selesai');
+            $sheet->setCellValue('M1', 'Lokasi');
+            foreach ($seminar as $key => $value) {
+                $sheet->setCellValue('A' . ($key + 2), $key + 1);
+                $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+                $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->npm);
+                $sheet->setCellValue('D' . ($key + 2), $value->judul_ta);
+                $sheet->setCellValue('E' . ($key + 2), $value->pembimbingSatu->nama_dosen);
+                if ($value->id_pembimbing_2) {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pembimbingDua->nama_dosen);
+                } else {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pbl2_nama);
+                }
+                if ($value->id_pembahas_1) {
+                    $sheet->setCellValue('G' . ($key + 2), $value->pembahasSatu->nama_dosen);
+                } else {
+                    $sheet->setCellValue('G' . ($key + 2), $value->pembahas_external_1);
+                }
+                if ($value->id_pembahas_2) {
+                    $sheet->setCellValue('H' . ($key + 2), $value->pembahasDua->nama_dosen);
+                } else {
+                    $sheet->setCellValue('H' . ($key + 2), $value->pembahas_external_2);
+                }
+                if ($value->id_pembahas_3) {
+                    $sheet->setCellValue('I' . ($key + 2), $value->pembahasTiga->nama_dosen);
+                } else {
+                    $sheet->setCellValue('I' . ($key + 2), $value->pembahas_external_3);
+                }
+                $sheet->setCellValue('J' . ($key + 2), $value->jadwal->tanggal);
+                $sheet->setCellValue('K' . ($key + 2), $value->jadwal->jam_mulai);
+                $sheet->setCellValue('L' . ($key + 2), $value->jadwal->jam_selesai);
+                $sheet->setCellValue('M' . ($key + 2), $value->jadwal->lokasi->nama_lokasi);
+            }
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
+            $filename = 'Daftar Pasca-Penjadwalan Sidang Tesis.xlsx';
+            $writer->save($filename);
+            return response()->download($filename)->deleteFileAfterSend(true);
+        } else {
+            return redirect()->back()
+                ->with('error', 'Belum ada Sidang Tesis yang dijadwalkan');
+        }
+    }
 }
