@@ -26,6 +26,7 @@ class StoreKinerjaDosen extends FormRequest
     {
         return [
             'semester' => 'required|in:Ganjil,Genap',
+            'kategori' => 'required|in:BKD,Remunerasi', // 'BKD' or 'Remunerasi
             'tahun_akademik' => 'required',
             'sks_pendidikan' => 'required|numeric',
             'sks_penelitian' => 'required|numeric',
@@ -33,7 +34,7 @@ class StoreKinerjaDosen extends FormRequest
             'sks_penunjang' => 'required|numeric',
         ];
     }
-    
+
     public function messages()
     {
         return [
@@ -48,6 +49,8 @@ class StoreKinerjaDosen extends FormRequest
             'sks_pengabdian.numeric' => 'SKS Pengabdian harus berupa angka',
             'sks_penunjang.required' => 'SKS Penunjang harus diisi',
             'sks_penunjang.numeric' => 'SKS Penunjang harus berupa angka',
+            'kategori.required' => 'Kategori harus diisi',
+            'kategori.in' => 'Kategori harus diisi dengan BKD atau Remunerasi',
         ];
     }
 }

@@ -188,7 +188,12 @@
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.tesis.index') }}"
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/tesis*') ? 'active' : '' }}">Bimbingan
                                         Tesis</a></li>
-
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.prestasi.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/prestasi*') ? 'active' : '' }}">Bimbingan
+                                        Prestasi</a></li>
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.lainnya.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/lainnya*') ? 'active' : '' }}">Bimbingan
+                                        Lainnya</a></li>
                             </ul>
                         </li>
                         <li

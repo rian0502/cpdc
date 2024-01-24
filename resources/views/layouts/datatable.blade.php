@@ -204,6 +204,12 @@
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.tesis.index') }}"
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/tesis*') ? 'active' : '' }}">Bimbingan
                                         Tesis</a></li>
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.prestasi.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/prestasi*') ? 'active' : '' }}">Bimbingan
+                                        Prestasi</a></li>
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.lainnya.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/lainnya*') ? 'active' : '' }}">Bimbingan
+                                        Lainnya</a></li>
 
                             </ul>
                         </li>
@@ -1235,29 +1241,28 @@
             showConfirmationForm();
         });
     </script>
- <script>
-function showConfirmation3(event) {
-    event.preventDefault(); // Mencegah pengiriman form secara langsung
+    <script>
+        function showConfirmation3(event) {
+            event.preventDefault(); // Mencegah pengiriman form secara langsung
 
-    const form = event.target.closest('form'); // Mendapatkan elemen form terdekat dari tombol yang diklik
+            const form = event.target.closest('form'); // Mendapatkan elemen form terdekat dari tombol yang diklik
 
-    swal({
-        title: 'Lakukan Sinkronisasi Google Scholar?',
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonClass: 'btn btn-success',
-        cancelButtonClass: 'btn btn-danger',
-        confirmButtonText: 'Ya',
-        cancelButtonText: 'Tidak'
-    }).then((result) => {
-        if (result && result.value) {
-            form.submit();
+            swal({
+                title: 'Lakukan Sinkronisasi Google Scholar?',
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
+            }).then((result) => {
+                if (result && result.value) {
+                    form.submit();
+                }
+            });
+            return false; // Mengembalikan false agar formulir tidak terkirim secara langsung
         }
-    });
-    return false; // Mengembalikan false agar formulir tidak terkirim secara langsung
-}
-
-</script>
+    </script>
     <script>
         function deleteConfirmationForm(event) {
             event.preventDefault(); // Menghentikan aksi default dari event klik tombol

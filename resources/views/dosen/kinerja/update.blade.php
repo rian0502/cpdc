@@ -9,6 +9,12 @@
                         <div class="pull-left">
                             <h4 class="text-dark h4">Update Organisasi</h4>
                             <p class="mb-30">Isi data dengan benar</p>
+                            @if ($errors->has('validation_error'))
+                                <div class="alert alert-danger">
+                                    {{ $errors->first('validation_error') }}
+                                </div>
+                            @endif
+
                         </div>
                     </div>
                     <form action="{{ route('dosen.kinerja.update', $kinerja->encrypted_id) }}" method="POST">
@@ -38,6 +44,20 @@
                                         name="tahun_akademik">
                                     </select>
                                     @error('tahun_akademik')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="kategori">Kategori</label>
+                                    <select name="kategori" id="kategori" class="selectpicker form-control">
+                                        <option value="BKD"
+                                            {{ old('kategori', $kinerja->kategori) == 'BKD' ? 'selected' : '' }}>
+                                            BKD</option>
+                                        <option value="Remunerasi"
+                                            {{ old('kategori', $kinerja->kategori) == 'Remunerasi' ? 'selected' : '' }}>
+                                            Remunerasi</option>
+                                    </select>
+                                    @error('kategori')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -111,14 +131,19 @@
         var tahunSekarang = new Date().getFullYear();
 
         // Loop untuk menghasilkan 5 tahun ke belakang
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < 10; i++) {
             var tahun = tahunSekarang - i;
             var option = document.createElement("option");
             option.value = tahun + "/" + (tahun + 1);
             option.text = tahun + "/" + (tahun + 1);
+
+            // Set selected attribute if the value matches $kinerja->tahun_akademik
+            if (option.value === "{{ $kinerja->tahun_akademik }}") {
+                option.selected = true;
+            }
+
             select.add(option);
         }
-
 
         var myButton = document.getElementById("submitButton");
 

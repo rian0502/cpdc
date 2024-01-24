@@ -283,6 +283,10 @@ route::prefix('/dosen')->name('dosen.')->middleware(['auth', 'profile', 'verifie
     Route::resource('pangkat', PangkatDosenController::class);
     Route::resource('mahasiswa/bimbingan/akademik', MahasiswaBimbinganAkademikController::class)
         ->names('mahasiswa.bimbingan.akademik');
+    Route::get('mahasiswa/bimbingan/prestasi', [MahasiswaBimbinganAkademikController::class, 'prestasi'])->name('mahasiswa.bimbingan.prestasi.index');
+    Route::get('mahasiswa/bimbingan/prestasi/show/{npm}', [MahasiswaBimbinganAkademikController::class, 'show'])->name('mahasiswa.bimbingan.prestasi.show');
+    Route::get('mahasiswa/bimbingan/lainnya', [MahasiswaBimbinganAkademikController::class, 'lainnya'])->name('mahasiswa.bimbingan.lainnya.index');
+    Route::get('mahasiswa/bimbingan/lainnya/show/{npm}', [MahasiswaBimbinganAkademikController::class, 'show'])->name('mahasiswa.bimbingan.lainnya.show');
     Route::resource('mahasiswa/bimbingan/kp', MahasiswaBimbinganKPController::class)
         ->names('mahasiswa.bimbingan.kp');
     Route::post(

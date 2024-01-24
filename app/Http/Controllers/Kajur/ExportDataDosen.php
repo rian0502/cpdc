@@ -62,7 +62,7 @@ class ExportDataDosen extends Controller
             ->get();
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
-        $sheet->setTitle('Kinerja Dosen' . $request->tahun_akademik . '-' . $request->semester);
+        $sheet->setTitle('Kinerja Dosen');
         $sheet->setCellValue('A1', 'No');
         $sheet->setCellValue('B1', 'NIP');
         $sheet->setCellValue('C1', 'NIDN');
@@ -73,6 +73,8 @@ class ExportDataDosen extends Controller
         $sheet->setCellValue('H1', 'SKS Pengabdian');
         $sheet->setCellValue('I1', 'SKS Penunjang');
         $sheet->setCellValue('J1', 'Total SKS');
+        $sheet->setCellValue('K1', 'Tahun Akademik');
+        $sheet->setCellValue('L1', 'Semester');
 
         foreach ($kinerja_dosen as $key => $value) {
             $total_sks = $value->sks_pendidikan + $value->sks_penelitian
@@ -81,16 +83,18 @@ class ExportDataDosen extends Controller
             $sheet->setCellValue('B' . ($key + 2), $value->dosen->nip);
             $sheet->setCellValue('C' . ($key + 2), $value->dosen->nidn);
             $sheet->setCellValue('D' . ($key + 2), $value->dosen->nama_dosen);
-            $sheet->setCellValue('E' . ($key + 2), $value->jenis_kinerja);
+            $sheet->setCellValue('E' . ($key + 2), $value->kategori);
             $sheet->setCellValue('F' . ($key + 2), $value->sks_pendidikan);
             $sheet->setCellValue('G' . ($key + 2), $value->sks_penelitian);
             $sheet->setCellValue('H' . ($key + 2), $value->sks_pengabdian);
             $sheet->setCellValue('I' . ($key + 2), $value->sks_penunjang);
             $sheet->setCellValue('J' . ($key + 2), $total_sks);
+            $sheet->setCellValue('K' . ($key + 2), $value->tahun_akademik);
+            $sheet->setCellValue('L' . ($key + 2), $value->semester);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('kinerja_dosen-' . $request->tahun_akademik . '-' . $request->semester . '.xlsx');
-        return response()->download('kinerja_dosen-' . $request->tahun_akademik . '-' . $request->semester . '.xlsx')
+        $writer->save('kinerja_dosen'.'.xlsx');
+        return response()->download('kinerja_dosen'.'.xlsx')
             ->deleteFileAfterSend(true);
     }
     public function seminar(Request $request)

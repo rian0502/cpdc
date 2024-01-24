@@ -18,10 +18,22 @@
                                 <div class="form-group">
                                     <label for="tanggal-akhir">Semester</label>
                                     <select name="semester" id="tanggal-akhir" class="selectpicker form-control"
-                                        data-size="5" name="semester">
+                                        data-size="5">
                                         <option value="Ganjil">Ganjil
                                         </option>
                                         <option value="Genap">Genap
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="kategori">Kategori</label>
+                                    <select name="kategori" id="kategori" class="selectpicker form-control"
+                                        data-size="5">
+                                        <option value="BKD">BKD
+                                        </option>
+                                        <option value="Remunerasi">Remunerasi
                                         </option>
                                     </select>
                                 </div>
@@ -67,6 +79,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
+                                    <th>Kategori</th>
                                     <th>SKS Pendidikan</th>
                                     <th>SKS Penelitian</th>
                                     <th>SKS Pengabdian</th>
@@ -103,7 +116,7 @@
             loadData();
 
             // Fungsi untuk memuat data menggunakan filter
-            function loadData(startDate = null, endDate = null) {
+            function loadData(startDate = null, endDate = null, kategori = null) {
                 if (dataKinerja) {
                     dataKinerja.destroy();
                 }
@@ -119,6 +132,7 @@
                         data: function(d) {
                             d.startDate = startDate;
                             d.endDate = endDate;
+                            d.kategori = kategori;
                         }
                     },
                     columns: [{
@@ -132,6 +146,11 @@
                         {
                             data: 'dosen.nama_dosen',
                             name: 'dosen.nama_dosen',
+                            orderable: true
+                        },
+                        {
+                            name: 'kategori',
+                            data: 'kategori',
                             orderable: true
                         },
                         {
@@ -169,7 +188,8 @@
                     dataType: 'json',
                     data: {
                         startDate: startDate,
-                        endDate: endDate
+                        endDate: endDate,
+                        kategori: kategori
                     },
                     success: function(data) {
                         const chartData = {
@@ -222,7 +242,8 @@
                     dataType: 'json',
                     data: {
                         startDate: startDate,
-                        endDate: endDate
+                        endDate: endDate,
+                        kategori: kategori
                     },
                     success: function(data) {
                         // Membangun chart menggunakan data yang diterima dari server
@@ -363,7 +384,8 @@
             $('#filter').on('click', function() {
                 var startDate = $('#tanggal-awal').val();
                 var endDate = $('#tanggal-akhir').val();
-                loadData(startDate, endDate);
+                var kategori = $('#kategori').val();
+                loadData(startDate, endDate, kategori);
             });
         });
     </script>

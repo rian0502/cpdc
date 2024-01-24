@@ -44,9 +44,24 @@ class RekapKinerjaController extends Controller
      */
     public function store(StoreKinerjaDosen $request)
     {
-        //
+        $dosen = Dosen::findOrFail(Auth::user()->dosen->id);
+
+        // Check if the combination already exists
+        $existingRecord = ModelKinerjaDosen::where('dosen_id', $dosen->id)
+            ->where('semester', $request->semester)
+            ->where('tahun_akademik', $request->tahun_akademik)
+            ->where('kategori', $request->kategori)
+            ->first();
+
+        if ($existingRecord) {
+            // Combination already exists, return with validation error
+            return redirect()->back()->withInput()->withErrors(['validation_error' => 'Data dengan periode dan jenis tersebut sudah ada']);
+        }
+
+        // Combination does not exist, create a new record
         $kinerja = ModelKinerjaDosen::create([
             'semester' => $request->semester,
+            'kategori' => $request->kategori,
             'tahun_akademik' => $request->tahun_akademik,
             'sks_pendidikan' => $request->sks_pendidikan,
             'sks_penelitian' => $request->sks_penelitian,
@@ -54,8 +69,11 @@ class RekapKinerjaController extends Controller
             'sks_penunjang' => $request->sks_penunjang,
             'dosen_id' => Auth::user()->dosen->id,
         ]);
+
+        // Encrypt the ID and save
         $kinerja->encrypted_id = Crypt::encrypt($kinerja->id);
         $kinerja->save();
+
         return redirect()->route('dosen.kinerja.index')->with('success', 'Data Kinerja Dosen berhasil disimpan');
     }
 
@@ -91,9 +109,23 @@ class RekapKinerjaController extends Controller
     {
         //
         try {
+            $dosen = Dosen::findOrFail(Auth::user()->dosen->id);
+            $existingRecord = ModelKinerjaDosen::where('dosen_id', $dosen->id)
+            ->where('semester', $request->semester)
+            ->where('tahun_akademik', $request->tahun_akademik)
+            ->where('kategori', $request->kategori)
+            ->where('id', '!=', Crypt::decrypt($id)) // Exclude the current record from the check
+            ->first();
+
+
+        if ($existingRecord) {
+            // Combination already exists, return with validation error
+            return redirect()->back()->withInput()->withErrors(['validation_error' => 'Data dengan periode dan jenis terse']);
+        }
             $kinerja = ModelKinerjaDosen::findOrFail(Crypt::decrypt($id));
             if ($kinerja->dosen_id == Auth::user()->dosen->id) {
                 $kinerja->semester = $request->semester;
+                $kinerja->kategori = $request->kategori;
                 $kinerja->tahun_akademik = $request->tahun_akademik;
                 $kinerja->sks_pendidikan = $request->sks_pendidikan;
                 $kinerja->sks_penelitian = $request->sks_penelitian;
