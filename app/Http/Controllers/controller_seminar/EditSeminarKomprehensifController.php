@@ -31,6 +31,23 @@ class EditSeminarKomprehensifController extends Controller
         }
         return view('koor.kompre.arsip.index');
     }
+    public function show($id)
+    {
+        $seminar = ModelSeminarKompre::with(
+            'mahasiswa',
+            'jadwal',
+            'beritaAcara',
+            'pembimbingSatu',
+            'pembimbingDua',
+            'pembahas',
+        )->find(Crypt::decrypt($id));
+
+        $data = [
+            'seminar' => $seminar,
+        ];
+        return view('koor.kompre.arsip.show', $data);
+    }
+
     public function edit($id)
     {
         $seminar = ModelSeminarKompre::with(['jadwal', 'beritaAcara'])->where('id', Crypt::decrypt($id))->first();

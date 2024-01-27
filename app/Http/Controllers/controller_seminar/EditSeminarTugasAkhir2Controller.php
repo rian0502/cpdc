@@ -13,7 +13,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaDua;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\UpdateSeminarTugasAkhir2Request;
 
 class EditSeminarTugasAkhir2Controller extends Controller
 {
@@ -31,6 +30,21 @@ class EditSeminarTugasAkhir2Controller extends Controller
                 })->toJson();
         }
         return view('koor.ta2.arsip.index');
+    }
+    public function show($id)
+    {
+        $seminar = ModelSeminarTaDua::with(
+            'mahasiswa',
+            'jadwal',
+            'ba_seminar',
+            'pembimbing_satu',
+            'pembimbing_dua',
+            'pembahas',
+        )->find(Crypt::decrypt($id));
+        $data = [
+            'seminar' => $seminar,
+        ];
+        return view('koor.ta2.arsip.show', $data);
     }
     public function edit($id)
     {
