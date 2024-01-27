@@ -223,13 +223,13 @@
                                     <label class="col-md-3 bold"><b>File Nilai</b></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="uploads/nilai_sidang_tesis/{{ $seminar->beritaAcara->file_nilai }}">Lihat
+                                            href="/uploads/nilai_sidang_tesis/{{ $seminar->beritaAcara->file_nilai }}">Lihat
                                             Berkas</a>
                                     </div>
                                     <label class="col-md-3 bold mt-1"><strong>Berita Acara</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         <a target="_blank"
-                                            href="uploads/ba_sidang_tesis/{{ $seminar->beritaAcara->file_ba }}">Lihat
+                                            href="/uploads/ba_sidang_tesis/{{ $seminar->beritaAcara->file_ba }}">Lihat
                                             Berkas</a>
                                     </div>
                                 </div>
