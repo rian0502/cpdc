@@ -96,7 +96,7 @@
                                 <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown">
                                     <i class="dw dw-more"></i>
                                 </button>
-                                <div class="dropdown-menu">
+                                <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="${showUrl}"><i class="dw dw-eye"></i> Detail</a>
                                     <a class="dropdown-item" href="${editUrl}"><i class="dw dw-edit2"></i> Edit</a>
                                 </div>
