@@ -180,4 +180,21 @@ class EditSeminarTesis1Controller extends Controller
             return redirect()->back()->with('error', $th->getMessage());
         }
     }
+
+    public function show($id){
+        $seminar = ModelSeminarTaSatuS2::with(
+            'mahasiswa',
+            'jadwal',
+            'beritaAcara',
+            'pembimbingSatu',
+            'pembimbingDua',
+            'pembahasSatu',
+            'pembahasDua',
+            'pembahasTiga'
+        )->find(Crypt::decrypt($id));
+        $data = [
+            'seminar' => $seminar,
+        ];
+        return view('koorS2.tesis1.arsip.show', $data);
+    }
 }

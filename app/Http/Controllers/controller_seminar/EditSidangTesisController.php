@@ -181,4 +181,20 @@ class EditSidangTesisController extends Controller
             return redirect()->back()->with('error', $th->getMessage());
         }
     }
+    public function show($id){
+        $seminar = ModelKompreS2::with(
+            'mahasiswa',
+            'jadwal',
+            'beritaAcara',
+            'pembimbingSatu',
+            'pembimbingDua',
+            'pembahasSatu',
+            'pembahasDua',
+            'pembahasTiga'
+        )->find(Crypt::decrypt($id));
+        $data = [
+            'seminar' => $seminar,
+        ];
+        return view('koorS2.sidang.arsip.show', $data);
+    }
 }

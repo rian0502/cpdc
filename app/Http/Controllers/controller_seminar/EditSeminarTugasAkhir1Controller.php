@@ -31,6 +31,21 @@ class EditSeminarTugasAkhir1Controller extends Controller
         }
         return view('koor.ta1.arsip.index');
     }
+    public function show($id)
+    {
+        $seminar = ModelSeminarTaSatu::with(
+            'mahasiswa',
+            'jadwal',
+            'ba_seminar',
+            'pembimbing_satu',
+            'pembimbing_dua',
+            'pembahas',
+        )->find(Crypt::decrypt($id));
+        $data = [
+            'seminar' => $seminar,
+        ];
+        return view('koor.ta1.arsip.show', $data);
+    }
     public function edit($id)
     {
         $seminar = ModelSeminarTaSatu::with(['jadwal', 'ba_seminar'])->where('id', Crypt::decrypt($id))->first();
