@@ -145,11 +145,6 @@ use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
 |
 */
 
-Route::get('test', function () {
-    dispatch(new TestingJob());
-    return dd('JOb Masuk');
-});
-
 // Admin Keseluruhan
 Route::get('admin/profile/create', [ProfileAdminController::class, 'create'])
     ->name('admin.profile.create')->middleware('auth', 'verified', 'role:admin lab|admin berkas');
@@ -409,8 +404,10 @@ Route::prefix('koor')->name('koor.')->group(function () {
 
     Route::resource('arsip/tesis1', EditSeminarTesis1Controller::class)
         ->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('arsip.tesis1');
+
     Route::resource('arsip/tesis2', EditSeminarTesis2Controller::class)
         ->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('arsip.tesis2');
+
     Route::resource('arsip/sidang_tesis', EditSidangTesisController::class)
         ->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('arsip.sidang_tesis');
 });

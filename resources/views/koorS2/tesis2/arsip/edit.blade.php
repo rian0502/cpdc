@@ -366,7 +366,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label>Nomor Berita Acara Seminar Tugas Akhir 1</label>
+                                            <label>Nomor Berita Acara Seminar Tugas Akhir 2</label>
                                             <input autofocus name="no_ba" id="no_ba"
                                                 class="form-control @error('no_ba') form-control-danger @enderror"
                                                 type="text" value="{{ old('no_ba', $seminar->beritaAcara->no_ba) }}"
