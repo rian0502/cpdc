@@ -122,6 +122,18 @@
                                         Berkas</a>
                                 </div>
                             </div>
+                            <div class="row border-bottom mt-2">
+                                <label class="col-md-3 bold mt-2"> <strong>Draft Artikel</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    <a target="_blank" href="/uploads/draft_artikel_s2/{{ $seminar->draft_artikel }}">Lihat
+                                        Berkas</a>
+                                </div>
+                                <label class="col-md-3 bold"> <strong>Artikel</strong></label>
+                                <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                    <a target="_blank" href="{{ $seminar->url_draft_artikel }}">Lihat
+                                        Berkas</a>
+                                </div>
+                            </div>
 
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold mt-2"> <strong>TOEFL</strong></label>
@@ -201,9 +213,9 @@
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                         {{ $seminar->beritaAcara->nilai_mutu }}
                                     </div>
-                                    <label class="col-md-3 bold mt-1"><strong>Power Point</strong></label>
+                                    <label class="col-md-3 bold mt-1"><strong>Pengesahan</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        <a target="_blank" href="{{ $seminar->beritaAcara->ppt }}">Lihat
+                                        <a target="_blank" href="{{ $seminar->beritaAcara->pengesahan }}">Lihat
                                             Berkas</a>
                                     </div>
                                 </div>
