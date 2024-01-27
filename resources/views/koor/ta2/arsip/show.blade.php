@@ -31,12 +31,11 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-
                 <!-- Data Registrasi Start -->
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-dark h4">Data Registrasi</h4>
+                            <h4 class="text-dark h4">Data Mahasiswa</h4>
                         </div>
                     </div>
                     <div class="">
@@ -44,7 +43,7 @@
                             <div class="row border-bottom">
                                 <label class="col-md-3 bold mt-2"> <strong>Nomor Pokok Mahasiswa</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $mahasiswa->npm }}
+                                    {{ $seminar->mahasiswa->npm }}
                                 </div>
                                 <label class="col-md-3 bold mt-2"><b>Pembimbing 1</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -54,7 +53,7 @@
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold"><b>Nama Mahasiswa</b></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    {{ $mahasiswa->nama_mahasiswa }}
+                                    {{ $seminar->mahasiswa->nama_mahasiswa }}
                                 </div>
                                 <label class="col-md-3 bold mt-1"><strong>Pembimbing 2</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -71,7 +70,7 @@
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->tahun_akademik }}
                                 </div>
-                                <label class="col-md-3 bold mt-2"> <strong>Nomor Pegawai Eksternal</strong></label>
+                                <label class="col-md-3 bold mt-2"> <strong>NI Pembimbing Eksternal</strong></label>
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
                                     @if ($seminar->pbl2_nip)
                                         {{ $seminar->pbl2_nip }}
@@ -84,7 +83,7 @@
                             <div class="row border-bottom mt-2">
                                 <label class="col-md-3 bold mt-1"> <strong>Semester</strong></label>
                                 <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
-                                    {{ $mahasiswa->semester }}
+                                    {{ $seminar->semester }}
                                 </div>
                                 <label class="col-md-3 bold"> <strong>Pembahas</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
@@ -139,97 +138,90 @@
                         </div>
                     </div>
                 </div>
-                <div class="pd-20 card-box mb-30">
-                    <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
-                        <div class="pull-left">
-                            <h4 class="text-dark h4" style="margin-left: 10px">Jadwalkan Seminar Tugas Akhir 2</h4>
+                @if ($seminar->jadwal)
+                    <div class="pd-20 card-box mb-30">
+                        <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
+                            <div class="pull-left">
+                                <h4 class="text-dark h4" style="margin-left: 10px">Jadwal Seminar TA 2</h4>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+                                <div class="row border-bottom">
+                                    <label class="col-md-3 bold mt-2"> <strong>Tanggal Seminar</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        {{ $seminar->jadwal->tanggal_seminar_ta_dua }}
+                                    </div>
+                                    <label class="col-md-3 bold mt-2"><b>Jam Mulai</b></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        {{ $seminar->jadwal->jam_mulai_seminar_ta_dua }}
+                                    </div>
+                                </div>
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"><b>Jam Selesai</b></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        {{ $seminar->jadwal->jam_selesai_seminar_ta_dua }}
+                                    </div>
+                                    <label class="col-md-3 bold mt-1"><strong>Lokasi</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        {{ $seminar->jadwal->lokasi->nama_lokasi }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="pl-3 pr-3 pb-0 mb-2">
-                        <form id="formJadwalUpdate" action="{{ route('koor.jadwalTA2.update', $seminar->encrypt_id) }}"
-                            method="POST">
-                            @method('PUT')
-                            @csrf
-                            <div class="profile-edit-list row">
-                                {{-- form untuk sebelah kiri --}}
-                                <div class="weight-500 col-md-6">
-                                    <div class="form-group">
-                                        <label>Tanggal Seminar</label>
-                                        <input value="{{ old('tanggal_skp', $jadwal->tanggal_seminar_ta_dua) }}" autofocus
-                                            name="tanggal_skp" id="tanggal_skp"
-                                            class="form-control @error('tanggal_skp') form-control-danger @enderror"
-                                            type="date" placeholder="Nama Barang">
-                                        @error('tanggal_skp')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
+                @endif
+                @if ($seminar->ba_seminar)
+                    <div class="pd-20 card-box mb-30">
+                        <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
+                            <div class="pull-left">
+                                <h4 class="text-dark h4" style="margin-left: 10px">Berita Acara Seminar TA 2</h4>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+                                <div class="row border-bottom">
+                                    <label class="col-md-3 bold mt-2"> <strong>No. Berita Acara</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        {{ $seminar->ba_seminar->no_berkas_ba_seminar_ta_dua }}
                                     </div>
-
-                                    <div class="form-group">
-                                        <label>Lokasi</label>
-                                        <select class="custom-select2 form-control" style="width: 100%; height: 38px"
-                                            name="id_lokasi" required>
-                                            @foreach ($locations as $item)
-                                                <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_lokasi', $jadwal->lokasi->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
-                                                    {{ $item->nama_lokasi }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                    <label class="col-md-3 bold mt-2"><b>Nilai</b></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        {{ $seminar->ba_seminar->nilai }}
                                     </div>
-
                                 </div>
-                                {{-- form untuk sebelah kanan --}}
-                                <div class="kanan weight-500 col-md-6">
-
-                                    <div class="form-group">
-                                        <label>Jam Mulai</label>
-                                        <input type="time"
-                                            value="{{ old('jam_mulai_skp', $jadwal->jam_mulai_seminar_ta_dua) }}"
-                                            name="jam_mulai_skp"
-                                            class="form-control @error('jam_mulai_skp') form-control-danger @enderror">
-                                        @error('jam_mulai_skp')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"><b>Huruf Mutu</b></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        {{ $seminar->ba_seminar->huruf_mutu }}
                                     </div>
-                                    <div class="form-group">
-                                        <label>Jam Selesai</label>
-                                        <input type="time" name="jam_selesai_skp"
-                                            value="{{ old('jam_selesai_skp', $jadwal->jam_selesai_seminar_ta_dua) }}"
-                                            class="form-control @error('jam_selesai_skp') form-control-danger @enderror">
-                                        @error('jam_selesai_skp')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
+                                    <label class="col-md-3 bold mt-1"><strong>PPT</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        <a target="_blank"
+                                            href="{{ $seminar->ba_seminar->berkas_ppt_seminar_ta_dua }}">Lihat</a>
+                                    </div>
+                                </div>
+                                <div class="row border-bottom mt-2">
+                                    <label class="col-md-3 bold"><b>Berkas Nilai</b></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        <a target="_blank"
+                                            href="{{ Str::contains($seminar->ba_seminar->berkas_nilai_seminar_ta_dua, 'drive.google.com')
+                                                ? $seminar->ba_seminar->berkas_nilai_seminar_ta_dua
+                                                : '/uploads/nilai_seminar_ta_dua/' . $seminar->ba_seminar->berkas_nilai_seminar_ta_dua }}">Lihat</a>
+                                    </div>
+                                    <label class="col-md-3 bold mt-1"><strong>Berita Acara</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        <a target="_blank"
+                                            href="{{ Str::contains($seminar->ba_seminar->berkas_ba_seminar_ta_dua, 'drive.google.com')
+                                                ? $seminar->ba_seminar->berkas_ba_seminar_ta_dua
+                                                : '/uploads/ba_seminar_ta_dua/' . $seminar->ba_seminar->berkas_ba_seminar_ta_dua }}">Lihat</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="submit btn btn-primary">Kirim</button>
-                            </div>
-                        </form>
-                        <a href="{{ route('koor.jadwalTA2.index') }}">
-                            <button class="batal btn btn-secondary">Batal</button>
-                        </a>
+                        </div>
                     </div>
-                </div>
-                <!-- Data Registrasi End -->
+                @endif
             </div>
         </div>
-        <!-- Input Validation End -->
     </div>
-    <script>
-        // Mendapatkan elemen select
-        var select = document.getElementById("tahunAkademik");
-
-        // Mendapatkan tahun saat ini
-        var tahunSekarang = new Date().getFullYear();
-
-        // Loop untuk menghasilkan 5 tahun ke belakang
-        for (var i = 0; i < 5; i++) {
-            var tahun = tahunSekarang - i;
-            var option = document.createElement("option");
-            option.value = tahun + "/" + (tahun + 1);
-            option.text = tahun + "/" + (tahun + 1);
-            select.add(option);
-        }
-    </script>
 @endsection
