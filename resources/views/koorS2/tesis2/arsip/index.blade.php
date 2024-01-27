@@ -5,7 +5,7 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Arsip Seminar Tesis 1 S2</h4>
+                        <h4 class="text-blue h4">Arsip Seminar Tesis 2 S2</h4>
                     </div>
                     <div class="pb-20 m-3">
 
@@ -87,13 +87,22 @@
                         searchable: false,
                         exportable: false,
                         render: function(data, type, row) {
-
+                            var showUrl = "{{ route('koor.arsip.tesis2.show', ':id') }}".replace(
+                                ':id', row.encrypt_id);
                             var editUrl = "{{ route('koor.arsip.tesis2.edit', ':id') }}".replace(
                                 ':id', row.encrypt_id);
+                            //make aksi dropdown show and edit 
                             return `
-                        <a class="btn btn-warning "
-                        href="${editUrl}"><i class="bi bi-pencil-square"></i>
-                                    Edit</a>`;
+                            <div class="dropdown">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <i class="dw dw-more"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="${showUrl}"><i class="dw dw-eye"></i> Detail</a>
+                                    <a class="dropdown-item" href="${editUrl}"><i class="dw dw-edit2"></i> Edit</a>
+                                </div>
+                            </div>
+                            `;
                         }
                     }
                 ]
