@@ -111,7 +111,7 @@
                                 <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/syarat_seminar_ta1/{{ $seminar->berkas_ta_satu }}">Lihat
+                                        href="/uploads/syarat_seminar_ta2/{{ $seminar->berkas_ta_dua }}">Lihat
                                         Berkas</a>
                                 </div>
                             </div>
@@ -146,7 +146,8 @@
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
-                        <form id="formJadwalUpdate" action="{{ route('koor.jadwalTA2.update', $seminar->encrypt_id)}}" method="POST">
+                        <form id="formJadwalUpdate" action="{{ route('koor.jadwalTA2.update', $seminar->encrypt_id) }}"
+                            method="POST">
                             @method('PUT')
                             @csrf
                             <div class="profile-edit-list row">
