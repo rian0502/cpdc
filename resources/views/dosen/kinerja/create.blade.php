@@ -9,6 +9,12 @@
                         <div class="pull-left">
                             <h4 class="text-dark h4">Tambah Kinerja</h4>
                             <p class="mb-30">Isi data dengan benar</p>
+                            @if ($errors->has('validation_error'))
+                                <div class="alert alert-danger">
+                                    {{ $errors->first('validation_error') }}
+                                </div>
+                            @endif
+
                         </div>
                     </div>
                     <form action="{{ route('dosen.kinerja.store') }}" method="POST">
@@ -38,6 +44,20 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="kategori">Kategori</label>
+                                    <select name="kategori" id="kategori" class="selectpicker form-control">
+                                        <option value="BKD" {{ old('kategori') == 'BKD' ? 'selected' : '' }}>
+                                            BKD</option>
+                                        <option value="Remunerasi" {{ old('kategori') == 'Remunerasi' ? 'selected' : '' }}>
+                                            Remunerasi</option>
+                                    </select>
+                                    @error('kategori')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
                                 <div class="form-group">
                                     <label>SKS Pendidikan</label>
                                     <input value="{{ old('sks_pendidikan') }}" autofocus name="sks_pendidikan"
@@ -107,7 +127,7 @@
         var tahunSekarang = new Date().getFullYear();
 
         // Loop untuk menghasilkan 5 tahun ke belakang
-        for (var i = 0; i < 25; i++) {
+        for (var i = 0; i < 10; i++) {
             var tahun = tahunSekarang - i;
             var option = document.createElement("option");
             option.value = tahun + "/" + (tahun + 1);

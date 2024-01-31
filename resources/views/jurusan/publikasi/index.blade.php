@@ -7,19 +7,36 @@
             <div class="row">
                 <div class="col-xl-3 mb-30">
                     <div class="card-box height-100-p pd-20">
+
                         <div class="row align-items-center justify-content-center">
-                            <div class="col-xl-9 mt-2 pt-3">
-                                <form id="formStatus3" onsubmit="return showConfirmation3(event);"
-                                    action="{{ route('syncAllDosen') }}" method="get">
+                            <div class="col-xl-9 mt-2 pt-3 text-center">
+
+                                @if (session('error'))
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <p>{{ session('error') }}</p>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                    </div>
+                                @endif
+
+                                <form id="formStatus3" onsubmit="return showConfirmation3(event);" action="{{ route('WebSyncAllDosen') }}" method="post">
                                     @csrf <!-- Tambahkan ini untuk menjaga keamanan formulir -->
-                                    <button type="submit" id="submitButton3" class="btn btn-success btn-block">
+                                    <button type="submit" id="submitButton3" class="btn btn-success btn-block" @if($lastSync && $lastSync->updated_at->isToday()) disabled @endif>
                                         Sinkronisasi Data
                                         <i class="fas fa-sync-alt"></i> <!-- Gantilah dengan ikon yang sesuai -->
                                     </button>
                                 </form>
 
+                                <div class="mt-2">
+                                    @if ($lastSync)
+                                        <b><i>Last Sync:</i> <small>{{ $lastSync->updated_at->format('Y-m-d H:i:s') }}</small></b>
+                                    @endif
+                                </div>
+
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="col-xl-9 mb-30">

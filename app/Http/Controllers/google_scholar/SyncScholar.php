@@ -4,17 +4,18 @@ namespace App\Http\Controllers\google_scholar;
 
 use Carbon\Carbon;
 use App\Models\Dosen;
+use GuzzleHttp\Client;
+use App\Models\SyncHistory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\PublikasiDosen;
 use App\Http\Controllers\Controller;
-use App\Services\GoogleScholarSyncService;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AnggotaPublikasiDosen;
 use Illuminate\Support\Facades\Crypt;
-use App\Http\Requests\StorePublikasiRequest;
-use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler;
+use App\Services\GoogleScholarSyncService;
+use App\Http\Requests\StorePublikasiRequest;
 
 class SyncScholar extends Controller
 {
@@ -27,21 +28,43 @@ class SyncScholar extends Controller
     }
     public function syncAllDosen()
     {
-        //dosen yang memiliki url google scholar
-        try {
-            $dosenId = Dosen::whereNotNull('url_google_scholar')->get();
-            foreach ($dosenId as $dosen) {
-                dispatch(new \App\Jobs\GoogleScholarSynchronizationJob($dosen->id));
-                // $this->googleScholarSyncService->syncDosen($dosen->url_google_scholar);
+        if (SyncHistory::whereDate('updated_at', now()->toDateString())->exists()) {
+            return redirect()->back()->with('error', 'Singkronisasi telah dilakukan, silahkan coba lagi besok');
+        } else {
+            // Update or create synchronization history
+            SyncHistory::updateOrCreate([], ['updated_at' => now()]);
+
+            try {
+
+                $dosenId = Dosen::whereNotNull('url_google_scholar')->get();
+                foreach ($dosenId as $dosen) {
+                    dispatch(new \App\Jobs\GoogleScholarSynchronizationJob($dosen->id));
+                    // $this->googleScholarSyncService->syncDosen($dosen->url_google_scholar);
+                }
+                return redirect()->back()
+                    ->with('success', 'Singkronisasi berjalan');
+            } catch (\Throwable $th) {
+                return response()->json([
+                    'message' => 'Singkronisasi gagal',
+                    'error' => $th->getMessage(),
+                ], 500);
             }
-            return redirect()->route('jurusan.publikasi.index')
-                ->with('success', 'Singkronisasi berjalan');
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => 'Singkronisasi gagal',
-                'error' => $th->getMessage(),
-            ], 500);
         }
+        // if (SyncHistory::whereDate('updated_at', now()->toDateString())->exists()) {
+        //     return redirect()->back()->withErrors(['validation_error' => 'Singkronisasi telah dilakukan, silahkan coba lagi besok']);
+        // }
+
+        // // Update or create synchronization history
+        // SyncHistory::updateOrCreate([], ['updated_at' => now()]);
+
+        // $dosenId = Dosen::whereNotNull('url_google_scholar')->get();
+        // foreach ($dosenId as $dosen) {
+        //     dispatch(new \App\Jobs\GoogleScholarSynchronizationJob($dosen->id));
+        //     // $this->googleScholarSyncService->syncDosen($dosen->url_google_scholar);
+
+
+        //     return redirect()->route('jurusan.publikasi.index')->with('success', 'Singkronisasi berjalan');
+        // }
     }
 }
 

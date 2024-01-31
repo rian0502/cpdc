@@ -181,14 +181,19 @@
                                         Akademik</a></li>
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.kp.index') }}"
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/kp*') ? 'active' : '' }}">Bimbingan
-                                        PKL/KP</a></li>
+                                        KP</a></li>
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.kompre.index') }}"
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/kompre*') ? 'active' : '' }}">Bimbingan
                                         Tugas Akhir</a></li>
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.tesis.index') }}"
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/tesis*') ? 'active' : '' }}">Bimbingan
                                         Tesis</a></li>
-
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.prestasi.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/prestasi*') ? 'active' : '' }}">Bimbingan
+                                        Prestasi</a></li>
+                                <li><a href="{{ route('dosen.mahasiswa.bimbingan.lainnya.index') }}"
+                                        class="{{ Request::is('dosen/mahasiswa/bimbingan/lainnya*') ? 'active' : '' }}">Bimbingan
+                                        Lainnya</a></li>
                             </ul>
                         </li>
                         <li
@@ -819,7 +824,7 @@
                                 @role('pkl')
                                     <li><a href="{{ route('koor.jadwalPKL.index') }}"
                                             class="{{ Request::is('koor/jadwalPKL*') ? 'active' : '' }}">
-                                            PKL/KP</a>
+                                            KP</a>
                                     </li>
                                 @endrole
                                 @role('ta1')
@@ -865,7 +870,7 @@
                                 @role('pkl')
                                     <li><a href="{{ route('koor.validasiBaPKL.index') }}"
                                             class="{{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
-                                            PKL/KP</a>
+                                            KP</a>
                                     </li>
                                 @endrole
                                 @role('ta1')
@@ -911,7 +916,7 @@
                                 @role('pkl')
                                     <li><a href="{{ route('koor.arsip.pkl.index') }}"
                                             class="{{ Request::is('koor/arsip/pkl*') ? 'active' : '' }}">
-                                            PKL/KP</a>
+                                            KP</a>
                                     </li>
                                 @endrole
                                 @role('ta1')
@@ -955,21 +960,21 @@
                                 <a href="{{ route('koor.jadwalPKL.index') }}"
                                     class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalPKL*') ? 'active' : '' }}">
                                     <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan
-                                        PKL/KP</span>
+                                        KP</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('koor.validasiBaPKL.index') }}"
                                     class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
                                     <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti
-                                        PKL/KP</span>
+                                        KP</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('koor.arsip.pkl.index') }}"
                                     class="dropdown-toggle no-arrow {{ Request::is('koor/arsip/pkl*') ? 'active' : '' }}">
                                     <span class="micon bi bi-archive-fill"></span><span class="mtext">Arsip
-                                        PKL/KP</span>
+                                        KP</span>
                                 </a>
                             </li>
                         @endrole

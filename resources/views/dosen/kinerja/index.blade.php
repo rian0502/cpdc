@@ -18,6 +18,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Kategori</th>
                                     <th>Tahun Akademik</th>
                                     <th>Semester</th>
                                     <th>Pendidikan</th>
@@ -31,6 +32,7 @@
                                 @foreach ($kinerja as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->kategori }}</td>
                                         <td>{{ $item->tahun_akademik }}</td>
                                         <td>{{ $item->semester }}</td>
                                         <td>{{ $item->sks_pendidikan }}</td>
