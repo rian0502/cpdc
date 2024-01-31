@@ -197,7 +197,7 @@
                                         Akademik</a></li>
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.kp.index') }}"
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/kp*') ? 'active' : '' }}">Bimbingan
-                                        PKL/KP</a></li>
+                                        PKL</a></li>
                                 <li><a href="{{ route('dosen.mahasiswa.bimbingan.kompre.index') }}"
                                         class="{{ Request::is('dosen/mahasiswa/bimbingan/kompre*') ? 'active' : '' }}">Bimbingan
                                         Tugas Akhir</a></li>
@@ -256,6 +256,7 @@
                                 <li><a href="{{ route('jurusan.mahasiswa.index') }}"
                                         class="{{ Request::is('jurusan/mahasiswa*') && !Request::is('jurusan/mahasiswaS2*') ? 'active' : '' }}">S1</a>
                                 </li>
+                                
                                 <li><a href="{{ route('jurusan.mahasiswaS2.index') }}"
                                         class="{{ Request::is('jurusan/mahasiswaS2*') ? 'active' : '' }}">S2</a></li>
                             </ul>
@@ -836,7 +837,7 @@
                                 @role('pkl')
                                     <li><a href="{{ route('koor.jadwalPKL.index') }}"
                                             class="{{ Request::is('koor/jadwalPKL*') ? 'active' : '' }}">
-                                            PKL/KP</a>
+                                            PKL</a>
                                     </li>
                                 @endrole
                                 @role('ta1')
@@ -882,7 +883,7 @@
                                 @role('pkl')
                                     <li><a href="{{ route('koor.validasiBaPKL.index') }}"
                                             class="{{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
-                                            PKL/KP</a>
+                                            PKL</a>
                                     </li>
                                 @endrole
                                 @role('ta1')
@@ -928,7 +929,7 @@
                                 @role('pkl')
                                     <li><a href="{{ route('koor.arsip.pkl.index') }}"
                                             class="{{ Request::is('koor/arsip/pkl*') ? 'active' : '' }}">
-                                            PKL/KP</a>
+                                            PKL</a>
                                     </li>
                                 @endrole
                                 @role('ta1')
@@ -972,21 +973,21 @@
                                 <a href="{{ route('koor.jadwalPKL.index') }}"
                                     class="dropdown-toggle no-arrow {{ Request::is('koor/jadwalPKL*') ? 'active' : '' }}">
                                     <span class="micon bi bi-calendar-week"></span><span class="mtext">Penjadwalan
-                                        PKL/KP</span>
+                                        PKL</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('koor.validasiBaPKL.index') }}"
                                     class="dropdown-toggle no-arrow {{ Request::is('koor/validasiBaPKL*') ? 'active' : '' }}">
                                     <span class="micon bi bi-folder-check"></span><span class="mtext">Validasi Bukti
-                                        PKL/KP</span>
+                                        PKL</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('koor.arsip.pkl.index') }}"
                                     class="dropdown-toggle no-arrow {{ Request::is('koor/arsip/pkl*') ? 'active' : '' }}">
                                     <span class="micon bi bi-archive-fill"></span><span class="mtext">Arsip
-                                        PKL/KP</span>
+                                        PKL</span>
                                 </a>
                             </li>
                         @endrole

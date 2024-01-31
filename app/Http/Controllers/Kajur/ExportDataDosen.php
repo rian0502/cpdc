@@ -97,6 +97,40 @@ class ExportDataDosen extends Controller
         return response()->download('kinerja_dosen'.'.xlsx')
             ->deleteFileAfterSend(true);
     }
+    public function organisasi_dosen(Request $request)
+    {
+        $request->validate([
+            'tahun_akademik' => 'required',
+            'semester' => 'required',
+        ]);
+        $organisasi_dosen = ModelKinerjaDosen::with('dosen');
+        $spdsheet = new Spreadsheet();
+        $sheet = $spdsheet->getActiveSheet();
+        $sheet->setTitle('Kinerja Dosen');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'NIP');
+        $sheet->setCellValue('C1', 'NIDN');
+        $sheet->setCellValue('D1', 'Nama Dosen');
+        $sheet->setCellValue('E1', 'Tahun Menjabat');
+        $sheet->setCellValue('F1', 'Tahun Berakhir');
+        $sheet->setCellValue('G1', 'Jabatan');
+        $sheet->setCellValue('H1', 'Organisasi');
+
+        foreach ($organisasi_dosen as $key => $value) {
+            $sheet->setCellValue('A' . ($key + 2), $key + 1);
+            $sheet->setCellValue('B' . ($key + 2), $value->dosen->nip);
+            $sheet->setCellValue('C' . ($key + 2), $value->dosen->nidn);
+            $sheet->setCellValue('D' . ($key + 2), $value->dosen->nama_dosen);
+            $sheet->setCellValue('E' . ($key + 2), $value->tahun_menjabat);
+            $sheet->setCellValue('F' . ($key + 2), $value->tahun_berakhir);
+            $sheet->setCellValue('G' . ($key + 2), $value->jabatan);
+            $sheet->setCellValue('H' . ($key + 2), $value->nama_organisasi);
+        }
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('organisasi_dosen'.'.xlsx');
+        return response()->download('organisasi_dosen'.'.xlsx')
+            ->deleteFileAfterSend(true);
+    }
     public function seminar(Request $request)
     {
         $seminar = ModelSPDosen::with('dosen')
