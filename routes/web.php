@@ -1,11 +1,7 @@
 <?php
-
-use App\Models\User;
-use App\Jobs\TestingJob;
 use App\Models\JadwalSKP;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\sudo\ResetTA;
 use App\Http\Controllers\Kajur\Seminar;
@@ -48,6 +44,7 @@ use App\Http\Controllers\mahasiswa\LabTAController;
 use App\Http\Controllers\sudo\FailedJobsController;
 use App\Http\Controllers\TemplateSeminarController;
 use App\Http\Controllers\dosen\OrganisasiController;
+use App\Http\Controllers\Kajur\InventarisController;
 use App\Http\Controllers\kerja_praktik\KPcontroller;
 use App\Http\Controllers\alumni\s2\AktivitasAlumniS2;
 use App\Http\Controllers\alumni\s2\PendataanAlumniS2;
@@ -429,6 +426,9 @@ Route::prefix('jurusan')->name('jurusan.')->middleware(
     Route::resource('penghargaan', Penghargaan::class);
     Route::resource('seminar', Seminar::class);
     Route::resource('kinerjaDosen', KinerjaDosenDataController::class);
+
+    Route::get('inventaris', [InventarisController::class, 'index'])->name('inventaris.index');
+
     Route::get('pieChartScalaPublikasi', [PublikasiDataController::class, 'pieChartScala'])
         ->name('publikasi.pieChartScala');
     Route::get('pieChartKategoriPublikasi', [PublikasiDataController::class, 'pieChartKategori'])

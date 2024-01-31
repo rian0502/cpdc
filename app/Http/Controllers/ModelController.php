@@ -6,6 +6,7 @@ use App\Http\Requests\StoreModelBarangRequest;
 use App\Models\Kategori;
 use App\Models\ModelBarang;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 
 class ModelController extends Controller
 {
@@ -51,12 +52,13 @@ class ModelController extends Controller
             'created_at' => now(),
             'updated_at' => now()
         ];
-        $simpan = ModelBarang::insert($data);
-        $id = ModelBarang::latest()->first()->id;
-        $update = ModelBarang::where('id', $id)->update(['encrypt_id' => Crypt::encrypt($id)]);
-        if ($simpan && $update) {
+        try {
+            DB::beginTransaction();
+            $simpan = ModelBarang::create($data);
+            ModelBarang::where('id', $simpan->id)->update(['encrypt_id' => Crypt::encrypt($simpan->id)]);
+            DB::commit();
             return redirect()->route('sudo.model.index')->with('success', 'Data berhasil ditambahkan');
-        } else {
+        } catch (\Throwable $e) {
             return redirect()->route('sudo.model.index')->with('error', 'Data gagal ditambahkan');
         }
     }
