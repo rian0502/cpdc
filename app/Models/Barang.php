@@ -25,10 +25,6 @@ class Barang extends Model
     {
         return $this->belongsTo(ModelBarang::class, 'id_model');
     }
-    public function kategori()
-    {
-        return $this->belongsTo(Kategori::class, 'id_kategori');
-    }
     public function histories()
     {
         return $this->hasMany(History::class, 'id_barang');

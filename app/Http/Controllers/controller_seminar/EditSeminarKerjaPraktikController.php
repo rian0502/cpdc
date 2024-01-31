@@ -130,4 +130,17 @@ class EditSeminarKerjaPraktikController extends Controller
             return redirect()->route('koor.arsip.pkl.index')->with('error', $e->getMessage());
         }
     }
+    public function show($id)
+    {
+        $seminar = ModelSeminarKP::with(
+            'mahasiswa',
+            'jadwal',
+            'berita_acara',
+            'dosen',
+        )->find(Crypt::decrypt($id));
+        $data = [
+            'seminar' => $seminar,
+        ];
+        return view('koor.pkl.arsip.show', $data);
+    }
 }

@@ -1,11 +1,7 @@
 <?php
-
-use App\Models\User;
-use App\Jobs\TestingJob;
 use App\Models\JadwalSKP;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\sudo\ResetTA;
 use App\Http\Controllers\Kajur\Seminar;
@@ -48,6 +44,7 @@ use App\Http\Controllers\mahasiswa\LabTAController;
 use App\Http\Controllers\sudo\FailedJobsController;
 use App\Http\Controllers\TemplateSeminarController;
 use App\Http\Controllers\dosen\OrganisasiController;
+use App\Http\Controllers\Kajur\InventarisController;
 use App\Http\Controllers\kerja_praktik\KPcontroller;
 use App\Http\Controllers\alumni\s2\AktivitasAlumniS2;
 use App\Http\Controllers\alumni\s2\PendataanAlumniS2;
@@ -144,11 +141,6 @@ use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('test', function () {
-    dispatch(new TestingJob());
-    return dd('JOb Masuk');
-});
 
 // Admin Keseluruhan
 Route::get('admin/profile/create', [ProfileAdminController::class, 'create'])
@@ -413,8 +405,10 @@ Route::prefix('koor')->name('koor.')->group(function () {
 
     Route::resource('arsip/tesis1', EditSeminarTesis1Controller::class)
         ->middleware(['auth', 'profile', 'verified', 'role:ta1S2'])->names('arsip.tesis1');
+
     Route::resource('arsip/tesis2', EditSeminarTesis2Controller::class)
         ->middleware(['auth', 'profile', 'verified', 'role:ta2S2'])->names('arsip.tesis2');
+
     Route::resource('arsip/sidang_tesis', EditSidangTesisController::class)
         ->middleware(['auth', 'profile', 'verified', 'role:kompreS2'])->names('arsip.sidang_tesis');
 });
@@ -436,6 +430,9 @@ Route::prefix('jurusan')->name('jurusan.')->middleware(
     Route::resource('penghargaan', Penghargaan::class);
     Route::resource('seminar', Seminar::class);
     Route::resource('kinerjaDosen', KinerjaDosenDataController::class);
+
+    Route::get('inventaris', [InventarisController::class, 'index'])->name('inventaris.index');
+
     Route::get('pieChartScalaPublikasi', [PublikasiDataController::class, 'pieChartScala'])
         ->name('publikasi.pieChartScala');
     Route::get('pieChartKategoriPublikasi', [PublikasiDataController::class, 'pieChartKategori'])
