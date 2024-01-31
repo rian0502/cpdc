@@ -64,6 +64,7 @@ class MahasiswaBimbinganAkademikController extends Controller
                 'kp' => $mahasiswa->seminar_kp,
                 'ta1' => $mahasiswa->ta_satu,
                 'prestasi' => $mahasiswa->prestasi,
+                'publikasi' => $mahasiswa->publikasi_mahasiswa,
                 'aktivitas' => $mahasiswa->aktivitas,
                 'seminarTa1' => $seminarTa1,
                 'seminarTa2' => $seminarTa2,

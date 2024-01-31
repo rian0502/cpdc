@@ -44,6 +44,7 @@ use App\Http\Controllers\mahasiswa\LabTAController;
 use App\Http\Controllers\sudo\FailedJobsController;
 use App\Http\Controllers\TemplateSeminarController;
 use App\Http\Controllers\dosen\OrganisasiController;
+use App\Http\Controllers\google_scholar\SyncScholar;
 use App\Http\Controllers\Kajur\InventarisController;
 use App\Http\Controllers\kerja_praktik\KPcontroller;
 use App\Http\Controllers\alumni\s2\AktivitasAlumniS2;
@@ -185,6 +186,9 @@ Route::prefix('admin/lab')->name('lab.')->middleware([
     Route::get('detail_asistensi/{npm}', [LabController::class, 'showAsistensi'])->name('asistensi.show');
     Route::get('dataAktivitas', [LabController::class, 'dataLaboratorium'])->name('data.ajax');
 });
+
+Route::post('/google-scholar/sync-all-dosen', [SyncScholar::class, 'syncAllDosen'])->name('WebSyncAllDosen');
+
 //chart line aktivitas lab
 Route::get('chart/aktivitas', [LabController::class, 'chartAktivitasLab'])
     ->name('chart.aktivitas.lab')->middleware('auth', 'verified', 'role:admin lab|jurusan|kalab');

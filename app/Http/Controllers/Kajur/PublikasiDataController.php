@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Kajur;
 
 use Illuminate\Http\Request;
 use App\Models\PublikasiDosen;
+use App\Models\SyncHistory;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -42,7 +43,10 @@ class PublikasiDataController extends Controller
             ->toJson();
     }
 
-    return view('jurusan.publikasi.index');
+    //last sync
+    $lastSync = SyncHistory::latest()->first();
+
+    return view('jurusan.publikasi.index', compact('lastSync'));
 }
 
 

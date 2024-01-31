@@ -170,6 +170,10 @@
                                     <a class="nav-link text-blue" data-toggle="tab" href="#presentsi" role="tab"
                                         aria-selected="false">Presentsi Penelitian</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-blue" data-toggle="tab" href="#publikasi" role="tab"
+                                        aria-selected="false">Publikasi</a>
+                                </li>
                                 {{-- Kondisiin --}}
                                 @if ($mahasiswa->user->hasRole('alumni'))
                                     <li class="nav-item">
@@ -1250,6 +1254,48 @@
                                                             {{ $carbon::parse($item->jam_selesai)->format('H:i') }} WIB
                                                         </td>
                                                         <td>{{ $item->lokasi->nama_lokasi }}</td>
+
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="publikasi" role="tabpanel">
+                                    <div class="pd-20">
+                                        <table class="table data-table-responsive stripe data-table-noexport wrap ">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Judul</th>
+                                                    <th>Tahun</th>
+                                                    <th>Kategori</th>
+                                                    <th>Scala</th>
+                                                    <th>Tautan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($publikasi as $item)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $loop->iteration }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->judul }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->tahun }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->kategori }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->scala }}
+                                                        </td>
+                                                        <td>
+                                                            <a target="_blank"
+                                                                href="{{ $item->url }}">Klik</a>
+                                                        </td>
 
                                                     </tr>
                                                 @endforeach
