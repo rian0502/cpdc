@@ -224,7 +224,12 @@
                                 <span class="micon bi bi-pin-map"></span><span class="mtext">Sarana Prasarana</span>
                             </a>
                         </li>
-
+                        <li>
+                            <a href="{{ route('jurusan.inventaris.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/inventaris*') ? 'active' : '' }}">
+                                <span class="micon bi bi-pin-map"></span><span class="mtext">Inventaris</span>
+                            </a>
+                        </li>
                         <li
                             class="dropdown {{ Request::is('jurusan/mahasiswa*') || Request::is('jurusan/mahasiswaS2*') ? 'show' : '' }}">
                             <a href="javascript:;" class="dropdown-toggle">

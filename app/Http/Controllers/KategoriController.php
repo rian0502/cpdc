@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreKategoriRequest;
 use App\Models\Kategori;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
+use App\Http\Requests\StoreKategoriRequest;
+use Throwable;
 
 class KategoriController extends Controller
 {
@@ -49,13 +52,14 @@ class KategoriController extends Controller
             'created_at' => now(),
             'updated_at' => now()
         ];
-        $simpan = Kategori::create($data);
-        $id = Crypt::encrypt($simpan->id);
-        $simpan = Kategori::where('id', $simpan->id)->update(['encrypt_id' => $id]);
-
-        if ($simpan) {
+        try {
+            DB::beginTransaction();
+            $simpan = Kategori::create($data);
+            Kategori::where('id', $simpan->id)->update(['encrypt_id' => Crypt::encrypt($simpan->id)]);
+            DB::commit();
             return redirect()->route('sudo.kategori.index')->with('success', 'Data berhasil disimpan');
-        } else {
+        } catch (Throwable $e) {
+            DB::rollBack();
             return redirect()->route('sudo.kategori.create')->with('error', 'Data gagal disimpan');
         }
     }
