@@ -249,7 +249,7 @@
                         <li>
                             <a href="{{ route('jurusan.inventaris.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/inventaris*') ? 'active' : '' }}">
-                                <span class="micon bi bi-pin-map"></span><span class="mtext">Inventaris</span>
+                                <span class="micon bi bi-box"></span><span class="mtext">Inventaris</span>
                             </a>
                         </li>
                         <li
@@ -261,7 +261,7 @@
                                 <li><a href="{{ route('jurusan.mahasiswa.index') }}"
                                         class="{{ Request::is('jurusan/mahasiswa*') && !Request::is('jurusan/mahasiswaS2*') ? 'active' : '' }}">S1</a>
                                 </li>
-                                
+
                                 <li><a href="{{ route('jurusan.mahasiswaS2.index') }}"
                                         class="{{ Request::is('jurusan/mahasiswaS2*') ? 'active' : '' }}">S2</a></li>
                             </ul>

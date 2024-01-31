@@ -232,7 +232,7 @@
                         <li>
                             <a href="{{ route('jurusan.inventaris.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('jurusan/inventaris*') ? 'active' : '' }}">
-                                <span class="micon bi bi-pin-map"></span><span class="mtext">Inventaris</span>
+                                <span class="micon bi bi-box"></span><span class="mtext">Inventaris</span>
                             </a>
                         </li>
                         <li
