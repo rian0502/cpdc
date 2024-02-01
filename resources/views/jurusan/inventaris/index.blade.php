@@ -11,10 +11,10 @@
                                     <label for="tanggal-akhir">Laboratorium</label>
                                     <select name="id_lab" id="id_lab" class="selectpicker form-control"
                                         data-size="5" name="semester">
-                                        <option>All</option>
+                                        <option value="new">All</option>
                                         @foreach ($lab as $item)
                                             <option value="{{ $item->encrypt_id }}">{{ $item->nama_lokasi }}</option>
-                                        @endforeach 
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
             loadData();
 
             // Fungsi untuk memuat data menggunakan filter
-            function loadData(id_lab) {
+            function loadData(id_lab = null) {
                 if (dataKinerja) {
                     dataKinerja.destroy();
                 }
@@ -93,12 +93,12 @@
                         type: 'GET',
                         dataType: 'json',
                         data: function(d) {
-                            id_lab = $('#id_lab').val();
+                            d.id_lab = $('#id_lab').val();
                         }
                     },
                     columns: [{
                             data: null,
-                            name: 'id',
+                            name: 'jumlah_akhir',
                             render: function(data, type, row, meta) {
                                 var index = meta.row + meta.settings._iDisplayStart + 1;
                                 return index;
@@ -131,7 +131,7 @@
                     ]
                 });
 
-                
+
             }
             // Fungsi untuk menangani klik tombol filter
             $('#filter').on('click', function() {
