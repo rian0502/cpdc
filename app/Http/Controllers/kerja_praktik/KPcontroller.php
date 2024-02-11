@@ -48,8 +48,14 @@ class KPcontroller extends Controller
      */
     public function create()
     {
-        $mahasiswa = Mahasiswa::select('id')->where('user_id', auth()->user()->id)->first();
-        $seminarKp = ModelSeminarKP::where('id_mahasiswa', $mahasiswa->id)->count();
+        $mahasiswa = Mahasiswa::select('id')->where(
+            'user_id',
+            auth()->user()->id
+        )->first();
+        $seminarKp = ModelSeminarKP::where(
+            'id_mahasiswa',
+            $mahasiswa->id
+        )->count();
         if ($seminarKp >= 1) {
             return redirect()->route('mahasiswa.seminar.kp.index');
         } else {
@@ -63,16 +69,13 @@ class KPcontroller extends Controller
         return view('mahasiswa.kp.create', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreSeminarKP $request)
     {
         $file_seminar = $request->file('berkas_seminar_pkl');
-        $mahasiswa = Mahasiswa::select('id')->where('user_id', auth()->user()->id)->first();
+        $mahasiswa = Mahasiswa::select('id')->where(
+            'user_id',
+            auth()->user()->id
+        )->first();
         $nama_file = $file_seminar->hashName();
         $file_seminar->move(('uploads/syarat_seminar_kp'), $nama_file);
         $data = [
@@ -101,7 +104,8 @@ class KPcontroller extends Controller
         $update = ModelSeminarKP::find($insert_id);
         $update->encrypt_id = Crypt::encrypt($insert_id);
         $update->save();
-        return redirect()->route('mahasiswa.seminar.kp.index')->with('success', 'Data Seminar KP Berhasil Ditambahkan');
+        return redirect()->route('mahasiswa.seminar.kp.index')
+            ->with('success', 'Data Seminar KP Berhasil Ditambahkan');
     }
 
     /**
