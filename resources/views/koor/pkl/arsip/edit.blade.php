@@ -36,7 +36,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
                         <div class="pull-left">
-                            <h4 class="text-dark h4" style="margin-left: 10px">Jadwalkan Seminar PKL/KP</h4>
+                            <h4 class="text-dark h4" style="margin-left: 10px">Seminar PKL/KP</h4>
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
