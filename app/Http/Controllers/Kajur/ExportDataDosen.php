@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Kajur;
 
-use App\Http\Controllers\Controller;
-use App\Models\AktivitasMahasiswa;
-use App\Models\LitabmasDosen;
-use App\Models\Mahasiswa;
 use App\Models\ModelSPDosen;
-use App\Models\PrestasiMahasiswa;
-use App\Models\PublikasiDosen;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\LitabmasDosen;
+use App\Models\PublikasiDosen;
+use App\Http\Controllers\Controller;
+use App\Models\ModelKinerjaDosen;
+use App\Models\ModelPenghargaanDosen;
+use KinerjaDosen;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class ExportDataDosen extends Controller
@@ -23,25 +22,119 @@ class ExportDataDosen extends Controller
     public function index()
     {
         $data = [
-            'pengabdian' => LitabmasDosen::select('tahun_penelitian')->distinct()->orderBy('tahun_penelitian', 'desc')
+            'pengabdian' => LitabmasDosen::select('tahun_penelitian')
+                ->distinct()->orderBy('tahun_penelitian', 'desc')
                 ->where('kategori', 'Pengabdian')
                 ->get(),
-            'penelitian' => LitabmasDosen::select('tahun_penelitian')->distinct()->orderBy('tahun_penelitian', 'desc')
+            'penelitian' => LitabmasDosen::select('tahun_penelitian')
+                ->distinct()->orderBy('tahun_penelitian', 'desc')
                 ->where('kategori', 'Penelitian')
                 ->get(),
-            'publikasi' => PublikasiDosen::select('tahun')->distinct()->orderBy('tahun', 'desc')
+            'publikasi' => PublikasiDosen::select('tahun')
+                ->distinct()->orderBy('tahun', 'desc')
                 ->get(),
-            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->where('jenis', 'Seminar')->orderBy('tahun', 'desc')
+            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tanggal) as tahun')
+                ->distinct()->orderBy('tahun', 'desc')
                 ->get(),
-            'penghargaan_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->where('jenis', 'Penghargaan')->orderBy('tahun', 'desc')
+            'penghargaan_dosen' => ModelPenghargaanDosen::selectRaw('YEAR(tanggal) as tahun')
+                ->distinct()->orderBy('tahun', 'desc')
                 ->get(),
+            'kinerja_dosen' => ModelKinerjaDosen::select('tahun_akademik')->distinct()
+                ->orderBy('tahun_akademik', 'desc')->get(),
         ];
         return view('jurusan.exportDosen.index', $data);
     }
 
+    public function kinerja_dosen(Request $request)
+    {
+        $request->validate([
+            'tahun_akademik' => 'required',
+            'semester' => 'required',
+        ]);
+        $kinerja_dosen = ModelKinerjaDosen::with('dosen')->where(
+            'tahun_akademik',
+            $request->tahun_akademik
+        )->where(
+            'semester',
+            $request->semester
+        )
+            ->orderBy('created_at', 'asc')
+            ->get();
+        $spdsheet = new Spreadsheet();
+        $sheet = $spdsheet->getActiveSheet();
+        $sheet->setTitle('Kinerja Dosen');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'NIP');
+        $sheet->setCellValue('C1', 'NIDN');
+        $sheet->setCellValue('D1', 'Nama Dosen');
+        $sheet->setCellValue('E1', 'Jenis Kinerja');
+        $sheet->setCellValue('F1', 'SKS Pendidikan');
+        $sheet->setCellValue('G1', 'SKS Penelitian');
+        $sheet->setCellValue('H1', 'SKS Pengabdian');
+        $sheet->setCellValue('I1', 'SKS Penunjang');
+        $sheet->setCellValue('J1', 'Total SKS');
+        $sheet->setCellValue('K1', 'Tahun Akademik');
+        $sheet->setCellValue('L1', 'Semester');
+
+        foreach ($kinerja_dosen as $key => $value) {
+            $total_sks = $value->sks_pendidikan + $value->sks_penelitian
+                + $value->sks_pengabdian + $value->sks_penunjang;
+            $sheet->setCellValue('A' . ($key + 2), $key + 1);
+            $sheet->setCellValue('B' . ($key + 2), $value->dosen->nip);
+            $sheet->setCellValue('C' . ($key + 2), $value->dosen->nidn);
+            $sheet->setCellValue('D' . ($key + 2), $value->dosen->nama_dosen);
+            $sheet->setCellValue('E' . ($key + 2), $value->kategori);
+            $sheet->setCellValue('F' . ($key + 2), $value->sks_pendidikan);
+            $sheet->setCellValue('G' . ($key + 2), $value->sks_penelitian);
+            $sheet->setCellValue('H' . ($key + 2), $value->sks_pengabdian);
+            $sheet->setCellValue('I' . ($key + 2), $value->sks_penunjang);
+            $sheet->setCellValue('J' . ($key + 2), $total_sks);
+            $sheet->setCellValue('K' . ($key + 2), $value->tahun_akademik);
+            $sheet->setCellValue('L' . ($key + 2), $value->semester);
+        }
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('kinerja_dosen'.'.xlsx');
+        return response()->download('kinerja_dosen'.'.xlsx')
+            ->deleteFileAfterSend(true);
+    }
+    public function organisasi_dosen(Request $request)
+    {
+        $request->validate([
+            'tahun_akademik' => 'required',
+            'semester' => 'required',
+        ]);
+        $organisasi_dosen = ModelKinerjaDosen::with('dosen');
+        $spdsheet = new Spreadsheet();
+        $sheet = $spdsheet->getActiveSheet();
+        $sheet->setTitle('Kinerja Dosen');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'NIP');
+        $sheet->setCellValue('C1', 'NIDN');
+        $sheet->setCellValue('D1', 'Nama Dosen');
+        $sheet->setCellValue('E1', 'Tahun Menjabat');
+        $sheet->setCellValue('F1', 'Tahun Berakhir');
+        $sheet->setCellValue('G1', 'Jabatan');
+        $sheet->setCellValue('H1', 'Organisasi');
+
+        foreach ($organisasi_dosen as $key => $value) {
+            $sheet->setCellValue('A' . ($key + 2), $key + 1);
+            $sheet->setCellValue('B' . ($key + 2), $value->dosen->nip);
+            $sheet->setCellValue('C' . ($key + 2), $value->dosen->nidn);
+            $sheet->setCellValue('D' . ($key + 2), $value->dosen->nama_dosen);
+            $sheet->setCellValue('E' . ($key + 2), $value->tahun_menjabat);
+            $sheet->setCellValue('F' . ($key + 2), $value->tahun_berakhir);
+            $sheet->setCellValue('G' . ($key + 2), $value->jabatan);
+            $sheet->setCellValue('H' . ($key + 2), $value->nama_organisasi);
+        }
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('organisasi_dosen'.'.xlsx');
+        return response()->download('organisasi_dosen'.'.xlsx')
+            ->deleteFileAfterSend(true);
+    }
     public function seminar(Request $request)
     {
-        $seminar = ModelSPDosen::with('dosen')->where('jenis', 'Seminar')->whereYear('tahun', $request->tahun_seminar)->get();
+        $seminar = ModelSPDosen::with('dosen')
+            ->whereYear('tanggal', $request->tahun_seminar)->get();
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Seminar Dosen');
@@ -56,7 +149,7 @@ class ExportDataDosen extends Controller
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->dosen->nama_dosen);
             $sheet->setCellValue('C' . ($key + 2), $value->nama);
-            $sheet->setCellValue('D' . ($key + 2), $value->tahun);
+            $sheet->setCellValue('D' . ($key + 2), $value->tanggal);
             $sheet->setCellValue('E' . ($key + 2), $value->scala);
             $sheet->setCellValue('F' . ($key + 2), $value->uraian);
             $sheet->setCellValue('G' . ($key + 2), $value->url);
@@ -68,7 +161,8 @@ class ExportDataDosen extends Controller
 
     public function penghargaan(Request $request)
     {
-        $penghargaan = ModelSPDosen::with('dosen')->where('jenis', 'Penghargaan')->whereYear('tahun', $request->tahun_penghargaan)->get();
+        $penghargaan = ModelPenghargaanDosen::with('dosen')
+            ->whereYear('tanggal', $request->tahun_penghargaan)->get();
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Penghargaan Dosen');
@@ -79,14 +173,16 @@ class ExportDataDosen extends Controller
         $sheet->setCellValue('E1', 'Scala');
         $sheet->setCellValue('F1', 'Uraian');
         $sheet->setCellValue('G1', 'URL');
+        $sheet->setCellValue('H1', 'kategori');
         foreach ($penghargaan as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->dosen->nama_dosen);
             $sheet->setCellValue('C' . ($key + 2), $value->nama);
-            $sheet->setCellValue('D' . ($key + 2), $value->tahun);
+            $sheet->setCellValue('D' . ($key + 2), $value->tanggal);
             $sheet->setCellValue('E' . ($key + 2), $value->scala);
             $sheet->setCellValue('F' . ($key + 2), $value->uraian);
             $sheet->setCellValue('G' . ($key + 2), $value->url);
+            $sheet->setCellValue('H' . ($key + 2), $value->kategori);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('penghargaan_dosen-' . $request->tahun_penghargaan . '.xlsx');
@@ -97,7 +193,10 @@ class ExportDataDosen extends Controller
 
     public function penelitian(Request $request)
     {
-        $penelitian = LitabmasDosen::with('anggota_litabmas')->where('tahun_penelitian', $request->tahun_penelitian)->where('kategori', 'Penelitian')->get();
+        $penelitian = LitabmasDosen::with('anggota_litabmas')->where(
+            'tahun_penelitian',
+            $request->tahun_penelitian
+        )->where('kategori', 'Penelitian')->get();
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Penelitian Dosen');
@@ -124,7 +223,10 @@ class ExportDataDosen extends Controller
     }
     public function pengabdian(Request $request)
     {
-        $penelitian = LitabmasDosen::with('anggota_litabmas')->where('tahun_penelitian', $request->tahun_pengabdian)->where('kategori', 'Pengabdian')->get();
+        $penelitian = LitabmasDosen::with('anggota_litabmas')->where(
+            'tahun_penelitian',
+            $request->tahun_pengabdian
+        )->where('kategori', 'Pengabdian')->get();
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Pengabdian Dosen');
@@ -150,7 +252,10 @@ class ExportDataDosen extends Controller
     }
     public function publikasi(Request $request)
     {
-        $publikasi = PublikasiDosen::with('anggotaPublikasi')->where('tahun', $request->tahun_publikasi)->get();
+        $publikasi = PublikasiDosen::with('anggotaPublikasi')->where(
+            'tahun',
+            $request->tahun_publikasi
+        )->get();
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Publikasi Dosen');

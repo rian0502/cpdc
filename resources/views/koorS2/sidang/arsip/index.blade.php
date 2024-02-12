@@ -5,11 +5,12 @@
             <div class="min-height-200px">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">Arsip Seminar Tesis 1 S2</h4>
+                        <h4 class="text-blue h4">Arsip Sidang Tesis S2</h4>
                     </div>
                     <div class="pb-20 m-3">
 
-                        <table id="data-sidang_tesis" class="data-sidang_tesis table table-hover data-table-responsive stripe wrap">
+                        <table id="data-sidang_tesis"
+                            class="data-sidang_tesis table table-hover data-table-responsive stripe wrap">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -87,13 +88,23 @@
                         searchable: false,
                         exportable: false,
                         render: function(data, type, row) {
-
-                            var editUrl = "{{ route('koor.arsip.sidang_tesis.edit', ':id') }}".replace(
-                                ':id', row.encrypt_id);
+                            var showUrl = "{{ route('koor.arsip.sidang_tesis.show', ':id') }}"
+                                .replace(
+                                    ':id', row.encrypt_id);
+                            var editUrl = "{{ route('koor.arsip.sidang_tesis.edit', ':id') }}"
+                                .replace(
+                                    ':id', row.encrypt_id);
                             return `
-                        <a class="btn btn-warning "
-                        href="${editUrl}"><i class="bi bi-pencil-square"></i>
-                                    Edit</a>`;
+                            <div class="dropdown">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <i class="dw dw-more"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="${showUrl}"><i class="dw dw-eye"></i> Detail</a>
+                                    <a class="dropdown-item" href="${editUrl}"><i class="dw dw-edit2"></i> Edit</a>
+                                </div>
+                            </div>
+                            `;
                         }
                     }
                 ]

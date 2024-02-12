@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
 
     <!-- CSS -->
@@ -477,7 +477,33 @@
             });
         </script>
     @endrole
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Menangkap semua form di halaman
+            const forms = document.querySelectorAll('form');
+    
+            forms.forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    // Menonaktifkan tombol submit untuk mencegah pengiriman ganda
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                    }
+                    
+                    // Tambahkan indikator loading jika diperlukan
+                    // Misalnya, tampilkan pesan loading atau animasi loading
+    
+                    // Atur delay agar tombol submit tidak tetap dinonaktifkan selamanya
+                    setTimeout(function () {
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                        }
+                    }, 5000); // Ganti 5000 dengan waktu delay yang sesuai
+                });
+            });
+        });
+    </script>
+    
 </body>
 
 </html>

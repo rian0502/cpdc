@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers\dosen;
 
-use App\Http\Requests\ProfileDosenRequest;
-use App\Http\Requests\UpdateProfileDosenRequest;
-use App\Models\Dosen;
-use App\Models\HistoryJabatanDosen;
-use App\Models\HistoryPangkatDosen;
-use App\Models\LitabmasDosen;
-use App\Models\ModelGelar;
-use App\Models\ModelSPDosen;
-use App\Models\PublikasiDosen;
-use App\Models\User;
+use PDF;
 use Carbon\Carbon;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
+use App\Models\User;
+use App\Models\Dosen;
+use App\Models\ModelGelar;
 use Illuminate\Support\Str;
-use PDF;
+use App\Models\ModelSPDosen;
+use App\Models\LitabmasDosen;
+use Illuminate\Http\Response;
+use App\Models\PublikasiDosen;
+use Illuminate\Routing\Controller;
+use App\Models\HistoryJabatanDosen;
+use App\Models\HistoryPangkatDosen;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ModelPenghargaanDosen;
+use Illuminate\Support\Facades\Crypt;
+use App\Http\Requests\ProfileDosenRequest;
+use App\Http\Requests\UpdateProfileDosenRequest;
 
 class ProfileDosenController extends Controller
 {
@@ -85,7 +86,15 @@ class ProfileDosenController extends Controller
         $user = User::find(Auth::user()->id);
         $user->profile_picture = $nama_foto_profile;
         $user->name = $request->nama_dosen;
-        $user->save();
+        $url_google_scholar = $request->url_google_scholar ?? null;
+
+        if ($url_google_scholar !== null) {
+            $url_google_scholar = str_replace(' ', '', $url_google_scholar);
+        }
+
+        // Sekarang $url_google_scholar sudah dihilangkan spasi jika tidak null
+
+
 
         $profileDosen = [
             'nip' => $request->nip,
@@ -96,6 +105,7 @@ class ProfileDosenController extends Controller
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'status' => 'Aktif',
+            'url_google_scholar' => $url_google_scholar,
             'user_id' => Auth::user()->id,
         ];
 
@@ -166,6 +176,11 @@ class ProfileDosenController extends Controller
      */
     public function update(UpdateProfileDosenRequest $request, $id)
     {
+        $url_google_scholar = $request->url_google_scholar ?? null;
+
+        if ($url_google_scholar !== null) {
+            $url_google_scholar = str_replace(' ', '', $url_google_scholar);
+        }
         if (Auth::user()->dosen->nip != $id) {
             return redirect()->back();
         }
@@ -191,6 +206,7 @@ class ProfileDosenController extends Controller
         $dosen->tempat_lahir = $request->tempat_lahir;
         $dosen->alamat = $request->alamat;
         $dosen->jenis_kelamin = $request->gender;
+        $url_google_scholar = $request->url_google_scholar;
         $dosen->updated_at = date('Y-m-d H:i:s');
         $dosen->save();
         return redirect()->route('dosen.profile.index')->with('success', 'Profile Berhasil Diperbarui');
@@ -220,8 +236,8 @@ class ProfileDosenController extends Controller
             $q->where('dosen.id', Auth::user()->dosen->id);
         })->get();
         $gelar = ModelGelar::where('dosen_id', Auth::user()->dosen->id)->get();
-        $seminar = ModelSPDosen::where('jenis', 'Seminar')->where('dosen_id', Auth::user()->dosen->id)->get();
-        $penghargaan = ModelSPDosen::where('jenis', 'Penghargaan')->where('dosen_id', Auth::user()->dosen->id)->get();
+        $seminar = ModelSPDosen::where('dosen_id', Auth::user()->dosen->id)->get();
+        $penghargaan = ModelPenghargaanDosen::where('dosen_id', Auth::user()->dosen->id)->get();
         $gelar_pendidikan = [
             'S.Pd.',          // Sarjana Pendidikan
             'S.Kom.',         // Sarjana Komputer

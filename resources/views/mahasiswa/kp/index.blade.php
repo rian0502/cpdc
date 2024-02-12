@@ -123,7 +123,7 @@
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $mahasiswa->nama_mahasiswa }}
                                 </div>
-                                <label class="col-md-3 bold mt-1"><strong>Domisili PKL/KP</strong></label>
+                                <label class="col-md-3 bold mt-1"><strong>Lokasi PKL/KP</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->region }}
                                 </div>

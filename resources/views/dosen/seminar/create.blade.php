@@ -47,10 +47,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Capaian </label>
-                                    <input autofocus name="tahun" value="{{old('tahun')}}" id="tahun"
-                                    class="form-control  @error('tahun') form-control-danger @enderror"
-                                    type="date" >
-                                    @error('tahun')
+                                    <input autofocus name="tanggal" value="{{old('tanggal')}}" id="tanggal"
+                                    class="form-control  @error('tanggal') form-control-danger @enderror"
+                                    type="date">
+                                    @error('tanggal')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>

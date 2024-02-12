@@ -1,9 +1,45 @@
 @extends('layouts.datatable')
 @section('datatable')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+    <!-- jquery-dateFormat.js -->
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="row">
-                <div class="col-xl-12 mb-30">
+                <div class="col-xl-3 mb-30">
+                    <div class="card-box height-100-p pd-20">
+
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-xl-9 mt-2 pt-3 text-center">
+
+                                @if (session('error'))
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <p>{{ session('error') }}</p>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                    </div>
+                                @endif
+
+                                <form id="formStatus3" onsubmit="return showConfirmation3(event);" action="{{ route('WebSyncAllDosen') }}" method="post">
+                                    @csrf <!-- Tambahkan ini untuk menjaga keamanan formulir -->
+                                    <button type="submit" id="submitButton3" class="btn btn-success btn-block" @if($lastSync && $lastSync->updated_at->isToday()) disabled @endif>
+                                        Sinkronisasi Data
+                                        <i class="fas fa-sync-alt"></i> <!-- Gantilah dengan ikon yang sesuai -->
+                                    </button>
+                                </form>
+
+                                <div class="mt-2">
+                                    @if ($lastSync)
+                                        <b><i>Last Sync:</i> <small>{{ $lastSync->updated_at->format('Y-m-d H:i:s') }}</small></b>
+                                    @endif
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xl-9 mb-30">
                     <div class="card-box height-100-p pd-20">
                         <div class="row align-items-center justify-content-center">
                             <div class="col-md-4">
@@ -29,7 +65,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-12 mb-30">
+                <div class="col-xl-12 mb-15">
                     <div class="card-box height-100-p pd-20">
                         <div id="barChart"></div>
                     </div>
@@ -74,14 +110,14 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Publikasi</th>
-                                    <th>Tahun</th>
-                                    <th>Volume</th>
-                                    <th>Halaman</th>
-                                    <th>Skala</th>
-                                    <th>Media</th>
-                                    <th>Kategori</th>
                                     <th>Judul</th>
+                                    <th>Nama Publikasi</th>
+                                    <th>Ketua</th>
+                                    <th>Media</th>
+                                    <th>Skala</th>
+                                    <th>Kategori</th>
+                                    <th>Kutipan</th>
+                                    <th>Tahun</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
                                 </tr>
                             </thead>
@@ -99,10 +135,13 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js"></script>
+
     <script>
         var PieChart1;
         var PieChart2;
@@ -140,40 +179,49 @@
                             }
                         },
                         {
+                            data: 'judul',
+                            name: 'judul',
+                            orderable: true
+                        },
+                        {
                             data: 'nama_publikasi',
                             name: 'nama_publikasi',
                             orderable: true
                         },
+
                         {
-                            data: 'tahun',
-                            name: 'tahun',
-                            orderable: true
-                        },
-                        {
-                            data: 'vol',
-                            name: 'vol'
-                        },
-                        {
-                            data: 'halaman',
-                            name: 'halaman'
-                        },
-                        {
-                            data: 'scala',
-                            name: 'scala'
+                            data: 'dosen',
+                            name: 'dosen',
+                            render: function(data, type, row) {
+                                if (data.length > 0) {
+                                    return data[0].nama_dosen;
+                                } else {
+                                    return ''; // atau sesuaikan dengan nilai default yang diinginkan
+                                }
+                            }
                         },
                         {
                             data: 'kategori',
                             name: 'kategori'
                         },
                         {
+                            data: 'scala',
+                            name: 'scala'
+                        },
+                        {
                             data: 'kategori_litabmas',
                             name: 'kategori_litabmas'
                         },
                         {
-                            data: 'judul',
-                            name: 'judul',
+                            data: 'jumlah_kutipan',
+                            name: 'jumlah_kutipan'
+                        },
+                        {
+                            data: 'tahun',
+                            name: 'tahun',
                             orderable: true
                         },
+
                         {
                             data: null,
                             name: 'aksi',
@@ -185,6 +233,11 @@
                                 var detail = "{{ route('dosen.publikasi.show', ':id') }}".replace(
                                     ':id', row.encrypt_id);
                                 var linkPublikasi = row.url;
+                                // Cek apakah awalan "https://" sudah ada
+                                if (!linkPublikasi.startsWith("https://")) {
+                                    // Jika tidak, tambahkan "https://"
+                                    linkPublikasi = "https://" + linkPublikasi;
+                                }
                                 return `
                             <div class="dropdown">
                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" data-color="#1b3133" href="#"
@@ -192,7 +245,7 @@
                                     <i class="dw dw-more"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <a class="dropdown-item" href="${linkPublikasi}"><i class="dw dw-link-3"></i> Link Publikasi</a>
+                                    <a class="dropdown-item" target="_blank" href="${linkPublikasi}"><i class="dw dw-link-3"></i> Link Publikasi</a>
                                     <a class="dropdown-item" href="${detail}"><i class="dw dw-eye"></i> Lihat</a>
                                     </div>
                             </div>`;
@@ -278,8 +331,8 @@
                 });
 
                 pieChart1 = Highcharts.chart('pieChart', {
-                    credits:{
-                        enabled:false
+                    credits: {
+                        enabled: false
                     },
                     chart: {
                         type: 'pie',
@@ -315,8 +368,8 @@
                 });
 
                 pieChart2 = Highcharts.chart('pieChart2', {
-                    credits:{
-                        enabled:false
+                    credits: {
+                        enabled: false
                     },
                     chart: {
                         type: 'pie',
@@ -352,8 +405,8 @@
                 });
 
                 pieChart3 = Highcharts.chart('pieChart3', {
-                    credits:{
-                        enabled:false
+                    credits: {
+                        enabled: false
                     },
                     chart: {
                         type: 'pie',
@@ -394,8 +447,8 @@
 
                 // Membangun chart
                 barChart = Highcharts.chart('barChart', {
-                    credits:{
-                        enabled:false
+                    credits: {
+                        enabled: false
                     },
                     chart: {
                         type: 'column'
@@ -408,6 +461,9 @@
                     },
                     xAxis: {
                         type: 'category',
+                        scrollbar: {
+                            enabled: true
+                        },
                         labels: {
                             rotation: -45,
                             style: {
@@ -416,6 +472,7 @@
                             }
                         }
                     },
+
                     yAxis: {
                         min: 0,
                         title: {
@@ -445,6 +502,12 @@
                         }
                     }]
                 });
+                var categoriesLength = seriesData.length;
+                var visibleCategories = 10; // Jumlah kategori yang ingin ditampilkan
+                var minIndex = Math.max(0, categoriesLength - visibleCategories);
+                var maxIndex = categoriesLength - 1;
+
+                barChart.xAxis[0].setExtremes(minIndex, maxIndex);
             }
 
             // Fungsi untuk menangani klik tombol filter

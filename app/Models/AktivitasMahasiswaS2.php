@@ -19,6 +19,13 @@ class AktivitasMahasiswaS2 extends Model
         "kategori",
         "file_aktivitas",
         "mahasiswa_id",
+        "skala",
+        "jenis",
+        "kategori",
+        "mahasiswa_id",
+        "id_pembimbing",
+        "nama_pembimbing",
+        "nip_pembimbing",
         "created_at",
         "updated_at",
     ];
@@ -26,5 +33,9 @@ class AktivitasMahasiswaS2 extends Model
     public function mahasiswa()
     {
         return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id');
+    }
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'id_pembimbing');
     }
 }

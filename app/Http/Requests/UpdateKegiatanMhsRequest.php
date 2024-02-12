@@ -26,7 +26,9 @@ class UpdateKegiatanMhsRequest extends FormRequest
             "sks_konversi" => ["required", "numeric", "min:0"],
             "peran" => ["required", "string", "in:" . implode(",", $peran)],
             "file_aktivitas" => ["nullable", "file", "mimes:pdf", "max:1048"],
-            'kategori' => ['required', 'string', 'in:Nasional,Internasional'],
+            'skala' => ['required', 'string', 'in:Universitas,Regional,Nasional,Internasional'],
+            'jenis' => ['required', 'string', 'in:MBKM,PKM,HIMA,UKM,Lainnya'],
+            'kategori' => ['required', 'string'],
         ];
     }
 
@@ -48,9 +50,13 @@ class UpdateKegiatanMhsRequest extends FormRequest
             "file_aktivitas.file" => "File aktivitas harus berupa file",
             "file_aktivitas.mimes" => "File aktivitas harus berupa pdf",
             "file_aktivitas.max" => "File aktivitas maksimal 1MB",
+            'skala.required' => 'Skala harus diisi',
+            'skala.string' => 'Skala harus berupa Kata',
+            'skala.in' => 'Skala tidak valid',
+            'jenis.required' => 'Jenis harus diisi',
+            'jenis.string' => 'Jenis harus berupa Kata',
+            'jenis.in' => 'Jenis tidak valid',
             'kategori.required' => 'Kategori harus diisi',
-            'kategori.string' => 'Kategori harus berupa string',
-            'kategori.in' => 'Kategori tidak valid',
         ];
     }
 }

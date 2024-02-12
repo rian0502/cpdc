@@ -31,10 +31,27 @@ class EditSeminarKomprehensifController extends Controller
         }
         return view('koor.kompre.arsip.index');
     }
+    public function show($id)
+    {
+        $seminar = ModelSeminarKompre::with(
+            'mahasiswa',
+            'jadwal',
+            'beritaAcara',
+            'pembimbingSatu',
+            'pembimbingDua',
+            'pembahas',
+        )->find(Crypt::decrypt($id));
+
+        $data = [
+            'seminar' => $seminar,
+        ];
+        return view('koor.kompre.arsip.show', $data);
+    }
+
     public function edit($id)
     {
         $seminar = ModelSeminarKompre::with(['jadwal', 'beritaAcara'])->where('id', Crypt::decrypt($id))->first();
-        $dosen = Dosen::select('id','encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
+        $dosen = Dosen::select('id', 'encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
         $lokasi = Lokasi::select('encrypt_id', 'nama_lokasi')->where('jenis_ruangan', 'Kelas')->get();
 
         $data = [
@@ -46,7 +63,7 @@ class EditSeminarKomprehensifController extends Controller
     }
 
 
-    public function update(UpdateSeminarKomprehensifRequest $request, $id)
+    public function update(Request $request, $id)
     {
         try {
             $seminar = ModelSeminarKompre::find(Crypt::decrypt($id));
@@ -60,6 +77,9 @@ class EditSeminarKomprehensifController extends Controller
             $seminar->ipk = $request->ipk;
             $seminar->toefl = $request->toefl;
             if ($request->berkas_kompre) {
+                $request->validate([
+                    'berkas_kompre' => 'required|mimes:pdf|max:1024'
+                ]);
                 if (file_exists('uploads/syarat_sidang_kompre/' . $seminar->berkas_kompre)) {
                     unlink('uploads/syarat_sidang_kompre/' . $seminar->berkas_kompre);
                 }
@@ -88,37 +108,47 @@ class EditSeminarKomprehensifController extends Controller
             $seminar->updated_at = date('Y-m-d H:i:s');
             $seminar->save();
             //update jadwal
-            $jadwal->tanggal_komprehensif = $request->tanggal_komprehensif;
-            $jadwal->jam_mulai_komprehensif = $request->jam_mulai_komprehensif;
-            $jadwal->jam_selesai_komprehensif = $request->jam_selesai_komprehensif;
-            $jadwal->id_lokasi = Crypt::decrypt($request->id_lokasi);
-            $jadwal->updated_at = date('Y-m-d H:i:s');
-            $jadwal->save();
+            if ($jadwal) {
+                $jadwal->tanggal_komprehensif = $request->tanggal_komprehensif;
+                $jadwal->jam_mulai_komprehensif = $request->jam_mulai_komprehensif;
+                $jadwal->jam_selesai_komprehensif = $request->jam_selesai_komprehensif;
+                $jadwal->id_lokasi = Crypt::decrypt($request->id_lokasi);
+                $jadwal->updated_at = date('Y-m-d H:i:s');
+                $jadwal->save();
+            }
             //update berita acara
-            $ba->no_ba_berkas = $request->no_ba_berkas;
-            if ($request->ba_seminar_komprehensif) {
-                if (file_exists('uploads/ba_sidang_kompre/' . $ba->ba_seminar_komprehensif)) {
-                    unlink('uploads/ba_sidang_kompre/' . $ba->ba_seminar_komprehensif);
+            if ($ba) {
+                $ba->no_ba_berkas = $request->no_ba_berkas;
+                if ($request->ba_seminar_komprehensif) {
+                    $request->validate([
+                        'ba_seminar_komprehensif' => 'required|mimes:pdf|max:1024'
+                    ]);
+                    if (file_exists('uploads/ba_sidang_kompre/' . $ba->ba_seminar_komprehensif)) {
+                        unlink('uploads/ba_sidang_kompre/' . $ba->ba_seminar_komprehensif);
+                    }
+                    $file = $request->file('ba_seminar_komprehensif');
+                    $nama_file = $file->hashName();
+                    $file->move('uploads/ba_sidang_kompre/', $nama_file);
+                    $ba->ba_seminar_komprehensif = $nama_file;
                 }
-                $file = $request->file('ba_seminar_komprehensif');
-                $nama_file = $file->hashName();
-                $file->move('uploads/ba_sidang_kompre/', $nama_file);
-                $ba->ba_seminar_komprehensif = $nama_file;
-            }
-            if ($request->berkas_nilai_kompre) {
-                if (file_exists('uploads/nilai_sidang_kompre/' . $ba->berkas_nilai_kompre)) {
-                    unlink('uploads/nilai_sidang_kompre/' . $ba->berkas_nilai_kompre);
+                if ($request->berkas_nilai_kompre) {
+                    $request->validate([
+                        'berkas_nilai_kompre' => 'required|mimes:pdf|max:1024'
+                    ]);
+                    if (file_exists('uploads/nilai_sidang_kompre/' . $ba->berkas_nilai_kompre)) {
+                        unlink('uploads/nilai_sidang_kompre/' . $ba->berkas_nilai_kompre);
+                    }
+                    $file = $request->file('berkas_nilai_kompre');
+                    $nama_file = $file->hashName();
+                    $file->move('uploads/nilai_sidang_kompre', $nama_file);
+                    $ba->berkas_nilai_kompre = $nama_file;
                 }
-                $file = $request->file('berkas_nilai_kompre');
-                $nama_file = $file->hashName();
-                $file->move('uploads/nilai_sidang_kompre', $nama_file);
-                $ba->berkas_nilai_kompre = $nama_file;
+                $ba->laporan_ta = $request->laporan_ta;
+                $ba->nilai = $request->nilai;
+                $ba->huruf_mutu = $request->huruf_mutu;
+                $ba->updated_at = date('Y-m-d H:i:s');
+                $ba->save();
             }
-            $ba->laporan_ta = $request->laporan_ta;
-            $ba->nilai = $request->nilai;
-            $ba->huruf_mutu = $request->huruf_mutu;
-            $ba->updated_at = date('Y-m-d H:i:s');
-            $ba->save();
             DB::commit();
             return redirect()->route('koor.arsip.kompre.index')->with('success', 'Data berhasil diubah');
         } catch (\Exception $e) {

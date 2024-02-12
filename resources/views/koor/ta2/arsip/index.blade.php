@@ -87,13 +87,22 @@
                         searchable: false,
                         exportable: false,
                         render: function(data, type, row) {
-
+                            var showUrl = "{{ route('koor.arsip.ta2.show', ':id') }}".replace(
+                                ':id', row.encrypt_id);
                             var editUrl = "{{ route('koor.arsip.ta2.edit', ':id') }}".replace(
                                 ':id', row.encrypt_id);
                             return `
-                        <a class="btn btn-warning "
-                        href="${editUrl}"><i class="bi bi-pencil-square"></i>
-                                    Edit</a>`;
+                            <div class="dropdown">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <i class="dw dw-more"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="${showUrl}"><i class="dw dw-eye"></i> Detail</a>
+                                    <a class="dropdown-item" href="${editUrl}"><i class="dw dw-edit2"></i> Edit</a>
+                                </div>
+                            </div>
+                            `;
+
                         }
                     }
                 ]

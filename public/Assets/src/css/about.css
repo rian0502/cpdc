@@ -6,7 +6,7 @@
     height: 50vh;
     margin-top: 250px;
     margin-bottom: 2000000000000px;
-    font-family: Arial, sans-serif;
+    font-family: Poppins, sans-serif;
     /* background-color: #f3f3f3; */
 }
 
@@ -177,7 +177,7 @@
 
 /* menampilkan tanggal */
 .tanggal {
-    font-family: Arial, sans-serif;
+    font-family: Poppins, sans-serif;
     font-size: 18px;
     text-align: center;
     color: #333;

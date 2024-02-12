@@ -14,10 +14,9 @@ class ModelSPDosen extends Model
         'encrypt_id',
         'nama',
         'scala',
-        'tahun',
+        'tanggal',
         'uraian',
         'url',
-        'jenis',
         'dosen_id'
     ];
     public function dosen()

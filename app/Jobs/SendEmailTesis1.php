@@ -56,10 +56,10 @@ class SendEmailTesis1 implements ShouldQueue
         Mail::send(
             'email.jadwal_seminar',
             $this->data,
-            function ($message) use ($to_name, $to_email, $namafile, $urlpref) {
+            function ($message) use ($to_name, $to_email, $namafile, $prefix) {
                 $message->to($to_email, $to_name)->subject('Jadwal Seminar Tesis 1');
                 $message->from('chemistryprogramdatacenter@gmail.com');
-                $message->attach($urlpref . 'uploads/print_ba_tesis_1/' . $namafile);
+                $message->attach(base_path($prefix . 'uploads/print_ba_tesis_1/' . $namafile));
             }
         );
         unlink(base_path($prefix . 'uploads/print_ba_tesis_1/' . $namafile));

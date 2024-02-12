@@ -41,6 +41,7 @@ class ProfileDosenRequest extends FormRequest
             'tanggal_sk_pangkat' => 'required|date',
             'file_sk_pangkat' => 'nullable|mimes:pdf|max:2048',
             'foto_profile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1048',
+            'url_google_scholar'=> 'url|max:255'
         ];
     }
 
@@ -94,6 +95,10 @@ class ProfileDosenRequest extends FormRequest
             'tanggal_sk_pangkat.date' => 'Tanggal SK Pangkat harus berupa tanggal',
             'file_sk_pangkat.mimes' => 'File SK Pangkat harus berupa file PDF',
             'file_sk_pangkat.max' => 'File SK Pangkat maksimal 2MB',
+            'url_google_scholar.url' => 'Format URL salah',
+            'url_google_scholar.max' => 'Format URL salah',
+
+
         ];
     }
     protected function prepareForValidation()

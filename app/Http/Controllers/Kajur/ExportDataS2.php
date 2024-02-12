@@ -11,6 +11,8 @@ use App\Models\PublikasiDosen;
 use App\Models\PrestasiMahasiswaS2;
 use App\Http\Controllers\Controller;
 use App\Models\AktivitasMahasiswaS2;
+use App\Models\ModelPenghargaanDosen;
+use App\Models\ModelPublikasiMahasiswa;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 
@@ -36,9 +38,9 @@ class ExportDataS2 extends Controller
                 ->get(),
             'aktivitas' => AktivitasMahasiswaS2::selectRaw('YEAR(tanggal) as year')->distinct()->orderBy('year', 'desc')
                 ->get(),
-            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->where('jenis', 'Seminar')->orderBy('tahun', 'desc')
+            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tanggal) as tahun')->distinct()->orderBy('tahun', 'desc')
                 ->get(),
-            'penghargaan_dosen' => ModelSPDosen::selectRaw('YEAR(tahun) as tahun')->distinct()->where('jenis', 'Penghargaan')->orderBy('tahun', 'desc')
+            'penghargaan_dosen' => ModelPenghargaanDosen::selectRaw('YEAR(tanggal) as tahun')->distinct()->orderBy('tahun', 'desc')
                 ->get(),
             'tesis_1' => Mahasiswa::select('angkatan')->distinct()->whereHas('taSatuS2')->orderBy('angkatan', 'desc')
                 ->get(),
@@ -58,8 +60,59 @@ class ExportDataS2 extends Controller
                 });
             })->orderBy('angkatan', 'desc')
                 ->get(),
+            'publikasi_mahasiswa' => ModelPublikasiMahasiswa::select('tahun')
+                ->distinct()->orderBy('tahun', 'desc')->whereHas(
+                    'mahasiswa.user.roles',
+                    function ($query) {
+                        $query->where('name', 'mahasiswaS2');
+                    }
+                )->get(),
         ];
         return view('jurusan.exportS2.index', $data);
+    }
+    public function publikasi_mahasiswa(Request $request)
+    {
+        $publikasi = ModelPublikasiMahasiswa::with(['mahasiswa'])
+            ->where('tahun', $request->tahun_publikasi_mahasiswa)
+            ->whereHas(
+                'mahasiswa.user.roles',
+                function ($query) {
+                    $query->where('name', 'mahasiswaS2');
+                }
+            )->get();
+        $spdsheet = new Spreadsheet();
+        $sheet = $spdsheet->getActiveSheet();
+        $sheet->setTitle('Publikasi Mahasiswa');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'NPM');
+        $sheet->setCellValue('C1', 'Nama Mahasiswa');
+        $sheet->setCellValue('D1', 'Nama Publikasi');
+        $sheet->setCellValue('E1', 'Judul');
+        $sheet->setCellValue('F1', 'Tahun');
+        $sheet->setCellValue('G1', 'Vol');
+        $sheet->setCellValue('H1', 'Halaman');
+        $sheet->setCellValue('I1', 'Scala');
+        $sheet->setCellValue('J1', 'Kategori');
+        $sheet->setCellValue('K1', 'URL');
+        $sheet->setCellValue('L1', 'Anggota');
+        foreach ($publikasi as $key => $value) {
+            $sheet->setCellValue('A' . ($key + 2), $key + 1);
+            $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->npm);
+            $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+            $sheet->setCellValue('D' . ($key + 2), $value->nama_publikasi);
+            $sheet->setCellValue('E' . ($key + 2), $value->judul);
+            $sheet->setCellValue('F' . ($key + 2), $value->tahun);
+            $sheet->setCellValue('G' . ($key + 2), $value->vol);
+            $sheet->setCellValue('H' . ($key + 2), $value->halaman);
+            $sheet->setCellValue('I' . ($key + 2), $value->scala);
+            $sheet->setCellValue('J' . ($key + 2), $value->kategori);
+            $sheet->setCellValue('K' . ($key + 2), $value->url);
+            $sheet->setCellValue('L' . ($key + 2), $value->anggota);
+        }
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('publikasi_mahasiswa_' . $request->tahun_publikasi_mahasiswa . '.xlsx');
+        return response()->download('publikasi_mahasiswa_' .
+            $request->tahun_publikasi_mahasiswa . '.xlsx')->deleteFileAfterSend(true);
     }
     public function alumni(Request $request)
     {
@@ -312,7 +365,7 @@ class ExportDataS2 extends Controller
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('sidang_tesis_' . $request->akt_sidang. '.xlsx');
+        $writer->save('sidang_tesis_' . $request->akt_sidang . '.xlsx');
         return response()->download('sidang_tesis_' . $request->akt_sidang   . '.xlsx')->deleteFileAfterSend(true);
     }
 
@@ -448,7 +501,13 @@ class ExportDataS2 extends Controller
         $sheet->setCellValue('D1', 'SKS');
         $sheet->setCellValue('E1', 'Tanggal');
         $sheet->setCellValue('F1', 'URL');
-        $sheet->setCellValue('G1', 'Mahasiswa');
+        $sheet->setCellValue('G1', 'Tingkatan');
+        $sheet->setCellValue('H1', 'Jenis');
+        $sheet->setCellValue('I1', 'Kategori');
+        $sheet->setCellValue('J1', 'Mahasiswa');
+        $sheet->setCellValue('K1', 'NPM');
+        $sheet->setCellValue('L1', 'Nama Pembimbing');
+        $sheet->setCellValue('M1', 'NIP Pembimbing');
         foreach ($aktivitas as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->nama_aktivitas);
@@ -456,7 +515,13 @@ class ExportDataS2 extends Controller
             $sheet->setCellValue('D' . ($key + 2), $value->sks_konversi);
             $sheet->setCellValue('E' . ($key + 2), $value->tanggal);
             $sheet->setCellValue('F' . ($key + 2), url('/uploads/file_act_mhs/' . $value->file_aktivitas));
-            $sheet->setCellValue('G' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+            $sheet->setCellValue('G' . ($key + 2), $value->skala);
+            $sheet->setCellValue('H' . ($key + 2), $value->jenis);
+            $sheet->setCellValue('I' . ($key + 2), $value->kategori);
+            $sheet->setCellValue('J' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+            $sheet->setCellValue('K' . ($key + 2), $value->mahasiswa->npm);
+            $sheet->setCellValue('L' . ($key + 2), ($value->dosen->nama_dosen) ?? $value->nama_pembimbing);
+            $sheet->setCellValue('M' . ($key + 2), ($value->dosen->nip) ?? $value->nip_pembimbing);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('aktivitas_s2_' . $request->tahun_aktivitas . '.xlsx');
@@ -476,6 +541,9 @@ class ExportDataS2 extends Controller
         $sheet->setCellValue('E1', 'Tanggal');
         $sheet->setCellValue('F1', 'URL');
         $sheet->setCellValue('G1', 'Mahasiswa');
+        $sheet->setCellValue('H1', 'Jenis');
+        $sheet->setCellValue('I1', 'Nama Pembimbing');
+        $sheet->setCellValue('J1', 'NIP Pembimbing');
         foreach ($prestasi as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->nama_prestasi);
@@ -484,6 +552,9 @@ class ExportDataS2 extends Controller
             $sheet->setCellValue('E' . ($key + 2), $value->tanggal);
             $sheet->setCellValue('F' . ($key + 2), url('/uploads/file_prestasi/' . $value->file_prestasi));
             $sheet->setCellValue('G' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+            $sheet->setCellValue('H' . ($key + 2), $value->jenis);
+            $sheet->setCellValue('I' . ($key + 2), ($value->dosen->nama_dosen) ?? $value->nama_pembimbing);
+            $sheet->setCellValue('J' . ($key + 2), ($value->dosen->nip) ?? $value->nip_pembimbing);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('prestasi_s2_' . $request->tahun_prestasi . '.xlsx');

@@ -31,6 +31,7 @@ class Dosen extends Model
         'status',
         'user_id',
         'foto_profile',
+        'url_google_scholar',
         'created_at',
         'updated_at'
     ];
@@ -56,17 +57,31 @@ class Dosen extends Model
     }
     public function organisasi()
     {
-        return $this->hasMany(OrganisasiDosen::class, 'dosen_id')->orderBy('tahun_menjabat', 'desc');
+        return $this->hasMany(
+            OrganisasiDosen::class,
+            'dosen_id'
+        )->orderBy('tahun_menjabat', 'desc');
     }
     public function jabatan()
     {
-        return $this->hasMany(HistoryJabatanDosen::class, 'dosen_id');
+        return $this->hasMany(
+            HistoryJabatanDosen::class,
+            'dosen_id'
+        );
     }
-    public function jabatanTerakhir(){
-        return $this->hasOne(HistoryJabatanDosen::class, 'dosen_id')->orderBy('tgl_sk', 'desc');
+    public function jabatanTerakhir()
+    {
+        return $this->hasOne(
+            HistoryJabatanDosen::class,
+            'dosen_id'
+        )->orderBy('tgl_sk', 'desc');
     }
-    public function pangkatTerakhir(){
-        return $this->hasOne(HistoryPangkatDosen::class, 'dosen_id')->orderBy('tgl_sk', 'desc');
+    public function pangkatTerakhir()
+    {
+        return $this->hasOne(
+            HistoryPangkatDosen::class,
+            'dosen_id'
+        )->orderBy('tgl_sk', 'desc');
     }
     public function pangkat()
     {
@@ -83,12 +98,18 @@ class Dosen extends Model
             'id_publikasi'
         );
     }
+    public function kinerja_dosen()
+    {
+        return $this->hasMany(ModelKinerjaDosen::class, 'dosen_id');
+    }
     public function seminar()
     {
-        return $this->hasMany(ModelSPDosen::class, 'dosen_id')->where('jenis', 'Seminar')->orderBy('tahun', 'desc');
+        return $this->hasMany(ModelSPDosen::class, 'dosen_id')
+            ->orderBy('tanggal', 'desc');
     }
     public function penghargaan()
     {
-        return $this->hasMany(ModelSPDosen::class, 'dosen_id')->where('jenis', 'Penghargaan')->orderBy('tahun', 'desc');
+        return $this->hasMany(ModelPenghargaanDosen::class, 'dosen_id')
+            ->orderBy('tanggal', 'desc');
     }
 }

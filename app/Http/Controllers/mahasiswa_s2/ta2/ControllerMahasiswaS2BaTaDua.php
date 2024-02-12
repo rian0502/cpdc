@@ -112,14 +112,14 @@ class ControllerMahasiswaS2BaTaDua extends Controller
         $berita_acara->nilai_mutu = $request->nilai_mutu;
         $berita_acara->ppt = $request->ppt;
         if ($request->file('file_ba')) {
-            unlink('uploads/ba_seminar_tesis_1/' . $berita_acara->file_ba);
+            unlink('uploads/ba_seminar_tesis_2/' . $berita_acara->file_ba);
             $file_ba = $request->file('file_ba');
             $name_file_ba = $file_ba->hashName();
             $file_ba->move('uploads/ba_seminar_tesis_1', $name_file_ba);
             $berita_acara->file_ba = $name_file_ba;
         }
         if ($request->file('file_nilai')) {
-            unlink('uploads/nilai_seminar_tesis_1/' . $berita_acara->file_nilai);
+            unlink('uploads/nilai_seminar_tesis_2/' . $berita_acara->file_nilai);
             $file_nilai = $request->file('file_nilai');
             $name_file_nilai = $file_nilai->hashName();
             $file_nilai->move('uploads/nilai_seminar_tesis_1', $name_file_nilai);

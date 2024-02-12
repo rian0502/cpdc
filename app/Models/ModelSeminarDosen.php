@@ -10,7 +10,7 @@ class ModelSeminarDosen extends Model
 {
     use HasFactory;
 
-    protected $table = 'seminar_dosen';
+    protected $table = 'sp_dosen';
     protected $fillable = [
         'encrypt_id',
         'nama',

@@ -45,7 +45,8 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
             return redirect()->route('mahasiswa.seminarta1s2.index');
         }
         $data = [
-            'dosens' => Dosen::where('status', 'Aktif')->get(),
+            'dosens' => Dosen::where('status', 'Aktif')
+                ->orderBy('nama_dosen', 'asc')->get(),
             'syarat' => BerkasPersyaratanSeminar::find(5),
         ];
         return view("mahasiswaS2.ta1.create", $data);
@@ -171,7 +172,7 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
         $update->encrypt_id = Crypt::encrypt($insert->id);
         $update->save();
         return redirect()->route('mahasiswa.seminarta1s2.index')
-        ->with('success', 'Data Seminar TA 1 berhasil ditambahkan');
+            ->with('success', 'Data Seminar TA 1 berhasil ditambahkan');
     }
 
     /**
@@ -199,7 +200,8 @@ class ControllerMahasiswaS2SeminarTaSatu extends Controller
         $data = [
             'mahasiswa' => $mahasiswa,
             'seminar' => $seminar,
-            'dosens' => Dosen::where('status', 'Aktif')->get(),
+            'dosens' => Dosen::where('status', 'Aktif')
+                ->orderBy('nama_dosen', 'asc')->get(),
             'syarat' => BerkasPersyaratanSeminar::find(5),
         ];
 
