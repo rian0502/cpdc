@@ -803,10 +803,10 @@
                             <a href="{{ route('sudo.import.mahasiswa.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('sudo/impormahasiswa') ? 'active' : '' }}">
                                 <span class="micon bi bi-cloud-arrow-up"></span><span class="mtext"> Import
-                                    Mahasiswa S1</span>
+                                    Mahasiswa</span>
                             </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('sudo.import.mahasiswas2.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('sudo/impormahasiswas2') ? 'active' : '' }}">
                                 <span class="micon bi bi-cloud-arrow-up"></span><span class="mtext"> Import
@@ -818,7 +818,7 @@
                                 class="dropdown-toggle no-arrow {{ Request::is('sudo/admin_jurusan*') ? 'active' : '' }}">
                                 <span class="micon fas fa-user-shield"></span><span class="mtext">Monitoring Jobs</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{ route('sudo.validasi.mahasiswa.index') }}"
                                 class="dropdown-toggle no-arrow
