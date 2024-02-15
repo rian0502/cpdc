@@ -22,17 +22,36 @@ class TemplateSeminarController extends Controller
     }
     public function update(Request $request, $id)
     {
-        return dd($request->all());
         $request->validate([
-            'file' => 'required|max:2048|mimes:doc,docx',
+            'file_template' => 'required|max:2048|mimes:doc,docx',
         ]);
+        $template = TemplateBeritaAcara::find($id);
+        if($request->nama == 'Berita Acara PKL'){
+            $path = 'uploads/template_ba_kp/';
+        }else if($request->nama == 'Berita Acara TA 1'){
+            $path = 'uploads/template_ba_ta1/';
+        }else if($request->nama == 'Berita Acara TA 2'){
+            $path = 'uploads/template_ba_ta2/';
+        }else if($request->nama == 'Berita Acara Komprehensif'){
+            $path = 'uploads/template_ba_kompre/';
+        }else if($request->nama == 'Berita Acara Tesis 1'){
+            $path = 'uploads/template_s2_ba_ta1/';
+        }else if($request->nama == 'Berita Acara Tesis 2'){
+            $path = 'uploads/template_s2_ba_ta2/';
+        }else{
+            $path = 'uploads/template_s2_ba_kompre/';
+        }
+        if(file_exists($path . $template->path)){
+            unlink($path . $template->path);
+        }
+        return dd(file_exists($path . $template->path));
+        unlink($path . $template->path);
         $file = $request->file('file_template');
-        $file_name = $file->hashName();
-        $file->move('uploads/template_ba/' . $file_name);
-        $file = TemplateBeritaAcara::find($id);
-        unlink('uploads/template_ba/' . $file->file_template);
-        $file->path = $file_name;
-        $file->save();
-        return redirect()->route('berkas.template_seminar.index')->with('success', 'File berhasil diupdate');
+        $fileName = $request->hashName();
+        $fullPath = $path.$fileName;
+        $file->move($fullPath);
+        $template->path = $fullPath;
+        $template->save();
+        return dd('berhasil');
     }
 }
