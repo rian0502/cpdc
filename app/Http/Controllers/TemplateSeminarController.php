@@ -47,7 +47,7 @@ class TemplateSeminarController extends Controller
         $file = $request->file('file_template');
         $fileName = $file->hashName();
         $fullPath = $path.$fileName;
-        $file->move($fullPath);
+        $file->move($path, $fileName);
         $template->path = $fullPath;
         $template->save();
         return redirect()->route('berkas.template_seminar.index')->with('success', 'Template Berita Acara berhasil diubah');
