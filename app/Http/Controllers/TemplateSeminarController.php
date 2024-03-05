@@ -41,16 +41,15 @@ class TemplateSeminarController extends Controller
         }else{
             $path = 'uploads/template_s2_ba_kompre/';
         }
-        if(file_exists($path . $template->path)){
-            unlink($path . $template->path);
+        if(file_exists($template->path)){
+            unlink($template->path);
         }
-        unlink($path . $template->path);
         $file = $request->file('file_template');
         $fileName = $request->hashName();
         $fullPath = $path.$fileName;
         $file->move($fullPath);
         $template->path = $fullPath;
         $template->save();
-        return dd('berhasil');
+        return redirect()->route('berkas.template_seminar.index')->with('success', 'Template Berita Acara berhasil diubah');
     }
 }
