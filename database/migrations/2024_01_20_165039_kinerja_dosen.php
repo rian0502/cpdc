@@ -16,7 +16,8 @@ class KinerjaDosen extends Migration
         //
         Schema::create('kinerja_dosen', function (Blueprint $table) {
             $table->id();
-            $table->string('encrypted_id')->nullable()->unique();
+            $table->string('encrypted_id')->nullable();
+            $table->enum('kategori', ['BKD', 'Remunerasi']);
             $table->enum('semester', ['Ganjil', 'Genap']);
             $table->string('tahun_akademik');
             $table->integer('sks_pendidikan');

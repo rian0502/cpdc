@@ -42,7 +42,6 @@ class DataMahasiswaAllController extends Controller
                     'mahasiswa.komprehensif'
                 )
                 ->select('users.*');
-
             if ($status_kp != 'null' && $status_kp != '1') {
                 $data = $data->whereHas('mahasiswa.seminar_kp', function ($query) use ($status_kp) {
                     $query->where('status_seminar', $status_kp);

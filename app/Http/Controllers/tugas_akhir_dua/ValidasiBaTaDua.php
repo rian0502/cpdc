@@ -80,8 +80,50 @@ class ValidasiBaTaDua extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
-
+    public function update(Request $request, $id)
+    {
+        if ($request->status_admin == 'Process') {
+            return redirect()->back()->with(
+                'error',
+                'Status Admin Harus Valid atau Invalid'
+            );
+        } elseif ($request->status_admin == 'Invalid') {
+            $status = ['Valid', 'Invalid', 'Process'];
+            $request->validate(
+                [
+                    'status_admin' => ['required', 'string', 'in:' . implode(',', $status)],
+                    'komentar' => ['required', 'string'],
+                ],
+                [
+                    'status_admin.required' => 'Status Admin Harus Diisi',
+                    'komentar.required' => 'Komentar Harus Diisi',
+                    'status_admin.in' => 'Status Admin Harus Valid, Invalid, atau Process',
+                    'komentar.string' => 'Komentar Harus Berupa Kata'
+                ]
+            );
+            $seminar = ModelSeminarTaDua::find(Crypt::decrypt($id));
+            $seminar->status_admin = $request->status_admin;
+            $seminar->komentar = $request->komentar;
+            $seminar->save();
+        } else {
+            $status = ['Valid', 'Invalid', 'Process'];
+            $request->validate(
+                [
+                    'status_admin' => ['required', 'string', 'in:' . implode(',', $status)],
+                ],
+                [
+                    'status_admin.required' => 'Status Admin Harus Diisi',
+                    'status_admin.in' => 'Status Admin Harus Valid, Invalid, atau Process',
+                ]
+            );
+            $seminar = ModelSeminarTaDua::find(Crypt::decrypt($id));
+            $seminar->status_admin = $request->status_admin;
+            $seminar->komentar = null;
+            $seminar->save();
+        }
+        return redirect()->route('berkas.validasi.seminar.ta2.index')
+            ->with('success', 'Berhasil Mengubah Data Seminar');
+    }
     /**
      * Remove the specified resource from storage.
      *

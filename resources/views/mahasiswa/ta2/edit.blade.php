@@ -79,19 +79,21 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Pembimbing 2</label>
-                                    <select class="custom-select2 form-control" name="id_pembimbing_dua"
-                                        id="id_pembimbing_dua" style="width: 100%; height: 38px"
+                                    <select
+                                        class="custom-select2 form-control @error('id_pembimbing_dua') form-control-danger @enderror"
+                                        name="id_pembimbing_dua" id="id_pembimbing_dua" style="width: 100%; height: 38px"
                                         onchange="toggleInput(this, 'Pembimbing2', 'pbl2_nama')">
                                         <optgroup label="Pembimbing 2">
                                             @foreach ($dosens as $item)
                                                 <option value="{{ $item->encrypt_id }}"
-                                                    {{ old('id_pembimbing_dua',$seminar->pembimbing_dua->encrypt_id) == $item->encrypt_id ? 'selected' : '' }}>
+                                                    {{ old('id_pembimbing_dua', $seminar->pembimbing_dua->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (old('id_pembimbing_dua') == 'new' || $errors->has('pbl2_nama') || $seminar->pbl2_nama != null)
-                                                <option value="new" selected>Tidak Ada diDaftar Ini</option>
+                                            @if (in_array(old('id_pembimbing_dua', $seminar->id_pembimbing_dua), ['new', null]) ||
+                                                    $errors->has('pbl2_nama'))
+                                                <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
-                                                <option value="new">Tidak Ada diDaftar Ini</option>
+                                                <option value="new">Tidak Ada di Daftar Ini</option>
                                             @endif
                                         </optgroup>
                                     </select>

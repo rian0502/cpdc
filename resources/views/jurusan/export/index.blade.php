@@ -202,7 +202,7 @@
                 </div>
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
-                        <div class="h5 mb-0">Seminar PKL / KP</div>
+                        <div class="h5 mb-0">Seminar PKL</div>
                     </div>
                     <form action="{{ route('jurusan.unduh.kp') }}" method="POST" enctype="multipart/form-data">
                         @csrf

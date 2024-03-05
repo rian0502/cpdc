@@ -20,14 +20,16 @@ class KinerjaDosenDataController extends Controller
         //
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
-        if ($request->ajax() && $startDate && $endDate) {
-            $data = ModelKinerjaDosen::with('dosen')->where('tahun_akademik', $startDate)->where('semester', $endDate)->orderBy('tahun_akademik', 'desc');
+        $kategori = $request->input('kategori', null);
+
+        if ($request->ajax() && $startDate && $endDate && $kategori) {
+            $data = ModelKinerjaDosen::with('dosen')->where('kategori', $kategori)->where('tahun_akademik', $startDate)->where('semester', $endDate)->orderBy('tahun_akademik', 'desc');
             return DataTables::of($data)
                 ->addIndexColumn()->editColumn('dosen.nama_dosen', function ($data) {
                     return $data->dosen->nama_dosen;
                 })
                 ->toJson();
-        } else if ($request->ajax() && $startDate == null && $endDate == null) {
+        } else if ($request->ajax() && $startDate == null && $endDate == null && $kategori==null) {
             $data = ModelKinerjaDosen::with('dosen')->orderBy('tahun_akademik', 'desc');
             return DataTables::of($data)
                 ->addIndexColumn()->editColumn('dosen.nama_dosen', function ($data) {
@@ -43,11 +45,12 @@ class KinerjaDosenDataController extends Controller
     {
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
+        $kategori = $request->input('kategori', null);
 
         $query = ModelKinerjaDosen::query();
 
-        if ($startDate && $endDate) {
-            $query->where('tahun_akademik', $startDate)
+        if ($startDate && $endDate && $kategori) {
+            $query->where('kategori', $kategori)->where('tahun_akademik', $startDate)
                 ->where('semester', $endDate);
         }
 
@@ -100,6 +103,7 @@ class KinerjaDosenDataController extends Controller
     {
         $starDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
+        $kategori = $request->input('kategori', null);
 
         $query = ModelKinerjaDosen::with('dosen');
         $highestTotalPenilaian = ModelKinerjaDosen::join('dosen', 'kinerja_dosen.dosen_id', '=', 'dosen.id')
@@ -113,11 +117,12 @@ class KinerjaDosenDataController extends Controller
             ->groupBy('dosen.id')
             ->orderBy('total_penilaian')
             ->value('total_penilaian');
-        if ($starDate && $endDate) {
-            $query->where('tahun_akademik', $starDate)
+        if ($starDate && $endDate && $kategori) {
+            $query->where('kategori', $kategori)->where('tahun_akademik', $starDate)
                 ->where('semester', $endDate);
             $highestTotalPenilaian = ModelKinerjaDosen::join('dosen', 'kinerja_dosen.dosen_id', '=', 'dosen.id')
                 ->selectRaw('SUM(sks_pendidikan + sks_penelitian + sks_pengabdian + sks_penunjang) as total_penilaian')
+                ->where('kategori', $kategori)
                 ->where('tahun_akademik', $starDate)
                 ->where('semester', $endDate)->groupBy('dosen.id')
                 ->orderByDesc('total_penilaian')
@@ -125,6 +130,7 @@ class KinerjaDosenDataController extends Controller
 
             $lowestTotalPenilaian = ModelKinerjaDosen::join('dosen', 'kinerja_dosen.dosen_id', '=', 'dosen.id')
                 ->selectRaw('SUM(sks_pendidikan + sks_penelitian + sks_pengabdian + sks_penunjang) as total_penilaian')
+                ->where('kategori', $kategori)
                 ->where('tahun_akademik', $starDate)
                 ->where('semester', $endDate)->groupBy('dosen.id')
                 ->orderBy('total_penilaian')

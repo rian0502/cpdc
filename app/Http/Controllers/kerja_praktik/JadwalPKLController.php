@@ -127,10 +127,10 @@ class JadwalPKLController extends Controller
             'tgl_seminar_kp',
             Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY')
         );
-        $template->setValue('mitra', $request->mitra);
+        $template->setValue('mitra', $seminar->mitra);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
-        $template->setValue('pembimbing_lapangan', $request->pembimbing_lapangan);
-        $template->setValue('nip_pembimbing_lapangan', $request->ni_pemlap);
+        $template->setValue('pembimbing_lapangan', $seminar->pembimbing_lapangan);
+        $template->setValue('nip_pembimbing_lapangan', $seminar->ni_pemlap);
         $namafile = $seminar->mahasiswa->npm . '_ba_kp_' . time() . '.docx';
         $template->saveAs('uploads/print_ba_kp/' . $namafile);
         //send email

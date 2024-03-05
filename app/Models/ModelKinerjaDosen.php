@@ -15,6 +15,7 @@ class ModelKinerjaDosen extends Model
     protected $fillable =  [
         'encrypted_id',
         'semester',
+        'kategori', // 'BKD' or 'Remunerasi
         'tahun_akademik',
         'sks_pendidikan',
         'sks_penelitian',

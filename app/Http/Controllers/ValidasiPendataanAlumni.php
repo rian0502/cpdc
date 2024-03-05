@@ -80,10 +80,10 @@ class ValidasiPendataanAlumni extends Controller
     {
 
         $pendataan = ModelPendataanAlumni::find(Crypt::decrypt($id));
-        if($request->status == 'Invalid'){
+        if ($request->status == 'Invalid') {
             $request->validate([
                 'keterangan' => 'required|min:10|string',
-            ],[
+            ], [
                 'keterangan.required' => 'Keterangan harus diisi',
                 'keterangan.min' => 'Keterangan minimal 10 karakter',
                 'keterangan.string' => 'Keterangan harus berupa string',
@@ -91,9 +91,8 @@ class ValidasiPendataanAlumni extends Controller
             $pendataan->komentar = $request->keterangan;
             $pendataan->status = $request->status;
             $pendataan->updated_at = date('Y-m-d H:i:s');
-            $pendataan->save();    
-        }
-        else{
+            $pendataan->save();
+        } else {
             $pendataan->status = $request->status;
             $pendataan->updated_at = date('Y-m-d H:i:s');
             $pendataan->save();
@@ -101,12 +100,14 @@ class ValidasiPendataanAlumni extends Controller
             $mahasiswa->status = 'Alumni';
             $mahasiswa->save();
             $user = User::find($mahasiswa->user_id);
-            $user->assignRole('alumni');
+            if ($user->hasRole('mahasiswa'))
+                $user->removeRole('alumni');
+            else if ($user->hasRole('mahasiswaS2')) {
+                $user->asiignRole('alumniS2');
+            }
             $user->save();
         }
         return redirect()->route('berkas.validasi.pendataan_alumni.index')->with('success', 'Data berhasil divalidasi');
-
-
     }
 
     /**
