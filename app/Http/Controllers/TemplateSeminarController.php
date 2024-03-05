@@ -44,7 +44,6 @@ class TemplateSeminarController extends Controller
         if(file_exists($path . $template->path)){
             unlink($path . $template->path);
         }
-        return dd(file_exists($path . $template->path));
         unlink($path . $template->path);
         $file = $request->file('file_template');
         $fileName = $request->hashName();
