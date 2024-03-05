@@ -45,7 +45,7 @@ class TemplateSeminarController extends Controller
             unlink($template->path);
         }
         $file = $request->file('file_template');
-        $fileName = $request->hashName();
+        $fileName = $file->hashName();
         $fullPath = $path.$fileName;
         $file->move($fullPath);
         $template->path = $fullPath;
