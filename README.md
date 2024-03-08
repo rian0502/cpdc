@@ -28,9 +28,7 @@ Website ini digunakan untuk melakukan pendataan terhadap Dosen, Mahasiswa, Aktiv
 -------------------------------------------
 
 ## Lisensi
-MIT License
-[2023] [Author]
-
+https://drive.google.com/file/d/1k-O4DnAXIXP3zvStl0EifxxAyw8RxCQD/view
 -------------------------------------------
 ## Dokumentasi
 
