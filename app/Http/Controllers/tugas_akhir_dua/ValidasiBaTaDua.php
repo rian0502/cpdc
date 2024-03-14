@@ -108,14 +108,4 @@ class ValidasiBaTaDua extends Controller
         return redirect()->route('koor.validasiBaTA2.index')
             ->with('success', 'Berhasil Mengubah Data Seminar');
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
