@@ -482,6 +482,8 @@ class ExportData extends Controller
         $sheet->setCellValue('P1', 'Nilai Angka');
         $sheet->setCellValue('Q1', 'No BA');
         $sheet->setCellValue('R1', 'URL');
+        $sheet->setCellValue('S1', 'Tanggal Realisasi');
+
         foreach ($mahasiswa as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->npm);
@@ -502,11 +504,13 @@ class ExportData extends Controller
                 $sheet->setCellValue('P' . ($key + 2), $value->seminar_kp->berita_acara->nilai_akhir);
                 $sheet->setCellValue('Q' . ($key + 2), $value->seminar_kp->berita_acara->no_ba_seminar_kp);
                 $sheet->setCellValue('R' . ($key + 2), url('/uploads/berita_acara_seminar_kp/' . $value->seminar_kp->berita_acara->berkas_ba_seminar_kp));
+                $sheet->setCellValue('S' . ($key + 2), $value->seminar_kp->jadwal->tanggal_skp);
             } else {
                 $sheet->setCellValue('O' . ($key + 2), '-');
                 $sheet->setCellValue('P' . ($key + 2), '-');
                 $sheet->setCellValue('Q' . ($key + 2), '-');
                 $sheet->setCellValue('R' . ($key + 2), '-');
+                $sheet->setCellValue('S' . ($key + 2), '-');
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
