@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\mahasiswa;
 
-use App\Http\Requests\StorePublikasiMahasiswa;
-use App\Models\ModelPublikasiMahasiswa;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
-use PublikasiMahasiswa;
+use App\Models\ModelPublikasiMahasiswa;
+use App\Http\Requests\StorePublikasiMahasiswa;
 
 class PublikasiMahasiswaController extends Controller
 {

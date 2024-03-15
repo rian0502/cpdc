@@ -233,7 +233,7 @@
 
         function createSelect(optionsArray) {
             // Create select element with options
-            var select = $('<select class="custom-select2 form-control" name="kategori"></select>');
+            var select = $('<select class="custom-select2 form-control" style="width: 100%; height: 38px" name="kategori"></select>');
             var label = $('<label>Kategori</label>');
 
             // Add options based on the provided array
@@ -246,7 +246,7 @@
 
         function createInput() {
             // Create input element
-            var input = $('<input type="text" class="form-control" name="kategori">');
+            var input = $('<input type="text" style="width: 100%; height: 38px" class="form-control" name="kategori">');
             var label = $('<label>Kategori</label>');
 
             // Append input to kategoriContainer
