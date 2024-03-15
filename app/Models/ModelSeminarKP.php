@@ -63,7 +63,6 @@ class ModelSeminarKP extends Model
     public function getSeminarKumpulBa(){
         return $this->join('ba_seminar_kp', 'seminar_kp.id', '=', 'ba_seminar_kp.id_seminar')
         ->where('seminar_kp.status_seminar', 'Belum Selesai')
-        ->where('seminar_kp.keterangan', '')
         ->select('seminar_kp.id','seminar_kp.encrypt_id','seminar_kp.id_mahasiswa', 'seminar_kp.judul_kp', 'ba_seminar_kp.no_ba_seminar_kp')
         ->orderBy('seminar_kp.updated_at', 'asc')
         ->get();
