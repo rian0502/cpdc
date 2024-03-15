@@ -338,7 +338,7 @@
                         </li>
                         </li>
                         <li
-                            class="dropdown {{ Request::is('jurusan/kinerjaDosen*') || Request::is('sudo/akun_dosen*') || Request::is('jurusan/litabmas*') || Request::is('jurusan/publikasi*') || Request::is('jurusan/penghargaan*') || Request::is('jurusan/seminar*') ? 'show' : '' }}">
+                            class="dropdown {{ !Request::is('jurusan/publikasiMahasiswa') && Request::is('jurusan/kinerjaDosen*') || Request::is('sudo/akun_dosen*') || Request::is('jurusan/litabmas*') || Request::is('jurusan/publikasi') || Request::is('jurusan/penghargaan*') || Request::is('jurusan/seminar*') ? 'show' : '' }}">
                             <a href="javascript:;" class="dropdown-toggle">
                                 <span class="micon bi bi-person-video2"></span><span class="mtext">Dosen</span>
                             </a>
@@ -351,7 +351,7 @@
                                 <li><a href="{{ route('jurusan.litabmas.index') }}"
                                         class="{{ Request::is('jurusan/litabmas*') ? 'active' : '' }}">LITABMAS</a></li>
                                 <li><a href="{{ route('jurusan.publikasi.index') }}"
-                                        class="{{ Request::is('jurusan/publikasi*') ? 'active' : '' }}">Publikasi</a></li>
+                                        class="{{ Request::is('jurusan/publikasi*')  && !Request::is('jurusan/publikasiMahasiswa') ? 'active' : '' }}">Publikasi</a></li>
                                 <li><a href="{{ route('jurusan.penghargaan.index') }}"
                                         class="{{ Request::is('jurusan/penghargaan*') ? 'active' : '' }}">Penghargaan</a>
                                 </li>
