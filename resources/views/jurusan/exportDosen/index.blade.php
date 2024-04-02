@@ -242,13 +242,11 @@
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
                                     <label>Data Organisasi</label>
-                                    <div class="weight-500 col-sm-2">
                                         <div class="form-group">
-                                            <div class="cta  d-flex align-items-center justify-content-end">
+                                            <div class="cta  d-flex align-items-left justify-content-start">
                                                 <button class="btn btn-sm btn-outline-primary">Unduh</button>
                                             </div>
                                         </div>
-                                    </div>
                                     @error('tahun_organisasi')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
