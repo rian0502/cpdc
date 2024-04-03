@@ -35,6 +35,7 @@ use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\sudo\BaseNpmController;
 use App\Http\Controllers\sudo\ValidasiMahasiswa;
 use App\Http\Controllers\dosen\JabatanController;
+use App\Http\Controllers\Kajur\ExportDataLainnya;
 use App\Http\Controllers\ValidasiPendataanAlumni;
 use App\Http\Controllers\dosen\LitabmasController;
 use App\Http\Controllers\sudo\AkunAdminController;
@@ -436,6 +437,9 @@ Route::prefix('jurusan')->name('jurusan.')->middleware(
     Route::resource('kinerjaDosen', KinerjaDosenDataController::class);
 
     Route::get('inventaris', [InventarisController::class, 'index'])->name('inventaris.index');
+    Route::get('unduh/data_lainnya', [ExportDataLainnya::class, 'index'])->name('unduh.lainnya.index');
+    Route::get('unduh/inventaris', [ExportDataLainnya::class, 'export_inventaris'])->name('unduh.data.inventaris.index');
+
 
     Route::get('pieChartScalaPublikasi', [PublikasiDataController::class, 'pieChartScala'])
         ->name('publikasi.pieChartScala');
@@ -526,6 +530,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware(
     Route::post('unduh/kompre', [ExportData::class, 'kompre'])->name('unduh.kompre');
     Route::post('unduh/publikasi_mahasiswa', [ExportData::class, 'publikasi_mahasiswa'])->name('unduh.publikasi.mahasiswa');
     Route::post('unduh/publikasi_mahasiswaS2', [ExportDataS2::class, 'publikasi_mahasiswa'])->name('unduh.publikasi.mahasiswas2');
+
     Route::resource('mahasiswa', DataMahasiswaAllController::class);
 });
 Route::prefix('jurusan')->name('jurusan.')->middleware(
@@ -734,9 +739,12 @@ Route::prefix('sudo')->name('sudo.')->middleware(['auth', 'verified', 'role:sudo
     Route::resource('akun_dosen', AkunDosenController::class);
     Route::resource('akun_mahasiswa', AkunMahasiswaController::class);
     Route::post('base_npm/add/excel', [BaseNpmController::class, 'storeExcel'])->name('base_npm.store.excel');
+    Route::get('unduh_npm', [BaseNpmController::class, 'exportNpm'])->name('unduh.npm.index');
+
     Route::resource('akun_admin', AkunAdminController::class);
     Route::resource('base_npm', BaseNpmController::class);
     Route::get('BaseNpm', [BaseNpmController::class, 'BaseNpm'])->name('base_npm.ajax');
+
     Route::resource('model', ModelController::class);
     Route::resource('kategori', KategoriController::class);
     Route::resource('kalab', PenempatanDosenLabController::class);

@@ -31,6 +31,19 @@
                                 </button>
                             </a>
 
+                            <a href="{{ url('uploads/base_npm/template_import_npm.xlsx') }}"
+                                class="btn"> <button class="btn btn-primary mt-3">
+                                    <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                   Unduh Template Import NPM
+                                </button></a>
+
+                                <a href="{{route('sudo.unduh.npm.index')}}" class="btn" type="button">
+                                    <button class="btn btn-info mt-3">
+                                        <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                        Export NPM
+                                    </button>
+                                </a>
+
                         </div>
 
                         <div class="col-md-4 col-sm-12 mb-30">
