@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers\sudo;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreAkunDosenRequest;
-use App\Models\AnggotaLitabmas;
-use App\Models\AnggotaPublikasiDosen;
+use App\Models\User;
 use App\Models\Dosen;
-use App\Models\HistoryJabatanDosen;
-use App\Models\HistoryPangkatDosen;
 use App\Models\ModelGelar;
 use App\Models\ModelSPDosen;
-use App\Models\OrganisasiDosen;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
+use App\Models\AnggotaLitabmas;
+use App\Models\OrganisasiDosen;
 use Illuminate\Support\Facades\DB;
+use App\Models\HistoryJabatanDosen;
+use App\Models\HistoryPangkatDosen;
+use App\Http\Controllers\Controller;
+use App\Models\AnggotaPublikasiDosen;
+use App\Models\ModelPenghargaanDosen;
+use Illuminate\Support\Facades\Crypt;
+use App\Http\Requests\StoreAkunDosenRequest;
 
 
 class AkunDosenController extends Controller
@@ -81,8 +82,8 @@ class AkunDosenController extends Controller
             'litabmas' => AnggotaLitabmas::where('dosen_id', Crypt::decrypt($id))->get(),
             'publikasi' => AnggotaPublikasiDosen::where('id_dosen', Crypt::decrypt($id))->get(),
             'gelar' => ModelGelar::where('dosen_id', Crypt::decrypt($id))->get(),
-            'seminar' => ModelSPDosen::where('dosen_id', Crypt::decrypt($id))->where('jenis', 'Seminar')->get(),
-            'penghargaan' => ModelSPDosen::where('dosen_id', Crypt::decrypt($id))->where('jenis', 'Penghargaan')->get(),
+            'seminar' => ModelSPDosen::where('dosen_id', Crypt::decrypt($id))->get(),
+            'penghargaan' => ModelPenghargaanDosen::where('dosen_id', Crypt::decrypt($id))->get(),
         ];
         return view('akun.dosen.show', $data);
     }
