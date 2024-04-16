@@ -44,10 +44,10 @@
                                 @foreach ($organisasi as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td class="text-left">{{ $item->nama_organisasi }}</td>
+                                        <td class="text-center">{{ $item->nama_organisasi }}</td>
                                         <td>{{ $item->tahun_menjabat . ' - ' . $item->tahun_berakhir }}
                                         </td>
-                                        <td class="text-left">{{ $item->jabatan }}</td>
+                                        <td class="text-center">{{ $item->jabatan }}</td>
                                         <td>
                                             <div class="dropdown">
                                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"

@@ -36,6 +36,23 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
     <script>
+// Mendapatkan semua elemen <a> dalam dokumen
+    var links = document.getElementsByTagName("a");
+
+// Loop melalui setiap elemen <a>
+for (var i = 0; i < links.length; i++) {
+    var link = links[i];
+    var href = link.getAttribute("href");
+
+    // Jika href mengandung "https://https://", ganti dengan "https://"
+    if (href && href.includes("https://https://")) {
+        href = href.replace("https://https://", "https://");
+        link.setAttribute("href", href);
+    }
+}
+
+    </script>
+    <script>
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
@@ -481,7 +498,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Menangkap semua form di halaman
             const forms = document.querySelectorAll('form');
-    
+
             forms.forEach(function (form) {
                 form.addEventListener('submit', function (event) {
                     // Menonaktifkan tombol submit untuk mencegah pengiriman ganda
@@ -489,10 +506,10 @@
                     if (submitButton) {
                         submitButton.disabled = true;
                     }
-                    
+
                     // Tambahkan indikator loading jika diperlukan
                     // Misalnya, tampilkan pesan loading atau animasi loading
-    
+
                     // Atur delay agar tombol submit tidak tetap dinonaktifkan selamanya
                     setTimeout(function () {
                         if (submitButton) {
@@ -503,7 +520,7 @@
             });
         });
     </script>
-    
+
 </body>
 
 </html>
