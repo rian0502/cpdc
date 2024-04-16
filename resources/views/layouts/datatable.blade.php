@@ -1403,6 +1403,23 @@
     <script src="/Assets/src/js/nocopy.js"></script>
     <!-- Tambahkan HTML untuk menampilkan notifikasi -->
 
+    <script>
+// Mendapatkan semua elemen <a> dalam dokumen
+    var links = document.getElementsByTagName("a");
+
+// Loop melalui setiap elemen <a>
+for (var i = 0; i < links.length; i++) {
+    var link = links[i];
+    var href = link.getAttribute("href");
+
+    // Jika href mengandung "https://https://", ganti dengan "https://"
+    if (href && href.includes("https://https://")) {
+        href = href.replace("https://https://", "https://");
+        link.setAttribute("href", href);
+    }
+}
+
+    </script>
     <!-- Tambahkan script untuk menampilkan notifikasi -->
     <script>
         @if (session('success'))

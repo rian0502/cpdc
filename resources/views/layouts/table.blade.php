@@ -156,7 +156,7 @@
                             </div>
                         </div>
 
-                        
+
                         <a href="/help"
                             class="nav-item nav-link topbar{{ Request::is('help') ? 'active' : '' }}">Bantuan</a>
                         @auth
@@ -400,10 +400,27 @@
     <script src="/Assets/date/js/tanggal.js"></script>
     <script src="/Assets/src/js/nocopy.js"></script>
     <script>
+// Mendapatkan semua elemen <a> dalam dokumen
+    var links = document.getElementsByTagName("a");
+
+// Loop melalui setiap elemen <a>
+for (var i = 0; i < links.length; i++) {
+    var link = links[i];
+    var href = link.getAttribute("href");
+
+    // Jika href mengandung "https://https://", ganti dengan "https://"
+    if (href && href.includes("https://https://")) {
+        href = href.replace("https://https://", "https://");
+        link.setAttribute("href", href);
+    }
+}
+
+    </script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Menangkap semua form di halaman
             const forms = document.querySelectorAll('form');
-    
+
             forms.forEach(function (form) {
                 form.addEventListener('submit', function (event) {
                     // Menonaktifkan tombol submit untuk mencegah pengiriman ganda
@@ -420,7 +437,7 @@
             });
         });
     </script>
-    
+
 </body>
 
 </html>
