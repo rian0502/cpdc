@@ -291,7 +291,7 @@
                                                 </div>
                                             @endif
                                             <h5 class="h4 text-blue mb-20">Jadwal Seminar</h5>
-                                            @if ($kp != null && $kp->berita_acara != null)
+                                            @if ($kp != null && $kp->jadwal != null)
                                                 <div class="p-3 mb-2 bg-light text-dark rounded-div">
                                                     {{-- BUAT KONDISI DISINI --}}
                                                     <div class="row border-bottom">
