@@ -21,6 +21,7 @@
         .right {
             float: right;
         }
+
         .mttesis {
             margin-top: -64px;
             margin-left: 100px;
@@ -110,7 +111,7 @@
                                             <optgroup label="Pembimbing 1">
                                                 @foreach ($dosen as $item)
                                                     <option value="{{ $item->encrypt_id }}"
-                                                        {{ old('id_pembimbing_1', $seminar->pembimbingSatu->id) == $item->id ? 'selected' : '' }}>
+                                                        {{ old('id_pembimbing_1', $seminar->id_pembimbing_1) == $item->id ? 'selected' : '' }}>
                                                         {{ $item->nama_dosen }}</option>
                                                 @endforeach
                                             </optgroup>
@@ -125,10 +126,11 @@
                                             <optgroup label="Pembahas 1">
                                                 @foreach ($dosen as $item)
                                                     <option value="{{ $item->encrypt_id }}"
-                                                        {{ old('id_pembimbing_2', $seminar->pembimbingDua->id ?? null) == $item->id ? 'selected' : '' }}>
+                                                        {{ old('id_pembimbing_2', $seminar->id_pembimbing_2 ?? null) == $item->id ? 'selected' : '' }}>
                                                         {{ $item->nama_dosen }}</option>
                                                 @endforeach
-                                                @if (in_array(old('id_pembimbing_2', $seminar->pembimbingDua->id), ['new', null]) || $errors->has('pembimbimng_external_2'))
+                                                @if (in_array(old('id_pembimbing_2', $seminar->id_pembimbing_2), ['new', null]) ||
+                                                        $errors->has('pembimbimng_external_2'))
                                                     <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                                 @else
                                                     <option value="new">Tidak Ada di Daftar Ini</option>
@@ -137,8 +139,8 @@
                                         </select>
                                     </div>
                                     <div id="pembimbimng_external_2"
-                                        style="display: {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->id), ['new', null]) ? 'block' : 'none' }};"
-                                        {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->id), ['new', null]) ? '' : 'hidden' }}>
+                                        style="display: {{ in_array(old('id_pembimbing_2', $seminar->id_pembimbing_2), ['new', null]) ? 'block' : 'none' }};"
+                                        {{ in_array(old('id_pembimbing_2', $seminar->id_pembimbing_2), ['new', null]) ? '' : 'hidden' }}>
                                         <div class="form-group">
                                             <label>Nama Pembimbing 2</label>
                                             <input autofocus name="pbl2_nama"
@@ -151,8 +153,8 @@
                                         </div>
                                     </div>
                                     <div id="Pembimbing2"
-                                        style="display: {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->id ?? null), ['new', null]) ? 'block' : 'none' }};"
-                                        {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->id ?? null), ['new', null]) ? '' : 'hidden' }}>
+                                        style="display: {{ in_array(old('id_pembimbing_2', $seminar->id_pembimbing_2 ?? null), ['new', null]) ? 'block' : 'none' }};"
+                                        {{ in_array(old('id_pembimbing_2', $seminar->id_pembimbing_2 ?? null), ['new', null]) ? '' : 'hidden' }}>
                                         <div class="form-group">
                                             <label>NIP Pembimbing 2</label>
                                             <input autofocus name="pbl2_nip"
@@ -277,10 +279,10 @@
                                             <optgroup label="Pembahas 3">
                                                 @foreach ($dosen as $item)
                                                     <option value="{{ $item->encrypt_id }}"
-                                                        {{ old('id_pembahas_3', $seminar->pembahasTiga->id?? null) == $item->id ? 'selected' : '' }}>
+                                                        {{ old('id_pembahas_3', $seminar->pembahasTiga->id ?? null) == $item->id ? 'selected' : '' }}>
                                                         {{ $item->nama_dosen }}</option>
                                                 @endforeach
-                                                @if (in_array(old('id_pembahas_3', $seminar->pembahasTiga->id?? null), ['new', null]) ||
+                                                @if (in_array(old('id_pembahas_3', $seminar->pembahasTiga->id ?? null), ['new', null]) ||
                                                         $errors->has('pembahas_external_3'))
                                                     <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                                 @else
@@ -291,8 +293,8 @@
                                     </div>
 
                                     <div id="pembahas_external_3"
-                                        style="display: {{ in_array(old('id_pembahas_3', $seminar->pembahasTiga->id?? null), ['new', null]) ? 'block' : 'none' }};"
-                                        {{ in_array(old('id_pembahas_3', $seminar->pembahasTiga->id?? null), ['new', null]) ? '' : 'hidden' }}>
+                                        style="display: {{ in_array(old('id_pembahas_3', $seminar->pembahasTiga->id ?? null), ['new', null]) ? 'block' : 'none' }};"
+                                        {{ in_array(old('id_pembahas_3', $seminar->pembahasTiga->id ?? null), ['new', null]) ? '' : 'hidden' }}>
                                         <div class="form-group">
                                             <label>Nama pembahas 3</label>
                                             <input autofocus name="pembahas_external_3"
@@ -306,8 +308,8 @@
                                         </div>
                                     </div>
                                     <div id="pembahas3"
-                                        style="display: {{ in_array(old('id_pembahas_3', $seminar->pembahasTiga->id?? null), ['new', null]) ? 'block' : 'none' }};"
-                                        {{ in_array(old('id_pembahas_3', $seminar->pembahasTiga->id?? null), ['new', null]) ? '' : 'hidden' }}>
+                                        style="display: {{ in_array(old('id_pembahas_3', $seminar->pembahasTiga->id ?? null), ['new', null]) ? 'block' : 'none' }};"
+                                        {{ in_array(old('id_pembahas_3', $seminar->pembahasTiga->id ?? null), ['new', null]) ? '' : 'hidden' }}>
                                         <div class="form-group">
                                             <label>NIP pembahas 3</label>
                                             <input autofocus name="nip_pembahas_external_3"
