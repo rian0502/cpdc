@@ -56,6 +56,7 @@ class EditSeminarTugasAkhir1Controller extends Controller
             'dosen' => $dosen,
             'lokasi' => $lokasi,
         ];
+
         // return response()->json($seminar);
         return view('koor.ta1.arsip.edit', $data);
     }
