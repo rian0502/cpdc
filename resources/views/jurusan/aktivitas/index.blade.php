@@ -178,7 +178,7 @@
                             orderable: false,
                             searchable: false,
                             render: function(data, type, row) {
-                                var downloadUrl = "{{ asset('uploads/file_aktivitas') }}" + '/' +
+                                var downloadUrl = "{{ asset('uploads/file_act_mhs') }}" + '/' +
                                     row
                                     .file_aktivitas;
                                 return `
@@ -440,7 +440,7 @@
                             orderable: false,
                             searchable: false,
                             render: function(data, type, row) {
-                                var downloadUrl = "{{ asset('uploads/file_aktivitas') }}" + '/' +
+                                var downloadUrl = "{{ asset('uploads/file_act_mhs') }}" + '/' +
                                     row
                                     .file_aktivitas;
                                 return `
