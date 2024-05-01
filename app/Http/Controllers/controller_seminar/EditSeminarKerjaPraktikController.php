@@ -46,6 +46,7 @@ class EditSeminarKerjaPraktikController extends Controller
             'lokasi' => $lokasi,
             'syarat' => $syarat
         ];
+
         return view('koor.pkl.arsip.edit', $data);
     }
 

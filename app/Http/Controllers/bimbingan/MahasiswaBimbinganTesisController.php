@@ -40,26 +40,17 @@ class MahasiswaBimbinganTesisController extends Controller
         $ta1 = Mahasiswa::with(['taSatuS2.pembimbingSatu', 'taSatuS2.pembimbingDua', 'taSatuS2.pembahasSatu', 'taSatuS2.pembahasDua', 'taSatuS2.pembahasTiga', 'taSatuS2.jadwal', 'taSatuS2.beritaAcara'])
             ->where('angkatan', $request->ta_unduh)->whereHas('taSatuS2', function ($query) {
                 $query->where('id_pembimbing_1', Auth::user()->dosen->id)
-                    ->orWhere('id_pembimbing_2', Auth::user()->dosen->id)
-                    ->orWhere('id_pembahas_1', Auth::user()->dosen->id)
-                    ->orWhere('id_pembahas_2', Auth::user()->dosen->id)
-                    ->orWhere('id_pembahas_3', Auth::user()->dosen->id);
+                    ->orWhere('id_pembimbing_2', Auth::user()->dosen->id);
             })->get();
         $ta2 = Mahasiswa::with(['taDuaS2.pembimbingSatu', 'taDuaS2.pembimbingDua', 'taDuaS2.pembahasSatu', 'taDuaS2.pembahasDua', 'taDuaS2.pembahasTiga', 'taDuaS2.jadwal', 'taDuaS2.beritaAcara'])
             ->where('angkatan', $request->ta_unduh)->whereHas('taDuaS2', function ($query) {
                 $query->where('id_pembimbing_1', Auth::user()->dosen->id)
-                    ->orWhere('id_pembimbing_2', Auth::user()->dosen->id)
-                    ->orWhere('id_pembahas_1', Auth::user()->dosen->id)
-                    ->orWhere('id_pembahas_2', Auth::user()->dosen->id)
-                    ->orWhere('id_pembahas_3', Auth::user()->dosen->id);
+                    ->orWhere('id_pembimbing_2', Auth::user()->dosen->id);
             })->get();
         $kompre = Mahasiswa::with(['komprehensifS2.pembimbingSatu', 'komprehensifS2.pembimbingDua', 'komprehensifS2.pembahasSatu', 'komprehensifS2.pembahasDua', 'komprehensifS2.pembahasTiga', 'komprehensifS2.jadwal', 'komprehensifS2.beritaAcara'])
             ->where('angkatan', $request->ta_unduh)->whereHas('komprehensifS2', function ($query) {
                 $query->where('id_pembimbing_1', Auth::user()->dosen->id)
-                    ->orWhere('id_pembimbing_2', Auth::user()->dosen->id)
-                    ->orWhere('id_pembahas_1', Auth::user()->dosen->id)
-                    ->orWhere('id_pembahas_2', Auth::user()->dosen->id)
-                    ->orWhere('id_pembahas_3', Auth::user()->dosen->id);
+                    ->orWhere('id_pembimbing_2', Auth::user()->dosen->id);
             })->get();
 
         $spreadsheet = new Spreadsheet();

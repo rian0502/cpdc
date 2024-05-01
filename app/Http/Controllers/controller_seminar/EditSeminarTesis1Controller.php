@@ -35,7 +35,11 @@ class EditSeminarTesis1Controller extends Controller
 
     public function edit($id)
     {
-        $seminar = ModelSeminarTaSatuS2::find(Crypt::decrypt($id));
+        $seminar = ModelSeminarTaSatuS2::with([
+            'pembimbingSatu', 'pembimbingDua',
+            'pembahasSatu', 'pembahasDua', 'pembahasTiga', 'jadwal', 'beritaAcara'
+        ])
+            ->where('id', Crypt::decrypt($id))->first();
         $dosen = Dosen::select('id', 'encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
         $lokasi = Lokasi::select('encrypt_id', 'nama_lokasi')->where('jenis_ruangan', 'Kelas')->get();
         $data = [
@@ -43,6 +47,7 @@ class EditSeminarTesis1Controller extends Controller
             'dosen' => $dosen,
             'lokasi' => $lokasi,
         ];
+        //return dd($data['seminar']);
         return view('koorS2.tesis1.arsip.edit', $data);
     }
 
@@ -181,7 +186,8 @@ class EditSeminarTesis1Controller extends Controller
         }
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $seminar = ModelSeminarTaSatuS2::with(
             'mahasiswa',
             'jadwal',

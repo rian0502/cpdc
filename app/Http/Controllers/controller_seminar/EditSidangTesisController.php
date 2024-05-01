@@ -59,7 +59,6 @@ class EditSidangTesisController extends Controller
             $seminar->sks = $request->sks;
             $seminar->ipk = $request->ipk;
             $seminar->toefl = $request->toefl;
-            $seminar->draft_artikel = $request->draft_artikel;
             $seminar->url_draft_artikel = $request->url_draft_artikel;
             if ($request->hasFile('berkas_kompre')) {
                 $request->validate([
@@ -174,7 +173,7 @@ class EditSidangTesisController extends Controller
                 $ba->save();
             }
             DB::commit();
-            return redirect()->route('koor.arsip.tesis2.index')->with('success', 'Data berhasil diubah');
+            return redirect()->route('koor.arsip.sidang_tesis.index')->with('success', 'Data berhasil diubah');
 
         } catch (\Throwable $th) {
             //throw $th;

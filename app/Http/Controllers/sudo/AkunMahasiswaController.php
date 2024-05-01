@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\sudo;
 
 use App\Models\AktivitasMahasiswa;
+use App\Models\BaseNPM;
 use App\Models\Mahasiswa;
 use App\Models\PrestasiMahasiswa;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class AkunMahasiswaController extends Controller
@@ -132,6 +134,14 @@ class AkunMahasiswaController extends Controller
 
     public function destroy($id)
     {
-        return redirect()->route('sudo.akun_mahasiswa.index');
+        DB::beginTransaction();
+        $user = User::with('mahasiswa')->find($id);
+        $npm = BaseNPM::where('npm', $user->mahasiswa->npm)->first();
+        $npm->status = 'nonaktif';
+        $npm->save();
+        $user->delete();
+        DB::commit();
+
+        return redirect()->route('sudo.akun_mahasiswa.index')->with('success', 'Akun Mahasiswa Berhasil Dihapus');
     }
 }

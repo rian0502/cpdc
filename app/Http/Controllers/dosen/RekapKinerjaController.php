@@ -55,7 +55,6 @@ class RekapKinerjaController extends Controller
             // Combination already exists, return with validation error
             return redirect()->back()->withInput()->withErrors(['validation_error' => 'Data dengan periode dan jenis tersebut sudah ada']);
         }
-
         // Combination does not exist, create a new record
         $kinerja = ModelKinerjaDosen::create([
             'semester' => $request->semester,
@@ -67,7 +66,7 @@ class RekapKinerjaController extends Controller
             'sks_penunjang' => $request->sks_penunjang,
             'dosen_id' => Auth::user()->dosen->id,
         ]);
-
+        
         // Encrypt the ID and save
         $kinerja->encrypted_id = Crypt::encrypt($kinerja->id);
         $kinerja->save();
