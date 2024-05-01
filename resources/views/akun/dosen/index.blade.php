@@ -19,7 +19,7 @@
                             </div>
                         </div>
                         <div class="pb-20 m-4">
-                            <table class="table data-table-responsive stripe data-table-noexport nowrap" id="data">
+                            <table class="table data-table-responsive stripe data-table-noexport" id="data">
                                 <thead>
                                     <tr>
                                         <th>No</th>

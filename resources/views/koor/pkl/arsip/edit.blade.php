@@ -36,7 +36,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
                         <div class="pull-left">
-                            <h4 class="text-dark h4" style="margin-left: 10px">Seminar PKL/KP</h4>
+                            <h4 class="text-dark h4" style="margin-left: 10px">Seminar PKL</h4>
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
@@ -50,7 +50,7 @@
                                         <label>Nama Mitra</label>
                                         <input autofocus name="mitra" value="{{ old('mitra', $seminar->mitra) }}"
                                             id="mitra" class="form-control" type="text"
-                                            placeholder="Nama Mitra PKL/KP">
+                                            placeholder="Nama Mitra PKL">
                                         @error('mitra')
                                             <div class="form-control-feedback has-danger">{{ $message }}</div>
                                         @enderror
@@ -85,7 +85,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Lokasi PKL/KP</label>
+                                        <label>Lokasi PKL</label>
                                         <select id="region" class="selectpicker form-control" data-size="5"
                                             name="region">
                                             <option value="Unila"
@@ -308,7 +308,7 @@
                                         </div>
                                         <div class="form-group">
 
-                                            <label> Berkas Laporan PKL/KP <small> <a id="link-laporan_kp" href="#"
+                                            <label> Berkas Laporan PKL <small> <a id="link-laporan_kp" href="#"
                                                         target="_blank" style="display: none;">Lihat File</a>
                                                 </small></label>
                                             <div class="custom-file">
@@ -336,7 +336,7 @@
                                         <label>Dosen Pembimbing</label>
                                         <select class="custom-select2 form-control" name="id_dospemkp"
                                             style="width: 100%; height: 38px">
-                                            <optgroup label="Dosen Pembimbing PKL/KP">
+                                            <optgroup label="Dosen Pembimbing PKL">
                                                 @foreach ($dosen as $item)
                                                     <option value="{{ $item->encrypt_id }}"
                                                         {{ old('id_dospemkp', $seminar->id_dospemkp) == $item->id ? 'selected' : '' }}>
