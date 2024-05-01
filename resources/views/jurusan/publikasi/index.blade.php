@@ -16,13 +16,15 @@
                                         <p>{{ session('error') }}</p>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
-                                          </button>
+                                        </button>
                                     </div>
                                 @endif
 
-                                <form id="formStatus3" onsubmit="return showConfirmation3(event);" action="{{ route('WebSyncAllDosen') }}" method="post">
+                                <form id="formStatus3" onsubmit="return showConfirmation3(event);"
+                                    action="{{ route('WebSyncAllDosen') }}" method="post">
                                     @csrf <!-- Tambahkan ini untuk menjaga keamanan formulir -->
-                                    <button type="submit" id="submitButton3" class="btn btn-success btn-block" @if($lastSync && $lastSync->updated_at->isToday()) disabled @endif>
+                                    <button type="submit" id="submitButton3" class="btn btn-success btn-block"
+                                        @if ($lastSync && $lastSync->updated_at->isToday()) disabled @endif>
                                         Sinkronisasi Data
                                         <i class="fas fa-sync-alt"></i> <!-- Gantilah dengan ikon yang sesuai -->
                                     </button>
@@ -30,7 +32,8 @@
 
                                 <div class="mt-2">
                                     @if ($lastSync)
-                                        <b><i>Last Sync:</i> <small>{{ $lastSync->updated_at->format('Y-m-d H:i:s') }}</small></b>
+                                        <b><i>Last Sync:</i>
+                                            <small>{{ $lastSync->updated_at->format('Y-m-d H:i:s') }}</small></b>
                                     @endif
                                 </div>
 
@@ -190,15 +193,8 @@
                         },
 
                         {
-                            data: 'dosen',
-                            name: 'dosen',
-                            render: function(data, type, row) {
-                                if (data.length > 0) {
-                                    return data[0].nama_dosen;
-                                } else {
-                                    return ''; // atau sesuaikan dengan nilai default yang diinginkan
-                                }
-                            }
+                            data: 'nama_dosen',
+                            name: 'nama_dosen',
                         },
                         {
                             data: 'kategori',
@@ -231,7 +227,7 @@
                                 // var downloadUrl = "{{ asset('uploads/file_') }}" + '/' + row
                                 //     .file_Publikasi;
                                 var detail = "{{ route('dosen.publikasi.show', ':id') }}".replace(
-                                    ':id', row.encrypt_id);
+                                    ':id', row.encrypt_id_publikasi);
                                 var linkPublikasi = row.url;
                                 // Cek apakah awalan "https://" sudah ada
                                 if (!linkPublikasi.startsWith("https://")) {

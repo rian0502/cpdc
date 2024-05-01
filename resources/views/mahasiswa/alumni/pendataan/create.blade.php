@@ -54,17 +54,7 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <div class="form-group">
-                                        <label>Tanggal Lulus Sidang Komprehensif</label>
-                                        <input class="form-control" type="date" name="tgl_lulus"
-                                            value="{{ old('tgl_lulus') }}" value="{{ old('tgl_lulus') }}" id="tgl_lulus"
-                                            placeholder="Periode Seminar">
-                                        @error('tgl_lulus')
-                                            <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
+                               
                                 <div class="form-group">
                                     <label>
                                         Lembar Pengesahan
@@ -88,17 +78,7 @@
 
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
-                                <div class="form-group">
-                                    <label>Masa Studi
-                                        <small>Dalam Tahun</small>
-                                    </label>
-                                    <input name="masa_studi" id="masa_studi" class="form-control" type="text"
-                                        value="{{ old('masa_studi') }}" value="{{ old('masa_studi') }}"
-                                        placeholder="Masa Studi">
-                                    @error('masa_studi')
-                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
+
 
                                 <div class="form-group">
                                     <label>Periode Wisuda</label>

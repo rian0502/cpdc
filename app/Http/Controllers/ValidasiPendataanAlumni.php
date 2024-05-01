@@ -101,9 +101,9 @@ class ValidasiPendataanAlumni extends Controller
             $mahasiswa->save();
             $user = User::find($mahasiswa->user_id);
             if ($user->hasRole('mahasiswa'))
-                $user->removeRole('alumni');
+                $user->assignRole('alumni');
             else if ($user->hasRole('mahasiswaS2')) {
-                $user->asiignRole('alumniS2');
+                $user->assignRole('alumniS2');
             }
             $user->save();
         }

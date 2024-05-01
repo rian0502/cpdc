@@ -210,7 +210,7 @@
                                                             {{ $kp->dosen->nama_dosen }}
                                                         </div>
                                                         <label class="col-md-3 bold mt-2"><strong>Domisili
-                                                                PKL/KP</strong></label>
+                                                                PKL</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             {{ $kp->region }}
                                                         </div>
@@ -224,7 +224,7 @@
                                                             {{ $kp->tahun_akademik }}
                                                         </div>
                                                         <label class="col-md-3 bold mt-2"> <strong>Nama Mitra
-                                                                PKL/KP</strong></label>
+                                                                PKL</strong></label>
                                                         <div class="col-md-3 mt-2"
                                                             style="display:block;word-wrap:break-word;">
                                                             {{ $kp->mitra }}
@@ -366,7 +366,7 @@
                                                     </div>
                                                     <div class="row border-bottom mt-2">
                                                         <label class="col-md-3 bold"> <strong>Laporan Final
-                                                                PKL/KP</strong></label>
+                                                                PKL</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
                                                                 href="{{ Str::contains($kp->berita_acara->laporan_kp, 'drive.google.com') ? $kp->berita_acara->laporan_kp : '/uploads/laporan_kp/' . $kp->berita_acara->laporan_kp }}">Lihat
@@ -1267,9 +1267,77 @@
                                     </div>
                                 </div>
                                 {{-- aktivitas alumni kondisiin --}}
-                                @if ($mahasiswa->user->hasRole('alumni'))
+                                @if ($mahasiswa->user->hasRole('alumni') || $mahasiswa->user->hasRole('alumniS2'))
                                     <div class="tab-pane fade" id="aktivitas_alumni" role="tabpanel">
+
                                         <div class="pd-20">
+                                            <h5 class="h4 text-blue mb-20">Berita Acara</h5>
+                                            @if ($kp != null && $kp->berita_acara != null)
+                                            <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
+                                                <div class="row border-bottom">
+                                                    <label class="col-md-3 bold mt-2"> <strong>Tahun Akademik</strong></label>
+                                                    <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                                        {{ $pendataan->tahun_akademik }}
+                                                    </div>
+                                                    <label class="col-md-3 bold mt-2"><b>SKS</b></label>
+                                                    <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                                        {{ $pendataan->sks }}
+                                                    </div>
+                                                </div>
+                                                <div class="row border-bottom mt-2">
+                                                    <label class="col-md-3 bold"><b>IPK</b></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        {{ $pendataan->ipk }}
+                                                    </div>
+                                                    <label class="col-md-3 bold mt-1"><strong>Tanggal Lulus</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        {{ $pendataan->tgl_lulus }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="row border-bottom">
+                                                    <label class="col-md-3 bold mt-2"> <strong>Masa Studi</strong></label>
+                                                    <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                                        {{ $pendataan->masa_studi }}
+                                                    </div>
+                                                    <label class="col-md-3 bold mt-2"> <strong>Waktu Wisuda</strong></label>
+                                                    <div class="col-md-3 mt-2" style="display:block;word-wrap:break-word;">
+                                                        {{ $pendataan->periode_wisuda }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="row border-bottom mt-2">
+                                                    <label class="col-md-3 bold mt-1"> <strong>TOEFL</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        {{ $pendataan->toefl }}
+                                                    </div>
+                                                    <label class="col-md-3 bold"> <strong>Berkas TOEFL</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        <a target="_blank" href="/uploads/berkas_toefl/{{ $pendataan->berkas_toefl }}">Lihat</a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row border-bottom mt-2">
+                                                    <label class="col-md-3 bold mt-1"> <strong>Berkas Transkrip</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        <a target="_blank" href="/uploads/transkrip/{{ $pendataan->transkrip }}">Lihat</a>
+                                                    </div>
+                                                    <label class="col-md-3 bold mt-1"> <strong>Lembar Pengesahan</strong></label>
+                                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                                        <a target="_blank"
+                                                            href="/uploads/berkas_pengesahan/{{ $pendataan->berkas_pengesahan }}">Lihat</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @else
+                                                <div class="p-3 mb-2 bg-light text-dark rounded-div">
+                                                    <div class="d-flex justify-content-center align-items-center mt-2">
+                                                        <div>
+                                                            <h3 class="h3 text-blue mb-20">Data Belum Tersedia</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
                                             <table class="table data-table-responsive stripe data-table-noexport wrap ">
                                                 <thead>
                                                     <tr>

@@ -61,7 +61,7 @@
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->mahasiswa->nama_mahasiswa }}
                                 </div>
-                                <label class="col-md-3 bold mt-1"><strong>Domisili PKL/KP</strong></label>
+                                <label class="col-md-3 bold mt-1"><strong>Domisili PKL</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->region }}
                                 </div>
@@ -72,7 +72,7 @@
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->tahun_akademik }}
                                 </div>
-                                <label class="col-md-3 bold mt-2"> <strong>Nama Mitra PKL/KP</strong></label>
+                                <label class="col-md-3 bold mt-2"> <strong>Nama Mitra PKL</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->mitra }}
                                 </div>
@@ -125,7 +125,7 @@
                             </div>
 
                             <div class="row border-bottom mt-3">
-                                <label class="col-md-12 bold"><b>Judul atau Topik PKL/KP</b></label>
+                                <label class="col-md-12 bold"><b>Judul atau Topik PKL</b></label>
                                 <div class="col-md-12 mb-3" style="display:block;word-wrap:break-word;">
                                     {{ $seminar->judul_kp }}
                                 </div>
