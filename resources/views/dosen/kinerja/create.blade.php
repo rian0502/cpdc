@@ -63,7 +63,7 @@
                                     <input value="{{ old('sks_pendidikan') }}" autofocus name="sks_pendidikan"
                                         id="sks_pendidikan"
                                         class="form-control @error('sks_pendidikan') form-control-danger @enderror"
-                                        type="number" placeholder="SKS Pendidikan" min="0">
+                                        type="number" placeholder="SKS Pendidikan" step="0.01" min="0">
                                     @error('sks_pendidikan')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -78,7 +78,7 @@
                                     <input value="{{ old('sks_penelitian') }}" autofocus name="sks_penelitian"
                                         id="sks_penelitian"
                                         class="form-control @error('sks_penelitian') form-control-danger @enderror"
-                                        type="number" placeholder="SKS Penelitian" min="0">
+                                        type="number" placeholder="SKS Penelitian" step="0.01" min="0">
                                     @error('sks_penelitian')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -88,7 +88,7 @@
                                     <input value="{{ old('sks_penelitian') }}" autofocus name="sks_pengabdian"
                                         id="sks_pengabdian"
                                         class="form-control @error('sks_pengabdian') form-control-danger @enderror"
-                                        type="number" placeholder="SKS Pengabdian" min="0">
+                                        type="number" placeholder="SKS Pengabdian" step="0.01" min="0">
                                     @error('sks_pengabdian')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
@@ -98,7 +98,7 @@
                                     <input value="{{ old('sks_penelitian') }}" autofocus name="sks_penunjang"
                                         id="sks_penunjang"
                                         class="form-control @error('sks_penunjang') form-control-danger @enderror"
-                                        type="number" placeholder="SKS Pengabdian" min="0">
+                                        type="number" placeholder="SKS Pengabdian" step="0.01" min="0">
                                     @error('sks_penunjang')
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
