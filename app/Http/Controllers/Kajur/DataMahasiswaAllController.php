@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Kajur;
 
 use App\Models\User;
 use App\Models\Mahasiswa;
-use Illuminate\Http\Request;
 use App\Models\Laboratorium;
+use Illuminate\Http\Request;
 use App\Models\AktivitasAlumni;
 use App\Models\ModelSeminarTaDua;
-use App\Models\ModelSeminarTaSatu;
 use App\Models\ModelSeminarKompre;
+use App\Models\ModelSeminarTaSatu;
 use Illuminate\Routing\Controller;
+use App\Models\ModelPendataanAlumni;
+use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\Facades\DataTables;
 
 class DataMahasiswaAllController extends Controller
@@ -141,8 +143,11 @@ class DataMahasiswaAllController extends Controller
         $seminarTa1 = ModelSeminarTaSatu::where('id_mahasiswa', $mahasiswa->id)->first();
         $seminarTa2 = ModelSeminarTaDua::where('id_mahasiswa', $mahasiswa->id)->first();
         $sidangKompre = ModelSeminarKompre::where('id_mahasiswa', $mahasiswa->id)->first();
+        $pendataan = ModelPendataanAlumni::where('mahasiswa_id', $mahasiswa->id)->first();
+
         $data = [
             'mahasiswa' => $mahasiswa,
+            'pendataan' => $pendataan,
             'kp' => $mahasiswa->seminar_kp,
             'ta1' => $mahasiswa->ta_satu,
             'prestasi' => $mahasiswa->prestasi,

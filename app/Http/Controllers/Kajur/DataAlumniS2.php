@@ -23,7 +23,7 @@ class DataAlumniS2 extends Controller
             $data = User::whereHas('roles', function ($query) {
                 $query->where('name', 'mahasiswaS2');
             })->whereHas('roles', function ($query) {
-                $query->where('name', 'alumni');
+                $query->where('name', 'alumniS2');
             })->with('mahasiswa', 'mahasiswa.kegiatanTerakhir', 'mahasiswa.pendataanAlumni');
 
             return DataTables::of($data)

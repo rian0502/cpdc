@@ -26,7 +26,7 @@
             </div>
 
             <div class="containerr">
-                
+
 
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
@@ -47,6 +47,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="weight-500 col-md-3">
@@ -79,6 +94,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="weight-500 col-md-3">
@@ -111,6 +141,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                     @error('tahun_publikasi_mahasiswa')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -147,6 +192,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="weight-500 col-md-3">
@@ -178,6 +238,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="weight-500 col-md-3">
@@ -209,6 +284,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="weight-500 col-md-3">
@@ -240,6 +330,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="weight-500 col-md-3">
@@ -271,6 +376,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="weight-500 col-md-3">
