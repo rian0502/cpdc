@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Kajur;
 
 
-use App\Models\AktivitasAlumni;
-use App\Models\Laboratorium;
-use App\Models\Mahasiswa;
 use App\Models\User;
-use App\Models\ModelKompreS2;
-use App\Models\ModelSeminarTaDuaS2;
-use App\Models\ModelSeminarTaSatuS2;
+use App\Models\Mahasiswa;
+use App\Models\Laboratorium;
 use Illuminate\Http\Request;
+use App\Models\ModelKompreS2;
+use App\Models\AktivitasAlumni;
 use Illuminate\Routing\Controller;
+use App\Models\ModelSeminarTaDuaS2;
+use App\Models\ModelPendataanAlumni;
+use App\Models\ModelSeminarTaSatuS2;
 use Yajra\DataTables\Facades\DataTables;
 
 class DataMahasiswaAllS2Controller extends Controller
@@ -127,8 +128,10 @@ class DataMahasiswaAllS2Controller extends Controller
         $seminarTa1 = ModelSeminarTaSatuS2::where('id_mahasiswa', $mahasiswa->id)->first();
         $seminarTa2 = ModelSeminarTaDuaS2::where('id_mahasiswa', $mahasiswa->id)->first();
         $sidangKompre = ModelKompreS2::where('id_mahasiswa', $mahasiswa->id)->first();
+        $pendataan = ModelPendataanAlumni::where('mahasiswa_id', $mahasiswa->id)->first();
         $data = [
             'mahasiswa' => $mahasiswa,
+            'pendataan' => $pendataan,
             'seminarTa1' => $seminarTa1,
             'seminarTa2' => $seminarTa2,
             'sidangKompre' => $sidangKompre,
