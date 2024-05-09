@@ -597,7 +597,7 @@
                                                         <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/ta_satu/{{ $ba_ta1->ta_satu }}">Lihat</a>
+                                                                href="/uploads/nilai_seminar_ta_satu/{{ $ba_ta1->ta_satu }}">Lihat</a>
                                                         </div>
 
                                                     </div>
@@ -833,7 +833,7 @@
                                                         <label class="col-md-3 bold"> <strong>Berkas Nilai</strong></label>
                                                         <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                                             <a target="_blank"
-                                                                href="/uploads/ta_dua/{{ $ba_ta2->berkas_nilai_seminar_ta_dua }}">Lihat</a>
+                                                                href="/uploads/nilai_seminar_ta_dua/{{ $ba_ta2->berkas_nilai_seminar_ta_dua }}">Lihat</a>
                                                         </div>
                                                     </div>
                                                     <div class="row border-bottom mt-2">

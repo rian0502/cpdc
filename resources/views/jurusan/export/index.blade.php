@@ -41,12 +41,28 @@
                                     <select class="custom-select2 form-control" name="tahun_prestasi" id="tahun_prestasi"
                                         style="width: 100%; height: 38px">
                                         <optgroup label="Tahun">
+                                            <option value="all">Semua</option>
                                             @foreach ($prestasi as $item)
                                                 <option value="{{ $item->year }}">{{ $item->year }}
                                                 </option>
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                    <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                     @error('tahun-presatasi')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -81,6 +97,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                     @error('tahun_aktivitas')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -116,6 +147,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                     @error('tahun_publikasi_mahasiswa')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -150,6 +196,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                     @error('tahun_mahasiswa')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -185,6 +246,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                     @error('tahun_alumni')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -219,6 +295,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                     @error('akt_kp')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -253,6 +344,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                     @error('akt_ta1')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -287,6 +393,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                     @error('akt_ta2')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -321,6 +442,21 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                     <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-awal">Tanggal Awal</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tanggal-akhir">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                     @error('akt_kompre')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror

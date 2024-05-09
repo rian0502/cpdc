@@ -1364,7 +1364,7 @@
                             <div id="s1" class="collapse" data-parent="#accordion1">
 
                                 <div class="card-box pb-10" style="margin-bottom: 30px">
-                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar Kerja Praktik</div>
+                                    <div class="h5 pd-20 mb-0">Data Pelaksanaan Seminar PKL</div>
                                     <table class="table data-table-responsive warp stripe data-table-noexport p-2">
                                         <thead>
                                             <tr>

@@ -6,6 +6,7 @@ use App\Http\Requests\StorePendataanAlumniRequest;
 use App\Http\Requests\UpdatePendataanAlumniRequest;
 use App\Models\Dosen;
 use App\Models\ModelPendataanAlumni;
+use DateTime;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -57,6 +58,22 @@ class PendataanAlumni extends Controller
     public function store(StorePendataanAlumniRequest $request)
     {
         //
+        $tanggal_masuk=Auth::user()->mahasiswa->tanggal_masuk;
+        if(Auth::user()->hasRole('mahasiswaS2')){
+
+            $tanggal_kompre=Auth::user()->mahasiswa->komprehensifS2->jadwal->tanggal;
+        }else{
+
+            $tanggal_kompre=Auth::user()->mahasiswa->komprehensif->jadwal->tanggal_komprehensif;
+        }
+
+        $tanggal_masuk = new DateTime($tanggal_masuk);
+        $tanggal_kompre = new DateTime($tanggal_kompre);
+        $interval = $tanggal_masuk->diff($tanggal_kompre);
+        $tahunDesimal = $interval->days / 365.25;
+        $masaStudi = round($tahunDesimal, 2);
+
+
         $berkas_pengesahan = $request->file('berkas_pengesahan');
         $name_pengesahan = $berkas_pengesahan->hashName();
         $berkas_transkrip = $request->file('transkrip');
@@ -70,8 +87,8 @@ class PendataanAlumni extends Controller
             'tahun_akademik' => $request->tahun_akademik,
             'sks' => $request->sks,
             'ipk' => $request->ipk,
-            'tgl_lulus' => $request->tgl_lulus,
-            'masa_studi' => $request->masa_studi,
+            'tgl_lulus'=>Auth::user()->mahasiswa->komprehensif->jadwal->tanggal_komprehensif,
+            'masa_studi' => $masaStudi,
             'periode_wisuda' => $request->periode_wisuda,
             'toefl' => $request->toefl,
             'berkas_pengesahan' => $name_pengesahan,
@@ -139,7 +156,7 @@ class PendataanAlumni extends Controller
         $seminar->tahun_akademik = $request->tahun_akademik;
         $seminar->sks = $request->sks;
         $seminar->ipk = $request->ipk;
-        $seminar->tgl_lulus = $request->tgl_lulus;
+        $seminar->tgl_lulus=$request->tgl_lulus;
         $seminar->masa_studi = $request->masa_studi;
         $seminar->periode_wisuda = $request->periode_wisuda;
         $seminar->toefl = $request->toefl;

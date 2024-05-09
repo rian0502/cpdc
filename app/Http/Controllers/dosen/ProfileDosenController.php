@@ -206,7 +206,7 @@ class ProfileDosenController extends Controller
         $dosen->tempat_lahir = $request->tempat_lahir;
         $dosen->alamat = $request->alamat;
         $dosen->jenis_kelamin = $request->gender;
-        $url_google_scholar = $request->url_google_scholar;
+        $dosen->url_google_scholar = $url_google_scholar;
         $dosen->updated_at = date('Y-m-d H:i:s');
         $dosen->save();
         return redirect()->route('dosen.profile.index')->with('success', 'Profile Berhasil Diperbarui');

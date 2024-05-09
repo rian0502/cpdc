@@ -128,7 +128,7 @@
                         <h4 class="text-blue h4">Organisasi</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap ">
+                        <table class="table data-table-responsive stripe data-table-export ">
                             <thead>
                                 <tr>
                                     <td>No</td>
@@ -155,7 +155,7 @@
                         <h4 class="text-blue h4">LITABMAS</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap ">
+                        <table class="table data-table-responsive stripe data-table-export ">
                             <thead>
                                 <tr>
                                     <td>No</td>
@@ -203,7 +203,7 @@
                         <h4 class="text-blue h4">PUBLIKASI</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap ">
+                        <table class="table data-table-responsive stripe data-table-export ">
                             <thead>
                                 <tr>
                                     <td>No</td>
@@ -252,7 +252,7 @@
                         <h4 class="text-blue h4">JABATAN</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap ">
+                        <table class="table data-table-responsive stripe data-table-export ">
                             <thead>
                                 <tr>
                                     <td>No</td>
@@ -281,7 +281,7 @@
                         <h4 class="text-blue h4">KEPANGKATAN</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap ">
+                        <table class="table data-table-responsive stripe data-table-export ">
                             <thead>
                                 <tr>
                                     <td>No</td>
@@ -311,7 +311,7 @@
                         <h4 class="text-blue h4">GELAR</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap">
+                        <table class="table data-table-responsive stripe data-table-export">
                             <thead>
                                 <tr>
                                     <td>No</td>
@@ -342,7 +342,7 @@
                         <h4 class="text-blue h4">Seminar Dosen</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap">
+                        <table class="table data-table-responsive stripe data-table-export">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -373,7 +373,7 @@
                         <h4 class="text-blue h4">Penghargaan Dosen</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap">
+                        <table class="table data-table-responsive stripe data-table-export">
                             <thead>
                                 <tr>
                                     <th>No</th>
