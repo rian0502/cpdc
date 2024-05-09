@@ -239,7 +239,7 @@
                                     </div>
                                     <div class="widgets">
                                         <div class="icon" data-color="#00eccf">
-                                            <STROng>KP</STROng>
+                                            <STROng>PKL</STROng>
                                         </div>
                                     </div>
                                 </div>

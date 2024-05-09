@@ -36,21 +36,20 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
     <script>
-// Mendapatkan semua elemen <a> dalam dokumen
-    var links = document.getElementsByTagName("a");
+        // Mendapatkan semua elemen <a> dalam dokumen
+        var links = document.getElementsByTagName("a");
 
-// Loop melalui setiap elemen <a>
-for (var i = 0; i < links.length; i++) {
-    var link = links[i];
-    var href = link.getAttribute("href");
+        // Loop melalui setiap elemen <a>
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+            var href = link.getAttribute("href");
 
-    // Jika href mengandung "https://https://", ganti dengan "https://"
-    if (href && href.includes("https://https://")) {
-        href = href.replace("https://https://", "https://");
-        link.setAttribute("href", href);
-    }
-}
-
+            // Jika href mengandung "https://https://", ganti dengan "https://"
+            if (href && href.includes("https://https://")) {
+                href = href.replace("https://https://", "https://");
+                link.setAttribute("href", href);
+            }
+        }
     </script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -495,12 +494,12 @@ for (var i = 0; i < links.length; i++) {
         </script>
     @endrole
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Menangkap semua form di halaman
             const forms = document.querySelectorAll('form');
 
-            forms.forEach(function (form) {
-                form.addEventListener('submit', function (event) {
+            forms.forEach(function(form) {
+                form.addEventListener('submit', function(event) {
                     // Menonaktifkan tombol submit untuk mencegah pengiriman ganda
                     const submitButton = form.querySelector('button[type="submit"]');
                     if (submitButton) {
@@ -511,7 +510,7 @@ for (var i = 0; i < links.length; i++) {
                     // Misalnya, tampilkan pesan loading atau animasi loading
 
                     // Atur delay agar tombol submit tidak tetap dinonaktifkan selamanya
-                    setTimeout(function () {
+                    setTimeout(function() {
                         if (submitButton) {
                             submitButton.disabled = false;
                         }
