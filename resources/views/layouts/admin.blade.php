@@ -198,30 +198,30 @@
                             </ul>
                         </li>
                         <li
-                        class="dropdown {{ Request::is('dosen/kinerja*') || Request::is('dosen/litabmas*') || Request::is('dosen/publikasi*') || Request::is('dosen/organisasi*') || Request::is('dosen/penghargaan*') || Request::is('dosen/seminar*') ? 'show' : '' }}">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon far fa-file-certificate"></span><span class="mtext">Aktivitas
-                                Dosen</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a href="{{ route('dosen.kinerja.index') }}"
-                                    class="{{ Request::is('dosen/kinerja*') ? 'active' : '' }}">Rekap Kinerja</a></li>
-                            <li><a href="{{ route('dosen.litabmas.index') }}"
-                                    class="{{ Request::is('dosen/litabmas*') ? 'active' : '' }}">LITABMAS</a></li>
-                            <li><a href="{{ route('dosen.publikasi.index') }}"
-                                    class="{{ Request::is('dosen/publikasi*') ? 'active' : '' }}">Publikasi</a></li>
-                            <li><a href="{{ route('dosen.organisasi.index') }}"
-                                    class="{{ Request::is('dosen/organisasi*') ? 'active' : '' }}">Organisasi</a>
-                            </li>
-                            <li><a href="{{ route('dosen.penghargaan.index') }}"
-                                    class="{{ Request::is('dosen/penghargaan*') ? 'active' : '' }}">Penghargaan</a>
-                            </li>
-                            <li><a href="{{ route('dosen.seminar.index') }}"
-                                    class="{{ Request::is('dosen/seminar*') ? 'active' : '' }}">Seminar</a></li>
-                        </ul>
+                            class="dropdown {{ Request::is('dosen/kinerja*') || Request::is('dosen/litabmas*') || Request::is('dosen/publikasi*') || Request::is('dosen/organisasi*') || Request::is('dosen/penghargaan*') || Request::is('dosen/seminar*') ? 'show' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle">
+                                <span class="micon far fa-file-certificate"></span><span class="mtext">Aktivitas
+                                    Dosen</span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="{{ route('dosen.kinerja.index') }}"
+                                        class="{{ Request::is('dosen/kinerja*') ? 'active' : '' }}">Rekap Kinerja</a></li>
+                                <li><a href="{{ route('dosen.litabmas.index') }}"
+                                        class="{{ Request::is('dosen/litabmas*') ? 'active' : '' }}">LITABMAS</a></li>
+                                <li><a href="{{ route('dosen.publikasi.index') }}"
+                                        class="{{ Request::is('dosen/publikasi*') ? 'active' : '' }}">Publikasi</a></li>
+                                <li><a href="{{ route('dosen.organisasi.index') }}"
+                                        class="{{ Request::is('dosen/organisasi*') ? 'active' : '' }}">Organisasi</a>
+                                </li>
+                                <li><a href="{{ route('dosen.penghargaan.index') }}"
+                                        class="{{ Request::is('dosen/penghargaan*') ? 'active' : '' }}">Penghargaan</a>
+                                </li>
+                                <li><a href="{{ route('dosen.seminar.index') }}"
+                                        class="{{ Request::is('dosen/seminar*') ? 'active' : '' }}">Seminar</a></li>
+                            </ul>
 
 
-                    </li>
+                        </li>
                     @endrole
                     @role('jurusan')
                         <li
@@ -392,7 +392,7 @@
                                     Request::is('koor/arsip*') ||
                                     Request::is('jurusan/unduh_data_s1*') ||
                                     Request::is('jurusan/unduh_data_s2*') ||
-                                    Request::is('jurusan/unduh_aktivitas_dosen' )||
+                                    Request::is('jurusan/unduh_aktivitas_dosen') ||
                                     Request::is('jurusan/unduh/data_lainnya')) style="display: block;" @endif>
 
                                 @role('jurusan')
@@ -412,10 +412,10 @@
                                             <li><a href="{{ route('jurusan.unduh.dosen.index') }}"
                                                     class="{{ Request::is('jurusan/unduh_aktivitas_dosen') ? 'active' : '' }}">Aktivitas
                                                     Dosen</a>
-                                                </li>
+                                            </li>
                                             <li><a href="{{ route('jurusan.unduh.lainnya.index') }}"
                                                     class="{{ Request::is('jurusan/unduh/data_lainnya*') ? 'active' : '' }}">Lainnya</a>
-                                                </li>
+                                            </li>
                                         </ul>
                                     </li>
                                 @endrole
@@ -875,8 +875,8 @@
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('mahasiswa.seminar.kp.index') }}"
-                                        class="{{ Request::is('mahasiswa/seminar/kp*') ? 'active' : '' }}">Kerja
-                                        Praktik</a></li>
+                                        class="{{ Request::is('mahasiswa/seminar/kp*') ? 'active' : '' }}">Praktik Kerja
+                                        Lapangan</a></li>
                                 <li><a href="{{ route('mahasiswa.seminar.tugas_akhir_1.index') }}"
                                         class="{{ Request::is('mahasiswa/seminar/tugas_akhir_1*') ? 'active' : '' }}">Tugas
                                         Akhir
@@ -949,8 +949,8 @@
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('berkas.validasi.seminar.kp.index') }}"
-                                        class="{{ Request::is('admin/berkas/validasi/seminar/kp*') ? 'active' : '' }}">Kerja
-                                        Praktik</a>
+                                        class="{{ Request::is('admin/berkas/validasi/seminar/kp*') ? 'active' : '' }}">Praktik
+                                        Kerja Lapangan</a>
                                 </li>
                                 <li><a href="{{ route('berkas.validasi.seminar.ta1.index') }}"
                                         class="{{ Request::is('admin/berkas/validasi/seminar/ta1*') ? 'active' : '' }}">Tugas
@@ -994,8 +994,8 @@
                             </a>
                             <ul class="submenu">
                                 <li><a href="{{ route('berkas.arsip_validasi.seminar.kp.index') }}"
-                                        class="{{ Request::is('admin/berkas/arsip_validasi/seminar/kp*') ? 'active' : '' }}">Kerja
-                                        Praktik S1</a>
+                                        class="{{ Request::is('admin/berkas/arsip_validasi/seminar/kp*') ? 'active' : '' }}">Praktik
+                                        Kerja Lapangan</a>
                                 </li>
                                 <li><a href="{{ route('berkas.arsip_validasi.seminar.ta1.index') }}"
                                         class="{{ Request::is('admin/berkas/arsip_validasi/seminar/ta1*') ? 'active' : '' }}">Tugas
@@ -1380,21 +1380,20 @@
     <!-- Tambahkan script untuk menampilkan notifikasi -->
 
     <script>
-// Mendapatkan semua elemen <a> dalam dokumen
-    var links = document.getElementsByTagName("a");
+        // Mendapatkan semua elemen <a> dalam dokumen
+        var links = document.getElementsByTagName("a");
 
-// Loop melalui setiap elemen <a>
-for (var i = 0; i < links.length; i++) {
-    var link = links[i];
-    var href = link.getAttribute("href");
+        // Loop melalui setiap elemen <a>
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+            var href = link.getAttribute("href");
 
-    // Jika href mengandung "https://https://", ganti dengan "https://"
-    if (href && href.includes("https://https://")) {
-        href = href.replace("https://https://", "https://");
-        link.setAttribute("href", href);
-    }
-}
-
+            // Jika href mengandung "https://https://", ganti dengan "https://"
+            if (href && href.includes("https://https://")) {
+                href = href.replace("https://https://", "https://");
+                link.setAttribute("href", href);
+            }
+        }
     </script>
     <script>
         @if (session('success'))

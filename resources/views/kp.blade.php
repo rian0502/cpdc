@@ -10,7 +10,7 @@
     <div class="container-xxl py-5">
         <div class="container">
 
-            <h2>Data Seminar Kerja Praktik</h2>
+            <h2>Data Seminar Praktik Kerja Lapangan</h2>
 
             <div class="pb-20 m-3 mt-5">
 

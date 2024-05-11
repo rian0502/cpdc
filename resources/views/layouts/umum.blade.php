@@ -99,8 +99,8 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Seminar S1</a>
                             <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0">
                                 <a href="/kp"
-                                    class="dropdown-item margin-top {{ Request::is('kp*') ? 'active' : '' }}">Kerja
-                                    Praktik</a>
+                                    class="dropdown-item margin-top {{ Request::is('kp*') ? 'active' : '' }}">Praktik
+                                    Kerja Lapangan</a>
                                 <a href="/ta1"
                                     class="dropdown-item margin-top {{ Request::is('ta1*') ? 'active' : '' }}">Tugas
                                     Akhir 1</a>
@@ -352,21 +352,20 @@
     <script src="/Assets/date/js/date.js"></script>
     <script src="/Assets/date/js/tanggal.js"></script>
     <script>
-// Mendapatkan semua elemen <a> dalam dokumen
-    var links = document.getElementsByTagName("a");
+        // Mendapatkan semua elemen <a> dalam dokumen
+        var links = document.getElementsByTagName("a");
 
-// Loop melalui setiap elemen <a>
-for (var i = 0; i < links.length; i++) {
-    var link = links[i];
-    var href = link.getAttribute("href");
+        // Loop melalui setiap elemen <a>
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+            var href = link.getAttribute("href");
 
-    // Jika href mengandung "https://https://", ganti dengan "https://"
-    if (href && href.includes("https://https://")) {
-        href = href.replace("https://https://", "https://");
-        link.setAttribute("href", href);
-    }
-}
-
+            // Jika href mengandung "https://https://", ganti dengan "https://"
+            if (href && href.includes("https://https://")) {
+                href = href.replace("https://https://", "https://");
+                link.setAttribute("href", href);
+            }
+        }
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
