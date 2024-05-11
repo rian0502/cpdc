@@ -27,36 +27,25 @@
 
             <div class="containerr">
 
-
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
                         <div class="h5 mb-0">Prestasi</div>
                     </div>
                     <form action="{{ route('jurusan.unduh.prestasi') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
+                        <div class="name-avatar d-flex align-items-center pr-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
-                                    <label>Data Prestasi</label>
-                                    <select class="custom-select2 form-control" name="tahun_prestasi" id="tahun_prestasi"
-                                        style="width: 100%; height: 38px">
-                                        <optgroup label="Tahun">
-                                            <option value="all">Semua</option>
-                                            @foreach ($prestasi as $item)
-                                                <option value="{{ $item->year }}">{{ $item->year }}
-                                                </option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
-                                    <div class="row align-items-right mt-1">
-                                        <div class="col-xl-6">
+                                    <div class="row mt-1">
+                                        <div class="col">
                                             <div class="form-group">
                                                 <label for="tanggal-awal">Tanggal Awal</label>
                                                 <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
                                             </div>
                                         </div>
-
-                                        <div class="col-xl-6">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
                                             <div class="form-group">
                                                 <label for="tanggal-akhir">Tanggal Akhir</label>
                                                 <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
