@@ -72,7 +72,7 @@ class Mahasiswa extends Model
     }
     public function seminar_kp()
     {
-        return $this->hasOne(ModelSeminarKP::class, 'id_mahasiswa');
+        return $this->hasOne(ModelSeminarKP::class, 'id_mahasiswa')->with('jadwal');
     }
     public function ta_satu()
     {
