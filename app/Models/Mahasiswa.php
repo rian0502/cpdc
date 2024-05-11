@@ -76,15 +76,15 @@ class Mahasiswa extends Model
     }
     public function ta_satu()
     {
-        return $this->hasOne(ModelSeminarTaSatu::class, 'id_mahasiswa');
+        return $this->hasOne(ModelSeminarTaSatu::class, 'id_mahasiswa')->with('jadwal');
     }
     public function ta_dua()
     {
-        return $this->hasOne(ModelSeminarTaDua::class, 'id_mahasiswa');
+        return $this->hasOne(ModelSeminarTaDua::class, 'id_mahasiswa')->with('jadwal');
     }
     public function komprehensif()
     {
-        return $this->hasOne(ModelSeminarKompre::class, 'id_mahasiswa');
+        return $this->hasOne(ModelSeminarKompre::class, 'id_mahasiswa')->with('jadwal');
     }
     public function taSatuS2()
     {
