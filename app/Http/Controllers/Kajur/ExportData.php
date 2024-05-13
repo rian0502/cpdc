@@ -232,9 +232,6 @@ class ExportData extends Controller
         $writer->save('data_mahasiswa_seminar.xlsx');
         return response()->download('data_mahasiswa_seminar.xlsx')->deleteFileAfterSend(true);
     }
-
-
-
     public function seminar(Request $request)
     {
         $seminar = ModelSPDosen::with('dosen')->where('jenis', 'Seminar')
