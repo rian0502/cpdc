@@ -363,7 +363,12 @@ class PenjadwalanKompreController extends Controller
 
     public function pascaDownloadJadwal()
     {
-        $seminar = ModelSeminarKompre::with('mahasiswa', 'pembimbing_satu', 'pembimbing_dua', 'pembahas')
+        $seminar = ModelSeminarKompre::with(
+            'mahasiswa',
+            'pembimbingSatu',
+            'pembimbingDua',
+            'pembahas'
+        )
             ->whereHas('jadwal', function ($query) {
                 $query->whereDate('tanggal_komprehensif', '>=', date('Y-m-d'));
             })->where('status_admin', 'Valid')->orderBy('updated_at', 'asc')->get();
@@ -387,9 +392,9 @@ class PenjadwalanKompreController extends Controller
                 $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
                 $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->npm);
                 $sheet->setCellValue('D' . ($key + 2), $value->judul_ta);
-                $sheet->setCellValue('E' . ($key + 2), $value->pembimbing_satu->nama_dosen);
+                $sheet->setCellValue('E' . ($key + 2), $value->pembimbingSatu->nama_dosen);
                 if ($value->id_pembimbing_dua) {
-                    $sheet->setCellValue('F' . ($key + 2), $value->pembimbing_dua->nama_dosen);
+                    $sheet->setCellValue('F' . ($key + 2), $value->pembimbingDua->nama_dosen);
                 } else {
                     $sheet->setCellValue('F' . ($key + 2), $value->pbl2_nama);
                 }
@@ -403,7 +408,7 @@ class PenjadwalanKompreController extends Controller
             $filename = 'Daftar Pasca-Penjadwalan Sidang S1.xlsx';
             $writer->save($filename);
             return response()->download($filename)->deleteFileAfterSend(true);
-        }else{
+        } else {
             return redirect()->back()->with('error', 'Belum ada Sidang Komprehensif yang dijadwalkan');
         }
     }
