@@ -699,7 +699,6 @@ class ExportData extends Controller
     }
     public function mahasiswa(Request $request)
     {
-        return dd($request->all());
         $mahasiswa = Mahasiswa::with(['seminar_kp', 'ta_satu', 'ta_dua', 'komprehensif'])->where('angkatan', $request->tahun_mahasiswa)->whereHas('user', function ($query) {
             $query->whereHas('roles', function ($query) {
                 $query->where('name', 'mahasiswa');
@@ -752,7 +751,25 @@ class ExportData extends Controller
 
     public function aktivitas(Request $request)
     {
-        $aktivitas = AktivitasMahasiswa::with('mahasiswa')->whereYear('tanggal', $request->tahun_aktivitas)->get();
+        if ($request->filled('start') && $request->filled('end')) {
+            $aktivitas = AktivitasMahasiswa::with('mahasiswa')
+                ->whereBetween('tanggal', [$request->start, $request->end])
+                ->get();
+            $file_name = 'aktivitas_' . $request->start . '_' . $request->end;
+        } else if ($request->filled('start')) {
+            $aktivitas = AktivitasMahasiswa::with('mahasiswa')
+                ->where('tanggal', '>=', $request->start)
+                ->get();
+            $file_name = 'aktivitas_greater_than_' . $request->start;
+        } else if ($request->filled('end')) {
+            $aktivitas = AktivitasMahasiswa::with('mahasiswa')
+                ->where('tanggal', '<=', $request->end)
+                ->get();
+            $file_name = 'aktivitas_less_than_' . $request->end;
+        } else {
+            $aktivitas = AktivitasMahasiswa::with('mahasiswa')->get();
+            $file_name = 'aktivitas_all';
+        }
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Aktivitas Mahasiswa');
@@ -785,8 +802,8 @@ class ExportData extends Controller
             $sheet->setCellValue('M' . ($key + 2), ($value->dosen->nip) ?? $value->nip_pembimbing);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('aktivitas_' . $request->tahun_aktivitas . '.xlsx');
-        return response()->download('aktivitas_' . $request->tahun_aktivitas . '.xlsx')->deleteFileAfterSend(true);
+        $writer->save($file_name . '.xlsx');
+        return response()->download($file_name . '.xlsx')->deleteFileAfterSend(true);
     }
     public function prestasi(Request $request)
     {
