@@ -399,9 +399,9 @@ class PenjadwalanKompreController extends Controller
                     $sheet->setCellValue('F' . ($key + 2), $value->pbl2_nama);
                 }
                 $sheet->setCellValue('G' . ($key + 2), $value->pembahas->nama_dosen);
-                $sheet->setCellValue('H' . ($key + 2), $value->jadwal->tanggal_seminar_ta_satu);
-                $sheet->setCellValue('I' . ($key + 2), $value->jadwal->jam_mulai_seminar_ta_satu);
-                $sheet->setCellValue('J' . ($key + 2), $value->jadwal->jam_selesai_seminar_ta_satu);
+                $sheet->setCellValue('H' . ($key + 2), $value->jadwal->tanggal_komprehensif);
+                $sheet->setCellValue('I' . ($key + 2), $value->jadwal->jam_mulai_komprehensif);
+                $sheet->setCellValue('J' . ($key + 2), $value->jadwal->jam_selesai_komprehensif);
                 $sheet->setCellValue('K' . ($key + 2), $value->jadwal->lokasi->nama_lokasi);
             }
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
