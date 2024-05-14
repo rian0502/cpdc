@@ -803,7 +803,7 @@
                                                             <div class="col-md-3"
                                                                 style="display:block;word-wrap:break-word;">
                                                                 <a
-                                                                    href="uploads/draft_artikel_s2/{{ $sidangKompre->draft_artikel }}">Lihat</a>
+                                                                    href="/uploads/draft_artikel_s2/{{ $sidangKompre->draft_artikel }}">Lihat</a>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-2">
