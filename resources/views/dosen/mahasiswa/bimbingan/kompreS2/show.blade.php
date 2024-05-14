@@ -770,7 +770,7 @@
                                                             <div class="col-md-3"
                                                                 style="display:block;word-wrap:break-word;">
                                                                 <a target="_blank"
-                                                                    href="/uploads/syarat_sidang_kompre/{{ $sidangKompre->berkas_kompre }}">Lihat
+                                                                    href="/uploads/syarat_seminar_sidang_s2/{{ $sidangKompre->berkas_kompre }}">Lihat
                                                                     Berkas</a>
                                                             </div>
                                                         </div>
@@ -803,7 +803,7 @@
                                                             <div class="col-md-3"
                                                                 style="display:block;word-wrap:break-word;">
                                                                 <a
-                                                                    href="uploads/draft_artikel/{{ $sidangKompre->draft_artikel }}">Lihat</a>
+                                                                    href="uploads/draft_artikel_s2/{{ $sidangKompre->draft_artikel }}">Lihat</a>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-2">
