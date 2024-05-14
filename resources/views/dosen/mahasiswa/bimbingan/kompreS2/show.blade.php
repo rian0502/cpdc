@@ -741,7 +741,7 @@
                                                                     2</strong></label>
                                                             <div class="col-md-3"
                                                                 style="display:block;word-wrap:break-word;">
-                                                                {{ $sidangKompre->id_pembahas_2 ? $seminarTa1->pembahasDua->nama_dosen : $sidangKompre->pembahas_external_2 }}
+                                                                {{ $sidangKompre->id_pembahas_2 ? $sidangKompre->pembahasDua->nama_dosen : $sidangKompre->pembahas_external_2 }}
                                                             </div>
                                                         </div>
 
