@@ -14,9 +14,7 @@ use Carbon\Carbon;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Yajra\DataTables\Contracts\DataTable;
 
-use function PHPUnit\Framework\at;
 
 class LabController extends Controller
 {
