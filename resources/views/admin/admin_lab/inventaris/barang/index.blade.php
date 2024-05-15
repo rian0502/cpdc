@@ -21,9 +21,9 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Kategori</th>
                                     <th>Model</th>
-                                    <th>Lokasi</th>
+                                    <th>Merek</th>
+                                    <th>Kategori</th>
                                     <th>Jumlah</th>
                                     <th class="table-plus datatable-nosort">Aksi</th>
                                 </tr>
@@ -33,9 +33,9 @@
                                 @foreach ($barang as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->modelBarang->kategori->nama_kategori }}</td>
                                         <td>{{ $item->modelBarang->nama_model }}</td>
-                                        <td>{{ $item->lokasi->nama_lokasi }}</td>
+                                        <td>{{ $item->modelBarang->merk }}</td>
+                                        <td>{{ $item->modelBarang->kategori->nama_kategori }}</td>
                                         <td>{{ $item->jumlah_akhir }}</td>
                                         <td>
                                             <div class="dropdown">
