@@ -26,78 +26,29 @@
             </div>
 
             <div class="containerr">
-                <div class="card-box">
+              
+                <div class="card-box" style="height:280px;">
                     <div class="pd-20">
-                        <div class="h5 mb-0">LITABMAS</div>
+                        <div class="h5 mb-0">Publikasi</div>
                     </div>
-                    <form action="{{ route('jurusan.unduh.penelitian') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('jurusan.unduh.publikasi') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
-                                    <label>Penelitian</label>
-                                    <select class="custom-select2 form-control" name="tahun_penelitian"
-                                        id="tahun_penelitian" style="width: 100%; height: 38px">
-                                        <optgroup label="Tahun">
-                                            @foreach ($penelitian as $item)
-                                                <option value="{{ $item->tahun_penelitian }}">{{ $item->tahun_penelitian }}
-                                                </option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
+                                    
                                      <div class="row align-items-right mt-1">
                                         <div class="col-xl-6">
                                             <div class="form-group">
-                                                <label for="tanggal-awal">Tanggal Awal</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                                <label for="tahun-awal">Tahun Awal</label>
+                                                <input type="year" readonly class="year-picker form-control" placeholder="Tahun Awal" name="start">
                                             </div>
                                         </div>
 
                                         <div class="col-xl-6">
                                             <div class="form-group">
-                                                <label for="tanggal-akhir">Tanggal Akhir</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="weight-500 col-md-3">
-                                <div class="form-group">
-                                    <div class="cta  d-flex align-items-center justify-content-end mt-4">
-                                        <button class="btn btn-sm btn-outline-primary">Unduh</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <form action="{{ route('jurusan.unduh.pengabdian') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
-                            <div class="weight-500 col-md-9" style="margin-left: 5px">
-                                <div class="form-group">
-                                    <label>Pengabdian</label>
-                                    <select class="custom-select2 form-control" name="tahun_pengabdian"
-                                        id="tahun_pengabdian" style="width: 100%; height: 38px">
-                                        <optgroup label="Tahun">
-                                            @foreach ($pengabdian as $item)
-                                                <option value="{{ $item->tahun_penelitian }}">{{ $item->tahun_penelitian }}
-                                                </option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
-                                     <div class="row align-items-right mt-1">
-                                        <div class="col-xl-6">
-                                            <div class="form-group">
-                                                <label for="tanggal-awal">Tanggal Awal</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-6">
-                                            <div class="form-group">
-                                                <label for="tanggal-akhir">Tanggal Akhir</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                                <label for="tahun-akhir">Tahun Akhir</label>
+                                                <input type="year" readonly class="year-picker form-control" placeholder="Tahun Akhir" name="end">
                                             </div>
                                         </div>
                                     </div>
@@ -115,52 +66,6 @@
                 </div>
                 <div class="card-box" style="height:280px;">
                     <div class="pd-20">
-                        <div class="h5 mb-0">Publikasi</div>
-                    </div>
-                    <form action="{{ route('jurusan.unduh.publikasi') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
-                            <div class="weight-500 col-md-9" style="margin-left: 5px">
-                                <div class="form-group">
-                                    <label>Data Publikasi</label>
-                                    <select class="custom-select2 form-control" name="tahun_publikasi" id="tahun_publikasi"
-                                        style="width: 100%; height: 38px">
-                                        <optgroup label="Tahun">
-                                            @foreach ($publikasi as $item)
-                                                <option value="{{ $item->tahun }}">{{ $item->tahun }}
-                                                </option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
-                                     <div class="row align-items-right mt-1">
-                                        <div class="col-xl-6">
-                                            <div class="form-group">
-                                                <label for="tanggal-awal">Tanggal Awal</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-6">
-                                            <div class="form-group">
-                                                <label for="tanggal-akhir">Tanggal Akhir</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="weight-500 col-md-3">
-                                <div class="form-group">
-                                    <div class="cta  d-flex align-items-center justify-content-end mt-4">
-                                        <button class="btn btn-sm btn-outline-primary">Unduh</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="card-box" style="height:256px;">
-                    <div class="pd-20">
                         <div class="h5 mb-0">Seminar Dosen</div>
                     </div>
                     <form action="{{ route('jurusan.unduh.seminar') }}" method="POST" enctype="multipart/form-data">
@@ -168,16 +73,7 @@
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
-                                    <label>Data Seminar</label>
-                                    <select class="custom-select2 form-control" name="tahun_seminar" id="tahun_seminar"
-                                        style="width: 100%; height: 38px">
-                                        <optgroup label="Tahun">
-                                            @foreach ($seminar_dosen as $item)
-                                                <option value="{{ $item->tahun }}">{{ $item->tahun }}
-                                                </option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
+                                    
                                      <div class="row align-items-right mt-1">
                                         <div class="col-xl-6">
                                             <div class="form-group">
@@ -215,16 +111,7 @@
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
-                                    <label>Data Penghargaan</label>
-                                    <select class="custom-select2 form-control" name="tahun_penghargaan"
-                                        id="tahun_penghargaan" style="width: 100%; height: 38px">
-                                        <optgroup label="Tahun">
-                                            @foreach ($penghargaan_dosen as $item)
-                                                <option value="{{ $item->tahun }}">{{ $item->tahun }}
-                                                </option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
+                                   
                                      <div class="row align-items-right mt-1">
                                         <div class="col-xl-6">
                                             <div class="form-group">
@@ -275,21 +162,7 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
-                                     <div class="row align-items-right mt-1">
-                                        <div class="col-xl-6">
-                                            <div class="form-group">
-                                                <label for="tanggal-awal">Tanggal Awal</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-6">
-                                            <div class="form-group">
-                                                <label for="tanggal-akhir">Tanggal Akhir</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     @error('tahun_ajaran')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -306,25 +179,80 @@
                                             </option>
                                         </optgroup>
                                     </select>
-                                     <div class="row align-items-right mt-1">
-                                        <div class="col-xl-6">
-                                            <div class="form-group">
-                                                <label for="tanggal-awal">Tanggal Awal</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-6">
-                                            <div class="form-group">
-                                                <label for="tanggal-akhir">Tanggal Akhir</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
-                                            </div>
-                                        </div>
-                                    </div>
+                                     
                                     @error('semester')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
 
+                                </div>
+                            </div>
+                            <div class="weight-500 col-md-3">
+                                <div class="form-group">
+                                    <div class="cta  d-flex align-items-center justify-content-end mt-4">
+                                        <button class="btn btn-sm btn-outline-primary">Unduh</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-box">
+                    <div class="pd-20">
+                        <div class="h5 mb-0">LITABMAS</div>
+                    </div>
+                    <form action="{{ route('jurusan.unduh.penelitian') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
+                            <div class="weight-500 col-md-9" style="margin-left: 5px">
+                                <div class="form-group">
+                                    <label>Penelitian</label>
+                                    <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tahun-awal">Tahun Awal</label>
+                                                <input type="year" readonly class="year-picker form-control" placeholder="Tahun Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tahun-akhir">Tahun Akhir</label>
+                                                <input type="year" readonly class="year-picker form-control" placeholder="Tahun Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="weight-500 col-md-3">
+                                <div class="form-group">
+                                    <div class="cta  d-flex align-items-center justify-content-end mt-4">
+                                        <button class="btn btn-sm btn-outline-primary">Unduh</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form action="{{ route('jurusan.unduh.pengabdian') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
+                            <div class="weight-500 col-md-9" style="margin-left: 5px">
+                                <div class="form-group">
+                                    <label>Pengabdian</label>
+                                    <div class="row align-items-right mt-1">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tahun-awal">Tahun Awal</label>
+                                                <input type="year" readonly class="year-picker form-control" placeholder="Tahun Awal" name="start">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label for="tahun-akhir">Tahun Akhir</label>
+                                                <input type="year" readonly class="year-picker form-control" placeholder="Tahun Akhir" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="weight-500 col-md-3">
@@ -361,6 +289,7 @@
                         </div>
                     </form>
                 </div>
+               
             </div>
         </div>
     </div>

@@ -15,6 +15,7 @@ use App\Models\ModelPenghargaanDosen;
 use App\Models\ModelPublikasiMahasiswa;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
+
 class ExportData extends Controller
 {
     /**
@@ -33,7 +34,7 @@ class ExportData extends Controller
                 ->distinct()->orderBy('tahun_penelitian', 'desc')
                 ->where('kategori', 'Penelitian')
                 ->get(),
-            'publikasi' => PublikasiDosen::select('tahun')
+            'publikasi' => ModelPublikasiMahasiswa::select('tahun')
                 ->distinct()->orderBy('tahun', 'desc')
                 ->get(),
             'prestasi' => PrestasiMahasiswa::selectRaw('YEAR(tanggal) as year')
