@@ -433,7 +433,32 @@ class ExportDataS2 extends Controller
 
     public function tesis2(Request $request)
     {
-        $mahasiswa = Mahasiswa::whereHas('taDuaS2')->where('angkatan', $request->akt_tesis_2)->get();
+        $query = Mahasiswa::with(['taDuaS2', 'taDuaS2.jadwal'])
+            ->whereHas('taDuaS2')
+            ->where('angkatan', $request->akt_tesis_2);
+        if ($request->filled('start') && $request->filled('end')) {
+            if ($request->end < $request->start) {
+                return redirect()->back()->with('error', 'Tahun awal harus lebih kecil dari tahun akhir');
+            }
+            $query->whereHas('taDuaS2.jadwal', function ($query) use ($request) {
+                $query->whereBetween('tanggal', [$request->start, $request->end]);
+            });
+            $filename = 'seminar_tesis_2_' . $request->akt_tesis_2 . '_' . $request->start . '-' . $request->end . '.xlsx';
+        } elseif ($request->filled('start')) {
+            $query->whereHas('taDuaS2.jadwal', function ($query) use ($request) {
+                $query->where('tanggal', '>=', $request->start);
+            });
+            $filename = 'seminar_tesis_2_' . $request->akt_tesis_2 . '_greater_than_' . $request->start . '.xlsx';
+        } elseif ($request->filled('end')) {
+            $query->whereHas('taDuaS2.jadwal', function ($query) use ($request) {
+                $query->where('tanggal', '<=', $request->end);
+            });
+            $filename = 'seminar_tesis_2_' . $request->akt_tesis_2 . '_less_than_' . $request->end . '.xlsx';
+        } else {
+            $filename = 'seminar_tesis_2_' . $request->akt_tesis_2 . '.xlsx';
+        }
+
+        $mahasiswa = $query->get();
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Seminar Tesis 2');
@@ -488,12 +513,42 @@ class ExportDataS2 extends Controller
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('seminar_tesis_2_' . $request->akt_tesis_2     . '.xlsx');
-        return response()->download('seminar_tesis_2_' . $request->akt_tesis_2   . '.xlsx')->deleteFileAfterSend(true);
+        $writer->save($filename);
+        return response()->download($filename)->deleteFileAfterSend(true);
     }
     public function tesis1(Request $request)
     {
-        $mahasiswa = Mahasiswa::whereHas('taSatuS2')->where('angkatan', $request->akt_tesis_1)->get();
+        $query = Mahasiswa::with(['taSatuS2', 'taSatuS2.jadwal'])
+            ->whereHas('taSatuS2')
+            ->where('angkatan', $request->akt_tesis_1);
+
+        if ($request->filled('start') && $request->filled('end')) {
+            if ($request->end < $request->start) {
+                return redirect()->back()->with('error', 'Tahun awal harus lebih kecil dari tahun akhir');
+            }
+
+            $query->whereHas('taSatuS2.jadwal', function ($query) use ($request) {
+                $query->whereBetween('tanggal', [$request->start, $request->end]);
+            });
+
+            $filename = 'seminar_tesis_1_' . $request->akt_tesis_1 . '_' . $request->start . '-' . $request->end . '.xlsx';
+        } elseif ($request->filled('start')) {
+            $query->whereHas('taSatuS2.jadwal', function ($query) use ($request) {
+                $query->where('tanggal', '>=', $request->start);
+            });
+
+            $filename = 'seminar_tesis_1_' . $request->akt_tesis_1 . '_greater_than_' . $request->start . '.xlsx';
+        } elseif ($request->filled('end')) {
+            $query->whereHas('taSatuS2.jadwal', function ($query) use ($request) {
+                $query->where('tanggal', '<=', $request->end);
+            });
+
+            $filename = 'seminar_tesis_1_' . $request->akt_tesis_1 . '_less_than_' . $request->end . '.xlsx';
+        } else {
+            $filename = 'seminar_tesis_1_' . $request->akt_tesis_1 . '.xlsx';
+        }
+
+        $mahasiswa = $query->get();
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Seminar Tesis 1');
@@ -527,9 +582,12 @@ class ExportDataS2 extends Controller
             } else {
                 $sheet->setCellValue('G' . ($key + 2), $value->taSatuS2->pbl2_nama);
             }
-            $sheet->setCellValue('H' . ($key + 2), $value->taSatuS2->pembahasSatu ? $value->taSatuS2->pembahasSatu->nama_dosen : $value->taSatuS2->pembahas_external_1);
-            $sheet->setCellValue('I' . ($key + 2), $value->taSatuS2->pembahasDua ? $value->taSatuS2->pembahasDua->nama_dosen : $value->taSatuS2->pembahas_external_2);
-            $sheet->setCellValue('J' . ($key + 2), $value->taSatuS2->pembahasTiga ? $value->taSatuS2->pembahasTiga->nama_dosen : $value->taSatuS2->pembahas_external_3);
+            $sheet->setCellValue('H' . ($key + 2), $value->taSatuS2->pembahasSatu
+                ? $value->taSatuS2->pembahasSatu->nama_dosen : $value->taSatuS2->pembahas_external_1);
+            $sheet->setCellValue('I' . ($key + 2), $value->taSatuS2->pembahasDua
+                ? $value->taSatuS2->pembahasDua->nama_dosen : $value->taSatuS2->pembahas_external_2);
+            $sheet->setCellValue('J' . ($key + 2), $value->taSatuS2->pembahasTiga
+                ? $value->taSatuS2->pembahasTiga->nama_dosen : $value->taSatuS2->pembahas_external_3);
 
             $sheet->setCellValue('K' . ($key + 2), $value->taSatuS2->status_admin);
             $sheet->setCellValue('L' . ($key + 2), $value->taSatuS2->status_koor);
@@ -548,8 +606,8 @@ class ExportDataS2 extends Controller
             }
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('seminar_tesis_1_' . $request->akt_tesis_1 . '.xlsx');
-        return response()->download('seminar_tesis_1_' . $request->akt_tesis_1 . '.xlsx')->deleteFileAfterSend(true);
+        $writer->save($filename);
+        return response()->download($filename)->deleteFileAfterSend(true);
     }
     public function aktivitasS2(Request $request)
     {
