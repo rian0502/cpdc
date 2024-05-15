@@ -114,7 +114,7 @@
                 </div>
                 <div class="card-box" style="height:256px;">
                     <div class="pd-20">
-                        <div class="h5 mb-0">Publikasi Mahasiswa</div>
+                        <div class="h5 mb-0">Publikasi Mahasiswa S2</div>
                     </div>
                     <form action="{{ route('jurusan.unduh.publikasi.mahasiswas2') }}" method="POST"
                         enctype="multipart/form-data">
