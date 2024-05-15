@@ -31,7 +31,7 @@ class StoreActivityLab extends FormRequest
             'nama_kegiatan' => 'required|string|max:255',
             'jam_mulai' => 'required|date_format:H:i:s',
             'jam_selesai' => 'required|date_format:H:i:s|after:jam_mulai',
-            'ket' => 'required|string|max:255',
+            'ket' => 'required|string',
             'jumlah_mahasiswa' => 'required|integer|min:1',
         ];
         if ($this->keperluan == 'Praktikum') {
