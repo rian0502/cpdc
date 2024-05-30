@@ -15,7 +15,7 @@ class StoreCheckInLabRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->hasRole('mahasiswa');
+        return Auth::user()->hasAnyRole(['mahasiswa', 'mahasiswaS2']);
     }
 
     /**
@@ -45,7 +45,7 @@ class StoreCheckInLabRequest extends FormRequest
             'jam_selesai_per_ta.after' => 'Jam Selesai harus lebih besar dari Jam Mulai',
         ];
     }
-    
+
 
     protected function prepareForValidation()
     {

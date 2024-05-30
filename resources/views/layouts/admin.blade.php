@@ -853,6 +853,13 @@
                                         Tesis</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="{{ route('mahasiswa.lab.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/lab*') ? 'active' : '' }}">
+                                <span class="micon fa-solid fa-flask-vial"></span><span class="mtext">Laboratorium
+                                    TA</span>
+                            </a>
+                        </li>
                         @if (Auth::user()->mahasiswa->komprehensifS2)
                             @if (Auth::user()->mahasiswa->komprehensifS2->status_koor == 'Selesai')
                                 <li>
