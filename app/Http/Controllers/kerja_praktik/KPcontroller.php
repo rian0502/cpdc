@@ -11,13 +11,14 @@ use App\Models\JadwalSKP;
 use App\Models\Mahasiswa;
 use App\Models\ModelSeminarKP;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 
 class KPcontroller extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource./
      *
      * @return \Illuminate\Http\Response
      *
@@ -71,6 +72,16 @@ class KPcontroller extends Controller
 
     public function store(StoreSeminarKP $request)
     {
+
+        $mahasiswa = Mahasiswa::with('seminar_kp')->where(
+            'user_id',
+            auth()->user()->id
+        )->first();
+        
+        if ($mahasiswa->seminar_kp) {
+            return redirect()->route('mahasiswa.seminar.kp.index')->with('error', 'Anda Sudah Melakukan Seminar KP');
+        }
+
         $file_seminar = $request->file('berkas_seminar_pkl');
         $mahasiswa = Mahasiswa::select('id')->where(
             'user_id',

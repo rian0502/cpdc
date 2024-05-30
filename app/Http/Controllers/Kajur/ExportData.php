@@ -15,6 +15,7 @@ use App\Models\ModelPenghargaanDosen;
 use App\Models\ModelPublikasiMahasiswa;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
+
 class ExportData extends Controller
 {
     /**
@@ -25,20 +26,6 @@ class ExportData extends Controller
     public function index()
     {
         $data = [
-            'pengabdian' => LitabmasDosen::select('tahun_penelitian')
-                ->distinct()->orderBy('tahun_penelitian', 'desc')
-                ->where('kategori', 'Pengabdian')
-                ->get(),
-            'penelitian' => LitabmasDosen::select('tahun_penelitian')
-                ->distinct()->orderBy('tahun_penelitian', 'desc')
-                ->where('kategori', 'Penelitian')
-                ->get(),
-            'publikasi' => PublikasiDosen::select('tahun')
-                ->distinct()->orderBy('tahun', 'desc')
-                ->get(),
-            'prestasi' => PrestasiMahasiswa::selectRaw('YEAR(tanggal) as year')
-                ->distinct()->orderBy('year', 'desc')
-                ->get(),
             'aktivitas' => AktivitasMahasiswa::selectRaw('YEAR(tanggal) as year')
                 ->distinct()->orderBy('year', 'desc')
                 ->get(),
@@ -68,19 +55,6 @@ class ExportData extends Controller
             'kompre' => Mahasiswa::select('angkatan')
                 ->distinct()->whereHas('komprehensif')->orderBy('angkatan', 'desc')
                 ->get(),
-            'seminar_dosen' => ModelSPDosen::selectRaw('YEAR(tanggal) as tahun')
-                ->distinct()->orderBy('tahun', 'desc')
-                ->get(),
-            'penghargaan_dosen' => ModelPenghargaanDosen::selectRaw('YEAR(tanggal) as tahun')
-                ->distinct()->orderBy('tahun', 'desc')
-                ->get(),
-            'publikasi_mahasiswa' => ModelPublikasiMahasiswa::select('tahun')
-                ->distinct()->orderBy('tahun', 'desc')->whereHas(
-                    'mahasiswa.user.roles',
-                    function ($query) {
-                        $query->where('name', 'mahasiswa');
-                    }
-                )->get(),
         ];
 
         return view('jurusan.export.index', $data);
@@ -89,14 +63,50 @@ class ExportData extends Controller
 
     public function publikasi_mahasiswa(Request $request)
     {
-        $publikasi = ModelPublikasiMahasiswa::with(['mahasiswa'])
-            ->where('tahun', $request->tahun_publikasi_mahasiswa)
-            ->whereHas(
-                'mahasiswa.user.roles',
-                function ($query) {
-                    $query->where('name', 'mahasiswa');
-                }
-            )->get();
+        if ($request->filled('start') && $request->filled('end')) {
+            if ($request->end < $request->start) {
+                return redirect()->back()->with('error', 'Tanggal akhir tidak boleh lebih kecil dari tanggal awal');
+            }
+            $file_name = 'publikasi_mahasiswa_' . $request->start . '_' . $request->end . '.xlsx';
+            $publikasi = ModelPublikasiMahasiswa::with(['mahasiswa'])
+                ->whereBetween('tahun', [$request->start, $request->end])
+                ->whereHas(
+                    'mahasiswa.user.roles',
+                    function ($query) {
+                        $query->where('name', 'mahasiswa');
+                    }
+                )->get();
+        } else if ($request->filled('start')) {
+            $file_name = 'publikasi_mahasiswa_greater_' . $request->start . '.xlsx';
+            $publikasi = ModelPublikasiMahasiswa::with(['mahasiswa'])
+                ->where('tahun', '>=', $request->start)
+                ->whereHas(
+                    'mahasiswa.user.roles',
+                    function ($query) {
+                        $query->where('name', 'mahasiswa');
+                    }
+                )->get();
+        } else if ($request->filled('end')) {
+            $file_name = 'publikasi_mahasiswa_less_' . $request->end . '.xlsx';
+            $publikasi = ModelPublikasiMahasiswa::with(['mahasiswa'])
+                ->where('tahun', '<=', $request->end)
+                ->whereHas(
+                    'mahasiswa.user.roles',
+                    function ($query) {
+                        $query->where('name', 'mahasiswa');
+                    }
+                )->get();
+        } else {
+            $file_name = 'publikasi_mahasiswa_All' . '.xlsx';
+            $publikasi = ModelPublikasiMahasiswa::with(['mahasiswa'])
+                ->whereHas(
+                    'mahasiswa.user.roles',
+                    function ($query) {
+                        $query->where('name', 'mahasiswa');
+                    }
+                )->get();
+            return dd($publikasi);
+        }
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Publikasi Mahasiswa');
@@ -129,9 +139,8 @@ class ExportData extends Controller
             $sheet->setCellValue('M' . ($key + 2), $value->anggota);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('publikasi_mahasiswa_' . $request->tahun_publikasi_mahasiswa . '.xlsx');
-        return response()->download('publikasi_mahasiswa_' .
-            $request->tahun_publikasi_mahasiswa . '.xlsx')->deleteFileAfterSend(true);
+        $writer->save($file_name);
+        return response()->download($file_name)->deleteFileAfterSend(true);
     }
 
     public function mahasiswaSeminar(Request $request)
@@ -234,9 +243,6 @@ class ExportData extends Controller
         $writer->save('data_mahasiswa_seminar.xlsx');
         return response()->download('data_mahasiswa_seminar.xlsx')->deleteFileAfterSend(true);
     }
-
-
-
     public function seminar(Request $request)
     {
         $seminar = ModelSPDosen::with('dosen')->where('jenis', 'Seminar')
@@ -296,7 +302,34 @@ class ExportData extends Controller
 
     public function kompre(Request $request)
     {
-        $mahasiswa = Mahasiswa::whereHas('komprehensif')->where('angkatan', $request->akt_kompre)->get();
+        if ($request->filled('start') && $request->filled('end') && $request->filled('akt_kompre')) {
+            if ($request->end < $request->start) {
+                return redirect()->back()->with('error', 'Tanggal akhir tidak boleh lebih kecil dari tanggal awal');
+            }
+            $mahasiswa = Mahasiswa::with(['komprehensif'])
+                ->whereHas('komprehensif.jadwal', function ($query) use ($request) {
+                    $query->whereBetween('tanggal_komprehensif', [$request->start, $request->end]);
+                })
+                ->where('angkatan', $request->akt_kompre)
+                ->get();
+        } else if ($request->filled('start') && $request->filled('akt_kompre')) {
+            $mahasiswa = Mahasiswa::with(['komprehensif'])
+                ->whereHas('komprehensif.jadwal', function ($query) use ($request) {
+                    $query->where('tanggal_komprehensif', '>=', $request->start);
+                })
+                ->where('angkatan', $request->akt_kompre)
+                ->get();
+        } else if ($request->filled('end') && $request->filled('akt_kompre')) {
+            $mahasiswa = Mahasiswa::with(['komprehensif'])
+                ->whereHas('komprehensif.jadwal', function ($query) use ($request) {
+                    $query->where('tanggal_komprehensif', '<=', $request->end);
+                })
+                ->where('angkatan', $request->akt_kompre)
+                ->get();
+        } else {
+            $mahasiswa = Mahasiswa::whereHas('komprehensif')->where('angkatan', $request->akt_kompre)->get();
+        }
+
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Seminar Komprehensif');
@@ -349,7 +382,33 @@ class ExportData extends Controller
 
     public function ta2(Request $request)
     {
-        $mahasiswa = Mahasiswa::whereHas('ta_dua')->where('angkatan', $request->akt_ta2)->get();
+        if ($request->filled('start') && $request->filled('end') && $request->filled('akt_ta2')) {
+            if ($request->end < $request->start) {
+                return redirect()->back()->with('error', 'Tanggal akhir tidak boleh lebih kecil dari tanggal awal');
+            }
+            $mahasiswa = Mahasiswa::with(['ta_dua'])
+                ->whereHas('ta_dua.jadwal', function ($query) use ($request) {
+                    $query->whereBetween('tanggal_seminar_ta_dua', [$request->start, $request->end]);
+                })
+                ->where('angkatan', $request->akt_ta2)
+                ->get();
+        } else if ($request->filled('start') && $request->filled('akt_ta2')) {
+            $mahasiswa = Mahasiswa::with(['ta_dua'])
+                ->whereHas('ta_dua.jadwal', function ($query) use ($request) {
+                    $query->where('tanggal_seminar_ta_dua', '>=', $request->start);
+                })
+                ->where('angkatan', $request->akt_ta2)
+                ->get();
+        } else if ($request->filled('end') && $request->filled('akt_ta2')) {
+            $mahasiswa = Mahasiswa::with(['ta_dua'])
+                ->whereHas('ta_dua.jadwal', function ($query) use ($request) {
+                    $query->where('tanggal_seminar_ta_dua', '<=', $request->end);
+                })
+                ->where('angkatan', $request->akt_ta2)
+                ->get();
+        } else {
+            $mahasiswa = Mahasiswa::whereHas('ta_dua')->where('angkatan', $request->akt_ta2)->get();
+        }
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Seminar TA 2');
@@ -408,7 +467,33 @@ class ExportData extends Controller
 
     public function ta1(Request $request)
     {
-        $mahasiswa = Mahasiswa::whereHas('ta_satu')->where('angkatan', $request->akt_ta1)->get();
+        if ($request->filled('start') && $request->filled('end') && $request->filled('akt_ta1')) {
+            if ($request->end < $request->start) {
+                return redirect()->back()->with('error', 'Tanggal akhir tidak boleh lebih kecil dari tanggal awal');
+            }
+            $mahasiswa = Mahasiswa::with(['ta_satu'])
+                ->whereHas('ta_satu.jadwal', function ($query) use ($request) {
+                    $query->whereBetween('tanggal_seminar_ta_satu', [$request->start, $request->end]);
+                })
+                ->where('angkatan', $request->akt_ta1)
+                ->get();
+        } else if ($request->filled('start') && $request->filled('akt_ta1')) {
+            $mahasiswa = Mahasiswa::with(['ta_satu'])
+                ->whereHas('ta_satu.jadwal', function ($query) use ($request) {
+                    $query->where('tanggal_seminar_ta_satu', '>=', $request->start);
+                })
+                ->where('angkatan', $request->akt_ta1)
+                ->get();
+        } else if ($request->filled('end') && $request->filled('akt_ta1')) {
+            $mahasiswa = Mahasiswa::with(['ta_satu'])
+                ->whereHas('ta_satu.jadwal', function ($query) use ($request) {
+                    $query->where('tanggal_seminar_ta_satu', '<=', $request->end);
+                })
+                ->where('angkatan', $request->akt_ta1)
+                ->get();
+        } else {
+            $mahasiswa = Mahasiswa::whereHas('ta_satu')->where('angkatan', $request->akt_ta1)->get();
+        }
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Seminar TA 1');
@@ -462,7 +547,31 @@ class ExportData extends Controller
 
     public function kp(Request $request)
     {
-        $mahasiswa = Mahasiswa::whereHas('seminar_kp')->where('angkatan', $request->akt_kp)->get();
+        if ($request->filled('start') && $request->filled('end') && $request->filled('akt_kp')) {
+            $mahasiswa = Mahasiswa::with(['seminar_kp'])
+                ->whereHas('seminar_kp.jadwal', function ($query) use ($request) {
+                    $query->whereBetween('tanggal_skp', [$request->start, $request->end]);
+                })
+                ->where('angkatan', $request->akt_kp)
+                ->get();
+        } else if ($request->filled('start') && $request->filled('akt_kp')) {
+            $mahasiswa = Mahasiswa::with(['seminar_kp'])
+                ->whereHas('seminar_kp.jadwal', function ($query) use ($request) {
+                    $query->where('tanggal_skp', '>=', $request->start);
+                })
+                ->where('angkatan', $request->akt_kp)
+                ->get();
+        } else if ($request->filled('end') && $request->filled('akt_kp')) {
+            $mahasiswa = Mahasiswa::with(['seminar_kp'])
+                ->whereHas('seminar_kp.jadwal', function ($query) use ($request) {
+                    $query->where('tanggal_skp', '<=', $request->end);
+                })
+                ->where('angkatan', $request->akt_kp)
+                ->get();
+        } else {
+            $mahasiswa = Mahasiswa::whereHas('seminar_kp')->where('angkatan', $request->akt_kp)->get();
+        }
+
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Kerja Praktik');
@@ -601,11 +710,13 @@ class ExportData extends Controller
     }
     public function mahasiswa(Request $request)
     {
-        $mahasiswa = Mahasiswa::with(['seminar_kp', 'ta_satu', 'ta_dua', 'komprehensif'])->where('angkatan', $request->tahun_mahasiswa)->whereHas('user', function ($query) {
-            $query->whereHas('roles', function ($query) {
-                $query->where('name', 'mahasiswa');
-            });
-        })->get();
+        $mahasiswa = Mahasiswa::with(['seminar_kp', 'ta_satu', 'ta_dua', 'komprehensif'])
+            ->where('angkatan', $request->tahun_mahasiswa)
+            ->whereHas('user', function ($query) {
+                $query->whereHas('roles', function ($query) {
+                    $query->where('name', 'mahasiswa');
+                });
+            })->get();
 
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
@@ -653,7 +764,25 @@ class ExportData extends Controller
 
     public function aktivitas(Request $request)
     {
-        $aktivitas = AktivitasMahasiswa::with('mahasiswa')->whereYear('tanggal', $request->tahun_aktivitas)->get();
+        if ($request->filled('start') && $request->filled('end')) {
+            $aktivitas = AktivitasMahasiswa::with('mahasiswa')
+                ->whereBetween('tanggal', [$request->start, $request->end])
+                ->get();
+            $file_name = 'aktivitas_' . $request->start . '_' . $request->end;
+        } else if ($request->filled('start')) {
+            $aktivitas = AktivitasMahasiswa::with('mahasiswa')
+                ->where('tanggal', '>=', $request->start)
+                ->get();
+            $file_name = 'aktivitas_greater_than_' . $request->start;
+        } else if ($request->filled('end')) {
+            $aktivitas = AktivitasMahasiswa::with('mahasiswa')
+                ->where('tanggal', '<=', $request->end)
+                ->get();
+            $file_name = 'aktivitas_less_than_' . $request->end;
+        } else {
+            $aktivitas = AktivitasMahasiswa::with('mahasiswa')->get();
+            $file_name = 'aktivitas_all';
+        }
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Aktivitas Mahasiswa');
@@ -688,12 +817,30 @@ class ExportData extends Controller
             $sheet->setCellValue('N' . ($key + 2), ($value->dosen->nip) ?? $value->nip_pembimbing);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('aktivitas_' . $request->tahun_aktivitas . '.xlsx');
-        return response()->download('aktivitas_' . $request->tahun_aktivitas . '.xlsx')->deleteFileAfterSend(true);
+        $writer->save($file_name . '.xlsx');
+        return response()->download($file_name . '.xlsx')->deleteFileAfterSend(true);
     }
     public function prestasi(Request $request)
     {
-        $prestasi = PrestasiMahasiswa::with('mahasiswa')->whereYear('tanggal', $request->tahun_prestasi)->get();
+        if ($request->filled(['start', 'end'])) {
+            $date = $request->start . '-' . $request->end;
+            $prestasi = PrestasiMahasiswa::with('mahasiswa')
+                ->whereBetween('tanggal', [$request->start, $request->end])
+                ->get();
+        } elseif ($request->filled('start')) {
+            $date = 'GreaterThan_' . $request->start;
+            $prestasi = PrestasiMahasiswa::with('mahasiswa')
+                ->where('tanggal', '>=', $request->start)
+                ->get();
+        } elseif ($request->filled('end')) {
+            $date = 'LessThan_' . $request->end;
+            $prestasi = PrestasiMahasiswa::with('mahasiswa')
+                ->where('tanggal', '<=', $request->end)
+                ->get();
+        } else {
+            $date = 'All';
+            $prestasi = PrestasiMahasiswa::with('mahasiswa')->get();
+        }
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Prestasi Mahasiswa');
@@ -724,97 +871,7 @@ class ExportData extends Controller
             $sheet->setCellValue('L' . ($key + 2), ($value->dosen->nip) ?? $value->nip_pembimbing);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('prestasi' . $request->tahun_prestasi . '.xlsx');
-        return response()->download('prestasi' . $request->tahun_prestasi . '.xlsx')->deleteFileAfterSend(true);
-    }
-
-    public function penelitian(Request $request)
-    {
-        $penelitian = LitabmasDosen::with('anggota_litabmas')->where('tahun_penelitian', $request->tahun_penelitian)->where('kategori', 'Penelitian')->get();
-        $spdsheet = new Spreadsheet();
-        $sheet = $spdsheet->getActiveSheet();
-        $sheet->setTitle('Penelitian Dosen');
-        $sheet->setCellValue('A1', 'No');
-        $sheet->setCellValue('B1', 'Nama Penelitian');
-        $sheet->setCellValue('C1', 'Sumber Dana');
-        $sheet->setCellValue('D1', 'Jumlah Dana');
-        $sheet->setCellValue('E1', 'Tahun Penelitian');
-        $sheet->setCellValue('F1', 'Anggota');
-        $sheet->setCellValue('G1', 'Anggota External');
-        foreach ($penelitian as $key => $value) {
-            $sheet->setCellValue('A' . ($key + 2), $key + 1);
-            $sheet->setCellValue('B' . ($key + 2), $value->nama_litabmas);
-            $sheet->setCellValue('C' . ($key + 2), $value->sumber_dana);
-            $sheet->setCellValue('D' . ($key + 2), $value->jumlah_dana);
-            $sheet->setCellValue('E' . ($key + 2), $value->tahun_penelitian);
-            $sheet->setCellValue('F' . ($key + 2), $value->dosen->pluck('nama_dosen')->implode(', '));
-            $sheet->setCellValue('G' . ($key + 2), $value->anggota_external);
-        }
-
-        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('penelitian.xlsx');
-        return response()->download('penelitian.xlsx')->deleteFileAfterSend(true);
-    }
-    public function pengabdian(Request $request)
-    {
-        $penelitian = LitabmasDosen::with('anggota_litabmas')->where('tahun_penelitian', $request->tahun_pengabdian)->where('kategori', 'Pengabdian')->get();
-        $spdsheet = new Spreadsheet();
-        $sheet = $spdsheet->getActiveSheet();
-        $sheet->setTitle('Pengabdian Dosen');
-        $sheet->setCellValue('A1', 'No');
-        $sheet->setCellValue('B1', 'Nama Penelitian');
-        $sheet->setCellValue('C1', 'Sumber Dana');
-        $sheet->setCellValue('D1', 'Jumlah Dana');
-        $sheet->setCellValue('E1', 'Tahun Penelitian');
-        $sheet->setCellValue('F1', 'Anggota');
-        $sheet->setCellValue('G1', 'Anggota External');
-        foreach ($penelitian as $key => $value) {
-            $sheet->setCellValue('A' . ($key + 2), $key + 1);
-            $sheet->setCellValue('B' . ($key + 2), $value->nama_litabmas);
-            $sheet->setCellValue('C' . ($key + 2), $value->sumber_dana);
-            $sheet->setCellValue('D' . ($key + 2), $value->jumlah_dana);
-            $sheet->setCellValue('E' . ($key + 2), $value->tahun_penelitian);
-            $sheet->setCellValue('F' . ($key + 2), $value->dosen->pluck('nama_dosen')->implode(', '));
-            $sheet->setCellValue('G' . ($key + 2), $value->anggota_external);
-        }
-        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('pengabdian.xlsx');
-        return response()->download('pengabdian.xlsx')->deleteFileAfterSend(true);
-    }
-    public function publikasi(Request $request)
-    {
-        $publikasi = PublikasiDosen::with('anggotaPublikasi')->where('tahun', $request->tahun_publikasi)->get();
-        $spdsheet = new Spreadsheet();
-        $sheet = $spdsheet->getActiveSheet();
-        $sheet->setTitle('Publikasi Dosen');
-        $sheet->setCellValue('A1', 'No');
-        $sheet->setCellValue('B1', 'Nama Publikasi');
-        $sheet->setCellValue('C1', 'Volume');
-        $sheet->setCellValue('D1', 'Halaman');
-        $sheet->setCellValue('E1', 'Judul');
-        $sheet->setCellValue('F1', 'Tahun');
-        $sheet->setCellValue('G1', 'Scala');
-        $sheet->setCellValue('H1', 'Kategori');
-        $sheet->setCellValue('I1', 'Kategori Litabmas');
-        $sheet->setCellValue('J1', 'URL');
-        $sheet->setCellValue('K1', 'Anggota');
-        $sheet->setCellValue('L1', 'Anggota External');
-        foreach ($publikasi as $key => $value) {
-            $sheet->setCellValue('A' . ($key + 2), $key + 1);
-            $sheet->setCellValue('B' . ($key + 2), $value->nama_publikasi);
-            $sheet->setCellValue('C' . ($key + 2), $value->vol);
-            $sheet->setCellValue('D' . ($key + 2), $value->halaman);
-            $sheet->setCellValue('E' . ($key + 2), $value->judul);
-            $sheet->setCellValue('F' . ($key + 2), $value->tahun);
-            $sheet->setCellValue('G' . ($key + 2), $value->scala);
-            $sheet->setCellValue('H' . ($key + 2), $value->kategori);
-            $sheet->setCellValue('I' . ($key + 2), $value->kategori_litabmas);
-            $sheet->setCellValue('J' . ($key + 2), $value->url);
-            $sheet->setCellValue('K' . ($key + 2), $value->dosen->pluck('nama_dosen')->implode(', '));
-            $sheet->setCellValue('L' . ($key + 2), $value->anggota_external);
-        }
-        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('publikasi.xlsx');
-        return response()->download('publikasi.xlsx')->deleteFileAfterSend(true);
+        $writer->save('prestasi' . $date . '.xlsx');
+        return response()->download('prestasi' . $date . '.xlsx')->deleteFileAfterSend(true);
     }
 }

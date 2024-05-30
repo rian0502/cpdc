@@ -127,8 +127,7 @@
                                 data-bs-toggle="dropdown">Seminar S1</a>
                             <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0">
                                 <a href="/kp"
-                                    class="dropdown-item margin-top {{ Request::is('kp*') ? 'active' : '' }}">Kerja
-                                    Praktik</a>
+                                    class="dropdown-item margin-top {{ Request::is('kp*') ? 'active' : '' }}">Praktik Kerja Lapangan</a>
                                 <a href="/ta1"
                                     class="dropdown-item margin-top {{ Request::is('ta1*') ? 'active' : '' }}">Tugas
                                     Akhir 1</a>

@@ -14,9 +14,7 @@ use Carbon\Carbon;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Yajra\DataTables\Contracts\DataTable;
 
-use function PHPUnit\Framework\at;
 
 class LabController extends Controller
 {
@@ -32,6 +30,20 @@ class LabController extends Controller
             return redirect()->route('dashboard')->with('error', 'Anda Belum di Alokasikan oleh Ketua Jurusan!');
         }
         return view('admin.admin_lab.lab.index');
+    }
+    public function dataLaboratorium(Request $request)
+    {
+        if ($request->ajax()) {
+            $model = Laboratorium::with(['user'])->where('id_lokasi', Auth::user()->lokasi_id)->orderBY('tanggal_kegiatan', 'desc');
+            return DataTables::of($model)
+                ->addIndexColumn()->editColumn('user.name', function ($model) {
+                    return $model->keperluan == "Penelitian" ? $model->user->name : "-";
+                })
+                ->addColumn('waktu', function ($model) {
+                    return date(date('H:i', strtotime($model->jam_mulai)) . ' - ' . date('H:i', strtotime($model->jam_selesai)));
+                })
+                ->toJson();
+        }
     }
 
     /**
@@ -135,7 +147,7 @@ class LabController extends Controller
             'lab' => $lab,
             'locations' => $locations,
             'mahasiswa' => Mahasiswa::select('id', 'npm', 'nama_mahasiswa')->where('status', 'Aktif')->get(),
-            'anggota' =>  $lab->keperluan == "Praktikum" ? $lab->asisten->pluck('id_mahasiswa')->toArray() : [],
+            'anggota' =>  $lab->keperluan == "Praktikum" ? $lab->asisten_lab->pluck('id_mahasiswa')->toArray() : [],
         ];
 
         return view('admin.admin_lab.lab.edit', $data);
@@ -648,23 +660,6 @@ class LabController extends Controller
             }
 
             return response()->json($data);
-        }
-    }
-
-
-
-    public function dataLaboratorium(Request $request)
-    {
-        if ($request->ajax()) {
-            $model = Laboratorium::where('id_lokasi', Auth::user()->lokasi_id)->orderBY('tanggal_kegiatan', 'desc');
-            return DataTables::of($model)
-                ->addColumn('nama_lokasi', function ($model) {
-                    return $model->lokasi->nama_lokasi;
-                })
-                ->addColumn('waktu', function ($model) {
-                    return date(date('H:i', strtotime($model->jam_mulai)) . ' - ' . date('H:i', strtotime($model->jam_selesai)));
-                })
-                ->toJson();
         }
     }
 }

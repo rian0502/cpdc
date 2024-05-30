@@ -27,36 +27,25 @@
 
             <div class="containerr">
 
-
-                <div class="card-box" style="height:256px;">
+                <div class="card-box" style="height:335px;">
                     <div class="pd-20">
                         <div class="h5 mb-0">Prestasi</div>
                     </div>
                     <form action="{{ route('jurusan.unduh.prestasi') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="name-avatar d-flex align-items-center pr-2 mt-2">
+                        <div class="name-avatar d-flex align-items-center pr-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
-                                    <label>Data Prestasi</label>
-                                    <select class="custom-select2 form-control" name="tahun_prestasi" id="tahun_prestasi"
-                                        style="width: 100%; height: 38px">
-                                        <optgroup label="Tahun">
-                                            <option value="all">Semua</option>
-                                            @foreach ($prestasi as $item)
-                                                <option value="{{ $item->year }}">{{ $item->year }}
-                                                </option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
-                                    <div class="row align-items-right mt-1">
-                                        <div class="col-xl-6">
+                                    <div class="row mt-1">
+                                        <div class="col">
                                             <div class="form-group">
                                                 <label for="tanggal-awal">Tanggal Awal</label>
                                                 <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
                                             </div>
                                         </div>
-
-                                        <div class="col-xl-6">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
                                             <div class="form-group">
                                                 <label for="tanggal-akhir">Tanggal Akhir</label>
                                                 <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
@@ -78,7 +67,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="card-box" style="height:256px;">
+                <div class="card-box" style="height:335px;">
                     <div class="pd-20">
                         <div class="h5 mb-0">Aktivitas</div>
                     </div>
@@ -127,7 +116,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="card-box" style="height:256px;">
+                <div class="card-box" style="height:335px;">
                     <div class="pd-20">
                         <div class="h5 mb-0">Publikasi Mahasiswa</div>
                     </div>
@@ -137,34 +126,22 @@
                         <div class="name-avatar d-flex align-items-center pr-2 mt-2">
                             <div class="weight-500 col-md-9" style="margin-left: 5px">
                                 <div class="form-group">
-                                    <label>Publikasi Mahasiswa</label>
-                                    <select class="custom-select2 form-control" name="tahun_publikasi_mahasiswa"
-                                        id="tahun_publikasi_mahasiswa" style="width: 100%; height: 38px">
-                                        <optgroup label="Tahun Publikasi">
-                                            @foreach ($publikasi_mahasiswa as $item)
-                                                <option value="{{ $item->tahun }}">{{ $item->tahun }}
-                                                </option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
+                                    
                                      <div class="row align-items-right mt-1">
                                         <div class="col-xl-6">
                                             <div class="form-group">
-                                                <label for="tanggal-awal">Tanggal Awal</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
+                                                <label for="tahun-awal">Tahun Awal</label>
+                                                <input type="year" readonly class="form-control year-picker" placeholder="Tahun Awal" name="start">
                                             </div>
                                         </div>
 
                                         <div class="col-xl-6">
                                             <div class="form-group">
-                                                <label for="tanggal-akhir">Tanggal Akhir</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
+                                                <label for="tahun-akhir">Tahun Akhir</label>
+                                                <input type="year" readonly class="form-control year-picker" placeholder="Tahun Akhir" name="end">
                                             </div>
                                         </div>
                                     </div>
-                                    @error('tahun_publikasi_mahasiswa')
-                                        <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
-                                    @enderror
                                 </div>
                             </div>
                             <div class="weight-500 col-md-3">
@@ -177,7 +154,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="card-box" style="height:256px;">
+                <div class="card-box" style="height:335px;">
                     <div class="pd-20">
                         <div class="h5 mb-0">Mahasiswa</div>
                     </div>
@@ -196,21 +173,6 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
-                                     <div class="row align-items-right mt-1">
-                                        <div class="col-xl-6">
-                                            <div class="form-group">
-                                                <label for="tanggal-awal">Tanggal Awal</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-6">
-                                            <div class="form-group">
-                                                <label for="tanggal-akhir">Tanggal Akhir</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
-                                            </div>
-                                        </div>
-                                    </div>
                                     @error('tahun_mahasiswa')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -227,7 +189,7 @@
                     </form>
                 </div>
 
-                <div class="card-box" style="height:256px;">
+                <div class="card-box" style="height:335px;">
                     <div class="pd-20">
                         <div class="h5 mb-0">Alumni</div>
                     </div>
@@ -246,21 +208,7 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
-                                     <div class="row align-items-right mt-1">
-                                        <div class="col-xl-6">
-                                            <div class="form-group">
-                                                <label for="tanggal-awal">Tanggal Awal</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Awal" name="start">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-6">
-                                            <div class="form-group">
-                                                <label for="tanggal-akhir">Tanggal Akhir</label>
-                                                <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end">
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
                                     @error('tahun_alumni')
                                         <div class="form-control-feedback has-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -276,7 +224,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="card-box" style="height:256px;">
+                <div class="card-box" style="height:335px;">
                     <div class="pd-20">
                         <div class="h5 mb-0">Seminar PKL</div>
                     </div>
@@ -325,7 +273,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="card-box" style="height:256px;">
+                <div class="card-box" style="height:335px;">
                     <div class="pd-20">
                         <div class="h5 mb-0">Seminar Tugas Akhir 1</div>
                     </div>
@@ -374,7 +322,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="card-box" style="height:256px;">
+                <div class="card-box" style="height:335px;">
                     <div class="pd-20">
                         <div class="h5 mb-0">Seminar Tugas Akhir 2</div>
                     </div>
@@ -423,7 +371,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="card-box" style="height:256px;">
+                <div class="card-box" style="height:335px;">
                     <div class="pd-20">
                         <div class="h5 mb-0">Sidang Komprehensif</div>
                     </div>
