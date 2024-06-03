@@ -128,7 +128,7 @@
                         <h4 class="text-blue h4">Organisasi</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap ">
+                        <table class="table data-table-responsive stripe data-table-export ">
                             <thead>
                                 <tr>
                                     <td>No</td>
@@ -155,7 +155,7 @@
                         <h4 class="text-blue h4">LITABMAS</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap ">
+                        <table class="table data-table-responsive stripe data-table-export ">
                             <thead>
                                 <tr>
                                     <td>No</td>
@@ -203,7 +203,7 @@
                         <h4 class="text-blue h4">PUBLIKASI</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap ">
+                        <table class="table data-table-responsive stripe data-table-export ">
                             <thead>
                                 <tr>
                                     <td>No</td>
@@ -252,7 +252,7 @@
                         <h4 class="text-blue h4">JABATAN</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap ">
+                        <table class="table data-table-responsive stripe data-table-export ">
                             <thead>
                                 <tr>
                                     <td>No</td>
@@ -281,7 +281,7 @@
                         <h4 class="text-blue h4">KEPANGKATAN</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap ">
+                        <table class="table data-table-responsive stripe data-table-export ">
                             <thead>
                                 <tr>
                                     <td>No</td>
@@ -311,7 +311,7 @@
                         <h4 class="text-blue h4">GELAR</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap">
+                        <table class="table data-table-responsive stripe data-table-export">
                             <thead>
                                 <tr>
                                     <td>No</td>
@@ -342,7 +342,7 @@
                         <h4 class="text-blue h4">Seminar Dosen</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap">
+                        <table class="table data-table-responsive stripe data-table-export">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -358,7 +358,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->tahun }}</td>
+                                        <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->scala }}</td>
                                         <td><a href="{{$item->url}}" class="text-primary">Klik</a></td>
                                         <td>{{ $item->uraian }}</td>
@@ -373,12 +373,13 @@
                         <h4 class="text-blue h4">Penghargaan Dosen</h4>
                     </div>
                     <div class="pb-20 m-3">
-                        <table class="table data-table-responsive stripe data-table-export nowrap">
+                        <table class="table data-table-responsive stripe data-table-export">
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>Tanggal</th>
+                                    <th>Kategori</th>
                                     <th>Scala</th>
                                     <th>Dokumentasi</th>
                                     <th>Uraian</th>
@@ -389,7 +390,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->tahun }}</td>
+                                        <td>{{ $item->Kategori }}</td>
                                         <td>{{ $item->scala }}</td>
                                         <td><a href="{{$item->url}}" class="text-primary">Klik</a></td>
                                         <td>{{ $item->uraian }}</td>

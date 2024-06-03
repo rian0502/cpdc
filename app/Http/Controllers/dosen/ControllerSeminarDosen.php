@@ -24,11 +24,17 @@ class ControllerSeminarDosen extends Controller
         $startDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($startDate && $endDate) {
-            $data = ModelSPDosen::whereBetween('tahun', [$startDate, $endDate])->where('jenis', 'Seminar')->orderBy('tahun', 'desc');
-            return DataTables::of($data)->toJson();
+            $data = ModelSPDosen::with('dosen')->whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'desc');
+            return DataTables::of($data)
+                ->addIndexColumn()->editColumn('dosen.nama', function ($data) {
+                    return $data->dosen->nama_dosen ?? '-';
+                })->toJson();
         } else if ($request->ajax() && $startDate == null && $endDate == null) {
-            $data = ModelSPDosen::where('jenis', 'Seminar')->orderBy('tahun', 'desc');
-            return DataTables::of($data)->toJson();
+            $data = ModelSPDosen::with('dosen')->orderBy('tanggal', 'desc');
+            return DataTables::of($data)
+            ->addIndexColumn()->editColumn('dosen.nama', function ($data) {
+                return $data->dosen->nama_dosen ?? '-';
+            })->toJson();
         }
 
 
@@ -57,11 +63,10 @@ class ControllerSeminarDosen extends Controller
         //
         $insert = ModelSPDosen::create([
             'nama' => $request->nama,
-            'tahun' => $request->tahun,
+            'tanggal' => $request->tanggal,
             'scala' => $request->scala,
             'uraian' => $request->uraian,
             'url' => $request->url,
-            'jenis' => 'Seminar',
             'dosen_id' => Auth::user()->dosen->id,
         ]);
         ModelSPDosen::find($insert->id)->update([
@@ -124,7 +129,7 @@ class ControllerSeminarDosen extends Controller
             }
             $seminar->update([
                 'nama' => $request->nama,
-                'tahun' => $request->tahun,
+                'tanggal' => $request->tanggal,
                 'scala' => $request->scala,
                 'uraian' => $request->uraian,
                 'url' => $request->url,
@@ -161,48 +166,46 @@ class ControllerSeminarDosen extends Controller
         $starDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($starDate && $endDate) {
-            $seminar = ModelSPDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->where('jenis', 'Seminar')
-                ->whereBetween('tahun', [$starDate, $endDate])->groupBy('scala')->get();
+            $seminar = ModelSPDosen::select('scala', DB::raw('COUNT(*) as scala_count'))
+                ->whereBetween('tanggal', [$starDate, $endDate])->groupBy('scala')->get();
         } else {
-            $seminar = ModelSPDosen::select('scala', DB::raw('COUNT(*) as scala_count'))->where('jenis', 'Seminar')
+            $seminar = ModelSPDosen::select('scala', DB::raw('COUNT(*) as scala_count'))
                 ->groupBy('scala')->get();
         }
 
         return response()->json($seminar);
     }
 
-    public function chartTahunSeminarDosen(Request $request)
+    public function chartTanggalSeminarDosen(Request $request)
     {
         $starDate = $request->input('startDate', null);
         $endDate = $request->input('endDate', null);
         if ($starDate && $endDate) {
-            $tahun = ModelSPDosen::select(DB::raw('YEAR(tahun) as year'), DB::raw('COUNT(*) as total'))
-                ->where('jenis', 'Seminar')
-                ->whereBetween(DB::raw('YEAR(tahun)'), [$starDate, $endDate])
-                ->groupBy(DB::raw('YEAR(tahun)'))
+            $tanggal = ModelSPDosen::select(DB::raw('YEAR(tanggal) as year'), DB::raw('COUNT(*) as total'))
+                ->whereBetween(DB::raw('tanggal'), [$starDate, $endDate])
+                ->groupBy(DB::raw('YEAR(tanggal)'))
                 ->get()
                 ->map(function ($item) {
                     return [
-                        'tahun' => $item->year,
+                        'tanggal' => $item->year,
                         'total' => $item->total
                     ];
                 })
                 ->values()
                 ->toArray();
         } else {
-            $tahun = ModelSPDosen::select(DB::raw('YEAR(tahun) as year'), DB::raw('COUNT(*) as total'))
-                ->where('jenis', 'Seminar')
-                ->groupBy(DB::raw('YEAR(tahun)'))
+            $tanggal = ModelSPDosen::select(DB::raw('YEAR(tanggal) as year'), DB::raw('COUNT(*) as total'))
+                ->groupBy(DB::raw('YEAR(tanggal)'))
                 ->get()
                 ->map(function ($item) {
                     return [
-                        'tahun' => $item->year,
+                        'tanggal' => $item->year,
                         'total' => $item->total
                     ];
                 })
                 ->values()
                 ->toArray();
         }
-        return response()->json($tahun);
+        return response()->json($tanggal);
     }
 }

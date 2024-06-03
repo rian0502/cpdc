@@ -27,10 +27,10 @@ class StorePublikasiRequest extends FormRequest
         $regional = ['Nasional', 'Internasional'];
         $kategori_litabmas = ['Penelitian', 'Pengabdian'];
         $kategori = [
-            'Buku Referensi', 
-            'Monograf', 
-            'Buku Nasional', 
-            'Buku Internasional', 
+            'Buku Referensi',
+            'Monograf',
+            'Buku Nasional',
+            'Buku Internasional',
             'Artikel Internasional Bereputasi',
             'Artikel Internasional Terindkes',
             'Jurnal Nasional Terakreditasi Dikti',
@@ -58,7 +58,8 @@ class StorePublikasiRequest extends FormRequest
             'scala' => 'required|string|min:3|max:25|in:' . implode(',', $regional),
             'kategori' => 'required|string|min:3|max:50|in:' . implode(',', $kategori),
             'anggota.*' => ['nullable', 'string', 'max:255', 'min:3', 'exists:dosen,encrypt_id', 'distinct'],
-            'anggota_external' => ['nullable', 'string']
+            'anggota_external' => ['nullable', 'string'],
+            'jumlah_kutipan' => ['nullable', 'numeric', 'max:255'],
         ];
     }
     public function messages()
@@ -104,6 +105,9 @@ class StorePublikasiRequest extends FormRequest
             'nama_publikasi.string' => 'Nama Publikasi harus berupa huruf',
             'nama_publikasi.max' => 'Nama Publikasi maksimal 255 karakter',
             'nama_publikasi.min' => 'Nama Publikasi minimal 3 karakter',
+            'jumlah_kutipan.max' => 'Jumlah Kutipan maksimal 255 karakter',
+            'jumlah_kutipan.numeric' => 'Jumlah Kutipan harus berupa angka',
+            
 
         ];
     }

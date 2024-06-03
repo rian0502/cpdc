@@ -14,9 +14,8 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto:wght@500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -128,8 +127,7 @@
                                 data-bs-toggle="dropdown">Seminar S1</a>
                             <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0">
                                 <a href="/kp"
-                                    class="dropdown-item margin-top {{ Request::is('kp*') ? 'active' : '' }}">Kerja
-                                    Praktik</a>
+                                    class="dropdown-item margin-top {{ Request::is('kp*') ? 'active' : '' }}">Praktik Kerja Lapangan</a>
                                 <a href="/ta1"
                                     class="dropdown-item margin-top {{ Request::is('ta1*') ? 'active' : '' }}">Tugas
                                     Akhir 1</a>
@@ -157,7 +155,7 @@
                             </div>
                         </div>
 
-                        
+
                         <a href="/help"
                             class="nav-item nav-link topbar{{ Request::is('help') ? 'active' : '' }}">Bantuan</a>
                         @auth
@@ -400,6 +398,45 @@
     <script src="/Assets/date/js/date.js"></script>
     <script src="/Assets/date/js/tanggal.js"></script>
     <script src="/Assets/src/js/nocopy.js"></script>
+    <script>
+// Mendapatkan semua elemen <a> dalam dokumen
+    var links = document.getElementsByTagName("a");
+
+// Loop melalui setiap elemen <a>
+for (var i = 0; i < links.length; i++) {
+    var link = links[i];
+    var href = link.getAttribute("href");
+
+    // Jika href mengandung "https://https://", ganti dengan "https://"
+    if (href && href.includes("https://https://")) {
+        href = href.replace("https://https://", "https://");
+        link.setAttribute("href", href);
+    }
+}
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Menangkap semua form di halaman
+            const forms = document.querySelectorAll('form');
+
+            forms.forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    // Menonaktifkan tombol submit untuk mencegah pengiriman ganda
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                    }
+                    setTimeout(function () {
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                        }
+                    }, 5000); // Ganti 5000 dengan waktu delay yang sesuai
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>

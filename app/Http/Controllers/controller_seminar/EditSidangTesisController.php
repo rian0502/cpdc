@@ -12,7 +12,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\ModelJadwalSeminarKompreS2;
-use App\Http\Requests\UpdateSidangTesisRequest;
 
 class EditSidangTesisController extends Controller
 {
@@ -36,7 +35,7 @@ class EditSidangTesisController extends Controller
     public function edit($id)
     {
         $seminar = ModelKompreS2::find(Crypt::decrypt($id));
-        $dosen = Dosen::select('id','encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
+        $dosen = Dosen::select('id', 'encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
         $lokasi = Lokasi::select('encrypt_id', 'nama_lokasi')->where('jenis_ruangan', 'Kelas')->get();
         $data = [
             'seminar' => $seminar,
@@ -46,15 +45,13 @@ class EditSidangTesisController extends Controller
         return view('koorS2.sidang.arsip.edit', $data);
     }
 
-    public function update(UpdateSidangTesisRequest $request, $id)
+    public function update(Request $request, $id)
     {
         try {
             $seminar = ModelKompreS2::find(Crypt::decrypt($id));
             $jadwal = ModelJadwalSeminarKompreS2::where('id_seminar', $seminar->id)->first();
             $ba = ModelBaKompreS2::where('id_seminar', $seminar->id)->first();
-
             DB::beginTransaction();
-
             $seminar->tahun_akademik = $request->tahun_akademik;
             $seminar->semester = $request->semester;
             $seminar->periode_seminar = $request->periode_seminar;
@@ -62,9 +59,11 @@ class EditSidangTesisController extends Controller
             $seminar->sks = $request->sks;
             $seminar->ipk = $request->ipk;
             $seminar->toefl = $request->toefl;
-            $seminar->draft_artikel = $request->draft_artikel;
             $seminar->url_draft_artikel = $request->url_draft_artikel;
             if ($request->hasFile('berkas_kompre')) {
+                $request->validate([
+                    'berkas_kompre' => 'required|mimes:pdf|max:1024',
+                ]);
                 if (file_exists('uploads/syarat_seminar_sidang_s2/' . $seminar->berkas_kompre)) {
                     unlink('uploads/syarat_seminar_sidang_s2/' . $seminar->berkas_kompre);
                 }
@@ -132,41 +131,69 @@ class EditSidangTesisController extends Controller
             $seminar->updated_at = date('Y-m-d H:i:s');
             $seminar->save();
 
-            $jadwal->tanggal = $request->tanggal;
-            $jadwal->jam_mulai = $request->jam_mulai;
-            $jadwal->jam_selesai = $request->jam_selesai;
-            $jadwal->id_lokasi = Crypt::decrypt($request->id_lokasi);
-            $jadwal->updated_at = date('Y-m-d H:i:s');
-            $jadwal->save();
+            if ($jadwal) {
+                $jadwal->tanggal = $request->tanggal;
+                $jadwal->jam_mulai = $request->jam_mulai;
+                $jadwal->jam_selesai = $request->jam_selesai;
+                $jadwal->id_lokasi = Crypt::decrypt($request->id_lokasi);
+                $jadwal->updated_at = date('Y-m-d H:i:s');
+                $jadwal->save();
+            }
 
-            $ba->no_ba = $request->no_ba;
-            $ba->nilai = $request->nilai;
-            $ba->nilai_mutu = $request->nilai_mutu;
-            $ba->ppt = $request->ppt;
-            if ($request->berkas_ba) {
-                if (file_exists('uploads/ba_sidang_tesis/' . $ba->berkas_ba)) {
-                    unlink('uploads/ba_sidang_tesis/' . $ba->berkas_ba);
+            if ($ba) {
+                $ba->no_ba = $request->no_ba;
+                $ba->nilai = $request->nilai;
+                $ba->nilai_mutu = $request->nilai_mutu;
+                $ba->ppt = $request->ppt;
+                if ($request->berkas_ba) {
+                    $request->validate([
+                        'berkas_ba' => 'required|mimes:pdf|max:1024'
+                    ]);
+                    if (file_exists('uploads/ba_sidang_tesis/' . $ba->berkas_ba)) {
+                        unlink('uploads/ba_sidang_tesis/' . $ba->berkas_ba);
+                    }
+                    $file = $request->file('berkas_ba');
+                    $filename = $file->hashName();
+                    $file->move('uploads/ba_sidang_tesis', $filename);
+                    $ba->berkas_ba = $filename;
                 }
-                $file = $request->file('berkas_ba');
-                $filename = $file->hashName();
-                $file->move('uploads/ba_sidang_tesis', $filename);
-                $ba->berkas_ba = $filename;
-            }
-            if ($request->file_nilai) {
-                if (file_exists('uploads/nilai_sidang_tesis/' . $ba->file_nilai)) {
-                    unlink('uploads/nilai_sidang_tesis/' . $ba->file_nilai);
+                if ($request->file_nilai) {
+                    $request->validate([
+                        'file_nilai' => 'required|mimes:pdf|max:1024'
+                    ]);
+                    if (file_exists('uploads/nilai_sidang_tesis/' . $ba->file_nilai)) {
+                        unlink('uploads/nilai_sidang_tesis/' . $ba->file_nilai);
+                    }
+                    $file = $request->file('file_nilai');
+                    $filename = $file->hashName();
+                    $file->move('uploads/nilai_sidang_tesis', $filename);
+                    $ba->file_nilai = $filename;
                 }
-                $file = $request->file('file_nilai');
-                $filename = $file->hashName();
-                $file->move('uploads/nilai_sidang_tesis', $filename);
-                $ba->file_nilai = $filename;
+                $ba->updated_at = date('Y-m-d H:i:s');
+                $ba->save();
             }
-            $ba->updated_at = date('Y-m-d H:i:s');
-            $ba->save();
             DB::commit();
+            return redirect()->route('koor.arsip.sidang_tesis.index')->with('success', 'Data berhasil diubah');
+
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->back()->with('error', $th->getMessage());
         }
+    }
+    public function show($id){
+        $seminar = ModelKompreS2::with(
+            'mahasiswa',
+            'jadwal',
+            'beritaAcara',
+            'pembimbingSatu',
+            'pembimbingDua',
+            'pembahasSatu',
+            'pembahasDua',
+            'pembahasTiga'
+        )->find(Crypt::decrypt($id));
+        $data = [
+            'seminar' => $seminar,
+        ];
+        return view('koorS2.sidang.arsip.show', $data);
     }
 }

@@ -155,6 +155,16 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label>URL Google Scholar</label>
+                                    <input value="{{ old('url_google_scholar') }}" autofocus name="url_google_scholar"
+                                        id="url_google_scholar" class="form-control @error('url_google_scholar') form-control-danger @enderror"
+                                        type="text" placeholder="Contoh : https://scholar.google.com/citations?user=jTifWecAAAAJ&hl">
+                                        <small><i>url harus lengkap</i></small>
+                                    @error('url_google_scholar')
+                                        <div class="form-control-feedback has-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">

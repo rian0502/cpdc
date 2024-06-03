@@ -23,16 +23,13 @@ class MahasiswaBimbinganTugasAkhirController extends Controller
         $seminar = ModelSeminarTaSatu::where('id_pembimbing_satu', Auth::user()->dosen->id)->orWhere('id_pembimbing_dua', Auth::user()->dosen->id)->get();
         $mahasiswa = Mahasiswa::select('angkatan')->distinct()->whereHas('ta_satu', function ($query) {
             $query->where('id_pembimbing_satu', Auth::user()->dosen->id)
-                ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id)
-                ->orWhere('id_pembahas', Auth::user()->dosen->id);
+                ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id);
         })->orWhereHas('ta_dua', function ($query) {
             $query->where('id_pembimbing_satu', Auth::user()->dosen->id)
-                ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id)
-                ->orWhere('id_pembahas', Auth::user()->dosen->id);
+                ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id);
         })->orWhereHas('komprehensif', function ($query) {
             $query->where('id_pembimbing_satu', Auth::user()->dosen->id)
-                ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id)
-                ->orWhere('id_pembahas', Auth::user()->dosen->id);
+                ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id);
         })->get();
         return view('dosen.mahasiswa.bimbingan.kompre.index', compact('seminar', 'mahasiswa'));
     }
@@ -41,20 +38,17 @@ class MahasiswaBimbinganTugasAkhirController extends Controller
         $ta1 = Mahasiswa::with(['ta_satu.pembimbing_satu', 'ta_satu.pembimbing_dua', 'ta_satu.pembahas', 'ta_satu.jadwal', 'ta_satu.ba_seminar'])
             ->where('angkatan', $request->ta_unduh)->whereHas('ta_satu', function ($query) {
                 $query->where('id_pembimbing_satu', Auth::user()->dosen->id)
-                    ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id)
-                    ->orWhere('id_pembahas', Auth::user()->dosen->id);
+                    ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id);
             })->get();
         $ta2 = Mahasiswa::with(['ta_dua.pembimbing_satu', 'ta_dua.pembimbing_dua', 'ta_dua.pembahas', 'ta_dua.jadwal', 'ta_dua.ba_seminar'])
             ->where('angkatan', $request->ta_unduh)->whereHas('ta_dua', function ($query) {
                 $query->where('id_pembimbing_satu', Auth::user()->dosen->id)
-                    ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id)
-                    ->orWhere('id_pembahas', Auth::user()->dosen->id);
+                    ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id);
             })->get();
         $kompre = Mahasiswa::with(['komprehensif.pembimbingSatu', 'komprehensif.pembimbingDua', 'komprehensif.pembahas', 'komprehensif.jadwal', 'komprehensif.beritaAcara'])
             ->where('angkatan', $request->ta_unduh)->whereHas('komprehensif', function ($query) {
                 $query->where('id_pembimbing_satu', Auth::user()->dosen->id)
-                    ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id)
-                    ->orWhere('id_pembahas', Auth::user()->dosen->id);
+                    ->orWhere('id_pembimbing_dua', Auth::user()->dosen->id);
             })->get();
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();

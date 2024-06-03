@@ -21,6 +21,7 @@ use App\Models\ModelPendataanAlumni;
 use App\Models\ModelSeminarTaSatuS2;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use PublikasiMahasiswa;
 
 class Mahasiswa extends Model
 {
@@ -71,19 +72,19 @@ class Mahasiswa extends Model
     }
     public function seminar_kp()
     {
-        return $this->hasOne(ModelSeminarKP::class, 'id_mahasiswa');
+        return $this->hasOne(ModelSeminarKP::class, 'id_mahasiswa')->with('jadwal');
     }
     public function ta_satu()
     {
-        return $this->hasOne(ModelSeminarTaSatu::class, 'id_mahasiswa');
+        return $this->hasOne(ModelSeminarTaSatu::class, 'id_mahasiswa')->with('jadwal');
     }
     public function ta_dua()
     {
-        return $this->hasOne(ModelSeminarTaDua::class, 'id_mahasiswa');
+        return $this->hasOne(ModelSeminarTaDua::class, 'id_mahasiswa')->with('jadwal');
     }
     public function komprehensif()
     {
-        return $this->hasOne(ModelSeminarKompre::class, 'id_mahasiswa');
+        return $this->hasOne(ModelSeminarKompre::class, 'id_mahasiswa')->with('jadwal');
     }
     public function taSatuS2()
     {
@@ -100,6 +101,14 @@ class Mahasiswa extends Model
     public function aktivitasAlumni()
     {
         return $this->hasMany(AktivitasAlumni::class, 'mahasiswa_id');
+    }
+    public function presetasi()
+    {
+        return $this->hasMany(PrestasiMahasiswa::class);
+    }
+    public function publikasi_mahasiswa()
+    {
+        return $this->hasMany(ModelPublikasiMahasiswa::class, 'mahasiswa_id');
     }
     public function kegiatanTerakhir()
     {

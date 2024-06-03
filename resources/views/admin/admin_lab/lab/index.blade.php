@@ -21,6 +21,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Nama Mahasiswa</th>
                                     <th style="word-wrap: break-word;min-width: 160px;max-width: 160px;">Kegiatan</th>
                                     <th>Tanggal Pakai</th>
                                     <th>Waktu</th>
@@ -55,6 +56,11 @@
                         }
                     },
                     {
+                        data: 'user.name',
+                        name: 'user.name',
+                        orderable: true
+                    },
+                    {
                         data: 'nama_kegiatan',
                         name: 'nama_kegiatan',
                         orderable: true,
@@ -62,12 +68,12 @@
                     {
                         data: 'tanggal_kegiatan',
                         name: 'tanggal_kegiatan',
-                        orderable: true
+                        orderable: false
                     },
                     {
                         data: 'waktu',
                         name: 'waktu',
-                        orderable: true
+                        orderable: false
                     },
                     {
                         data: 'keperluan',

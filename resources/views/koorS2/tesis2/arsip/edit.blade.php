@@ -50,7 +50,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix" style="margin-bottom: 50px; margin-top: 10px;">
                         <div class="pull-left">
-                            <h4 class="text-dark h4" style="margin-left: 10px">Jadwalkan Seminar Tesis 2 S2 </h4>
+                            <h4 class="text-dark h4" style="margin-left: 10px">Seminar Tesis 2</h4>
                         </div>
                     </div>
                     <div class="pl-3 pr-3 pb-0 mb-2">
@@ -125,10 +125,10 @@
                                             <optgroup label="Pembahas 1">
                                                 @foreach ($dosen as $item)
                                                     <option value="{{ $item->encrypt_id }}"
-                                                        {{ old('id_pembimbing_2', $seminar->pembimbingDua->id ?? null) == $item->id ? 'selected' : '' }}>
+                                                        {{ old('id_pembimbing_2', $seminar->id_pembimbing_2 ?? null) == $item->id ? 'selected' : '' }}>
                                                         {{ $item->nama_dosen }}</option>
                                                 @endforeach
-                                                @if (in_array(old('id_pembimbing_2', $seminar->pembimbingDua), ['new', null]) || $errors->has('pembimbimng_external_2'))
+                                                @if (in_array(old('id_pembimbing_2', $seminar->id_pembimbing_2), ['new', null]) || $errors->has('pembimbimng_external_2'))
                                                     <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                                 @else
                                                     <option value="new">Tidak Ada di Daftar Ini</option>
@@ -137,8 +137,8 @@
                                         </select>
                                     </div>
                                     <div id="pembimbimng_external_2"
-                                        style="display: {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua), ['new', null]) ? 'block' : 'none' }};"
-                                        {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua), ['new', null]) ? '' : 'hidden' }}>
+                                        style="display: {{ in_array(old('id_pembimbing_2', $seminar->id_pembimbing_2), ['new', null]) ? 'block' : 'none' }};"
+                                        {{ in_array(old('id_pembimbing_2', $seminar->id_pembimbing_2), ['new', null]) ? '' : 'hidden' }}>
                                         <div class="form-group">
                                             <label>Nama Pembimbing 2</label>
                                             <input autofocus name="pbl2_nama"
@@ -151,8 +151,8 @@
                                         </div>
                                     </div>
                                     <div id="Pembimbing2"
-                                        style="display: {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->id ?? null), ['new', null]) ? 'block' : 'none' }};"
-                                        {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->id ?? null), ['new', null]) ? '' : 'hidden' }}>
+                                        style="display: {{ in_array(old('id_pembimbing_2', $seminar->id_pembimbing_2 ?? null), ['new', null]) ? 'block' : 'none' }};"
+                                        {{ in_array(old('id_pembimbing_2', $seminar->id_pembimbing_2 ?? null), ['new', null]) ? '' : 'hidden' }}>
                                         <div class="form-group">
                                             <label>NIP Pembimbing 2</label>
                                             <input autofocus name="pbl2_nip"
@@ -366,7 +366,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label>Nomor Berita Acara Seminar Tugas Akhir 1</label>
+                                            <label>Nomor Berita Acara Seminar Tugas Akhir 2</label>
                                             <input autofocus name="no_ba" id="no_ba"
                                                 class="form-control @error('no_ba') form-control-danger @enderror"
                                                 type="text" value="{{ old('no_ba', $seminar->beritaAcara->no_ba) }}"

@@ -8,14 +8,14 @@ use App\Models\Lokasi;
 use App\Models\Mahasiswa;
 use App\Models\Administrasi;
 use Illuminate\Http\Request;
+use App\Jobs\SendEmailTugasAkhir1;
 use App\Models\ModelSeminarTaSatu;
+use App\Models\TemplateBeritaAcara;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ModelJadwalSeminarTaSatu;
-use App\Models\TemplateBeritaAcara;
-use SeminarTaSatu;
 
 class PenjadwalanTaSatu extends Controller
 {
@@ -128,19 +128,14 @@ class PenjadwalanTaSatu extends Controller
             'jam_selesai' => $request->jam_selesai_skp,
             'lokasi' => $lokasi->nama_lokasi,
         ];
-        Mail::send('email.jadwal_seminar', $data, function ($message) use ($to_name, $to_email, $namafile) {
-            $message->to($to_email, $to_name)->subject('Jadwal Seminar Tugas Akhir 1');
-            $message->from('chemistryprogramdatacenter@gmail.com');
-            $message->attach('uploads/print_ba_ta1/' . $namafile);
-        });
-        unlink('uploads/print_ba_ta1/' . $namafile);
-        return redirect()->route('koor.jadwalTA1.index')->with('success', 'Berhasil Menjadwalkan Seminar Tugas Akhir 1');
-    }
 
-    public function show($id)
-    {
+        dispatch(new SendEmailTugasAkhir1($data, $to_name, $to_email, $namafile));
+        
+        return redirect()->route('koor.jadwalTA1.index')->with(
+            'success',
+            'Berhasil Menjadwalkan Seminar Tugas Akhir 1'
+        );
     }
-
     public function edit($id)
     {
         $seminar = ModelSeminarTaSatu::find(Crypt::decrypt($id));
@@ -288,7 +283,7 @@ class PenjadwalanTaSatu extends Controller
             ->with('success', 'Berhasil Mengirim Ulang Jadwal Seminar Tugas Akhir 1');
     }
 
-    public function downloadJadwal(Request $request)
+    public function downloadJadwal()
     {
         $seminar = ModelSeminarTaSatu::with('mahasiswa', 'pembimbing_satu', 'pembimbing_dua', 'pembahas')
             ->whereDoesntHave('jadwal')->where('status_admin', 'Valid')->orderBy('updated_at', 'asc')->get();
@@ -319,12 +314,59 @@ class PenjadwalanTaSatu extends Controller
                 $sheet->setCellValue('H' . ($key + 2), $value->updated_at->isoFormat('D MMMM Y'));
             }
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
-            $filename = 'Daftar Seminar TA 1 S1 Angkatan .xlsx';
+            $filename = 'Daftar Pra-Penjadwalan Seminar TA 1 S1.xlsx';
             $writer->save($filename);
             return response()->download($filename)->deleteFileAfterSend(true);
         } else {
             return redirect()->back()
-                ->with('error', 'Belum Ada Mahasiswa yang Mendaftar Seminar TA 1');
+                ->with('error', 'Belum ada Seminar TA 1 yang dapat dijadwalkan');
+        }
+    }
+    public function pascaDownloadJadwal()
+    {
+        $seminar = ModelSeminarTaSatu::with('mahasiswa', 'pembimbing_satu', 'pembimbing_dua', 'pembahas')
+            ->whereHas('jadwal', function ($query) {
+                $query->whereDate('tanggal_seminar_ta_satu', '>=', date('Y-m-d'));
+            })->where('status_admin', 'Valid')->orderBy('updated_at', 'asc')->get();
+        if ($seminar->count() > 0) {
+            $spredsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+            $sheet = $spredsheet->getActiveSheet();
+            $sheet->setTitle('Daftar Seminar TA 1 S1');
+            $sheet->setCellValue('A1', 'No');
+            $sheet->setCellValue('B1', 'Nama Mahasiswa');
+            $sheet->setCellValue('C1', 'NPM');
+            $sheet->setCellValue('D1', 'Judul TA');
+            $sheet->setCellValue('E1', 'Pembimbing 1');
+            $sheet->setCellValue('F1', 'Pembimbing 2');
+            $sheet->setCellValue('G1', 'Pembahas');
+            $sheet->setCellValue('H1', 'Tanggal Seminar');
+            $sheet->setCellValue('I1', 'Jam Mulai');
+            $sheet->setCellValue('J1', 'Jam Selesai');
+            $sheet->setCellValue('K1', 'Lokasi');
+            foreach ($seminar as $key => $value) {
+                $sheet->setCellValue('A' . ($key + 2), $key + 1);
+                $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+                $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->npm);
+                $sheet->setCellValue('D' . ($key + 2), $value->judul_ta);
+                $sheet->setCellValue('E' . ($key + 2), $value->pembimbing_satu->nama_dosen);
+                if ($value->id_pembimbing_dua) {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pembimbing_dua->nama_dosen);
+                } else {
+                    $sheet->setCellValue('F' . ($key + 2), $value->pbl2_nama);
+                }
+                $sheet->setCellValue('G' . ($key + 2), $value->pembahas->nama_dosen);
+                $sheet->setCellValue('H' . ($key + 2), $value->jadwal->tanggal_seminar_ta_satu);
+                $sheet->setCellValue('I' . ($key + 2), $value->jadwal->jam_mulai_seminar_ta_satu);
+                $sheet->setCellValue('J' . ($key + 2), $value->jadwal->jam_selesai_seminar_ta_satu);
+                $sheet->setCellValue('K' . ($key + 2), $value->jadwal->lokasi->nama_lokasi);
+            }
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spredsheet);
+            $filename = 'Daftar Pasca-Penjadwalan Seminar TA 1 S1.xlsx';
+            $writer->save($filename);
+            return response()->download($filename)->deleteFileAfterSend(true);
+        } else {
+            return redirect()->back()
+                ->with('error', 'Belum ada Seminar TA 1 yang dapat dijadwalkan');
         }
     }
 }

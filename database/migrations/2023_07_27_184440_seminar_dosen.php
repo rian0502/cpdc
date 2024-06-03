@@ -17,12 +17,11 @@ class SeminarDosen extends Migration
             $table->id();
             $table->string('encrypt_id')->nullable();
             $table->string('nama');
-            $table->date('tahun');
+            $table->date('tanggal');
             $table->enum('scala', ['Nasional', 'Internasional', 'Provinsi', 'Kabupaten/Kota', 'Universitas']);
             $table->text('uraian');
             $table->string('url');
             $table->foreignId('dosen_id')->constrained('dosen')->onDelete('cascade')->onUpdate('cascade');
-            $table->enum('jenis', ['Seminar', 'Penghargaan']);
             $table->timestamps();
         });
     }

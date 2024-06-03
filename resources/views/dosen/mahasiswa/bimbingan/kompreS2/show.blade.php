@@ -741,7 +741,7 @@
                                                                     2</strong></label>
                                                             <div class="col-md-3"
                                                                 style="display:block;word-wrap:break-word;">
-                                                                {{ $sidangKompre->id_pembahas_2 ? $seminarTa1->pembahasDua->nama_dosen : $sidangKompre->pembahas_external_2 }}
+                                                                {{ $sidangKompre->id_pembahas_2 ? $sidangKompre->pembahasDua->nama_dosen : $sidangKompre->pembahas_external_2 }}
                                                             </div>
                                                         </div>
 
@@ -770,7 +770,7 @@
                                                             <div class="col-md-3"
                                                                 style="display:block;word-wrap:break-word;">
                                                                 <a target="_blank"
-                                                                    href="/uploads/syarat_seminar_ta_dua_s2/{{ $sidangKompre->berkas_ta_dua }}">Lihat
+                                                                    href="/uploads/syarat_seminar_sidang_s2/{{ $sidangKompre->berkas_kompre }}">Lihat
                                                                     Berkas</a>
                                                             </div>
                                                         </div>
@@ -803,7 +803,7 @@
                                                             <div class="col-md-3"
                                                                 style="display:block;word-wrap:break-word;">
                                                                 <a
-                                                                    href="uploads/draft_artikel/{{ $sidangKompre->draft_artikel }}">Lihat</a>
+                                                                    href="/uploads/draft_artikel_s2/{{ $sidangKompre->draft_artikel }}">Lihat</a>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-2">

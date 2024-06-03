@@ -172,7 +172,7 @@
                                                     {{ old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null) == $item->encrypt_id ? 'selected' : '' }}>
                                                     {{ $item->nama_dosen }}</option>
                                             @endforeach
-                                            @if (in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id), ['new', null]) ||
+                                            @if (in_array(old('id_pembimbing_2', $seminar->id_pembimbing_dua), ['new', null]) ||
                                                     $errors->has('pembimbimng_external_2'))
                                                 <option value="new" selected>Tidak Ada di Daftar Ini</option>
                                             @else
@@ -182,8 +182,8 @@
                                     </select>
                                 </div>
                                 <div id="pembimbimng_external_2"
-                                    style="display: {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id), ['new', null]) ? 'block' : 'none' }};"
-                                    {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id), ['new', null]) ? '' : 'hidden' }}>
+                                    style="display: {{ in_array(old('id_pembimbing_2', $seminar->id_pembimbing_dua), ['new', null]) ? 'block' : 'none' }};"
+                                    {{ in_array(old('id_pembimbing_2', $seminar->id_pembimbing_dua), ['new', null]) ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>Nama Pembimbing 2</label>
                                         <input autofocus name="pbl2_nama"
@@ -196,8 +196,8 @@
                                     </div>
                                 </div>
                                 <div id="Pembimbing2"
-                                    style="display: {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null), ['new', null]) ? 'block' : 'none' }};"
-                                    {{ in_array(old('id_pembimbing_2', $seminar->pembimbingDua->encrypt_id ?? null), ['new', null]) ? '' : 'hidden' }}>
+                                    style="display: {{ in_array(old('id_pembimbing_2', $seminar->id_pembimbing_dua ?? null), ['new', null]) ? 'block' : 'none' }};"
+                                    {{ in_array(old('id_pembimbing_2', $seminar->id_pembimbing_dua ?? null), ['new', null]) ? '' : 'hidden' }}>
                                     <div class="form-group">
                                         <label>NIP Pembimbing 2</label>
                                         <input autofocus name="pbl2_nip"

@@ -31,7 +31,23 @@ class EditSeminarTugasAkhir1Controller extends Controller
         }
         return view('koor.ta1.arsip.index');
     }
-    public function edit($id){
+    public function show($id)
+    {
+        $seminar = ModelSeminarTaSatu::with(
+            'mahasiswa',
+            'jadwal',
+            'ba_seminar',
+            'pembimbing_satu',
+            'pembimbing_dua',
+            'pembahas',
+        )->find(Crypt::decrypt($id));
+        $data = [
+            'seminar' => $seminar,
+        ];
+        return view('koor.ta1.arsip.show', $data);
+    }
+    public function edit($id)
+    {
         $seminar = ModelSeminarTaSatu::with(['jadwal', 'ba_seminar'])->where('id', Crypt::decrypt($id))->first();
         $dosen = Dosen::select('id', 'encrypt_id', 'nama_dosen')->where('status', 'Aktif')->get();
         $lokasi = Lokasi::select('encrypt_id', 'nama_lokasi')->where('jenis_ruangan', 'Kelas')->get();
@@ -40,12 +56,14 @@ class EditSeminarTugasAkhir1Controller extends Controller
             'dosen' => $dosen,
             'lokasi' => $lokasi,
         ];
+
         // return response()->json($seminar);
         return view('koor.ta1.arsip.edit', $data);
     }
 
-    public function update(UpdateSeminarTugasAkhir1Request $request, $id){
-        try{
+    public function update(Request $request, $id)
+    {
+        try {
             $seminar = ModelSeminarTaSatu::find(Crypt::decrypt($id));
             $jadwal = ModelJadwalSeminarTaSatu::where('id_seminar', $seminar->id)->first();
             $ba = ModelBaSeminarTaSatu::where('id_seminar', $seminar->id)->first();
@@ -57,6 +75,9 @@ class EditSeminarTugasAkhir1Controller extends Controller
             $seminar->ipk = $request->ipk;
             $seminar->toefl = $request->toefl;
             if ($request->berkas_ta_satu) {
+                $request->validate([
+                    'berkas_ta_satu' => 'required|mimes:pdf|max:10000',
+                ]);
                 if (file_exists('uploads/syarat_seminar_ta1/' . $seminar->berkas_ta_satu)) {
                     unlink('uploads/syarat_seminar_ta1/' . $seminar->berkas_ta_satu);
                 }
@@ -68,11 +89,11 @@ class EditSeminarTugasAkhir1Controller extends Controller
             $seminar->status_admin = $request->status_admin;
             $seminar->status_koor = $request->status_koor;
             $seminar->id_pembimbing_satu = Crypt::decrypt($request->id_pembimbing_satu);
-            if($request->id_pembimbing_dua != 'new'){
+            if ($request->id_pembimbing_dua != 'new') {
                 $seminar->id_pembimbing_dua = Crypt::decrypt($request->id_pembimbing_dua);
                 $seminar->pbl2_nama = null;
                 $seminar->pbl2_nip = null;
-            }else{
+            } else {
                 $request->validate([
                     'pbl2_nama' => 'required',
                     'pbl2_nip' => 'required',
@@ -80,50 +101,57 @@ class EditSeminarTugasAkhir1Controller extends Controller
                 $seminar->id_pembimbing_dua = null;
                 $seminar->pbl2_nama = $request->pbl2_nama;
                 $seminar->pbl2_nip = $request->pbl2_nip;
-
             }
             $seminar->id_pembahas = Crypt::decrypt($request->id_pembahas);
             $seminar->updated_at = date('Y-m-d H:i:s');
             $seminar->save();
             //update jadwal
-            $jadwal->tanggal_seminar_ta_satu = $request->tanggal_seminar_ta_satu;
-            $jadwal->jam_mulai_seminar_ta_satu = $request->jam_mulai_seminar_ta_satu;
-            $jadwal->jam_selesai_seminar_ta_satu = $request->jam_selesai_seminar_ta_satu;
-            $jadwal->id_lokasi = Crypt::decrypt($request->id_lokasi);
-            $jadwal->updated_at = date('Y-m-d H:i:s');
-            $jadwal->save();
+            if ($jadwal) {
+                $jadwal->tanggal_seminar_ta_satu = $request->tanggal_seminar_ta_satu;
+                $jadwal->jam_mulai_seminar_ta_satu = $request->jam_mulai_seminar_ta_satu;
+                $jadwal->jam_selesai_seminar_ta_satu = $request->jam_selesai_seminar_ta_satu;
+                $jadwal->id_lokasi = Crypt::decrypt($request->id_lokasi);
+                $jadwal->updated_at = date('Y-m-d H:i:s');
+                $jadwal->save();
+            }
             //update berita acara
-            $ba->no_berkas_ba_seminar_ta_satu = $request->no_berkas_ba_seminar_ta_satu;
-            if($request->berkas_ba_seminar_ta_satu){
-                if (file_exists('uploads/ba_seminar_ta_satu/' . $ba->berkas_ba_seminar_ta_satu)) {
-                    unlink('uploads/ba_seminar_ta_satu/' . $ba->berkas_ba_seminar_ta_satu);
+            if ($ba) {
+                $ba->no_berkas_ba_seminar_ta_satu = $request->no_berkas_ba_seminar_ta_satu;
+                if ($request->berkas_ba_seminar_ta_satu) {
+                    $request->validate([
+                        'berkas_ba_seminar_ta_satu' => 'required|mimes:pdf|max:1024'
+                    ]);
+                    if (file_exists('uploads/ba_seminar_ta_satu/' . $ba->berkas_ba_seminar_ta_satu)) {
+                        unlink('uploads/ba_seminar_ta_satu/' . $ba->berkas_ba_seminar_ta_satu);
+                    }
+                    $file = $request->file('berkas_ba_seminar_ta_satu');
+                    $nama_file = $file->hashName();
+                    $file->move('uploads/ba_seminar_ta_satu', $nama_file);
+                    $ba->berkas_ba_seminar_ta_satu = $nama_file;
                 }
-                $file = $request->file('berkas_ba_seminar_ta_satu');
-                $nama_file = $file->hashName();
-                $file->move('uploads/ba_seminar_ta_satu', $nama_file);
-                $ba->berkas_ba_seminar_ta_satu = $nama_file;
-            }
-            if($request->berkas_nilai_ta_satu){
-                if (file_exists('uploads/nilai_seminar_ta_satu/' . $ba->berkas_nilai_ta_satu)) {
-                    unlink('uploads/nilai_seminar_ta_satu/' . $ba->berkas_nilai_ta_satu);
+                if ($request->berkas_nilai_ta_satu) {
+                    $request->validate([
+                        'berkas_nilai_ta_satu' => 'required|mimes:pdf|max:1024'
+                    ]);
+                    if (file_exists('uploads/nilai_seminar_ta_satu/' . $ba->berkas_nilai_ta_satu)) {
+                        unlink('uploads/nilai_seminar_ta_satu/' . $ba->berkas_nilai_ta_satu);
+                    }
+                    $file = $request->file('berkas_nilai_ta_satu');
+                    $nama_file = $file->hashName();
+                    $file->move('uploads/nilai_seminar_ta_satu', $nama_file);
+                    $ba->berkas_nilai_ta_satu = $nama_file;
                 }
-                $file = $request->file('berkas_nilai_ta_satu');
-                $nama_file = $file->hashName();
-                $file->move('uploads/nilai_seminar_ta_satu', $nama_file);
-                $ba->berkas_nilai_ta_satu = $nama_file;
+                $ba->berkas_ppt_seminar_ta_satu = $request->berkas_ppt_seminar_ta_satu;
+                $ba->nilai = $request->nilai;
+                $ba->huruf_mutu = $request->huruf_mutu;
+                $ba->updated_at = date('Y-m-d H:i:s');
+                $ba->save();
             }
-            $ba->berkas_ppt_seminar_ta_satu = $request->berkas_ppt_seminar_ta_satu;
-            $ba->nilai = $request->nilai;
-            $ba->huruf_mutu = $request->huruf_mutu;
-            $ba->updated_at = date('Y-m-d H:i:s');
-            $ba->save();
             DB::commit();
             return redirect()->route('koor.arsip.ta1.index')->with('success', 'Berhasil mengubah data seminar TA 1 S1');
-
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
             return redirect()->route('koor.arsip.ta1.index')->with('error', $e->getMessage());
         }
-
     }
 }

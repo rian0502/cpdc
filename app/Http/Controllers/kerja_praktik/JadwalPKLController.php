@@ -18,6 +18,7 @@ use App\Models\ModelJadwalSeminarTaDua;
 use App\Models\ModelJadwalSeminarKompre;
 use App\Models\ModelJadwalSeminarTaSatu;
 use PhpOffice\PhpWord\TemplateProcessor;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class JadwalPKLController extends Controller
 {
@@ -126,10 +127,10 @@ class JadwalPKLController extends Controller
             'tgl_seminar_kp',
             Carbon::parse($request->tanggal_skp)->locale('id_ID')->isoFormat('D MMMM YYYY')
         );
-        $template->setValue('mitra', $request->mitra);
+        $template->setValue('mitra', $seminar->mitra);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
-        $template->setValue('pembimbing_lapangan', $request->pembimbing_lapangan);
-        $template->setValue('nip_pembimbing_lapangan', $request->ni_pemlap);
+        $template->setValue('pembimbing_lapangan', $seminar->pembimbing_lapangan);
+        $template->setValue('nip_pembimbing_lapangan', $seminar->ni_pemlap);
         $namafile = $seminar->mahasiswa->npm . '_ba_kp_' . time() . '.docx';
         $template->saveAs('uploads/print_ba_kp/' . $namafile);
         //send email
@@ -357,6 +358,82 @@ class JadwalPKLController extends Controller
         return redirect()->back();
     }
 
+    public function downloadJadwal()
+    {
+        $seminar = ModelSeminarKP::with(['jadwal', 'mahasiswa', 'dosen'])
+            ->whereDoesntHave('jadwal')
+            ->where('proses_admin', '=', 'Valid')
+            ->orderBy('updated_at', 'asc')
+            ->get();
+        if ($seminar->count() == 0) {
+            return redirect()->back()->with('error', 'Tidak Ada Jadwal Seminar KP');
+        } else {
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->setCellValue('A1', 'No');
+            $sheet->setCellValue('B1', 'NPM');
+            $sheet->setCellValue('C1', 'Nama Mahasiswa');
+            $sheet->setCellValue('D1', 'Judul KP');
+            $sheet->setCellValue('E1', 'Dosen Pembimbing');
+            $sheet->setCellValue('F1', 'Pembimbing Lapangan');
+            $sheet->setCellValue('G1', 'Mitra');
+            foreach ($seminar as $key => $value) {
+                $sheet->setCellValue('A' . ($key + 2), $key + 1);
+                $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->npm);
+                $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+                $sheet->setCellValue('D' . ($key + 2), $value->judul_kp);
+                $sheet->setCellValue('E' . ($key + 2), $value->dosen->nama_dosen);
+                $sheet->setCellValue('F' . ($key + 2), $value->pembimbing_lapangan);
+                $sheet->setCellValue('G' . ($key + 2), $value->mitra);
+            }
+            $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
+            $filename = 'pra_penjadwalan_seminar_kp_' . '.xlsx';
+            $writer->save($filename);
+            return response()->download($filename)->deleteFileAfterSend(true);
+        }
+    }
+
+    public function pascaDownloadJadwal()
+    {
+        $seminar = ModelSeminarKP::with('jadwal', 'mahasiswa', 'dosen')
+            ->whereHas('jadwal', function ($query) {
+                $query->whereDate('tanggal_skp', '>=', date('Y-m-d'));
+            })->where('proses_admin', 'Valid')->orderBy('updated_at', 'asc')->get();
+        if ($seminar->count() == 0) {
+            return redirect()->back()->with('error', 'Tidak Ada Jadwal Seminar KP');
+        } else {
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->setCellValue('A1', 'No');
+            $sheet->setCellValue('B1', 'NPM');
+            $sheet->setCellValue('C1', 'Nama Mahasiswa');
+            $sheet->setCellValue('D1', 'Judul KP');
+            $sheet->setCellValue('E1', 'Dosen Pembimbing');
+            $sheet->setCellValue('F1', 'Pembimbing Lapangan');
+            $sheet->setCellValue('G1', 'Mitra');
+            $sheet->setCellValue('H1', 'Tanggal Seminar');
+            $sheet->setCellValue('I1', 'Jam Mulai');
+            $sheet->setCellValue('J1', 'Jam Selesai');
+            $sheet->setCellValue('K1', 'Lokasi');
+            foreach ($seminar as $key => $value) {
+                $sheet->setCellValue('A' . ($key + 2), $key + 1);
+                $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->npm);
+                $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
+                $sheet->setCellValue('D' . ($key + 2), $value->judul_kp);
+                $sheet->setCellValue('E' . ($key + 2), $value->dosen->nama_dosen);
+                $sheet->setCellValue('F' . ($key + 2), $value->pembimbing_lapangan);
+                $sheet->setCellValue('G' . ($key + 2), $value->mitra);
+                $sheet->setCellValue('H' . ($key + 2), $value->jadwal->tanggal_skp);
+                $sheet->setCellValue('I' . ($key + 2), $value->jadwal->jam_mulai_skp);
+                $sheet->setCellValue('J' . ($key + 2), $value->jadwal->jam_selesai_skp);
+                $sheet->setCellValue('K' . ($key + 2), $value->jadwal->lokasi->nama_lokasi);
+            }
+            $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
+            $filename = 'pasca_penjadwalan_seminar_kp_' . '.xlsx';
+            $writer->save($filename);
+            return response()->download($filename)->deleteFileAfterSend(true);
+        }
+    }
 
     public function checkJadwal(Request $request)
     {

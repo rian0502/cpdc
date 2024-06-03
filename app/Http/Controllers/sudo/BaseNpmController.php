@@ -8,6 +8,7 @@ use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class BaseNpmController extends Controller
 {
@@ -85,6 +86,7 @@ class BaseNpmController extends Controller
         return redirect()->route('sudo.base_npm.index')->with('success', 'Data Berhasil Diupload');
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -152,5 +154,24 @@ class BaseNpmController extends Controller
             $model = BaseNPM::query();
             return DataTables::of($model)->toJson();
         }
+    }
+
+    public function exportNpm(Request $request)
+    {
+        $baseNPM = BaseNpm::query()->orderBy('npm')->get();
+        $spdsheet = new Spreadsheet();
+        $sheet = $spdsheet->getActiveSheet();
+        $sheet->setTitle('Data Npm');
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'NPM');
+        $sheet->setCellValue('C1', 'Status');
+        foreach ($baseNPM as $key => $value) {
+            $sheet->setCellValue('A' . ($key + 2), $key + 1);
+            $sheet->setCellValue('B' . ($key + 2), $value->npm);
+            $sheet->setCellValue('C' . ($key + 2), $value->status);
+        }
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
+        $writer->save('Data_Npm_Keseluruhan'.'.xlsx');
+        return response()->download('Data_Npm_Keseluruhan' . '.xlsx')->deleteFileAfterSend(true);
     }
 }
