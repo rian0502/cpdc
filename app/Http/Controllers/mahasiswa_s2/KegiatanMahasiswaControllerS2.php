@@ -111,7 +111,7 @@ class KegiatanMahasiswaControllerS2 extends Controller
         try {
             $kegiatan = AktivitasMahasiswaS2::find(Crypt::decrypt($id));
             $dosen = Dosen::select('id', 'encrypt_id', 'nama_dosen')
-            ->where('status', 'Aktif')->get();
+                ->where('status', 'Aktif')->get();
             if ($kegiatan->mahasiswa_id != Auth::user()->mahasiswa->id) {
                 return redirect()->back();
             }

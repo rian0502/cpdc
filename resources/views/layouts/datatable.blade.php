@@ -734,8 +734,7 @@
                                 class="dropdown-toggle no-arrow {{ Request::is('admin/lab/ruang*') ? 'active' : '' }}">
                                 <span class="micon bi bi-radioactive"></span><span class="mtext">Laboratorium</span>
                             </a>
-                        </li>
-                        <li>
+                        </li><li>
                             <a href="{{ route('lab.sop.index') }}"
                                 class="dropdown-toggle no-arrow {{ Request::is('admin/lab/sop*') ? 'active' : '' }}">
                                 <span class="micon bi bi-file-earmark-ruled"></span><span class="mtext">SOP</span>
@@ -868,6 +867,13 @@
                                         class="{{ Request::is('mahasiswa/sidang/kompre/S2*') ? 'active' : '' }}">Sidang
                                         Tesis</a></li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="{{ route('mahasiswa.lab.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('mahasiswa/lab*') ? 'active' : '' }}">
+                                <span class="micon fa-solid fa-flask-vial"></span><span class="mtext">Laboratorium
+                                    TA</span>
+                            </a>
                         </li>
                         @if (Auth::user()->mahasiswa->komprehensifS2)
                             @if (Auth::user()->mahasiswa->komprehensifS2->status_koor == 'Selesai')
