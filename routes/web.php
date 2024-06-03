@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\JadwalSKP;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
@@ -655,6 +656,8 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware(
 Route::resource('publikasi_mahasiswa', PublikasiMahasiswaController::class)
     ->names('mahasiswa.publikasi')->middleware('auth', 'verified', 'role:mahasiswa|mahasiswaS2|alumniS1|alumniS2');
 
+
+
 Route::prefix('mahasiswa')->name('mahasiswa.')->middleware(
     'auth',
     'mahasiswa',
@@ -676,6 +679,14 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware(
     Route::group(['prefix' => 'sidang', 'as' => 'sidang.'], function () {
         Route::resource('kompre', MahasiswaKompreController::class)->names('kompre');
     });
+});
+
+Route::prefix('mahasiswa')->name('mahasiswa.')->middleware(
+    'auth',
+    'mahasiswa',
+    'verified',
+    'role:mahasiswa|mahasiswaS2|alumni&mahasiswa|alumni&mahasiswaS2',
+)->group(function () {
     Route::get('lab', [LabTAController::class, 'index'])->name('lab.index');
     Route::get('lab/cekin', [LabTAController::class, 'cekin'])->name('lab.cekin');
     Route::post('lab/pergroup', [LabTAController::class, 'perGroup'])->name('lab.per.group');
@@ -687,8 +698,6 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware(
         'belumTaAlternativ'
     ])->name('lab.cekin.belum.ta.alternatif');
 });
-
-
 
 
 
