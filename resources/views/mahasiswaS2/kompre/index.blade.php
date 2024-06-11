@@ -186,7 +186,7 @@
                                 <label class="col-md-3 bold"> <strong>Berkas Kelengkapan</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
                                     <a target="_blank"
-                                        href="/uploads/syarat_s2/{{ $seminar->berkas_ta_satu }}">Lihat
+                                        href="/uploads/syarat_seminar_sidang_s2/{{ $seminar->berkas_kompre }}">Lihat
                                         Berkas</a>
                                 </div>
                             </div>
