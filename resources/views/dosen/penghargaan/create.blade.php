@@ -48,17 +48,17 @@
                                     <label>Kategori</label>
                                     <select class="custom-select2 form-control"style="width: 100%"
                                         name="kategori">
-                                        ['Satya Lencana', 'Sertifikat Kopetensi', 'Piagam Penghargaan', 'Narasumber', 'Staff
+                                        ['Satya Lencana', 'Sertifikat Kompetensi', 'Piagam Penghargaan', 'Narasumber', 'Staff
                                         Ahli', 'Tenaga Ahli/Konsultan', 'Keynote Speaker', 'Invited Speaker', 'Visiting
                                         Lecturer', 'Visiting Researcher', 'Editor/Mitra Bestari']
                                         <optgroup label="Nama Dosen">
                                             <option value="Satya Lencana"
                                                 {{ old('kategori') == 'Satya Lencana' ? 'selected' : '' }}>Satya Lencana
                                             </option>
-                                            <option value="Sertifikat Kopetensi"
-                                                {{ old('kategori') == 'Sertifikat Kopetensi' ? 'selected' : '' }}>
+                                            <option value="Sertifikat Kompetensi"
+                                                {{ old('kategori') == 'Sertifikat Kompetensi' ? 'selected' : '' }}>
                                                 Sertifikat
-                                                Kopetensi</option>
+                                                Kompetensi</option>
                                             <option value="Piagam Penghargaan"
                                                 {{ old('kategori') == 'Piagam Penghargaan' ? 'selected' : '' }}>Piagam
                                                 Penghargaan</option>

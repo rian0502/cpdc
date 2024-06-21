@@ -31,7 +31,7 @@ class ModelPenghargaanDosenFactory extends Factory
             ]),
             'kategori' => $this->faker->randomElement([
                 'Satya Lencana',
-                'Sertifikat Kopetensi',
+                'Sertifikat Kompetensi',
                 'Piagam Penghargaan',
                 'Narasumber',
                 'Staff Ahli',
