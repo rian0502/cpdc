@@ -28,7 +28,7 @@ class StorePenghargaanDosenRequest extends FormRequest
             'nama' => ['string', 'required', 'min:3', 'max:255'],
             'tanggal' => ['required', 'date'],
             'scala' => ['required', 'string', 'in:Nasional,Internasional,Provinsi,Kabupaten/Kota,Universitas'],
-            'kategori'=>['required','string','in:Satya Lencana,Sertifikat Kopetensi,Piagam Penghargaan,Narasumber,Staff Ahli,Tenaga Ahli/Konsultan,Keynote Speaker,Invited Speaker,Visiting Lecturer,Visiting Researcher,Editor/Mitra Bestari'],
+            'kategori'=>['required','string','in:Satya Lencana,Sertifikat Kompetensi,Piagam Penghargaan,Narasumber,Staff Ahli,Tenaga Ahli/Konsultan,Keynote Speaker,Invited Speaker,Visiting Lecturer,Visiting Researcher,Editor/Mitra Bestari'],
             'uraian' => ['required', 'string', 'min:3', 'max:1255'],
             'url' => ['required', 'url', 'min:3', 'max:255'],
         ];

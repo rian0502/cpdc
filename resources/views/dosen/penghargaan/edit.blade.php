@@ -55,6 +55,55 @@
                                         <div class="form-control-feedback has-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label>Kategori</label>
+                                    <select class="custom-select2 form-control"style="width: 100%"
+                                        name="kategori">
+                                        ['Satya Lencana', 'Sertifikat Kompetensi', 'Piagam Penghargaan', 'Narasumber', 'Staff
+                                        Ahli', 'Tenaga Ahli/Konsultan', 'Keynote Speaker', 'Invited Speaker', 'Visiting
+                                        Lecturer', 'Visiting Researcher', 'Editor/Mitra Bestari']
+                                        <optgroup label="Nama Dosen">
+                                            <option value="Satya Lencana"
+                                                {{ old('kategori', $penghargaan->kategori) == 'Satya Lencana' ? 'selected' : '' }}>Satya Lencana
+                                            </option>
+                                            <option value="Sertifikat Kompetensi"
+                                                {{ old('kategori', $penghargaan->kategori) == 'Sertifikat Kompetensi' ? 'selected' : '' }}>
+                                                Sertifikat
+                                                Kompetensi</option>
+                                            <option value="Piagam Penghargaan"
+                                                {{ old('kategori', $penghargaan->kategori) == 'Piagam Penghargaan' ? 'selected' : '' }}>Piagam
+                                                Penghargaan</option>
+                                            <option value="Narasumber"
+                                                {{ old('kategori', $penghargaan->kategori) == 'Narasumber' ? 'selected' : '' }}>
+                                                Narasumber</option>
+                                            <option value="Staff Ahli"
+                                                {{ old('kategori', $penghargaan->kategori) == 'Staff Ahli' ? 'selected' : '' }}>
+                                                Staff Ahli</option>
+                                            <option value="Tenaga Ahli/Konsultan"
+                                                {{ old('kategori', $penghargaan->kategori) == 'Tenaga Ahli/Konsultan' ? 'selected' : '' }}>Tenaga
+                                                Ahli/Konsultan</option>
+                                            <option value="Keynote Speaker"
+                                                {{ old('kategori', $penghargaan->kategori) == 'Keynote Speaker' ? 'selected' : '' }}>Keynote
+                                                Speaker
+                                            </option>
+                                            <option value="Invited Speaker"
+                                                {{ old('kategori', $penghargaan->kategori) == 'Invited Speaker' ? 'selected' : '' }}>Invited
+                                                Speaker
+                                            </option>
+                                            <option value="Visiting Lecturer"
+                                                {{ old('kategori', $penghargaan->kategori) == 'Visiting Lecturer' ? 'selected' : '' }}>Visiting
+                                                Lecturer</option>
+                                            <option value="Visiting Researcher"
+                                                {{ old('kategori', $penghargaan->kategori) == 'Visiting Researcher' ? 'selected' : '' }}>Visiting
+                                                Researcher</option>
+                                            <option value="Editor/Mitra Bestari"
+                                                {{ old('kategori', $penghargaan->kategori) == 'Editor/Mitra Bestari' ? 'selected' : '' }}>
+                                                Editor/Mitra
+                                                Bestari</option>
+
+                                        </optgroup>
+                                    </select>
+                                </div>
                             </div>
                             {{-- form untuk sebelah kanan --}}
                             <div class="kanan weight-500 col-md-6">
