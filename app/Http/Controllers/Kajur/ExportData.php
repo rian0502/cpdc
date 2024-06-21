@@ -113,28 +113,30 @@ class ExportData extends Controller
         $sheet->setCellValue('A1', 'No');
         $sheet->setCellValue('B1', 'NPM');
         $sheet->setCellValue('C1', 'Nama Mahasiswa');
-        $sheet->setCellValue('D1', 'Nama Publikasi');
-        $sheet->setCellValue('E1', 'Judul');
-        $sheet->setCellValue('F1', 'Tahun');
-        $sheet->setCellValue('G1', 'Vol');
-        $sheet->setCellValue('H1', 'Halaman');
-        $sheet->setCellValue('I1', 'Scala');
-        $sheet->setCellValue('J1', 'Kategori');
-        $sheet->setCellValue('K1', 'URL');
-        $sheet->setCellValue('L1', 'Anggota');
+        $sheet->setCellValue('D1', 'Angkatan');
+        $sheet->setCellValue('E1', 'Nama Publikasi');
+        $sheet->setCellValue('F1', 'Judul');
+        $sheet->setCellValue('G1', 'Tahun');
+        $sheet->setCellValue('H1', 'Vol');
+        $sheet->setCellValue('I1', 'Halaman');
+        $sheet->setCellValue('J1', 'Scala');
+        $sheet->setCellValue('K1', 'Kategori');
+        $sheet->setCellValue('L1', 'URL');
+        $sheet->setCellValue('M1', 'Anggota');
         foreach ($publikasi as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->mahasiswa->npm);
             $sheet->setCellValue('C' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
-            $sheet->setCellValue('D' . ($key + 2), $value->nama_publikasi);
-            $sheet->setCellValue('E' . ($key + 2), $value->judul);
-            $sheet->setCellValue('F' . ($key + 2), $value->tahun);
-            $sheet->setCellValue('G' . ($key + 2), $value->vol);
-            $sheet->setCellValue('H' . ($key + 2), $value->halaman);
-            $sheet->setCellValue('I' . ($key + 2), $value->scala);
-            $sheet->setCellValue('J' . ($key + 2), $value->kategori);
-            $sheet->setCellValue('K' . ($key + 2), $value->url);
-            $sheet->setCellValue('L' . ($key + 2), $value->anggota);
+            $sheet->setCellValue('D' . ($key + 2), $value->mahasiswa->angkatan);
+            $sheet->setCellValue('E' . ($key + 2), $value->nama_publikasi);
+            $sheet->setCellValue('F' . ($key + 2), $value->judul);
+            $sheet->setCellValue('G' . ($key + 2), $value->tahun);
+            $sheet->setCellValue('H' . ($key + 2), $value->vol);
+            $sheet->setCellValue('I' . ($key + 2), $value->halaman);
+            $sheet->setCellValue('J' . ($key + 2), $value->scala);
+            $sheet->setCellValue('K' . ($key + 2), $value->kategori);
+            $sheet->setCellValue('L' . ($key + 2), $value->url);
+            $sheet->setCellValue('M' . ($key + 2), $value->anggota);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save($file_name);
@@ -795,8 +797,9 @@ class ExportData extends Controller
         $sheet->setCellValue('I1', 'Kategori');
         $sheet->setCellValue('J1', 'Mahasiswa');
         $sheet->setCellValue('K1', 'NPM');
-        $sheet->setCellValue('L1', 'Nama Pembimbing');
-        $sheet->setCellValue('M1', 'NIP Pembimbing');
+        $sheet->setCellValue('L1', 'Angkatan');
+        $sheet->setCellValue('M1', 'Nama Pembimbing');
+        $sheet->setCellValue('N1', 'NIP Pembimbing');
         foreach ($aktivitas as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->nama_aktivitas);
@@ -809,8 +812,9 @@ class ExportData extends Controller
             $sheet->setCellValue('I' . ($key + 2), $value->kategori);
             $sheet->setCellValue('J' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
             $sheet->setCellValue('K' . ($key + 2), $value->mahasiswa->npm);
-            $sheet->setCellValue('L' . ($key + 2), ($value->dosen->nama_dosen) ?? $value->nama_pembimbing);
-            $sheet->setCellValue('M' . ($key + 2), ($value->dosen->nip) ?? $value->nip_pembimbing);
+            $sheet->setCellValue('L' . ($key + 2), $value->mahasiswa->angkatan);
+            $sheet->setCellValue('M' . ($key + 2), ($value->dosen->nama_dosen) ?? $value->nama_pembimbing);
+            $sheet->setCellValue('N' . ($key + 2), ($value->dosen->nip) ?? $value->nip_pembimbing);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save($file_name . '.xlsx');
@@ -847,9 +851,11 @@ class ExportData extends Controller
         $sheet->setCellValue('E1', 'Tanggal');
         $sheet->setCellValue('F1', 'URL');
         $sheet->setCellValue('G1', 'Mahasiswa');
-        $sheet->setCellValue('H1', 'Jenis');
-        $sheet->setCellValue('I1', 'Nama Pembimbing');
-        $sheet->setCellValue('J1', 'NIP Pembimbing');
+        $sheet->setCellValue('H1', 'NPM');
+        $sheet->setCellValue('I1', 'Angkatan');
+        $sheet->setCellValue('J1', 'Jenis');
+        $sheet->setCellValue('K1', 'Nama Pembimbing');
+        $sheet->setCellValue('L1', 'NIP Pembimbing');
         foreach ($prestasi as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->nama_prestasi);
@@ -858,9 +864,11 @@ class ExportData extends Controller
             $sheet->setCellValue('E' . ($key + 2), $value->tanggal);
             $sheet->setCellValue('F' . ($key + 2), url('/uploads/file_prestasi/' . $value->file_prestasi));
             $sheet->setCellValue('G' . ($key + 2), $value->mahasiswa->nama_mahasiswa);
-            $sheet->setCellValue('H' . ($key + 2), $value->jenis);
-            $sheet->setCellValue('I' . ($key + 2), ($value->dosen->nama_dosen) ?? $value->nama_pembimbing);
-            $sheet->setCellValue('J' . ($key + 2), ($value->dosen->nip) ?? $value->nip_pembimbing);
+            $sheet->setCellValue('H' . ($key + 2), $value->mahasiswa->npm);
+            $sheet->setCellValue('I' . ($key + 2), $value->mahasiswa->angkatan);
+            $sheet->setCellValue('J' . ($key + 2), $value->jenis);
+            $sheet->setCellValue('K' . ($key + 2), ($value->dosen->nama_dosen) ?? $value->nama_pembimbing);
+            $sheet->setCellValue('L' . ($key + 2), ($value->dosen->nip) ?? $value->nip_pembimbing);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
         $writer->save('prestasi' . $date . '.xlsx');

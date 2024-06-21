@@ -1272,7 +1272,7 @@
 
                                         <div class="pd-20">
                                             <h5 class="h4 text-blue mb-20">Berita Acara</h5>
-                                            @if ($kp != null && $kp->berita_acara != null)
+                                            @if ($kp != null && $kp->berita_acara != null && $pendataan != null)
                                             <div class="pl-3 pr-3 pb-0 mb-2 bg-light text-dark rounded-div">
                                                 <div class="row border-bottom">
                                                     <label class="col-md-3 bold mt-2"> <strong>Tahun Akademik</strong></label>
