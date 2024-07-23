@@ -424,7 +424,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware(
     'auth',
     'profile',
     'verified',
-    'role:jurusan|tpmpsS1|tpmpsS2'
+    'role:jurusan|kaprodiS2|kaprodiS1|tpmpsS1|tpmpsS2'
 )->group(function () {
 
     //prestasi
