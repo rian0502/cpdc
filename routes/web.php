@@ -463,7 +463,7 @@ Route::prefix('jurusan')->name('jurusan.')->middleware(
     'auth',
     'profile',
     'verified',
-    'role:jurusan|kaprodiS1|tpmpsS1'
+    'role:jurusan|kaprodiS2|kaprodiS1|tpmpsS1|tpmpsS2'
 )->group(function () {
     Route::resource('alumni', DataAlumni::class);
     Route::resource('prestasi', PrestasiDataController::class);

@@ -610,9 +610,27 @@ class ExportDataS2 extends Controller
     }
     public function aktivitasS2(Request $request)
     {
-        
 
-        $aktivitas = AktivitasMahasiswaS2::with('mahasiswa')->whereYear('tanggal', $request->tahun_aktivitas)->get();
+
+        if ($request->filled('start') && $request->filled('end')) {
+            $aktivitas = AktivitasMahasiswaS2::with('mahasiswa')
+                ->whereBetween('tanggal', [$request->start, $request->end])
+                ->get();
+            $file_name = 'aktivitas_' . $request->start . '_' . $request->end;
+        } else if ($request->filled('start')) {
+            $aktivitas = AktivitasMahasiswaS2::with('mahasiswa')
+                ->where('tanggal', '>=', $request->start)
+                ->get();
+            $file_name = 'aktivitas_greater_than_' . $request->start;
+        } else if ($request->filled('end')) {
+            $aktivitas = AktivitasMahasiswaS2::with('mahasiswa')
+                ->where('tanggal', '<=', $request->end)
+                ->get();
+            $file_name = 'aktivitas_less_than_' . $request->end;
+        } else {
+            $aktivitas = AktivitasMahasiswaS2::with('mahasiswa')->get();
+            $file_name = 'aktivitas_all';
+        }
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Aktivitas Mahasiswa');
@@ -651,7 +669,25 @@ class ExportDataS2 extends Controller
 
     public function prestasiS2(Request $request)
     {
-        $prestasi = PrestasiMahasiswaS2::with('mahasiswa')->whereYear('tanggal', $request->tahun_prestasi)->get();
+        if ($request->filled(['start', 'end'])) {
+            $date = $request->start . '-' . $request->end;
+            $prestasi = PrestasiMahasiswaS2::with('mahasiswa')
+                ->whereBetween('tanggal', [$request->start, $request->end])
+                ->get();
+        } elseif ($request->filled('start')) {
+            $date = 'GreaterThan_' . $request->start;
+            $prestasi = PrestasiMahasiswaS2::with('mahasiswa')
+                ->where('tanggal', '>=', $request->start)
+                ->get();
+        } elseif ($request->filled('end')) {
+            $date = 'LessThan_' . $request->end;
+            $prestasi = PrestasiMahasiswaS2::with('mahasiswa')
+                ->where('tanggal', '<=', $request->end)
+                ->get();
+        } else {
+            $date = 'All';
+            $prestasi = PrestasiMahasiswaS2::with('mahasiswa')->get();
+        }
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Prestasi Mahasiswa');
