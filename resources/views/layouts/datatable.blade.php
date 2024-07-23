@@ -667,8 +667,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('jurusan.publikasi.index') }}"
-                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/publikasi*') ? 'active' : '' }}">
+                            <a href="{{ route('jurusan.publikasiMahasiswaS2.index') }}"
+                                class="dropdown-toggle no-arrow {{ Request::is('jurusan/publikasiMahasiswaS2*') ? 'active' : '' }}">
                                 <span class="micon bi bi-journal-text"></span><span class="mtext">PUBLIKASI</span>
                             </a>
                         </li>
