@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Kajur;
 
+use KinerjaDosen;
 use App\Models\ModelSPDosen;
 use Illuminate\Http\Request;
 use App\Models\LitabmasDosen;
 use App\Models\PublikasiDosen;
-use App\Http\Controllers\Controller;
+use App\Models\OrganisasiDosen;
 use App\Models\ModelKinerjaDosen;
+use App\Http\Controllers\Controller;
 use App\Models\ModelPenghargaanDosen;
-use KinerjaDosen;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class ExportDataDosen extends Controller
@@ -99,11 +100,12 @@ class ExportDataDosen extends Controller
     }
     public function organisasi_dosen(Request $request)
     {
-        $request->validate([
-            'tahun_akademik' => 'required',
-            'semester' => 'required',
-        ]);
-        $organisasi_dosen = ModelKinerjaDosen::with('dosen');
+        // $request->validate([
+        //     'tahun_akademik' => 'required',
+        //     'semester' => 'required',
+        // ]);
+        $organisasi_dosen = OrganisasiDosen::with('dosen')->get();
+        // dd($organisasi_dosen);
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Kinerja Dosen');
@@ -133,8 +135,26 @@ class ExportDataDosen extends Controller
     }
     public function seminar(Request $request)
     {
-        $seminar = ModelSPDosen::with('dosen')
-            ->whereYear('tanggal', $request->tahun_seminar)->get();
+        if ($request->filled('start') && $request->filled('end')) {
+            if ($request->end < $request->start) {
+                return redirect()->back()->with('error', 'Tanggal akhir tidak boleh lebih kecil dari tanggal awal');
+            }
+            $seminar = ModelSPDosen::with(['dosen'])
+                ->whereBetween('tanggal', [$request->start, $request->end])
+                ->get();
+        } else if ($request->filled('start')) {
+            $seminar = ModelSPDosen::with(['dosen'])
+                ->where('tanggal', '>=', $request->start)
+                ->get();
+        } else if ($request->filled('end')) {
+            $seminar = ModelSPDosen::with(['dosen'])
+                ->where('tanggal', '<=', $request->end)
+                ->get();
+        } else {
+            $seminar = ModelSPDosen::with(['dosen'])
+                ->get();
+
+        }
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Seminar Dosen');
@@ -155,14 +175,32 @@ class ExportDataDosen extends Controller
             $sheet->setCellValue('G' . ($key + 2), $value->url);
         }
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spdsheet);
-        $writer->save('seminar_dosen-' . $request->tahun_seminar . '.xlsx');
-        return response()->download('seminar_dosen-' . $request->tahun_seminar . '.xlsx')->deleteFileAfterSend(true);
+        $writer->save('seminar_dosen-' . '.xlsx');
+        return response()->download('seminar_dosen-' . '.xlsx')->deleteFileAfterSend(true);
     }
 
     public function penghargaan(Request $request)
     {
-        $penghargaan = ModelPenghargaanDosen::with('dosen')
-            ->whereYear('tanggal', $request->tahun_penghargaan)->get();
+        if ($request->filled('start') && $request->filled('end')) {
+            if ($request->end < $request->start) {
+                return redirect()->back()->with('error', 'Tanggal akhir tidak boleh lebih kecil dari tanggal awal');
+            }
+            $penghargaan = ModelPenghargaanDosen::with(['dosen'])
+                ->whereBetween('tanggal', [$request->start, $request->end])
+                ->get();
+        } else if ($request->filled('start')) {
+            $penghargaan = ModelPenghargaanDosen::with(['dosen'])
+                ->where('tanggal', '>=', $request->start)
+                ->get();
+        } else if ($request->filled('end')) {
+            $penghargaan = ModelPenghargaanDosen::with(['dosen'])
+                ->where('tanggal', '<=', $request->end)
+                ->get();
+        } else {
+            $penghargaan = ModelPenghargaanDosen::with(['dosen'])
+                ->get();
+
+        }
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Penghargaan Dosen');
@@ -193,10 +231,26 @@ class ExportDataDosen extends Controller
 
     public function penelitian(Request $request)
     {
-        $penelitian = LitabmasDosen::with('anggota_litabmas')->where(
-            'tahun_penelitian',
-            $request->tahun_penelitian
-        )->where('kategori', 'Penelitian')->get();
+        if ($request->filled('start') && $request->filled('end')) {
+            if ($request->end < $request->start) {
+                return redirect()->back()->with('error', 'Tanggal akhir tidak boleh lebih kecil dari tanggal awal');
+            }
+            $penelitian = LitabmasDosen::with(['anggota_litabmas'])
+                ->whereBetween('tahun_penelitian', [$request->start, $request->end])
+                ->where('kategori', 'penelitian')->get();
+        } else if ($request->filled('start')) {
+            $penelitian = LitabmasDosen::with(['anggota_litabmas'])
+                ->where('tahun_penelitian', '>=', $request->start)
+                ->where('kategori', 'penelitian')->get();
+        } else if ($request->filled('end')) {
+            $penelitian = LitabmasDosen::with(['anggota_litabmas'])
+                ->where('tahun_penelitian', '<=', $request->end)
+                ->where('kategori', 'penelitian')->get();
+        } else {
+            $penelitian = LitabmasDosen::with(['anggota_litabmas'])
+                ->where('kategori', 'penelitian')->get();
+
+        }
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Penelitian Dosen');
@@ -223,10 +277,26 @@ class ExportDataDosen extends Controller
     }
     public function pengabdian(Request $request)
     {
-        $penelitian = LitabmasDosen::with('anggota_litabmas')->where(
-            'tahun_penelitian',
-            $request->tahun_pengabdian
-        )->where('kategori', 'Pengabdian')->get();
+        if ($request->filled('start') && $request->filled('end')) {
+            if ($request->end < $request->start) {
+                return redirect()->back()->with('error', 'Tanggal akhir tidak boleh lebih kecil dari tanggal awal');
+            }
+            $penelitian = LitabmasDosen::with(['anggota_litabmas'])
+                ->whereBetween('tahun_penelitian', [$request->start, $request->end])
+                ->where('kategori', 'Pengabdian')->get();
+        } else if ($request->filled('start')) {
+            $penelitian = LitabmasDosen::with(['anggota_litabmas'])
+                ->where('tahun_penelitian', '>=', $request->start)
+                ->where('kategori', 'Pengabdian')->get();
+        } else if ($request->filled('end')) {
+            $penelitian = LitabmasDosen::with(['anggota_litabmas'])
+                ->where('tahun_penelitian', '<=', $request->end)
+                ->where('kategori', 'Pengabdian')->get();
+        } else {
+            $penelitian = LitabmasDosen::with(['anggota_litabmas'])
+                ->where('kategori', 'Pengabdian')->get();
+
+        }
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Pengabdian Dosen');
@@ -252,10 +322,27 @@ class ExportDataDosen extends Controller
     }
     public function publikasi(Request $request)
     {
-        $publikasi = PublikasiDosen::with('anggotaPublikasi')->where(
-            'tahun',
-            $request->tahun_publikasi
-        )->get();
+
+        if ($request->filled('start') && $request->filled('end')) {
+            if ($request->end < $request->start) {
+                return redirect()->back()->with('error', 'Tanggal akhir tidak boleh lebih kecil dari tanggal awal');
+            }
+            $seminar = PublikasiDosen::with(['anggotaPublikasi'])
+                ->whereBetween('tahun', [$request->start, $request->end])
+                ->get();
+        } else if ($request->filled('start')) {
+            $seminar = PublikasiDosen::with(['anggotaPublikasi'])
+                ->where('tahun', '>=', $request->start)
+                ->get();
+        } else if ($request->filled('end')) {
+            $seminar = PublikasiDosen::with(['anggotaPublikasi'])
+                ->where('tahun', '<=', $request->end)
+                ->get();
+        } else {
+            $seminar = PublikasiDosen::with(['anggotaPublikasi'])
+                ->get();
+
+        }
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
         $sheet->setTitle('Publikasi Dosen');
@@ -271,7 +358,7 @@ class ExportDataDosen extends Controller
         $sheet->setCellValue('J1', 'URL');
         $sheet->setCellValue('K1', 'Anggota');
         $sheet->setCellValue('L1', 'Anggota External');
-        foreach ($publikasi as $key => $value) {
+        foreach ($seminar as $key => $value) {
             $sheet->setCellValue('A' . ($key + 2), $key + 1);
             $sheet->setCellValue('B' . ($key + 2), $value->nama_publikasi);
             $sheet->setCellValue('C' . ($key + 2), $value->vol);
