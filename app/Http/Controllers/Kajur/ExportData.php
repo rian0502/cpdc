@@ -105,7 +105,7 @@ class ExportData extends Controller
                         $query->where('name', 'mahasiswa');
                     }
                 )->get();
-            return dd($publikasi);
+          
         }
         $spdsheet = new Spreadsheet();
         $sheet = $spdsheet->getActiveSheet();
