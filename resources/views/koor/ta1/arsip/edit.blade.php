@@ -389,15 +389,13 @@
                                         {{-- form untuk sebelah kanan --}}
                                         <div class="form-group">
                                             <label>Jam Mulai</label>
-                                            <input type="time"
-                                                value="{{ $seminar->jadwal->jam_mulai_seminar_ta_satu }}"
-                                                name="jam_mulai_seminar_ta_satu" autocomplete="off"
+                                            <input type="time" value="{{ $seminar->jadwal->jam_mulai_seminar_ta_satu }}"
+                                                name="jam_mulai_seminar_ta_satu"
                                                 class="form-control @error('jam_mulai_seminar_ta_satu') form-control-danger @enderror">
                                             @error('jam_mulai_seminar_ta_satu')
                                                 <div class="form-control-feedback has-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        {{ dd($seminar->jadwal->jam_mulai_seminar_ta_satu) }}
                                         <div class="form-group">
                                             <label>Jam Selesai</label>
                                             <input type="time" name="jam_selesai_seminar_ta_satu"
