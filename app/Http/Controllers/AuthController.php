@@ -111,6 +111,7 @@ class AuthController extends Controller
                     'name' => Str::title($request->nama_lengkap),
                     'email' => $request->email,
                     'password' => bcrypt($request->password),
+                    'email_verified_at' => now(),
                 ]);
                 $aktifkan = BaseNPM::where('npm', $request->npm)->first();
                 $aktifkan->status = 'aktif';
@@ -121,7 +122,7 @@ class AuthController extends Controller
                     'angkatan' => $request->angkatan,
                     'jenis_kelamin' => $request->gender,
                     'user_id' => $user->id,
-                    'status_register' => 0,
+                    'status_register' => 1,
                     'berkas_upload' => $nama_file,
                 ];
                 if ($request->id_dosen != null) {
@@ -137,12 +138,12 @@ class AuthController extends Controller
                 }
                 Mahasiswa::create($mhs);
                 event(new Registered($user));
-                $user->sendEmailVerificationNotification();
+                // $user->sendEmailVerificationNotification();
                 auth()->login($user);
             });
             return redirect()->route('verification.notice')->with(
                 'registered',
-                'Pendaftaran berhasil, silahkan cek email untuk melakukan verifikasi, Jika Vertifikasi tidak ada di kotak masuk, silahkan cek di kotak spam, atau klik tombol Kirim Kembali'
+                'silahkan kembali ke halaman awal'
             );
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
