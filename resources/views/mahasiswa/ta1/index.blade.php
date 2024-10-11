@@ -271,9 +271,9 @@
                                     </div>
                                     <label class="col-md-3 bold mt-1"><strong>Bahan Berita Acara</strong></label>
                                     <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                        @if ($cek == true)
+                                        @if ($seminar->template_ba)
                                             <a target="_blank"
-                                                href="/uploads/print_ba_ta1//{{ $seminar->template_ba }}">Unduh
+                                                href="/uploads/print_ba_ta1/{{ $seminar->template_ba }}">Unduh
                                                 Berkas</a>
                                         @else
                                             <p>File Belum Tersedia</p>
