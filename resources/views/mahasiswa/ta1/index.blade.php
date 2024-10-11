@@ -190,7 +190,7 @@
 
                                 <label class="col-md-3 bold"> <strong>Ide Judul</strong></label>
                                 <div class="col-md-3" style="display:block;word-wrap:break-word;">
-                                    Dari {{ $seminar->sumber_penelitian}}
+                                    Dari {{ $seminar->sumber_penelitian }}
                                 </div>
                             </div>
 
@@ -268,6 +268,17 @@
                                         @else
                                             <div>Belum terjadwal</div>
                                         @endif
+                                    </div>
+                                    <label class="col-md-3 bold mt-1"><strong>Bahan Berita Acara</strong></label>
+                                    <div class="col-md-3" style="display:block;word-wrap:break-word;">
+                                        @if ($cek == true)
+                                            <a target="_blank"
+                                                href="/uploads/print_ba_ta1//{{ $seminar->template_ba }}">Unduh
+                                                Berkas</a>
+                                        @else
+                                            <p>File Belum Tersedia</p>
+                                        @endif
+
                                     </div>
                                 </div>
                             </div>
