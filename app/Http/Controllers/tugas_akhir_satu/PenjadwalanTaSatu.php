@@ -203,6 +203,8 @@ class PenjadwalanTaSatu extends Controller
         $template->setValue('jam_selesai', $request->jam_selesai_skp);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
         $namafile = $mahasiswa->npm . '_ba_ta1.docx';
+        $seminar->template_ba=$namafile;
+        $seminar->save();
         //unlink if file exist
         if (file_exists('uploads/print_ba_ta1/' . $namafile)) {
             unlink('uploads/print_ba_ta1/' . $namafile);
@@ -270,6 +272,9 @@ class PenjadwalanTaSatu extends Controller
         $template->setValue('jam_selesai', $jadwal->jam_selesai_seminar_ta_satu);
         $template->setValue('lokasi', $lokasi->nama_lokasi);
         $namafile = $mahasiswa->npm . '_ba_ta1.docx';
+        $seminar->template_ba=$namafile;
+        $seminar->save();
+
         if (file_exists('uploads/print_ba_ta1/' . $namafile)) {
             unlink('uploads/print_ba_ta1/' . $namafile);
         }
