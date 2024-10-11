@@ -62,6 +62,6 @@ class SendEmailTugasAkhir1 implements ShouldQueue
                 $message->attach(base_path($prefix . 'uploads/print_ba_ta1/' . $namafile));
             }
         );
-        unlink(base_path($prefix . 'uploads/print_ba_ta1/' . $namafile));
+        // unlink(base_path($prefix . 'uploads/print_ba_ta1/' . $namafile));
     }
 }

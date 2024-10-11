@@ -30,6 +30,7 @@ class ModelSeminarTaSatu extends Model
         'pbl2_nip',
         'id_pembahas',
         'id_mahasiswa',
+        'template_ba',
         'created_at',
         'updated_at'
     ];

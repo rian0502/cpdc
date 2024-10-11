@@ -21,8 +21,16 @@ class MahasiswaTaSatuController extends Controller
             $seminar = ModelSeminarTaSatu::where('id_mahasiswa', Auth::user()
                 ->mahasiswa->id)->first();
 
+
+
+            if ($seminar->template_ba != null && file_exists(public_path('uploads/print_ba_ta1/' . $seminar->template_ba))) {
+                $cek = true;
+            } else {
+                $cek = false;
+            }
+
             $mahasiswa = Auth::user()->mahasiswa;
-            return view('mahasiswa.ta1.index', compact(['seminar', 'mahasiswa']));
+            return view('mahasiswa.ta1.index', compact(['seminar', 'mahasiswa', 'cek']));
         }
         return redirect()->route('mahasiswa.seminar.tugas_akhir_1.create');
     }
