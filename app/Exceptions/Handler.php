@@ -34,8 +34,9 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e, $request) {
+            // Redirect ke URL yang diinginkan ketika error 404 terjadi
+            return redirect()->to('https://saidata.fmipa.unila.ac.id');
         });
     }
 }
