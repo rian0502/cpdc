@@ -109,6 +109,17 @@ class LabTAController extends Controller
         if ($mahasiswa->komprehensif) {
             $judul_kegiatan = $mahasiswa->komprehensif->judul_ta;
         }
+        if ($mahasiswa->taSatuS2) {
+            $judul_kegiatan = $mahasiswa->taSatuS2->judul_ta;
+        }
+        if ($mahasiswa->taDuaS2) {
+            $judul_kegiatan = $mahasiswa->taDuaS2->judul_ta;
+        }
+        if ($mahasiswa->komprehensifS2) {
+            $judul_kegiatan = $mahasiswa->komprehensifS2->judul_ta;
+        }
+        // dd($judul_kegiatan);
+
         $lab = Laboratorium::create([
             'nama_kegiatan' => $judul_kegiatan,
             'id_lokasi' => $user->lokasi_id,
@@ -142,6 +153,15 @@ class LabTAController extends Controller
         }
         if ($mahasiswa->komprehensif) {
             $judul_kegiatan = $mahasiswa->komprehensif->judul_ta;
+        }
+        if ($mahasiswa->taSatuS2) {
+            $judul_kegiatan = $mahasiswa->taSatuS2->judul_ta;
+        }
+        if ($mahasiswa->taDuaS2) {
+            $judul_kegiatan = $mahasiswa->taDuaS2->judul_ta;
+        }
+        if ($mahasiswa->komprehensifS2) {
+            $judul_kegiatan = $mahasiswa->komprehensifS2->judul_ta;
         }
         $lab = Laboratorium::create([
             'nama_kegiatan' => $judul_kegiatan,

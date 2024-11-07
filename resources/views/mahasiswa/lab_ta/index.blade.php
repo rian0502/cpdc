@@ -199,7 +199,7 @@
                             </div>
                         </form>
                     </div>
-                @elseif(Auth::user()->mahasiswa->ta_satu)
+                @elseif(Auth::user()->mahasiswa->ta_satu || Auth::user()->mahasiswa->taSatuS2)
                     @if (!$absen)
                         <div class="pd-20 card-box mb-30">
                             <div class="clearfix">
