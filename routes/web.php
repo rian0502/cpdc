@@ -782,6 +782,7 @@ use App\Http\Controllers\mahasiswa_s2\kompre\ControllerMahasiswaS2SidangKompre;
 //     ])->name('validasi.mahasiswa.update');
 // });
 
+
 Route::get('/', function () {
     return redirect()->to('https://saidata.fmipa.unila.ac.id');
 });
