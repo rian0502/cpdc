@@ -1,8 +1,6 @@
 # 🧪 Chemistry Program Data Center  
 
-![Status](https://img.shields.io/badge/Status-Active-brightgreen)  
-![Version](https://img.shields.io/badge/Version-2.0.0-blue)  
-[![License](https://img.shields.io/badge/License-View-red)](https://drive.google.com/file/d/1k-O4DnAXIXP3zvStl0EifxxAyw8RxCQD/view)  
+![Status](https://img.shields.io/badge/Status-Active-brightgreen) ![Version](https://img.shields.io/badge/Version-2.0.0-blue) [![License](https://img.shields.io/badge/License-View-red)](https://drive.google.com/file/d/1k-O4DnAXIXP3zvStl0EifxxAyw8RxCQD/view) ![Framework](https://img.shields.io/badge/Laravel-FF2D20?logo=laravel&logoColor=white) ![Database](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white) ![Cache](https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=white) ![Frontend](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=white) 
 
 Sebuah **Sistem Informasi** untuk Jurusan Kimia, Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Lampung.  
 Website ini digunakan untuk **pendataan Dosen, Mahasiswa, Aktivitas, dan Barang**.  
