@@ -34,8 +34,8 @@ Website ini digunakan untuk **pendataan Dosen, Mahasiswa, Aktivitas, dan Barang*
 
 ---
 
-## 📸 **Dokumentasi**  
-(Foto)  
+## 🌐 **Aplikasi**  
+🔗 [Lihat Aplikasi](https://saidata.fmipa.unila.ac.id/)  
 
 ---
 
